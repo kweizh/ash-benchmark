@@ -1,0 +1,6 @@
+{
+  "title": "Ash Benchmark",
+  "description": "Performance results of AI coding models on ash tasks, measuring success rate and execution time with high precision.",
+  "github_repo": "https://github.com/kweizh/ash-benchmark",
+  "pending_models": []
+}
