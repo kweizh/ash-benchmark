@@ -1,0 +1,54 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: xprocess-1.0.2, json-ctrf-0.5.3
+collected 30 items
+
+../tests/test_final_state.py ..............................              [100%]
+
+==================================== PASSES ====================================
+____________________ test_t01_get_one_book_resource_object _____________________
+---------------------------- Captured stdout setup -----------------------------
+/tests/.pytest_cache/d/.xprocess/catalog_api$ mix run --no-halt
+process 'catalog_api' started pid=6723
+catalog_api process startup detected
+===== [STARTED] catalog_api log =====
+@@__xproc_block_delimiter__@@
+
+===== [STARTED] end catalog_api log =====
+--------------------------- Captured stdout teardown ---------------------------
+===== [TEARDOWN] catalog_api log =====
+
+===== [TEARDOWN] end catalog_api log =====
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_t01_get_one_book_resource_object
+PASSED ../tests/test_final_state.py::test_t02_top_level_document_members_and_self_link
+PASSED ../tests/test_final_state.py::test_t03_sparse_fieldset_on_primary_data
+PASSED ../tests/test_final_state.py::test_t04_include_author_linkage_and_included
+PASSED ../tests/test_final_state.py::test_t05_sparse_fieldset_applies_to_included
+PASSED ../tests/test_final_state.py::test_t06_index_filter_hides_restricted_from_anonymous
+PASSED ../tests/test_final_state.py::test_t07_index_filter_shows_restricted_to_curator
+PASSED ../tests/test_final_state.py::test_t08_included_resources_are_deduplicated
+PASSED ../tests/test_final_state.py::test_t09_nested_include_is_complete_and_deduplicated
+PASSED ../tests/test_final_state.py::test_t10_relationship_links_on_author
+PASSED ../tests/test_final_state.py::test_t11_sort_descending
+PASSED ../tests/test_final_state.py::test_t12_sort_ascending
+PASSED ../tests/test_final_state.py::test_t13_pagination_first_page_links_and_total
+PASSED ../tests/test_final_state.py::test_t14_pagination_last_page_links
+PASSED ../tests/test_final_state.py::test_t15_create_book_persists_and_links_author
+PASSED ../tests/test_final_state.py::test_t16_multiple_attribute_constraint_violations
+PASSED ../tests/test_final_state.py::test_t17_missing_required_attribute
+PASSED ../tests/test_final_state.py::test_t18_review_rating_out_of_range
+PASSED ../tests/test_final_state.py::test_t19_missing_required_relationship
+PASSED ../tests/test_final_state.py::test_t20_wrong_resource_type_in_body
+PASSED ../tests/test_final_state.py::test_t21_unknown_id_returns_not_found
+PASSED ../tests/test_final_state.py::test_t22_patch_updates_only_the_given_attributes
+PASSED ../tests/test_final_state.py::test_t23_delete_is_forbidden_without_the_curator_role
+PASSED ../tests/test_final_state.py::test_t24_curator_can_delete
+PASSED ../tests/test_final_state.py::test_t25_restricted_book_visibility
+PASSED ../tests/test_final_state.py::test_t26_related_route_returns_full_resource_objects
+PASSED ../tests/test_final_state.py::test_t27_relationship_route_returns_identifier_objects_only
+PASSED ../tests/test_final_state.py::test_t28_shelf_summary_report
+PASSED ../tests/test_final_state.py::test_t29_shelf_summary_requires_the_shelf_argument
+PASSED ../tests/test_final_state.py::test_t30_unknown_include_is_rejected
+============================= 30 passed in 27.68s ==============================

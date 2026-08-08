@@ -1,0 +1,359 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-08T11:29:02.568059+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 35,
+            "passed": 30,
+            "failed": 5,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786188526233,
+            "stop": 1786188542567
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_t01_manual_relationships_declare_their_modules",
+                "status": "passed",
+                "duration": 16286,
+                "start": 1786188526243,
+                "stop": 1786188542529,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_manual_actions_declare_their_modules",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542530,
+                "stop": 1786188542530,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_manual_actions_expose_the_required_arguments",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542530,
+                "stop": 1786188542530,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_reply_count_aggregate_counts_direct_replies",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188542530,
+                "stop": 1786188542531,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_recent_messages_is_a_per_thread_top_three",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542531,
+                "stop": 1786188542531,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_recent_messages_is_empty_for_a_thread_without_messages",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188542531,
+                "stop": 1786188542532,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_recent_messages_returns_fewer_than_three_when_available",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542532,
+                "stop": 1786188542532,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_recent_messages_breaks_position_ties_by_ascending_id",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542532,
+                "stop": 1786188542532,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_recent_messages_filters_before_truncating",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188542532,
+                "stop": 1786188542533,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_recent_messages_is_loaded_in_one_batch",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542533,
+                "stop": 1786188542533,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_recent_messages_does_not_query_per_parent",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542533,
+                "stop": 1786188542533,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_relationship_loads_under_a_manual_relationship",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188542533,
+                "stop": 1786188542534,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_aggregate_loads_under_a_manual_relationship",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542534,
+                "stop": 1786188542534,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_manual_relationship_loads_under_a_manual_relationship",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 10,
+                "start": 1786188542534,
+                "stop": 1786188542544,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\\n\\n--- stderr ---\\n')\n\n    def test_t14_manual_relationship_loads_under_a_manual_relationship(suite):\n>       _assert_scenario(suite, \"T14\")\n\n/tests/test_final_state.py:948: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\\n\\n--- stderr ---\\n')\nscenario_id = 'T14'\n\n    def _assert_scenario(suite, scenario_id):\n        results, diagnostics = suite\n        assert scenario_id in results, (\n            f\"Scenario {scenario_id} did not run. The project most likely failed to \"\n            f\"compile or the suite crashed.\\n{diagnostics}\"\n        )\n        status, detail = results[scenario_id]\n>       assert status == \"PASS\", f\"Scenario {scenario_id} failed:\\n{detail}\"\nE       AssertionError: Scenario T14 failed:\nE           1) test T14 a manual relationship loads underneath another manual relationship (Harbor.Suite)\nE              /tmp/harbor_manual_graph.exs:437\nE              Assertion with == failed\nE              code:  assert Enum.map(thread.recent_messages, &bodies(&1.ancestor_messages)) == [\nE                       [\"chain-0\", \"chain-1\", \"chain-2\"],\nE                       [\"chain-0\", \"chain-1\", \"chain-2\"],\nE                       [\"chain-0\", \"chain-1\"]\nE                     ]\nE              left:  [[], [], [\"chain-1\", \"chain-0\"]]\nE              right: [[\"chain-0\", \"chain-1\", \"chain-2\"], [\"chain-0\", \"chain-1\", \"chain-2\"], [\"chain-0\", \"chain-1\"]]\nE              stacktrace:\nE                /tmp/harbor_manual_graph.exs:444: (test)\nE         \nE       assert 'FAIL' == 'PASS'\nE         - PASS\nE         + FAIL\n\n/tests/test_final_state.py:892: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t15_ancestor_messages_is_ordered_outermost_first",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 4,
+                "start": 1786188542544,
+                "stop": 1786188542548,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\\n\\n--- stderr ---\\n')\n\n    def test_t15_ancestor_messages_is_ordered_outermost_first(suite):\n>       _assert_scenario(suite, \"T15\")\n\n/tests/test_final_state.py:952: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\\n\\n--- stderr ---\\n')\nscenario_id = 'T15'\n\n    def _assert_scenario(suite, scenario_id):\n        results, diagnostics = suite\n        assert scenario_id in results, (\n            f\"Scenario {scenario_id} did not run. The project most likely failed to \"\n            f\"compile or the suite crashed.\\n{diagnostics}\"\n        )\n        status, detail = results[scenario_id]\n>       assert status == \"PASS\", f\"Scenario {scenario_id} failed:\\n{detail}\"\nE       AssertionError: Scenario T15 failed:\nE           1) test T15 ancestor_messages walks the whole parent chain, outermost first (Harbor.Suite)\nE              /tmp/harbor_manual_graph.exs:451\nE              Assertion with == failed\nE              code:  assert ancestors[\"chain-1\"] == [\"chain-0\"]\nE              left:  []\nE              right: [\"chain-0\"]\nE              stacktrace:\nE                /tmp/harbor_manual_graph.exs:455: (test)\nE         \nE       assert 'FAIL' == 'PASS'\nE         - PASS\nE         + FAIL\n\n/tests/test_final_state.py:892: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t16_ancestor_messages_terminates_on_a_cycle",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 4,
+                "start": 1786188542548,
+                "stop": 1786188542552,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\\n\\n--- stderr ---\\n')\n\n    def test_t16_ancestor_messages_terminates_on_a_cycle(suite):\n>       _assert_scenario(suite, \"T16\")\n\n/tests/test_final_state.py:956: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\\n\\n--- stderr ---\\n')\nscenario_id = 'T16'\n\n    def _assert_scenario(suite, scenario_id):\n        results, diagnostics = suite\n        assert scenario_id in results, (\n            f\"Scenario {scenario_id} did not run. The project most likely failed to \"\n            f\"compile or the suite crashed.\\n{diagnostics}\"\n        )\n        status, detail = results[scenario_id]\n>       assert status == \"PASS\", f\"Scenario {scenario_id} failed:\\n{detail}\"\nE       AssertionError: Scenario T16 failed:\nE           1) test T16 ancestor_messages terminates on a cyclic parent chain (Harbor.Suite)\nE              /tmp/harbor_manual_graph.exs:461\nE              Assertion with == failed\nE              code:  assert ancestors[\"cycle-1\"] == [\"cycle-2\"]\nE              left:  []\nE              right: [\"cycle-2\"]\nE              stacktrace:\nE                /tmp/harbor_manual_graph.exs:464: (test)\nE         \nE       assert 'FAIL' == 'PASS'\nE         - PASS\nE         + FAIL\n\n/tests/test_final_state.py:892: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t17_ancestor_messages_is_batched",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188542552,
+                "stop": 1786188542553,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_linked_messages_is_a_transitive_closure",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542553,
+                "stop": 1786188542553,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_linked_messages_excludes_self_and_handles_leaves",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542553,
+                "stop": 1786188542553,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_linked_messages_ignores_kind_and_shares_targets",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542554,
+                "stop": 1786188542554,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t21_linked_messages_is_batched",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542554,
+                "stop": 1786188542554,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_highlights_scopes_by_board_with_default_ordering",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542554,
+                "stop": 1786188542554,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_highlights_honours_min_endorsements",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542555,
+                "stop": 1786188542555,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_highlights_merges_several_boards",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542555,
+                "stop": 1786188542555,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_highlights_attaches_endorsement_count_metadata",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542555,
+                "stop": 1786188542555,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_highlights_honours_a_query_filter",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542556,
+                "stop": 1786188542556,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t27_highlights_honours_a_query_sort",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542556,
+                "stop": 1786188542556,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t28_highlights_honours_limit_and_offset",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188542556,
+                "stop": 1786188542557,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t29_highlights_code_interface_runs_the_action_once",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542557,
+                "stop": 1786188542557,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t30_fork_copies_the_source_subtree",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542557,
+                "stop": 1786188542557,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t31_fork_renumbers_positions_by_position_order",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 5,
+                "start": 1786188542557,
+                "stop": 1786188542562,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\\n\\n--- stderr ---\\n')\n\n    def test_t31_fork_renumbers_positions_by_position_order(suite):\n>       _assert_scenario(suite, \"T31\")\n\n/tests/test_final_state.py:1016: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\\n\\n--- stderr ---\\n')\nscenario_id = 'T31'\n\n    def _assert_scenario(suite, scenario_id):\n        results, diagnostics = suite\n        assert scenario_id in results, (\n            f\"Scenario {scenario_id} did not run. The project most likely failed to \"\n            f\"compile or the suite crashed.\\n{diagnostics}\"\n        )\n        status, detail = results[scenario_id]\n>       assert status == \"PASS\", f\"Scenario {scenario_id} failed:\\n{detail}\"\nE       AssertionError: Scenario T31 failed:\nE           1) test T31 fork renumbers positions by position order and ignores unrelated messages (Harbor.Suite)\nE              /tmp/harbor_manual_graph.exs:644\nE              Assertion with == failed\nE              code:  assert by_body[\"fork-2\"].parent_id == by_body[\"fork-1\"].id\nE              left:  nil\nE              right: \"5abd12ac-ed24-4432-90c4-d8ca661fd20a\"\nE              stacktrace:\nE                /tmp/harbor_manual_graph.exs:653: (test)\nE         \nE       assert 'FAIL' == 'PASS'\nE         - PASS\nE         + FAIL\n\n/tests/test_final_state.py:892: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t32_fork_records_a_single_fork_of_link",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 4,
+                "start": 1786188542562,
+                "stop": 1786188542566,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\\n\\n--- stderr ---\\n')\n\n    def test_t32_fork_records_a_single_fork_of_link(suite):\n>       _assert_scenario(suite, \"T32\")\n\n/tests/test_final_state.py:1020: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\\n\\n--- stderr ---\\n')\nscenario_id = 'T32'\n\n    def _assert_scenario(suite, scenario_id):\n        results, diagnostics = suite\n        assert scenario_id in results, (\n            f\"Scenario {scenario_id} did not run. The project most likely failed to \"\n            f\"compile or the suite crashed.\\n{diagnostics}\"\n        )\n        status, detail = results[scenario_id]\n>       assert status == \"PASS\", f\"Scenario {scenario_id} failed:\\n{detail}\"\nE       AssertionError: Scenario T32 failed:\nE           1) test T32 fork records exactly one :fork_of link from the new root to the source (Harbor.Suite)\nE              /tmp/harbor_manual_graph.exs:661\nE              Assertion with == failed\nE              code:  assert root.body == \"fork-5\"\nE              left:  \"fork-6\"\nE              right: \"fork-5\"\nE              stacktrace:\nE                /tmp/harbor_manual_graph.exs:676: (test)\nE         \nE       assert 'FAIL' == 'PASS'\nE         - PASS\nE         + FAIL\n\n/tests/test_final_state.py:892: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t33_fork_rejects_an_unknown_source_message",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542566,
+                "stop": 1786188542566,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t34_fork_rejects_a_locked_source_thread",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542567,
+                "stop": 1786188542567,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t35_fork_code_interface_runs_the_action_once",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188542567,
+                "stop": 1786188542567,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

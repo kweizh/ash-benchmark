@@ -1,0 +1,19 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.3
+collected 11 items
+
+../bootstrap/test_initial_state.py::test_elixir_toolchain_available PASSED
+../bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+../bootstrap/test_initial_state.py::test_mix_project_files_exist PASSED
+../bootstrap/test_initial_state.py::test_mix_project_declares_cart_pricing_app PASSED
+../bootstrap/test_initial_state.py::test_ash_v3_is_locked_and_vendored PASSED
+../bootstrap/test_initial_state.py::test_dependencies_are_precompiled_for_dev_and_test PASSED
+../bootstrap/test_initial_state.py::test_project_compiles_offline PASSED
+../bootstrap/test_initial_state.py::test_test_env_compiles_offline PASSED
+../bootstrap/test_initial_state.py::test_solution_files_are_absent PASSED
+../bootstrap/test_initial_state.py::test_solution_modules_are_not_defined PASSED
+../bootstrap/test_initial_state.py::test_no_verification_suite_is_preinstalled PASSED
+
+============================= 11 passed in 56.19s ==============================

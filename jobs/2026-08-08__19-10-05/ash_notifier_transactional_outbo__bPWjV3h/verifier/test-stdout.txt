@@ -1,0 +1,279 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 28 items
+
+../tests/test_final_state.py ....F.....FF..F..F....F.....                [100%]
+
+=================================== FAILURES ===================================
+____ test_t05_update_diffs_contain_only_the_attributes_that_really_changed _____
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('pass', ''), 'test T02 outbox resource shape': ('pass', '')... helpers are ordered and scoped@@pass@@\n@@HARBOR@@test T27 reset returns the subsystem to a pristine state@@pass@@\n')
+
+    def test_t05_update_diffs_contain_only_the_attributes_that_really_changed(suite_run) -> None:
+        """T05: update diffs contain only the attributes that really changed."""
+>       _assert_scenario(suite_run, "T05")
+
+/tests/test_final_state.py:855: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('pass', ''), 'test T02 outbox resource shape': ('pass', '')... helpers are ordered and scoped@@pass@@\n@@HARBOR@@test T27 reset returns the subsystem to a pristine state@@pass@@\n')
+scenario_id = 'T05'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T05 failed:
+E           1) test T05 update diffs contain only the attributes that really changed (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:165
+E              Assertion with == failed
+E              code:  assert deposit.changes == %{"balance" => %{"from" => 10, "to" => 15}}
+E              left:  %{"balance" => %{"from" => 10, "to" => balance + 5}}
+E              right: %{"balance" => %{"from" => 10, "to" => 15}}
+E              stacktrace:
+E                /tmp/harbor_outbox_suite.exs:181: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_______ test_t11_batch_create_emits_exactly_one_entry_per_created_record _______
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('pass', ''), 'test T02 outbox resource shape': ('pass', '')... helpers are ordered and scoped@@pass@@\n@@HARBOR@@test T27 reset returns the subsystem to a pristine state@@pass@@\n')
+
+    def test_t11_batch_create_emits_exactly_one_entry_per_created_record(suite_run) -> None:
+        """T11: batch create emits exactly one entry per created record."""
+>       _assert_scenario(suite_run, "T11")
+
+/tests/test_final_state.py:885: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('pass', ''), 'test T02 outbox resource shape': ('pass', '')... helpers are ordered and scoped@@pass@@\n@@HARBOR@@test T27 reset returns the subsystem to a pristine state@@pass@@\n')
+scenario_id = 'T11'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T11 failed:
+E           1) test T11 batch create emits exactly one entry per created record (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:250
+E              Assertion with == failed
+E              code:  assert length(all) == 5
+E              left:  0
+E              right: 5
+E              stacktrace:
+E                /tmp/harbor_outbox_suite.exs:260: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_______ test_t12_batch_update_emits_exactly_one_entry_per_updated_record _______
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('pass', ''), 'test T02 outbox resource shape': ('pass', '')... helpers are ordered and scoped@@pass@@\n@@HARBOR@@test T27 reset returns the subsystem to a pristine state@@pass@@\n')
+
+    def test_t12_batch_update_emits_exactly_one_entry_per_updated_record(suite_run) -> None:
+        """T12: batch update emits exactly one entry per updated record."""
+>       _assert_scenario(suite_run, "T12")
+
+/tests/test_final_state.py:890: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('pass', ''), 'test T02 outbox resource shape': ('pass', '')... helpers are ordered and scoped@@pass@@\n@@HARBOR@@test T27 reset returns the subsystem to a pristine state@@pass@@\n')
+scenario_id = 'T12'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T12 failed:
+E           1) test T12 batch update emits exactly one entry per updated record (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:277
+E              Assertion with == failed
+E              code:  assert length(all) == 10
+E              left:  0
+E              right: 10
+E              stacktrace:
+E                /tmp/harbor_outbox_suite.exs:284: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_________ test_t14_sync_subscribers_run_inline_in_the_writing_process __________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('pass', ''), 'test T02 outbox resource shape': ('pass', '')... helpers are ordered and scoped@@pass@@\n@@HARBOR@@test T27 reset returns the subsystem to a pristine state@@pass@@\n')
+
+    def test_t14_sync_subscribers_run_inline_in_the_writing_process(suite_run) -> None:
+        """T14: sync subscribers run inline in the writing process."""
+>       _assert_scenario(suite_run, "T14")
+
+/tests/test_final_state.py:905: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('pass', ''), 'test T02 outbox resource shape': ('pass', '')... helpers are ordered and scoped@@pass@@\n@@HARBOR@@test T27 reset returns the subsystem to a pristine state@@pass@@\n')
+scenario_id = 'T14'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T14 failed:
+E           1) test T14 sync subscribers run inline in the writing process (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:343
+E              Assertion failed, no matching message after 0ms
+E              The process mailbox is empty.
+E              code: assert_received {:got, handler_pid, 1}
+E              stacktrace:
+E                /tmp/harbor_outbox_suite.exs:355: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_____ test_t17_per_aggregate_order_survives_interleaved_concurrent_writers _____
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('pass', ''), 'test T02 outbox resource shape': ('pass', '')... helpers are ordered and scoped@@pass@@\n@@HARBOR@@test T27 reset returns the subsystem to a pristine state@@pass@@\n')
+
+    def test_t17_per_aggregate_order_survives_interleaved_concurrent_writers(suite_run) -> None:
+        """T17: per-aggregate order survives interleaved concurrent writers."""
+>       _assert_scenario(suite_run, "T17")
+
+/tests/test_final_state.py:920: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('pass', ''), 'test T02 outbox resource shape': ('pass', '')... helpers are ordered and scoped@@pass@@\n@@HARBOR@@test T27 reset returns the subsystem to a pristine state@@pass@@\n')
+scenario_id = 'T17'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T17 failed:
+E           1) test T17 per-aggregate order survives interleaved concurrent writers (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:421
+E              Assertion with == failed
+E              code:  assert seen == Enum.to_list(1..20)
+E              left:  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 13, 15, 16, 17, 18, 19, 20]
+E              right: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+E              stacktrace:
+E                /tmp/harbor_outbox_suite.exs:450: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_______ test_t22_a_sync_delivery_that_fails_is_retried_like_an_async_one _______
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('pass', ''), 'test T02 outbox resource shape': ('pass', '')... helpers are ordered and scoped@@pass@@\n@@HARBOR@@test T27 reset returns the subsystem to a pristine state@@pass@@\n')
+
+    def test_t22_a_sync_delivery_that_fails_is_retried_like_an_async_one(suite_run) -> None:
+        """T22: a sync delivery that fails is retried like an async one."""
+>       _assert_scenario(suite_run, "T22")
+
+/tests/test_final_state.py:945: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('pass', ''), 'test T02 outbox resource shape': ('pass', '')... helpers are ordered and scoped@@pass@@\n@@HARBOR@@test T27 reset returns the subsystem to a pristine state@@pass@@\n')
+scenario_id = 'T22'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T22 failed:
+E           1) test T22 a sync delivery that fails is retried like an async one (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:571
+E              Assertion with == failed
+E              code:  assert :counters.get(counter, 1) == 1
+E              left:  0
+E              right: 1
+E              stacktrace:
+E                /tmp/harbor_outbox_suite.exs:584: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_t01_dispatcher_is_supervised_by_the_application
+PASSED ../tests/test_final_state.py::test_t02_outbox_resource_shape
+PASSED ../tests/test_final_state.py::test_t03_a_create_is_captured_with_full_metadata
+PASSED ../tests/test_final_state.py::test_t04_create_diff_carries_every_non_nil_public_attribute_with_a_nil_from
+PASSED ../tests/test_final_state.py::test_t06_a_destroy_is_captured_with_an_empty_diff
+PASSED ../tests/test_final_state.py::test_t07_actor_id_is_nil_when_the_write_has_no_actor
+PASSED ../tests/test_final_state.py::test_t08_aggregate_counters_are_independent_while_the_global_counter_is_contigu
+PASSED ../tests/test_final_state.py::test_t09_failed_writes_leave_no_entry
+PASSED ../tests/test_final_state.py::test_t10_notifications_can_be_suppressed_for_a_single_call
+PASSED ../tests/test_final_state.py::test_t28_a_batch_update_issued_directly_through_ash_emits_one_entry_per_record
+PASSED ../tests/test_final_state.py::test_t13_a_partially_failing_batch_only_records_the_rows_that_succeeded
+PASSED ../tests/test_final_state.py::test_t15_async_subscribers_only_run_in_the_dispatcher_on_drain
+PASSED ../tests/test_final_state.py::test_t16_topic_patterns_match_with_segment_precision
+PASSED ../tests/test_final_state.py::test_t18_acknowledged_deliveries_are_never_repeated
+PASSED ../tests/test_final_state.py::test_t19_a_delivery_that_fails_twice_still_succeeds_on_the_third_attempt
+PASSED ../tests/test_final_state.py::test_t20_a_delivery_is_dead_lettered_after_three_failed_attempts
+PASSED ../tests/test_final_state.py::test_t21_a_raising_handler_is_contained
+PASSED ../tests/test_final_state.py::test_t23_replay_re_delivers_matching_entries_in_order_in_the_caller_process
+PASSED ../tests/test_final_state.py::test_t24_subscription_bookkeeping
+PASSED ../tests/test_final_state.py::test_t25_dedup_keys_are_unique_and_protected_by_an_identity
+PASSED ../tests/test_final_state.py::test_t26_query_helpers_are_ordered_and_scoped
+PASSED ../tests/test_final_state.py::test_t27_reset_returns_the_subsystem_to_a_pristine_state
+FAILED ../tests/test_final_state.py::test_t05_update_diffs_contain_only_the_attributes_that_really_changed
+FAILED ../tests/test_final_state.py::test_t11_batch_create_emits_exactly_one_entry_per_created_record
+FAILED ../tests/test_final_state.py::test_t12_batch_update_emits_exactly_one_entry_per_updated_record
+FAILED ../tests/test_final_state.py::test_t14_sync_subscribers_run_inline_in_the_writing_process
+FAILED ../tests/test_final_state.py::test_t17_per_aggregate_order_survives_interleaved_concurrent_writers
+FAILED ../tests/test_final_state.py::test_t22_a_sync_delivery_that_fails_is_retried_like_an_async_one
+======================== 6 failed, 22 passed in 40.05s =========================

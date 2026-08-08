@@ -1,0 +1,62 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 23 items
+
+../tests/test_final_state.py .......................                     [100%]
+
+==================================== PASSES ====================================
+_________________________ test_contract_suite_executed _________________________
+---------------------------- Captured stdout setup -----------------------------
+===== [mix run] Begin combined output =====
+HARBOR_RESULT {"message":"","name":"s01_structure_resources_actions_and_attributes","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s02_shared_modules_are_reused_across_resources","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s03_live_reads_return_every_record","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s05_archived_rows_survive_but_get_reports_not_found","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s06_one_archive_operation_marks_exactly_one_generation","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s07_separate_archive_operations_use_distinct_batches","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s08_archiving_a_comment_cascades_only_to_its_own_reactions","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s09_a_later_archive_leaves_earlier_archived_descendants_alone","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s10_archiving_twice_is_idempotent","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s11_restore_only_brings_back_its_own_batch","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s12_restoring_a_descendant_does_not_touch_ancestors","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s13_restore_is_idempotent_and_safe_on_live_records","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s14_restore_clears_both_archive_markers","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s15_count_aggregates_exclude_archived_children","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s16_relationship_loads_exclude_archived_children","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s17_relationship_filters_exclude_archived_rows","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s18_the_archived_read_requires_an_admin_actor","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s19_every_other_action_stays_open_to_any_actor","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s20_purge_refuses_a_live_record_and_changes_nothing","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s21_purging_an_archived_post_removes_the_whole_subtree","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s22_purging_a_comment_removes_only_that_branch","status":"pass"}
+
+
+===== [mix run] End combined output =====
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_contract_suite_executed
+PASSED ../tests/test_final_state.py::test_s01_structure_resources_actions_and_attributes
+PASSED ../tests/test_final_state.py::test_s02_shared_modules_are_reused_across_resources
+PASSED ../tests/test_final_state.py::test_s03_live_reads_return_every_record
+PASSED ../tests/test_final_state.py::test_s04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read
+PASSED ../tests/test_final_state.py::test_s05_archived_rows_survive_but_get_reports_not_found
+PASSED ../tests/test_final_state.py::test_s06_one_archive_operation_marks_exactly_one_generation
+PASSED ../tests/test_final_state.py::test_s07_separate_archive_operations_use_distinct_batches
+PASSED ../tests/test_final_state.py::test_s08_archiving_a_comment_cascades_only_to_its_own_reactions
+PASSED ../tests/test_final_state.py::test_s09_a_later_archive_leaves_earlier_archived_descendants_alone
+PASSED ../tests/test_final_state.py::test_s10_archiving_twice_is_idempotent
+PASSED ../tests/test_final_state.py::test_s11_restore_only_brings_back_its_own_batch
+PASSED ../tests/test_final_state.py::test_s12_restoring_a_descendant_does_not_touch_ancestors
+PASSED ../tests/test_final_state.py::test_s13_restore_is_idempotent_and_safe_on_live_records
+PASSED ../tests/test_final_state.py::test_s14_restore_clears_both_archive_markers
+PASSED ../tests/test_final_state.py::test_s15_count_aggregates_exclude_archived_children
+PASSED ../tests/test_final_state.py::test_s16_relationship_loads_exclude_archived_children
+PASSED ../tests/test_final_state.py::test_s17_relationship_filters_exclude_archived_rows
+PASSED ../tests/test_final_state.py::test_s18_the_archived_read_requires_an_admin_actor
+PASSED ../tests/test_final_state.py::test_s19_every_other_action_stays_open_to_any_actor
+PASSED ../tests/test_final_state.py::test_s20_purge_refuses_a_live_record_and_changes_nothing
+PASSED ../tests/test_final_state.py::test_s21_purging_an_archived_post_removes_the_whole_subtree
+PASSED ../tests/test_final_state.py::test_s22_purging_a_comment_removes_only_that_branch
+============================= 23 passed in 14.85s ==============================

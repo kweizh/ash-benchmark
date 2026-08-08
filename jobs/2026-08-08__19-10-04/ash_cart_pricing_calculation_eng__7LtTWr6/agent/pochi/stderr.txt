@@ -1,0 +1,285 @@
+[37m2026-08-08 11:11:26.803[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	pochi v0.6.20
+[37m2026-08-08 11:11:26.809[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	PochiConfigManager[39m[22m[0m[0m	add workspace config: /root/.pochi/config.jsonc
+[37m2026-08-08 11:11:27.136[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	BuiltInBundle[39m[22m[0m[0m	Materializing 16 built-in files to /tmp/pochi-builtin-ef402bc2bbe8f440
+[37m2026-08-08 11:11:27.409[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:532913[39m[0m[0m[1m[37m	loadAgents[39m[22m[0m[0m	Loaded 6 custom agents (6 valid, 0 invalid)
+[37m2026-08-08 11:11:27.510[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:532914[39m[0m[0m[1m[37m	loadSkills[39m[22m[0m[0m	Loaded 3 skills (3 valid, 0 invalid)
+[37m2026-08-08 11:11:27.601[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:443306[39m[0m[0m[1m[37m	PochiVendor[39m[22m[0m[0m	JWT is expiring or missing, fetching a new one
+[37m2026-08-08 11:11:28.925[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:419194[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	MCP servers configuration changed via signal:
+[37m2026-08-08 11:11:28.926[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:419306[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	Build MCPHub Status
+[37m2026-08-08 11:11:29.113[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Starting task runner...
+[37m2026-08-08 11:11:29.355[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: null, new: # Dynamic Cart Pricing Engine (Ash Framework 3.x)
+[37m2026-08-08 11:11:37.916[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/cart_pricing and recursive [33mtrue[39m
+[37m2026-08-08 11:11:40.748[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: # Dynamic Cart Pricing Engine (Ash Framework 3.x), new: Build a dynamic cart pricing engine with Ash Framework 3.x using ETS
+[37m2026-08-08 11:11:41.732[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/mix.exs" resolvedPath="/home/user/cart_pricing/mix.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:41.732[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:41.733[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/config/config.exs" resolvedPath="/home/user/cart_pricing/config/config.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:41.733[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:41.734[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/lib/cart_pricing.ex" resolvedPath="/home/user/cart_pricing/lib/cart_pricing.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:41.734[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:41.734[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/test/test_helper.exs" resolvedPath="/home/user/cart_pricing/test/test_helper.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:41.734[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:41.734[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/.formatter.exs" resolvedPath="/home/user/cart_pricing/.formatter.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:41.734[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:41.736[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/mix.exs" mtime=1786166664540 contentLen=519
+[37m2026-08-08 11:11:41.739[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/config/config.exs" mtime=1786166664986 contentLen=72
+[37m2026-08-08 11:11:41.741[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/lib/cart_pricing.ex" mtime=1786166665281 contentLen=163
+[37m2026-08-08 11:11:41.801[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/test/test_helper.exs" mtime=1786166665522 contentLen=15
+[37m2026-08-08 11:11:41.804[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/.formatter.exs" mtime=1786166665829 contentLen=97
+[37m2026-08-08 11:11:46.925[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/usage-rules/calculations.md" resolvedPath="/home/user/cart_pricing/deps/ash/usage-rules/calculations.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:46.926[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:46.926[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/usage-rules/querying_data.md" resolvedPath="/home/user/cart_pricing/deps/ash/usage-rules/querying_data.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:46.926[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:46.926[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/usage-rules/data_layers.md" resolvedPath="/home/user/cart_pricing/deps/ash/usage-rules/data_layers.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:46.926[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:46.928[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/usage-rules/calculations.md" mtime=1786166667000 contentLen=3786
+[37m2026-08-08 11:11:46.931[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/usage-rules/querying_data.md" mtime=1786166667000 contentLen=308
+[37m2026-08-08 11:11:46.933[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/usage-rules/data_layers.md" mtime=1786166667000 contentLen=1363
+[37m2026-08-08 11:11:50.005[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:50.006[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:50.006[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/usage-rules/code_structure.md" resolvedPath="/home/user/cart_pricing/deps/ash/usage-rules/code_structure.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:50.006[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:50.010[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/usage-rules/code_structure.md" mtime=1786166667000 contentLen=453
+[37m2026-08-08 11:11:52.923[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/cart_pricing/deps/ash/lib/ash/resource and pattern **/*.ex
+[37m2026-08-08 11:11:52.924[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/cart_pricing/deps/ash/lib/ash and pattern **/calculation*.ex
+[37m2026-08-08 11:11:53.006[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 159 files matching pattern **/*.ex
+[37m2026-08-08 11:11:53.039[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 6 files matching pattern **/calculation*.ex
+[37m2026-08-08 11:11:56.746[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/calculation.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/calculation.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:56.747[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:56.751[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/calculation.ex" mtime=1786166667000 contentLen=9960
+[37m2026-08-08 11:12:01.935[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/argument.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/argument.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:12:01.935[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:12:01.935[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/expression.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/expression.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:12:01.936[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:12:01.936[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/concat.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/concat.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:12:01.936[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:12:01.938[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/argument.ex" mtime=1786166667000 contentLen=1677
+[37m2026-08-08 11:12:01.942[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/expression.ex" mtime=1786166667000 contentLen=4331
+[37m2026-08-08 11:12:01.945[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/concat.ex" mtime=1786166667000 contentLen=1148
+[37m2026-08-08 11:12:05.369[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/actions/read/calculations.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/actions/read/calculations.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:12:05.369[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:12:05.376[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/actions/read/calculations.ex" mtime=1786166667000 contentLen=30000
+[37m2026-08-08 11:12:16.259[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/data_layer/ets.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/data_layer/ets.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:12:16.259[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:12:18.772[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/cart_pricing/deps/ash/lib/ash/data_layer and pattern **/ets*.ex
+[37m2026-08-08 11:12:18.772[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/cart_pricing/deps/ash/lib/ash/data_layer and recursive [90mundefined[39m
+[37m2026-08-08 11:12:18.804[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 1 files matching pattern **/ets*.ex
+[37m2026-08-08 11:12:21.178[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/data_layer/ets/ets.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/data_layer/ets/ets.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:12:21.178[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:12:21.184[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/data_layer/ets/ets.ex" mtime=1786166667000 contentLen=30000
+[37m2026-08-08 11:12:42.438[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/cart_pricing/deps/ash/lib/ash/actions and pattern load*.ex
+[37m2026-08-08 11:12:42.440[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/lib/ash/actions defp load_calculation_requirements|calculation\.module.*load|\.load\(.*query.*opts.*context [90mundefined[39m
+[37m2026-08-08 11:12:42.440[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defp load_calculation_requirements|calculation\\.module.*load|\\.load\\(.*query.*opts.*context'[39m,
+  [32m'/home/user/cart_pricing/deps/ash/lib/ash/actions'[39m
+]
+[37m2026-08-08 11:12:42.459[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 0 files matching pattern load*.ex
+[37m2026-08-08 11:12:46.124[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/cart_pricing/deps/ash/lib/ash and pattern **/actions/load.ex
+[37m2026-08-08 11:12:46.125[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/actions/read/calculations.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/actions/read/calculations.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1180 endLine=1400
+[37m2026-08-08 11:12:46.125[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786166667000}
+[37m2026-08-08 11:12:46.132[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/actions/read/calculations.ex" mtime=1786166667000 contentLen=6399
+[37m2026-08-08 11:12:46.158[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 0 files matching pattern **/actions/load.ex
+[37m2026-08-08 11:12:50.002[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/lib/ash required_loads|Resource\.Calculation\.load\( [90mundefined[39m
+[37m2026-08-08 11:12:50.002[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'required_loads|Resource\\.Calculation\\.load\\('[39m,
+  [32m'/home/user/cart_pricing/deps/ash/lib/ash'[39m
+]
+[37m2026-08-08 11:12:52.420[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/query/query.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/query/query.ex" isVirtual=false cacheExists=true shouldCache=true startLine=2330 endLine=2380
+[37m2026-08-08 11:12:52.420[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:12:52.429[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/query/query.ex" mtime=1786166667000 contentLen=1288
+[37m2026-08-08 11:13:17.612[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/actions/read/calculations.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/actions/read/calculations.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1400 endLine=1600
+[37m2026-08-08 11:13:17.613[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1180, endLine=1400, timestamp=1786166667000}
+[37m2026-08-08 11:13:17.627[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/actions/read/calculations.ex" mtime=1786166667000 contentLen=6509
+[37m2026-08-08 11:15:48.955[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/usage-rules/actions.md" resolvedPath="/home/user/cart_pricing/deps/ash/usage-rules/actions.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:15:48.955[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:15:48.956[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/usage-rules/relationships.md" resolvedPath="/home/user/cart_pricing/deps/ash/usage-rules/relationships.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:15:48.956[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:15:48.978[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/usage-rules/actions.md" mtime=1786166667000 contentLen=14482
+[37m2026-08-08 11:15:49.004[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/usage-rules/relationships.md" mtime=1786166667000 contentLen=4914
+[37m2026-08-08 11:16:02.758[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ^## Resources\.Calculations|^### Calculations\.Calculate|argument : [90mundefined[39m
+[37m2026-08-08 11:16:02.758[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'^## Resources\\.Calculations|^### Calculations\\.Calculate|argument :'[39m,
+  [32m'/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md'[39m
+]
+[37m2026-08-08 11:16:02.760[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/usage-rules/code_interfaces.md" resolvedPath="/home/user/cart_pricing/deps/ash/usage-rules/code_interfaces.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=60
+[37m2026-08-08 11:16:02.760[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:16:02.826[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/usage-rules/code_interfaces.md" mtime=1786166667000 contentLen=1684
+[37m2026-08-08 11:16:08.383[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ## Resources\.Calculations|## Resources\.Aggregates|## Resources\.Attributes|## Resources\.Relationships [90mundefined[39m
+[37m2026-08-08 11:16:08.384[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'## Resources\\.Calculations|## Resources\\.Aggregates|## Resources\\.Attributes|## Resources\\.Relationships'[39m,
+  [32m'/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md'[39m
+]
+[37m2026-08-08 11:16:19.047[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ^# DSL: Ash.Resource|^## Ash.Resource|^## Resources [90mundefined[39m
+[37m2026-08-08 11:16:19.047[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'^# DSL: Ash.Resource|^## Ash.Resource|^## Resources'[39m,
+  [32m'/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md'[39m
+]
+[37m2026-08-08 11:16:22.172[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" resolvedPath="/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=60
+[37m2026-08-08 11:16:22.172[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:16:22.202[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" mtime=1786166667000 contentLen=1049
+[37m2026-08-08 11:16:25.019[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ^## calculations|^### calculations|^## aggregates|^### aggregates\.count|^### calculations\.calculate [90mundefined[39m
+[37m2026-08-08 11:16:25.020[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'^## calculations|^### calculations|^## aggregates|^### aggregates\\.count|^### calculations\\.calculate'[39m,
+  [32m'/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md'[39m
+]
+[37m2026-08-08 11:16:32.673[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" resolvedPath="/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" isVirtual=false cacheExists=true shouldCache=true startLine=3249 endLine=3370
+[37m2026-08-08 11:16:32.674[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1, endLine=60, timestamp=1786166667000}
+[37m2026-08-08 11:16:32.674[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" resolvedPath="/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" isVirtual=false cacheExists=true shouldCache=true startLine=4143 endLine=4360
+[37m2026-08-08 11:16:32.674[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1, endLine=60, timestamp=1786166667000}
+[37m2026-08-08 11:16:32.704[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" mtime=1786166667000 contentLen=8532
+[37m2026-08-08 11:16:32.711[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" mtime=1786166667000 contentLen=4448
+[37m2026-08-08 11:16:36.903[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Domain.md ^## resources|^### resources\.resource|^## domain [90mundefined[39m
+[37m2026-08-08 11:16:36.904[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'^## resources|^### resources\\.resource|^## domain'[39m,
+  [32m'/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Domain.md'[39m
+]
+[37m2026-08-08 11:16:36.905[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ^## actions|^### actions\.create|^### actions\.read|defaults [90mundefined[39m
+[37m2026-08-08 11:16:36.905[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'^## actions|^### actions\\.create|^### actions\\.read|defaults'[39m,
+  [32m'/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md'[39m
+]
+[37m2026-08-08 11:16:45.474[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" resolvedPath="/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" isVirtual=false cacheExists=true shouldCache=true startLine=1174 endLine=1240
+[37m2026-08-08 11:16:45.474[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=3249, endLine=3370, timestamp=1786166667000}
+[37m2026-08-08 11:16:45.504[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" mtime=1786166667000 contentLen=7216
+[37m2026-08-08 11:16:58.381[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/lib/ash/type def constraints.*Integer|@constraints \[|:min|:max|one_of [90mundefined[39m
+[37m2026-08-08 11:16:58.381[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def constraints.*Integer|@constraints \\[|:min|:max|one_of'[39m,
+  [32m'/home/user/cart_pricing/deps/ash/lib/ash/type'[39m
+]
+[37m2026-08-08 11:16:58.382[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/cart_pricing/deps/ash/lib/ash/type and pattern **/integer*.ex
+[37m2026-08-08 11:16:58.431[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 1 files matching pattern **/integer*.ex
+[37m2026-08-08 11:17:05.772[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/type/integer.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/type/integer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=50
+[37m2026-08-08 11:17:05.772[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:17:05.772[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/type/atom.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/type/atom.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=60
+[37m2026-08-08 11:17:05.772[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:17:05.772[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/cart_pricing/deps/ash/lib/ash/type and pattern **/utc_datetime*.ex
+[37m2026-08-08 11:17:05.808[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/type/integer.ex" mtime=1786166667000 contentLen=1040
+[37m2026-08-08 11:17:05.815[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/type/atom.ex" mtime=1786166667000 contentLen=1572
+[37m2026-08-08 11:17:05.824[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 2 files matching pattern **/utc_datetime*.ex
+[37m2026-08-08 11:17:12.602[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/type/utc_datetime.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/type/utc_datetime.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:17:12.603[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:17:12.638[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/type/utc_datetime.ex" mtime=1786166667000 contentLen=482
+[37m2026-08-08 11:17:44.235[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/type/datetime.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/type/datetime.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:17:44.235[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:17:44.259[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/type/datetime.ex" mtime=1786166667000 contentLen=4095
+[37m2026-08-08 11:18:12.154[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/type/map.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/type/map.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:18:12.154[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:18:12.201[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/type/map.ex" mtime=1786166667000 contentLen=14342
+[37m2026-08-08 11:19:20.611[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" resolvedPath="/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" isVirtual=false cacheExists=true shouldCache=true startLine=238 endLine=300
+[37m2026-08-08 11:19:20.611[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1174, endLine=1240, timestamp=1786166667000}
+[37m2026-08-08 11:19:20.611[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/lib/ash def get\(resource, id [90mundefined[39m
+[37m2026-08-08 11:19:20.612[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def get\\(resource, id'[39m,
+  [32m'/home/user/cart_pricing/deps/ash/lib/ash'[39m
+]
+[37m2026-08-08 11:19:20.656[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md" mtime=1786166667000 contentLen=1106
+[37m2026-08-08 11:19:24.518[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/lib/ash def get\(resource, id|def get!\(resource, id [90mundefined[39m
+[37m2026-08-08 11:19:24.518[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def get\\(resource, id|def get!\\(resource, id'[39m,
+  [32m'/home/user/cart_pricing/deps/ash/lib/ash'[39m
+]
+[37m2026-08-08 11:19:28.226[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/lib/ash defdelegate get\(|def get\(resource [90mundefined[39m
+[37m2026-08-08 11:19:28.226[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defdelegate get\\(|def get\\(resource'[39m,
+  [32m'/home/user/cart_pricing/deps/ash/lib/ash'[39m
+]
+[37m2026-08-08 11:19:28.227[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/helpers.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/helpers.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=60
+[37m2026-08-08 11:19:28.227[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:19:28.269[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/helpers.ex" mtime=1786166667000 contentLen=1372
+[37m2026-08-08 11:19:32.064[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/lib/ash.ex def get\(|def get!\(|def load\(|def load!\(|def read\(|def read!\(|def create\(|def create!\( [90mundefined[39m
+[37m2026-08-08 11:19:32.064[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def get\\(|def get!\\(|def load\\(|def load!\\(|def read\\(|def read!\\(|def create\\(|def create!\\('[39m,
+  [32m'/home/user/cart_pricing/deps/ash/lib/ash.ex'[39m
+]
+[37m2026-08-08 11:19:34.944[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash.ex" isVirtual=false cacheExists=true shouldCache=true startLine=2177 endLine=2270
+[37m2026-08-08 11:19:34.944[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:19:35.003[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash.ex" mtime=1786166667000 contentLen=2894
+[37m2026-08-08 11:20:11.136[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/cart_pricing/deps/ash/lib/ash/type/utc_datetime_usec.ex" resolvedPath="/home/user/cart_pricing/deps/ash/lib/ash/type/utc_datetime_usec.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:20:11.137[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:20:11.137[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/lib/ash/type :utc_datetime_usec|:utc_datetime\b [90mundefined[39m
+[37m2026-08-08 11:20:11.137[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m':utc_datetime_usec|:utc_datetime\\b'[39m,
+  [32m'/home/user/cart_pricing/deps/ash/lib/ash/type'[39m
+]
+[37m2026-08-08 11:20:11.249[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/cart_pricing/deps/ash/lib/ash/type/utc_datetime_usec.ex" mtime=1786166667000 contentLen=500
+[37m2026-08-08 11:20:15.165[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/cart_pricing/deps/ash/lib/ash/actions and pattern **/*.ex
+[37m2026-08-08 11:20:15.200[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 19 files matching pattern **/*.ex
+[37m2026-08-08 11:20:22.242[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/cart_pricing/deps/ash/lib/ash/actions/read/relationships.ex def load\b|def run\b|requests|load_through [90mundefined[39m
+[37m2026-08-08 11:20:22.242[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def load\\b|def run\\b|requests|load_through'[39m,
+  [32m'/home/user/cart_pricing/deps/ash/lib/ash/actions/read/relationships.ex'[39m
+]

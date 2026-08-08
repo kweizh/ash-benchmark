@@ -1,0 +1,183 @@
+- Initializing MCP connections...
+You
+# Threaded Discussion Graph — Computed Relationships & Custom Actions (Ash Framework v3) ## Background `/home/user/thread_graph` is an Elixir application (OTP app `:thread_graph`) that already compiles. It uses **Ash Framework v3.31** with the in-memory `Ash.DataLayer.Ets` data layer and contains a finished skeleton of a discussion board: * Domain `ThreadGraph.Forum` * `ThreadGraph.Forum.Author` — `handle`, `display_name` * `ThreadGraph.Forum.Thread` — `slug`, `title`, `board`, `locked`, `has_many :messages` * `ThreadGraph.Forum.Message` — `body`, `position` (integer), `score` (integer), `belongs_to :thread`, `belongs_to :author`, `belongs_to :parent` (self-reference through `parent_id`), `has_many :replies` * `ThreadGraph.Forum.MessageLink` — a directed edge between two messages: `belongs_to :from_message`, `belongs_to :to_message`, `kind` (one of `:follow_up`, `:duplicate_of`, `:fork_of`) * `ThreadGraph.Forum.LoadCounter` — a small global counter helper (see below) Product now wants threading and a "related work" graph on top of this. None of the required associations can be expressed as ordinary foreign-key relationships, so the framework's escape hatches have to be used — while still behaving like first-class relationships and actions (loadable, nestable, batched, and reachable through the domain's code interface). **Do not change** the existing attribute names, relationship names, resource module names, the domain module name, or `ThreadGraph.Forum.LoadCounter`. Everything listed below is additive. ## Requirements Add the following to the existing resources. ### 1. Aggregate `reply_count` on `ThreadGraph.Forum.Message` A public aggregate named `reply_count` that yields the number of messages whose `parent_id` is that message's `id`. It must be loadable both directly and as part of a nested load. ### 2. Relationship `recent_messages` on `ThreadGraph.Forum.Thread` A public `has_many`-style relationship to `ThreadGraph.Forum.Message` named `recent_messages`, whose behaviour is implemented by the module `ThreadGraph.Forum.Threads.RecentMessages`. `Ash.Resource.Info.relationship(ThreadGraph.Forum.Thread, :recent_messages)` must report `type: :has_many`, `destination: ThreadGraph.Forum.Message`, and it must report `ThreadGraph.Forum.Threads.RecentMessages` as the module implementing it (a bare module or a `{module, opts}` pair are both accepted). Contract, for each source thread independently: * the value is that thread's own messages, ordered by `position` **descending**, ties broken by `id` **ascending** (Elixir term comparison of the `id` values), truncated to **at most 3**; * the truncation is per thread — never a global cap over all source threads; * a filter present on the load query is applied to the candidate messages **before** the truncation to 3; * the ordering and the cap of 3 defined here are part of the contract and are not affected by a sort or limit present on the load query; * a thread with no matching message must still be present in the result with `[]`. ### 3. Relationship `ancestor_messages` on `ThreadGraph.Forum.Message` A public `has_many`-style relationship to `ThreadGraph.Forum.Message` named `ancestor_messages`, implemented by the module `ThreadGraph.Forum.Messages.AncestorMessages`, reported by `Ash.Resource.Info.relationship/2` the same way as above. Contract, for each source message independently: * the value is the transitive chain of parents reached by repeatedly following `parent_id`; * ordering is outermost ancestor **first**, the immediate parent **last**; * the source message itself is never included, and no message appears twice; * traversal must terminate on a cyclic `parent_id` chain: stop as soon as the next hop is a message that has already been collected or is the source message itself; * a message with `parent_id == nil` must be present in the result with `[]`. ### 4. Relationship `linked_messages` on `ThreadGraph.Forum.Message` A public `has_many`-style relationship to `ThreadGraph.Forum.Message` named `linked_messages`, implemented by the module `ThreadGraph.Forum.Messages.LinkedMessages`, reported by `Ash.Resource.Info.relationship/2` the same way as above. Contract, for each source message independently: * consider the directed graph whose edges are the `ThreadGraph.Forum.MessageLink` records, pointing from `from_message_id` to `to_message_id`, **regardless of `kind`**; * the value is every message reachable from the source message in one or more hops; * each reachable message appears exactly once and is associated with its **minimum** hop distance from the source; * the source message itself is never included, even when a cycle makes it reachable; * ordering: minimum hop distance **ascending**, then `position` **ascending**, then `id` **ascending**; * a message with no outgoing edge must be present in the result with `[]`. ### 5. Read action `cross_board_highlights` on `ThreadGraph.Forum.Message` A read action named `cross_board_highlights`, implemented by the module `ThreadGraph.Forum.Messages.CrossBoardHighlights`, which `Ash.Resource.Info.action(ThreadGraph.Forum.Message, :cross_board_highlights)` must report as the module implementing the action (bare module or `{module, opts}`). Arguments, exactly: | name | type | required | default | | ------------------ | ------------------- | -------- | ------- | | `boards` | `{:array, :string}` | yes | — | | `min_endorsements` | `:integer` | no | `0` | Define the **endorsement count** of a message `M` as the number of `ThreadGraph.Forum.MessageLink` records whose `to_message_id` is `M.id` **and** whose `kind` is `:follow_up`. Contract: * the result contains exactly those messages whose thread's `board` is one of `boards` **and** whose endorsement count is greater than or equal to `min_endorsements`; * every returned message carries its endorsement count as record metadata under the key `:endorsement_count`, so that `Ash.Resource.get_metadata(message, :endorsement_count)` returns that integer; * when the incoming query carries no sort, the result is ordered by endorsement count **descending**, then `position` **ascending**, then `id` **ascending**; * when the incoming query carries a sort, that sort replaces the default ordering above; * a filter carried by the incoming query must be honoured; * `limit` and `offset` carried by the incoming query must be honoured, and must be applied after filtering and ordering. ### 6. Create action `fork` on `ThreadGraph.Forum.Thread` A create action named `fork` that accepts no attributes, implemented by the module `ThreadGraph.Forum.Threads.ForkThread`, which `Ash.Resource.Info.action(ThreadGraph.Forum.Thread, :fork)` must report as the module implementing the action (bare module or `{module, opts}`). Arguments, exactly: `source_message_id` (`:uuid`, required), `slug` (`:string`, required), `title` (`:string`, required). Let `S` be the message whose `id` is `source_message_id`. On success the action must, in one call: * create and return a new `ThreadGraph.Forum.Thread` whose `slug` and `title` are the given arguments, whose `board` is copied from `S`'s thread, and whose `locked` is `false`; * copy `S` **and every transitive descendant of `S`** (following `parent_id`) into the new thread — and nothing else. Each copy keeps the `body`, `score` and `author_id` of its original, and gets `thread_id` set to the new thread; * reproduce the parent/child structure among the copies: the copy of `S` has `parent_id == nil`, and every other copy's `parent_id` is the id of the copy of its original's parent; * renumber `position` on the copies: sort the copied originals by `position` ascending, ties broken by `id` ascending, and give the copies the positions `1, 2, 3, …` in that order; * create exactly one new `ThreadGraph.Forum.MessageLink` with `kind: :fork_of`, `from_message_id` set to the id of the copy of `S`, and `to_message_id` set to `S.id`. Failure modes — in both cases `Ash.create/2` must return `{:error, %Ash.Error.Invalid{}}` whose `errors` list contains an `%Ash.Error.Changes.InvalidArgument{}` with `field: :source_message_id` and the exact `message` given below, and **no** record of any resource may be created: * no message with that id exists → message `"source message not found"`; * `S`'s thread has `locked == true` → message `"source thread is locked"`. ### 7. Code interface on the domain `ThreadGraph.Forum` * `ThreadGraph.Forum.highlights/2,3,4` and `ThreadGraph.Forum.highlights!/2,3,4` calling `cross_board_highlights`, taking `boards` then `min_endorsements` as positional arguments; * `ThreadGraph.Forum.fork_thread/3,4,5` and `ThreadGraph.Forum.fork_thread!/3,4,5` calling `fork`, taking `source_message_id`, `slug`, then `title` as positional arguments. `ThreadGraph.Forum.highlights!(boards, min_endorsements)` must return exactly what running the read action through `Ash.Query`/`Ash.read!` returns. ## Implementation Hints * Project path: `/home/user/thread_graph`. The project must compile cleanly with `mix compile` (`MIX_ENV=dev`); the verifier evaluates Elixir inside this project with `mix run`. * Everything must keep working with the existing `Ash.DataLayer.Ets` data layer. No new dependencies may be added — the environment is offline and `mix.lock` is fixed. * `ThreadGraph.Forum.LoadCounter` is already implemented and **must not be modified**. Its API is `reset/0`, `bump/1` (an atom key), `count/1` (an atom key → integer) and `counts/0` (a map). Each of the five modules you write must call `ThreadGraph.Forum.LoadCounter.bump/1` **exactly once per invocation of the callback the framework calls on it**, with these keys: | module | key | | ------------------------------------------------- | ------------------------- | | `ThreadGraph.Forum.Threads.RecentMessages` | `:recent_messages` | | `ThreadGraph.Forum.Messages.AncestorMessages` | `:ancestor_messages` | | `ThreadGraph.Forum.Messages.LinkedMessages` | `:linked_messages` | | `ThreadGraph.Forum.Messages.CrossBoardHighlights` | `:cross_board_highlights` | | `ThreadGraph.Forum.Threads.ForkThread` | `:fork` | * Loading `recent_messages`, `ancestor_messages` or `linked_messages` for a list of `K` source records must issue **at most 8 read actions in total across all resources, independent of `K`**. The verifier counts this for real by attaching a `:telemetry` handler to `[:ash, :forum, :read, :stop]` around the load, with `K` of at least 13. Per-source-record querying will fail this. * All three relationships and the aggregate must be `public?`, must be loadable through `Ash.Query.load/2` and through `Ash.load/3` on an already-fetched list of records, and must survive being nested: the verifier loads normal relationships, the `reply_count` aggregate and another one of the three relationships above *underneath* `recent_messages`. * Result values are compared by `id`, by exact list ordering and by list length, so empty results must be `[]` (not `nil` and not `%Ash.NotLoaded{}`). * The seeded data used by the verifier is created through the resources' existing default `:create`/`:update` actions, so those must keep working unchanged. Message `id`s are server-generated UUID strings, so every ordering rule that mentions `id` must compare the actual attribute values rather than insertion order.   
+
+Pochi
+📂 Listing files in /home/user/thread_graph recursively ✔ 
+📖 Reading /home/user/thread_graph/thread_graph/lib/thread_graph/forum.ex ✖ "ENOENT: no such file or directory, open '/home/user/thread_graph/thread_graph/lib/thread_graph/forum.ex'"
+📖 Reading /home/user/thread_graph/thread_graph/lib/thread_graph/forum/message.ex ✖ "ENOENT: no such file or directory, open '/home/user/thread_graph/thread_graph/lib/thread_graph/forum/message.ex'"
+📖 Reading /home/user/thread_graph/thread_graph/lib/thread_graph/forum/thread.ex ✖ "ENOENT: no such file or directory, open '/home/user/thread_graph/thread_graph/lib/thread_graph/forum/thread.ex'"
+📖 Reading /home/user/thread_graph/thread_graph/lib/thread_graph/forum/message_link.ex ✖ "ENOENT: no such file or directory, open '/home/user/thread_graph/thread_graph/lib/thread_graph/forum/message_link.ex'"
+📖 Reading /home/user/thread_graph/thread_graph/lib/thread_graph/forum/author.ex ✖ "ENOENT: no such file or directory, open '/home/user/thread_graph/thread_graph/lib/thread_graph/forum/author.ex'"
+📖 Reading /home/user/thread_graph/thread_graph/lib/thread_graph/forum/load_counter.ex ✖ "ENOENT: no such file or directory, open '/home/user/thread_graph/thread_graph/lib/thread_graph/forum/load_counter.ex'"
+💭 Thinking for 240 characters   
+📂 Listing files in /home/user/thread_graph/thread_graph/lib/thread_graph/forum ✔ 
+📂 Listing files in /home/user/thread_graph ✔ 
+📂 Listing files in /home/user/thread_graph/thread_graph recursively ✔ 
+💫 Executing find /home/user/thread_graph -maxdepth 4 -type d | head -50 && echo --- && ls -la /home/user/thread_graph ✔ 
+No nested `thread_graph` project dir. So the real path is `/home/user/thread_graph/lib/...`. Good.   
+📖 Reading /home/user/thread_graph/lib/thread_graph/forum.ex ✔ 
+📖 Reading /home/user/thread_graph/lib/thread_graph/forum/message.ex ✔ 
+📖 Reading /home/user/thread_graph/lib/thread_graph/forum/thread.ex ✔ 
+📖 Reading /home/user/thread_graph/lib/thread_graph/forum/message_link.ex ✔ 
+📖 Reading /home/user/thread_graph/lib/thread_graph/forum/author.ex ✔ 
+📖 Reading /home/user/thread_graph/lib/thread_graph/forum/load_counter.ex ✔ 
+🔍 Searching for Manual(Relationship|Read|Create) in /home/user/thread_graph/deps/ash/lib ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource/manual_relationship/manual_relationship.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/read/relationships.ex ✔ 
+🔍 Searching for defp normalize_manual_results|defp regroup_manual_results in /home/user/thread_graph/deps/ash/lib/ash/actions/read/relationships.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/read/relationships.ex ✔ 
+💭 Thinking for 1245 characters   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/read/relationships.ex ✔ 
+🔍 Searching for defp with_related_queries|defp related_query\b|related_query = in /home/user/thread_graph/deps/ash/lib/ash/actions/read/relationships.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/read/relationships.ex ✔ 
+💭 Thinking for 3875 characters   
+🔍 Searching for def do_filter|def filter\(|def build\( in /home/user/thread_graph/deps/ash/lib/ash/query ✔ 
+💭 Thinking for 1186 characters   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/query/query.ex ✔ 
+💭 Thinking for 294 characters   
+📖 Reading /home/user/thread_graph/deps/ash/usage-rules/relationships.md ✔ 
+🔍 Searching for manual in /home/user/thread_graph/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+🔍 Searching for **/manual* in /home/user/thread_graph/deps/ash/documentation ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/documentation/topics/actions/manual-actions.md ✔ 
+💭 Thinking for 460 characters   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource/manual_actions/manual_read.ex ✔ 
+💭 Thinking for 317 characters   
+📖 Reading /home/user/thread_graph/deps/ash/documentation/dsls/DSL-Ash.DataLayer.Ets.md ✔ 
+💭 Thinking for 1396 characters   
+🔍 Searching for def runtime_sort|defmodule Ash.Sort|defmodule Ash.Actions.Sort in /home/user/thread_graph/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/sort.ex ✔ 
+💭 Thinking for 317 characters   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/sort.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/sort.ex ✔ 
+💭 Thinking for 1532 characters   
+🔍 Searching for def get_argument\b in /home/user/thread_graph/deps/ash/lib/ash/query/query.ex ✔ 
+Good. Now let's look at the ManualCreate behaviour and Ash.Changeset API for the `fork` action, plus check how arguments/changeset access custom attributes, and how to run multiple creates transactionally (ETS has no transactions, but we can still do multiple creates within manual create callback, returning error to abort — but no rollback since ETS lacks transactions... need to check requirement "no record of any resource may be created" on failure). Since ETS has no transactions, we must validate before creating anything (i.e., do validation first, then only create if valid).   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource/manual_actions/manual_create.ex ✔ 
+💭 Thinking for 1050 characters   
+🔍 Searching for InvalidArgument in /home/user/thread_graph/deps/ash/lib/ash/error ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/error/changes/invalid_argument.ex ✔ 
+💭 Thinking for 5400 characters   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource/relationships/shared_options.ex ✔ 
+🔍 Searching for *.ex in /home/user/thread_graph/deps/ash/lib/ash/resource/relationships ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource/relationships/has_many.ex ✔ 
+💭 Thinking for 129 characters   
+📖 Reading /home/user/thread_graph/deps/ash/usage-rules/aggregates.md ✔ 
+💭 Thinking for 362 characters   
+🔍 Searching for aggregate in ets*.ex files in /home/user/thread_graph/deps/ash/lib/ash/data_layer ✔ 
+Confirmed ETS supports count aggregates over relationships. Now let's check the DSL entity for `count` aggregate in the resource module to write correct syntax, and check `Ash.Resource.Info.aggregate` fields.   
+🔍 Searching for aggregates-count in /home/user/thread_graph/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/usage-rules/code_interfaces.md ✔ 
+💭 Thinking for 354 characters   
+🔍 Searching for def define|defmacro define|arity|args in /home/user/thread_graph/deps/ash/lib/ash/code_interface.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/code_interface.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/code_interface.ex ✔ 
+💭 Thinking for 197 characters   
+🔍 Searching for actions-read-argument|^\| \[`allow_nil\?`\] in /home/user/thread_graph/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+💭 Thinking for 365 characters   
+🔍 Searching for actions-create-accept in /home/user/thread_graph/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+💭 Thinking for 3139 characters   
+🔍 Searching for def get\(|def get!\( in /home/user/thread_graph/deps/ash/lib/ash.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash.ex ✔ 
+💭 Thinking for 342 characters   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/create/create.ex ✔ 
+🔍 Searching for to_error_class|def run\( in /home/user/thread_graph/deps/ash/lib/ash/actions/create/create.ex ✔ 
+Good — confirms `Ash.Error.to_error_class` will convert our raw error struct into an `%Ash.Error.Invalid{errors: [...]}` at the top level. This matches the spec exactly. Now let's check `Ash.Query.get_argument`/`Ash.Changeset.get_argument` signatures and `Ash.Resource.put_metadata`/`get_metadata` helpers.   
+🔍 Searching for def put_metadata|def get_metadata|def set_metadata in /home/user/thread_graph/deps/ash/lib/ash/resource.ex ✔ 
+Good, these exist as expected. Now let's check `Ash.Changeset.get_argument/2` exists.   
+🔍 Searching for def get_argument\( in /home/user/thread_graph/deps/ash/lib/ash/changeset ✔ 
+💭 Thinking for 125 characters   
+🔍 Searching for defmacro filter in /home/user/thread_graph/deps/ash/lib/ash/query/query.ex ✔ 
+💭 Thinking for 267 characters   
+🔍 Searching for def for_read\( in /home/user/thread_graph/deps/ash/lib/ash/query/query.ex ✔ 
+💭 Thinking for 1846 characters   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/query/query.ex ✔ 
+💭 Thinking for 1288 characters   
+Now let's write the resource files and new modules.   
+🔧 Applying diff to /home/user/thread_graph/lib/thread_graph/forum/message.ex ✔ 
+🔧 Applying diff to /home/user/thread_graph/lib/thread_graph/forum/thread.ex ✔ 
+Now the domain code interfaces:   
+🔧 Applying diff to /home/user/thread_graph/lib/thread_graph/forum.ex ✔ 
+Now let's create the new module files.   
+✏️  Writing /home/user/thread_graph/lib/thread_graph/forum/threads/recent_messages.ex ✔ 
+✏️  Writing /home/user/thread_graph/lib/thread_graph/forum/threads/fork_thread.ex ✔ 
+✏️  Writing /home/user/thread_graph/lib/thread_graph/forum/messages/ancestor_messages.ex ✔ 
+✏️  Writing /home/user/thread_graph/lib/thread_graph/forum/messages/linked_messages.ex ✔ 
+✏️  Writing /home/user/thread_graph/lib/thread_graph/forum/messages/cross_board_highlights.ex ✔ 
+Now let's compile the project to check for errors.   
+💫 Executing cd /home/user/thread_graph && MIX_ENV=dev mix compile 2>&1 | tail -150 ✔ 
+Compiles cleanly. Let's write a quick sanity script using `mix run` to exercise each of the new features end-to-end.   
+✏️  Writing /home/user/thread_graph/scratch_check.exs ✔ 
+💫 Executing cd /home/user/thread_graph && mix run scratch_check.exs 2>&1 | tail -200 ✔ 
+💭 Thinking for 1182 characters   
+💫 Executing cd /home/user/thread_graph && cat >> scratch_check.exs << 'EOF'
+
+{:ok, threads_before} = Ash.read(ThreadGraph.Forum.Thread)
+{:ok, messages_before} = Ash.read(ThreadGraph.Forum.Message)
+{:ok, links_before} = Ash.read(ThreadGraph.Forum.MessageLink)
+
+_ = ThreadGraph.Forum.fork_thread(Ash.UUID.generate(), "no-create-1", "No Create 1")
+
+{:ok, threads_after} = Ash.read(ThreadGraph.Forum.Thread)
+{:ok, messages_after} = Ash.read(ThreadGraph.Forum.Message)
+{:ok, links_after} = Ash.read(ThreadGraph.Forum.MessageLink)
+
+IO.inspect({length(threads_before), length(threads_after)}, label: "threads before/after missing-source fork (must be equal)")
+IO.inspect({length(messages_before), length(messages_after)}, label: "messages before/after missing-source fork (must be equal)")
+IO.inspect({length(links_before), length(links_after)}, label: "links before/after missing-source fork (must be equal)")
+EOF
+mix run scratch_check.exs 2>&1 | tail -20 ✔ 
+No records created on failure, confirming rollback-free correctness for both failure modes. Let's clean up the scratch test file.   
+💫 Executing rm -f /home/user/thread_graph/scratch_check.exs ✔ 
+💫 Executing cd /home/user/thread_graph && cat > /tmp/introspect.exs << 'EOF'
+alias ThreadGraph.Forum.{Thread, Message}
+
+for {resource, name} <- [{Thread, :recent_messages}, {Message, :ancestor_messages}, {Message, :linked_messages}] do
+  rel = Ash.Resource.Info.relationship(resource, name)
+  IO.inspect({name, rel.type, rel.destination, rel.manual, rel.public?}, label: "relationship")
+end
+
+agg = Ash.Resource.Info.aggregate(Message, :reply_count)
+IO.inspect({agg.name, agg.public?}, label: "aggregate")
+
+action1 = Ash.Resource.Info.action(Message, :cross_board_highlights)
+IO.inspect({action1.name, action1.manual}, label: "cross_board_highlights action")
+
+action2 = Ash.Resource.Info.action(Thread, :fork)
+IO.inspect({action2.name, action2.manual, action2.accept}, label: "fork action")
+EOF
+mix run /tmp/introspect.exs ✔ 
+All requirements verified: relationships report `type: :has_many`, correct `destination`, and manual module as `{module, opts}`; aggregate is public; both custom actions report their implementing modules; `fork` accepts no attributes (`accept: []`).   
+💫 Executing rm -f /tmp/introspect.exs ✔ 
+💫 Executing cd /home/user/thread_graph && cat > /tmp/arity_check.exs << 'EOF'
+funs = ThreadGraph.Forum.__info__(:functions)
+Enum.each([:highlights, :highlights!, :fork_thread, :fork_thread!], fn name ->
+  arities = funs |> Enum.filter(fn {n, _} -> n == name end) |> Enum.map(&elem(&1, 1)) |> Enum.sort()
+  IO.inspect({name, arities}, label: "arities")
+end)
+EOF
+mix run /tmp/arity_check.exs && rm -f /tmp/arity_check.exs ✔ 
+All arities match the specification exactly. Let's run a final full compile to confirm everything is clean.   
+💫 Executing cd /home/user/thread_graph && mix compile --warnings-as-errors 2>&1 | tail -60 ✔ 
+Clean compile with no warnings or errors.   
+🎉 Task Completed
+Implemented all seven requirements in the `thread_graph` Ash v3 project (`/home/user/thread_graph`):
+
+1. **`reply_count` aggregate** on `Message` — `count :reply_count, :replies, public?: true`, using the existing `:replies` relationship.
+
+2. **`recent_messages`** (`Thread` → `Message`) — manual `has_many` relationship implemented by `ThreadGraph.Forum.Threads.RecentMessages`. Fetches all candidate messages for the batch of source threads in a single Ash read (AND-merging any load-query filter), then per-thread sorts by `position` desc/`id` asc and takes the top 3, returning a map keyed by thread id so every thread is present (even with `[]`).
+
+3. **`ancestor_messages`** (`Message` → `Message`) — manual relationship `ThreadGraph.Forum.Messages.AncestorMessages`. Loads the whole `Message` table once, then walks `parent_id` per source with cycle protection, producing outermost-first/immediate-parent-last chains.
+
+4. **`linked_messages`** (`Message` → `Message`) — manual relationship `ThreadGraph.Forum.Messages.LinkedMessages`. Loads all messages and links once, builds an adjacency map from `MessageLink` edges (any `kind`), and runs BFS per source to get minimum hop distances, sorted by `(distance, position, id)`, excluding the source and cycle self-hits.
+
+5. **`cross_board_highlights`** read action on `Message`, implemented by `ThreadGraph.Forum.Messages.CrossBoardHighlights` (manual read). Computes endorsement counts from `:follow_up` `MessageLink`s, filters by board/`min_endorsements`, attaches `:endorsement_count` metadata, and honors incoming filter/sort/limit/offset (falling back to the specified default ordering when no sort is given).
+
+6. **`fork` create action** on `Thread`, implemented by `ThreadGraph.Forum.Threads.ForkThread` (manual create). Validates the source message/thread up front (returning `Ash.Error.Changes.InvalidArgument` with `field: :source_message_id` and the exact required messages, with nothing persisted on failure), then copies the source and all transitive descendants into a new thread with renumbered positions and reproduced parent/child structure, plus one `fork_of` `MessageLink`.
+
+7. **Domain code interfaces** on `ThreadGraph.Forum`: `highlights/2,3,4` + `highlights!/2,3,4` (→ `cross_board_highlights`, args `[:boards, :min_endorsements]`) and `fork_thread/3,4,5` + `fork_thread!/3,4,5` (→ `fork`, args `[:source_message_id, :slug, :title]`).
+
+Each of the five new modules bumps its designated `LoadCounter` key exactly once per invocation.
+
+Verified via `mix compile --warnings-as-errors` (clean) and ad-hoc `mix run` scripts exercising: the aggregate, all three relationships (including nested loads of `reply_count`/`ancestor_messages` underneath `recent_messages`), read-count telemetry for K=15 source records (1, 1, and 2 reads respectively — well under the 8-read cap), `cross_board_highlights` filtering/sorting/metadata, and the `fork` action's happy path plus both failure modes (confirmed zero records created on failure via before/after counts). All scratch/introspection scripts were removed after verification.   
+  

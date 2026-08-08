@@ -1,0 +1,242 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-08T11:29:13.954195+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 23,
+            "passed": 21,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786188529451,
+            "stop": 1786188553954
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_contract_suite_executed",
+                "status": "passed",
+                "duration": 24444,
+                "start": 1786188529460,
+                "stop": 1786188553904,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s01_structure_resources_actions_and_attributes",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188553905,
+                "stop": 1786188553905,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s02_shared_modules_are_reused_across_resources",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188553906,
+                "stop": 1786188553906,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s03_live_reads_return_every_record",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188553907,
+                "stop": 1786188553907,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188553908,
+                "stop": 1786188553908,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s05_archived_rows_survive_but_get_reports_not_found",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188553908,
+                "stop": 1786188553909,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s06_one_archive_operation_marks_exactly_one_generation",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188553909,
+                "stop": 1786188553910,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s07_separate_archive_operations_use_distinct_batches",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188553910,
+                "stop": 1786188553911,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s08_archiving_a_comment_cascades_only_to_its_own_reactions",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188553911,
+                "stop": 1786188553912,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s09_a_later_archive_leaves_earlier_archived_descendants_alone",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188553912,
+                "stop": 1786188553912,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s10_archiving_twice_is_idempotent",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188553913,
+                "stop": 1786188553913,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s11_restore_only_brings_back_its_own_batch",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188553913,
+                "stop": 1786188553914,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s12_restoring_a_descendant_does_not_touch_ancestors",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188553914,
+                "stop": 1786188553915,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s13_restore_is_idempotent_and_safe_on_live_records",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188553915,
+                "stop": 1786188553916,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s14_restore_clears_both_archive_markers",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188553916,
+                "stop": 1786188553917,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s15_count_aggregates_exclude_archived_children",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188553917,
+                "stop": 1786188553917,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s16_relationship_loads_exclude_archived_children",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786188553918,
+                "stop": 1786188553918,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s17_relationship_filters_exclude_archived_rows",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188553918,
+                "stop": 1786188553919,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s18_the_archived_read_requires_an_admin_actor",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188553919,
+                "stop": 1786188553920,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s19_every_other_action_stays_open_to_any_actor",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188553920,
+                "stop": 1786188553921,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s20_purge_refuses_a_live_record_and_changes_nothing",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786188553921,
+                "stop": 1786188553922,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s21_purging_an_archived_post_removes_the_whole_subtree",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 23,
+                "start": 1786188553922,
+                "stop": 1786188553945,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "contract_run = {'output': 'HARBOR_RESULT {\"message\":\"\",\"name\":\"s01_structure_resources_actions_and_attributes\",\"status\":\"pass\"}\\nHARB...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'pass'}, ...}, 'returncode': 0}\n\n    def test_s21_purging_an_archived_post_removes_the_whole_subtree(contract_run):\n>       _scenario(contract_run, \"s21_purging_an_archived_post_removes_the_whole_subtree\")\n\n/tests/test_final_state.py:817: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ncontract_run = {'output': 'HARBOR_RESULT {\"message\":\"\",\"name\":\"s01_structure_resources_actions_and_attributes\",\"status\":\"pass\"}\\nHARB...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'pass'}, ...}, 'returncode': 0}\nname = 's21_purging_an_archived_post_removes_the_whole_subtree'\n\n    def _scenario(contract_run, name):\n        results = contract_run[\"results\"]\n        if name not in results:\n            pytest.fail(\n                f\"Scenario {name!r} never reported a result. The Ash project at \"\n                f\"{PROJECT_DIR} most likely failed to compile or to boot \"\n                f\"(mix run exit code {contract_run['returncode']}).\\n\"\n                f\"Combined output:\\n{contract_run['output'][-8000:]}\"\n            )\n    \n        payload = results[name]\n>       assert payload[\"status\"] == \"pass\", (\n            f\"Scenario {name!r} did not pass ({payload['status']}).\\n\"\n            f\"{payload.get('message', '')}\"\n        )\nE       AssertionError: Scenario 's21_purging_an_archived_post_removes_the_whole_subtree' did not pass (fail).\nE           1) test s21_purging_an_archived_post_removes_the_whole_subtree (ArchiveContractTest)\nE              /tmp/harbor_archive_contract.exs:631\nE              Assertion with == failed\nE              code:  assert H.read(Forum.Content.Comment, :with_archived) == []\nE              left:  [\nE                       %Forum.Content.Comment{\nE                         id: \"67abf149-ac51-4568-81ba-29fa22f1b3e0\",\nE                         body: \"c2\",\nE                         post_id: \"208d03d1-7d79-4fac-a1a9-e1c9071e5926\",\nE                         archived_at: ~U[2026-08-08 11:29:13.300508Z],\nE                         archive_batch_id: \"3c395360-c655-404f-8eb8-faad25b4c09d\",\nE                         reaction_count: #Ash.NotLoaded<:aggregate, field: :reaction_count>,\nE                         post: #Ash.NotLoaded<:relationship, field: :post>,\nE                         reactions: #Ash.NotLoaded<:relationship, field: :reactions>,\nE                         __meta__: #Ecto.Schema.Metadata<:loaded>\nE                       },\nE                       %Forum.Content.Comment{\nE                         id: \"ded8dedc-cfc6-4db1-a3ea-9fe41129980a\",\nE                         body: \"c1\",\nE                         post_id: \"208d03d1-7d79-4fac-a1a9-e1c9071e5926\",\nE                         archived_at: ~U[2026-08-08 11:29:13.299801Z],\nE                         archive_batch_id: \"aa3a9332-6161-4410-8de2-ce8d3af3e676\",\nE                         reaction_count: #Ash.NotLoaded<:aggregate, field: :reaction_count>,\nE                         post: #Ash.NotLoaded<:relationship, field: :post>,\nE                         reactions: #Ash.NotLoaded<:relationship, field: :reactions>,\nE                         __meta__: #Ecto.Schema.Metadata<:loaded>\nE                       }\nE                     ]\nE              right: []\nE              stacktrace:\nE                /tmp/harbor_archive_contract.exs:639: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:736: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_s22_purging_a_comment_removes_only_that_branch",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 8,
+                "start": 1786188553945,
+                "stop": 1786188553953,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "contract_run = {'output': 'HARBOR_RESULT {\"message\":\"\",\"name\":\"s01_structure_resources_actions_and_attributes\",\"status\":\"pass\"}\\nHARB...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'pass'}, ...}, 'returncode': 0}\n\n    def test_s22_purging_a_comment_removes_only_that_branch(contract_run):\n>       _scenario(contract_run, \"s22_purging_a_comment_removes_only_that_branch\")\n\n/tests/test_final_state.py:820: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ncontract_run = {'output': 'HARBOR_RESULT {\"message\":\"\",\"name\":\"s01_structure_resources_actions_and_attributes\",\"status\":\"pass\"}\\nHARB...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'pass'}, ...}, 'returncode': 0}\nname = 's22_purging_a_comment_removes_only_that_branch'\n\n    def _scenario(contract_run, name):\n        results = contract_run[\"results\"]\n        if name not in results:\n            pytest.fail(\n                f\"Scenario {name!r} never reported a result. The Ash project at \"\n                f\"{PROJECT_DIR} most likely failed to compile or to boot \"\n                f\"(mix run exit code {contract_run['returncode']}).\\n\"\n                f\"Combined output:\\n{contract_run['output'][-8000:]}\"\n            )\n    \n        payload = results[name]\n>       assert payload[\"status\"] == \"pass\", (\n            f\"Scenario {name!r} did not pass ({payload['status']}).\\n\"\n            f\"{payload.get('message', '')}\"\n        )\nE       AssertionError: Scenario 's22_purging_a_comment_removes_only_that_branch' did not pass (fail).\nE           1) test s22_purging_a_comment_removes_only_that_branch (ArchiveContractTest)\nE              /tmp/harbor_archive_contract.exs:643\nE              Assertion with == failed\nE              code:  assert H.emojis(H.read(Forum.Content.Reaction, :with_archived)) == [\"r2\"]\nE              left:  [\"r1\", \"r2\"]\nE              right: [\"r2\"]\nE              stacktrace:\nE                /tmp/harbor_archive_contract.exs:650: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:736: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

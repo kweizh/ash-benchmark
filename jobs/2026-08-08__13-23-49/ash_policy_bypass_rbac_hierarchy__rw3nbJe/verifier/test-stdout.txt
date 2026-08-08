@@ -1,0 +1,1939 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 42 items
+
+../tests/test_final_state.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF  [100%]
+
+=================================== FAILURES ===================================
+_____________ test_t01_document_is_authorized_by_policy_authorizer _____________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t01_document_is_authorized_by_policy_authorizer(suite_results):
+>       _check(suite_results, "T01")
+
+/tests/test_final_state.py:745: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T01'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T01 failed:
+E           1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:286
+E              ** (ArgumentError) `OrgGuard.Access.Document` is not a Spark DSL module.
+E         
+E              code: assert Ash.Policy.Authorizer in Ash.Resource.Info.authorizers(@document),
+E              stacktrace:
+E                OrgGuard.Access.Document.persisted(:authorizers)
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:158: Spark.Dsl.Extension.persisted!/3
+E                /tmp/harbor_rbac_suite.exs:287: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+______________________ test_t02_policies_contain_a_bypass ______________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t02_policies_contain_a_bypass(suite_results):
+>       _check(suite_results, "T02")
+
+/tests/test_final_state.py:749: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T02'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T02 failed:
+E           1) test T02 Document policies contain at least one bypass policy (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:296
+E              ** (ArgumentError) `OrgGuard.Access.Document` is not a Spark DSL module.
+E         
+E              code: policies = Ash.Policy.Info.policies(@document)
+E              stacktrace:
+E                OrgGuard.Access.Document.entities([:policies])
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:2190: Spark.Dsl.Extension.get_config_entry_with_fallback/6
+E                (ash 3.31.0) lib/ash/policy/info.ex:172: Ash.Policy.Info.do_policies/1
+E                /tmp/harbor_rbac_suite.exs:297: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+____________________ test_t03_a_custom_filter_check_is_used ____________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t03_a_custom_filter_check_is_used(suite_results):
+>       _check(suite_results, "T03")
+
+/tests/test_final_state.py:753: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T03'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T03 failed:
+E           1) test T03 a custom filter check module is used by Document policies (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:304
+E              ** (ArgumentError) `OrgGuard.Access.Document` is not a Spark DSL module.
+E         
+E              code: mods = custom_check_modules(@document)
+E              stacktrace:
+E                OrgGuard.Access.Document.entities([:policies])
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:2190: Spark.Dsl.Extension.get_config_entry_with_fallback/6
+E                (ash 3.31.0) lib/ash/policy/info.ex:172: Ash.Policy.Info.do_policies/1
+E                /tmp/harbor_rbac_suite.exs:262: OrgGuardRbacTest.check_modules/1
+E                /tmp/harbor_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1
+E                /tmp/harbor_rbac_suite.exs:305: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+____________________ test_t04_a_custom_simple_check_is_used ____________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t04_a_custom_simple_check_is_used(suite_results):
+>       _check(suite_results, "T04")
+
+/tests/test_final_state.py:757: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T04'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T04 failed:
+E           1) test T04 a custom simple check module is used by Document policies (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:311
+E              ** (ArgumentError) `OrgGuard.Access.Document` is not a Spark DSL module.
+E         
+E              code: mods = custom_check_modules(@document)
+E              stacktrace:
+E                OrgGuard.Access.Document.entities([:policies])
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:2190: Spark.Dsl.Extension.get_config_entry_with_fallback/6
+E                (ash 3.31.0) lib/ash/policy/info.ex:172: Ash.Policy.Info.do_policies/1
+E                /tmp/harbor_rbac_suite.exs:262: OrgGuardRbacTest.check_modules/1
+E                /tmp/harbor_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1
+E                /tmp/harbor_rbac_suite.exs:312: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+___________________ test_t05_budget_cents_has_a_field_policy ___________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t05_budget_cents_has_a_field_policy(suite_results):
+>       _check(suite_results, "T05")
+
+/tests/test_final_state.py:761: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T05'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T05 failed:
+E           1) test T05 budget_cents is governed by at least one field policy (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:318
+E              ** (ArgumentError) `OrgGuard.Access.Document` is not a Spark DSL module.
+E         
+E              code: assert Ash.Policy.Info.field_policies_for_field(@document, :budget_cents) != [],
+E              stacktrace:
+E                OrgGuard.Access.Document.persisted(:fields_to_field_policies)
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:158: Spark.Dsl.Extension.persisted!/3
+E                (ash 3.31.0) lib/ash/policy/info.ex:31: Ash.Policy.Info.field_policies_for_field/2
+E                /tmp/harbor_rbac_suite.exs:319: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+__________ test_t06_relocate_is_a_generic_action_with_uuid_arguments ___________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t06_relocate_is_a_generic_action_with_uuid_arguments(suite_results):
+>       _check(suite_results, "T06")
+
+/tests/test_final_state.py:765: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T06'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T06 failed:
+E           1) test T06 relocate is a generic action with the required uuid arguments (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:323
+E              ** (ArgumentError) `OrgGuard.Access.Document` is not a Spark DSL module.
+E         
+E              code: action = Ash.Resource.Info.action(@document, :relocate)
+E              stacktrace:
+E                OrgGuard.Access.Document.entities([:actions])
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:2190: Spark.Dsl.Extension.get_config_entry_with_fallback/6
+E                (ash 3.31.0) lib/ash/resource/info.ex:738: Ash.Resource.Info.action/3
+E                /tmp/harbor_rbac_suite.exs:324: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+__________ test_t07_seeded_fixture_is_readable_without_authorization ___________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t07_seeded_fixture_is_readable_without_authorization(suite_results):
+>       _check(suite_results, "T07")
+
+/tests/test_final_state.py:769: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T07'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T07 failed:
+E           1) test T07 the seeded fixture is readable without authorization (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:338
+E              ** (ArgumentError) Expected an `%Ash.Query{}` or an `Ash.Resource` in `Ash.read!/2`, got: OrgGuard.Access.Document
+E              code: docs = Ash.read!(@document, authorize?: false)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash.ex:2869: Ash.read!/2
+E                /tmp/harbor_rbac_suite.exs:339: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+______________ test_t08_root_grant_is_inherited_by_the_whole_tree ______________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t08_root_grant_is_inherited_by_the_whole_tree(suite_results):
+>       _check(suite_results, "T08")
+
+/tests/test_final_state.py:773: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T08'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T08 failed:
+E           1) test T08 a root grant is inherited by the whole tree (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:355
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: assert fixture_titles(user("root_admin")) == Enum.sort(@fixture_titles)
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:356: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_______________ test_t09_subtree_grant_reaches_three_levels_down _______________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t09_subtree_grant_reaches_three_levels_down(suite_results):
+>       _check(suite_results, "T09")
+
+/tests/test_final_state.py:777: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T09'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T09 failed:
+E           1) test T09 a subtree grant reaches three levels down (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:359
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: assert fixture_titles(user("eng_viewer")) == Enum.sort(~w(F-eng F-platform F-db F-web))
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:360: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+__________ test_t10_deny_at_a_descendant_cuts_off_the_inherited_grant __________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t10_deny_at_a_descendant_cuts_off_the_inherited_grant(suite_results):
+>       _check(suite_results, "T10")
+
+/tests/test_final_state.py:781: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T10'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T10 failed:
+E           1) test T10 a deny at a descendant cuts off the inherited grant for that subtree (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:363
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: assert fixture_titles(user("deny_viewer")) == Enum.sort(~w(F-eng F-web))
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:364: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+______________ test_t11_grant_below_a_deny_re_establishes_access _______________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t11_grant_below_a_deny_re_establishes_access(suite_results):
+>       _check(suite_results, "T11")
+
+/tests/test_final_state.py:785: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T11'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T11 failed:
+E           1) test T11 a grant below a deny re-establishes access (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:367
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: assert fixture_titles(user("regrant_viewer")) ==
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:368: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_______________ test_t12_actor_without_roles_gets_an_empty_list ________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t12_actor_without_roles_gets_an_empty_list(suite_results):
+>       _check(suite_results, "T12")
+
+/tests/test_final_state.py:789: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T12'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T12 failed:
+E           1) test T12 an actor with no role assignments sees an empty list, not an error (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:372
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: assert {:ok, docs} = list(user("no_roles"))
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:373: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+____________________ test_t13_nil_actor_gets_an_empty_list _____________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t13_nil_actor_gets_an_empty_list(suite_results):
+>       _check(suite_results, "T13")
+
+/tests/test_final_state.py:793: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T13'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T13 failed:
+E           1) test T13 a nil actor sees an empty list, not an error (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:377
+E              ** (UndefinedFunctionError) function OrgGuard.Access.list_documents/1 is undefined or private
+E              code: assert {:ok, docs} = list(nil)
+E              stacktrace:
+E                (orgguard 0.1.0) OrgGuard.Access.list_documents([actor: nil])
+E                /tmp/harbor_rbac_suite.exs:378: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_______________ test_t14_suspended_actor_with_roles_is_forbidden _______________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t14_suspended_actor_with_roles_is_forbidden(suite_results):
+>       _check(suite_results, "T14")
+
+/tests/test_final_state.py:797: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T14'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T14 failed:
+E           1) test T14 a suspended actor holding roles is forbidden from listing (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:382
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: result = list(user("suspended_admin"))
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:383: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_____________ test_t15_suspended_actor_without_roles_is_forbidden ______________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t15_suspended_actor_without_roles_is_forbidden(suite_results):
+>       _check(suite_results, "T15")
+
+/tests/test_final_state.py:801: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T15'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T15 failed:
+E           1) test T15 a suspended actor without roles is forbidden from listing (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:387
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: result = list(user("suspended_none"))
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:388: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+________________ test_t16_break_glass_actor_sees_every_document ________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t16_break_glass_actor_sees_every_document(suite_results):
+>       _check(suite_results, "T16")
+
+/tests/test_final_state.py:805: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T16'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T16 failed:
+E           1) test T16 a break-glass actor sees every document (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:392
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: assert fixture_titles(user("breakglass")) == Enum.sort(@fixture_titles)
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:393: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+____________ test_t17_break_glass_takes_precedence_over_suspension _____________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t17_break_glass_takes_precedence_over_suspension(suite_results):
+>       _check(suite_results, "T17")
+
+/tests/test_final_state.py:809: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T17'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T17 failed:
+E           1) test T17 break-glass takes precedence over suspension (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:396
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: assert fixture_titles(user("breakglass_susp")) == Enum.sort(@fixture_titles)
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:397: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+________________ test_t18_filtered_out_fetch_by_id_is_not_found ________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t18_filtered_out_fetch_by_id_is_not_found(suite_results):
+>       _check(suite_results, "T18")
+
+/tests/test_final_state.py:813: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T18'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T18 failed:
+E           1) test T18 fetching a filtered-out document by id is not-found, not forbidden (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:402
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: actor = user("deny_viewer")
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:403: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+___________________ test_t19_permitted_fetch_by_id_succeeds ____________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t19_permitted_fetch_by_id_succeeds(suite_results):
+>       _check(suite_results, "T19")
+
+/tests/test_final_state.py:817: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T19'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T19 failed:
+E           1) test T19 fetching a permitted document by id succeeds (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:412
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: assert {:ok, fetched} = call(:get_document, [doc("F-eng").id, [actor: user("eng_viewer")]])
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:198: OrgGuardRbacTest.doc/1
+E                /tmp/harbor_rbac_suite.exs:413: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_________________ test_t20_nil_actor_fetch_by_id_is_not_found __________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t20_nil_actor_fetch_by_id_is_not_found(suite_results):
+>       _check(suite_results, "T20")
+
+/tests/test_final_state.py:821: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T20'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T20 failed:
+E           1) test T20 fetching by id with a nil actor is not-found (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:417
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: result = call(:get_document, [doc("F-fin").id, [actor: nil]])
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:198: OrgGuardRbacTest.doc/1
+E                /tmp/harbor_rbac_suite.exs:418: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+______________ test_t21_suspended_actor_fetch_by_id_is_forbidden _______________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t21_suspended_actor_fetch_by_id_is_forbidden(suite_results):
+>       _check(suite_results, "T21")
+
+/tests/test_final_state.py:825: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T21'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T21 failed:
+E           1) test T21 fetching by id as a suspended actor is forbidden (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:422
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: result = call(:get_document, [doc("F-acme").id, [actor: user("suspended_admin")]])
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:198: OrgGuardRbacTest.doc/1
+E                /tmp/harbor_rbac_suite.exs:423: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_____________________ test_t22_editor_may_update_the_title _____________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t22_editor_may_update_the_title(suite_results):
+>       _check(suite_results, "T22")
+
+/tests/test_final_state.py:829: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T22'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T22 failed:
+E           1) test T22 an editor may update the title of a document in its unit (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:430
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: record = mk_doc("eng-web")
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:246: OrgGuardRbacTest.mk_doc/2
+E                /tmp/harbor_rbac_suite.exs:431: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+________________________ test_t23_viewer_may_not_update ________________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t23_viewer_may_not_update(suite_results):
+>       _check(suite_results, "T23")
+
+/tests/test_final_state.py:833: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T23'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T23 failed:
+E           1) test T23 a viewer may not update (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:436
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: record = mk_doc("eng-web")
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:246: OrgGuardRbacTest.mk_doc/2
+E                /tmp/harbor_rbac_suite.exs:437: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_________ test_t24_write_without_view_budget_cannot_change_the_budget __________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t24_write_without_view_budget_cannot_change_the_budget(suite_results):
+>       _check(suite_results, "T24")
+
+/tests/test_final_state.py:837: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T24'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T24 failed:
+E           1) test T24 write without view_budget cannot change budget_cents (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:443
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: record = mk_doc("eng-web", 777)
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:246: OrgGuardRbacTest.mk_doc/2
+E                /tmp/harbor_rbac_suite.exs:444: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+____________ test_t25_write_plus_view_budget_may_change_the_budget _____________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t25_write_plus_view_budget_may_change_the_budget(suite_results):
+>       _check(suite_results, "T25")
+
+/tests/test_final_state.py:841: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T25'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T25 failed:
+E           1) test T25 write plus view_budget may change budget_cents (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:450
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: record = mk_doc("eng-platform", 1)
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:246: OrgGuardRbacTest.mk_doc/2
+E                /tmp/harbor_rbac_suite.exs:451: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_________ test_t26_unit_admin_inherits_the_right_to_change_the_budget __________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t26_unit_admin_inherits_the_right_to_change_the_budget(suite_results):
+>       _check(suite_results, "T26")
+
+/tests/test_final_state.py:845: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T26'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T26 failed:
+E           1) test T26 unit_admin inherits the right to change budget_cents deep in the tree (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:456
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: record = mk_doc("eng-platform-db", 2)
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:246: OrgGuardRbacTest.mk_doc/2
+E                /tmp/harbor_rbac_suite.exs:457: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+___________________ test_t27_break_glass_may_update_anything ___________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t27_break_glass_may_update_anything(suite_results):
+>       _check(suite_results, "T27")
+
+/tests/test_final_state.py:849: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T27'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T27 failed:
+E           1) test T27 break-glass may update anything (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:462
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: record = mk_doc("fin-payroll", 3)
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:246: OrgGuardRbacTest.mk_doc/2
+E                /tmp/harbor_rbac_suite.exs:463: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_______________ test_t28_auditor_sees_the_budgets_in_its_subtree _______________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t28_auditor_sees_the_budgets_in_its_subtree(suite_results):
+>       _check(suite_results, "T28")
+
+/tests/test_final_state.py:853: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T28'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T28 failed:
+E           1) test T28 an auditor sees the budgets in its subtree (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:479
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: budgets = fixture_budgets(user("fin_auditor"))
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:480: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_____ test_t29_reader_without_view_budget_gets_the_forbidden_field_marker ______
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t29_reader_without_view_budget_gets_the_forbidden_field_marker(suite_results):
+>       _check(suite_results, "T29")
+
+/tests/test_final_state.py:857: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T29'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T29 failed:
+E           1) test T29 a reader without view_budget gets the forbidden-field marker (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:486
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: budgets = fixture_budgets(user("eng_viewer"))
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:487: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+____________________ test_t30_break_glass_sees_every_budget ____________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t30_break_glass_sees_every_budget(suite_results):
+>       _check(suite_results, "T30")
+
+/tests/test_final_state.py:861: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T30'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T30 failed:
+E           1) test T30 break-glass sees every budget (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:498
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: budgets = fixture_budgets(user("breakglass"))
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:499: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+______________________ test_t31_view_budget_is_inherited _______________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t31_view_budget_is_inherited(suite_results):
+>       _check(suite_results, "T31")
+
+/tests/test_final_state.py:865: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T31'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T31 failed:
+E           1) test T31 view_budget is inherited like every other capability (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:504
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: root = fixture_budgets(user("root_admin"))
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:505: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_________ test_t32_destroy_without_the_delete_capability_is_forbidden __________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t32_destroy_without_the_delete_capability_is_forbidden(suite_results):
+>       _check(suite_results, "T32")
+
+/tests/test_final_state.py:869: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T32'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T32 failed:
+E           1) test T32 destroying without the delete capability is forbidden (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:518
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: record = mk_doc("eng-web")
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:246: OrgGuardRbacTest.mk_doc/2
+E                /tmp/harbor_rbac_suite.exs:519: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_______________ test_t33_unit_admin_and_break_glass_may_destroy ________________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t33_unit_admin_and_break_glass_may_destroy(suite_results):
+>       _check(suite_results, "T33")
+
+/tests/test_final_state.py:873: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T33'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T33 failed:
+E           1) test T33 unit_admin and break-glass may destroy (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:529
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: first = mk_doc("eng-web")
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:246: OrgGuardRbacTest.mk_doc/2
+E                /tmp/harbor_rbac_suite.exs:530: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+______________ test_t34_create_with_the_write_capability_succeeds ______________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t34_create_with_the_write_capability_succeeds(suite_results):
+>       _check(suite_results, "T34")
+
+/tests/test_final_state.py:877: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T34'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T34 failed:
+E           1) test T34 creating with the write capability at the target unit succeeds (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:541
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: %{title: "M-created", budget_cents: 11, org_unit_id: unit("eng-web").id},
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:544: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+__________ test_t35_create_without_the_write_capability_is_forbidden ___________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t35_create_without_the_write_capability_is_forbidden(suite_results):
+>       _check(suite_results, "T35")
+
+/tests/test_final_state.py:881: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T35'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T35 failed:
+E           1) test T35 creating without the write capability is forbidden (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:551
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: %{title: "M-nope", budget_cents: 1, org_unit_id: unit("eng-platform").id},
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:554: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+___________ test_t36_relocation_succeeds_when_both_ends_are_in_scope ___________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t36_relocation_succeeds_when_both_ends_are_in_scope(suite_results):
+>       _check(suite_results, "T36")
+
+/tests/test_final_state.py:885: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T36'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T36 failed:
+E           1) test T36 relocation succeeds when the actor may relocate at both ends (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:571
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: record = mk_doc("eng-web")
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:246: OrgGuardRbacTest.mk_doc/2
+E                /tmp/harbor_rbac_suite.exs:572: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+___________ test_t37_relocation_without_the_capability_is_forbidden ____________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t37_relocation_without_the_capability_is_forbidden(suite_results):
+>       _check(suite_results, "T37")
+
+/tests/test_final_state.py:889: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T37'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T37 failed:
+E           1) test T37 relocation is forbidden without the relocate capability (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:582
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: record = mk_doc("eng-web")
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:246: OrgGuardRbacTest.mk_doc/2
+E                /tmp/harbor_rbac_suite.exs:583: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+________ test_t38_relocation_with_only_the_source_in_scope_is_forbidden ________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t38_relocation_with_only_the_source_in_scope_is_forbidden(suite_results):
+>       _check(suite_results, "T38")
+
+/tests/test_final_state.py:893: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T38'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T38 failed:
+E           1) test T38 relocation is forbidden when only the source unit is in scope (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:593
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: record = mk_doc("eng-web")
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:246: OrgGuardRbacTest.mk_doc/2
+E                /tmp/harbor_rbac_suite.exs:594: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+___________ test_t39_can_update_document_matches_the_update_contract ___________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t39_can_update_document_matches_the_update_contract(suite_results):
+>       _check(suite_results, "T39")
+
+/tests/test_final_state.py:897: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T39'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T39 failed:
+E           1) test T39 can_update_document? agrees with the update contract (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:613
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: record = mk_doc("eng-web")
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:246: OrgGuardRbacTest.mk_doc/2
+E                /tmp/harbor_rbac_suite.exs:614: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+__________ test_t40_can_destroy_document_matches_the_destroy_contract __________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t40_can_destroy_document_matches_the_destroy_contract(suite_results):
+>       _check(suite_results, "T40")
+
+/tests/test_final_state.py:901: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T40'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T40 failed:
+E           1) test T40 can_destroy_document? and Ash.can?/3 agree with the destroy contract (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:623
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: record = doc("F-web")
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:198: OrgGuardRbacTest.doc/1
+E                /tmp/harbor_rbac_suite.exs:624: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+___________ test_t41_can_create_document_matches_the_create_contract ___________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t41_can_create_document_matches_the_create_contract(suite_results):
+>       _check(suite_results, "T41")
+
+/tests/test_final_state.py:905: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T41'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T41 failed:
+E           1) test T41 can_create_document? agrees with the create contract (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:634
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: editor = user("web_editor")
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:196: OrgGuardRbacTest.user/1
+E                /tmp/harbor_rbac_suite.exs:635: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+________ test_t42_can_relocate_document_matches_the_relocation_contract ________
+
+suite_results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+
+    def test_t42_can_relocate_document_matches_the_relocation_contract(suite_results):
+>       _check(suite_results, "T42")
+
+/tests/test_final_state.py:909: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('failed', '  1) test T01 Document is authorized by Ash.Policy.Authorizer and the other resources are not (Org...or_rbac_suite.exs:275: OrgGuardRbacTest.custom_check_modules/1\n       /tmp/harbor_rbac_suite.exs:312: (test)\n'), ...}
+scenario = 'T42'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T42 failed:
+E           1) test T42 can_relocate_document? agrees with the relocation contract (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:642
+E              fixture seeding failed:
+E              ** (UndefinedFunctionError) function OrgGuard.Access.create_org_unit!/2 is undefined or private
+E                  (orgguard 0.1.0) OrgGuard.Access.create_org_unit!(%{code: "acme", name: "Acme", parent_id: nil}, [authorize?: false])
+E                  /tmp/harbor_rbac_suite.exs:57: anonymous fn/1 in :elixir_compiler_2.__FILE__/1
+E                  /tmp/harbor_rbac_suite.exs:168: (file)
+E                  (elixir 1.18.4) src/elixir_compiler.erl:77: :elixir_compiler.dispatch/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:52: :elixir_compiler.compile/4
+E                  (elixir 1.18.4) src/elixir_compiler.erl:39: :elixir_compiler.maybe_fast_compile/2
+E                  (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                  (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E         
+E              code: record = mk_doc("eng-web")
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:197: OrgGuardRbacTest.unit/1
+E                /tmp/harbor_rbac_suite.exs:246: OrgGuardRbacTest.mk_doc/2
+E                /tmp/harbor_rbac_suite.exs:643: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+=========================== short test summary info ============================
+FAILED ../tests/test_final_state.py::test_t01_document_is_authorized_by_policy_authorizer
+FAILED ../tests/test_final_state.py::test_t02_policies_contain_a_bypass - Ass...
+FAILED ../tests/test_final_state.py::test_t03_a_custom_filter_check_is_used
+FAILED ../tests/test_final_state.py::test_t04_a_custom_simple_check_is_used
+FAILED ../tests/test_final_state.py::test_t05_budget_cents_has_a_field_policy
+FAILED ../tests/test_final_state.py::test_t06_relocate_is_a_generic_action_with_uuid_arguments
+FAILED ../tests/test_final_state.py::test_t07_seeded_fixture_is_readable_without_authorization
+FAILED ../tests/test_final_state.py::test_t08_root_grant_is_inherited_by_the_whole_tree
+FAILED ../tests/test_final_state.py::test_t09_subtree_grant_reaches_three_levels_down
+FAILED ../tests/test_final_state.py::test_t10_deny_at_a_descendant_cuts_off_the_inherited_grant
+FAILED ../tests/test_final_state.py::test_t11_grant_below_a_deny_re_establishes_access
+FAILED ../tests/test_final_state.py::test_t12_actor_without_roles_gets_an_empty_list
+FAILED ../tests/test_final_state.py::test_t13_nil_actor_gets_an_empty_list - ...
+FAILED ../tests/test_final_state.py::test_t14_suspended_actor_with_roles_is_forbidden
+FAILED ../tests/test_final_state.py::test_t15_suspended_actor_without_roles_is_forbidden
+FAILED ../tests/test_final_state.py::test_t16_break_glass_actor_sees_every_document
+FAILED ../tests/test_final_state.py::test_t17_break_glass_takes_precedence_over_suspension
+FAILED ../tests/test_final_state.py::test_t18_filtered_out_fetch_by_id_is_not_found
+FAILED ../tests/test_final_state.py::test_t19_permitted_fetch_by_id_succeeds
+FAILED ../tests/test_final_state.py::test_t20_nil_actor_fetch_by_id_is_not_found
+FAILED ../tests/test_final_state.py::test_t21_suspended_actor_fetch_by_id_is_forbidden
+FAILED ../tests/test_final_state.py::test_t22_editor_may_update_the_title - A...
+FAILED ../tests/test_final_state.py::test_t23_viewer_may_not_update - Asserti...
+FAILED ../tests/test_final_state.py::test_t24_write_without_view_budget_cannot_change_the_budget
+FAILED ../tests/test_final_state.py::test_t25_write_plus_view_budget_may_change_the_budget
+FAILED ../tests/test_final_state.py::test_t26_unit_admin_inherits_the_right_to_change_the_budget
+FAILED ../tests/test_final_state.py::test_t27_break_glass_may_update_anything
+FAILED ../tests/test_final_state.py::test_t28_auditor_sees_the_budgets_in_its_subtree
+FAILED ../tests/test_final_state.py::test_t29_reader_without_view_budget_gets_the_forbidden_field_marker
+FAILED ../tests/test_final_state.py::test_t30_break_glass_sees_every_budget
+FAILED ../tests/test_final_state.py::test_t31_view_budget_is_inherited - Asse...
+FAILED ../tests/test_final_state.py::test_t32_destroy_without_the_delete_capability_is_forbidden
+FAILED ../tests/test_final_state.py::test_t33_unit_admin_and_break_glass_may_destroy
+FAILED ../tests/test_final_state.py::test_t34_create_with_the_write_capability_succeeds
+FAILED ../tests/test_final_state.py::test_t35_create_without_the_write_capability_is_forbidden
+FAILED ../tests/test_final_state.py::test_t36_relocation_succeeds_when_both_ends_are_in_scope
+FAILED ../tests/test_final_state.py::test_t37_relocation_without_the_capability_is_forbidden
+FAILED ../tests/test_final_state.py::test_t38_relocation_with_only_the_source_in_scope_is_forbidden
+FAILED ../tests/test_final_state.py::test_t39_can_update_document_matches_the_update_contract
+FAILED ../tests/test_final_state.py::test_t40_can_destroy_document_matches_the_destroy_contract
+FAILED ../tests/test_final_state.py::test_t41_can_create_document_matches_the_create_contract
+FAILED ../tests/test_final_state.py::test_t42_can_relocate_document_matches_the_relocation_contract
+============================== 42 failed in 5.42s ==============================

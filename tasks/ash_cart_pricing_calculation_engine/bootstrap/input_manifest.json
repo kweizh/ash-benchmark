@@ -1,0 +1,6 @@
+{
+  "library_name": "Ash Framework v3 (Elixir)",
+  "task_name": "ash_cart_pricing_calculation_engine",
+  "research_plan_path": "plan.md",
+  "output_dir": "scratchpad/pending-tasks/"
+}

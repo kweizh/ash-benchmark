@@ -1,0 +1,1131 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 28 items
+
+../tests/test_final_state.py FFFFFFFFFFFFFFFFFFFFFFFFFFFF                [100%]
+
+=================================== FAILURES ===================================
+_____________ test_t01_dispatcher_is_supervised_by_the_application _____________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t01_dispatcher_is_supervised_by_the_application(suite_run) -> None:
+        """T01: dispatcher is supervised by the application."""
+>       _assert_scenario(suite_run, "T01")
+
+/tests/test_final_state.py:835: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T01'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T01 failed:
+E           1) test T01 dispatcher is supervised by the application (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:92
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+________________________ test_t02_outbox_resource_shape ________________________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t02_outbox_resource_shape(suite_run) -> None:
+        """T02: outbox resource shape."""
+>       _assert_scenario(suite_run, "T02")
+
+/tests/test_final_state.py:840: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T02'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T02 failed:
+E           1) test T02 outbox resource shape (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:102
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_______________ test_t03_a_create_is_captured_with_full_metadata _______________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t03_a_create_is_captured_with_full_metadata(suite_run) -> None:
+        """T03: a create is captured with full metadata."""
+>       _assert_scenario(suite_run, "T03")
+
+/tests/test_final_state.py:845: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T03'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T03 failed:
+E           1) test T03 a create is captured with full metadata (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:137
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_ test_t04_create_diff_carries_every_non_nil_public_attribute_with_a_nil_from __
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t04_create_diff_carries_every_non_nil_public_attribute_with_a_nil_from(suite_run) -> None:
+        """T04: create diff carries every non-nil public attribute with a nil from."""
+>       _assert_scenario(suite_run, "T04")
+
+/tests/test_final_state.py:850: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T04'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T04 failed:
+E           1) test T04 create diff carries every non-nil public attribute with a nil from (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:152
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+____ test_t05_update_diffs_contain_only_the_attributes_that_really_changed _____
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t05_update_diffs_contain_only_the_attributes_that_really_changed(suite_run) -> None:
+        """T05: update diffs contain only the attributes that really changed."""
+>       _assert_scenario(suite_run, "T05")
+
+/tests/test_final_state.py:855: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T05'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T05 failed:
+E           1) test T05 update diffs contain only the attributes that really changed (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:165
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+______________ test_t06_a_destroy_is_captured_with_an_empty_diff _______________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t06_a_destroy_is_captured_with_an_empty_diff(suite_run) -> None:
+        """T06: a destroy is captured with an empty diff."""
+>       _assert_scenario(suite_run, "T06")
+
+/tests/test_final_state.py:860: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T06'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T06 failed:
+E           1) test T06 a destroy is captured with an empty diff (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:186
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_____________ test_t07_actor_id_is_nil_when_the_write_has_no_actor _____________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t07_actor_id_is_nil_when_the_write_has_no_actor(suite_run) -> None:
+        """T07: actor_id is nil when the write has no actor."""
+>       _assert_scenario(suite_run, "T07")
+
+/tests/test_final_state.py:865: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T07'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T07 failed:
+E           1) test T07 actor_id is nil when the write has no actor (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:200
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_ test_t08_aggregate_counters_are_independent_while_the_global_counter_is_contigu _
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t08_aggregate_counters_are_independent_while_the_global_counter_is_contigu(suite_run) -> None:
+        """T08: aggregate counters are independent while the global counter is contiguous."""
+>       _assert_scenario(suite_run, "T08")
+
+/tests/test_final_state.py:870: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T08'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T08 failed:
+E           1) test T08 aggregate counters are independent while the global counter is contiguous (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:206
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+____________________ test_t09_failed_writes_leave_no_entry _____________________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t09_failed_writes_leave_no_entry(suite_run) -> None:
+        """T09: failed writes leave no entry."""
+>       _assert_scenario(suite_run, "T09")
+
+/tests/test_final_state.py:875: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T09'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T09 failed:
+E           1) test T09 failed writes leave no entry (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:228
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+__________ test_t10_notifications_can_be_suppressed_for_a_single_call __________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t10_notifications_can_be_suppressed_for_a_single_call(suite_run) -> None:
+        """T10: notifications can be suppressed for a single call."""
+>       _assert_scenario(suite_run, "T10")
+
+/tests/test_final_state.py:880: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T10'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T10 failed:
+E           1) test T10 notifications can be suppressed for a single call (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:237
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_______ test_t11_batch_create_emits_exactly_one_entry_per_created_record _______
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t11_batch_create_emits_exactly_one_entry_per_created_record(suite_run) -> None:
+        """T11: batch create emits exactly one entry per created record."""
+>       _assert_scenario(suite_run, "T11")
+
+/tests/test_final_state.py:885: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T11'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T11 failed:
+E           1) test T11 batch create emits exactly one entry per created record (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:250
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_______ test_t12_batch_update_emits_exactly_one_entry_per_updated_record _______
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t12_batch_update_emits_exactly_one_entry_per_updated_record(suite_run) -> None:
+        """T12: batch update emits exactly one entry per updated record."""
+>       _assert_scenario(suite_run, "T12")
+
+/tests/test_final_state.py:890: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T12'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T12 failed:
+E           1) test T12 batch update emits exactly one entry per updated record (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:277
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_ test_t28_a_batch_update_issued_directly_through_ash_emits_one_entry_per_record _
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t28_a_batch_update_issued_directly_through_ash_emits_one_entry_per_record(suite_run) -> None:
+        """T28: a batch update issued directly through Ash emits one entry per record."""
+>       _assert_scenario(suite_run, "T28")
+
+/tests/test_final_state.py:895: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T28'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T28 failed:
+E           1) test T28 a batch update issued directly through Ash emits one entry per record (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:294
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+___ test_t13_a_partially_failing_batch_only_records_the_rows_that_succeeded ____
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t13_a_partially_failing_batch_only_records_the_rows_that_succeeded(suite_run) -> None:
+        """T13: a partially failing batch only records the rows that succeeded."""
+>       _assert_scenario(suite_run, "T13")
+
+/tests/test_final_state.py:900: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T13'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T13 failed:
+E           1) test T13 a partially failing batch only records the rows that succeeded (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:319
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_________ test_t14_sync_subscribers_run_inline_in_the_writing_process __________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t14_sync_subscribers_run_inline_in_the_writing_process(suite_run) -> None:
+        """T14: sync subscribers run inline in the writing process."""
+>       _assert_scenario(suite_run, "T14")
+
+/tests/test_final_state.py:905: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T14'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T14 failed:
+E           1) test T14 sync subscribers run inline in the writing process (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:343
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+________ test_t15_async_subscribers_only_run_in_the_dispatcher_on_drain ________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t15_async_subscribers_only_run_in_the_dispatcher_on_drain(suite_run) -> None:
+        """T15: async subscribers only run in the dispatcher on drain."""
+>       _assert_scenario(suite_run, "T15")
+
+/tests/test_final_state.py:910: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T15'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T15 failed:
+E           1) test T15 async subscribers only run in the dispatcher on drain (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:359
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_____________ test_t16_topic_patterns_match_with_segment_precision _____________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t16_topic_patterns_match_with_segment_precision(suite_run) -> None:
+        """T16: topic patterns match with segment precision."""
+>       _assert_scenario(suite_run, "T16")
+
+/tests/test_final_state.py:915: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T16'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T16 failed:
+E           1) test T16 topic patterns match with segment precision (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:379
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_____ test_t17_per_aggregate_order_survives_interleaved_concurrent_writers _____
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t17_per_aggregate_order_survives_interleaved_concurrent_writers(suite_run) -> None:
+        """T17: per-aggregate order survives interleaved concurrent writers."""
+>       _assert_scenario(suite_run, "T17")
+
+/tests/test_final_state.py:920: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T17'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T17 failed:
+E           1) test T17 per-aggregate order survives interleaved concurrent writers (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:421
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_____________ test_t18_acknowledged_deliveries_are_never_repeated ______________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t18_acknowledged_deliveries_are_never_repeated(suite_run) -> None:
+        """T18: acknowledged deliveries are never repeated."""
+>       _assert_scenario(suite_run, "T18")
+
+/tests/test_final_state.py:925: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T18'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T18 failed:
+E           1) test T18 acknowledged deliveries are never repeated (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:453
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+___ test_t19_a_delivery_that_fails_twice_still_succeeds_on_the_third_attempt ___
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t19_a_delivery_that_fails_twice_still_succeeds_on_the_third_attempt(suite_run) -> None:
+        """T19: a delivery that fails twice still succeeds on the third attempt."""
+>       _assert_scenario(suite_run, "T19")
+
+/tests/test_final_state.py:930: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T19'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T19 failed:
+E           1) test T19 a delivery that fails twice still succeeds on the third attempt (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:472
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_______ test_t20_a_delivery_is_dead_lettered_after_three_failed_attempts _______
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t20_a_delivery_is_dead_lettered_after_three_failed_attempts(suite_run) -> None:
+        """T20: a delivery is dead-lettered after three failed attempts."""
+>       _assert_scenario(suite_run, "T20")
+
+/tests/test_final_state.py:935: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T20'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T20 failed:
+E           1) test T20 a delivery is dead-lettered after three failed attempts (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:509
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+___________________ test_t21_a_raising_handler_is_contained ____________________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t21_a_raising_handler_is_contained(suite_run) -> None:
+        """T21: a raising handler is contained."""
+>       _assert_scenario(suite_run, "T21")
+
+/tests/test_final_state.py:940: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T21'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T21 failed:
+E           1) test T21 a raising handler is contained (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:543
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_______ test_t22_a_sync_delivery_that_fails_is_retried_like_an_async_one _______
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t22_a_sync_delivery_that_fails_is_retried_like_an_async_one(suite_run) -> None:
+        """T22: a sync delivery that fails is retried like an async one."""
+>       _assert_scenario(suite_run, "T22")
+
+/tests/test_final_state.py:945: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T22'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T22 failed:
+E           1) test T22 a sync delivery that fails is retried like an async one (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:571
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_ test_t23_replay_re_delivers_matching_entries_in_order_in_the_caller_process __
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t23_replay_re_delivers_matching_entries_in_order_in_the_caller_process(suite_run) -> None:
+        """T23: replay re-delivers matching entries in order in the caller process."""
+>       _assert_scenario(suite_run, "T23")
+
+/tests/test_final_state.py:950: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T23'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T23 failed:
+E           1) test T23 replay re-delivers matching entries in order in the caller process (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:603
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+______________________ test_t24_subscription_bookkeeping _______________________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t24_subscription_bookkeeping(suite_run) -> None:
+        """T24: subscription bookkeeping."""
+>       _assert_scenario(suite_run, "T24")
+
+/tests/test_final_state.py:955: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T24'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T24 failed:
+E           1) test T24 subscription bookkeeping (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:635
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+_________ test_t25_dedup_keys_are_unique_and_protected_by_an_identity __________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t25_dedup_keys_are_unique_and_protected_by_an_identity(suite_run) -> None:
+        """T25: dedup keys are unique and protected by an identity."""
+>       _assert_scenario(suite_run, "T25")
+
+/tests/test_final_state.py:960: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T25'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T25 failed:
+E           1) test T25 dedup keys are unique and protected by an identity (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:657
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+________________ test_t26_query_helpers_are_ordered_and_scoped _________________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t26_query_helpers_are_ordered_and_scoped(suite_run) -> None:
+        """T26: query helpers are ordered and scoped."""
+>       _assert_scenario(suite_run, "T26")
+
+/tests/test_final_state.py:965: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T26'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T26 failed:
+E           1) test T26 query helpers are ordered and scoped (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:695
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+___________ test_t27_reset_returns_the_subsystem_to_a_pristine_state ___________
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+
+    def test_t27_reset_returns_the_subsystem_to_a_pristine_state(suite_run) -> None:
+        """T27: reset returns the subsystem to a pristine state."""
+>       _assert_scenario(suite_run, "T27")
+
+/tests/test_final_state.py:970: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = ({'test T01 dispatcher is supervised by the application': ('fail', '  1) test T01 dispatcher is supervised by the appl...XRfc2V0dXBfMC8xCiAgICAgICAvdG1wL2hhcmJvcl9vdXRib3hfc3VpdGUuZXhzOjQ3OiBIYXJib3IuT3V0Ym94VGVzdC5fX2V4X3VuaXRfXy8yCg==\n')
+scenario_id = 'T27'
+
+    def _assert_scenario(
+        suite_run: Tuple[Dict[str, Tuple[str, str]], str], scenario_id: str
+    ) -> None:
+        results, output = suite_run
+        matching = [key for key in results if key.startswith(f"test {scenario_id} ")]
+        assert matching, (
+            f"The ExUnit suite produced no result for scenario {scenario_id}. "
+            f"Last 6000 characters of the run output:\n{output[-6000:]}"
+        )
+        status, detail = results[matching[0]]
+>       assert status == "pass", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T27 failed:
+E           1) test T27 reset returns the subsystem to a pristine state (Harbor.OutboxTest)
+E              /tmp/harbor_outbox_suite.exs:710
+E              ** (UndefinedFunctionError) function Outbox.Eventing.Dispatcher.reset/0 is undefined (module Outbox.Eventing.Dispatcher is not available)
+E              stacktrace:
+E                Outbox.Eventing.Dispatcher.reset()
+E                /tmp/harbor_outbox_suite.exs:85: Harbor.OutboxTest.__ex_unit_setup_0/1
+E                /tmp/harbor_outbox_suite.exs:47: Harbor.OutboxTest.__ex_unit__/2
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:830: AssertionError
+=========================== short test summary info ============================
+FAILED ../tests/test_final_state.py::test_t01_dispatcher_is_supervised_by_the_application
+FAILED ../tests/test_final_state.py::test_t02_outbox_resource_shape - Asserti...
+FAILED ../tests/test_final_state.py::test_t03_a_create_is_captured_with_full_metadata
+FAILED ../tests/test_final_state.py::test_t04_create_diff_carries_every_non_nil_public_attribute_with_a_nil_from
+FAILED ../tests/test_final_state.py::test_t05_update_diffs_contain_only_the_attributes_that_really_changed
+FAILED ../tests/test_final_state.py::test_t06_a_destroy_is_captured_with_an_empty_diff
+FAILED ../tests/test_final_state.py::test_t07_actor_id_is_nil_when_the_write_has_no_actor
+FAILED ../tests/test_final_state.py::test_t08_aggregate_counters_are_independent_while_the_global_counter_is_contigu
+FAILED ../tests/test_final_state.py::test_t09_failed_writes_leave_no_entry - ...
+FAILED ../tests/test_final_state.py::test_t10_notifications_can_be_suppressed_for_a_single_call
+FAILED ../tests/test_final_state.py::test_t11_batch_create_emits_exactly_one_entry_per_created_record
+FAILED ../tests/test_final_state.py::test_t12_batch_update_emits_exactly_one_entry_per_updated_record
+FAILED ../tests/test_final_state.py::test_t28_a_batch_update_issued_directly_through_ash_emits_one_entry_per_record
+FAILED ../tests/test_final_state.py::test_t13_a_partially_failing_batch_only_records_the_rows_that_succeeded
+FAILED ../tests/test_final_state.py::test_t14_sync_subscribers_run_inline_in_the_writing_process
+FAILED ../tests/test_final_state.py::test_t15_async_subscribers_only_run_in_the_dispatcher_on_drain
+FAILED ../tests/test_final_state.py::test_t16_topic_patterns_match_with_segment_precision
+FAILED ../tests/test_final_state.py::test_t17_per_aggregate_order_survives_interleaved_concurrent_writers
+FAILED ../tests/test_final_state.py::test_t18_acknowledged_deliveries_are_never_repeated
+FAILED ../tests/test_final_state.py::test_t19_a_delivery_that_fails_twice_still_succeeds_on_the_third_attempt
+FAILED ../tests/test_final_state.py::test_t20_a_delivery_is_dead_lettered_after_three_failed_attempts
+FAILED ../tests/test_final_state.py::test_t21_a_raising_handler_is_contained
+FAILED ../tests/test_final_state.py::test_t22_a_sync_delivery_that_fails_is_retried_like_an_async_one
+FAILED ../tests/test_final_state.py::test_t23_replay_re_delivers_matching_entries_in_order_in_the_caller_process
+FAILED ../tests/test_final_state.py::test_t24_subscription_bookkeeping - Asse...
+FAILED ../tests/test_final_state.py::test_t25_dedup_keys_are_unique_and_protected_by_an_identity
+FAILED ../tests/test_final_state.py::test_t26_query_helpers_are_ordered_and_scoped
+FAILED ../tests/test_final_state.py::test_t27_reset_returns_the_subsystem_to_a_pristine_state
+============================= 28 failed in 27.44s ==============================

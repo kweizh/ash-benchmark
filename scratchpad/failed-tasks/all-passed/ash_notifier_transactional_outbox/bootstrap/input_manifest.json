@@ -1,0 +1,6 @@
+{
+  "library_name": "Ash Framework",
+  "task_name": "ash_notifier_transactional_outbox",
+  "research_plan_path": "plan.md",
+  "output_dir": "scratchpad/pending-tasks/"
+}

@@ -1,0 +1,53 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 42 items
+
+../tests/test_final_state.py ..........................................  [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_t01_document_is_authorized_by_policy_authorizer
+PASSED ../tests/test_final_state.py::test_t02_policies_contain_a_bypass
+PASSED ../tests/test_final_state.py::test_t03_a_custom_filter_check_is_used
+PASSED ../tests/test_final_state.py::test_t04_a_custom_simple_check_is_used
+PASSED ../tests/test_final_state.py::test_t05_budget_cents_has_a_field_policy
+PASSED ../tests/test_final_state.py::test_t06_relocate_is_a_generic_action_with_uuid_arguments
+PASSED ../tests/test_final_state.py::test_t07_seeded_fixture_is_readable_without_authorization
+PASSED ../tests/test_final_state.py::test_t08_root_grant_is_inherited_by_the_whole_tree
+PASSED ../tests/test_final_state.py::test_t09_subtree_grant_reaches_three_levels_down
+PASSED ../tests/test_final_state.py::test_t10_deny_at_a_descendant_cuts_off_the_inherited_grant
+PASSED ../tests/test_final_state.py::test_t11_grant_below_a_deny_re_establishes_access
+PASSED ../tests/test_final_state.py::test_t12_actor_without_roles_gets_an_empty_list
+PASSED ../tests/test_final_state.py::test_t13_nil_actor_gets_an_empty_list
+PASSED ../tests/test_final_state.py::test_t14_suspended_actor_with_roles_is_forbidden
+PASSED ../tests/test_final_state.py::test_t15_suspended_actor_without_roles_is_forbidden
+PASSED ../tests/test_final_state.py::test_t16_break_glass_actor_sees_every_document
+PASSED ../tests/test_final_state.py::test_t17_break_glass_takes_precedence_over_suspension
+PASSED ../tests/test_final_state.py::test_t18_filtered_out_fetch_by_id_is_not_found
+PASSED ../tests/test_final_state.py::test_t19_permitted_fetch_by_id_succeeds
+PASSED ../tests/test_final_state.py::test_t20_nil_actor_fetch_by_id_is_not_found
+PASSED ../tests/test_final_state.py::test_t21_suspended_actor_fetch_by_id_is_forbidden
+PASSED ../tests/test_final_state.py::test_t22_editor_may_update_the_title
+PASSED ../tests/test_final_state.py::test_t23_viewer_may_not_update
+PASSED ../tests/test_final_state.py::test_t24_write_without_view_budget_cannot_change_the_budget
+PASSED ../tests/test_final_state.py::test_t25_write_plus_view_budget_may_change_the_budget
+PASSED ../tests/test_final_state.py::test_t26_unit_admin_inherits_the_right_to_change_the_budget
+PASSED ../tests/test_final_state.py::test_t27_break_glass_may_update_anything
+PASSED ../tests/test_final_state.py::test_t28_auditor_sees_the_budgets_in_its_subtree
+PASSED ../tests/test_final_state.py::test_t29_reader_without_view_budget_gets_the_forbidden_field_marker
+PASSED ../tests/test_final_state.py::test_t30_break_glass_sees_every_budget
+PASSED ../tests/test_final_state.py::test_t31_view_budget_is_inherited
+PASSED ../tests/test_final_state.py::test_t32_destroy_without_the_delete_capability_is_forbidden
+PASSED ../tests/test_final_state.py::test_t33_unit_admin_and_break_glass_may_destroy
+PASSED ../tests/test_final_state.py::test_t34_create_with_the_write_capability_succeeds
+PASSED ../tests/test_final_state.py::test_t35_create_without_the_write_capability_is_forbidden
+PASSED ../tests/test_final_state.py::test_t36_relocation_succeeds_when_both_ends_are_in_scope
+PASSED ../tests/test_final_state.py::test_t37_relocation_without_the_capability_is_forbidden
+PASSED ../tests/test_final_state.py::test_t38_relocation_with_only_the_source_in_scope_is_forbidden
+PASSED ../tests/test_final_state.py::test_t39_can_update_document_matches_the_update_contract
+PASSED ../tests/test_final_state.py::test_t40_can_destroy_document_matches_the_destroy_contract
+PASSED ../tests/test_final_state.py::test_t41_can_create_document_matches_the_create_contract
+PASSED ../tests/test_final_state.py::test_t42_can_relocate_document_matches_the_relocation_contract
+============================= 42 passed in 20.04s ==============================

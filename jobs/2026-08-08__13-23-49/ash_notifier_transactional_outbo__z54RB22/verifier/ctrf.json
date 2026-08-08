@@ -1,0 +1,281 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-08T05:39:15.831816+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 28,
+            "passed": 28,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786167505415,
+            "stop": 1786167555831
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_t01_dispatcher_is_supervised_by_the_application",
+                "status": "passed",
+                "duration": 50380,
+                "start": 1786167505427,
+                "stop": 1786167555807,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_outbox_resource_shape",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555807,
+                "stop": 1786167555808,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_a_create_is_captured_with_full_metadata",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555808,
+                "stop": 1786167555809,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_create_diff_carries_every_non_nil_public_attribute_with_a_nil_from",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555809,
+                "stop": 1786167555810,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_update_diffs_contain_only_the_attributes_that_really_changed",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555810,
+                "stop": 1786167555811,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_a_destroy_is_captured_with_an_empty_diff",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555811,
+                "stop": 1786167555812,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_actor_id_is_nil_when_the_write_has_no_actor",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167555812,
+                "stop": 1786167555812,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_aggregate_counters_are_independent_while_the_global_counter_is_contigu",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167555813,
+                "stop": 1786167555813,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_failed_writes_leave_no_entry",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167555814,
+                "stop": 1786167555814,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_notifications_can_be_suppressed_for_a_single_call",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555814,
+                "stop": 1786167555815,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_batch_create_emits_exactly_one_entry_per_created_record",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555815,
+                "stop": 1786167555816,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_batch_update_emits_exactly_one_entry_per_updated_record",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555816,
+                "stop": 1786167555817,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t28_a_batch_update_issued_directly_through_ash_emits_one_entry_per_record",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555817,
+                "stop": 1786167555818,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_a_partially_failing_batch_only_records_the_rows_that_succeeded",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167555818,
+                "stop": 1786167555818,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_sync_subscribers_run_inline_in_the_writing_process",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167555819,
+                "stop": 1786167555819,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_async_subscribers_only_run_in_the_dispatcher_on_drain",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167555820,
+                "stop": 1786167555820,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_topic_patterns_match_with_segment_precision",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555820,
+                "stop": 1786167555821,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_per_aggregate_order_survives_interleaved_concurrent_writers",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555821,
+                "stop": 1786167555822,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_acknowledged_deliveries_are_never_repeated",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555822,
+                "stop": 1786167555823,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_a_delivery_that_fails_twice_still_succeeds_on_the_third_attempt",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555823,
+                "stop": 1786167555824,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_a_delivery_is_dead_lettered_after_three_failed_attempts",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167555824,
+                "stop": 1786167555824,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t21_a_raising_handler_is_contained",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167555825,
+                "stop": 1786167555825,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_a_sync_delivery_that_fails_is_retried_like_an_async_one",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167555826,
+                "stop": 1786167555826,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_replay_re_delivers_matching_entries_in_order_in_the_caller_process",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167555827,
+                "stop": 1786167555827,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_subscription_bookkeeping",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555827,
+                "stop": 1786167555828,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_dedup_keys_are_unique_and_protected_by_an_identity",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555828,
+                "stop": 1786167555829,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_query_helpers_are_ordered_and_scoped",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555829,
+                "stop": 1786167555830,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t27_reset_returns_the_subsystem_to_a_pristine_state",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167555830,
+                "stop": 1786167555831,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

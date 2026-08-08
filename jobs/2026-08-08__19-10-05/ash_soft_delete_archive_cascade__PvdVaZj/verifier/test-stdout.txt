@@ -1,0 +1,172 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 23 items
+
+../tests/test_final_state.py .....................FF                     [100%]
+
+=================================== FAILURES ===================================
+_________ test_s21_purging_an_archived_post_removes_the_whole_subtree __________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"","name":"s01_structure_resources_actions_and_attributes","status":"pass"}\nHARB...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'pass'}, ...}, 'returncode': 0}
+
+    def test_s21_purging_an_archived_post_removes_the_whole_subtree(contract_run):
+>       _scenario(contract_run, "s21_purging_an_archived_post_removes_the_whole_subtree")
+
+/tests/test_final_state.py:817: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"","name":"s01_structure_resources_actions_and_attributes","status":"pass"}\nHARB...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'pass'}, ...}, 'returncode': 0}
+name = 's21_purging_an_archived_post_removes_the_whole_subtree'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's21_purging_an_archived_post_removes_the_whole_subtree' did not pass (fail).
+E           1) test s21_purging_an_archived_post_removes_the_whole_subtree (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:631
+E              Assertion with == failed
+E              code:  assert H.read(Forum.Content.Comment, :with_archived) == []
+E              left:  [
+E                       %Forum.Content.Comment{
+E                         id: "67abf149-ac51-4568-81ba-29fa22f1b3e0",
+E                         body: "c2",
+E                         post_id: "208d03d1-7d79-4fac-a1a9-e1c9071e5926",
+E                         archived_at: ~U[2026-08-08 11:29:13.300508Z],
+E                         archive_batch_id: "3c395360-c655-404f-8eb8-faad25b4c09d",
+E                         reaction_count: #Ash.NotLoaded<:aggregate, field: :reaction_count>,
+E                         post: #Ash.NotLoaded<:relationship, field: :post>,
+E                         reactions: #Ash.NotLoaded<:relationship, field: :reactions>,
+E                         __meta__: #Ecto.Schema.Metadata<:loaded>
+E                       },
+E                       %Forum.Content.Comment{
+E                         id: "ded8dedc-cfc6-4db1-a3ea-9fe41129980a",
+E                         body: "c1",
+E                         post_id: "208d03d1-7d79-4fac-a1a9-e1c9071e5926",
+E                         archived_at: ~U[2026-08-08 11:29:13.299801Z],
+E                         archive_batch_id: "aa3a9332-6161-4410-8de2-ce8d3af3e676",
+E                         reaction_count: #Ash.NotLoaded<:aggregate, field: :reaction_count>,
+E                         post: #Ash.NotLoaded<:relationship, field: :post>,
+E                         reactions: #Ash.NotLoaded<:relationship, field: :reactions>,
+E                         __meta__: #Ecto.Schema.Metadata<:loaded>
+E                       }
+E                     ]
+E              right: []
+E              stacktrace:
+E                /tmp/harbor_archive_contract.exs:639: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+_____________ test_s22_purging_a_comment_removes_only_that_branch ______________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"","name":"s01_structure_resources_actions_and_attributes","status":"pass"}\nHARB...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'pass'}, ...}, 'returncode': 0}
+
+    def test_s22_purging_a_comment_removes_only_that_branch(contract_run):
+>       _scenario(contract_run, "s22_purging_a_comment_removes_only_that_branch")
+
+/tests/test_final_state.py:820: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"","name":"s01_structure_resources_actions_and_attributes","status":"pass"}\nHARB...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'pass'}, ...}, 'returncode': 0}
+name = 's22_purging_a_comment_removes_only_that_branch'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's22_purging_a_comment_removes_only_that_branch' did not pass (fail).
+E           1) test s22_purging_a_comment_removes_only_that_branch (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:643
+E              Assertion with == failed
+E              code:  assert H.emojis(H.read(Forum.Content.Reaction, :with_archived)) == ["r2"]
+E              left:  ["r1", "r2"]
+E              right: ["r2"]
+E              stacktrace:
+E                /tmp/harbor_archive_contract.exs:650: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+==================================== PASSES ====================================
+_________________________ test_contract_suite_executed _________________________
+---------------------------- Captured stdout setup -----------------------------
+===== [mix run] Begin combined output =====
+HARBOR_RESULT {"message":"","name":"s01_structure_resources_actions_and_attributes","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s02_shared_modules_are_reused_across_resources","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s03_live_reads_return_every_record","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s05_archived_rows_survive_but_get_reports_not_found","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s06_one_archive_operation_marks_exactly_one_generation","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s07_separate_archive_operations_use_distinct_batches","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s08_archiving_a_comment_cascades_only_to_its_own_reactions","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s09_a_later_archive_leaves_earlier_archived_descendants_alone","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s10_archiving_twice_is_idempotent","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s11_restore_only_brings_back_its_own_batch","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s12_restoring_a_descendant_does_not_touch_ancestors","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s13_restore_is_idempotent_and_safe_on_live_records","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s14_restore_clears_both_archive_markers","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s15_count_aggregates_exclude_archived_children","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s16_relationship_loads_exclude_archived_children","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s17_relationship_filters_exclude_archived_rows","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s18_the_archived_read_requires_an_admin_actor","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s19_every_other_action_stays_open_to_any_actor","status":"pass"}
+HARBOR_RESULT {"message":"","name":"s20_purge_refuses_a_live_record_and_changes_nothing","status":"pass"}
+HARBOR_RESULT {"message":"  1) test s21_purging_an_archived_post_removes_the_whole_subtree (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:631\n     Assertion with == failed\n     code:  assert H.read(Forum.Content.Comment, :with_archived) == []\n     left:  [\n              %Forum.Content.Comment{\n                id: \"67abf149-ac51-4568-81ba-29fa22f1b3e0\",\n                body: \"c2\",\n                post_id: \"208d03d1-7d79-4fac-a1a9-e1c9071e5926\",\n                archived_at: ~U[2026-08-08 11:29:13.300508Z],\n                archive_batch_id: \"3c395360-c655-404f-8eb8-faad25b4c09d\",\n                reaction_count: #Ash.NotLoaded<:aggregate, field: :reaction_count>,\n                post: #Ash.NotLoaded<:relationship, field: :post>,\n                reactions: #Ash.NotLoaded<:relationship, field: :reactions>,\n                __meta__: #Ecto.Schema.Metadata<:loaded>\n              },\n              %Forum.Content.Comment{\n                id: \"ded8dedc-cfc6-4db1-a3ea-9fe41129980a\",\n                body: \"c1\",\n                post_id: \"208d03d1-7d79-4fac-a1a9-e1c9071e5926\",\n                archived_at: ~U[2026-08-08 11:29:13.299801Z],\n                archive_batch_id: \"aa3a9332-6161-4410-8de2-ce8d3af3e676\",\n                reaction_count: #Ash.NotLoaded<:aggregate, field: :reaction_count>,\n                post: #Ash.NotLoaded<:relationship, field: :post>,\n                reactions: #Ash.NotLoaded<:relationship, field: :reactions>,\n                __meta__: #Ecto.Schema.Metadata<:loaded>\n              }\n            ]\n     right: []\n     stacktrace:\n       /tmp/harbor_archive_contract.exs:639: (test)\n","name":"s21_purging_an_archived_post_removes_the_whole_subtree","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s22_purging_a_comment_removes_only_that_branch (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:643\n     Assertion with == failed\n     code:  assert H.emojis(H.read(Forum.Content.Reaction, :with_archived)) == [\"r2\"]\n     left:  [\"r1\", \"r2\"]\n     right: [\"r2\"]\n     stacktrace:\n       /tmp/harbor_archive_contract.exs:650: (test)\n","name":"s22_purging_a_comment_removes_only_that_branch","status":"fail"}
+
+
+===== [mix run] End combined output =====
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_contract_suite_executed
+PASSED ../tests/test_final_state.py::test_s01_structure_resources_actions_and_attributes
+PASSED ../tests/test_final_state.py::test_s02_shared_modules_are_reused_across_resources
+PASSED ../tests/test_final_state.py::test_s03_live_reads_return_every_record
+PASSED ../tests/test_final_state.py::test_s04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read
+PASSED ../tests/test_final_state.py::test_s05_archived_rows_survive_but_get_reports_not_found
+PASSED ../tests/test_final_state.py::test_s06_one_archive_operation_marks_exactly_one_generation
+PASSED ../tests/test_final_state.py::test_s07_separate_archive_operations_use_distinct_batches
+PASSED ../tests/test_final_state.py::test_s08_archiving_a_comment_cascades_only_to_its_own_reactions
+PASSED ../tests/test_final_state.py::test_s09_a_later_archive_leaves_earlier_archived_descendants_alone
+PASSED ../tests/test_final_state.py::test_s10_archiving_twice_is_idempotent
+PASSED ../tests/test_final_state.py::test_s11_restore_only_brings_back_its_own_batch
+PASSED ../tests/test_final_state.py::test_s12_restoring_a_descendant_does_not_touch_ancestors
+PASSED ../tests/test_final_state.py::test_s13_restore_is_idempotent_and_safe_on_live_records
+PASSED ../tests/test_final_state.py::test_s14_restore_clears_both_archive_markers
+PASSED ../tests/test_final_state.py::test_s15_count_aggregates_exclude_archived_children
+PASSED ../tests/test_final_state.py::test_s16_relationship_loads_exclude_archived_children
+PASSED ../tests/test_final_state.py::test_s17_relationship_filters_exclude_archived_rows
+PASSED ../tests/test_final_state.py::test_s18_the_archived_read_requires_an_admin_actor
+PASSED ../tests/test_final_state.py::test_s19_every_other_action_stays_open_to_any_actor
+PASSED ../tests/test_final_state.py::test_s20_purge_refuses_a_live_record_and_changes_nothing
+FAILED ../tests/test_final_state.py::test_s21_purging_an_archived_post_removes_the_whole_subtree
+FAILED ../tests/test_final_state.py::test_s22_purging_a_comment_removes_only_that_branch
+======================== 2 failed, 21 passed in 24.51s =========================

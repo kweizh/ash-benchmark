@@ -1,0 +1,1436 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 40 items
+
+../tests/test_final_state.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF    [100%]
+
+=================================== FAILURES ===================================
+______________________ test_t01_currencies_and_exponents _______________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t01_currencies_and_exponents(suite_results):
+>       _check(suite_results, "T01")
+
+/tests/test_final_state.py:749: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T01'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T01 failed:
+E           1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:99
+E              ** (UndefinedFunctionError) function Ledger.Money.currencies/0 is undefined (module Ledger.Money is not available)
+E              code: assert H.money(:currencies, []) == [:bhd, :eur, :jpy, :usd]
+E              stacktrace:
+E                Ledger.Money.currencies()
+E                /tmp/harbor_money_suite.exs:100: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+hzOjI0OTogKHRlc3QpCg==
+@@HARBOR@@test T13 different currencies and amounts are never equal@@fail@@ICAxKSB0ZXN0IFQxMyBkaWZmZXJlbnQgY3VycmVuY2llcyBhbmQgYW1vdW50cyBhcmUgbmV2ZXIgZXF1YWwgKEhhcmJvck1vbmV5VGVzdCkKICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6MjYwCiAgICAgKiogKFVuZGVmaW5lZEZ1bmN0aW9uRXJyb3IpIGZ1bmN0aW9uIExlZGdlci5Nb25leS5fX3N0cnVjdF9fLzAgaXMgdW5kZWZpbmVkIChtb2R1bGUgTGVkZ2VyLk1vbmV5IGlzIG5vdCBhdmFpbGFibGUpCiAgICAgY29kZTogcmVmdXRlIEFzaC5UeXBlLmVxdWFsPyhILnR5cGVfbW9kKCksIEgubSgxMDAsIDp1c2QpLCBILm0oMTAwLCA6ZXVyKSkKICAgICBzdGFja3RyYWNlOgogICAgICAgTGVkZ2VyLk1vbmV5Ll9fc3RydWN0X18oKQogICAgICAgKGVsaXhpciAxLjE4LjQpIGxpYi9rZXJuZWwuZXg6MjQ3NDogS2VybmVsLnN0cnVjdC8zCiAgICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6MjYxOiAodGVzdCkK
+@@HARBOR@@test T14 the storage type is a map@@fail@@ICAxKSB0ZXN0IFQxNCB0aGUgc3RvcmFnZSB0eXBlIGlzIGEgbWFwIChIYXJib3JNb25leVRlc3QpCiAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjI2NgogICAgICoqIChVbmRlZmluZWRGdW5jdGlvbkVycm9yKSBmdW5jdGlvbiBMZWRnZXIuTW9uZXkuVHlwZS5zdG9yYWdlX3R5cGUvMSBpcyB1bmRlZmluZWQgKG1vZHVsZSBMZWRnZXIuTW9uZXkuVHlwZSBpcyBub3QgYXZhaWxhYmxlKQogICAgIGNvZGU6IGFzc2VydCBBc2guVHlwZS5zdG9yYWdlX3R5cGUoSC50eXBlX21vZCgpLCBbXSkgPT0gOm1hcAogICAgIHN0YWNrdHJhY2U6CiAgICAgICBMZWRnZXIuTW9uZXkuVHlwZS5zdG9yYWdlX3R5cGUoW10pCiAgICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6MjY3OiAodGVzdCkK
+@@HARBOR@@test T15 dumping and loading is lossless, including through JSON@@fail@@ICAxKSB0ZXN0IFQxNSBkdW1waW5nIGFuZCBsb2FkaW5nIGlzIGxvc3NsZXNzLCBpbmNsdWRpbmcgdGhyb3VnaCBKU09OIChIYXJib3JNb25leVRlc3QpCiAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjI3MAogICAgICoqIChVbmRlZmluZWRGdW5jdGlvbkVycm9yKSBmdW5jdGlvbiBMZWRnZXIuTW9uZXkuX19zdHJ1Y3RfXy8wIGlzIHVuZGVmaW5lZCAobW9kdWxlIExlZGdlci5Nb25leSBpcyBub3QgYXZhaWxhYmxlKQogICAgIGNvZGU6IGZvciB2YWx1ZSA8LSBbSC5tKDEyNTAsIDp1c2QpLCBILm0oLTcsIDpqcHkpLCBILm0oMTIzNCwgOmJoZCksIEgubSgwLCA6ZXVyKV0gZG8KICAgICBzdGFja3RyYWNlOgogICAgICAgTGVkZ2VyLk1vbmV5Ll9fc3RydWN0X18oKQogICAgICAgKGVsaXhpciAxLjE4LjQpIGxpYi9rZXJuZWwuZXg6MjQ3NDogS2VybmVsLnN0cnVjdC8zCiAgICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6MjcxOiAodGVzdCkK
+@@HARBOR@@test T16 arrays and nil survive the storage round trip@@fail@@ICAxKSB0ZXN0IFQxNiBhcnJheXMgYW5kIG5pbCBzdXJ2aXZlIHRoZSBzdG9yYWdlIHJvdW5kIHRyaXAgKEhhcmJvck1vbmV5VGVzdCkKICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6MjgzCiAgICAgKiogKFVuZGVmaW5lZEZ1bmN0aW9uRXJyb3IpIGZ1bmN0aW9uIExlZGdlci5Nb25leS5fX3N0cnVjdF9fLzAgaXMgdW5kZWZpbmVkIChtb2R1bGUgTGVkZ2VyLk1vbmV5IGlzIG5vdCBhdmFpbGFibGUpCiAgICAgY29kZTogdmFsdWVzID0gW0gubSgxMjUwLCA6dXNkKSwgSC5tKC03LCA6anB5KSwgSC5tKDEyMzQsIDpiaGQpXQogICAgIHN0YWNrdHJhY2U6CiAgICAgICBMZWRnZXIuTW9uZXkuX19zdHJ1Y3RfXygpCiAgICAgICAoZWxpeGlyIDEuMTguNCkgbGliL2tlcm5lbC5leDoyNDc0OiBLZXJuZWwuc3RydWN0LzMKICAgICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czoyODQ6ICh0ZXN0KQo=
+@@HARBOR@@test T17 loading a value the type never wrote is rejected@@fail@@ICAxKSB0ZXN0IFQxNyBsb2FkaW5nIGEgdmFsdWUgdGhlIHR5cGUgbmV2ZXIgd3JvdGUgaXMgcmVqZWN0ZWQgKEhhcmJvck1vbmV5VGVzdCkKICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6MzAwCiAgICAgKiogKFVuZGVmaW5lZEZ1bmN0aW9uRXJyb3IpIGZ1bmN0aW9uIExlZGdlci5Nb25leS5UeXBlLmNhc3Rfc3RvcmVkLzIgaXMgdW5kZWZpbmVkIChtb2R1bGUgTGVkZ2VyLk1vbmV5LlR5cGUgaXMgbm90IGF2YWlsYWJsZSkKICAgICBjb2RlOiBmb3Igc3RvcmVkIDwtIFsxMjUwLCAibm9uc2Vuc2UiLCBbMSwgMl1dIGRvCiAgICAgc3RhY2t0cmFjZToKICAgICAgIExlZGdlci5Nb25leS5UeXBlLmNhc3Rfc3RvcmVkKDEyNTAsIFtdKQogICAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjMwMjogYW5vbnltb3VzIGZuLzIgaW4gSGFyYm9yTW9uZXlUZXN0LiJ0ZXN0IFQxNyBsb2FkaW5nIGEgdmFsdWUgdGhlIHR5cGUgbmV2ZXIgd3JvdGUgaXMgcmVqZWN0ZWQiLzEKICAgICAgIChlbGl4aXIgMS4xOC40KSBsaWIvZW51bS5leDoyNTQ2OiBFbnVtLiItcmVkdWNlLzMtbGlzdHNeZm9sZGwvMi0wLSIvMwogICAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjMwMTogKHRlc3QpCg==
+@@HARBOR@@test T18 the currencies constraint@@fail@@ICAxKSB0ZXN0IFQxOCB0aGUgY3VycmVuY2llcyBjb25zdHJhaW50IChIYXJib3JNb25leVRlc3QpCiAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjMwOAogICAgICoqIChVbmRlZmluZWRGdW5jdGlvbkVycm9yKSBmdW5jdGlvbiBMZWRnZXIuTW9uZXkuX19zdHJ1Y3RfXy8wIGlzIHVuZGVmaW5lZCAobW9kdWxlIExlZGdlci5Nb25leSBpcyBub3QgYXZhaWxhYmxlKQogICAgIGNvZGU6IGFzc2VydCB7Om9rLCBhbGxvd2VkfSA9IEguY29uc3RyYWluKEgubSgxMDAsIDp1c2QpLCBjdXJyZW5jaWVzOiBbOnVzZCwgOmV1cl0pCiAgICAgc3RhY2t0cmFjZToKICAgICAgIExlZGdlci5Nb25leS5fX3N0cnVjdF9fKCkKICAgICAgIChlbGl4aXIgMS4xOC40KSBsaWIva2VybmVsLmV4OjI0NzQ6IEtlcm5lbC5zdHJ1Y3QvMwogICAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjMwOTogKHRlc3QpCg==
+@@HARBOR@@test T19 the multiple_of constraint@@fail@@ICAxKSB0ZXN0IFQxOSB0aGUgbXVsdGlwbGVfb2YgY29uc3RyYWludCAoSGFyYm9yTW9uZXlUZXN0KQogICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czozMTgKICAgICAqKiAoVW5kZWZpbmVkRnVuY3Rpb25FcnJvcikgZnVuY3Rpb24gTGVkZ2VyLk1vbmV5Ll9fc3RydWN0X18vMCBpcyB1bmRlZmluZWQgKG1vZHVsZSBMZWRnZXIuTW9uZXkgaXMgbm90IGF2YWlsYWJsZSkKICAgICBjb2RlOiBmb3IgYW1vdW50IDwtIFsxMDAsIC0xNSwgMF0gZG8KICAgICBzdGFja3RyYWNlOgogICAgICAgTGVkZ2VyLk1vbmV5Ll9fc3RydWN0X18oKQogICAgICAgKGVsaXhpciAxLjE4LjQpIGxpYi9rZXJuZWwuZXg6MjQ3NDogS2VybmVsLnN0cnVjdC8zCiAgICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6MzIwOiBhbm9ueW1vdXMgZm4vMiBpbiBIYXJib3JNb25leVRlc3QuInRlc3QgVDE5IHRoZSBtdWx0aXBsZV9vZiBjb25zdHJhaW50Ii8xCiAgICAgICAoZWxpeGlyIDEuMTguNCkgbGliL2VudW0uZXg6MjU0NjogRW51bS4iLXJlZHVjZS8zLWxpc3RzXmZvbGRsLzItMC0iLzMKICAgICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czozMTk6ICh0ZXN0KQo=
+@@HARBOR@@test T20 the min and max constraints are inclusive@@fail@@ICAxKSB0ZXN0IFQyMCB0aGUgbWluIGFuZCBtYXggY29uc3RyYWludHMgYXJlIGluY2x1c2l2ZSAoSGFyYm9yTW9uZXlUZXN0KQogICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czozMjkKICAgICAqKiAoVW5kZWZpbmVkRnVuY3Rpb25FcnJvcikgZnVuY3Rpb24gTGVkZ2VyLk1vbmV5Ll9fc3RydWN0X18vMCBpcyB1bmRlZmluZWQgKG1vZHVsZSBMZWRnZXIuTW9uZXkgaXMgbm90IGF2YWlsYWJsZSkKICAgICBjb2RlOiBhc3NlcnQgezpvaywgX30gPSBILmNvbnN0cmFpbihILm0oMCwgOnVzZCksIG1pbjogIlVTRCAwLjAwIikKICAgICBzdGFja3RyYWNlOgogICAgICAgTGVkZ2VyLk1vbmV5Ll9fc3RydWN0X18oKQogICAgICAgKGVsaXhpciAxLjE4LjQpIGxpYi9rZXJuZWwuZXg6MjQ3NDogS2VybmVsLnN0cnVjdC8zCiAgICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6MzMwOiAodGVzdCkK
+@@HARBOR@@test T21 bounds in another currency are not comparable@@fail@@ICAxKSB0ZXN0IFQyMSBib3VuZHMgaW4gYW5vdGhlciBjdXJyZW5jeSBhcmUgbm90IGNvbXBhcmFibGUgKEhhcmJvck1vbmV5VGVzdCkKICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6MzQzCiAgICAgKiogKFVuZGVmaW5lZEZ1bmN0aW9uRXJyb3IpIGZ1bmN0aW9uIExlZGdlci5Nb25leS5fX3N0cnVjdF9fLzAgaXMgdW5kZWZpbmVkIChtb2R1bGUgTGVkZ2VyLk1vbmV5IGlzIG5vdCBhdmFpbGFibGUpCiAgICAgY29kZTogZmFpbHVyZSA9IEguZmFpbHVyZShILmNvbnN0cmFpbihILm0oMTAwLCA6ZXVyKSwgbWluOiAiVVNEIDAuMDAiKSkKICAgICBzdGFja3RyYWNlOgogICAgICAgTGVkZ2VyLk1vbmV5Ll9fc3RydWN0X18oKQogICAgICAgKGVsaXhpciAxLjE4LjQpIGxpYi9rZXJuZWwuZXg6MjQ3NDogS2VybmVsLnN0cnVjdC8zCiAgICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6MzQ0OiAodGVzdCkK
+@@HARBOR@@test T22 constraints are checked in the documented order@@fail@@ICAxKSB0ZXN0IFQyMiBjb25zdHJhaW50cyBhcmUgY2hlY2tlZCBpbiB0aGUgZG9jdW1lbnRlZCBvcmRlciAoSGFyYm9yTW9uZXlUZXN0KQogICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czozNTIKICAgICAqKiAoVW5kZWZpbmVkRnVuY3Rpb25FcnJvcikgZnVuY3Rpb24gTGVkZ2VyLk1vbmV5Ll9fc3RydWN0X18vMCBpcyB1bmRlZmluZWQgKG1vZHVsZSBMZWRnZXIuTW9uZXkgaXMgbm90IGF2YWlsYWJsZSkKICAgICBjb2RlOiBjdXJyZW5jeV9maXJzdCA9IEguZmFpbHVyZShILmNvbnN0cmFpbihILm0oMTAzLCA6anB5KSwgY29uc3RyYWludHMpKQogICAgIHN0YWNrdHJhY2U6CiAgICAgICBMZWRnZXIuTW9uZXkuX19zdHJ1Y3RfXygpCiAgICAgICAoZWxpeGlyIDEuMTguNCkgbGliL2tlcm5lbC5leDoyNDc0OiBLZXJuZWwuc3RydWN0LzMKICAgICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czozNTU6ICh0ZXN0KQo=
+@@HARBOR@@test T23 array casting reports the failing element index@@fail@@ICAxKSB0ZXN0IFQyMyBhcnJheSBjYXN0aW5nIHJlcG9ydHMgdGhlIGZhaWxpbmcgZWxlbWVudCBpbmRleCAoSGFyYm9yTW9uZXlUZXN0KQogICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czozNjUKICAgICAqKiAoVW5kZWZpbmVkRnVuY3Rpb25FcnJvcikgZnVuY3Rpb24gTGVkZ2VyLk1vbmV5LlR5cGUuY2FzdF9pbnB1dF9hcnJheS8yIGlzIHVuZGVmaW5lZCAobW9kdWxlIExlZGdlci5Nb25leS5UeXBlIGlzIG5vdCBhdmFpbGFibGUpCiAgICAgY29kZTogQXNoLlR5cGUuY2FzdF9pbnB1dCgKICAgICBzdGFja3RyYWNlOgogICAgICAgTGVkZ2VyLk1vbmV5LlR5cGUuY2FzdF9pbnB1dF9hcnJheShbJXtjdXJyZW5jeTogOnVzZCwgYW1vdW50OiAxMDB9LCAiVVNEIDEuMDAiXSwgW10pCiAgICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6MzY3OiAodGVzdCkK
+@@HARBOR@@test T24 array constraints report the failing element index@@fail@@ICAxKSB0ZXN0IFQyNCBhcnJheSBjb25zdHJhaW50cyByZXBvcnQgdGhlIGZhaWxpbmcgZWxlbWVudCBpbmRleCAoSGFyYm9yTW9uZXlUZXN0KQogICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czozODgKICAgICAqKiAoVW5kZWZpbmVkRnVuY3Rpb25FcnJvcikgZnVuY3Rpb24gTGVkZ2VyLk1vbmV5Ll9fc3RydWN0X18vMCBpcyB1bmRlZmluZWQgKG1vZHVsZSBMZWRnZXIuTW9uZXkgaXMgbm90IGF2YWlsYWJsZSkKICAgICBjb2RlOiBbSC5tKDEwMCwgOnVzZCksIEgubSgxMDMsIDp1c2QpXSwKICAgICBzdGFja3RyYWNlOgogICAgICAgTGVkZ2VyLk1vbmV5Ll9fc3RydWN0X18oKQogICAgICAgKGVsaXhpciAxLjE4LjQpIGxpYi9rZXJuZWwuZXg6MjQ3NDogS2VybmVsLnN0cnVjdC8zCiAgICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6MzkzOiAodGVzdCkK
+@@HARBOR@@test T25 the narrowed type is a new type over the money type@@fail@@ICAxKSB0ZXN0IFQyNSB0aGUgbmFycm93ZWQgdHlwZSBpcyBhIG5ldyB0eXBlIG92ZXIgdGhlIG1vbmV5IHR5cGUgKEhhcmJvck1vbmV5VGVzdCkKICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6NDAzCiAgICAgRXhwZWN0ZWQgdHJ1dGh5LCBnb3QgZmFsc2UKICAgICBjb2RlOiBhc3NlcnQgQXNoLlR5cGUuTmV3VHlwZS5uZXdfdHlwZT8oSC51c2RfbW9kKCkpCiAgICAgYXJndW1lbnRzOgoKICAgICAgICAgIyAxCiAgICAgICAgIExlZGdlci5Nb25leS5Vc2QKCiAgICAgc3RhY2t0cmFjZToKICAgICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czo0MDQ6ICh0ZXN0KQo=
+@@HARBOR@@test T26 the narrowed type bakes in its constraints@@fail@@ICAxKSB0ZXN0IFQyNiB0aGUgbmFycm93ZWQgdHlwZSBiYWtlcyBpbiBpdHMgY29uc3RyYWludHMgKEhhcmJvck1vbmV5VGVzdCkKICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6NDA4CiAgICAgKiogKFVuZGVmaW5lZEZ1bmN0aW9uRXJyb3IpIGZ1bmN0aW9uIExlZGdlci5CaWxsaW5nLmlzc3VlX2ludm9pY2UvMSBpcyB1bmRlZmluZWQgb3IgcHJpdmF0ZQogICAgIGNvZGU6IGV1ciA9IEguZXJyb3Jfb24oSC5pc3N1ZSgle3JlZmVyZW5jZTogIk4tMSIsIHN1YnRvdGFsOiAiVVNEIDEuMDAiLCBjcmVkaXRfbGltaXQ6ICJFVVIgMS4wMCJ9KSwgOmNyZWRpdF9saW1pdCkKICAgICBzdGFja3RyYWNlOgogICAgICAgKGxlZGdlciAwLjEuMCkgTGVkZ2VyLkJpbGxpbmcuaXNzdWVfaW52b2ljZSgle3JlZmVyZW5jZTogIk4tMSIsIHN1YnRvdGFsOiAiVVNEIDEuMDAiLCBjcmVkaXRfbGltaXQ6ICJFVVIgMS4wMCJ9KQogICAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjQwOTogKHRlc3QpCg==
+@@HARBOR@@test T27 money survives the data layer round trip@@fail@@ICAxKSB0ZXN0IFQyNyBtb25leSBzdXJ2aXZlcyB0aGUgZGF0YSBsYXllciByb3VuZCB0cmlwIChIYXJib3JNb25leVRlc3QpCiAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjQzNgogICAgICoqIChVbmRlZmluZWRGdW5jdGlvbkVycm9yKSBmdW5jdGlvbiBMZWRnZXIuQmlsbGluZy5pc3N1ZV9pbnZvaWNlLzEgaXMgdW5kZWZpbmVkIG9yIHByaXZhdGUKICAgICBjb2RlOiBILmlzc3VlKCV7CiAgICAgc3RhY2t0cmFjZToKICAgICAgIChsZWRnZXIgMC4xLjApIExlZGdlci5CaWxsaW5nLmlzc3VlX2ludm9pY2UoJXtyZWZlcmVuY2U6ICJJTlYtMSIsIHN1YnRvdGFsOiAleyJhbW91bnQiID0+IDEyNTAsICJjdXJyZW5jeSIgPT4gIlVTRCJ9LCBjcmVkaXRfbGltaXQ6ICJVU0QgMTAwLjAwIiwgYWRqdXN0bWVudHM6IFsiVVNEIDAuMDUiLCAle2N1cnJlbmN5OiA6dXNkLCBhbW91bnQ6IC0xMH1dfSkKICAgICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czo0Mzg6ICh0ZXN0KQo=
+@@HARBOR@@test T28 attribute currency constraints reject disallowed currencies@@fail@@ICAxKSB0ZXN0IFQyOCBhdHRyaWJ1dGUgY3VycmVuY3kgY29uc3RyYWludHMgcmVqZWN0IGRpc2FsbG93ZWQgY3VycmVuY2llcyAoSGFyYm9yTW9uZXlUZXN0KQogICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czo0NTkKICAgICAqKiAoVW5kZWZpbmVkRnVuY3Rpb25FcnJvcikgZnVuY3Rpb24gTGVkZ2VyLkJpbGxpbmcuaXNzdWVfaW52b2ljZS8xIGlzIHVuZGVmaW5lZCBvciBwcml2YXRlCiAgICAgY29kZTogZXJyb3IgPSBILmVycm9yX29uKEguaXNzdWUoJXtyZWZlcmVuY2U6ICJCQUQiLCBzdWJ0b3RhbDogIkJIRCAxLjAwMCJ9KSwgOnN1YnRvdGFsKQogICAgIHN0YWNrdHJhY2U6CiAgICAgICAobGVkZ2VyIDAuMS4wKSBMZWRnZXIuQmlsbGluZy5pc3N1ZV9pbnZvaWNlKCV7cmVmZXJlbmNlOiAiQkFEIiwgc3VidG90YWw6ICJCSEQgMS4wMDAifSkKICAgICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czo0NjA6ICh0ZXN0KQo=
+@@HARBOR@@test T29 array element constraints report the index on the resource@@fail@@ICAxKSB0ZXN0IFQyOSBhcnJheSBlbGVtZW50IGNvbnN0cmFpbnRzIHJlcG9ydCB0aGUgaW5kZXggb24gdGhlIHJlc291cmNlIChIYXJib3JNb25leVRlc3QpCiAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjQ2NwogICAgICoqIChVbmRlZmluZWRGdW5jdGlvbkVycm9yKSBmdW5jdGlvbiBMZWRnZXIuQmlsbGluZy5pc3N1ZV9pbnZvaWNlLzEgaXMgdW5kZWZpbmVkIG9yIHByaXZhdGUKICAgICBjb2RlOiBILmlzc3VlKCV7CiAgICAgc3RhY2t0cmFjZToKICAgICAgIChsZWRnZXIgMC4xLjApIExlZGdlci5CaWxsaW5nLmlzc3VlX2ludm9pY2UoJXtyZWZlcmVuY2U6ICJCQUQiLCBzdWJ0b3RhbDogIlVTRCAxLjAwIiwgYWRqdXN0bWVudHM6IFsiVVNEIDAuMDUiLCAiVVNEIDAuMDMiLCAiVVNEIDAuMTAiXX0pCiAgICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6NDcwOiAodGVzdCkK
+@@HARBOR@@test T30 adjustments must use the currency of the subtotal@@fail@@ICAxKSB0ZXN0IFQzMCBhZGp1c3RtZW50cyBtdXN0IHVzZSB0aGUgY3VycmVuY3kgb2YgdGhlIHN1YnRvdGFsIChIYXJib3JNb25leVRlc3QpCiAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjQ4MwogICAgICoqIChVbmRlZmluZWRGdW5jdGlvbkVycm9yKSBmdW5jdGlvbiBMZWRnZXIuQmlsbGluZy5pc3N1ZV9pbnZvaWNlLzEgaXMgdW5kZWZpbmVkIG9yIHByaXZhdGUKICAgICBjb2RlOiBILmlzc3VlKCV7cmVmZXJlbmNlOiAiTUlYIiwgc3VidG90YWw6ICJVU0QgMS4wMCIsIGFkanVzdG1lbnRzOiBbIkVVUiAwLjA1Il19KSwKICAgICBzdGFja3RyYWNlOgogICAgICAgKGxlZGdlciAwLjEuMCkgTGVkZ2VyLkJpbGxpbmcuaXNzdWVfaW52b2ljZSgle3JlZmVyZW5jZTogIk1JWCIsIHN1YnRvdGFsOiAiVVNEIDEuMDAiLCBhZGp1c3RtZW50czogWyJFVVIgMC4wNSJdfSkKICAgICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czo0ODY6ICh0ZXN0KQo=
+@@HARBOR@@test T31 applying adjustments appends them in order@@fail@@ICAxKSB0ZXN0IFQzMSBhcHBseWluZyBhZGp1c3RtZW50cyBhcHBlbmRzIHRoZW0gaW4gb3JkZXIgKEhhcmJvck1vbmV5VGVzdCkKICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6NDk0CiAgICAgKiogKFVuZGVmaW5lZEZ1bmN0aW9uRXJyb3IpIGZ1bmN0aW9uIExlZGdlci5CaWxsaW5nLmlzc3VlX2ludm9pY2UvMSBpcyB1bmRlZmluZWQgb3IgcHJpdmF0ZQogICAgIGNvZGU6IGFzc2VydCB7Om9rLCBpbnZvaWNlfSA9IEguaXNzdWUoJXtyZWZlcmVuY2U6ICJBREoiLCBzdWJ0b3RhbDogIlVTRCAxMi41MCJ9KQogICAgIHN0YWNrdHJhY2U6CiAgICAgICAobGVkZ2VyIDAuMS4wKSBMZWRnZXIuQmlsbGluZy5pc3N1ZV9pbnZvaWNlKCV7cmVmZXJlbmNlOiAiQURKIiwgc3VidG90YWw6ICJVU0QgMTIuNTAifSkKICAgICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czo0OTU6ICh0ZXN0KQo=
+@@HARBOR@@test T32 an adjustment in another currency is rejected without touching the record@@fail@@ICAxKSB0ZXN0IFQzMiBhbiBhZGp1c3RtZW50IGluIGFub3RoZXIgY3VycmVuY3kgaXMgcmVqZWN0ZWQgd2l0aG91dCB0b3VjaGluZyB0aGUgcmVjb3JkIChIYXJib3JNb25leVRlc3QpCiAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjUwNgogICAgICoqIChVbmRlZmluZWRGdW5jdGlvbkVycm9yKSBmdW5jdGlvbiBMZWRnZXIuQmlsbGluZy5pc3N1ZV9pbnZvaWNlLzEgaXMgdW5kZWZpbmVkIG9yIHByaXZhdGUKICAgICBjb2RlOiBhc3NlcnQgezpvaywgaW52b2ljZX0gPSBILmlzc3VlKCV7cmVmZXJlbmNlOiAiQURKMiIsIHN1YnRvdGFsOiAiVVNEIDEyLjUwIn0pCiAgICAgc3RhY2t0cmFjZToKICAgICAgIChsZWRnZXIgMC4xLjApIExlZGdlci5CaWxsaW5nLmlzc3VlX2ludm9pY2UoJXtyZWZlcmVuY2U6ICJBREoyIiwgc3VidG90YWw6ICJVU0QgMTIuNTAifSkKICAgICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czo1MDc6ICh0ZXN0KQo=
+@@HARBOR@@test T33 an adjustment breaking the element constraint leaves the record untouched@@fail@@ICAxKSB0ZXN0IFQzMyBhbiBhZGp1c3RtZW50IGJyZWFraW5nIHRoZSBlbGVtZW50IGNvbnN0cmFpbnQgbGVhdmVzIHRoZSByZWNvcmQgdW50b3VjaGVkIChIYXJib3JNb25leVRlc3QpCiAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjUxOQogICAgICoqIChVbmRlZmluZWRGdW5jdGlvbkVycm9yKSBmdW5jdGlvbiBMZWRnZXIuQmlsbGluZy5pc3N1ZV9pbnZvaWNlLzEgaXMgdW5kZWZpbmVkIG9yIHByaXZhdGUKICAgICBjb2RlOiBhc3NlcnQgezpvaywgaW52b2ljZX0gPSBILmlzc3VlKCV7cmVmZXJlbmNlOiAiQURKMyIsIHN1YnRvdGFsOiAiVVNEIDEyLjUwIn0pCiAgICAgc3RhY2t0cmFjZToKICAgICAgIChsZWRnZXIgMC4xLjApIExlZGdlci5CaWxsaW5nLmlzc3VlX2ludm9pY2UoJXtyZWZlcmVuY2U6ICJBREozIiwgc3VidG90YWw6ICJVU0QgMTIuNTAifSkKICAgICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czo1MjA6ICh0ZXN0KQo=
+@@HARBOR@@test T34 the total calculation folds the adjustments in@@fail@@ICAxKSB0ZXN0IFQzNCB0aGUgdG90YWwgY2FsY3VsYXRpb24gZm9sZHMgdGhlIGFkanVzdG1lbnRzIGluIChIYXJib3JNb25leVRlc3QpCiAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjUyOQogICAgICoqIChVbmRlZmluZWRGdW5jdGlvbkVycm9yKSBmdW5jdGlvbiBMZWRnZXIuQmlsbGluZy5pc3N1ZV9pbnZvaWNlLzEgaXMgdW5kZWZpbmVkIG9yIHByaXZhdGUKICAgICBjb2RlOiBILmlzc3VlKCV7CiAgICAgc3RhY2t0cmFjZToKICAgICAgIChsZWRnZXIgMC4xLjApIExlZGdlci5CaWxsaW5nLmlzc3VlX2ludm9pY2UoJXtyZWZlcmVuY2U6ICJDQUxDIiwgc3VidG90YWw6ICJVU0QgMTIuNTAiLCBhZGp1c3RtZW50czogWyJVU0QgMC4wNSIsICJVU0QgLTAuMTAiXX0pCiAgICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6NTMxOiAodGVzdCkK
+@@HARBOR@@test T35 payments feed the aggregate and the balance@@fail@@ICAxKSB0ZXN0IFQzNSBwYXltZW50cyBmZWVkIHRoZSBhZ2dyZWdhdGUgYW5kIHRoZSBiYWxhbmNlIChIYXJib3JNb25leVRlc3QpCiAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjU0NwogICAgICoqIChVbmRlZmluZWRGdW5jdGlvbkVycm9yKSBmdW5jdGlvbiBMZWRnZXIuQmlsbGluZy5pc3N1ZV9pbnZvaWNlLzEgaXMgdW5kZWZpbmVkIG9yIHByaXZhdGUKICAgICBjb2RlOiBhc3NlcnQgezpvaywgaW52b2ljZX0gPSBILmlzc3VlKCV7cmVmZXJlbmNlOiAiUEFZIiwgc3VidG90YWw6ICJVU0QgMTIuNTAifSkKICAgICBzdGFja3RyYWNlOgogICAgICAgKGxlZGdlciAwLjEuMCkgTGVkZ2VyLkJpbGxpbmcuaXNzdWVfaW52b2ljZSgle3JlZmVyZW5jZTogIlBBWSIsIHN1YnRvdGFsOiAiVVNEIDEyLjUwIn0pCiAgICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6NTQ4OiAodGVzdCkK
+@@HARBOR@@test T36 derived payment columns cannot be supplied and currencies are enforced@@fail@@ICAxKSB0ZXN0IFQzNiBkZXJpdmVkIHBheW1lbnQgY29sdW1ucyBjYW5ub3QgYmUgc3VwcGxpZWQgYW5kIGN1cnJlbmNpZXMgYXJlIGVuZm9yY2VkIChIYXJib3JNb25leVRlc3QpCiAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjU2NAogICAgICoqIChVbmRlZmluZWRGdW5jdGlvbkVycm9yKSBmdW5jdGlvbiBMZWRnZXIuQmlsbGluZy5pc3N1ZV9pbnZvaWNlLzEgaXMgdW5kZWZpbmVkIG9yIHByaXZhdGUKICAgICBjb2RlOiBhc3NlcnQgezpvaywgaW52b2ljZX0gPSBILmlzc3VlKCV7cmVmZXJlbmNlOiAiUEFZMiIsIHN1YnRvdGFsOiAiVVNEIDEyLjUwIn0pCiAgICAgc3RhY2t0cmFjZToKICAgICAgIChsZWRnZXIgMC4xLjApIExlZGdlci5CaWxsaW5nLmlzc3VlX2ludm9pY2UoJXtyZWZlcmVuY2U6ICJQQVkyIiwgc3VidG90YWw6ICJVU0QgMTIuNTAifSkKICAgICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czo1NjU6ICh0ZXN0KQo=
+@@HARBOR@@test T37 the derived minor unit column is an ordinary queryable integer@@fail@@ICAxKSB0ZXN0IFQzNyB0aGUgZGVyaXZlZCBtaW5vciB1bml0IGNvbHVtbiBpcyBhbiBvcmRpbmFyeSBxdWVyeWFibGUgaW50ZWdlciAoSGFyYm9yTW9uZXlUZXN0KQogICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czo1ODQKICAgICAqKiAoVW5kZWZpbmVkRnVuY3Rpb25FcnJvcikgZnVuY3Rpb24gTGVkZ2VyLkJpbGxpbmcuaXNzdWVfaW52b2ljZS8xIGlzIHVuZGVmaW5lZCBvciBwcml2YXRlCiAgICAgY29kZTogYXNzZXJ0IHs6b2ssIGludm9pY2V9ID0gSC5pc3N1ZSgle3JlZmVyZW5jZTogIlBBWTMiLCBzdWJ0b3RhbDogIlVTRCAxMDAuMDAifSkKICAgICBzdGFja3RyYWNlOgogICAgICAgKGxlZGdlciAwLjEuMCkgTGVkZ2VyLkJpbGxpbmcuaXNzdWVfaW52b2ljZSgle3JlZmVyZW5jZTogIlBBWTMiLCBzdWJ0b3RhbDogIlVTRCAxMDAuMDAifSkKICAgICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czo1ODU6ICh0ZXN0KQo=
+@@HARBOR@@test T38 the generic action returns money@@fail@@ICAxKSB0ZXN0IFQzOCB0aGUgZ2VuZXJpYyBhY3Rpb24gcmV0dXJucyBtb25leSAoSGFyYm9yTW9uZXlUZXN0KQogICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czo2MDAKICAgICAqKiAoVW5kZWZpbmVkRnVuY3Rpb25FcnJvcikgZnVuY3Rpb24gTGVkZ2VyLkJpbGxpbmcucHJpY2VfZm9yLzIgaXMgdW5kZWZpbmVkIG9yIHByaXZhdGUKICAgICBjb2RlOiBhc3NlcnQgezpvaywgcHJpY2VkfSA9IEguYmlsbCg6cHJpY2VfZm9yLCBbIlVTRCAxLjI1IiwgNF0pCiAgICAgc3RhY2t0cmFjZToKICAgICAgIChsZWRnZXIgMC4xLjApIExlZGdlci5CaWxsaW5nLnByaWNlX2ZvcigiVVNEIDEuMjUiLCA0KQogICAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjYwMTogKHRlc3QpCg==
+@@HARBOR@@test T39 sorting by money orders by amount, not lexicographically@@fail@@ICAxKSB0ZXN0IFQzOSBzb3J0aW5nIGJ5IG1vbmV5IG9yZGVycyBieSBhbW91bnQsIG5vdCBsZXhpY29ncmFwaGljYWxseSAoSGFyYm9yTW9uZXlUZXN0KQogICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czo2MTIKICAgICAqKiAoVW5kZWZpbmVkRnVuY3Rpb25FcnJvcikgZnVuY3Rpb24gTGVkZ2VyLkJpbGxpbmcuaXNzdWVfaW52b2ljZS8xIGlzIHVuZGVmaW5lZCBvciBwcml2YXRlCiAgICAgY29kZTogZm9yIHtyZWZlcmVuY2UsIHN1YnRvdGFsfSA8LSBbCiAgICAgc3RhY2t0cmFjZToKICAgICAgIChsZWRnZXIgMC4xLjApIExlZGdlci5CaWxsaW5nLmlzc3VlX2ludm9pY2UoJXtyZWZlcmVuY2U6ICJTLUEiLCBzdWJ0b3RhbDogIlVTRCAwLjA1In0pCiAgICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6NjE5OiBhbm9ueW1vdXMgZm4vMiBpbiBIYXJib3JNb25leVRlc3QuInRlc3QgVDM5IHNvcnRpbmcgYnkgbW9uZXkgb3JkZXJzIGJ5IGFtb3VudCwgbm90IGxleGljb2dyYXBoaWNhbGx5Ii8xCiAgICAgICAoZWxpeGlyIDEuMTguNCkgbGliL2VudW0uZXg6MjU0NjogRW51bS4iLXJlZHVjZS8zLWxpc3RzXmZvbGRsLzItMC0iLzMKICAgICAgIC90bXAvaGFyYm9yX21vbmV5X3N1aXRlLmV4czo2MTM6ICh0ZXN0KQo=
+@@HARBOR@@test T40 equality filters match currency and amount together@@fail@@ICAxKSB0ZXN0IFQ0MCBlcXVhbGl0eSBmaWx0ZXJzIG1hdGNoIGN1cnJlbmN5IGFuZCBhbW91bnQgdG9nZXRoZXIgKEhhcmJvck1vbmV5VGVzdCkKICAgICAvdG1wL2hhcmJvcl9tb25leV9zdWl0ZS5leHM6NjM3CiAgICAgKiogKFVuZGVmaW5lZEZ1bmN0aW9uRXJyb3IpIGZ1bmN0aW9uIExlZGdlci5CaWxsaW5nLmlzc3VlX2ludm9pY2UvMSBpcyB1bmRlZmluZWQgb3IgcHJpdmF0ZQogICAgIGNvZGU6IGFzc2VydCB7Om9rLCBffSA9IEguaXNzdWUoJXtyZWZlcmVuY2U6ICJGLVVTRCIsIHN1YnRvdGFsOiAiVVNEIDkuMDAifSkKICAgICBzdGFja3RyYWNlOgogICAgICAgKGxlZGdlciAwLjEuMCkgTGVkZ2VyLkJpbGxpbmcuaXNzdWVfaW52b2ljZSgle3JlZmVyZW5jZTogIkYtVVNEIiwgc3VidG90YWw6ICJVU0QgOS4wMCJ9KQogICAgICAgL3RtcC9oYXJib3JfbW9uZXlfc3VpdGUuZXhzOjYzODogKHRlc3QpCg==
+
+
+____________________________ test_t02_constructors _____________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t02_constructors(suite_results):
+>       _check(suite_results, "T02")
+
+/tests/test_final_state.py:753: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T02'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T02 failed:
+E           1) test T02 constructing money values (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:107
+E              ** (UndefinedFunctionError) function Ledger.Money.new/2 is undefined (module Ledger.Money is not available)
+E              code: assert {:ok, value} = H.money(:new, [1250, :usd])
+E              stacktrace:
+E                Ledger.Money.new(1250, :usd)
+E                /tmp/harbor_money_suite.exs:108: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+__________________________ test_t03_canonical_string ___________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t03_canonical_string(suite_results):
+>       _check(suite_results, "T03")
+
+/tests/test_final_state.py:757: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T03'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T03 failed:
+E           1) test T03 canonical string rendering (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:118
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: assert H.money(:to_string, [H.m(1250, :usd)]) == "USD 12.50"
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:119: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+______________________ test_t04_addition_and_subtraction _______________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t04_addition_and_subtraction(suite_results):
+>       _check(suite_results, "T04")
+
+/tests/test_final_state.py:761: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T04'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T04 failed:
+E           1) test T04 addition and subtraction are exact and currency safe (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:129
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: assert {:ok, sum} = H.money(:add, [H.m(1250, :usd), H.m(-300, :usd)])
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:130: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+___________________________ test_t05_multiplication ____________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t05_multiplication(suite_results):
+>       _check(suite_results, "T05")
+
+/tests/test_final_state.py:765: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T05'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T05 failed:
+E           1) test T05 multiplication by integers (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:138
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: assert {:ok, quadrupled} = H.money(:multiply, [H.m(125, :usd), 4])
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:139: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+_________________________________ test_t06_sum _________________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t06_sum(suite_results):
+>       _check(suite_results, "T06")
+
+/tests/test_final_state.py:769: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T06'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T06 failed:
+E           1) test T06 summing lists of money (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:148
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: H.money(:sum, [[H.m(100, :usd), H.m(-25, :usd), H.m(5, :usd)], :usd])
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:150: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+_____________________________ test_t07_comparison ______________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t07_comparison(suite_results):
+>       _check(suite_results, "T07")
+
+/tests/test_final_state.py:773: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T07'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T07 failed:
+E           1) test T07 comparison semantics (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:158
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: assert H.money(:compare, [H.m(1, :usd), H.m(2, :usd)]) == :lt
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:159: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+__________________________ test_t08_cast_shapes_agree __________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t08_cast_shapes_agree(suite_results):
+>       _check(suite_results, "T08")
+
+/tests/test_final_state.py:777: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T08'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T08 failed:
+E           1) test T08 every accepted input shape produces the same value (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:166
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: H.m(1250, :usd),
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:168: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+______________________ test_t09_canonical_string_casting _______________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t09_canonical_string_casting(suite_results):
+>       _check(suite_results, "T09")
+
+/tests/test_final_state.py:781: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T09'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T09 failed:
+E           1) test T09 canonical strings round trip for every currency and sign (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:190
+E              ** (UndefinedFunctionError) function Ledger.Money.Type.cast_input/2 is undefined (module Ledger.Money.Type is not available)
+E              code: assert {:ok, jpy} = H.cast("JPY 500")
+E              stacktrace:
+E                Ledger.Money.Type.cast_input("JPY 500", [])
+E                (ash 3.31.0) lib/ash/type/type.ex:1093: Ash.Type.cast_input/3
+E                /tmp/harbor_money_suite.exs:191: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+_______________________ test_t10_unknown_currency_errors _______________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t10_unknown_currency_errors(suite_results):
+>       _check(suite_results, "T10")
+
+/tests/test_final_state.py:785: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T10'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T10 failed:
+E           1) test T10 unsupported currencies are reported before anything else (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:210
+E              ** (UndefinedFunctionError) function Ledger.Money.Type.cast_input/2 is undefined (module Ledger.Money.Type is not available)
+E              code: failure = H.failure(H.cast(%{"currency" => "XBT", "amount" => 5}))
+E              stacktrace:
+E                Ledger.Money.Type.cast_input(%{"amount" => 5, "currency" => "XBT"}, [])
+E                (ash 3.31.0) lib/ash/type/type.ex:1093: Ash.Type.cast_input/3
+E                /tmp/harbor_money_suite.exs:211: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+_______________________ test_t11_fractional_minor_units ________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t11_fractional_minor_units(suite_results):
+>       _check(suite_results, "T11")
+
+/tests/test_final_state.py:789: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T11'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T11 failed:
+E           1) test T11 fractional minor units are rejected (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:228
+E              ** (UndefinedFunctionError) function Ledger.Money.Type.cast_input/2 is undefined (module Ledger.Money.Type is not available)
+E              code: for input <- [%{currency: :usd, amount: 12.5}, %{"currency" => "USD", "amount" => "12.5"}] do
+E              stacktrace:
+E                Ledger.Money.Type.cast_input(%{currency: :usd, amount: 12.5}, [])
+E                (ash 3.31.0) lib/ash/type/type.ex:1093: Ash.Type.cast_input/3
+E                /tmp/harbor_money_suite.exs:230: anonymous fn/2 in HarborMoneyTest."test T11 fractional minor units are rejected"/1
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                /tmp/harbor_money_suite.exs:229: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+___________________________ test_t12_invalid_format ____________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t12_invalid_format(suite_results):
+>       _check(suite_results, "T12")
+
+/tests/test_final_state.py:793: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T12'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T12 failed:
+E           1) test T12 unusable input shapes are rejected (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:236
+E              ** (UndefinedFunctionError) function Ledger.Money.Type.cast_input/2 is undefined (module Ledger.Money.Type is not available)
+E              code: for input <- inputs do
+E              stacktrace:
+E                Ledger.Money.Type.cast_input([1, 2], [])
+E                (ash 3.31.0) lib/ash/type/type.ex:1093: Ash.Type.cast_input/3
+E                /tmp/harbor_money_suite.exs:250: anonymous fn/1 in HarborMoneyTest."test T12 unusable input shapes are rejected"/1
+E                (elixir 1.18.4) lib/enum.ex:1714: Enum."-map/2-lists^map/1-1-"/2
+E                /tmp/harbor_money_suite.exs:249: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+______________________________ test_t13_equality _______________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t13_equality(suite_results):
+>       _check(suite_results, "T13")
+
+/tests/test_final_state.py:797: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T13'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T13 failed:
+E           1) test T13 different currencies and amounts are never equal (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:260
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: refute Ash.Type.equal?(H.type_mod(), H.m(100, :usd), H.m(100, :eur))
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:261: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+____________________________ test_t14_storage_type _____________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t14_storage_type(suite_results):
+>       _check(suite_results, "T14")
+
+/tests/test_final_state.py:801: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T14'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T14 failed:
+E           1) test T14 the storage type is a map (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:266
+E              ** (UndefinedFunctionError) function Ledger.Money.Type.storage_type/1 is undefined (module Ledger.Money.Type is not available)
+E              code: assert Ash.Type.storage_type(H.type_mod(), []) == :map
+E              stacktrace:
+E                Ledger.Money.Type.storage_type([])
+E                /tmp/harbor_money_suite.exs:267: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+_________________________ test_t15_storage_round_trip __________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t15_storage_round_trip(suite_results):
+>       _check(suite_results, "T15")
+
+/tests/test_final_state.py:805: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T15'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T15 failed:
+E           1) test T15 dumping and loading is lossless, including through JSON (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:270
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: for value <- [H.m(1250, :usd), H.m(-7, :jpy), H.m(1234, :bhd), H.m(0, :eur)] do
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:271: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+______________________ test_t16_array_and_nil_round_trip _______________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t16_array_and_nil_round_trip(suite_results):
+>       _check(suite_results, "T16")
+
+/tests/test_final_state.py:809: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T16'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T16 failed:
+E           1) test T16 arrays and nil survive the storage round trip (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:283
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: values = [H.m(1250, :usd), H.m(-7, :jpy), H.m(1234, :bhd)]
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:284: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+________________________ test_t17_invalid_stored_value _________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t17_invalid_stored_value(suite_results):
+>       _check(suite_results, "T17")
+
+/tests/test_final_state.py:813: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T17'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T17 failed:
+E           1) test T17 loading a value the type never wrote is rejected (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:300
+E              ** (UndefinedFunctionError) function Ledger.Money.Type.cast_stored/2 is undefined (module Ledger.Money.Type is not available)
+E              code: for stored <- [1250, "nonsense", [1, 2]] do
+E              stacktrace:
+E                Ledger.Money.Type.cast_stored(1250, [])
+E                /tmp/harbor_money_suite.exs:302: anonymous fn/2 in HarborMoneyTest."test T17 loading a value the type never wrote is rejected"/1
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                /tmp/harbor_money_suite.exs:301: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+________________________ test_t18_currencies_constraint ________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t18_currencies_constraint(suite_results):
+>       _check(suite_results, "T18")
+
+/tests/test_final_state.py:817: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T18'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T18 failed:
+E           1) test T18 the currencies constraint (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:308
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: assert {:ok, allowed} = H.constrain(H.m(100, :usd), currencies: [:usd, :eur])
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:309: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+_______________________ test_t19_multiple_of_constraint ________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t19_multiple_of_constraint(suite_results):
+>       _check(suite_results, "T19")
+
+/tests/test_final_state.py:821: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T19'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T19 failed:
+E           1) test T19 the multiple_of constraint (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:318
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: for amount <- [100, -15, 0] do
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:320: anonymous fn/2 in HarborMoneyTest."test T19 the multiple_of constraint"/1
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                /tmp/harbor_money_suite.exs:319: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+_______________________ test_t20_min_and_max_constraints _______________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t20_min_and_max_constraints(suite_results):
+>       _check(suite_results, "T20")
+
+/tests/test_final_state.py:825: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T20'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T20 failed:
+E           1) test T20 the min and max constraints are inclusive (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:329
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: assert {:ok, _} = H.constrain(H.m(0, :usd), min: "USD 0.00")
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:330: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+_______________________ test_t21_bound_currency_mismatch _______________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t21_bound_currency_mismatch(suite_results):
+>       _check(suite_results, "T21")
+
+/tests/test_final_state.py:829: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T21'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T21 failed:
+E           1) test T21 bounds in another currency are not comparable (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:343
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: failure = H.failure(H.constrain(H.m(100, :eur), min: "USD 0.00"))
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:344: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+_________________________ test_t22_constraint_ordering _________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t22_constraint_ordering(suite_results):
+>       _check(suite_results, "T22")
+
+/tests/test_final_state.py:833: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T22'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T22 failed:
+E           1) test T22 constraints are checked in the documented order (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:352
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: currency_first = H.failure(H.constrain(H.m(103, :jpy), constraints))
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:355: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+__________________________ test_t23_array_cast_index ___________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t23_array_cast_index(suite_results):
+>       _check(suite_results, "T23")
+
+/tests/test_final_state.py:837: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T23'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T23 failed:
+E           1) test T23 array casting reports the failing element index (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:365
+E              ** (UndefinedFunctionError) function Ledger.Money.Type.cast_input_array/2 is undefined (module Ledger.Money.Type is not available)
+E              code: Ash.Type.cast_input(
+E              stacktrace:
+E                Ledger.Money.Type.cast_input_array([%{currency: :usd, amount: 100}, "USD 1.00"], [])
+E                /tmp/harbor_money_suite.exs:367: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+_______________________ test_t24_array_constraint_index ________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t24_array_constraint_index(suite_results):
+>       _check(suite_results, "T24")
+
+/tests/test_final_state.py:841: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T24'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T24 failed:
+E           1) test T24 array constraints report the failing element index (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:388
+E              ** (UndefinedFunctionError) function Ledger.Money.__struct__/0 is undefined (module Ledger.Money is not available)
+E              code: [H.m(100, :usd), H.m(103, :usd)],
+E              stacktrace:
+E                Ledger.Money.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_money_suite.exs:393: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+_______________________ test_t25_new_type_introspection ________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t25_new_type_introspection(suite_results):
+>       _check(suite_results, "T25")
+
+/tests/test_final_state.py:845: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T25'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T25 failed:
+E           1) test T25 the narrowed type is a new type over the money type (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:403
+E              Expected truthy, got false
+E              code: assert Ash.Type.NewType.new_type?(H.usd_mod())
+E              arguments:
+E         
+E                  # 1
+E                  Ledger.Money.Usd
+E         
+E              stacktrace:
+E                /tmp/harbor_money_suite.exs:404: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+________________________ test_t26_new_type_constraints _________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t26_new_type_constraints(suite_results):
+>       _check(suite_results, "T26")
+
+/tests/test_final_state.py:849: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T26'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T26 failed:
+E           1) test T26 the narrowed type bakes in its constraints (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:408
+E              ** (UndefinedFunctionError) function Ledger.Billing.issue_invoice/1 is undefined or private
+E              code: eur = H.error_on(H.issue(%{reference: "N-1", subtotal: "USD 1.00", credit_limit: "EUR 1.00"}), :credit_limit)
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.issue_invoice(%{reference: "N-1", subtotal: "USD 1.00", credit_limit: "EUR 1.00"})
+E                /tmp/harbor_money_suite.exs:409: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+_________________________ test_t27_resource_round_trip _________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t27_resource_round_trip(suite_results):
+>       _check(suite_results, "T27")
+
+/tests/test_final_state.py:853: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T27'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T27 failed:
+E           1) test T27 money survives the data layer round trip (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:436
+E              ** (UndefinedFunctionError) function Ledger.Billing.issue_invoice/1 is undefined or private
+E              code: H.issue(%{
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.issue_invoice(%{reference: "INV-1", subtotal: %{"amount" => 1250, "currency" => "USD"}, credit_limit: "USD 100.00", adjustments: ["USD 0.05", %{currency: :usd, amount: -10}]})
+E                /tmp/harbor_money_suite.exs:438: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+____________________ test_t28_attribute_currency_constraint ____________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t28_attribute_currency_constraint(suite_results):
+>       _check(suite_results, "T28")
+
+/tests/test_final_state.py:857: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T28'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T28 failed:
+E           1) test T28 attribute currency constraints reject disallowed currencies (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:459
+E              ** (UndefinedFunctionError) function Ledger.Billing.issue_invoice/1 is undefined or private
+E              code: error = H.error_on(H.issue(%{reference: "BAD", subtotal: "BHD 1.000"}), :subtotal)
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.issue_invoice(%{reference: "BAD", subtotal: "BHD 1.000"})
+E                /tmp/harbor_money_suite.exs:460: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+________________________ test_t29_resource_array_index _________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t29_resource_array_index(suite_results):
+>       _check(suite_results, "T29")
+
+/tests/test_final_state.py:861: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T29'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T29 failed:
+E           1) test T29 array element constraints report the index on the resource (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:467
+E              ** (UndefinedFunctionError) function Ledger.Billing.issue_invoice/1 is undefined or private
+E              code: H.issue(%{
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.issue_invoice(%{reference: "BAD", subtotal: "USD 1.00", adjustments: ["USD 0.05", "USD 0.03", "USD 0.10"]})
+E                /tmp/harbor_money_suite.exs:470: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+___________________ test_t30_adjustment_currency_validation ____________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t30_adjustment_currency_validation(suite_results):
+>       _check(suite_results, "T30")
+
+/tests/test_final_state.py:865: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T30'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T30 failed:
+E           1) test T30 adjustments must use the currency of the subtotal (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:483
+E              ** (UndefinedFunctionError) function Ledger.Billing.issue_invoice/1 is undefined or private
+E              code: H.issue(%{reference: "MIX", subtotal: "USD 1.00", adjustments: ["EUR 0.05"]}),
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.issue_invoice(%{reference: "MIX", subtotal: "USD 1.00", adjustments: ["EUR 0.05"]})
+E                /tmp/harbor_money_suite.exs:486: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+______________________ test_t31_apply_adjustment_appends _______________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t31_apply_adjustment_appends(suite_results):
+>       _check(suite_results, "T31")
+
+/tests/test_final_state.py:869: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T31'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T31 failed:
+E           1) test T31 applying adjustments appends them in order (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:494
+E              ** (UndefinedFunctionError) function Ledger.Billing.issue_invoice/1 is undefined or private
+E              code: assert {:ok, invoice} = H.issue(%{reference: "ADJ", subtotal: "USD 12.50"})
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.issue_invoice(%{reference: "ADJ", subtotal: "USD 12.50"})
+E                /tmp/harbor_money_suite.exs:495: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+_________________ test_t32_apply_adjustment_currency_mismatch __________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t32_apply_adjustment_currency_mismatch(suite_results):
+>       _check(suite_results, "T32")
+
+/tests/test_final_state.py:873: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T32'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T32 failed:
+E           1) test T32 an adjustment in another currency is rejected without touching the record (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:506
+E              ** (UndefinedFunctionError) function Ledger.Billing.issue_invoice/1 is undefined or private
+E              code: assert {:ok, invoice} = H.issue(%{reference: "ADJ2", subtotal: "USD 12.50"})
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.issue_invoice(%{reference: "ADJ2", subtotal: "USD 12.50"})
+E                /tmp/harbor_money_suite.exs:507: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+_________________ test_t33_apply_adjustment_element_constraint _________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t33_apply_adjustment_element_constraint(suite_results):
+>       _check(suite_results, "T33")
+
+/tests/test_final_state.py:877: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T33'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T33 failed:
+E           1) test T33 an adjustment breaking the element constraint leaves the record untouched (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:519
+E              ** (UndefinedFunctionError) function Ledger.Billing.issue_invoice/1 is undefined or private
+E              code: assert {:ok, invoice} = H.issue(%{reference: "ADJ3", subtotal: "USD 12.50"})
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.issue_invoice(%{reference: "ADJ3", subtotal: "USD 12.50"})
+E                /tmp/harbor_money_suite.exs:520: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+__________________________ test_t34_total_calculation __________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t34_total_calculation(suite_results):
+>       _check(suite_results, "T34")
+
+/tests/test_final_state.py:881: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T34'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T34 failed:
+E           1) test T34 the total calculation folds the adjustments in (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:529
+E              ** (UndefinedFunctionError) function Ledger.Billing.issue_invoice/1 is undefined or private
+E              code: H.issue(%{
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.issue_invoice(%{reference: "CALC", subtotal: "USD 12.50", adjustments: ["USD 0.05", "USD -0.10"]})
+E                /tmp/harbor_money_suite.exs:531: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+___________________ test_t35_payments_aggregate_and_balance ____________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t35_payments_aggregate_and_balance(suite_results):
+>       _check(suite_results, "T35")
+
+/tests/test_final_state.py:885: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T35'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T35 failed:
+E           1) test T35 payments feed the aggregate and the balance (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:547
+E              ** (UndefinedFunctionError) function Ledger.Billing.issue_invoice/1 is undefined or private
+E              code: assert {:ok, invoice} = H.issue(%{reference: "PAY", subtotal: "USD 12.50"})
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.issue_invoice(%{reference: "PAY", subtotal: "USD 12.50"})
+E                /tmp/harbor_money_suite.exs:548: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+__________________ test_t36_derived_columns_are_not_writable ___________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t36_derived_columns_are_not_writable(suite_results):
+>       _check(suite_results, "T36")
+
+/tests/test_final_state.py:889: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T36'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T36 failed:
+E           1) test T36 derived payment columns cannot be supplied and currencies are enforced (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:564
+E              ** (UndefinedFunctionError) function Ledger.Billing.issue_invoice/1 is undefined or private
+E              code: assert {:ok, invoice} = H.issue(%{reference: "PAY2", subtotal: "USD 12.50"})
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.issue_invoice(%{reference: "PAY2", subtotal: "USD 12.50"})
+E                /tmp/harbor_money_suite.exs:565: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+___________________ test_t37_minor_unit_column_is_queryable ____________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t37_minor_unit_column_is_queryable(suite_results):
+>       _check(suite_results, "T37")
+
+/tests/test_final_state.py:893: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T37'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T37 failed:
+E           1) test T37 the derived minor unit column is an ordinary queryable integer (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:584
+E              ** (UndefinedFunctionError) function Ledger.Billing.issue_invoice/1 is undefined or private
+E              code: assert {:ok, invoice} = H.issue(%{reference: "PAY3", subtotal: "USD 100.00"})
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.issue_invoice(%{reference: "PAY3", subtotal: "USD 100.00"})
+E                /tmp/harbor_money_suite.exs:585: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+____________________ test_t38_generic_action_returns_money _____________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t38_generic_action_returns_money(suite_results):
+>       _check(suite_results, "T38")
+
+/tests/test_final_state.py:897: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T38'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T38 failed:
+E           1) test T38 the generic action returns money (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:600
+E              ** (UndefinedFunctionError) function Ledger.Billing.price_for/2 is undefined or private
+E              code: assert {:ok, priced} = H.bill(:price_for, ["USD 1.25", 4])
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.price_for("USD 1.25", 4)
+E                /tmp/harbor_money_suite.exs:601: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+__________________________ test_t39_sorting_by_money ___________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t39_sorting_by_money(suite_results):
+>       _check(suite_results, "T39")
+
+/tests/test_final_state.py:901: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T39'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T39 failed:
+E           1) test T39 sorting by money orders by amount, not lexicographically (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:612
+E              ** (UndefinedFunctionError) function Ledger.Billing.issue_invoice/1 is undefined or private
+E              code: for {reference, subtotal} <- [
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.issue_invoice(%{reference: "S-A", subtotal: "USD 0.05"})
+E                /tmp/harbor_money_suite.exs:619: anonymous fn/2 in HarborMoneyTest."test T39 sorting by money orders by amount, not lexicographically"/1
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                /tmp/harbor_money_suite.exs:613: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+___________________________ test_t40_equality_filter ___________________________
+
+suite_results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+
+    def test_t40_equality_filter(suite_results):
+>       _check(suite_results, "T40")
+
+/tests/test_final_state.py:905: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('fail', '  1) test T01 supported currencies and their minor unit exponents (HarborMoneyTest)\n     /tmp/harbo...)\n       (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3\n       /tmp/harbor_money_suite.exs:130: (test)\n'), ...}
+identifier = 'T40'
+
+    def _check(results: dict, identifier: str) -> None:
+        assert identifier in results, (
+            f"Scenario {identifier} did not run. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[identifier]
+>       assert status == "pass", f"Scenario {identifier} failed:\n{detail}"
+E       AssertionError: Scenario T40 failed:
+E           1) test T40 equality filters match currency and amount together (HarborMoneyTest)
+E              /tmp/harbor_money_suite.exs:637
+E              ** (UndefinedFunctionError) function Ledger.Billing.issue_invoice/1 is undefined or private
+E              code: assert {:ok, _} = H.issue(%{reference: "F-USD", subtotal: "USD 9.00"})
+E              stacktrace:
+E                (ledger 0.1.0) Ledger.Billing.issue_invoice(%{reference: "F-USD", subtotal: "USD 9.00"})
+E                /tmp/harbor_money_suite.exs:638: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:745: AssertionError
+=========================== short test summary info ============================
+FAILED ../tests/test_final_state.py::test_t01_currencies_and_exponents - Asse...
+FAILED ../tests/test_final_state.py::test_t02_constructors - AssertionError: ...
+FAILED ../tests/test_final_state.py::test_t03_canonical_string - AssertionErr...
+FAILED ../tests/test_final_state.py::test_t04_addition_and_subtraction - Asse...
+FAILED ../tests/test_final_state.py::test_t05_multiplication - AssertionError...
+FAILED ../tests/test_final_state.py::test_t06_sum - AssertionError: Scenario ...
+FAILED ../tests/test_final_state.py::test_t07_comparison - AssertionError: Sc...
+FAILED ../tests/test_final_state.py::test_t08_cast_shapes_agree - AssertionEr...
+FAILED ../tests/test_final_state.py::test_t09_canonical_string_casting - Asse...
+FAILED ../tests/test_final_state.py::test_t10_unknown_currency_errors - Asser...
+FAILED ../tests/test_final_state.py::test_t11_fractional_minor_units - Assert...
+FAILED ../tests/test_final_state.py::test_t12_invalid_format - AssertionError...
+FAILED ../tests/test_final_state.py::test_t13_equality - AssertionError: Scen...
+FAILED ../tests/test_final_state.py::test_t14_storage_type - AssertionError: ...
+FAILED ../tests/test_final_state.py::test_t15_storage_round_trip - AssertionE...
+FAILED ../tests/test_final_state.py::test_t16_array_and_nil_round_trip - Asse...
+FAILED ../tests/test_final_state.py::test_t17_invalid_stored_value - Assertio...
+FAILED ../tests/test_final_state.py::test_t18_currencies_constraint - Asserti...
+FAILED ../tests/test_final_state.py::test_t19_multiple_of_constraint - Assert...
+FAILED ../tests/test_final_state.py::test_t20_min_and_max_constraints - Asser...
+FAILED ../tests/test_final_state.py::test_t21_bound_currency_mismatch - Asser...
+FAILED ../tests/test_final_state.py::test_t22_constraint_ordering - Assertion...
+FAILED ../tests/test_final_state.py::test_t23_array_cast_index - AssertionErr...
+FAILED ../tests/test_final_state.py::test_t24_array_constraint_index - Assert...
+FAILED ../tests/test_final_state.py::test_t25_new_type_introspection - Assert...
+FAILED ../tests/test_final_state.py::test_t26_new_type_constraints - Assertio...
+FAILED ../tests/test_final_state.py::test_t27_resource_round_trip - Assertion...
+FAILED ../tests/test_final_state.py::test_t28_attribute_currency_constraint
+FAILED ../tests/test_final_state.py::test_t29_resource_array_index - Assertio...
+FAILED ../tests/test_final_state.py::test_t30_adjustment_currency_validation
+FAILED ../tests/test_final_state.py::test_t31_apply_adjustment_appends - Asse...
+FAILED ../tests/test_final_state.py::test_t32_apply_adjustment_currency_mismatch
+FAILED ../tests/test_final_state.py::test_t33_apply_adjustment_element_constraint
+FAILED ../tests/test_final_state.py::test_t34_total_calculation - AssertionEr...
+FAILED ../tests/test_final_state.py::test_t35_payments_aggregate_and_balance
+FAILED ../tests/test_final_state.py::test_t36_derived_columns_are_not_writable
+FAILED ../tests/test_final_state.py::test_t37_minor_unit_column_is_queryable
+FAILED ../tests/test_final_state.py::test_t38_generic_action_returns_money - ...
+FAILED ../tests/test_final_state.py::test_t39_sorting_by_money - AssertionErr...
+FAILED ../tests/test_final_state.py::test_t40_equality_filter - AssertionErro...
+============================== 40 failed in 6.37s ==============================

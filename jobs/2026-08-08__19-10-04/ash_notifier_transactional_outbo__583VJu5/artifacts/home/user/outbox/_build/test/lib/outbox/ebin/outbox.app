@@ -1,0 +1,13 @@
+{application,outbox,
+             [{modules,['Elixir.Inspect.Outbox.Ledger.Account',
+                        'Elixir.Inspect.Outbox.Ledger.Transfer',
+                        'Elixir.Outbox.Application','Elixir.Outbox.Ledger',
+                        'Elixir.Outbox.Ledger.Account',
+                        'Elixir.Outbox.Ledger.SufficientFunds',
+                        'Elixir.Outbox.Ledger.Transfer']},
+              {optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger,ash]},
+              {description,"outbox"},
+              {registered,[]},
+              {vsn,"0.1.0"},
+              {mod,{'Elixir.Outbox.Application',[]}}]}.

@@ -1,0 +1,178 @@
+- Initializing MCP connections...
+You
+# Transactional Outbox and Event Fan-out on Ash Framework v3 ## Background An Elixir project using **Ash Framework 3.31** lives at `/home/user/outbox`. It already models a tiny ledger: the domain `Outbox.Ledger` with the resources `Outbox.Ledger.Account` and `Outbox.Ledger.Transfer`, both backed by the in-memory ETS data layer. Today those writes leave no trace — nothing downstream can learn that they happened. Your job is to add an **outbox + fan-out** subsystem to the application. Every successful write to a ledger resource must be captured as an ordered outbox entry, and a local dispatcher process must hand those entries to interested subscribers with at-least-once delivery, bounded retries and a dead-letter path. Everything runs inside this one application: no broker, no database, no network. ## Requirements ### 1. Outbox capture * Every **successful** write (create, update or destroy) against a ledger resource appends exactly one entry to the outbox. Reads never produce entries. * A write that fails (validation error, or any other error) must leave **no** entry behind, and a partially-failing batch write must produce entries only for the rows that actually succeeded. * Capture must be driven by the framework's post-commit resource-notification mechanism rather than by code hand-written into each action. As a direct consequence, a caller that asks Ash to hand the notifications back instead of dispatching them (the documented per-call option for exactly that) must see the write succeed while producing **no** outbox entry. * Batch writes must produce exactly one entry per successfully written record — never zero, never duplicated. ### 2. Outbox entry contents Each entry records the action name, the resource, the record id, the acting actor, the attribute diff, and two sequence numbers: a **global** one and a **per-aggregate** one. * `sequence` — global, starts at `1`, increases by exactly `1` per entry, never repeats. * `aggregate_sequence` — starts at `1` for each distinct aggregate (a pair of aggregate type and record id) and increases by exactly `1` for each further entry about that same aggregate. * Both counters must stay correct when many processes write concurrently, including many concurrent writes to the *same* record. ### 3. Local dispatcher A supervised, long-lived process fans entries out to subscribers. Subscribers are registered at runtime under an id, with a topic pattern and a handler function. Delivery is per `(entry, subscriber)` pair: * A subscriber only ever receives entries whose topic matches its pattern, and only entries created **after** it subscribed (replay aside). * An acknowledged delivery is never repeated, no matter how many drain passes happen afterwards. * A delivery that is not acknowledged is retried on later drain passes, up to a hard maximum of **3 attempts** in total; after the third failed attempt it stops being retried and is recorded as a dead letter instead. * A handler that raises must be contained: it counts as one failed attempt and must not take the dispatcher down or disturb any other delivery. * Two delivery modes must be supported, and they must differ observably: * `:sync` — the handler runs immediately, **in the process that performed the write**, before the write call returns. * `:async` — the handler is not run at the time of the write at all; it runs later, **in the dispatcher process**, when a drain is requested. * A `:sync` handler that does not acknowledge is not lost: the delivery joins the pending queue and is retried exactly like an `:async` one, with the attempt it already burned counted. * Within one drain pass, deliveries are attempted in ascending `sequence`; when one entry matches several subscribers, they are attempted in the order the subscribers were registered. This is what gives per-aggregate ordering to a healthy subscriber. * Draining is caller-driven and must be fully deterministic: the drain request performs exactly one attempt for each currently-pending delivery and only returns once that pass is complete. Nothing may be delivered on a timer or in the background. ### 4. Replay The outbox must be replayable: given a sequence number and a subscriber id, every stored entry after that sequence whose topic matches that subscriber is re-delivered to it in ascending sequence order, synchronously, in the caller's process — regardless of whether it was already acknowledged, and regardless of the subscriber's delivery mode. Replay never enqueues retries and never dead-letters. This capability must be exposed as a **generic action** on the outbox resource. ## Implementation Hints Project path: `/home/user/outbox`. Ash 3.31 is already vendored; the environment is offline, so do not try to add or fetch dependencies. `mix compile` must succeed and emit no errors. **Topics.** A topic is exactly three dot-separated segments: `ledger.<aggregate_type>.<action_name>`, where `<aggregate_type>` is the snake_case of the last segment of the resource module name (`Outbox.Ledger.Account` → `account`, `Outbox.Ledger.Transfer` → `transfer`) and `<action_name>` is the name of the action that ran. Example: `ledger.account.freeze`. **Pattern matching.** A subscriber pattern is also dot-separated. A literal segment matches only an identical segment — there is no partial or prefix matching inside a segment. `*` matches exactly one segment. `#` is only legal as the final segment and matches zero or more remaining segments. If the pattern contains no `#`, it matches only topics with the same number of segments. **The outbox resource** is `Outbox.Eventing.Event`, in a new domain `Outbox.Eventing` (register it in the application's Ash domain configuration), stored in the ETS data layer with a UUID primary key `:id` and these public attributes: | attribute | type | notes | | --- | --- | --- | | `sequence` | `:integer` | global counter described above | | `aggregate_sequence` | `:integer` | per-aggregate counter described above | | `topic` | `:string` | as defined above | | `resource` | `:string` | the resource module's name without the `Elixir.` prefix, e.g. `"Outbox.Ledger.Account"` | | `aggregate_type` | `:string` | e.g. `"account"` | | `aggregate_id` | `:string` | the written record's primary key | | `action` | `:atom` | the action name | | `actor_id` | `:string` | see below; `nil` when there is no actor | | `changes` | `:map` | see below | | `dedup_key` | `:string` | `"<aggregate_type>:<aggregate_id>:<action>:<aggregate_sequence>"` | `dedup_key` must additionally be protected by a resource identity named `:unique_dedup_key` over `[:dedup_key]`, so that a duplicate entry can never be stored. The resource must also expose a primary create action that accepts all of the attributes listed above and a primary read action. `actor_id` is the value of the actor's `:id` key when the write was given an actor that has one and that value is a binary; otherwise `nil`. `changes` is a map keyed by **attribute name as a string**, whose values are maps with exactly the two string keys `"from"` and `"to"`. Encoding of a value: `nil` stays `nil`, an atom becomes `Atom.to_string/1`, anything else is stored unchanged. Which attributes appear: * create — every public, non-primary-key attribute of the created record whose value is not `nil`, with `"from" => nil`; * update — every public, non-primary-key attribute whose value actually differs between the record the action started from and the record it produced, with the before value under `"from"` and the after value under `"to"`. Ash does not hand the pre-action record to notifications produced by a *batch* update, so for entries coming from a batch update only the `"to"` value of each attribute the action set has to be correct; * destroy — always the empty map `%{}`. **Dispatcher.** The process is registered under the name `Outbox.Eventing.Dispatcher`, is started as a child of the application's top-level supervisor `Outbox.Supervisor`, and exposes: * `subscribe(subscriber_id :: atom(), pattern :: String.t(), handler :: (Event.t() -> :ok | {:error, term()}), opts :: keyword())` — must be callable with 3 or 4 arguments; the only option is `:mode`, which is `:sync` or `:async` and defaults to `:async`. Returns `:ok`, or `{:error, :already_subscribed}` if that id is taken. * `unsubscribe(subscriber_id :: atom()) :: :ok` — always `:ok`; the subscriber's still-pending deliveries are discarded, its dead letters are kept. * `flush() :: :ok` — perform exactly one drain pass, as described above. * `dead_letters() :: [map()]` — every dead-lettered delivery as a map containing at least the keys `:subscriber_id`, `:sequence`, `:attempts` and `:reason`, sorted by `:sequence` ascending and, for equal sequences, by subscriber registration order. `:attempts` is the total number of attempts made. `:reason` is the term from `{:error, reason}` when the handler returned one, or `{:raised, Exception.message(e)}` when the handler raised `e`. * `reset() :: :ok` — return the whole subsystem to a pristine state: no subscribers, no pending deliveries, no dead letters, no stored outbox entries, and both counters rewound so the next entry gets `sequence: 1` and `aggregate_sequence: 1`. Handlers receive the `Outbox.Eventing.Event` struct itself. **Queries and replay.** `Outbox.Eventing` must expose: * `list_events!() :: [Event.t()]` — all stored entries, ascending by `sequence`. * `events_for!(aggregate_type :: String.t(), aggregate_id :: String.t()) :: [Event.t()]` — entries for one aggregate, ascending by `aggregate_sequence`. * `replay(after_sequence :: integer(), subscriber_id :: atom()) :: {:ok, [integer()]}` — performs the replay described above and returns the delivered sequences in ascending order. An unknown subscriber id yields `{:ok, []}` and delivers nothing. It must be backed by a generic action named `:replay` on `Outbox.Eventing.Event` that takes the arguments `:after_sequence` and `:subscriber_id` in that order. **Batch entry points.** Add a module `Outbox.Ledger.BulkOps` with: * `open_many(inputs :: [map()]) :: {:ok, [Outbox.Ledger.Account.t()]}` — creates every account in `inputs` (maps with `:owner_id`, `:name` and optionally `:balance`) with a single Ash batch create, returning the created records in any order. * `freeze_many(accounts :: [Outbox.Ledger.Account.t()]) :: {:ok, [Outbox.Ledger.Account.t()]}` — applies the `:freeze` action to every given account with a single Ash batch update, returning the updated records in any order. Both must produce exactly one outbox entry per record they write.   
+
+Pochi
+💭 Thinking for 84 characters   
+I'll start by exploring the existing project structure to understand the codebase.   
+📂 Listing files in /home/user/outbox recursively ✔ 
+💭 Thinking for 74 characters   
+Let me read the key existing files to understand the project structure.   
+📖 Reading /home/user/outbox/mix.exs ✔ 
+📖 Reading /home/user/outbox/config/config.exs ✔ 
+📖 Reading /home/user/outbox/lib/outbox/application.ex ✔ 
+📖 Reading /home/user/outbox/lib/outbox/ledger.ex ✔ 
+📖 Reading /home/user/outbox/lib/outbox/ledger/account.ex ✔ 
+📖 Reading /home/user/outbox/lib/outbox/ledger/transfer.ex ✔ 
+📖 Reading /home/user/outbox/lib/outbox/ledger/sufficient_funds.ex ✔ 
+💭 Thinking for 135 characters   
+Now let me explore the Ash notification system to understand how post-commit notifications work.   
+📂 Listing files in /home/user/outbox/deps/ash/lib/ash/notifier ✔ 
+📂 Listing files in /home/user/outbox/deps/ash/lib/ash/notifier ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/notifier/notification.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/notifier/notifier.ex ✔ 
+💭 Thinking for 176 characters   
+Let me explore how Ash handles notifications and the `return_notifications?` option.   
+🔍 Searching for return_notifications in /home/user/outbox/deps/ash/lib/ash ✔ 
+🔍 Searching for notification_data|notify\( in /home/user/outbox/deps/ash/lib/ash ✔ 
+💭 Thinking for 196 characters   
+Let me look at how notifications are built in the create action and the helpers.   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/helpers.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/create/create.ex ✔ 
+💭 Thinking for 97 characters   
+Let me look at the `resource_notification` function to understand the notification structure.   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/helpers.ex ✔ 
+💭 Thinking for 486 characters   
+Let me look at the PubSub notifier as a reference for how to build a notifier.   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/notifier/pub_sub/pub_sub.ex ✔ 
+💭 Thinking for 521 characters   
+Let me look at how notifiers are registered on a resource and how the bulk actions create notifications.   
+🔍 Searching for notifiers in /home/user/outbox/deps/ash/lib/ash/resource ✔ 
+💭 Thinking for 94 characters   
+🔍 Searching for @notifiers|notifiers: \[ in /home/user/outbox/deps/ash/lib/ash/resource ✔ 
+🔍 Searching for notifiers: \[module in /home/user/outbox/deps/ash/lib/ash ✔ 
+🔍 Searching for notifiers in /home/user/outbox/deps/ash/lib/ash/resource.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/resource.ex ✔ 
+💭 Thinking for 316 characters   
+Let me look at the bulk create and bulk update actions to understand batch notifications.   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/create/bulk.ex ✔ 
+💭 Thinking for 184 characters   
+Let me look at how bulk create builds notifications per record.   
+🔍 Searching for resource_notification|notification_data|Ash.Notifier.Notification in /home/user/outbox/deps/ash/lib/ash/actions/create/bulk.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/create/bulk.ex ✔ 
+💭 Thinking for 858 characters   
+Let me look at how bulk update notifications are built.   
+🔍 Searching for resource_notification|defp notification in /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+💭 Thinking for 2882 characters   
+Let me look at how bulk update builds changesets to understand the `changeset.data` for batch updates.   
+🔍 Searching for Ash.Changeset.for_update|changeset\.data|bulk_update|for_update in /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+💭 Thinking for 407 characters   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+💭 Thinking for 22198 characters   
+Let me look at where the update bulk notification is called and what changeset is passed.   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+💭 Thinking for 129 characters   
+🔍 Searching for notification\(changeset|&notification/3|store_notification in /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+💭 Thinking for 115 characters   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/helpers/bulk.ex ✔ 
+🔍 Searching for store_notifications_for_loaded_records in /home/user/outbox/deps/ash/lib/ash/actions/helpers/bulk.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/helpers/bulk.ex ✔ 
+💭 Thinking for 289 characters   
+Let me look at how `changeset_by_id` is built in the bulk update path.   
+🔍 Searching for changeset_by_id in /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+💭 Thinking for 2170 characters   
+Let me look at how `Ash.bulk_update` works with a list of records and how changesets are built.   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+💭 Thinking for 224 characters   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+💭 Thinking for 290 characters   
+Let me look at the `run/5` function for the stream/records batch path.   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+💭 Thinking for 340 characters   
+Let me look at the stream-of-records path in bulk update.   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+💭 Thinking for 107 characters   
+🔍 Searching for defp do_run\( in /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+💭 Thinking for 176 characters   
+🔍 Searching for defp do_stream_batches in /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+💭 Thinking for 109 characters   
+🔍 Searching for defp setup_changeset in /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+💭 Thinking for 3280 characters   
+Let me check the ETS data layer capabilities.   
+🔍 Searching for can\?|update_query|transact|bulk_create in /home/user/outbox/deps/ash/lib/ash/data_layer/ets.ex ✖ "rg command failed with code 2: rg: /home/user/outbox/deps/ash/lib/ash/data_layer/ets.ex: IO error for operation on /home/user/outbox/deps/ash/lib/ash/data_layer/ets.ex: No such file or directory (os error 2)\n"
+🔍 Searching for **/*ets* in /home/user/outbox/deps/ash/lib/ash/data_layer ✔ 
+🔍 Searching for def can\?|:update_query|:transact|:bulk_create|:async_engine in /home/user/outbox/deps/ash/lib/ash/data_layer/ets/ets.ex ✔ 
+💭 Thinking for 1177 characters   
+Let me look at `do_atomic_batches` to understand the notification's changeset.data in the atomic batch path.   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/update/bulk.ex ✔ 
+💭 Thinking for 2429 characters   
+Let me look at `fully_atomic_changeset` to understand the placeholder data.   
+🔍 Searching for def fully_atomic_changeset in /home/user/outbox/deps/ash/lib/ash/changeset ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+💭 Thinking for 538 characters   
+Let me find the `OriginalDataNotAvailable` module.   
+🔍 Searching for OriginalDataNotAvailable in /home/user/outbox/deps/ash/lib/ash ✔ 
+💭 Thinking for 9093 characters   
+Let me check the default value of `notify?` for bulk actions.   
+🔍 Searching for notify\?:\[|:notify,|notify\? \[ in /home/user/outbox/deps/ash/lib/ash ✔ 
+🔍 Searching for notify\?: in *.ex files in /home/user/outbox/deps/ash/lib/ash ✔ 
+💭 Thinking for 102 characters   
+🔍 Searching for notify\?: \[|:notify, \[ in *.ex files in /home/user/outbox/deps/ash/lib/ash ✔ 
+🔍 Searching for notify\?: \[ in *.ex files in /home/user/outbox/deps/ash/lib/ash ✔ 
+🔍 Searching for notify\?: in *.ex files in /home/user/outbox/deps/ash/lib/ash/actions ✔ 
+💭 Thinking for 118 characters   
+🔍 Searching for def set_opts|notify\?.*default|:notify.*default in /home/user/outbox/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/helpers.ex ✔ 
+💭 Thinking for 150 characters   
+🔍 Searching for notify\?: \[type: :boolean|notify\?: \[type: in /home/user/outbox/deps/ash/lib/ash ✔ 
+🔍 Searching for notify\?: in *.ex files in /home/user/outbox/deps/ash/lib/ash ✔ 
+💭 Thinking for 133 characters   
+🔍 Searching for def bulk_opts|def bulk_update_opts|def bulk_create_opts|def global_opts in /home/user/outbox/deps/ash/lib/ash ✔ 
+🔍 Searching for notify\?: \[ in /home/user/outbox/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/reactor/dsl/bulk_update.ex ✔ 
+💭 Thinking for 325 characters   
+Let me find the bulk action option schemas with `notify?` default.   
+🔍 Searching for def bulk_opts|@bulk_opts|def global_opts|@global_opts in /home/user/outbox/deps/ash/lib/ash ✔ 
+🔍 Searching for def bulk_opts|defmodule BulkOpts|def bulk_create_opts|bulk_opts do in /home/user/outbox/deps/ash/lib/ash ✔ 
+🔍 Searching for def bulk_update\(|def bulk_create\(|def bulk_destroy\( in /home/user/outbox/deps/ash/lib/ash ✔ 
+🔍 Searching for def bulk_update\(.*opts|def bulk_create\(.*opts|notify\?:.*false in *.ex files in /home/user/outbox/deps/ash/lib/ash ✔ 
+💭 Thinking for 134 characters   
+🔍 Searching for def bulk_update|def bulk_create|notify\? in /home/user/outbox/deps/ash/lib/ash.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash.ex ✔ 
+💭 Thinking for 2264 characters   
+Let me look at the create commit function and how notify is called for single actions.   
+🔍 Searching for defp commit|Helpers.notify|def run\( in /home/user/outbox/deps/ash/lib/ash/actions/create/create.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/create/create.ex ✔ 
+💭 Thinking for 1052 characters   
+Let me look at how generic actions work for the replay action.   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/actions/action.ex ✔ 
+💭 Thinking for 126 characters   
+Let me look at how generic actions are defined with a module implementation.   
+🔍 Searching for defmodule|run:|Implementation in /home/user/outbox/deps/ash/lib/ash/resource/actions/action ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/resource/actions/action/implementation.ex ✔ 
+💭 Thinking for 529 characters   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/resource/actions/action/implementation_function.ex ✔ 
+💭 Thinking for 415 characters   
+Let me look at the generic action DSL to understand argument definitions.   
+📖 Reading /home/user/outbox/deps/ash/lib/ash/resource/actions/action/action.ex ✔ 
+💭 Thinking for 96 characters   
+🔍 Searching for def get_argument|def arguments|def get_input in /home/user/outbox/deps/ash/lib/ash/action_input.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/action_input.ex ✔ 
+💭 Thinking for 924 characters   
+Let me check how generic actions are invoked.   
+🔍 Searching for def run_action|def run_action! in /home/user/outbox/deps/ash/lib/ash.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash.ex ✔ 
+💭 Thinking for 215 characters   
+Let me check how identities are defined and enforced in ETS resources.   
+🔍 Searching for identity|identities|unique in /home/user/outbox/deps/ash/lib/ash/data_layer/ets/ets.ex ✔ 
+🔍 Searching for def create\(|defp do_create|identity_name|Identity in /home/user/outbox/deps/ash/lib/ash/data_layer/ets/ets.ex ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/data_layer/ets/ets.ex ✔ 
+💭 Thinking for 280 characters   
+Let me check where identity validation happens in the create flow.   
+🔍 Searching for UniqueIdentity|validate_identities|identity.*error|IdentityViolation in /home/user/outbox/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+💭 Thinking for 773 characters   
+Let me check the identity DSL options for `eager_check_with`.   
+🔍 Searching for eager_check_with|pre_check_with|identity in /home/user/outbox/deps/ash/lib/ash/resource/identities ✖ "rg command failed with code 2: rg: /home/user/outbox/deps/ash/lib/ash/resource/identities: IO error for operation on /home/user/outbox/deps/ash/lib/ash/resource/identities: No such file or directory (os error 2)\n"
+🔍 Searching for **/identit* in /home/user/outbox/deps/ash/lib/ash/resource ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/resource/identity.ex ✔ 
+💭 Thinking for 791 characters   
+🔍 Searching for eager_check_with|eager_check\? in /home/user/outbox/deps/ash/lib/ash/resource ✔ 
+📖 Reading /home/user/outbox/deps/ash/lib/ash/resource/transformers/set_eager_check_with.ex ✔ 

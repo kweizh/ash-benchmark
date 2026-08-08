@@ -1,0 +1,157 @@
+- Initializing MCP connections...
+You
+# Threaded Discussion Graph — Computed Relationships & Custom Actions (Ash Framework v3) ## Background `/home/user/thread_graph` is an Elixir application (OTP app `:thread_graph`) that already compiles. It uses **Ash Framework v3.31** with the in-memory `Ash.DataLayer.Ets` data layer and contains a finished skeleton of a discussion board: * Domain `ThreadGraph.Forum` * `ThreadGraph.Forum.Author` — `handle`, `display_name` * `ThreadGraph.Forum.Thread` — `slug`, `title`, `board`, `locked`, `has_many :messages` * `ThreadGraph.Forum.Message` — `body`, `position` (integer), `score` (integer), `belongs_to :thread`, `belongs_to :author`, `belongs_to :parent` (self-reference through `parent_id`), `has_many :replies` * `ThreadGraph.Forum.MessageLink` — a directed edge between two messages: `belongs_to :from_message`, `belongs_to :to_message`, `kind` (one of `:follow_up`, `:duplicate_of`, `:fork_of`) * `ThreadGraph.Forum.LoadCounter` — a small global counter helper (see below) Product now wants threading and a "related work" graph on top of this. None of the required associations can be expressed as ordinary foreign-key relationships, so the framework's escape hatches have to be used — while still behaving like first-class relationships and actions (loadable, nestable, batched, and reachable through the domain's code interface). **Do not change** the existing attribute names, relationship names, resource module names, the domain module name, or `ThreadGraph.Forum.LoadCounter`. Everything listed below is additive. ## Requirements Add the following to the existing resources. ### 1. Aggregate `reply_count` on `ThreadGraph.Forum.Message` A public aggregate named `reply_count` that yields the number of messages whose `parent_id` is that message's `id`. It must be loadable both directly and as part of a nested load. ### 2. Relationship `recent_messages` on `ThreadGraph.Forum.Thread` A public `has_many`-style relationship to `ThreadGraph.Forum.Message` named `recent_messages`, whose behaviour is implemented by the module `ThreadGraph.Forum.Threads.RecentMessages`. `Ash.Resource.Info.relationship(ThreadGraph.Forum.Thread, :recent_messages)` must report `type: :has_many`, `destination: ThreadGraph.Forum.Message`, and it must report `ThreadGraph.Forum.Threads.RecentMessages` as the module implementing it (a bare module or a `{module, opts}` pair are both accepted). Contract, for each source thread independently: * the value is that thread's own messages, ordered by `position` **descending**, ties broken by `id` **ascending** (Elixir term comparison of the `id` values), truncated to **at most 3**; * the truncation is per thread — never a global cap over all source threads; * a filter present on the load query is applied to the candidate messages **before** the truncation to 3; * the ordering and the cap of 3 defined here are part of the contract and are not affected by a sort or limit present on the load query; * a thread with no matching message must still be present in the result with `[]`. ### 3. Relationship `ancestor_messages` on `ThreadGraph.Forum.Message` A public `has_many`-style relationship to `ThreadGraph.Forum.Message` named `ancestor_messages`, implemented by the module `ThreadGraph.Forum.Messages.AncestorMessages`, reported by `Ash.Resource.Info.relationship/2` the same way as above. Contract, for each source message independently: * the value is the transitive chain of parents reached by repeatedly following `parent_id`; * ordering is outermost ancestor **first**, the immediate parent **last**; * the source message itself is never included, and no message appears twice; * traversal must terminate on a cyclic `parent_id` chain: stop as soon as the next hop is a message that has already been collected or is the source message itself; * a message with `parent_id == nil` must be present in the result with `[]`. ### 4. Relationship `linked_messages` on `ThreadGraph.Forum.Message` A public `has_many`-style relationship to `ThreadGraph.Forum.Message` named `linked_messages`, implemented by the module `ThreadGraph.Forum.Messages.LinkedMessages`, reported by `Ash.Resource.Info.relationship/2` the same way as above. Contract, for each source message independently: * consider the directed graph whose edges are the `ThreadGraph.Forum.MessageLink` records, pointing from `from_message_id` to `to_message_id`, **regardless of `kind`**; * the value is every message reachable from the source message in one or more hops; * each reachable message appears exactly once and is associated with its **minimum** hop distance from the source; * the source message itself is never included, even when a cycle makes it reachable; * ordering: minimum hop distance **ascending**, then `position` **ascending**, then `id` **ascending**; * a message with no outgoing edge must be present in the result with `[]`. ### 5. Read action `cross_board_highlights` on `ThreadGraph.Forum.Message` A read action named `cross_board_highlights`, implemented by the module `ThreadGraph.Forum.Messages.CrossBoardHighlights`, which `Ash.Resource.Info.action(ThreadGraph.Forum.Message, :cross_board_highlights)` must report as the module implementing the action (bare module or `{module, opts}`). Arguments, exactly: | name | type | required | default | | ------------------ | ------------------- | -------- | ------- | | `boards` | `{:array, :string}` | yes | — | | `min_endorsements` | `:integer` | no | `0` | Define the **endorsement count** of a message `M` as the number of `ThreadGraph.Forum.MessageLink` records whose `to_message_id` is `M.id` **and** whose `kind` is `:follow_up`. Contract: * the result contains exactly those messages whose thread's `board` is one of `boards` **and** whose endorsement count is greater than or equal to `min_endorsements`; * every returned message carries its endorsement count as record metadata under the key `:endorsement_count`, so that `Ash.Resource.get_metadata(message, :endorsement_count)` returns that integer; * when the incoming query carries no sort, the result is ordered by endorsement count **descending**, then `position` **ascending**, then `id` **ascending**; * when the incoming query carries a sort, that sort replaces the default ordering above; * a filter carried by the incoming query must be honoured; * `limit` and `offset` carried by the incoming query must be honoured, and must be applied after filtering and ordering. ### 6. Create action `fork` on `ThreadGraph.Forum.Thread` A create action named `fork` that accepts no attributes, implemented by the module `ThreadGraph.Forum.Threads.ForkThread`, which `Ash.Resource.Info.action(ThreadGraph.Forum.Thread, :fork)` must report as the module implementing the action (bare module or `{module, opts}`). Arguments, exactly: `source_message_id` (`:uuid`, required), `slug` (`:string`, required), `title` (`:string`, required). Let `S` be the message whose `id` is `source_message_id`. On success the action must, in one call: * create and return a new `ThreadGraph.Forum.Thread` whose `slug` and `title` are the given arguments, whose `board` is copied from `S`'s thread, and whose `locked` is `false`; * copy `S` **and every transitive descendant of `S`** (following `parent_id`) into the new thread — and nothing else. Each copy keeps the `body`, `score` and `author_id` of its original, and gets `thread_id` set to the new thread; * reproduce the parent/child structure among the copies: the copy of `S` has `parent_id == nil`, and every other copy's `parent_id` is the id of the copy of its original's parent; * renumber `position` on the copies: sort the copied originals by `position` ascending, ties broken by `id` ascending, and give the copies the positions `1, 2, 3, …` in that order; * create exactly one new `ThreadGraph.Forum.MessageLink` with `kind: :fork_of`, `from_message_id` set to the id of the copy of `S`, and `to_message_id` set to `S.id`. Failure modes — in both cases `Ash.create/2` must return `{:error, %Ash.Error.Invalid{}}` whose `errors` list contains an `%Ash.Error.Changes.InvalidArgument{}` with `field: :source_message_id` and the exact `message` given below, and **no** record of any resource may be created: * no message with that id exists → message `"source message not found"`; * `S`'s thread has `locked == true` → message `"source thread is locked"`. ### 7. Code interface on the domain `ThreadGraph.Forum` * `ThreadGraph.Forum.highlights/2,3,4` and `ThreadGraph.Forum.highlights!/2,3,4` calling `cross_board_highlights`, taking `boards` then `min_endorsements` as positional arguments; * `ThreadGraph.Forum.fork_thread/3,4,5` and `ThreadGraph.Forum.fork_thread!/3,4,5` calling `fork`, taking `source_message_id`, `slug`, then `title` as positional arguments. `ThreadGraph.Forum.highlights!(boards, min_endorsements)` must return exactly what running the read action through `Ash.Query`/`Ash.read!` returns. ## Implementation Hints * Project path: `/home/user/thread_graph`. The project must compile cleanly with `mix compile` (`MIX_ENV=dev`); the verifier evaluates Elixir inside this project with `mix run`. * Everything must keep working with the existing `Ash.DataLayer.Ets` data layer. No new dependencies may be added — the environment is offline and `mix.lock` is fixed. * `ThreadGraph.Forum.LoadCounter` is already implemented and **must not be modified**. Its API is `reset/0`, `bump/1` (an atom key), `count/1` (an atom key → integer) and `counts/0` (a map). Each of the five modules you write must call `ThreadGraph.Forum.LoadCounter.bump/1` **exactly once per invocation of the callback the framework calls on it**, with these keys: | module | key | | ------------------------------------------------- | ------------------------- | | `ThreadGraph.Forum.Threads.RecentMessages` | `:recent_messages` | | `ThreadGraph.Forum.Messages.AncestorMessages` | `:ancestor_messages` | | `ThreadGraph.Forum.Messages.LinkedMessages` | `:linked_messages` | | `ThreadGraph.Forum.Messages.CrossBoardHighlights` | `:cross_board_highlights` | | `ThreadGraph.Forum.Threads.ForkThread` | `:fork` | * Loading `recent_messages`, `ancestor_messages` or `linked_messages` for a list of `K` source records must issue **at most 8 read actions in total across all resources, independent of `K`**. The verifier counts this for real by attaching a `:telemetry` handler to `[:ash, :forum, :read, :stop]` around the load, with `K` of at least 13. Per-source-record querying will fail this. * All three relationships and the aggregate must be `public?`, must be loadable through `Ash.Query.load/2` and through `Ash.load/3` on an already-fetched list of records, and must survive being nested: the verifier loads normal relationships, the `reply_count` aggregate and another one of the three relationships above *underneath* `recent_messages`. * Result values are compared by `id`, by exact list ordering and by list length, so empty results must be `[]` (not `nil` and not `%Ash.NotLoaded{}`). * The seeded data used by the verifier is created through the resources' existing default `:create`/`:update` actions, so those must keep working unchanged. Message `id`s are server-generated UUID strings, so every ordering rule that mentions `id` must compare the actual attribute values rather than insertion order.   
+
+Pochi
+💭 Thinking for 101 characters   
+I'll start by exploring the existing project structure to understand what's already in place.   
+📂 Listing files in /home/user/thread_graph recursively ✔ 
+💭 Thinking for 66 characters   
+Let me read the existing source files to understand the current structure.   
+📖 Reading /home/user/thread_graph/lib/thread_graph/forum.ex ✔ 
+📖 Reading /home/user/thread_graph/lib/thread_graph/forum/author.ex ✔ 
+📖 Reading /home/user/thread_graph/lib/thread_graph/forum/thread.ex ✔ 
+📖 Reading /home/user/thread_graph/lib/thread_graph/forum/message.ex ✔ 
+📖 Reading /home/user/thread_graph/lib/thread_graph/forum/message_link.ex ✔ 
+📖 Reading /home/user/thread_graph/lib/thread_graph/forum/load_counter.ex ✔ 
+📖 Reading /home/user/thread_graph/mix.exs ✔ 
+📖 Reading /home/user/thread_graph/config/config.exs ✔ 
+💭 Thinking for 496 characters   
+Now let me explore the Ash framework source to understand how manual relationships, manual read actions, and manual create actions work. Let me look at the relevant documentation and source code.   
+🔍 Searching for defmodule Ash\.Resource\.Relationships\.Relationships\.Manual in /home/user/thread_graph/deps/ash/lib ✔ 
+🔍 Searching for defmodule Ash\.Actions\.Read\.Manual in /home/user/thread_graph/deps/ash/lib ✔ 
+🔍 Searching for defmodule Ash\.Actions\.Create\.Manual in /home/user/thread_graph/deps/ash/lib ✔ 
+🔍 Searching for manual.*Ash\.Resource\.Relationship in /home/user/thread_graph/deps/ash/lib/ash ✔ 
+💭 Thinking for 64 characters   
+🔍 Searching for Manual in /home/user/thread_graph/deps/ash/lib ✔ 
+🔍 Searching for defmodule.*Manual in /home/user/thread_graph/deps/ash/lib ✔ 
+💭 Thinking for 223 characters   
+Let me read the key manual action modules to understand their contracts.   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource/manual_relationship/manual_relationship.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource/manual_actions/manual_read.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource/manual_actions/manual_create.ex ✔ 
+💭 Thinking for 236 characters   
+Now let me look at how the manual relationship result is consumed and how the relationships module processes it.   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/read/relationships.ex ✔ 
+💭 Thinking for 139 characters   
+🔍 Searching for defp normalize_manual_results|defp regroup_manual_results in /home/user/thread_graph/deps/ash/lib/ash/actions/read/relationships.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/read/relationships.ex ✔ 
+💭 Thinking for 3289 characters   
+Let me look at examples of manual relationships in the Ash codebase and tests.   
+🔍 Searching for use Ash\.Resource\.ManualRelationship in /home/user/thread_graph/deps/ash ✔ 
+🔍 Searching for def load\(.*records.*opts.*context\) in /home/user/thread_graph/deps/ash ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/documentation/topics/resources/relationships.md ✔ 
+💭 Thinking for 804 characters   
+Let me look at how manual read actions are processed and how the query is passed.   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/read/read.ex ✔ 
+💭 Thinking for 548 characters   
+Let me look at the read and create action DSL definitions.   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource/actions/read.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource/actions/create.ex ✔ 
+💭 Thinking for 233 characters   
+Let me read the manual actions documentation and look at how arguments and metadata work.   
+🔍 Searching for **/manual-actions* in /home/user/thread_graph/deps/ash/documentation ✔ 
+🔍 Searching for def put_metadata|def get_metadata in /home/user/thread_graph/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/documentation/topics/actions/manual-actions.md ✔ 
+💭 Thinking for 172 characters   
+Let me look at the metadata functions and `Ash.Query.apply_to`.   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource.ex ✔ 
+🔍 Searching for def apply_to|def arguments in /home/user/thread_graph/deps/ash/lib/ash/query ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/query/query.ex ✔ 
+💭 Thinking for 95 characters   
+🔍 Searching for def arguments|:arguments in /home/user/thread_graph/deps/ash/lib/ash/query/query.ex ✔ 
+🔍 Searching for arguments in /home/user/thread_graph/deps/ash/lib/ash/query/query.ex ✔ 
+💭 Thinking for 248 characters   
+Now let me look at the code interface DSL to understand how to define positional argument functions.   
+🔍 Searching for defmodule Ash\.CodeInterface|positional|args in /home/user/thread_graph/deps/ash/lib/ash/code_interface.ex ✔ 
+🔍 Searching for code_interface|define in /home/user/thread_graph/deps/ash/lib/ash/domain ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/domain/dsl.ex ✔ 
+💭 Thinking for 90 characters   
+🔍 Searching for defmodule Ash\.Resource\.Interface|def schema in /home/user/thread_graph/deps/ash/lib/ash/resource ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource/interface.ex ✔ 
+💭 Thinking for 76 characters   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource/interface.ex ✔ 
+💭 Thinking for 429 characters   
+Let me look at the domain DSL for code interfaces.   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/domain/dsl.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/domain/dsl.ex ✔ 
+💭 Thinking for 573 characters   
+Now let me look at the aggregate DSL and how aggregates are defined.   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/resource/aggregate/aggregate.ex ✔ 
+💭 Thinking for 7571 characters   
+Let me look at how Ash emits telemetry events for reads to understand the event name format.   
+🔍 Searching for :read, :stop|telemetry.*read|\.execute.*telemetry in /home/user/thread_graph/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/read/read.ex ✔ 
+💭 Thinking for 6486 characters   
+Let me look at how `Ash.load` handles records with a query that has filters, to understand if returned records get re-filtered.   
+🔍 Searching for def load\(.*domain.*records|defp load\b|def load\(records, query in /home/user/thread_graph/deps/ash/lib/ash/actions ✔ 
+🔍 Searching for defmodule Ash\.Actions\.Load|def load\b|toplevel|filter_matches|apply_to in /home/user/thread_graph/deps/ash/lib/ash/actions/load.ex ✖ "rg command failed with code 2: rg: /home/user/thread_graph/deps/ash/lib/ash/actions/load.ex: IO error for operation on /home/user/thread_graph/deps/ash/lib/ash/actions/load.ex: No such file or directory (os error 2)\n"
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/read/relationships.ex ✔ 
+💭 Thinking for 8116 characters   
+Let me look at `Ash.Filter.Runtime.filter_matches` and check `Ash.Query.do_filter` visibility.   
+🔍 Searching for def filter_matches in /home/user/thread_graph/deps/ash/lib/ash/filter ✔ 
+🔍 Searching for def do_filter|defp do_filter in /home/user/thread_graph/deps/ash/lib/ash/query/query.ex ✔ 
+💭 Thinking for 248 characters   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/filter/runtime.ex ✔ 
+💭 Thinking for 2827 characters   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/query/query.ex ✔ 
+💭 Thinking for 36383 characters   
+Let me look at the `Helpers.select` and `load_runtime_types` functions to ensure metadata is preserved.   
+🔍 Searching for def select\b|def load_runtime_types|defmodule.*Helpers in /home/user/thread_graph/deps/ash/lib/ash/actions/read ✔ 
+🔍 Searching for def select\(|def load_runtime_types\(|defmodule.*Helpers in /home/user/thread_graph/deps/ash/lib/ash/actions ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/helpers.ex ✔ 
+💭 Thinking for 387 characters   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/helpers.ex ✔ 
+💭 Thinking for 1006 characters   
+Let me look at the read flow to see if sort is applied after manual read actions return.   
+🔍 Searching for runtime_sort|query\.sort|Sort\.|apply_sort|do_sort in /home/user/thread_graph/deps/ash/lib/ash/actions/read/read.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/read/read.ex ✔ 
+💭 Thinking for 114 characters   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/read/read.ex ✔ 
+💭 Thinking for 2125 characters   
+Let me check the `paginate` function to understand how limit/offset are handled for manual read actions.   
+🔍 Searching for defp paginate in /home/user/thread_graph/deps/ash/lib/ash/actions/read/read.ex ✔ 
+🔍 Searching for def paginate|defp paginate in /home/user/thread_graph/deps/ash/lib/ash/actions/read ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/read/read.ex ✔ 
+💭 Thinking for 17146 characters   
+Let me check the Ets data layer's transaction support and the `Ash.Sort.runtime_sort` signature.   
+🔍 Searching for can?|:transaction|def can in /home/user/thread_graph/deps/ash/lib/ash/data_layer/ets.ex ✖ "rg command failed with code 2: rg: /home/user/thread_graph/deps/ash/lib/ash/data_layer/ets.ex: IO error for operation on /home/user/thread_graph/deps/ash/lib/ash/data_layer/ets.ex: No such file or directory (os error 2)\n"
+🔍 Searching for def runtime_sort in /home/user/thread_graph/deps/ash/lib/ash/sort ✔ 
+🔍 Searching for **/*ets* in /home/user/thread_graph/deps/ash/lib/ash/data_layer ✔ 
+🔍 Searching for def runtime_sort in /home/user/thread_graph/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/sort.ex ✔ 
+🔍 Searching for def can\?|:transaction|transaction in /home/user/thread_graph/deps/ash/lib/ash/data_layer/ets/ets.ex ✔ 
+💭 Thinking for 2588 characters   
+Ets doesn't support transactions, so I'll validate before creating. Let me look at the error structures I need to return.   
+🔍 Searching for defmodule Ash\.Error\.Changes\.InvalidArgument|defmodule Ash\.Error\.Invalid in /home/user/thread_graph/deps/ash/lib/ash/error ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/error/changes/invalid_argument.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/error/invalid.ex ✔ 
+💭 Thinking for 996 characters   
+Let me look at how the manual create action's error return is processed.   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/create/create.ex ✔ 
+🔍 Searching for defp validate_manual_action_return_result|defp process_manual|defp manage_relationships|defp add_tenant in /home/user/thread_graph/deps/ash/lib/ash/actions/create/create.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/create/create.ex ✔ 
+💭 Thinking for 437 characters   
+Let me look at how the manual create error is wrapped into the final error class.   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/create/create.ex ✔ 
+💭 Thinking for 1163 characters   
+🔍 Searching for defp run\b|defp commit\b|to_error_class|add_error|Changeset\.apply in /home/user/thread_graph/deps/ash/lib/ash/actions/create/create.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/create/create.ex ✔ 
+💭 Thinking for 373 characters   
+Let me look at the `Ash.create` function to see how the changeset error becomes the final error.   
+🔍 Searching for def create\(.*opts\)|def create\(input|def create\(changeset in /home/user/thread_graph/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/domain/interface.ex ✔ 
+💭 Thinking for 76 characters   
+🔍 Searching for def create\( in /home/user/thread_graph/deps/ash/lib/ash.ex ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash.ex ✔ 
+💭 Thinking for 300 characters   
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/actions/create/create.ex ✔ 
+💭 Thinking for 3616 characters   
+Let me check `Ash.Changeset.add_error` and `Ash.Error.to_error_class` to confirm error wrapping.   
+🔍 Searching for def add_error in /home/user/thread_graph/deps/ash/lib/ash/changeset ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+💭 Thinking for 573 characters   
+Let me verify `Ash.Error.to_error_class` behavior with a changeset.   
+🔍 Searching for def to_error_class|defimpl.*to_error|Ash\.Changeset in /home/user/thread_graph/deps/ash/lib/ash/error ✔ 
+📖 Reading /home/user/thread_graph/deps/ash/lib/ash/error/error.ex ✔ 

@@ -1,0 +1,22 @@
+{
+    "task": {
+        "path": "/home/kw/code/zealt/ash-benchmark/scratchpad/pending-tasks/ash_custom_type_money_ledger",
+        "source": "pending-tasks"
+    },
+    "trial_name": "ash_custom_type_money_ledger__BhgfDgL",
+    "trials_dir": "jobs/2026-08-08__13-23-50",
+    "agent": {
+        "name": "agents.pochi:Pochi",
+        "model_name": "anthropic/claude-5-sonnet",
+        "env": {
+            "POCHI_API_KEY": "${POCHI_API_KEY}"
+        }
+    },
+    "environment": {
+        "type": "daytona"
+    },
+    "artifacts": [
+        "/home/user"
+    ],
+    "job_id": "47506fb3-b5de-4c7f-8168-827cafd585c2"
+}

@@ -1,0 +1,239 @@
+Selected strategy: _DaytonaDirect
+Building environment from /home/kw/code/zealt/ash-benchmark/scratchpad/pending-tasks/ash_notifier_transactional_outbox/environment/Dockerfile
+Running command: set -euo pipefail; mkdir -p /logs/agent/pochi && pochi --version
+Command outputs captured
+Running command: mkdir -p ~/.pochi && mkdir -p /logs/agent/pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/MINIMAX_API_KEY/${MINIMAX_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    },
+    "minimax": {
+      "kind": "minimax",
+      "apiKey": "MINIMAX_API_KEY",
+      "models": {
+        "MiniMax-M3": {
+          "maxTokens": 10000,
+          "contextWindow": 1000000
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: cat > /tmp/pochi_cmd.sh << 'CMD_EOF'
+set -o pipefail
+pochi --model google/gemini-3.5-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl --experimental-stream-trajectory-strip-duplicates > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Transactional Outbox and Event Fan-out on Ash Framework v3
+
+## Background
+
+An Elixir project using **Ash Framework 3.31** lives at `/home/user/outbox`. It already models a tiny
+ledger: the domain `Outbox.Ledger` with the resources `Outbox.Ledger.Account` and
+`Outbox.Ledger.Transfer`, both backed by the in-memory ETS data layer. Today those writes leave no
+trace — nothing downstream can learn that they happened.
+
+Your job is to add an **outbox + fan-out** subsystem to the application. Every successful write to a
+ledger resource must be captured as an ordered outbox entry, and a local dispatcher process must
+hand those entries to interested subscribers with at-least-once delivery, bounded retries and a
+dead-letter path. Everything runs inside this one application: no broker, no database, no network.
+
+## Requirements
+
+### 1. Outbox capture
+
+* Every **successful** write (create, update or destroy) against a ledger resource appends exactly
+  one entry to the outbox. Reads never produce entries.
+* A write that fails (validation error, or any other error) must leave **no** entry behind, and a
+  partially-failing batch write must produce entries only for the rows that actually succeeded.
+* Capture must be driven by the framework's post-commit resource-notification mechanism rather than
+  by code hand-written into each action. As a direct consequence, a caller that asks Ash to hand the
+  notifications back instead of dispatching them (the documented per-call option for exactly that)
+  must see the write succeed while producing **no** outbox entry.
+* Batch writes must produce exactly one entry per successfully written record — never zero, never
+  duplicated.
+
+### 2. Outbox entry contents
+
+Each entry records the action name, the resource, the record id, the acting actor, the attribute
+diff, and two sequence numbers: a **global** one and a **per-aggregate** one.
+
+* `sequence` — global, starts at `1`, increases by exactly `1` per entry, never repeats.
+* `aggregate_sequence` — starts at `1` for each distinct aggregate (a pair of aggregate type and
+  record id) and increases by exactly `1` for each further entry about that same aggregate.
+* Both counters must stay correct when many processes write concurrently, including many concurrent
+  writes to the *same* record.
+
+### 3. Local dispatcher
+
+A supervised, long-lived process fans entries out to subscribers. Subscribers are registered at
+runtime under an id, with a topic pattern and a handler function. Delivery is per
+`(entry, subscriber)` pair:
+
+* A subscriber only ever receives entries whose topic matches its pattern, and only entries created
+  **after** it subscribed (replay aside).
+* An acknowledged delivery is never repeated, no matter how many drain passes happen afterwards.
+* A delivery that is not acknowledged is retried on later drain passes, up to a hard maximum of
+  **3 attempts** in total; after the third failed attempt it stops being retried and is recorded as
+  a dead letter instead.
+* A handler that raises must be contained: it counts as one failed attempt and must not take the
+  dispatcher down or disturb any other delivery.
+* Two delivery modes must be supported, and they must differ observably:
+  * `:sync` — the handler runs immediately, **in the process that performed the write**, before the
+    write call returns.
+  * `:async` — the handler is not run at the time of the write at all; it runs later, **in the
+    dispatcher process**, when a drain is requested.
+  * A `:sync` handler that does not acknowledge is not lost: the delivery joins the pending queue
+    and is retried exactly like an `:async` one, with the attempt it already burned counted.
+* Within one drain pass, deliveries are attempted in ascending `sequence`; when one entry matches
+  several subscribers, they are attempted in the order the subscribers were registered. This is what
+  gives per-aggregate ordering to a healthy subscriber.
+* Draining is caller-driven and must be fully deterministic: the drain request performs exactly one
+  attempt for each currently-pending delivery and only returns once that pass is complete. Nothing
+  may be delivered on a timer or in the background.
+
+### 4. Replay
+
+The outbox must be replayable: given a sequence number and a subscriber id, every stored entry after
+that sequence whose topic matches that subscriber is re-delivered to it in ascending sequence order,
+synchronously, in the caller's process — regardless of whether it was already acknowledged, and
+regardless of the subscriber's delivery mode. Replay never enqueues retries and never dead-letters.
+This capability must be exposed as a **generic action** on the outbox resource.
+
+## Implementation Hints
+
+Project path: `/home/user/outbox`. Ash 3.31 is already vendored; the environment is offline, so do
+not try to add or fetch dependencies. `mix compile` must succeed and emit no errors.
+
+**Topics.** A topic is exactly three dot-separated segments: `ledger.<aggregate_type>.<action_name>`,
+where `<aggregate_type>` is the snake_case of the last segment of the resource module name
+(`Outbox.Ledger.Account` → `account`, `Outbox.Ledger.Transfer` → `transfer`) and `<action_name>` is
+the name of the action that ran. Example: `ledger.account.freeze`.
+
+**Pattern matching.** A subscriber pattern is also dot-separated. A literal segment matches only an
+identical segment — there is no partial or prefix matching inside a segment. `*` matches exactly one
+segment. `#` is only legal as the final segment and matches zero or more remaining segments. If the
+pattern contains no `#`, it matches only topics with the same number of segments.
+
+**The outbox resource** is `Outbox.Eventing.Event`, in a new domain `Outbox.Eventing` (register it in
+the application's Ash domain configuration), stored in the ETS data layer with a UUID primary key
+`:id` and these public attributes:
+
+| attribute | type | notes |
+| --- | --- | --- |
+| `sequence` | `:integer` | global counter described above |
+| `aggregate_sequence` | `:integer` | per-aggregate counter described above |
+| `topic` | `:string` | as defined above |
+| `resource` | `:string` | the resource module's name without the `Elixir.` prefix, e.g. `"Outbox.Ledger.Account"` |
+| `aggregate_type` | `:string` | e.g. `"account"` |
+| `aggregate_id` | `:string` | the written record's primary key |
+| `action` | `:atom` | the action name |
+| `actor_id` | `:string` | see below; `nil` when there is no actor |
+| `changes` | `:map` | see below |
+| `dedup_key` | `:string` | `"<aggregate_type>:<aggregate_id>:<action>:<aggregate_sequence>"` |
+
+`dedup_key` must additionally be protected by a resource identity named `:unique_dedup_key` over
+`[:dedup_key]`, so that a duplicate entry can never be stored. The resource must also expose a
+primary create action that accepts all of the attributes listed above and a primary read action.
+
+`actor_id` is the value of the actor's `:id` key when the write was given an actor that has one and
+that value is a binary; otherwise `nil`.
+
+`changes` is a map keyed by **attribute name as a string**, whose values are maps with exactly the
+two string keys `"from"` and `"to"`. Encoding of a value: `nil` stays `nil`, an atom becomes
+`Atom.to_string/1`, anything else is stored unchanged. Which attributes appear:
+
+* create — every public, non-primary-key attribute of the created record whose value is not `nil`,
+  with `"from" => nil`;
+* update — every public, non-primary-key attribute whose value actually differs between the record
+  the action started from and the record it produced, with the before value under `"from"` and the
+  after value under `"to"`. Ash does not hand the pre-action record to notifications produced by a
+  *batch* update, so for entries coming from a batch update only the `"to"` value of each attribute
+  the action set has to be correct;
+* destroy — always the empty map `%{}`.
+
+**Dispatcher.** The process is registered under the name `Outbox.Eventing.Dispatcher`, is started as
+a child of the application's top-level supervisor `Outbox.Supervisor`, and exposes:
+
+* `subscribe(subscriber_id :: atom(), pattern :: String.t(), handler :: (Event.t() -> :ok | {:error, term()}), opts :: keyword())`
+  — must be callable with 3 or 4 arguments; the only option is `:mode`, which is `:sync` or `:async`
+  and defaults to `:async`. Returns `:ok`, or `{:error, :already_subscribed}` if that id is taken.
+* `unsubscribe(subscriber_id :: atom()) :: :ok` — always `:ok`; the subscriber's still-pending
+  deliveries are discarded, its dead letters are kept.
+* `flush() :: :ok` — perform exactly one drain pass, as described above.
+* `dead_letters() :: [map()]` — every dead-lettered delivery as a map containing at least the keys
+  `:subscriber_id`, `:sequence`, `:attempts` and `:reason`, sorted by `:sequence` ascending and, for
+  equal sequences, by subscriber registration order. `:attempts` is the total number of attempts
+  made. `:reason` is the term from `{:error, reason}` when the handler returned one, or
+  `{:raised, Exception.message(e)}` when the handler raised `e`.
+* `reset() :: :ok` — return the whole subsystem to a pristine state: no subscribers, no pending
+  deliveries, no dead letters, no stored outbox entries, and both counters rewound so the next entry
+  gets `sequence: 1` and `aggregate_sequence: 1`.
+
+Handlers receive the `Outbox.Eventing.Event` struct itself.
+
+**Queries and replay.** `Outbox.Eventing` must expose:
+
+* `list_events!() :: [Event.t()]` — all stored entries, ascending by `sequence`.
+* `events_for!(aggregate_type :: String.t(), aggregate_id :: String.t()) :: [Event.t()]` — entries for
+  one aggregate, ascending by `aggregate_sequence`.
+* `replay(after_sequence :: integer(), subscriber_id :: atom()) :: {:ok, [integer()]}` — performs the
+  replay described above and returns the delivered sequences in ascending order. An unknown
+  subscriber id yields `{:ok, []}` and delivers nothing. It must be backed by a generic action named
+  `:replay` on `Outbox.Eventing.Event` that takes the arguments `:after_sequence` and
+  `:subscriber_id` in that order.
+
+**Batch entry points.** Add a module `Outbox.Ledger.BulkOps` with:
+
+* `open_many(inputs :: [map()]) :: {:ok, [Outbox.Ledger.Account.t()]}` — creates every account in
+  `inputs` (maps with `:owner_id`, `:name` and optionally `:balance`) with a single Ash batch create,
+  returning the created records in any order.
+* `freeze_many(accounts :: [Outbox.Ledger.Account.t()]) :: {:ok, [Outbox.Ledger.Account.t()]}` —
+  applies the `:freeze` action to every given account with a single Ash batch update, returning the
+  updated records in any order.
+
+Both must produce exactly one outbox entry per record they write.
+
+
+EOF
+CMD_EOF
+setsid --wait bash /tmp/pochi_cmd.sh &
+SETSID_PID=$!
+echo $SETSID_PID > /tmp/setsid_bash_pochi_cmd.pid
+wait $SETSID_PID 2>/dev/null
+Command failed
+Running command: if [ -f /tmp/setsid_bash_pochi_cmd.pid ]; then
+SETSID_PID=$(cat /tmp/setsid_bash_pochi_cmd.pid)
+kill -TERM -- -$SETSID_PID 2>/dev/null || true
+sleep 2
+kill -9 -- -$SETSID_PID 2>/dev/null || true
+fi
+rm -f ~/.pochi/config.jsonc /tmp/pochi_cmd.sh /tmp/setsid_bash_pochi_cmd.pid
+Command outputs captured
+Collecting main service artifacts

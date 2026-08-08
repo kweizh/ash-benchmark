@@ -1,0 +1,389 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-08T05:42:44.199271+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 40,
+            "passed": 40,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786167740474,
+            "stop": 1786167764199
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_t01_currencies_and_exponents",
+                "status": "passed",
+                "duration": 23679,
+                "start": 1786167740485,
+                "stop": 1786167764164,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_constructors",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764164,
+                "stop": 1786167764165,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_canonical_string",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764166,
+                "stop": 1786167764167,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_addition_and_subtraction",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764167,
+                "stop": 1786167764168,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_multiplication",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764168,
+                "stop": 1786167764168,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_sum",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764169,
+                "stop": 1786167764169,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_comparison",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764170,
+                "stop": 1786167764170,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_cast_shapes_agree",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764170,
+                "stop": 1786167764171,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_canonical_string_casting",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764171,
+                "stop": 1786167764172,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_unknown_currency_errors",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764172,
+                "stop": 1786167764173,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_fractional_minor_units",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764173,
+                "stop": 1786167764174,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_invalid_format",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764174,
+                "stop": 1786167764175,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_equality",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764175,
+                "stop": 1786167764175,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_storage_type",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764176,
+                "stop": 1786167764176,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_storage_round_trip",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764176,
+                "stop": 1786167764177,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_array_and_nil_round_trip",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764177,
+                "stop": 1786167764178,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_invalid_stored_value",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764178,
+                "stop": 1786167764179,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_currencies_constraint",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764179,
+                "stop": 1786167764180,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_multiple_of_constraint",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764180,
+                "stop": 1786167764180,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_min_and_max_constraints",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764181,
+                "stop": 1786167764181,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t21_bound_currency_mismatch",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764182,
+                "stop": 1786167764182,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_constraint_ordering",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764182,
+                "stop": 1786167764183,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_array_cast_index",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764183,
+                "stop": 1786167764184,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_array_constraint_index",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764184,
+                "stop": 1786167764185,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_new_type_introspection",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764185,
+                "stop": 1786167764185,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_new_type_constraints",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764186,
+                "stop": 1786167764186,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t27_resource_round_trip",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764187,
+                "stop": 1786167764187,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t28_attribute_currency_constraint",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764187,
+                "stop": 1786167764188,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t29_resource_array_index",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764188,
+                "stop": 1786167764189,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t30_adjustment_currency_validation",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764189,
+                "stop": 1786167764190,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t31_apply_adjustment_appends",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764190,
+                "stop": 1786167764190,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t32_apply_adjustment_currency_mismatch",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764191,
+                "stop": 1786167764191,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t33_apply_adjustment_element_constraint",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764191,
+                "stop": 1786167764192,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t34_total_calculation",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764192,
+                "stop": 1786167764193,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t35_payments_aggregate_and_balance",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764193,
+                "stop": 1786167764194,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t36_derived_columns_are_not_writable",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764194,
+                "stop": 1786167764195,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t37_minor_unit_column_is_queryable",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764195,
+                "stop": 1786167764195,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t38_generic_action_returns_money",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167764196,
+                "stop": 1786167764196,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t39_sorting_by_money",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764196,
+                "stop": 1786167764197,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t40_equality_filter",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167764197,
+                "stop": 1786167764198,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

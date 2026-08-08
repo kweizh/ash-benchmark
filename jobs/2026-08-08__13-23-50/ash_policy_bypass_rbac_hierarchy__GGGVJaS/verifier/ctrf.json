@@ -1,0 +1,407 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-08T05:43:24.929669+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 42,
+            "passed": 42,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786167784894,
+            "stop": 1786167804929
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_t01_document_is_authorized_by_policy_authorizer",
+                "status": "passed",
+                "duration": 20008,
+                "start": 1786167784905,
+                "stop": 1786167804913,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_policies_contain_a_bypass",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167804913,
+                "stop": 1786167804914,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_a_custom_filter_check_is_used",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804914,
+                "stop": 1786167804914,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_a_custom_simple_check_is_used",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167804914,
+                "stop": 1786167804915,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_budget_cents_has_a_field_policy",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804915,
+                "stop": 1786167804915,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_relocate_is_a_generic_action_with_uuid_arguments",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167804915,
+                "stop": 1786167804916,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_seeded_fixture_is_readable_without_authorization",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804916,
+                "stop": 1786167804916,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_root_grant_is_inherited_by_the_whole_tree",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804916,
+                "stop": 1786167804916,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_subtree_grant_reaches_three_levels_down",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167804916,
+                "stop": 1786167804917,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_deny_at_a_descendant_cuts_off_the_inherited_grant",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804917,
+                "stop": 1786167804917,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_grant_below_a_deny_re_establishes_access",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804917,
+                "stop": 1786167804917,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_actor_without_roles_gets_an_empty_list",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167804917,
+                "stop": 1786167804918,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_nil_actor_gets_an_empty_list",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804918,
+                "stop": 1786167804918,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_suspended_actor_with_roles_is_forbidden",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804918,
+                "stop": 1786167804918,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_suspended_actor_without_roles_is_forbidden",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804919,
+                "stop": 1786167804919,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_break_glass_actor_sees_every_document",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804919,
+                "stop": 1786167804919,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_break_glass_takes_precedence_over_suspension",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167804919,
+                "stop": 1786167804920,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_filtered_out_fetch_by_id_is_not_found",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804920,
+                "stop": 1786167804920,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_permitted_fetch_by_id_succeeds",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804920,
+                "stop": 1786167804920,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_nil_actor_fetch_by_id_is_not_found",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167804920,
+                "stop": 1786167804921,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t21_suspended_actor_fetch_by_id_is_forbidden",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804921,
+                "stop": 1786167804921,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_editor_may_update_the_title",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804921,
+                "stop": 1786167804921,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_viewer_may_not_update",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804922,
+                "stop": 1786167804922,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_write_without_view_budget_cannot_change_the_budget",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804922,
+                "stop": 1786167804922,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_write_plus_view_budget_may_change_the_budget",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167804922,
+                "stop": 1786167804923,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_unit_admin_inherits_the_right_to_change_the_budget",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804923,
+                "stop": 1786167804923,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t27_break_glass_may_update_anything",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804923,
+                "stop": 1786167804923,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t28_auditor_sees_the_budgets_in_its_subtree",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167804923,
+                "stop": 1786167804924,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t29_reader_without_view_budget_gets_the_forbidden_field_marker",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804924,
+                "stop": 1786167804924,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t30_break_glass_sees_every_budget",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804924,
+                "stop": 1786167804924,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t31_view_budget_is_inherited",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804925,
+                "stop": 1786167804925,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t32_destroy_without_the_delete_capability_is_forbidden",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804925,
+                "stop": 1786167804925,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t33_unit_admin_and_break_glass_may_destroy",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167804925,
+                "stop": 1786167804926,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t34_create_with_the_write_capability_succeeds",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804926,
+                "stop": 1786167804926,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t35_create_without_the_write_capability_is_forbidden",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804926,
+                "stop": 1786167804926,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t36_relocation_succeeds_when_both_ends_are_in_scope",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167804926,
+                "stop": 1786167804927,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t37_relocation_without_the_capability_is_forbidden",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804927,
+                "stop": 1786167804927,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t38_relocation_with_only_the_source_in_scope_is_forbidden",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804927,
+                "stop": 1786167804927,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t39_can_update_document_matches_the_update_contract",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167804927,
+                "stop": 1786167804928,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t40_can_destroy_document_matches_the_destroy_contract",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804928,
+                "stop": 1786167804928,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t41_can_create_document_matches_the_create_contract",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804928,
+                "stop": 1786167804928,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t42_can_relocate_document_matches_the_relocation_contract",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167804929,
+                "stop": 1786167804929,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

@@ -1,0 +1,298 @@
+[37m2026-08-08 11:10:31.005[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	pochi v0.6.20
+[37m2026-08-08 11:10:31.011[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	PochiConfigManager[39m[22m[0m[0m	add workspace config: /root/.pochi/config.jsonc
+[37m2026-08-08 11:10:31.516[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	BuiltInBundle[39m[22m[0m[0m	Materializing 16 built-in files to /tmp/pochi-builtin-ef402bc2bbe8f440
+[37m2026-08-08 11:10:31.721[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:532913[39m[0m[0m[1m[37m	loadAgents[39m[22m[0m[0m	Loaded 6 custom agents (6 valid, 0 invalid)
+[37m2026-08-08 11:10:31.821[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:532914[39m[0m[0m[1m[37m	loadSkills[39m[22m[0m[0m	Loaded 3 skills (3 valid, 0 invalid)
+[37m2026-08-08 11:10:31.933[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:443306[39m[0m[0m[1m[37m	PochiVendor[39m[22m[0m[0m	JWT is expiring or missing, fetching a new one
+[37m2026-08-08 11:10:33.143[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:419194[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	MCP servers configuration changed via signal:
+[37m2026-08-08 11:10:33.143[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:419306[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	Build MCPHub Status
+[37m2026-08-08 11:10:33.311[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Starting task runner...
+[37m2026-08-08 11:10:33.441[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: null, new: # Serve an Ash domain as a spec-compliant JSON:API
+[37m2026-08-08 11:10:41.556[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/catalog and recursive [33mtrue[39m
+[37m2026-08-08 11:10:44.523[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/mix.exs" resolvedPath="/home/user/catalog/mix.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:10:44.523[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:10:44.524[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/config/config.exs" resolvedPath="/home/user/catalog/config/config.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:10:44.524[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:10:44.524[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/lib/catalog/application.ex" resolvedPath="/home/user/catalog/lib/catalog/application.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:10:44.524[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:10:44.524[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/.formatter.exs" resolvedPath="/home/user/catalog/.formatter.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:10:44.524[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:10:44.526[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/mix.exs" mtime=1786166673870 contentLen=562
+[37m2026-08-08 11:10:44.528[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/config/config.exs" mtime=1786166674317 contentLen=253
+[37m2026-08-08 11:10:44.530[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/lib/catalog/application.ex" mtime=1786166674550 contentLen=228
+[37m2026-08-08 11:10:44.532[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/.formatter.exs" mtime=1786166674088 contentLen=74
+[37m2026-08-08 11:10:45.725[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: # Serve an Ash domain as a spec-compliant JSON:API, new: Build a JSON:API book catalog service using Ash in Elixir
+[37m2026-08-08 11:10:47.360[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/catalog/deps/ash_json_api/lib and recursive [33mtrue[39m
+[37m2026-08-08 11:10:47.361[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/mix.exs" resolvedPath="/home/user/catalog/deps/ash_json_api/mix.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:10:47.361[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:10:47.363[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/mix.exs" mtime=1786166676000 contentLen=5930
+[37m2026-08-08 11:10:50.017[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/documentation/tutorials/getting-started-with-ash-json-api.md" resolvedPath="/home/user/catalog/deps/ash_json_api/documentation/tutorials/getting-started-with-ash-json-api.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:10:50.017[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:10:50.017[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/router.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/router.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:10:50.018[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:10:50.020[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/documentation/tutorials/getting-started-with-ash-json-api.md" mtime=1786166676000 contentLen=6308
+[37m2026-08-08 11:10:50.023[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/router.ex" mtime=1786166676000 contentLen=4457
+[37m2026-08-08 11:10:52.612[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md" resolvedPath="/home/user/catalog/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:10:52.613[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:10:52.620[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md" mtime=1786166676000 contentLen=30000
+[37m2026-08-08 11:10:56.229[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/router.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/router.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:10:56.230[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:10:56.230[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/response.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/response.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:10:56.230[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:10:56.233[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/response.ex" mtime=1786166676000 contentLen=4143
+[37m2026-08-08 11:10:56.236[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/router.ex" mtime=1786166676000 contentLen=5879
+[37m2026-08-08 11:10:59.305[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/index.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/index.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:10:59.305[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:10:59.305[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/generic_action_route.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/generic_action_route.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:10:59.306[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:10:59.306[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/get.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/get.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:10:59.306[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:10:59.309[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/index.ex" mtime=1786166676000 contentLen=1531
+[37m2026-08-08 11:10:59.312[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/generic_action_route.ex" mtime=1786166676000 contentLen=1028
+[37m2026-08-08 11:10:59.314[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/get.ex" mtime=1786166676000 contentLen=931
+[37m2026-08-08 11:11:02.187[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/request.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/request.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:02.187[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:02.190[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/request.ex" mtime=1786166676000 contentLen=30000
+[37m2026-08-08 11:11:06.057[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/helpers.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/helpers.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:06.057[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:06.061[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/helpers.ex" mtime=1786166676000 contentLen=30000
+[37m2026-08-08 11:11:12.420[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash/lib def set_actor|def get_actor|def set_context|def get_context [90mundefined[39m
+[37m2026-08-08 11:11:12.420[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def set_actor|def get_actor|def set_context|def get_context'[39m,
+  [32m'/home/user/catalog/deps/ash/lib'[39m
+]
+[37m2026-08-08 11:11:12.424[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/error.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/error.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:12.424[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:12.427[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/error.ex" mtime=1786166676000 contentLen=12051
+[37m2026-08-08 11:11:17.729[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/serializer.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/serializer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:17.730[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:17.734[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/serializer.ex" mtime=1786166676000 contentLen=30000
+[37m2026-08-08 11:11:35.575[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/invalid_type.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/invalid_type.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:35.576[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:35.576[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/invalid_body.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/invalid_body.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:35.576[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:35.576[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/invalid_includes.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/invalid_includes.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:35.576[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:35.576[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/not_found.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/not_found.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:35.576[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:35.576[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/missing_type_on_create.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/missing_type_on_create.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:11:35.576[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:11:35.580[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/invalid_type.ex" mtime=1786166676000 contentLen=784
+[37m2026-08-08 11:11:35.583[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/invalid_body.ex" mtime=1786166676000 contentLen=1095
+[37m2026-08-08 11:11:35.585[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/invalid_includes.ex" mtime=1786166676000 contentLen=861
+[37m2026-08-08 11:11:35.587[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/not_found.ex" mtime=1786166676000 contentLen=1574
+[37m2026-08-08 11:11:35.590[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/missing_type_on_create.ex" mtime=1786166676000 contentLen=916
+[37m2026-08-08 11:12:34.513[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/request.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/request.ex" isVirtual=false cacheExists=true shouldCache=true startLine=700 endLine=1100
+[37m2026-08-08 11:12:34.514[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786166676000}
+[37m2026-08-08 11:12:34.522[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/request.ex" mtime=1786166676000 contentLen=12773
+[37m2026-08-08 11:12:38.570[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash_json_api/lib/ash_json_api/request.ex defp parse_attributes|defp parse_relationships|defp parse_resource_identifiers|defp url|defp parse_action_arguments|defp parse_query_params|defp atomize [90mundefined[39m
+[37m2026-08-08 11:12:38.570[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defp parse_attributes|defp parse_relationships|defp parse_resource_identifiers|defp url|defp parse_action_arguments|defp parse_query_params|defp atomize'[39m,
+  [32m'/home/user/catalog/deps/ash_json_api/lib/ash_json_api/request.ex'[39m
+]
+[37m2026-08-08 11:12:42.094[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/request.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/request.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1162 endLine=1470
+[37m2026-08-08 11:12:42.094[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=700, endLine=1100, timestamp=1786166676000}
+[37m2026-08-08 11:12:42.101[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/request.ex" mtime=1786166676000 contentLen=8586
+[37m2026-08-08 11:13:04.941[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/json_schema/json_schema.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/json_schema/json_schema.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:13:04.941[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:13:04.949[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/json_schema/json_schema.ex" mtime=1786166676000 contentLen=30000
+[37m2026-08-08 11:13:14.373[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/schema_errors.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/schema_errors.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:13:14.373[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:13:14.383[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/error/schema_errors.ex" mtime=1786166676000 contentLen=7415
+[37m2026-08-08 11:14:32.300[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash/usage-rules/authorization.md" resolvedPath="/home/user/catalog/deps/ash/usage-rules/authorization.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:14:32.300[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:14:32.301[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash/lib/ash/plug_helpers.ex" resolvedPath="/home/user/catalog/deps/ash/lib/ash/plug_helpers.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=100
+[37m2026-08-08 11:14:32.301[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:14:32.320[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash/lib/ash/plug_helpers.ex" mtime=1786166676000 contentLen=3028
+[37m2026-08-08 11:14:32.327[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash/usage-rules/authorization.md" mtime=1786166676000 contentLen=5034
+[37m2026-08-08 11:14:38.682[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash/lib/ash/data_layer/simple/simple.ex" resolvedPath="/home/user/catalog/deps/ash/lib/ash/data_layer/simple/simple.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:14:38.683[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:14:38.702[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash/lib/ash/data_layer/simple/simple.ex" mtime=1786166676000 contentLen=4891
+[37m2026-08-08 11:14:46.808[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash/lib/ash/data_layer/ets/ets.ex" resolvedPath="/home/user/catalog/deps/ash/lib/ash/data_layer/ets/ets.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=120
+[37m2026-08-08 11:14:46.808[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:14:46.829[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash/lib/ash/data_layer/ets/ets.ex" mtime=1786166676000 contentLen=3074
+[37m2026-08-08 11:15:08.505[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/resource/route.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/resource/route.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=120
+[37m2026-08-08 11:15:08.506[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:15:08.527[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/resource/route.ex" mtime=1786166676000 contentLen=767
+[37m2026-08-08 11:15:13.320[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md json_api.routes.route|wrap_in_result|action_type|:action [90mundefined[39m
+[37m2026-08-08 11:15:13.320[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'json_api.routes.route|wrap_in_result|action_type|:action'[39m,
+  [32m'/home/user/catalog/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md'[39m
+]
+[37m2026-08-08 11:15:24.441[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md" resolvedPath="/home/user/catalog/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md" isVirtual=false cacheExists=true shouldCache=true startLine=1271 endLine=1315
+[37m2026-08-08 11:15:24.441[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786166676000}
+[37m2026-08-08 11:15:24.462[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md" mtime=1786166676000 contentLen=3990
+[37m2026-08-08 11:16:13.200[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash/lib/ash defmodule Ash.Error.Action.Required|defmodule Ash.Error.Query.Required|defmodule Ash.Error.Changes.Required [90mundefined[39m
+[37m2026-08-08 11:16:13.200[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmodule Ash.Error.Action.Required|defmodule Ash.Error.Query.Required|defmodule Ash.Error.Changes.Required'[39m,
+  [32m'/home/user/catalog/deps/ash/lib/ash'[39m
+]
+[37m2026-08-08 11:16:13.201[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash_json_api/lib/ash_json_api/serializer.ex def serialize_value [90mundefined[39m
+[37m2026-08-08 11:16:13.201[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def serialize_value'[39m,
+  [32m'/home/user/catalog/deps/ash_json_api/lib/ash_json_api/serializer.ex'[39m
+]
+[37m2026-08-08 11:16:31.499[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/serializer.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/serializer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1204 endLine=1260
+[37m2026-08-08 11:16:31.499[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786166676000}
+[37m2026-08-08 11:16:31.500[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash/lib/ash/error/changes/required.ex" resolvedPath="/home/user/catalog/deps/ash/lib/ash/error/changes/required.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:16:31.500[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:16:31.521[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/serializer.ex" mtime=1786166676000 contentLen=1870
+[37m2026-08-08 11:16:31.529[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash/lib/ash/error/changes/required.ex" mtime=1786166676000 contentLen=400
+[37m2026-08-08 11:16:35.934[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/serializer.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/serializer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1260 endLine=1330
+[37m2026-08-08 11:16:35.934[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1204, endLine=1260, timestamp=1786166676000}
+[37m2026-08-08 11:16:35.957[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/serializer.ex" mtime=1786166676000 contentLen=2155
+[37m2026-08-08 11:16:52.125[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash/lib/ash Required.exception.*:type.*:argument|argument.*is required|required.*argument [90mundefined[39m
+[37m2026-08-08 11:16:52.126[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'Required.exception.*:type.*:argument|argument.*is required|required.*argument'[39m,
+  [32m'/home/user/catalog/deps/ash/lib/ash'[39m
+]
+[37m2026-08-08 11:16:52.127[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash/lib/ash/action_input.ex required|allow_nil [90mundefined[39m
+[37m2026-08-08 11:16:52.127[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'required|allow_nil'[39m,
+  [32m'/home/user/catalog/deps/ash/lib/ash/action_input.ex'[39m
+]
+[37m2026-08-08 11:16:55.308[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash/lib/ash/action_input.ex" resolvedPath="/home/user/catalog/deps/ash/lib/ash/action_input.ex" isVirtual=false cacheExists=true shouldCache=true startLine=425 endLine=470
+[37m2026-08-08 11:16:55.308[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:16:55.334[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash/lib/ash/action_input.ex" mtime=1786166676000 contentLen=1247
+[37m2026-08-08 11:17:15.888[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/documentation/topics/relationships.md" resolvedPath="/home/user/catalog/deps/ash_json_api/documentation/topics/relationships.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:17:15.889[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:17:15.913[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/documentation/topics/relationships.md" mtime=1786166676000 contentLen=5940
+[37m2026-08-08 11:17:43.275[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash/lib/ash/data_layer/ets/ets.ex TableManager.start|def run_query|def resource_to_query [90mundefined[39m
+[37m2026-08-08 11:17:43.275[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'TableManager.start|def run_query|def resource_to_query'[39m,
+  [32m'/home/user/catalog/deps/ash/lib/ash/data_layer/ets/ets.ex'[39m
+]
+[37m2026-08-08 11:17:43.276[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md json_api.routes.base_route.related|json_api.routes.base_route.relationship [90mundefined[39m
+[37m2026-08-08 11:17:43.276[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'json_api.routes.base_route.related|json_api.routes.base_route.relationship'[39m,
+  [32m'/home/user/catalog/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md'[39m
+]
+[37m2026-08-08 11:17:47.172[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash/lib/ash/data_layer/ets/ets.ex" resolvedPath="/home/user/catalog/deps/ash/lib/ash/data_layer/ets/ets.ex" isVirtual=false cacheExists=true shouldCache=true startLine=2185 endLine=2210
+[37m2026-08-08 11:17:47.172[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1, endLine=120, timestamp=1786166676000}
+[37m2026-08-08 11:17:47.201[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash/lib/ash/data_layer/ets/ets.ex" mtime=1786166676000 contentLen=628
+[37m2026-08-08 11:17:50.724[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash/lib/ash/data_layer/ets/ets.ex" resolvedPath="/home/user/catalog/deps/ash/lib/ash/data_layer/ets/ets.ex" isVirtual=false cacheExists=true shouldCache=true startLine=2160 endLine=2195
+[37m2026-08-08 11:17:50.725[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=2185, endLine=2210, timestamp=1786166676000}
+[37m2026-08-08 11:17:50.751[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash/lib/ash/data_layer/ets/ets.ex" mtime=1786166676000 contentLen=973
+[37m2026-08-08 11:18:14.766[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/helpers.ex def fetch_pagination_parameters [90mundefined[39m
+[37m2026-08-08 11:18:14.767[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def fetch_pagination_parameters'[39m,
+  [32m'/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/helpers.ex'[39m
+]
+[37m2026-08-08 11:18:17.905[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/helpers.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/helpers.ex" isVirtual=false cacheExists=true shouldCache=true startLine=987 endLine=1040
+[37m2026-08-08 11:18:17.905[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786166676000}
+[37m2026-08-08 11:18:17.935[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/helpers.ex" mtime=1786166676000 contentLen=1518
+[37m2026-08-08 11:18:39.996[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash/lib/ash/resource defmodule Ash.Resource.Relationships.BelongsTo|source_attribute.*public|define_attribute.*public|private? [90mundefined[39m
+[37m2026-08-08 11:18:39.997[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmodule Ash.Resource.Relationships.BelongsTo|source_attribute.*public|define_attribute.*public|private?'[39m,
+  [32m'/home/user/catalog/deps/ash/lib/ash/resource'[39m
+]
+[37m2026-08-08 11:18:44.489[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash/lib/ash/resource/relationships/belongs_to.ex" resolvedPath="/home/user/catalog/deps/ash/lib/ash/resource/relationships/belongs_to.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:18:44.490[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:18:44.522[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash/lib/ash/resource/relationships/belongs_to.ex" mtime=1786166676000 contentLen=5635
+[37m2026-08-08 11:18:51.635[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash/lib/ash/resource/relationships/shared_options.ex public\?:|writable\?: [90mundefined[39m
+[37m2026-08-08 11:18:51.635[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'public\\?:|writable\\?:'[39m,
+  [32m'/home/user/catalog/deps/ash/lib/ash/resource/relationships/shared_options.ex'[39m
+]
+[37m2026-08-08 11:18:54.854[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash/lib/ash/resource/relationships/shared_options.ex" resolvedPath="/home/user/catalog/deps/ash/lib/ash/resource/relationships/shared_options.ex" isVirtual=false cacheExists=true shouldCache=true startLine=40 endLine=75
+[37m2026-08-08 11:18:54.854[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:18:54.888[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash/lib/ash/resource/relationships/shared_options.ex" mtime=1786166676000 contentLen=995
+[37m2026-08-08 11:19:24.482[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash_json_api/lib/ash_json_api def required_write_attributes|def required_relationship_attributes [90mundefined[39m
+[37m2026-08-08 11:19:24.484[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def required_write_attributes|def required_relationship_attributes'[39m,
+  [32m'/home/user/catalog/deps/ash_json_api/lib/ash_json_api'[39m
+]
+[37m2026-08-08 11:19:28.595[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/json_schema/open_api.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/json_schema/open_api.ex" isVirtual=false cacheExists=true shouldCache=true startLine=2458 endLine=2530
+[37m2026-08-08 11:19:28.595[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:19:28.636[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/json_schema/open_api.ex" mtime=1786166676000 contentLen=2572
+[37m2026-08-08 11:19:43.319[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash/lib/ash/type defmodule Ash.Type.String|def constraints|:min_length|:max_length|:min\b|:max\b|greater_than_or_equal [90mundefined[39m
+[37m2026-08-08 11:19:43.320[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmodule Ash.Type.String|def constraints|:min_length|:max_length|:min\\b|:max\\b|greater_than_or_equal'[39m,
+  [32m'/home/user/catalog/deps/ash/lib/ash/type'[39m
+]
+[37m2026-08-08 11:20:05.350[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catalog/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md json_api.routes.base_route.route|base_route-route-method|base_route-route-route|base_route-route-action [90mundefined[39m
+[37m2026-08-08 11:20:05.350[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'json_api.routes.base_route.route|base_route-route-method|base_route-route-route|base_route-route-action'[39m,
+  [32m'/home/user/catalog/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md'[39m
+]
+[37m2026-08-08 11:21:01.531[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/get_relationship.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/get_relationship.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:21:01.531[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:21:01.531[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/get_related.ex" resolvedPath="/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/get_related.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-08 11:21:01.531[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-08 11:21:01.580[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/get_relationship.ex" mtime=1786166676000 contentLen=1185
+[37m2026-08-08 11:21:01.602[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catalog/deps/ash_json_api/lib/ash_json_api/controllers/get_related.ex" mtime=1786166676000 contentLen=1439

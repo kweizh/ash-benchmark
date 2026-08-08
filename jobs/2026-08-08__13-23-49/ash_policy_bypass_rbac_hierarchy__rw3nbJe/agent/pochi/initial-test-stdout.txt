@@ -1,0 +1,20 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.3
+collected 12 items
+
+../bootstrap/test_initial_state.py::test_elixir_toolchain_available PASSED
+../bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+../bootstrap/test_initial_state.py::test_mix_project_files_exist PASSED
+../bootstrap/test_initial_state.py::test_otp_app_is_orgguard PASSED
+../bootstrap/test_initial_state.py::test_ash_and_sat_solver_are_pinned PASSED
+../bootstrap/test_initial_state.py::test_dependencies_are_vendored PASSED
+../bootstrap/test_initial_state.py::test_dependencies_are_precompiled_for_dev_and_test PASSED
+../bootstrap/test_initial_state.py::test_domain_module_file_exists PASSED
+../bootstrap/test_initial_state.py::test_project_compiles_offline PASSED
+../bootstrap/test_initial_state.py::test_ash_version_is_available_at_runtime PASSED
+../bootstrap/test_initial_state.py::test_domain_has_no_resources_yet PASSED
+../bootstrap/test_initial_state.py::test_resource_modules_are_not_defined_yet PASSED
+
+============================= 12 passed in 17.19s ==============================

@@ -1,0 +1,299 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-08T05:44:03.234688+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 30,
+            "passed": 30,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786167815611,
+            "stop": 1786167843234
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_t01_get_one_book_resource_object",
+                "status": "passed",
+                "duration": 24420,
+                "start": 1786167815700,
+                "stop": 1786167840120,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_top_level_document_members_and_self_link",
+                "status": "passed",
+                "duration": 69,
+                "start": 1786167840126,
+                "stop": 1786167840195,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_sparse_fieldset_on_primary_data",
+                "status": "passed",
+                "duration": 8,
+                "start": 1786167840196,
+                "stop": 1786167840204,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_include_author_linkage_and_included",
+                "status": "passed",
+                "duration": 295,
+                "start": 1786167840204,
+                "stop": 1786167840499,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_sparse_fieldset_applies_to_included",
+                "status": "passed",
+                "duration": 9,
+                "start": 1786167840499,
+                "stop": 1786167840508,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_index_filter_hides_restricted_from_anonymous",
+                "status": "passed",
+                "duration": 9,
+                "start": 1786167840508,
+                "stop": 1786167840517,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_index_filter_shows_restricted_to_curator",
+                "status": "passed",
+                "duration": 8,
+                "start": 1786167840517,
+                "stop": 1786167840525,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_included_resources_are_deduplicated",
+                "status": "passed",
+                "duration": 9,
+                "start": 1786167840526,
+                "stop": 1786167840535,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_nested_include_is_complete_and_deduplicated",
+                "status": "passed",
+                "duration": 10,
+                "start": 1786167840535,
+                "stop": 1786167840545,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_relationship_links_on_author",
+                "status": "passed",
+                "duration": 8,
+                "start": 1786167840595,
+                "stop": 1786167840603,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_sort_descending",
+                "status": "passed",
+                "duration": 17,
+                "start": 1786167840603,
+                "stop": 1786167840620,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_sort_ascending",
+                "status": "passed",
+                "duration": 83,
+                "start": 1786167840620,
+                "stop": 1786167840703,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_pagination_first_page_links_and_total",
+                "status": "passed",
+                "duration": 192,
+                "start": 1786167840704,
+                "stop": 1786167840896,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_pagination_last_page_links",
+                "status": "passed",
+                "duration": 10,
+                "start": 1786167840897,
+                "stop": 1786167840907,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_create_book_persists_and_links_author",
+                "status": "passed",
+                "duration": 21,
+                "start": 1786167840907,
+                "stop": 1786167840928,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_multiple_attribute_constraint_violations",
+                "status": "passed",
+                "duration": 273,
+                "start": 1786167840929,
+                "stop": 1786167841202,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_missing_required_attribute",
+                "status": "passed",
+                "duration": 201,
+                "start": 1786167841202,
+                "stop": 1786167841403,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_review_rating_out_of_range",
+                "status": "passed",
+                "duration": 11,
+                "start": 1786167841403,
+                "stop": 1786167841414,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_missing_required_relationship",
+                "status": "passed",
+                "duration": 182,
+                "start": 1786167841414,
+                "stop": 1786167841596,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_wrong_resource_type_in_body",
+                "status": "passed",
+                "duration": 100,
+                "start": 1786167841597,
+                "stop": 1786167841697,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t21_unknown_id_returns_not_found",
+                "status": "passed",
+                "duration": 103,
+                "start": 1786167841697,
+                "stop": 1786167841800,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_patch_updates_only_the_given_attributes",
+                "status": "passed",
+                "duration": 903,
+                "start": 1786167841801,
+                "stop": 1786167842704,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_delete_is_forbidden_without_the_curator_role",
+                "status": "passed",
+                "duration": 298,
+                "start": 1786167842705,
+                "stop": 1786167843003,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_curator_can_delete",
+                "status": "passed",
+                "duration": 23,
+                "start": 1786167843003,
+                "stop": 1786167843026,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_restricted_book_visibility",
+                "status": "passed",
+                "duration": 12,
+                "start": 1786167843027,
+                "stop": 1786167843039,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_related_route_returns_full_resource_objects",
+                "status": "passed",
+                "duration": 61,
+                "start": 1786167843040,
+                "stop": 1786167843101,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t27_relationship_route_returns_identifier_objects_only",
+                "status": "passed",
+                "duration": 11,
+                "start": 1786167843101,
+                "stop": 1786167843112,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t28_shelf_summary_report",
+                "status": "passed",
+                "duration": 6,
+                "start": 1786167843113,
+                "stop": 1786167843119,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t29_shelf_summary_requires_the_shelf_argument",
+                "status": "passed",
+                "duration": 6,
+                "start": 1786167843195,
+                "stop": 1786167843201,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t30_unknown_include_is_rejected",
+                "status": "passed",
+                "duration": 33,
+                "start": 1786167843201,
+                "stop": 1786167843234,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

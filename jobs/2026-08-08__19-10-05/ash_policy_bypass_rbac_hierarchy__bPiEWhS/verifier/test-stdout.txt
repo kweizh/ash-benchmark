@@ -1,0 +1,2265 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 42 items
+
+../tests/test_final_state.py .......FFFFFF....FFF.FFFFFFFF.FFFFFFFFFFFF  [100%]
+
+=================================== FAILURES ===================================
+______________ test_t08_root_grant_is_inherited_by_the_whole_tree ______________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t08_root_grant_is_inherited_by_the_whole_tree(suite_results):
+>       _check(suite_results, "T08")
+
+/tests/test_final_state.py:773: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T08'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T08 failed:
+E           1) test T08 a root grant is inherited by the whole tree (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:355
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.read
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_______________ test_t09_subtree_grant_reaches_three_levels_down _______________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t09_subtree_grant_reaches_three_levels_down(suite_results):
+>       _check(suite_results, "T09")
+
+/tests/test_final_state.py:777: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T09'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T09 failed:
+E           1) test T09 a subtree grant reaches three levels down (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:359
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.read
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+__________ test_t10_deny_at_a_descendant_cuts_off_the_inherited_grant __________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t10_deny_at_a_descendant_cuts_off_the_inherited_grant(suite_results):
+>       _check(suite_results, "T10")
+
+/tests/test_final_state.py:781: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T10'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T10 failed:
+E           1) test T10 a deny at a descendant cuts off the inherited grant for that subtree (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:363
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.read
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+______________ test_t11_grant_below_a_deny_re_establishes_access _______________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t11_grant_below_a_deny_re_establishes_access(suite_results):
+>       _check(suite_results, "T11")
+
+/tests/test_final_state.py:785: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T11'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T11 failed:
+E           1) test T11 a grant below a deny re-establishes access (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:367
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.read
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_______________ test_t12_actor_without_roles_gets_an_empty_list ________________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t12_actor_without_roles_gets_an_empty_list(suite_results):
+>       _check(suite_results, "T12")
+
+/tests/test_final_state.py:789: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T12'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T12 failed:
+E           1) test T12 an actor with no role assignments sees an empty list, not an error (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:372
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.read
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+____________________ test_t13_nil_actor_gets_an_empty_list _____________________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t13_nil_actor_gets_an_empty_list(suite_results):
+>       _check(suite_results, "T13")
+
+/tests/test_final_state.py:793: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T13'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T13 failed:
+E           1) test T13 a nil actor sees an empty list, not an error (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:377
+E              match (=) failed
+E              code:  assert {:ok, docs} = list(nil)
+E              left:  {:ok, docs}
+E              right: {:error,
+E                      %Ash.Error.Forbidden{
+E                        bread_crumbs: ["Error returned from: OrgGuard.Access.Document.read"], 
+E                        query: "#Query<>", 
+E                        errors: [
+E                          %Ash.Error.Forbidden.Policy{
+E                            scenarios: [],
+E                            facts: %{
+E                              {Ash.Policy.Check.ActionType, [type: [:read], access_type: :filter]} => true,
+E                              {Ash.Policy.Check.ActorAttributeEquals,
+E                               [attribute: :global_role, value: :break_glass, access_type: :filter]} => false,
+E                              {Ash.Policy.Check.ActorAttributeEquals,
+E                               [attribute: :status, value: :suspended, access_type: :filter]} => false,
+E                              {OrgGuard.Access.Checks.HasCapabilityFilter, [capability: :read, access_type: :filter]} => false
+E                            },
+E                            filter: nil,
+E                            actor: nil,
+E                            policy_breakdown?: false,
+E                            must_pass_strict_check?: false,
+E                            for_fields: nil,
+E                            subject: #Ash.Query<
+E                              resource: OrgGuard.Access.Document,
+E                              action: :read,
+E                              calculations: %{
+E                                {:__ash_fields_are_visible__, [:budget_cents]} => #Ash.Resource.Calculation.Expression<[expr: false]>,
+E                                {:__ash_fields_are_visible__, [:title, :org_unit_id]} => #Ash.Resource.Calculation.Expression<[expr: true]>
+E                              },
+E                              select: [:id, :title, :org_unit_id, :budget_cents]
+E                            >,
+E                            context_description: nil,
+E                            policies: [
+E                              %Ash.Policy.Policy{
+E                                condition: [
+E                                  {Ash.Policy.Check.ActorAttributeEquals,
+E                                   [attribute: :global_role, value: :break_glass, access_type: :filter]}
+E                                ],
+E                                policies: [
+E                                  %Ash.Policy.Check{
+E                                    check: {Ash.Policy.Check.Static, [result: true]},
+E                                    check_module: Ash.Policy.Check.Static,
+E                                    check_opts: [result: true, access_type: :filter],
+E                                    type: :authorize_if,
+E                                    __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                      anno: [
+E                                        file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex",
+E                                        location: 98
+E                                      ],
+E                                      properties_anno: %{}
+E                                    }
+E                                  }
+E                                ],
+E                                bypass?: true,
+E                                description: nil,
+E                                access_type: :filter,
+E                                error_message: nil,
+E                                __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                  anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 97],
+E                                  properties_anno: %{}
+E                                }
+E                              },
+E                              %Ash.Policy.Policy{
+E                                condition: [
+E                                  {Ash.Policy.Check.ActorAttributeEquals,
+E                                   [attribute: :status, value: :suspended, access_type: :filter]}
+E                                ],
+E                                policies: [
+E                                  %Ash.Policy.Check{
+E                                    check: {Ash.Policy.Check.Static, [result: true]},
+E                                    check_module: Ash.Policy.Check.Static,
+E                                    check_opts: [result: true, access_type: :filter],
+E                                    type: :forbid_if,
+E                                    __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                      anno: [
+E                                        file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex",
+E                                        location: 103
+E                                      ],
+E                                      properties_anno: %{}
+E                                    }
+E                                  }
+E                                ],
+E                                bypass?: nil,
+E                                description: nil,
+E                                access_type: :filter,
+E                                error_message: nil,
+E                                __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                  anno: [
+E                                    file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex",
+E                                    location: 102
+E                                  ],
+E                                  properties_anno: %{}
+E                                }
+E                              },
+E                              %Ash.Policy.Policy{
+E                                condition: [{Ash.Policy.Check.ActionType, [type: [:read], access_type: :filter]}],
+E                                policies: [
+E                                  %Ash.Policy.Check{
+E                                    check: {OrgGuard.Access.Checks.HasCapabilityFilter, [capability: :read]},
+E                                    check_module: OrgGuard.Access.Checks.HasCapabilityFilter,
+E                                    check_opts: [capability: :read, access_type: :filter],
+E                                    type: :authorize_if,
+E                                    __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                      anno: [
+E                                        file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex",
+E                                        location: 108
+E                                      ],
+E                                      properties_anno: %{}
+E                                    }
+E                                  }
+E                                ],
+E                                bypass?: nil,
+E                                description: nil,
+E                                access_type: :filter,
+E                                error_message: nil,
+E                                __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                  anno: [
+E                                    file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex",
+E                                    location: 107
+E                                  ],
+E                                  properties_anno: %{}
+E                                }
+E                              },
+E                              %Ash.Policy.Policy{
+E                                condition: [{Ash.Policy.Check.ActionType, [type: [:create], access_type: :filter]}],
+E                                policies: [
+E                                  %Ash.Policy.Check{
+E                                    check: {OrgGuard.Access.Checks.HasCapabilitySimple, [capability: :write]},
+E                                    check_module: OrgGuard.Access.Checks.HasCapabilitySimple,
+E                                    check_opts: [capability: :write, access_type: :filter],
+E                                    type: :authorize_if,
+E                                    __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                      anno: [
+E                                        file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex",
+E                                        location: 113
+E                                      ],
+E                                      properties_anno: %{}
+E                                    }
+E                                  }
+E                                ],
+E                                bypass?: nil,
+E                                description: nil,
+E                                access_type: :filter,
+E                                error_message: nil,
+E                                __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                  anno: [
+E                                    file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex",
+E                                    location: 112
+E                                  ],
+E                                  properties_anno: %{}
+E                                }
+E                              },
+E                              %Ash.Policy.Policy{
+E                                condition: [{Ash.Policy.Check.ActionType, [type: [:update], access_type: :filter]}],
+E                                policies: [
+E                                  %Ash.Policy.Check{
+E                                    check: {OrgGuard.Access.Checks.HasCapabilitySimple, [capability: :write]},
+E                                    check_module: OrgGuard.Access.Checks.HasCapabilitySimple,
+E                                    check_opts: [capability: :write, access_type: :filter],
+E                                    type: :authorize_if,
+E                                    __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                      anno: [
+E                                        file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex",
+E                                        location: 118
+E                                      ],
+E                                      properties_anno: %{}
+E                                    }
+E                                  }
+E                                ],
+E                                bypass?: nil,
+E                                description: nil,
+E                                access_type: :filter,
+E                                error_message: nil,
+E                                __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                  anno: [
+E                                    file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex",
+E                                    location: 117
+E                                  ],
+E                                  properties_anno: %{}
+E                                }
+E                              },
+E                              %Ash.Policy.Policy{
+E                                condition: [{Ash.Policy.Check.ActionType, [type: [:destroy], access_type: :filter]}],
+E                                policies: [
+E                                  %Ash.Policy.Check{
+E                                    check: {OrgGuard.Access.Checks.HasCapabilitySimple, [capability: :delete]},
+E                                    check_module: OrgGuard.Access.Checks.HasCapabilitySimple,
+E                                    check_opts: [capability: :delete, access_type: :filter],
+E                                    type: :authorize_if,
+E                                    __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                      anno: [
+E                                        file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex",
+E                                        location: 123
+E                                      ],
+E                                      properties_anno: %{}
+E                                    }
+E                                  }
+E                                ],
+E                                bypass?: nil,
+E                                description: nil,
+E                                access_type: :filter,
+E                                error_message: nil,
+E                                __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                  anno: [
+E                                    file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex",
+E                                    location: 122
+E                                  ],
+E                                  properties_anno: %{}
+E                                }
+E                              },
+E                              %Ash.Policy.Policy{
+E                                condition: [{Ash.Policy.Check.Action, [action: [:relocate], access_type: :filter]}],
+E                                policies: [
+E                                  %Ash.Policy.Check{
+E                                    check: {OrgGuard.Access.Checks.HasCapabilitySimple, [capability: :relocate]},
+E                                    check_module: OrgGuard.Access.Checks.HasCapabilitySimple,
+E                                    check_opts: [capability: :relocate, access_type: :filter],
+E                                    type: :authorize_if,
+E                                    __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                      anno: [
+E                                        file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex",
+E                                        location: 128
+E                                      ],
+E                                      properties_anno: %{}
+E                                    }
+E                                  }
+E                                ],
+E                                bypass?: nil,
+E                                description: nil,
+E                                access_type: :filter,
+E                                error_message: nil,
+E                                __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                  anno: [
+E                                    file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex",
+E                                    location: 127
+E                                  ],
+E                                  properties_anno: %{}
+E                                }
+E                              }
+E                            ],
+E                            resource: OrgGuard.Access.Document,
+E                            solver_statement: false,
+E                            domain: OrgGuard.Access,
+E                            action: %Ash.Resource.Actions.Read{
+E                              arguments: [],
+E                              description: nil,
+E                              filter: nil,
+E                              filters: [],
+E                              get_by: [],
+E                              get?: false,
+E                              manual: nil,
+E                              metadata: [],
+E                              skip_unknown_inputs: [],
+E                              skip_global_validations?: false,
+E                              modify_query: nil,
+E                              multitenancy: :enforce,
+E                              name: :read,
+E                              pagination: false,
+E                              preparations: [],
+E                              primary?: true,
+E                              public?: true,
+E                              touches_resources: [],
+E                              timeout: nil,
+E                              transaction?: false,
+E                              type: :read,
+E                              __spark_metadata__: %Spark.Dsl.Entity.Meta{
+E                                anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 38],
+E                                properties_anno: %{
+E                                  primary?: [
+E                                    file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex",
+E                                    location: 39
+E                                  ]
+E                                }
+E                              }
+E                            },
+E                            changeset_doesnt_match_filter: false,
+E                            custom_message: nil,
+E                            splode: Ash.Error,
+E                            bread_crumbs: ["Error returned from: OrgGuard.Access.Document.read"],
+E                            vars: [],
+E                            path: [],
+E                            stacktrace: #Splode.Stacktrace<>,
+E                            class: :forbidden
+E                          }
+E                        ]
+E                      }}
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:378: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+________________ test_t18_filtered_out_fetch_by_id_is_not_found ________________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t18_filtered_out_fetch_by_id_is_not_found(suite_results):
+>       _check(suite_results, "T18")
+
+/tests/test_final_state.py:813: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T18'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T18 failed:
+E           1) test T18 fetching a filtered-out document by id is not-found, not forbidden (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:402
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.read
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+___________________ test_t19_permitted_fetch_by_id_succeeds ____________________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t19_permitted_fetch_by_id_succeeds(suite_results):
+>       _check(suite_results, "T19")
+
+/tests/test_final_state.py:817: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T19'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T19 failed:
+E           1) test T19 fetching a permitted document by id succeeds (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:412
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.read
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_________________ test_t20_nil_actor_fetch_by_id_is_not_found __________________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t20_nil_actor_fetch_by_id_is_not_found(suite_results):
+>       _check(suite_results, "T20")
+
+/tests/test_final_state.py:821: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T20'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T20 failed:
+E           1) test T20 fetching by id with a nil actor is not-found (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:417
+E              expected NotFound, got: {:error, %Ash.Error.Forbidden{bread_crumbs: ["Error returned from: OrgGuard.Access.Document.read"],  query: "#Query<>",  errors: [%Ash.Error.Forbidden.Policy{scenarios: [], facts: %{{Ash.Policy.Check.ActionType, [type: [:read], access_type: :filter]} => true, {Ash.Policy.Check.ActorAttributeEquals, [attribute: :global_role, value: :break_glass, access_type: :filter]} => false, {Ash.Policy.Check.ActorAttributeEquals, [attribute: :status, value: :suspended, access_type: :filter]} => false, {OrgGuard.Access.Checks.HasCapabilityFilter, [capability: :read, access_type: :filter]} => false}, filter: nil, actor: nil, policy_breakdown?: false, must_pass_strict_check?: false, for_fields: nil, subject: #Ash.Query<resource: OrgGuard.Access.Document, action: :read, filter: #Ash.Filter<id == "16b1aac9-b8ac-4968-a1e1-e5381179c46f">, calculations: %{{:__ash_fields_are_visible__, [:budget_cents]} => #Ash.Resource.Calculation.Expression<[expr: false]>, {:__ash_fields_are_visible__, [:title, :org_unit_id]} => #Ash.Resource.Calculation.Expression<[expr: true]>}, select: [:id, :title, :org_unit_id, :budget_cents]>, context_description: nil, policies: [%Ash.Policy.Policy{condition: [{Ash.Policy.Check.ActorAttributeEquals, [attribute: :global_role, value: :break_glass, access_type: :filter]}], policies: [%Ash.Policy.Check{check: {Ash.Policy.Check.Static, [result: true]}, check_module: Ash.Policy.Check.Static, check_opts: [result: true, access_type: :filter], type: :authorize_if, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 98], properties_anno: %{}}}], bypass?: true, description: nil, access_type: :filter, error_message: nil, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 97], properties_anno: %{}}}, %Ash.Policy.Policy{condition: [{Ash.Policy.Check.ActorAttributeEquals, [attribute: :status, value: :suspended, access_type: :filter]}], policies: [%Ash.Policy.Check{check: {Ash.Policy.Check.Static, [result: true]}, check_module: Ash.Policy.Check.Static, check_opts: [result: true, access_type: :filter], type: :forbid_if, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 103], properties_anno: %{}}}], bypass?: nil, description: nil, access_type: :filter, error_message: nil, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 102], properties_anno: %{}}}, %Ash.Policy.Policy{condition: [{Ash.Policy.Check.ActionType, [type: [:read], access_type: :filter]}], policies: [%Ash.Policy.Check{check: {OrgGuard.Access.Checks.HasCapabilityFilter, [capability: :read]}, check_module: OrgGuard.Access.Checks.HasCapabilityFilter, check_opts: [capability: :read, access_type: :filter], type: :authorize_if, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 108], properties_anno: %{}}}], bypass?: nil, description: nil, access_type: :filter, error_message: nil, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 107], properties_anno: %{}}}, %Ash.Policy.Policy{condition: [{Ash.Policy.Check.ActionType, [type: [:create], access_type: :filter]}], policies: [%Ash.Policy.Check{check: {OrgGuard.Access.Checks.HasCapabilitySimple, [capability: :write]}, check_module: OrgGuard.Access.Checks.HasCapabilitySimple, check_opts: [capability: :write, access_type: :filter], type: :authorize_if, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 113], properties_anno: %{}}}], bypass?: nil, description: nil, access_type: :filter, error_message: nil, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 112], properties_anno: %{}}}, %Ash.Policy.Policy{condition: [{Ash.Policy.Check.ActionType, [type: [:update], access_type: :filter]}], policies: [%Ash.Policy.Check{check: {OrgGuard.Access.Checks.HasCapabilitySimple, [capability: :write]}, check_module: OrgGuard.Access.Checks.HasCapabilitySimple, check_opts: [capability: :write, access_type: :filter], type: :authorize_if, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 118], properties_anno: %{}}}], bypass?: nil, description: nil, access_type: :filter, error_message: nil, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 117], properties_anno: %{}}}, %Ash.Policy.Policy{condition: [{Ash.Policy.Check.ActionType, [type: [:destroy], access_type: :filter]}], policies: [%Ash.Policy.Check{check: {OrgGuard.Access.Checks.HasCapabilitySimple, [capability: :delete]}, check_module: OrgGuard.Access.Checks.HasCapabilitySimple, check_opts: [capability: :delete, access_type: :filter], type: :authorize_if, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 123], properties_anno: %{}}}], bypass?: nil, description: nil, access_type: :filter, error_message: nil, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 122], properties_anno: %{}}}, %Ash.Policy.Policy{condition: [{Ash.Policy.Check.Action, [action: [:relocate], access_type: :filter]}], policies: [%Ash.Policy.Check{check: {OrgGuard.Access.Checks.HasCapabilitySimple, [capability: :relocate]}, check_module: OrgGuard.Access.Checks.HasCapabilitySimple, check_opts: [capability: :relocate, access_type: :filter], type: :authorize_if, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 128], properties_anno: %{}}}], bypass?: nil, description: nil, access_type: :filter, error_message: nil, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 127], properties_anno: %{}}}], resource: OrgGuard.Access.Document, solver_statement: false, domain: OrgGuard.Access, action: %Ash.Resource.Actions.Read{arguments: [], description: nil, filter: nil, filters: [], get_by: [], get?: false, manual: nil, metadata: [], skip_unknown_inputs: [], skip_global_validations?: false, modify_query: nil, multitenancy: :enforce, name: :read, pagination: false, preparations: [], primary?: true, public?: true, touches_resources: [], timeout: nil, transaction?: false, type: :read, __spark_metadata__: %Spark.Dsl.Entity.Meta{anno: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 38], properties_anno: %{primary?: [file: ~c"/home/user/orgguard/lib/orgguard/access/document.ex", location: 39]}}}, changeset_doesnt_match_filter: false, custom_message: nil, splode: Ash.Error, bread_crumbs: ["Error returned from: OrgGuard.Access.Document.read"], vars: [], path: [], stacktrace: #Splode.Stacktrace<>, class: :forbidden}]}}
+E              code: assert not_found?(result), "expected NotFound, got: #{inspect(result)}"
+E              stacktrace:
+E                /tmp/harbor_rbac_suite.exs:419: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_____________________ test_t22_editor_may_update_the_title _____________________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t22_editor_may_update_the_title(suite_results):
+>       _check(suite_results, "T22")
+
+/tests/test_final_state.py:829: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T22'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T22 failed:
+E           1) test T22 an editor may update the title of a document in its unit (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:430
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in bulk update: OrgGuard.Access.Document.update
+E                > Exception raised in: OrgGuard.Access.Document.update
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+________________________ test_t23_viewer_may_not_update ________________________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t23_viewer_may_not_update(suite_results):
+>       _check(suite_results, "T23")
+
+/tests/test_final_state.py:833: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T23'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T23 failed:
+E           1) test T23 a viewer may not update (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:436
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in bulk update: OrgGuard.Access.Document.update
+E                > Exception raised in: OrgGuard.Access.Document.update
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_________ test_t24_write_without_view_budget_cannot_change_the_budget __________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t24_write_without_view_budget_cannot_change_the_budget(suite_results):
+>       _check(suite_results, "T24")
+
+/tests/test_final_state.py:837: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T24'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T24 failed:
+E           1) test T24 write without view_budget cannot change budget_cents (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:443
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in bulk update: OrgGuard.Access.Document.update
+E                > Exception raised in: OrgGuard.Access.Document.update
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+____________ test_t25_write_plus_view_budget_may_change_the_budget _____________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t25_write_plus_view_budget_may_change_the_budget(suite_results):
+>       _check(suite_results, "T25")
+
+/tests/test_final_state.py:841: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T25'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T25 failed:
+E           1) test T25 write plus view_budget may change budget_cents (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:450
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in bulk update: OrgGuard.Access.Document.update
+E                > Exception raised in: OrgGuard.Access.Document.update
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_________ test_t26_unit_admin_inherits_the_right_to_change_the_budget __________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t26_unit_admin_inherits_the_right_to_change_the_budget(suite_results):
+>       _check(suite_results, "T26")
+
+/tests/test_final_state.py:845: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T26'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T26 failed:
+E           1) test T26 unit_admin inherits the right to change budget_cents deep in the tree (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:456
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in bulk update: OrgGuard.Access.Document.update
+E                > Exception raised in: OrgGuard.Access.Document.update
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+___________________ test_t27_break_glass_may_update_anything ___________________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t27_break_glass_may_update_anything(suite_results):
+>       _check(suite_results, "T27")
+
+/tests/test_final_state.py:849: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T27'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T27 failed:
+E           1) test T27 break-glass may update anything (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:462
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in bulk update: OrgGuard.Access.Document.update
+E                > Exception raised in: OrgGuard.Access.Document.update
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:1533: anonymous fn/2 in Ash.Policy.Authorizer.add_calculations/3
+E                (stdlib 6.2.2) maps.erl:860: :maps.fold_1/4
+E                (ash 3.31.0) lib/ash/can.ex:621: anonymous fn/5 in Ash.Can.alter_source/5
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:1533: anonymous fn/2 in Ash.Policy.Authorizer.add_calculations/3
+E                (stdlib 6.2.2) maps.erl:860: :maps.fold_1/4
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:1529: Ash.Policy.Authorizer.add_calculations/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/can.ex:621: anonymous fn/5 in Ash.Can.alter_source/5
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_______________ test_t28_auditor_sees_the_budgets_in_its_subtree _______________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t28_auditor_sees_the_budgets_in_its_subtree(suite_results):
+>       _check(suite_results, "T28")
+
+/tests/test_final_state.py:853: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T28'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T28 failed:
+E           1) test T28 an auditor sees the budgets in its subtree (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:479
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.read
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_____ test_t29_reader_without_view_budget_gets_the_forbidden_field_marker ______
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t29_reader_without_view_budget_gets_the_forbidden_field_marker(suite_results):
+>       _check(suite_results, "T29")
+
+/tests/test_final_state.py:857: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T29'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T29 failed:
+E           1) test T29 a reader without view_budget gets the forbidden-field marker (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:486
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.read
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+______________________ test_t31_view_budget_is_inherited _______________________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t31_view_budget_is_inherited(suite_results):
+>       _check(suite_results, "T31")
+
+/tests/test_final_state.py:865: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T31'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T31 failed:
+E           1) test T31 view_budget is inherited like every other capability (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:504
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.read
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4390: Enum.filter_list/2
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:41: OrgGuard.Access.Checks.HasCapabilityFilter.filter/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_filter.ex:10: OrgGuard.Access.Checks.HasCapabilityFilter.try_strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_________ test_t32_destroy_without_the_delete_capability_is_forbidden __________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t32_destroy_without_the_delete_capability_is_forbidden(suite_results):
+>       _check(suite_results, "T32")
+
+/tests/test_final_state.py:869: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T32'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T32 failed:
+E           1) test T32 destroying without the delete capability is forbidden (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:518
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.destroy
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+_______________ test_t33_unit_admin_and_break_glass_may_destroy ________________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t33_unit_admin_and_break_glass_may_destroy(suite_results):
+>       _check(suite_results, "T33")
+
+/tests/test_final_state.py:873: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T33'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T33 failed:
+E           1) test T33 unit_admin and break-glass may destroy (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:529
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.destroy
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+______________ test_t34_create_with_the_write_capability_succeeds ______________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t34_create_with_the_write_capability_succeeds(suite_results):
+>       _check(suite_results, "T34")
+
+/tests/test_final_state.py:877: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T34'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T34 failed:
+E           1) test T34 creating with the write capability at the target unit succeeds (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:541
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.create
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+__________ test_t35_create_without_the_write_capability_is_forbidden ___________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t35_create_without_the_write_capability_is_forbidden(suite_results):
+>       _check(suite_results, "T35")
+
+/tests/test_final_state.py:881: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T35'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T35 failed:
+E           1) test T35 creating without the write capability is forbidden (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:551
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.create
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+___________ test_t36_relocation_succeeds_when_both_ends_are_in_scope ___________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t36_relocation_succeeds_when_both_ends_are_in_scope(suite_results):
+>       _check(suite_results, "T36")
+
+/tests/test_final_state.py:885: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T36'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T36 failed:
+E           1) test T36 relocation succeeds when the actor may relocate at both ends (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:571
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.relocate
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/actions/action.ex:387: anonymous fn/5 in Ash.Actions.Action.authorize/3
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/actions/action.ex:387: anonymous fn/5 in Ash.Actions.Action.authorize/3
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+___________ test_t37_relocation_without_the_capability_is_forbidden ____________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t37_relocation_without_the_capability_is_forbidden(suite_results):
+>       _check(suite_results, "T37")
+
+/tests/test_final_state.py:889: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T37'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T37 failed:
+E           1) test T37 relocation is forbidden without the relocate capability (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:582
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.relocate
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/actions/action.ex:387: anonymous fn/5 in Ash.Actions.Action.authorize/3
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/actions/action.ex:387: anonymous fn/5 in Ash.Actions.Action.authorize/3
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+________ test_t38_relocation_with_only_the_source_in_scope_is_forbidden ________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t38_relocation_with_only_the_source_in_scope_is_forbidden(suite_results):
+>       _check(suite_results, "T38")
+
+/tests/test_final_state.py:893: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T38'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T38 failed:
+E           1) test T38 relocation is forbidden when only the source unit is in scope (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:593
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: OrgGuard.Access.Document.relocate
+E         
+E              Unknown Error
+E         
+E              * ** (MatchError) no match of right hand side value: nil
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/actions/action.ex:387: anonymous fn/5 in Ash.Actions.Action.authorize/3
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/actions/action.ex:387: anonymous fn/5 in Ash.Actions.Action.authorize/3
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+___________ test_t39_can_update_document_matches_the_update_contract ___________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t39_can_update_document_matches_the_update_contract(suite_results):
+>       _check(suite_results, "T39")
+
+/tests/test_final_state.py:897: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T39'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T39 failed:
+E           1) test T39 can_update_document? agrees with the update contract (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:613
+E              ** (MatchError) no match of right hand side value: nil
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+__________ test_t40_can_destroy_document_matches_the_destroy_contract __________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t40_can_destroy_document_matches_the_destroy_contract(suite_results):
+>       _check(suite_results, "T40")
+
+/tests/test_final_state.py:901: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T40'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T40 failed:
+E           1) test T40 can_destroy_document? and Ash.can?/3 agree with the destroy contract (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:623
+E              ** (MatchError) no match of right hand side value: nil
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+___________ test_t41_can_create_document_matches_the_create_contract ___________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t41_can_create_document_matches_the_create_contract(suite_results):
+>       _check(suite_results, "T41")
+
+/tests/test_final_state.py:905: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T41'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T41 failed:
+E           1) test T41 can_create_document? agrees with the create contract (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:634
+E              ** (MatchError) no match of right hand side value: nil
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+________ test_t42_can_relocate_document_matches_the_relocation_contract ________
+
+suite_results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+
+    def test_t42_can_relocate_document_matches_the_relocation_contract(suite_results):
+>       _check(suite_results, "T42")
+
+/tests/test_final_state.py:909: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+results = {'T01': ('passed', ''), 'T02': ('passed', ''), 'T03': ('passed', ''), 'T04': ('passed', ''), ...}
+scenario = 'T42'
+
+    def _check(results: dict[str, tuple[str, str]], scenario: str) -> None:
+        if "__error__" in results:
+            pytest.fail(results["__error__"][1])
+    
+        assert scenario in results, (
+            f"Scenario {scenario} never ran. Scenarios reported: {sorted(results)}"
+        )
+        status, detail = results[scenario]
+>       assert status == "passed", f"Scenario {scenario} failed:\n{detail}"
+E       AssertionError: Scenario T42 failed:
+E           1) test T42 can_relocate_document? agrees with the relocation contract (OrgGuardRbacTest)
+E              /tmp/harbor_rbac_suite.exs:642
+E              ** (MatchError) no match of right hand side value: nil
+E              stacktrace:
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:75: OrgGuard.Access.Capabilities.holds_role?/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:28: anonymous fn/5 in OrgGuard.Access.Capabilities.effective_roles/4
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:41: OrgGuard.Access.Capabilities.capabilities_at/4
+E                (orgguard 0.1.0) lib/orgguard/access/capabilities.ex:51: OrgGuard.Access.Capabilities.has_capability?/5
+E                (elixir 1.18.4) lib/enum.ex:4315: Enum.predicate_list/3
+E                (orgguard 0.1.0) lib/orgguard/access/checks/has_capability_simple.ex:10: OrgGuard.Access.Checks.HasCapabilitySimple.strict_check/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/policy/policy.ex:303: Ash.Policy.Policy.fetch_or_strict_check_fact/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:404: Ash.Policy.Policy.expand_constants/3
+E                (ash 3.31.0) lib/ash/policy/policy.ex:254: Ash.Policy.Policy.build_requirements_expression/2
+E                (ash 3.31.0) lib/ash/policy/policy.ex:94: Ash.Policy.Policy.solve/1
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:2103: Ash.Policy.Authorizer.strict_check_result/2
+E                (ash 3.31.0) lib/ash/policy/authorizer/authorizer.ex:763: Ash.Policy.Authorizer.strict_check/2
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/can.ex:770: anonymous fn/5 in Ash.Can.run_check/4
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:741: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_t01_document_is_authorized_by_policy_authorizer
+PASSED ../tests/test_final_state.py::test_t02_policies_contain_a_bypass
+PASSED ../tests/test_final_state.py::test_t03_a_custom_filter_check_is_used
+PASSED ../tests/test_final_state.py::test_t04_a_custom_simple_check_is_used
+PASSED ../tests/test_final_state.py::test_t05_budget_cents_has_a_field_policy
+PASSED ../tests/test_final_state.py::test_t06_relocate_is_a_generic_action_with_uuid_arguments
+PASSED ../tests/test_final_state.py::test_t07_seeded_fixture_is_readable_without_authorization
+PASSED ../tests/test_final_state.py::test_t14_suspended_actor_with_roles_is_forbidden
+PASSED ../tests/test_final_state.py::test_t15_suspended_actor_without_roles_is_forbidden
+PASSED ../tests/test_final_state.py::test_t16_break_glass_actor_sees_every_document
+PASSED ../tests/test_final_state.py::test_t17_break_glass_takes_precedence_over_suspension
+PASSED ../tests/test_final_state.py::test_t21_suspended_actor_fetch_by_id_is_forbidden
+PASSED ../tests/test_final_state.py::test_t30_break_glass_sees_every_budget
+FAILED ../tests/test_final_state.py::test_t08_root_grant_is_inherited_by_the_whole_tree
+FAILED ../tests/test_final_state.py::test_t09_subtree_grant_reaches_three_levels_down
+FAILED ../tests/test_final_state.py::test_t10_deny_at_a_descendant_cuts_off_the_inherited_grant
+FAILED ../tests/test_final_state.py::test_t11_grant_below_a_deny_re_establishes_access
+FAILED ../tests/test_final_state.py::test_t12_actor_without_roles_gets_an_empty_list
+FAILED ../tests/test_final_state.py::test_t13_nil_actor_gets_an_empty_list - ...
+FAILED ../tests/test_final_state.py::test_t18_filtered_out_fetch_by_id_is_not_found
+FAILED ../tests/test_final_state.py::test_t19_permitted_fetch_by_id_succeeds
+FAILED ../tests/test_final_state.py::test_t20_nil_actor_fetch_by_id_is_not_found
+FAILED ../tests/test_final_state.py::test_t22_editor_may_update_the_title - A...
+FAILED ../tests/test_final_state.py::test_t23_viewer_may_not_update - Asserti...
+FAILED ../tests/test_final_state.py::test_t24_write_without_view_budget_cannot_change_the_budget
+FAILED ../tests/test_final_state.py::test_t25_write_plus_view_budget_may_change_the_budget
+FAILED ../tests/test_final_state.py::test_t26_unit_admin_inherits_the_right_to_change_the_budget
+FAILED ../tests/test_final_state.py::test_t27_break_glass_may_update_anything
+FAILED ../tests/test_final_state.py::test_t28_auditor_sees_the_budgets_in_its_subtree
+FAILED ../tests/test_final_state.py::test_t29_reader_without_view_budget_gets_the_forbidden_field_marker
+FAILED ../tests/test_final_state.py::test_t31_view_budget_is_inherited - Asse...
+FAILED ../tests/test_final_state.py::test_t32_destroy_without_the_delete_capability_is_forbidden
+FAILED ../tests/test_final_state.py::test_t33_unit_admin_and_break_glass_may_destroy
+FAILED ../tests/test_final_state.py::test_t34_create_with_the_write_capability_succeeds
+FAILED ../tests/test_final_state.py::test_t35_create_without_the_write_capability_is_forbidden
+FAILED ../tests/test_final_state.py::test_t36_relocation_succeeds_when_both_ends_are_in_scope
+FAILED ../tests/test_final_state.py::test_t37_relocation_without_the_capability_is_forbidden
+FAILED ../tests/test_final_state.py::test_t38_relocation_with_only_the_source_in_scope_is_forbidden
+FAILED ../tests/test_final_state.py::test_t39_can_update_document_matches_the_update_contract
+FAILED ../tests/test_final_state.py::test_t40_can_destroy_document_matches_the_destroy_contract
+FAILED ../tests/test_final_state.py::test_t41_can_create_document_matches_the_create_contract
+FAILED ../tests/test_final_state.py::test_t42_can_relocate_document_matches_the_relocation_contract
+======================== 29 failed, 13 passed in 22.43s ========================

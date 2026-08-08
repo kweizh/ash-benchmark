@@ -1,0 +1,231 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 35 items
+
+../../tests/test_final_state.py .............FFF..............FF...      [100%]
+
+=================================== FAILURES ===================================
+________ test_t14_manual_relationship_loads_under_a_manual_relationship ________
+
+suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\n\n--- stderr ---\n')
+
+    def test_t14_manual_relationship_loads_under_a_manual_relationship(suite):
+>       _assert_scenario(suite, "T14")
+
+/tests/test_final_state.py:948: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\n\n--- stderr ---\n')
+scenario_id = 'T14'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T14 failed:
+E           1) test T14 a manual relationship loads underneath another manual relationship (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:437
+E              Assertion with == failed
+E              code:  assert Enum.map(thread.recent_messages, &bodies(&1.ancestor_messages)) == [
+E                       ["chain-0", "chain-1", "chain-2"],
+E                       ["chain-0", "chain-1", "chain-2"],
+E                       ["chain-0", "chain-1"]
+E                     ]
+E              left:  [[], [], ["chain-1", "chain-0"]]
+E              right: [["chain-0", "chain-1", "chain-2"], ["chain-0", "chain-1", "chain-2"], ["chain-0", "chain-1"]]
+E              stacktrace:
+E                /tmp/harbor_manual_graph.exs:444: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+____________ test_t15_ancestor_messages_is_ordered_outermost_first _____________
+
+suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\n\n--- stderr ---\n')
+
+    def test_t15_ancestor_messages_is_ordered_outermost_first(suite):
+>       _assert_scenario(suite, "T15")
+
+/tests/test_final_state.py:952: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\n\n--- stderr ---\n')
+scenario_id = 'T15'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T15 failed:
+E           1) test T15 ancestor_messages walks the whole parent chain, outermost first (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:451
+E              Assertion with == failed
+E              code:  assert ancestors["chain-1"] == ["chain-0"]
+E              left:  []
+E              right: ["chain-0"]
+E              stacktrace:
+E                /tmp/harbor_manual_graph.exs:455: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_______________ test_t16_ancestor_messages_terminates_on_a_cycle _______________
+
+suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\n\n--- stderr ---\n')
+
+    def test_t16_ancestor_messages_terminates_on_a_cycle(suite):
+>       _assert_scenario(suite, "T16")
+
+/tests/test_final_state.py:956: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\n\n--- stderr ---\n')
+scenario_id = 'T16'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T16 failed:
+E           1) test T16 ancestor_messages terminates on a cyclic parent chain (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:461
+E              Assertion with == failed
+E              code:  assert ancestors["cycle-1"] == ["cycle-2"]
+E              left:  []
+E              right: ["cycle-2"]
+E              stacktrace:
+E                /tmp/harbor_manual_graph.exs:464: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_____________ test_t31_fork_renumbers_positions_by_position_order ______________
+
+suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\n\n--- stderr ---\n')
+
+    def test_t31_fork_renumbers_positions_by_position_order(suite):
+>       _assert_scenario(suite, "T31")
+
+/tests/test_final_state.py:1016: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\n\n--- stderr ---\n')
+scenario_id = 'T31'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T31 failed:
+E           1) test T31 fork renumbers positions by position order and ignores unrelated messages (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:644
+E              Assertion with == failed
+E              code:  assert by_body["fork-2"].parent_id == by_body["fork-1"].id
+E              left:  nil
+E              right: "5abd12ac-ed24-4432-90c4-d8ca661fd20a"
+E              stacktrace:
+E                /tmp/harbor_manual_graph.exs:653: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_________________ test_t32_fork_records_a_single_fork_of_link __________________
+
+suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\n\n--- stderr ---\n')
+
+    def test_t32_fork_records_a_single_fork_of_link(suite):
+>       _assert_scenario(suite, "T32")
+
+/tests/test_final_state.py:1020: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('PASS', ''), 'T02': ('PASS', ''), 'T03': ('PASS', ''), 'T04': ('PASS', ''), ...}, '`mix run /tmp/harbor_manu...g@@PASS@@\n@@HARBOR@@test T35 the fork code interface runs the manual action exactly once@@PASS@@\n\n--- stderr ---\n')
+scenario_id = 'T32'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T32 failed:
+E           1) test T32 fork records exactly one :fork_of link from the new root to the source (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:661
+E              Assertion with == failed
+E              code:  assert root.body == "fork-5"
+E              left:  "fork-6"
+E              right: "fork-5"
+E              stacktrace:
+E                /tmp/harbor_manual_graph.exs:676: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../../tests/test_final_state.py::test_t01_manual_relationships_declare_their_modules
+PASSED ../../tests/test_final_state.py::test_t02_manual_actions_declare_their_modules
+PASSED ../../tests/test_final_state.py::test_t03_manual_actions_expose_the_required_arguments
+PASSED ../../tests/test_final_state.py::test_t04_reply_count_aggregate_counts_direct_replies
+PASSED ../../tests/test_final_state.py::test_t05_recent_messages_is_a_per_thread_top_three
+PASSED ../../tests/test_final_state.py::test_t06_recent_messages_is_empty_for_a_thread_without_messages
+PASSED ../../tests/test_final_state.py::test_t07_recent_messages_returns_fewer_than_three_when_available
+PASSED ../../tests/test_final_state.py::test_t08_recent_messages_breaks_position_ties_by_ascending_id
+PASSED ../../tests/test_final_state.py::test_t09_recent_messages_filters_before_truncating
+PASSED ../../tests/test_final_state.py::test_t10_recent_messages_is_loaded_in_one_batch
+PASSED ../../tests/test_final_state.py::test_t11_recent_messages_does_not_query_per_parent
+PASSED ../../tests/test_final_state.py::test_t12_relationship_loads_under_a_manual_relationship
+PASSED ../../tests/test_final_state.py::test_t13_aggregate_loads_under_a_manual_relationship
+PASSED ../../tests/test_final_state.py::test_t17_ancestor_messages_is_batched
+PASSED ../../tests/test_final_state.py::test_t18_linked_messages_is_a_transitive_closure
+PASSED ../../tests/test_final_state.py::test_t19_linked_messages_excludes_self_and_handles_leaves
+PASSED ../../tests/test_final_state.py::test_t20_linked_messages_ignores_kind_and_shares_targets
+PASSED ../../tests/test_final_state.py::test_t21_linked_messages_is_batched
+PASSED ../../tests/test_final_state.py::test_t22_highlights_scopes_by_board_with_default_ordering
+PASSED ../../tests/test_final_state.py::test_t23_highlights_honours_min_endorsements
+PASSED ../../tests/test_final_state.py::test_t24_highlights_merges_several_boards
+PASSED ../../tests/test_final_state.py::test_t25_highlights_attaches_endorsement_count_metadata
+PASSED ../../tests/test_final_state.py::test_t26_highlights_honours_a_query_filter
+PASSED ../../tests/test_final_state.py::test_t27_highlights_honours_a_query_sort
+PASSED ../../tests/test_final_state.py::test_t28_highlights_honours_limit_and_offset
+PASSED ../../tests/test_final_state.py::test_t29_highlights_code_interface_runs_the_action_once
+PASSED ../../tests/test_final_state.py::test_t30_fork_copies_the_source_subtree
+PASSED ../../tests/test_final_state.py::test_t33_fork_rejects_an_unknown_source_message
+PASSED ../../tests/test_final_state.py::test_t34_fork_rejects_a_locked_source_thread
+PASSED ../../tests/test_final_state.py::test_t35_fork_code_interface_runs_the_action_once
+FAILED ../../tests/test_final_state.py::test_t14_manual_relationship_loads_under_a_manual_relationship
+FAILED ../../tests/test_final_state.py::test_t15_ancestor_messages_is_ordered_outermost_first
+FAILED ../../tests/test_final_state.py::test_t16_ancestor_messages_terminates_on_a_cycle
+FAILED ../../tests/test_final_state.py::test_t31_fork_renumbers_positions_by_position_order
+FAILED ../../tests/test_final_state.py::test_t32_fork_records_a_single_fork_of_link
+======================== 5 failed, 30 passed in 16.34s =========================

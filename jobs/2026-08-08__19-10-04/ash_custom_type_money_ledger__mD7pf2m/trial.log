@@ -1,0 +1,205 @@
+Selected strategy: _DaytonaDirect
+Building environment from /home/kw/code/zealt/ash-benchmark/scratchpad/pending-tasks/ash_custom_type_money_ledger/environment/Dockerfile
+Running command: set -euo pipefail; mkdir -p /logs/agent/pochi && pochi --version
+Command outputs captured
+Running command: mkdir -p ~/.pochi && mkdir -p /logs/agent/pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/MINIMAX_API_KEY/${MINIMAX_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    },
+    "minimax": {
+      "kind": "minimax",
+      "apiKey": "MINIMAX_API_KEY",
+      "models": {
+        "MiniMax-M3": {
+          "maxTokens": 10000,
+          "contextWindow": 1000000
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: cat > /tmp/pochi_cmd.sh << 'CMD_EOF'
+set -o pipefail
+pochi --model zai/glm-5.2 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl --experimental-stream-trajectory-strip-duplicates > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# A First-Class Money Type for Ash
+
+## Background
+
+`/home/user/ledger` is an Elixir 1.18 / OTP 27 project (OTP app `:ledger`) that already depends on `ash` 3.31.0 and `jason`. Every dependency is vendored and pre-compiled, and the project must keep building **entirely offline** — nothing may be fetched. You may not add, remove or upgrade dependencies, and the money libraries `ash_money` / `ex_money` are deliberately unavailable — the value type is yours to build.
+
+The project currently contains only the mix project, the config, and an empty Ash domain `Ledger.Billing` (already registered in `config/config.exs`). Everything described below is missing.
+
+Build an exact-integer money value, expose it to Ash as a real custom type, and model a small billing domain on top of it.
+
+## Requirements
+
+### 1. The money value — `Ledger.Money`
+
+A struct with exactly two fields, `:currency` (an atom) and `:amount` (an integer count of *minor units*).
+
+Supported currencies and their minor-unit exponents:
+
+| currency | code | exponent |
+| --- | --- | --- |
+| `:bhd` | `BHD` | 3 |
+| `:eur` | `EUR` | 2 |
+| `:jpy` | `JPY` | 0 |
+| `:usd` | `USD` | 2 |
+
+**Canonical string form**: the uppercase code, one space, then the amount in major units using exactly `exponent` fraction digits (no decimal point at all when the exponent is 0). A negative amount carries a single `-` immediately before the first digit. Examples: `"USD 12.50"`, `"USD -0.05"`, `"USD 0.00"`, `"JPY 500"`, `"JPY -7"`, `"BHD 1.234"`, `"BHD -0.001"`.
+
+Public API of `Ledger.Money` (exact names and arities):
+
+- `currencies/0` → `[:bhd, :eur, :jpy, :usd]`, in that order.
+- `exponent/1` — takes a supported currency atom, returns its exponent as an integer.
+- `new/2` — `new(amount, currency)`; returns `{:ok, money}`, or `{:error, :invalid_amount}` when `amount` is not an integer, or `{:error, :unknown_currency}` when the currency is not supported.
+- `new!/2` — same arguments, returns the money value or raises `ArgumentError`.
+- `zero/1` — `zero(currency)` returns the money value with amount `0`.
+- `add/2` and `subtract/2` — `{:ok, money}`, or `{:error, :currency_mismatch}` when the two operands differ in currency.
+- `multiply/2` — `multiply(money, factor)`; `{:ok, money}` for an integer factor, `{:error, :invalid_factor}` otherwise.
+- `sum/2` — `sum(list_of_money, currency)`; `{:ok, money}` (an empty list sums to zero of that currency), or `{:error, :currency_mismatch}` if any element uses a different currency.
+- `compare/2` — returns `:lt`, `:eq` or `:gt`, and raises `ArgumentError` when the currencies differ.
+- `to_string/1` — the canonical string form.
+
+All arithmetic is exact integer arithmetic; no floats, no rounding, no truncation.
+
+### 2. The Ash type — `Ledger.Money.Type`
+
+An `Ash.Type` whose valid instances are `Ledger.Money` structs. Its storage type must be `:map`.
+
+**Accepted inputs**, all of which must produce the same value when they denote the same money:
+
+- `nil` (which stays `nil`),
+- a `Ledger.Money` struct,
+- a map carrying a currency and an amount under *either* the atom keys `:currency` / `:amount` *or* the string keys `"currency"` / `"amount"` (a map missing either one is invalid),
+- the canonical string form.
+
+A currency may be supplied as a supported atom, or as a string whose upcased form is a supported code (`"usd"` and `"USD"` are both accepted). An amount may be supplied as an integer or as a string matching `^-?[0-9]+$`.
+
+The currency is resolved **before** the amount: if the currency is unsupported, the currency error is reported even when the amount is also unusable.
+
+**Every** cast failure returns `{:error, keyword}` where the keyword starts with `message:` and also carries `reason:`:
+
+| situation | `message` | `reason` | extra entry |
+| --- | --- | --- | --- |
+| currency not supported | `"unknown currency"` | `:unknown_currency` | `currency:` — the rejected value exactly as it was supplied |
+| amount is a float, or a string matching `^-?[0-9]+\.[0-9]+$` | `"amount must be a whole number of minor units"` | `:fractional_minor_units` | — |
+| anything else that cannot be interpreted | `"invalid money format"` | `:invalid_format` | — |
+
+A canonical string whose fraction-digit count does not match the currency's exponent is an `:invalid_format` failure.
+
+Loading a stored value must accept exactly what the type writes to storage and report `:invalid_format` for anything else. The stored form must round-trip losslessly, and it must still round-trip losslessly after being encoded and decoded with `Jason`.
+
+**Constraints** (these exact option names must be supported):
+
+- `:currencies` — the list of currency atoms that are allowed,
+- `:min` and `:max` — inclusive bounds, supplied in any of the accepted input shapes,
+- `:multiple_of` — a positive integer; the amount must be an exact multiple of it.
+
+Constraint violations also return `{:error, keyword}` with `message:` and `reason:`, and the checks are applied in the order `:currencies`, `:multiple_of`, `:min`, `:max` (the first failure wins):
+
+| situation | `message` | `reason` | extra entry |
+| --- | --- | --- | --- |
+| currency outside `:currencies` | `"currency is not allowed"` | `:currency_not_allowed` | `currency:` — the value's currency atom |
+| amount is not a multiple | `"must be a multiple of %{multiple_of} minor units"` | `:not_multiple_of` | `multiple_of:` — the constraint value |
+| below `:min` | `"must be greater than or equal to %{min}"` | `:below_min` | `min:` — the canonical string of the bound |
+| above `:max` | `"must be less than or equal to %{max}"` | `:above_max` | `max:` — the canonical string of the bound |
+| a bound's currency differs from the value's | `"cannot compare money in different currencies"` | `:currency_mismatch` | — |
+
+The currency-mismatch outcome replaces the corresponding `:min` / `:max` verdict.
+
+### 3. The narrowed type — `Ledger.Money.Usd`
+
+An `Ash.Type.NewType` whose subtype is `Ledger.Money.Type` and which bakes in these constraints: only `:usd` is allowed, the inclusive minimum is `USD 0.00`, and the inclusive maximum is `USD 10000.00`. Attributes typed with it must enforce those bounds without repeating them.
+
+### 4. The billing resources
+
+Both resources use `Ash.DataLayer.Ets` with **private** tables, and belong to the existing domain `Ledger.Billing`.
+
+`Ledger.Billing.Invoice`
+
+- Attributes: `:id` (uuid primary key), `:reference` (`:string`, required), `:subtotal` (`Ledger.Money.Type`, required, restricted to `:usd`, `:eur` and `:jpy`), `:adjustments` (an array of `Ledger.Money.Type` defaulting to `[]`, where every element must be a multiple of 5 minor units), `:credit_limit` (`Ledger.Money.Usd`, optional).
+- A `:payments` relationship to `Ledger.Billing.Payment`.
+- An aggregate `:paid_minor` — the sum of the payments' stored minor-unit amounts, which is `0` when there are no payments.
+- A calculation `:total` of type `Ledger.Money.Type` — the subtotal plus every adjustment.
+- A calculation `:balance` of type `Ledger.Money.Type` — the total minus everything paid.
+- Every adjustment must use the subtotal's currency. A violation must fail with `Ash.Error.Changes.InvalidAttribute` on field `:adjustments` carrying the message `"must all use the currency of the subtotal"`.
+- Actions: the default `:read` and `:destroy`; a create action `:issue` accepting `:reference`, `:subtotal`, `:adjustments` and `:credit_limit`; an update action `:apply_adjustment` taking a required argument `:adjustment` of the money type and appending it to `:adjustments`; and a generic action `:price_for` that returns `Ledger.Money.Type` and takes a required `:unit_price` (money) and a required `:units` (`:integer`), returning the unit price multiplied by the unit count.
+- `:apply_adjustment` must reject an adjustment whose currency differs from the invoice's subtotal with `Ash.Error.Changes.InvalidArgument` on field `:adjustment` carrying the message `"must use the currency of the subtotal"`, and must leave the stored record untouched.
+
+`Ledger.Billing.Payment`
+
+- Attributes: `:id` (uuid primary key), `:amount` (`Ledger.Money.Type`, required, restricted to `:usd`, `:eur` and `:jpy`), `:amount_minor` (`:integer`), `:amount_currency` (`:atom`), and a required `belongs_to` `:invoice` whose `:invoice_id` is writable.
+- Actions: the default `:read` and `:destroy`, plus a create action `:record` that accepts only `:amount` and `:invoice_id`. `:amount_minor` and `:amount_currency` are always derived from `:amount` and can never be supplied by the caller.
+- `:amount_minor` is a plain integer column, so it is filterable and summable with ordinary expressions.
+
+### 5. Domain code interface
+
+`Ledger.Billing` must expose these functions:
+
+- `issue_invoice(params)` and `issue_invoice!(params)`
+- `get_invoice(id)` and `get_invoice!(id)` — fetch a single invoice by primary key
+- `list_invoices()` and `list_invoices!()`
+- `apply_adjustment(invoice, adjustment)` and `apply_adjustment!(invoice, adjustment)`
+- `price_for(unit_price, units)` and `price_for!(unit_price, units)`
+- `record_payment(params)` and `record_payment!(params)`
+
+### 6. Querying
+
+Ascending sorting on `:subtotal` must order invoices of one currency by their amount ascending (so `USD 9.00` comes before `USD 100.00`), descending sorting must reverse that, and an equality filter on `:subtotal` against a money value must match only records whose currency *and* amount both agree.
+
+## Implementation Hints
+
+- Project path: `/home/user/ledger`.
+- Do not add, remove, change or fetch dependencies, and do not modify `mix.exs`, `mix.lock` or the `deps/` and `_build/` directories. `ash_money` and `ex_money` must not be used.
+- Everything lives in the existing OTP app `:ledger` under `/home/user/ledger/lib`, and `mix compile` must succeed from `/home/user/ledger`.
+- Verification loads the compiled application and drives your modules directly through the public Ash APIs (`Ash.Type.*`, `Ash.Query`, `Ash.load/2`, `Ash.read/1`) and through the `Ledger.Billing` code-interface functions listed above, so those names, arities and result shapes must match exactly.
+- Error keywords returned by the type are compared entry by entry: the `message` value is compared verbatim, including any `%{...}` placeholder, which is never interpolated by your code.
+- Money values compare equal only when both the currency and the amount agree.
+
+
+EOF
+CMD_EOF
+setsid --wait bash /tmp/pochi_cmd.sh &
+SETSID_PID=$!
+echo $SETSID_PID > /tmp/setsid_bash_pochi_cmd.pid
+wait $SETSID_PID 2>/dev/null
+Command failed
+Running command: if [ -f /tmp/setsid_bash_pochi_cmd.pid ]; then
+SETSID_PID=$(cat /tmp/setsid_bash_pochi_cmd.pid)
+kill -TERM -- -$SETSID_PID 2>/dev/null || true
+sleep 2
+kill -9 -- -$SETSID_PID 2>/dev/null || true
+fi
+rm -f ~/.pochi/config.jsonc /tmp/pochi_cmd.sh /tmp/setsid_bash_pochi_cmd.pid
+Command outputs captured
+Collecting main service artifacts

@@ -1,0 +1,236 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-08T05:40:54.288348+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 23,
+            "passed": 23,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786167639434,
+            "stop": 1786167654288
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_contract_suite_executed",
+                "status": "passed",
+                "duration": 14836,
+                "start": 1786167639443,
+                "stop": 1786167654279,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s01_structure_resources_actions_and_attributes",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654280,
+                "stop": 1786167654280,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s02_shared_modules_are_reused_across_resources",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654280,
+                "stop": 1786167654280,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s03_live_reads_return_every_record",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654281,
+                "stop": 1786167654281,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654281,
+                "stop": 1786167654281,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s05_archived_rows_survive_but_get_reports_not_found",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167654281,
+                "stop": 1786167654282,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s06_one_archive_operation_marks_exactly_one_generation",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654282,
+                "stop": 1786167654282,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s07_separate_archive_operations_use_distinct_batches",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654282,
+                "stop": 1786167654282,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s08_archiving_a_comment_cascades_only_to_its_own_reactions",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167654282,
+                "stop": 1786167654283,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s09_a_later_archive_leaves_earlier_archived_descendants_alone",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654283,
+                "stop": 1786167654283,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s10_archiving_twice_is_idempotent",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654283,
+                "stop": 1786167654283,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s11_restore_only_brings_back_its_own_batch",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167654283,
+                "stop": 1786167654284,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s12_restoring_a_descendant_does_not_touch_ancestors",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654284,
+                "stop": 1786167654284,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s13_restore_is_idempotent_and_safe_on_live_records",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654284,
+                "stop": 1786167654284,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s14_restore_clears_both_archive_markers",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654285,
+                "stop": 1786167654285,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s15_count_aggregates_exclude_archived_children",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654285,
+                "stop": 1786167654285,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s16_relationship_loads_exclude_archived_children",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654285,
+                "stop": 1786167654285,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s17_relationship_filters_exclude_archived_rows",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654286,
+                "stop": 1786167654286,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s18_the_archived_read_requires_an_admin_actor",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654286,
+                "stop": 1786167654286,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s19_every_other_action_stays_open_to_any_actor",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167654286,
+                "stop": 1786167654287,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s20_purge_refuses_a_live_record_and_changes_nothing",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654287,
+                "stop": 1786167654287,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s21_purging_an_archived_post_removes_the_whole_subtree",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167654287,
+                "stop": 1786167654287,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_s22_purging_a_comment_removes_only_that_branch",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167654287,
+                "stop": 1786167654288,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

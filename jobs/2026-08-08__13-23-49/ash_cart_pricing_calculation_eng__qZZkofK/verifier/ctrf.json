@@ -1,0 +1,263 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-08T05:36:06.341335+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 26,
+            "passed": 26,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786167335408,
+            "stop": 1786167366341
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_t01_line_totals",
+                "status": "passed",
+                "duration": 30891,
+                "start": 1786167335420,
+                "stop": 1786167366311,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_tier_table",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366311,
+                "stop": 1786167366312,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_filter_and_sort_on_derived_item_fields",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366312,
+                "stop": 1786167366313,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_composed_line_discount",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167366314,
+                "stop": 1786167366314,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_item_count_aggregate",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167366315,
+                "stop": 1786167366315,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_quote_shape",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167366316,
+                "stop": 1786167366316,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_no_coupon_zero_tax_region",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366317,
+                "stop": 1786167366318,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_mixed_tiers",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366318,
+                "stop": 1786167366319,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_nil_coupon_code",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167366320,
+                "stop": 1786167366320,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_unknown_coupon_code",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366321,
+                "stop": 1786167366322,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_window_start_boundary",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366322,
+                "stop": 1786167366323,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_window_end_boundary",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366323,
+                "stop": 1786167366324,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_redemption_cap",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366324,
+                "stop": 1786167366325,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_minimum_subtotal",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366325,
+                "stop": 1786167366326,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_coupon_discount_rounding_and_cap",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366326,
+                "stop": 1786167366327,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_rule_precedence",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366327,
+                "stop": 1786167366328,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_us_ca_half_away_from_zero",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167366329,
+                "stop": 1786167366329,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_eu_de_half_to_even",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366330,
+                "stop": 1786167366331,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_jp_13_truncation_and_us_or_zero",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366331,
+                "stop": 1786167366332,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_batch_load_pairing",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366332,
+                "stop": 1786167366333,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t21_post_fetch_load",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366333,
+                "stop": 1786167366334,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_empty_cart",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366334,
+                "stop": 1786167366335,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_arguments_honoured_per_load",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167366336,
+                "stop": 1786167366336,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_large_exact_values",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786167366337,
+                "stop": 1786167366337,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_write_validation",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366338,
+                "stop": 1786167366339,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_required_quote_argument",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786167366339,
+                "stop": 1786167366340,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

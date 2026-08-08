@@ -1,0 +1,37 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 26 items
+
+../tests/test_final_state.py ..........................                  [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_t01_line_totals
+PASSED ../tests/test_final_state.py::test_t02_tier_table
+PASSED ../tests/test_final_state.py::test_t03_filter_and_sort_on_derived_item_fields
+PASSED ../tests/test_final_state.py::test_t04_composed_line_discount
+PASSED ../tests/test_final_state.py::test_t05_item_count_aggregate
+PASSED ../tests/test_final_state.py::test_t06_quote_shape
+PASSED ../tests/test_final_state.py::test_t07_no_coupon_zero_tax_region
+PASSED ../tests/test_final_state.py::test_t08_mixed_tiers
+PASSED ../tests/test_final_state.py::test_t09_nil_coupon_code
+PASSED ../tests/test_final_state.py::test_t10_unknown_coupon_code
+PASSED ../tests/test_final_state.py::test_t11_window_start_boundary
+PASSED ../tests/test_final_state.py::test_t12_window_end_boundary
+PASSED ../tests/test_final_state.py::test_t13_redemption_cap
+PASSED ../tests/test_final_state.py::test_t14_minimum_subtotal
+PASSED ../tests/test_final_state.py::test_t15_coupon_discount_rounding_and_cap
+PASSED ../tests/test_final_state.py::test_t16_rule_precedence
+PASSED ../tests/test_final_state.py::test_t17_us_ca_half_away_from_zero
+PASSED ../tests/test_final_state.py::test_t18_eu_de_half_to_even
+PASSED ../tests/test_final_state.py::test_t19_jp_13_truncation_and_us_or_zero
+PASSED ../tests/test_final_state.py::test_t20_batch_load_pairing
+PASSED ../tests/test_final_state.py::test_t21_post_fetch_load
+PASSED ../tests/test_final_state.py::test_t22_empty_cart
+PASSED ../tests/test_final_state.py::test_t23_arguments_honoured_per_load
+PASSED ../tests/test_final_state.py::test_t24_large_exact_values
+PASSED ../tests/test_final_state.py::test_t25_write_validation
+PASSED ../tests/test_final_state.py::test_t26_required_quote_argument
+============================= 26 passed in 21.21s ==============================

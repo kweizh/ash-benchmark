@@ -1,0 +1,1088 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 23 items
+
+../tests/test_final_state.py .FFFFFFFFFFFFFFFFFFFFFF                     [100%]
+
+=================================== FAILURES ===================================
+_____________ test_s01_structure_resources_actions_and_attributes ______________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s01_structure_resources_actions_and_attributes(contract_run):
+>       _scenario(contract_run, "s01_structure_resources_actions_and_attributes")
+
+/tests/test_final_state.py:757: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's01_structure_resources_actions_and_attributes'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's01_structure_resources_actions_and_attributes' did not pass (fail).
+E           1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:185
+E              Forum.Content.Post is not registered in the Forum.Content domain
+E              code: for resource <- @resources do
+E              stacktrace:
+E                /tmp/harbor_archive_contract.exs:189: anonymous fn/3 in ArchiveContractTest."test s01_structure_resources_actions_and_attributes"/1
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                /tmp/harbor_archive_contract.exs:188: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+_____________ test_s02_shared_modules_are_reused_across_resources ______________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s02_shared_modules_are_reused_across_resources(contract_run):
+>       _scenario(contract_run, "s02_shared_modules_are_reused_across_resources")
+
+/tests/test_final_state.py:760: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's02_shared_modules_are_reused_across_resources'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's02_shared_modules_are_reused_across_resources' did not pass (fail).
+E           1) test s02_shared_modules_are_reused_across_resources (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:245
+E              ** (ArgumentError) could not load module Forum.Archive.Preparations.ArchiveScope due to reason :nofile
+E              code: Code.ensure_loaded!(scope)
+E              stacktrace:
+E                (elixir 1.18.4) lib/code.ex:1898: Code.ensure_loaded!/1
+E                /tmp/harbor_archive_contract.exs:250: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+___________________ test_s03_live_reads_return_every_record ____________________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s03_live_reads_return_every_record(contract_run):
+>       _scenario(contract_run, "s03_live_reads_return_every_record")
+
+/tests/test_final_state.py:763: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's03_live_reads_return_every_record'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's03_live_reads_return_every_record' did not pass (fail).
+E           1) test s03_live_reads_return_every_record (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:277
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:278: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+___ test_s04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read ____
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read(contract_run):
+>       _scenario(contract_run, "s04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read")
+
+/tests/test_final_state.py:766: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read' did not pass (fail).
+E           1) test s04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:285
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:286: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+___________ test_s05_archived_rows_survive_but_get_reports_not_found ___________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s05_archived_rows_survive_but_get_reports_not_found(contract_run):
+>       _scenario(contract_run, "s05_archived_rows_survive_but_get_reports_not_found")
+
+/tests/test_final_state.py:769: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's05_archived_rows_survive_but_get_reports_not_found'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's05_archived_rows_survive_but_get_reports_not_found' did not pass (fail).
+E           1) test s05_archived_rows_survive_but_get_reports_not_found (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:298
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:299: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+_________ test_s06_one_archive_operation_marks_exactly_one_generation __________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s06_one_archive_operation_marks_exactly_one_generation(contract_run):
+>       _scenario(contract_run, "s06_one_archive_operation_marks_exactly_one_generation")
+
+/tests/test_final_state.py:772: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's06_one_archive_operation_marks_exactly_one_generation'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's06_one_archive_operation_marks_exactly_one_generation' did not pass (fail).
+E           1) test s06_one_archive_operation_marks_exactly_one_generation (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:310
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:311: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+__________ test_s07_separate_archive_operations_use_distinct_batches ___________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s07_separate_archive_operations_use_distinct_batches(contract_run):
+>       _scenario(contract_run, "s07_separate_archive_operations_use_distinct_batches")
+
+/tests/test_final_state.py:775: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's07_separate_archive_operations_use_distinct_batches'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's07_separate_archive_operations_use_distinct_batches' did not pass (fail).
+E           1) test s07_separate_archive_operations_use_distinct_batches (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:328
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: a = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:329: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+_______ test_s08_archiving_a_comment_cascades_only_to_its_own_reactions ________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s08_archiving_a_comment_cascades_only_to_its_own_reactions(contract_run):
+>       _scenario(contract_run, "s08_archiving_a_comment_cascades_only_to_its_own_reactions")
+
+/tests/test_final_state.py:778: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's08_archiving_a_comment_cascades_only_to_its_own_reactions'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's08_archiving_a_comment_cascades_only_to_its_own_reactions' did not pass (fail).
+E           1) test s08_archiving_a_comment_cascades_only_to_its_own_reactions (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:348
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:349: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+______ test_s09_a_later_archive_leaves_earlier_archived_descendants_alone ______
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s09_a_later_archive_leaves_earlier_archived_descendants_alone(contract_run):
+>       _scenario(contract_run, "s09_a_later_archive_leaves_earlier_archived_descendants_alone")
+
+/tests/test_final_state.py:781: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's09_a_later_archive_leaves_earlier_archived_descendants_alone'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's09_a_later_archive_leaves_earlier_archived_descendants_alone' did not pass (fail).
+E           1) test s09_a_later_archive_leaves_earlier_archived_descendants_alone (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:365
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:366: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+____________________ test_s10_archiving_twice_is_idempotent ____________________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s10_archiving_twice_is_idempotent(contract_run):
+>       _scenario(contract_run, "s10_archiving_twice_is_idempotent")
+
+/tests/test_final_state.py:784: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's10_archiving_twice_is_idempotent'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's10_archiving_twice_is_idempotent' did not pass (fail).
+E           1) test s10_archiving_twice_is_idempotent (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:387
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:388: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+_______________ test_s11_restore_only_brings_back_its_own_batch ________________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s11_restore_only_brings_back_its_own_batch(contract_run):
+>       _scenario(contract_run, "s11_restore_only_brings_back_its_own_batch")
+
+/tests/test_final_state.py:787: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's11_restore_only_brings_back_its_own_batch'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's11_restore_only_brings_back_its_own_batch' did not pass (fail).
+E           1) test s11_restore_only_brings_back_its_own_batch (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:400
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:401: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+___________ test_s12_restoring_a_descendant_does_not_touch_ancestors ___________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s12_restoring_a_descendant_does_not_touch_ancestors(contract_run):
+>       _scenario(contract_run, "s12_restoring_a_descendant_does_not_touch_ancestors")
+
+/tests/test_final_state.py:790: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's12_restoring_a_descendant_does_not_touch_ancestors'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's12_restoring_a_descendant_does_not_touch_ancestors' did not pass (fail).
+E           1) test s12_restoring_a_descendant_does_not_touch_ancestors (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:423
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:424: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+___________ test_s13_restore_is_idempotent_and_safe_on_live_records ____________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s13_restore_is_idempotent_and_safe_on_live_records(contract_run):
+>       _scenario(contract_run, "s13_restore_is_idempotent_and_safe_on_live_records")
+
+/tests/test_final_state.py:793: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's13_restore_is_idempotent_and_safe_on_live_records'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's13_restore_is_idempotent_and_safe_on_live_records' did not pass (fail).
+E           1) test s13_restore_is_idempotent_and_safe_on_live_records (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:443
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:444: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+_________________ test_s14_restore_clears_both_archive_markers _________________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s14_restore_clears_both_archive_markers(contract_run):
+>       _scenario(contract_run, "s14_restore_clears_both_archive_markers")
+
+/tests/test_final_state.py:796: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's14_restore_clears_both_archive_markers'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's14_restore_clears_both_archive_markers' did not pass (fail).
+E           1) test s14_restore_clears_both_archive_markers (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:462
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:463: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+_____________ test_s15_count_aggregates_exclude_archived_children ______________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s15_count_aggregates_exclude_archived_children(contract_run):
+>       _scenario(contract_run, "s15_count_aggregates_exclude_archived_children")
+
+/tests/test_final_state.py:799: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's15_count_aggregates_exclude_archived_children'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's15_count_aggregates_exclude_archived_children' did not pass (fail).
+E           1) test s15_count_aggregates_exclude_archived_children (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:474
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:475: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+____________ test_s16_relationship_loads_exclude_archived_children _____________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s16_relationship_loads_exclude_archived_children(contract_run):
+>       _scenario(contract_run, "s16_relationship_loads_exclude_archived_children")
+
+/tests/test_final_state.py:802: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's16_relationship_loads_exclude_archived_children'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's16_relationship_loads_exclude_archived_children' did not pass (fail).
+E           1) test s16_relationship_loads_exclude_archived_children (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:511
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:512: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+_____________ test_s17_relationship_filters_exclude_archived_rows ______________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s17_relationship_filters_exclude_archived_rows(contract_run):
+>       _scenario(contract_run, "s17_relationship_filters_exclude_archived_rows")
+
+/tests/test_final_state.py:805: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's17_relationship_filters_exclude_archived_rows'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's17_relationship_filters_exclude_archived_rows' did not pass (fail).
+E           1) test s17_relationship_filters_exclude_archived_rows (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:522
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:523: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+______________ test_s18_the_archived_read_requires_an_admin_actor ______________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s18_the_archived_read_requires_an_admin_actor(contract_run):
+>       _scenario(contract_run, "s18_the_archived_read_requires_an_admin_actor")
+
+/tests/test_final_state.py:808: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's18_the_archived_read_requires_an_admin_actor'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's18_the_archived_read_requires_an_admin_actor' did not pass (fail).
+E           1) test s18_the_archived_read_requires_an_admin_actor (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:542
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:543: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+_____________ test_s19_every_other_action_stays_open_to_any_actor ______________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s19_every_other_action_stays_open_to_any_actor(contract_run):
+>       _scenario(contract_run, "s19_every_other_action_stays_open_to_any_actor")
+
+/tests/test_final_state.py:811: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's19_every_other_action_stays_open_to_any_actor'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's19_every_other_action_stays_open_to_any_actor' did not pass (fail).
+E           1) test s19_every_other_action_stays_open_to_any_actor (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:574
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: for actor <- [%{role: :member}, nil] do
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:578: anonymous fn/2 in ArchiveContractTest."test s19_every_other_action_stays_open_to_any_actor"/1
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                /tmp/harbor_archive_contract.exs:575: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+___________ test_s20_purge_refuses_a_live_record_and_changes_nothing ___________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s20_purge_refuses_a_live_record_and_changes_nothing(contract_run):
+>       _scenario(contract_run, "s20_purge_refuses_a_live_record_and_changes_nothing")
+
+/tests/test_final_state.py:814: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's20_purge_refuses_a_live_record_and_changes_nothing'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's20_purge_refuses_a_live_record_and_changes_nothing' did not pass (fail).
+E           1) test s20_purge_refuses_a_live_record_and_changes_nothing (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:609
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:610: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+_________ test_s21_purging_an_archived_post_removes_the_whole_subtree __________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s21_purging_an_archived_post_removes_the_whole_subtree(contract_run):
+>       _scenario(contract_run, "s21_purging_an_archived_post_removes_the_whole_subtree")
+
+/tests/test_final_state.py:817: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's21_purging_an_archived_post_removes_the_whole_subtree'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's21_purging_an_archived_post_removes_the_whole_subtree' did not pass (fail).
+E           1) test s21_purging_an_archived_post_removes_the_whole_subtree (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:631
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:632: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+_____________ test_s22_purging_a_comment_removes_only_that_branch ______________
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+
+    def test_s22_purging_a_comment_removes_only_that_branch(contract_run):
+>       _scenario(contract_run, "s22_purging_a_comment_removes_only_that_branch")
+
+/tests/test_final_state.py:820: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+contract_run = {'output': 'HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\\...'name': 's04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read', 'status': 'fail'}, ...}, 'returncode': 0}
+name = 's22_purging_a_comment_removes_only_that_branch'
+
+    def _scenario(contract_run, name):
+        results = contract_run["results"]
+        if name not in results:
+            pytest.fail(
+                f"Scenario {name!r} never reported a result. The Ash project at "
+                f"{PROJECT_DIR} most likely failed to compile or to boot "
+                f"(mix run exit code {contract_run['returncode']}).\n"
+                f"Combined output:\n{contract_run['output'][-8000:]}"
+            )
+    
+        payload = results[name]
+>       assert payload["status"] == "pass", (
+            f"Scenario {name!r} did not pass ({payload['status']}).\n"
+            f"{payload.get('message', '')}"
+        )
+E       AssertionError: Scenario 's22_purging_a_comment_removes_only_that_branch' did not pass (fail).
+E           1) test s22_purging_a_comment_removes_only_that_branch (ArchiveContractTest)
+E              /tmp/harbor_archive_contract.exs:643
+E              ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)
+E              code: t = H.tree()
+E              stacktrace:
+E                Forum.Content.Post.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4
+E                /tmp/harbor_archive_contract.exs:66: H.post/1
+E                /tmp/harbor_archive_contract.exs:85: H.tree/0
+E                /tmp/harbor_archive_contract.exs:644: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:736: AssertionError
+==================================== PASSES ====================================
+_________________________ test_contract_suite_executed _________________________
+---------------------------- Captured stdout setup -----------------------------
+===== [mix run] Begin combined output =====
+HARBOR_RESULT {"message":"  1) test s01_structure_resources_actions_and_attributes (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:185\n     Forum.Content.Post is not registered in the Forum.Content domain\n     code: for resource <- @resources do\n     stacktrace:\n       /tmp/harbor_archive_contract.exs:189: anonymous fn/3 in ArchiveContractTest.\"test s01_structure_resources_actions_and_attributes\"/1\n       (elixir 1.18.4) lib/enum.ex:2546: Enum.\"-reduce/3-lists^foldl/2-0-\"/3\n       /tmp/harbor_archive_contract.exs:188: (test)\n","name":"s01_structure_resources_actions_and_attributes","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s02_shared_modules_are_reused_across_resources (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:245\n     ** (ArgumentError) could not load module Forum.Archive.Preparations.ArchiveScope due to reason :nofile\n     code: Code.ensure_loaded!(scope)\n     stacktrace:\n       (elixir 1.18.4) lib/code.ex:1898: Code.ensure_loaded!/1\n       /tmp/harbor_archive_contract.exs:250: (test)\n","name":"s02_shared_modules_are_reused_across_resources","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s03_live_reads_return_every_record (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:277\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:278: (test)\n","name":"s03_live_reads_return_every_record","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:285\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:286: (test)\n","name":"s04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s05_archived_rows_survive_but_get_reports_not_found (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:298\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:299: (test)\n","name":"s05_archived_rows_survive_but_get_reports_not_found","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s06_one_archive_operation_marks_exactly_one_generation (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:310\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:311: (test)\n","name":"s06_one_archive_operation_marks_exactly_one_generation","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s07_separate_archive_operations_use_distinct_batches (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:328\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: a = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:329: (test)\n","name":"s07_separate_archive_operations_use_distinct_batches","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s08_archiving_a_comment_cascades_only_to_its_own_reactions (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:348\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:349: (test)\n","name":"s08_archiving_a_comment_cascades_only_to_its_own_reactions","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s09_a_later_archive_leaves_earlier_archived_descendants_alone (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:365\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:366: (test)\n","name":"s09_a_later_archive_leaves_earlier_archived_descendants_alone","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s10_archiving_twice_is_idempotent (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:387\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:388: (test)\n","name":"s10_archiving_twice_is_idempotent","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s11_restore_only_brings_back_its_own_batch (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:400\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:401: (test)\n","name":"s11_restore_only_brings_back_its_own_batch","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s12_restoring_a_descendant_does_not_touch_ancestors (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:423\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:424: (test)\n","name":"s12_restoring_a_descendant_does_not_touch_ancestors","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s13_restore_is_idempotent_and_safe_on_live_records (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:443\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:444: (test)\n","name":"s13_restore_is_idempotent_and_safe_on_live_records","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s14_restore_clears_both_archive_markers (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:462\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:463: (test)\n","name":"s14_restore_clears_both_archive_markers","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s15_count_aggregates_exclude_archived_children (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:474\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:475: (test)\n","name":"s15_count_aggregates_exclude_archived_children","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s16_relationship_loads_exclude_archived_children (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:511\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:512: (test)\n","name":"s16_relationship_loads_exclude_archived_children","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s17_relationship_filters_exclude_archived_rows (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:522\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:523: (test)\n","name":"s17_relationship_filters_exclude_archived_rows","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s18_the_archived_read_requires_an_admin_actor (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:542\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:543: (test)\n","name":"s18_the_archived_read_requires_an_admin_actor","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s19_every_other_action_stays_open_to_any_actor (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:574\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: for actor <- [%{role: :member}, nil] do\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:578: anonymous fn/2 in ArchiveContractTest.\"test s19_every_other_action_stays_open_to_any_actor\"/1\n       (elixir 1.18.4) lib/enum.ex:2546: Enum.\"-reduce/3-lists^foldl/2-0-\"/3\n       /tmp/harbor_archive_contract.exs:575: (test)\n","name":"s19_every_other_action_stays_open_to_any_actor","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s20_purge_refuses_a_live_record_and_changes_nothing (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:609\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:610: (test)\n","name":"s20_purge_refuses_a_live_record_and_changes_nothing","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s21_purging_an_archived_post_removes_the_whole_subtree (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:631\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:632: (test)\n","name":"s21_purging_an_archived_post_removes_the_whole_subtree","status":"fail"}
+HARBOR_RESULT {"message":"  1) test s22_purging_a_comment_removes_only_that_branch (ArchiveContractTest)\n     /tmp/harbor_archive_contract.exs:643\n     ** (UndefinedFunctionError) function Forum.Content.Post.__struct__/0 is undefined (module Forum.Content.Post is not available)\n     code: t = H.tree()\n     stacktrace:\n       Forum.Content.Post.__struct__()\n       (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\n       (ash 3.31.0) lib/ash/changeset/changeset.ex:2061: Ash.Changeset.for_create/4\n       /tmp/harbor_archive_contract.exs:66: H.post/1\n       /tmp/harbor_archive_contract.exs:85: H.tree/0\n       /tmp/harbor_archive_contract.exs:644: (test)\n","name":"s22_purging_a_comment_removes_only_that_branch","status":"fail"}
+
+
+===== [mix run] End combined output =====
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_contract_suite_executed
+FAILED ../tests/test_final_state.py::test_s01_structure_resources_actions_and_attributes
+FAILED ../tests/test_final_state.py::test_s02_shared_modules_are_reused_across_resources
+FAILED ../tests/test_final_state.py::test_s03_live_reads_return_every_record
+FAILED ../tests/test_final_state.py::test_s04_archiving_a_post_hides_the_whole_subtree_from_the_primary_read
+FAILED ../tests/test_final_state.py::test_s05_archived_rows_survive_but_get_reports_not_found
+FAILED ../tests/test_final_state.py::test_s06_one_archive_operation_marks_exactly_one_generation
+FAILED ../tests/test_final_state.py::test_s07_separate_archive_operations_use_distinct_batches
+FAILED ../tests/test_final_state.py::test_s08_archiving_a_comment_cascades_only_to_its_own_reactions
+FAILED ../tests/test_final_state.py::test_s09_a_later_archive_leaves_earlier_archived_descendants_alone
+FAILED ../tests/test_final_state.py::test_s10_archiving_twice_is_idempotent
+FAILED ../tests/test_final_state.py::test_s11_restore_only_brings_back_its_own_batch
+FAILED ../tests/test_final_state.py::test_s12_restoring_a_descendant_does_not_touch_ancestors
+FAILED ../tests/test_final_state.py::test_s13_restore_is_idempotent_and_safe_on_live_records
+FAILED ../tests/test_final_state.py::test_s14_restore_clears_both_archive_markers
+FAILED ../tests/test_final_state.py::test_s15_count_aggregates_exclude_archived_children
+FAILED ../tests/test_final_state.py::test_s16_relationship_loads_exclude_archived_children
+FAILED ../tests/test_final_state.py::test_s17_relationship_filters_exclude_archived_rows
+FAILED ../tests/test_final_state.py::test_s18_the_archived_read_requires_an_admin_actor
+FAILED ../tests/test_final_state.py::test_s19_every_other_action_stays_open_to_any_actor
+FAILED ../tests/test_final_state.py::test_s20_purge_refuses_a_live_record_and_changes_nothing
+FAILED ../tests/test_final_state.py::test_s21_purging_an_archived_post_removes_the_whole_subtree
+FAILED ../tests/test_final_state.py::test_s22_purging_a_comment_removes_only_that_branch
+======================== 22 failed, 1 passed in 19.28s =========================

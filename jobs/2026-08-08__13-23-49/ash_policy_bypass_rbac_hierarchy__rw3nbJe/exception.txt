@@ -1,0 +1,233 @@
+Traceback (most recent call last):
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/single_step.py", line 77, in _run_agent
+    await self._run_agent_phase(
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py", line 450, in _run_agent_phase
+    await asyncio.wait_for(
+  File "/opt/miniconda3/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py", line 168, in wrapper
+    return await fn(self, instruction, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kw/code/zealt/pochi-harbor/agents/pochi.py", line 230, in run
+    await self.exec_as_agent(
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py", line 592, in exec_as_agent
+    return await self._exec(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py", line 559, in _exec
+    raise self._classify_exec_error(command, result)
+harbor.agents.installed.base.NonZeroAgentExitCodeError: Command failed (exit 1): cat > /tmp/pochi_cmd.sh << 'CMD_EOF'
+set -o pipefail
+pochi --model google/gemini-3.5-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl --experimental-stream-trajectory-strip-duplicates > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Hierarchical Organisation RBAC with Ash Policies
+
+## Background
+
+`OrgGuard` is the access-control core of a document vault used by a large company. Documents belong
+to org units, org units form a tree, and the right to act on a document is inherited down that tree
+from role grants — but a lower org unit may also *revoke* an inherited role for a specific person.
+Security staff need a break-glass path, suspended accounts must be locked out immediately, and
+budget figures must stay invisible to people who are not allowed to see money.
+
+You must implement this authorization engine with Ash Framework 3.31.0 on top of an in-memory data
+layer. The project already exists and its dependencies are vendored; the container has **no network
+access**, so do not attempt to add or fetch dependencies.
+
+## Requirements
+
+### Project
+
+- Project path: `/home/user/orgguard` (OTP app `:orgguard`).
+- Everything you write must compile with `mix compile` offline, in both the `dev` and `test` Mix
+  environments.
+- The domain module is `OrgGuard.Access`. All four resources below must be registered on it.
+- Every resource must use `Ash.DataLayer.Ets`, and its storage must be **shared between processes**:
+  the verifier seeds records from one process and asserts from other processes.
+
+### Resources
+
+Create exactly these four resources with exactly these names, attributes, types, constraints and
+actions. Every attribute listed is public. Every action listed must be the primary action of its
+type on that resource.
+
+`OrgGuard.Access.User`
+
+- `id` — uuid primary key
+- `email` — `:string`, required
+- `status` — `:atom`, required, default `:active`, constrained to `[:active, :suspended]`
+- `global_role` — `:atom`, required, default `:member`, constrained to `[:member, :break_glass]`
+- actions: read `:read`; create `:create` accepting `email`, `status`, `global_role`
+
+`OrgGuard.Access.OrgUnit`
+
+- `id` — uuid primary key
+- `code` — `:string`, required
+- `name` — `:string`, required
+- an optional self-referential `belongs_to` relationship named `:parent` pointing at
+  `OrgGuard.Access.OrgUnit`, whose source attribute is `parent_id` and which is writable through the
+  create action, plus the matching `has_many` named `:children`
+- actions: read `:read`; create `:create` accepting `code`, `name`, `parent_id`
+
+`OrgGuard.Access.RoleAssignment`
+
+- `id` — uuid primary key
+- `role` — `:atom`, required, constrained to `[:viewer, :editor, :auditor, :unit_admin]`
+- `effect` — `:atom`, required, default `:grant`, constrained to `[:grant, :deny]`
+- required `belongs_to` relationships `:user` (source attribute `user_id`) and `:org_unit` (source
+  attribute `org_unit_id`), both writable through the create action
+- actions: read `:read`; create `:create` accepting `user_id`, `org_unit_id`, `role`, `effect`
+
+`OrgGuard.Access.Document`
+
+- `id` — uuid primary key
+- `title` — `:string`, required
+- `budget_cents` — `:integer`, required, default `0`
+- required `belongs_to` relationship `:org_unit` (source attribute `org_unit_id`), writable through
+  the create action
+- actions:
+  - read `:read`
+  - create `:create` accepting `title`, `budget_cents`, `org_unit_id`
+  - update `:update` accepting `title`, `budget_cents`
+  - destroy `:destroy`
+  - generic action `:relocate`, whose return type is `:struct` constrained to instances of
+    `OrgGuard.Access.Document`, taking two required `:uuid` arguments, `document_id` and
+    `target_org_unit_id`. When it is allowed to run, it moves the identified document to the target
+    org unit and returns the updated document; when it is not allowed to run, the document's
+    `org_unit_id` must be left untouched.
+- `OrgGuard.Access.Document` must be authorized by `Ash.Policy.Authorizer`. The other three
+  resources must remain freely accessible (no authorizer).
+
+### Domain code interface
+
+`OrgGuard.Access` must define these code-interface functions, so that the verifier can call them and
+so that Ash's generated `can_*?` helpers exist:
+
+| function | resource | action | notes |
+| --- | --- | --- | --- |
+| `create_user` | User | `:create` | |
+| `get_user` | User | `:read` | fetched by `:id` |
+| `create_org_unit` | OrgUnit | `:create` | |
+| `get_org_unit` | OrgUnit | `:read` | fetched by `:id` |
+| `create_role_assignment` | RoleAssignment | `:create` | |
+| `list_role_assignments` | RoleAssignment | `:read` | |
+| `create_document` | Document | `:create` | |
+| `list_documents` | Document | `:read` | |
+| `get_document` | Document | `:read` | fetched by `:id` |
+| `update_document` | Document | `:update` | |
+| `destroy_document` | Document | `:destroy` | |
+| `relocate_document` | Document | `:relocate` | positional args, in the order `document_id`, `target_org_unit_id` |
+
+The verifier calls them as `OrgGuard.Access.list_documents(actor: actor)`,
+`OrgGuard.Access.get_document(id, actor: actor)`,
+`OrgGuard.Access.update_document(document, %{title: "…"}, actor: actor)`,
+`OrgGuard.Access.destroy_document(document, actor: actor)`,
+`OrgGuard.Access.relocate_document(document_id, target_org_unit_id, actor: actor)`,
+`OrgGuard.Access.create_document(%{…}, actor: actor)`, and the corresponding
+`OrgGuard.Access.can_update_document?/2`, `can_destroy_document?/2`, `can_create_document?/2`,
+`can_relocate_document?/3` helpers. It seeds fixtures through the same functions with
+`authorize?: false`, which must always succeed and must always return real (unmasked) attribute
+values.
+
+### Capabilities
+
+Each role confers exactly this set of capabilities:
+
+| role | capabilities |
+| --- | --- |
+| `:viewer` | `read` |
+| `:editor` | `read`, `write` |
+| `:auditor` | `read`, `view_budget` |
+| `:unit_admin` | `read`, `write`, `delete`, `relocate`, `view_budget` |
+
+### Permission resolution (this precedence is normative)
+
+An actor's effective roles at an org unit `U` are resolved per role, independently, as follows.
+
+1. Build the path `U`, `parent(U)`, `parent(parent(U))`, …, up to the root — nearest unit first.
+2. For role `R`, walk that path from nearest to root and stop at the **first** unit that carries at
+   least one `RoleAssignment` for this actor with that role.
+3. If no unit on the path carries such an assignment, the actor does not hold `R` at `U`.
+4. If the stopping unit carries **any** assignment for this actor and role with `effect: :deny`,
+   the actor does not hold `R` at `U` — even if an ancestor granted it, and even if the same unit
+   also carries a `:grant` for it.
+5. Otherwise the actor holds `R` at `U`.
+
+The actor's capabilities at `U` are the union of the capabilities of every role held at `U`. A grant
+therefore flows down the whole subtree, a deny at a descendant cuts it off for that subtree, and a
+grant deeper still re-establishes it.
+
+### Authorization contracts
+
+These are the observable outcomes the verifier checks. `nil` below means no actor was supplied.
+
+**Break-glass.** An actor whose `global_role` is `:break_glass` may read, create, update, destroy
+and relocate every document, and sees every `budget_cents` value, regardless of role assignments —
+and this holds even when that actor's `status` is `:suspended`. `Document`'s policies must contain
+at least one bypass policy.
+
+**Suspension.** For any other actor whose `status` is `:suspended`, every document operation fails
+with `Ash.Error.Forbidden` — including list reads and fetches by id, and including operations the
+actor's roles would otherwise permit.
+
+**Reads.** For a non-suspended, non-break-glass actor, a list read returns exactly the documents
+whose org unit grants the actor the `read` capability; it never returns an error, not even for
+`nil` and not even when the actor holds no roles at all (it returns an empty list instead). Fetching
+a single document by id fails with `Ash.Error.Query.NotFound` when the actor lacks `read` on it, and
+succeeds when the actor has it.
+
+**Updates.** An update requires the `write` capability at the document's org unit. An update that
+changes `budget_cents` additionally requires the `view_budget` capability at that org unit. Denied
+updates fail with `Ash.Error.Forbidden`.
+
+**Creates.** Creating a document requires the `write` capability at the org unit named by the
+submitted `org_unit_id`. Denied creates fail with `Ash.Error.Forbidden`.
+
+**Destroys.** Destroying a document requires the `delete` capability at the document's org unit.
+Denied destroys fail with `Ash.Error.Forbidden`.
+
+**Relocation.** `:relocate` requires the `relocate` capability at **both** the document's current
+org unit **and** the target org unit. Denied relocations fail with `Ash.Error.Forbidden`.
+
+**Budget confidentiality.** `budget_cents` is readable only by an actor with the `view_budget`
+capability at that document's org unit (or by a break-glass actor). For every other actor that can
+read the document, the value that comes back in place of the integer must be the documented
+forbidden-field marker for that attribute. All other attributes stay visible to anyone who can read
+the document.
+
+**`can_*?` introspection.** The generated `can_*?` helpers must return `true`/`false` in agreement
+with the contracts above for every actor/record/action combination, including `nil` actors.
+
+### Check implementation constraints
+
+- At least one check module used by `Document`'s policies must be defined by you (i.e. its module
+  name must not start with `Ash.`) and must be a **filter** check.
+- At least one check module used by `Document`'s policies must be defined by you and must be a
+  **simple** check.
+- `budget_cents` must be governed by at least one field policy.
+
+## Implementation Hints
+
+- Project path: `/home/user/orgguard`
+- The verifier writes a self-contained Elixir script to `/tmp` and runs it with
+  `mix run <script>` from `/home/user/orgguard` with `MIX_ENV=dev`. The project must therefore
+  compile and boot with no network access, and `OrgGuard.Access` plus all four resource modules must
+  be loadable from that script.
+- Do not add, remove or upgrade dependencies, and do not change the OTP application name or the
+  domain/resource module names.
+- Leave `Logger` at a level no more verbose than `:warning` so the script's stdout is not flooded.
+
+
+EOF
+CMD_EOF
+setsid --wait bash /tmp/pochi_cmd.sh &
+SETSID_PID=$!
+echo $SETSID_PID > /tmp/setsid_bash_pochi_cmd.pid
+wait $SETSID_PID 2>/dev/null
+stdout: None
+stderr: [37m2026-08-08 05:26:09.717[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	pochi v0.6.20
+[37m2026-08-08 05:26:09.721[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37 ... [196 chars truncated] ... m	BuiltInBundle[39m[22m[0m[0m	Materializing 16 built-in files to /tmp/pochi-builtin-ef402bc2bbe8f440
+[37m2026-08-08 05:26:09.984[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:532913[39m[0m[0m[1m[37m	loadAgents[39m[22m[0m[0m	Loaded 6 custom agents (6 valid, 0 invalid)
+[37m2026-08-08 05:26:10.003[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:532914[39m[0m[0m[1m[37m	loadSkills[39m[22m[0m[0m	Loaded 3 skills (3 valid, 0 invalid)
+A prompt or attachment is required. Please provide one using the -p and/or -a option or by piping input.
+[37m2026-08-08 05:26:10.006[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Process exiting with code 1
+

@@ -1,0 +1,9 @@
+{application,catalog,
+             [{modules,['Elixir.Catalog.Application']},
+              {optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger,ash,ash_json_api,
+                             open_api_spex,plug,bandit,jason,picosat_elixir]},
+              {description,"catalog"},
+              {registered,[]},
+              {vsn,"0.1.0"},
+              {mod,{'Elixir.Catalog.Application',[]}}]}.

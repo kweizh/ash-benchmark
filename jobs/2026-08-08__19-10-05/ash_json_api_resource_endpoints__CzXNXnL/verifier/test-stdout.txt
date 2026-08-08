@@ -1,0 +1,919 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: xprocess-1.0.2, json-ctrf-0.5.3
+collected 30 items
+
+../tests/test_final_state.py EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE              [100%]
+
+==================================== ERRORS ====================================
+___________ ERROR at setup of test_t01_get_one_book_resource_object ____________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+/tests/.pytest_cache/d/.xprocess/catalog_api$ mix run --no-halt
+process 'catalog_api' started pid=2665
+catalog_api process startup detected
+===== [STARTED] catalog_api log =====
+@@__xproc_block_delimiter__@@
+
+===== [STARTED] end catalog_api log =====
+_____ ERROR at setup of test_t02_top_level_document_members_and_self_link ______
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+__________ ERROR at setup of test_t03_sparse_fieldset_on_primary_data __________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+________ ERROR at setup of test_t04_include_author_linkage_and_included ________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+________ ERROR at setup of test_t05_sparse_fieldset_applies_to_included ________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+___ ERROR at setup of test_t06_index_filter_hides_restricted_from_anonymous ____
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+_____ ERROR at setup of test_t07_index_filter_shows_restricted_to_curator ______
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+________ ERROR at setup of test_t08_included_resources_are_deduplicated ________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+____ ERROR at setup of test_t09_nested_include_is_complete_and_deduplicated ____
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+___________ ERROR at setup of test_t10_relationship_links_on_author ____________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+__________________ ERROR at setup of test_t11_sort_descending __________________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+__________________ ERROR at setup of test_t12_sort_ascending ___________________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+_______ ERROR at setup of test_t13_pagination_first_page_links_and_total _______
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+____________ ERROR at setup of test_t14_pagination_last_page_links _____________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+_______ ERROR at setup of test_t15_create_book_persists_and_links_author _______
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+_____ ERROR at setup of test_t16_multiple_attribute_constraint_violations ______
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+____________ ERROR at setup of test_t17_missing_required_attribute _____________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+____________ ERROR at setup of test_t18_review_rating_out_of_range _____________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+___________ ERROR at setup of test_t19_missing_required_relationship ___________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+____________ ERROR at setup of test_t20_wrong_resource_type_in_body ____________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+___________ ERROR at setup of test_t21_unknown_id_returns_not_found ____________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+______ ERROR at setup of test_t22_patch_updates_only_the_given_attributes ______
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+___ ERROR at setup of test_t23_delete_is_forbidden_without_the_curator_role ____
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+________________ ERROR at setup of test_t24_curator_can_delete _________________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+____________ ERROR at setup of test_t25_restricted_book_visibility _____________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+____ ERROR at setup of test_t26_related_route_returns_full_resource_objects ____
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+_ ERROR at setup of test_t27_relationship_route_returns_identifier_objects_only _
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+_______________ ERROR at setup of test_t28_shelf_summary_report ________________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+_____ ERROR at setup of test_t29_shelf_summary_requires_the_shelf_argument _____
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+____________ ERROR at setup of test_t30_unknown_include_is_rejected ____________
+
+service = None
+
+    @pytest.fixture(scope="session")
+    def fx(service) -> Dict[str, Any]:
+        shelf = "shelf-" + uuid.uuid4().hex[:10]
+        write_shelf = shelf + "-w"
+    
+>       a1 = _create_author("Le Guin", "US")
+
+/tests/test_final_state.py:211: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tests/test_final_state.py:153: in _create_author
+    body = _ok(resp, 201)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+resp = <Response [404]>, expected = 201
+
+    def _ok(resp: requests.Response, expected: int) -> Dict[str, Any]:
+>       assert resp.status_code == expected, (
+            f"{resp.request.method} {resp.request.url} returned {resp.status_code}, "
+            f"expected {expected}. Body: {resp.text[:800]!r}"
+        )
+E       AssertionError: POST http://127.0.0.1:4001/api/json/authors returned 404, expected 201. Body: '{"errors":[{"code":"no_route_found","id":"b3343ec7-c06c-4c56-83ae-feab9162fc68","meta":{},"status":"404","title":"NoRouteFound","detail":"no route found"}],"jsonapi":{"version":"1.0"}}'
+E       assert 404 == 201
+E        +  where 404 = <Response [404]>.status_code
+
+/tests/test_final_state.py:123: AssertionError
+=========================== short test summary info ============================
+ERROR ../tests/test_final_state.py::test_t01_get_one_book_resource_object - A...
+ERROR ../tests/test_final_state.py::test_t02_top_level_document_members_and_self_link
+ERROR ../tests/test_final_state.py::test_t03_sparse_fieldset_on_primary_data
+ERROR ../tests/test_final_state.py::test_t04_include_author_linkage_and_included
+ERROR ../tests/test_final_state.py::test_t05_sparse_fieldset_applies_to_included
+ERROR ../tests/test_final_state.py::test_t06_index_filter_hides_restricted_from_anonymous
+ERROR ../tests/test_final_state.py::test_t07_index_filter_shows_restricted_to_curator
+ERROR ../tests/test_final_state.py::test_t08_included_resources_are_deduplicated
+ERROR ../tests/test_final_state.py::test_t09_nested_include_is_complete_and_deduplicated
+ERROR ../tests/test_final_state.py::test_t10_relationship_links_on_author - A...
+ERROR ../tests/test_final_state.py::test_t11_sort_descending - AssertionError...
+ERROR ../tests/test_final_state.py::test_t12_sort_ascending - AssertionError:...
+ERROR ../tests/test_final_state.py::test_t13_pagination_first_page_links_and_total
+ERROR ../tests/test_final_state.py::test_t14_pagination_last_page_links - Ass...
+ERROR ../tests/test_final_state.py::test_t15_create_book_persists_and_links_author
+ERROR ../tests/test_final_state.py::test_t16_multiple_attribute_constraint_violations
+ERROR ../tests/test_final_state.py::test_t17_missing_required_attribute - Ass...
+ERROR ../tests/test_final_state.py::test_t18_review_rating_out_of_range - Ass...
+ERROR ../tests/test_final_state.py::test_t19_missing_required_relationship - ...
+ERROR ../tests/test_final_state.py::test_t20_wrong_resource_type_in_body - As...
+ERROR ../tests/test_final_state.py::test_t21_unknown_id_returns_not_found - A...
+ERROR ../tests/test_final_state.py::test_t22_patch_updates_only_the_given_attributes
+ERROR ../tests/test_final_state.py::test_t23_delete_is_forbidden_without_the_curator_role
+ERROR ../tests/test_final_state.py::test_t24_curator_can_delete - AssertionEr...
+ERROR ../tests/test_final_state.py::test_t25_restricted_book_visibility - Ass...
+ERROR ../tests/test_final_state.py::test_t26_related_route_returns_full_resource_objects
+ERROR ../tests/test_final_state.py::test_t27_relationship_route_returns_identifier_objects_only
+ERROR ../tests/test_final_state.py::test_t28_shelf_summary_report - Assertion...
+ERROR ../tests/test_final_state.py::test_t29_shelf_summary_requires_the_shelf_argument
+ERROR ../tests/test_final_state.py::test_t30_unknown_include_is_rejected - As...
+============================= 30 errors in 13.76s ==============================

@@ -1,0 +1,2268 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: xprocess-1.0.2, json-ctrf-0.5.3
+collected 30 items
+
+../tests/test_final_state.py EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE              [100%]
+
+==================================== ERRORS ====================================
+___________ ERROR at setup of test_t01_get_one_book_resource_object ____________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+---------------------------- Captured stdout setup -----------------------------
+/tests/.pytest_cache/d/.xprocess/catalog_api$ mix run --no-halt
+process 'catalog_api' started pid=515
+===== [FAILED] catalog_api log =====
+@@__xproc_block_delimiter__@@
+
+===== [FAILED] end catalog_api log =====
+_____ ERROR at setup of test_t02_top_level_document_members_and_self_link ______
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+__________ ERROR at setup of test_t03_sparse_fieldset_on_primary_data __________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+________ ERROR at setup of test_t04_include_author_linkage_and_included ________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+________ ERROR at setup of test_t05_sparse_fieldset_applies_to_included ________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+___ ERROR at setup of test_t06_index_filter_hides_restricted_from_anonymous ____
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+_____ ERROR at setup of test_t07_index_filter_shows_restricted_to_curator ______
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+________ ERROR at setup of test_t08_included_resources_are_deduplicated ________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+____ ERROR at setup of test_t09_nested_include_is_complete_and_deduplicated ____
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+___________ ERROR at setup of test_t10_relationship_links_on_author ____________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+__________________ ERROR at setup of test_t11_sort_descending __________________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+__________________ ERROR at setup of test_t12_sort_ascending ___________________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+_______ ERROR at setup of test_t13_pagination_first_page_links_and_total _______
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+____________ ERROR at setup of test_t14_pagination_last_page_links _____________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+_______ ERROR at setup of test_t15_create_book_persists_and_links_author _______
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+_____ ERROR at setup of test_t16_multiple_attribute_constraint_violations ______
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+____________ ERROR at setup of test_t17_missing_required_attribute _____________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+____________ ERROR at setup of test_t18_review_rating_out_of_range _____________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+___________ ERROR at setup of test_t19_missing_required_relationship ___________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+____________ ERROR at setup of test_t20_wrong_resource_type_in_body ____________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+___________ ERROR at setup of test_t21_unknown_id_returns_not_found ____________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+______ ERROR at setup of test_t22_patch_updates_only_the_given_attributes ______
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+___ ERROR at setup of test_t23_delete_is_forbidden_without_the_curator_role ____
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+________________ ERROR at setup of test_t24_curator_can_delete _________________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+____________ ERROR at setup of test_t25_restricted_book_visibility _____________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+____ ERROR at setup of test_t26_related_route_returns_full_resource_objects ____
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+_ ERROR at setup of test_t27_relationship_route_returns_identifier_objects_only _
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+_______________ ERROR at setup of test_t28_shelf_summary_report ________________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+_____ ERROR at setup of test_t29_shelf_summary_requires_the_shelf_argument _____
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+____________ ERROR at setup of test_t30_unknown_include_is_rejected ____________
+
+xprocess = <xprocess.xprocess.XProcess object at 0x751554360b90>
+
+    @pytest.fixture(scope="session")
+    def service(xprocess):
+        class Starter(ProcessStarter):
+            name = "catalog_api"
+            args = ["mix", "run", "--no-halt"]  # type: ignore[assignment]
+            env = {**os.environ, "MIX_ENV": "dev"}
+            popen_kwargs = {"cwd": PROJECT_DIR, "text": True}
+            timeout = 150
+            terminate_on_interrupt = True
+    
+            def startup_check(self):  # type: ignore[override]
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(2)
+                    if sock.connect_ex((HOST, PORT)) != 0:
+                        return False
+                try:
+                    resp = requests.get(f"{BASE}/authors", headers=PLAIN_HEADERS, timeout=20)
+                except requests.RequestException:
+                    return False
+                return resp.status_code < 500
+    
+        info = xprocess.getinfo(Starter.name)
+        printed = 0
+    
+        def dump(tag: str) -> None:
+            nonlocal printed
+            try:
+                with open(info.logpath, "r", encoding="utf-8", errors="replace") as handle:
+                    lines = handle.readlines()
+            except OSError:
+                return
+            new = lines[printed:]
+            printed = len(lines)
+            print(f"===== [{tag}] catalog_api log =====")
+            print("".join(new))
+            print(f"===== [{tag}] end catalog_api log =====")
+    
+        started = False
+        try:
+>           xprocess.ensure(Starter.name, Starter)
+
+/tests/test_final_state.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:284: in ensure
+    if not starter.wait(log_file_handle):
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:413: in wait
+    callback_ok = self.wait_callback()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_final_state.service.<locals>.Starter object at 0x7515543610a0>
+
+    def wait_callback(self):
+        """Assert that process is ready to answer queries using provided
+        callback funtion. Will raise TimeoutError if self.callback does not
+        return True before self.timeout seconds"""
+        while True:
+            sleep(0.1)
+            if self.startup_check():
+                return True
+            if datetime.now() > self._max_time:
+>               raise TimeoutError(
+                    "The provided startup callback could not assert process\
+                    responsiveness within the specified time interval of {} \
+                    seconds".format(
+                        self.timeout
+                    )
+                )
+E               TimeoutError: The provided startup callback could not assert process                    responsiveness within the specified time interval of 150                     seconds
+
+/usr/local/lib/python3.12/dist-packages/xprocess/xprocess.py:391: TimeoutError
+=========================== short test summary info ============================
+ERROR ../tests/test_final_state.py::test_t01_get_one_book_resource_object - T...
+ERROR ../tests/test_final_state.py::test_t02_top_level_document_members_and_self_link
+ERROR ../tests/test_final_state.py::test_t03_sparse_fieldset_on_primary_data
+ERROR ../tests/test_final_state.py::test_t04_include_author_linkage_and_included
+ERROR ../tests/test_final_state.py::test_t05_sparse_fieldset_applies_to_included
+ERROR ../tests/test_final_state.py::test_t06_index_filter_hides_restricted_from_anonymous
+ERROR ../tests/test_final_state.py::test_t07_index_filter_shows_restricted_to_curator
+ERROR ../tests/test_final_state.py::test_t08_included_resources_are_deduplicated
+ERROR ../tests/test_final_state.py::test_t09_nested_include_is_complete_and_deduplicated
+ERROR ../tests/test_final_state.py::test_t10_relationship_links_on_author - T...
+ERROR ../tests/test_final_state.py::test_t11_sort_descending - TimeoutError: ...
+ERROR ../tests/test_final_state.py::test_t12_sort_ascending - TimeoutError: T...
+ERROR ../tests/test_final_state.py::test_t13_pagination_first_page_links_and_total
+ERROR ../tests/test_final_state.py::test_t14_pagination_last_page_links - Tim...
+ERROR ../tests/test_final_state.py::test_t15_create_book_persists_and_links_author
+ERROR ../tests/test_final_state.py::test_t16_multiple_attribute_constraint_violations
+ERROR ../tests/test_final_state.py::test_t17_missing_required_attribute - Tim...
+ERROR ../tests/test_final_state.py::test_t18_review_rating_out_of_range - Tim...
+ERROR ../tests/test_final_state.py::test_t19_missing_required_relationship - ...
+ERROR ../tests/test_final_state.py::test_t20_wrong_resource_type_in_body - Ti...
+ERROR ../tests/test_final_state.py::test_t21_unknown_id_returns_not_found - T...
+ERROR ../tests/test_final_state.py::test_t22_patch_updates_only_the_given_attributes
+ERROR ../tests/test_final_state.py::test_t23_delete_is_forbidden_without_the_curator_role
+ERROR ../tests/test_final_state.py::test_t24_curator_can_delete - TimeoutErro...
+ERROR ../tests/test_final_state.py::test_t25_restricted_book_visibility - Tim...
+ERROR ../tests/test_final_state.py::test_t26_related_route_returns_full_resource_objects
+ERROR ../tests/test_final_state.py::test_t27_relationship_route_returns_identifier_objects_only
+ERROR ../tests/test_final_state.py::test_t28_shelf_summary_report - TimeoutEr...
+ERROR ../tests/test_final_state.py::test_t29_shelf_summary_requires_the_shelf_argument
+ERROR ../tests/test_final_state.py::test_t30_unknown_include_is_rejected - Ti...
+======================== 30 errors in 150.66s (0:02:30) ========================

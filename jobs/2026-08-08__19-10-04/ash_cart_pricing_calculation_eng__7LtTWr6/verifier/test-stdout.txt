@@ -1,0 +1,1240 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 26 items
+
+../tests/test_final_state.py FFFFFFFFFFFFFFFFFFFFFFFFFF                  [100%]
+
+=================================== FAILURES ===================================
+_____________________________ test_t01_line_totals _____________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t01_line_totals(suite_run):
+>       _check(suite_run, "T01")
+
+/tests/test_final_state.py:799: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T01'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T01 (test T01 line totals) reported status 'failed'.
+E           1) test T01 line totals (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:109
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t01", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t01", region: :us_or})
+E                test/verification/pricing_engine_test.exs:110: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+_____________________________ test_t02_tier_table ______________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t02_tier_table(suite_run):
+>       _check(suite_run, "T02")
+
+/tests/test_final_state.py:803: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T02'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T02 (test T02 tier table) reported status 'failed'.
+E           1) test T02 tier table (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:122
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t02", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t02", region: :us_or})
+E                test/verification/pricing_engine_test.exs:123: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+_______________ test_t03_filter_and_sort_on_derived_item_fields ________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t03_filter_and_sort_on_derived_item_fields(suite_run):
+>       _check(suite_run, "T03")
+
+/tests/test_final_state.py:807: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T03'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T03 (test T03 filter and sort on derived item fields) reported status 'failed'.
+E           1) test T03 filter and sort on derived item fields (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:138
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t03", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t03", region: :us_or})
+E                test/verification/pricing_engine_test.exs:139: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+_______________________ test_t04_composed_line_discount ________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t04_composed_line_discount(suite_run):
+>       _check(suite_run, "T04")
+
+/tests/test_final_state.py:811: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T04'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T04 (test T04 composed line discount) reported status 'failed'.
+E           1) test T04 composed line discount (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:171
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t04", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t04", region: :us_or})
+E                test/verification/pricing_engine_test.exs:172: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+________________________ test_t05_item_count_aggregate _________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t05_item_count_aggregate(suite_run):
+>       _check(suite_run, "T05")
+
+/tests/test_final_state.py:815: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T05'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T05 (test T05 item_count aggregate) reported status 'failed'.
+E           1) test T05 item_count aggregate (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:188
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: a = cart!("t05-a", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t05-a", region: :us_or})
+E                test/verification/pricing_engine_test.exs:189: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+_____________________________ test_t06_quote_shape _____________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t06_quote_shape(suite_run):
+>       _check(suite_run, "T06")
+
+/tests/test_final_state.py:819: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T06'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T06 (test T06 quote shape) reported status 'failed'.
+E           1) test T06 quote shape (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:217
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t06", :us_ca)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t06", region: :us_ca})
+E                test/verification/pricing_engine_test.exs:218: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+______________________ test_t07_no_coupon_zero_tax_region ______________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t07_no_coupon_zero_tax_region(suite_run):
+>       _check(suite_run, "T07")
+
+/tests/test_final_state.py:823: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T07'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T07 (test T07 no-coupon quote in a zero-tax region) reported status 'failed'.
+E           1) test T07 no-coupon quote in a zero-tax region (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:225
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t07", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t07", region: :us_or})
+E                test/verification/pricing_engine_test.exs:226: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+_____________________________ test_t08_mixed_tiers _____________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t08_mixed_tiers(suite_run):
+>       _check(suite_run, "T08")
+
+/tests/test_final_state.py:827: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T08'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T08 (test T08 mixed tiers aggregate correctly) reported status 'failed'.
+E           1) test T08 mixed tiers aggregate correctly (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:243
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t08", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t08", region: :us_or})
+E                test/verification/pricing_engine_test.exs:244: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+___________________________ test_t09_nil_coupon_code ___________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t09_nil_coupon_code(suite_run):
+>       _check(suite_run, "T09")
+
+/tests/test_final_state.py:831: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T09'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T09 (test T09 nil coupon code) reported status 'failed'.
+E           1) test T09 nil coupon code (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:262
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t09", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t09", region: :us_or})
+E                test/verification/pricing_engine_test.exs:263: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+_________________________ test_t10_unknown_coupon_code _________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t10_unknown_coupon_code(suite_run):
+>       _check(suite_run, "T10")
+
+/tests/test_final_state.py:835: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T10'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T10 (test T10 unknown coupon code) reported status 'failed'.
+E           1) test T10 unknown coupon code (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:275
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t10", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t10", region: :us_or})
+E                test/verification/pricing_engine_test.exs:276: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+________________________ test_t11_window_start_boundary ________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t11_window_start_boundary(suite_run):
+>       _check(suite_run, "T11")
+
+/tests/test_final_state.py:839: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T11'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T11 (test T11 window start boundary) reported status 'failed'.
+E           1) test T11 window start boundary (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:286
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t11", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t11", region: :us_or})
+E                test/verification/pricing_engine_test.exs:287: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+_________________________ test_t12_window_end_boundary _________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t12_window_end_boundary(suite_run):
+>       _check(suite_run, "T12")
+
+/tests/test_final_state.py:843: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T12'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T12 (test T12 window end boundary) reported status 'failed'.
+E           1) test T12 window end boundary (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:302
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t12", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t12", region: :us_or})
+E                test/verification/pricing_engine_test.exs:303: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+___________________________ test_t13_redemption_cap ____________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t13_redemption_cap(suite_run):
+>       _check(suite_run, "T13")
+
+/tests/test_final_state.py:847: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T13'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T13 (test T13 redemption cap) reported status 'failed'.
+E           1) test T13 redemption cap (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:317
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t13", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t13", region: :us_or})
+E                test/verification/pricing_engine_test.exs:318: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+__________________________ test_t14_minimum_subtotal ___________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t14_minimum_subtotal(suite_run):
+>       _check(suite_run, "T14")
+
+/tests/test_final_state.py:851: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T14'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T14 (test T14 minimum subtotal) reported status 'failed'.
+E           1) test T14 minimum subtotal (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:338
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: below = cart!("t14-below", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t14-below", region: :us_or})
+E                test/verification/pricing_engine_test.exs:339: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+__________________ test_t15_coupon_discount_rounding_and_cap ___________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t15_coupon_discount_rounding_and_cap(suite_run):
+>       _check(suite_run, "T15")
+
+/tests/test_final_state.py:855: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T15'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T15 (test T15 coupon discount rounding and cap) reported status 'failed'.
+E           1) test T15 coupon discount rounding and cap (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:358
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: odd_cart = cart!("t15-odd", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t15-odd", region: :us_or})
+E                test/verification/pricing_engine_test.exs:359: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+___________________________ test_t16_rule_precedence ___________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t16_rule_precedence(suite_run):
+>       _check(suite_run, "T16")
+
+/tests/test_final_state.py:859: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T16'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T16 (test T16 rule precedence) reported status 'failed'.
+E           1) test T16 rule precedence (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:384
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t16", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t16", region: :us_or})
+E                test/verification/pricing_engine_test.exs:385: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+______________________ test_t17_us_ca_half_away_from_zero ______________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t17_us_ca_half_away_from_zero(suite_run):
+>       _check(suite_run, "T17")
+
+/tests/test_final_state.py:863: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T17'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T17 (test T17 us_ca half-away-from-zero rounding) reported status 'failed'.
+E           1) test T17 us_ca half-away-from-zero rounding (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:415
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: tie = cart!("t17-tie", :us_ca)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t17-tie", region: :us_ca})
+E                test/verification/pricing_engine_test.exs:416: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+_________________________ test_t18_eu_de_half_to_even __________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t18_eu_de_half_to_even(suite_run):
+>       _check(suite_run, "T18")
+
+/tests/test_final_state.py:867: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T18'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T18 (test T18 eu_de half-to-even rounding) reported status 'failed'.
+E           1) test T18 eu_de half-to-even rounding (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:433
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: even_tie = cart!("t18-even", :eu_de)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t18-even", region: :eu_de})
+E                test/verification/pricing_engine_test.exs:434: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+___________________ test_t19_jp_13_truncation_and_us_or_zero ___________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t19_jp_13_truncation_and_us_or_zero(suite_run):
+>       _check(suite_run, "T19")
+
+/tests/test_final_state.py:871: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T19'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T19 (test T19 jp_13 truncation and us_or zero) reported status 'failed'.
+E           1) test T19 jp_13 truncation and us_or zero (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:456
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: tie = cart!("t19-tie", :jp_13)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t19-tie", region: :jp_13})
+E                test/verification/pricing_engine_test.exs:457: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+_________________________ test_t20_batch_load_pairing __________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t20_batch_load_pairing(suite_run):
+>       _check(suite_run, "T20")
+
+/tests/test_final_state.py:875: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T20'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T20 (test T20 batch load keeps per-record pairing) reported status 'failed'.
+E           1) test T20 batch load keeps per-record pairing (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:499
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: seed_batch("b20-")
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "b20-1", region: :us_ca})
+E                test/verification/pricing_engine_test.exs:487: anonymous fn/3 in CartPricing.Verification.PricingEngineTest.seed_batch/1
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                test/verification/pricing_engine_test.exs:486: CartPricing.Verification.PricingEngineTest.seed_batch/1
+E                test/verification/pricing_engine_test.exs:500: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+___________________________ test_t21_post_fetch_load ___________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t21_post_fetch_load(suite_run):
+>       _check(suite_run, "T21")
+
+/tests/test_final_state.py:879: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T21'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T21 (test T21 post-fetch load on unprepared structs) reported status 'failed'.
+E           1) test T21 post-fetch load on unprepared structs (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:523
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: seed_batch("b21-")
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "b21-1", region: :us_ca})
+E                test/verification/pricing_engine_test.exs:487: anonymous fn/3 in CartPricing.Verification.PricingEngineTest.seed_batch/1
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                test/verification/pricing_engine_test.exs:486: CartPricing.Verification.PricingEngineTest.seed_batch/1
+E                test/verification/pricing_engine_test.exs:524: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+_____________________________ test_t22_empty_cart ______________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t22_empty_cart(suite_run):
+>       _check(suite_run, "T22")
+
+/tests/test_final_state.py:883: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T22'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T22 (test T22 empty cart) reported status 'failed'.
+E           1) test T22 empty cart (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:544
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t22", :eu_de)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t22", region: :eu_de})
+E                test/verification/pricing_engine_test.exs:545: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+_____________________ test_t23_arguments_honoured_per_load _____________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t23_arguments_honoured_per_load(suite_run):
+>       _check(suite_run, "T23")
+
+/tests/test_final_state.py:887: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T23'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T23 (test T23 arguments are honoured per load) reported status 'failed'.
+E           1) test T23 arguments are honoured per load (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:567
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t23", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t23", region: :us_or})
+E                test/verification/pricing_engine_test.exs:568: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+_________________________ test_t24_large_exact_values __________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t24_large_exact_values(suite_run):
+>       _check(suite_run, "T24")
+
+/tests/test_final_state.py:891: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T24'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T24 (test T24 large exact values) reported status 'failed'.
+E           1) test T24 large exact values (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:595
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t24", :eu_de)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t24", region: :eu_de})
+E                test/verification/pricing_engine_test.exs:596: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+__________________________ test_t25_write_validation ___________________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t25_write_validation(suite_run):
+>       _check(suite_run, "T25")
+
+/tests/test_final_state.py:895: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T25'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T25 (test T25 write validation) reported status 'failed'.
+E           1) test T25 write validation (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:609
+E              ** (ArgumentError) Expected a resource or a query in `Ash.Query.new/2`, got: `CartPricing.Sales.Cart`
+E              code: assert Cart |> Ash.Query.filter(reference == "t25") |> Ash.read!() == []
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/query/query.ex:732: Ash.Query.new/2
+E                (ash 3.31.0) lib/ash/query/query.ex:3998: Ash.Query.do_filter/3
+E                test/verification/pricing_engine_test.exs:612: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+_______________________ test_t26_required_quote_argument _______________________
+
+suite_run = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+
+    def test_t26_required_quote_argument(suite_run):
+>       _check(suite_run, "T26")
+
+/tests/test_final_state.py:899: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'Running ExUnit with seed: 0, max_cases: 128\n\n\n\n  1) test T01 line totals (CartPricing.Verification.Pri...e': 'CartPricing.Verification.PricingEngineTest', 'name': 'test T04 composed line discount', 'status': 'failed'}, ...}}
+scenario = 'T26'
+
+    def _check(suite, scenario: str):
+        results = suite["results"]
+        matches = [
+            record
+            for name, record in results.items()
+            if name.startswith(f"test {scenario} ")
+        ]
+        if not matches:
+            tail = suite["output"][-6000:]
+            raise AssertionError(
+                f"Scenario {scenario} did not run. The project or the verification suite failed "
+                f"to compile or crashed.\n--- mix test output (tail) ---\n{tail}"
+            )
+        record = matches[0]
+        status = record.get("status")
+>       assert status == "passed", (
+            f"Scenario {scenario} ({record.get('name')}) reported status {status!r}.\n"
+            f"{record.get('message', '')}"
+        )
+E       AssertionError: Scenario T26 (test T26 required quote argument) reported status 'failed'.
+E           1) test T26 required quote argument (CartPricing.Verification.PricingEngineTest)
+E              test/verification/pricing_engine_test.exs:620
+E              ** (UndefinedFunctionError) function CartPricing.Sales.create_cart!/1 is undefined (module CartPricing.Sales is not available)
+E              code: cart = cart!("t26", :us_or)
+E              stacktrace:
+E                CartPricing.Sales.create_cart!(%{reference: "t26", region: :us_or})
+E                test/verification/pricing_engine_test.exs:621: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:792: AssertionError
+=========================== short test summary info ============================
+FAILED ../tests/test_final_state.py::test_t01_line_totals - AssertionError: S...
+FAILED ../tests/test_final_state.py::test_t02_tier_table - AssertionError: Sc...
+FAILED ../tests/test_final_state.py::test_t03_filter_and_sort_on_derived_item_fields
+FAILED ../tests/test_final_state.py::test_t04_composed_line_discount - Assert...
+FAILED ../tests/test_final_state.py::test_t05_item_count_aggregate - Assertio...
+FAILED ../tests/test_final_state.py::test_t06_quote_shape - AssertionError: S...
+FAILED ../tests/test_final_state.py::test_t07_no_coupon_zero_tax_region - Ass...
+FAILED ../tests/test_final_state.py::test_t08_mixed_tiers - AssertionError: S...
+FAILED ../tests/test_final_state.py::test_t09_nil_coupon_code - AssertionErro...
+FAILED ../tests/test_final_state.py::test_t10_unknown_coupon_code - Assertion...
+FAILED ../tests/test_final_state.py::test_t11_window_start_boundary - Asserti...
+FAILED ../tests/test_final_state.py::test_t12_window_end_boundary - Assertion...
+FAILED ../tests/test_final_state.py::test_t13_redemption_cap - AssertionError...
+FAILED ../tests/test_final_state.py::test_t14_minimum_subtotal - AssertionErr...
+FAILED ../tests/test_final_state.py::test_t15_coupon_discount_rounding_and_cap
+FAILED ../tests/test_final_state.py::test_t16_rule_precedence - AssertionErro...
+FAILED ../tests/test_final_state.py::test_t17_us_ca_half_away_from_zero - Ass...
+FAILED ../tests/test_final_state.py::test_t18_eu_de_half_to_even - AssertionE...
+FAILED ../tests/test_final_state.py::test_t19_jp_13_truncation_and_us_or_zero
+FAILED ../tests/test_final_state.py::test_t20_batch_load_pairing - AssertionE...
+FAILED ../tests/test_final_state.py::test_t21_post_fetch_load - AssertionErro...
+FAILED ../tests/test_final_state.py::test_t22_empty_cart - AssertionError: Sc...
+FAILED ../tests/test_final_state.py::test_t23_arguments_honoured_per_load - A...
+FAILED ../tests/test_final_state.py::test_t24_large_exact_values - AssertionE...
+FAILED ../tests/test_final_state.py::test_t25_write_validation - AssertionErr...
+FAILED ../tests/test_final_state.py::test_t26_required_quote_argument - Asser...
+============================= 26 failed in 32.58s ==============================

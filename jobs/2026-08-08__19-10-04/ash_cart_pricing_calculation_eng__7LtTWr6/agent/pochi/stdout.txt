@@ -1,0 +1,114 @@
+- Initializing MCP connections...
+You
+# Dynamic Cart Pricing Engine (Ash Framework 3.x) ## Background An offline Elixir project scaffold lives at `/home/user/cart_pricing` (OTP application `:cart_pricing`). It already depends on Ash 3.x, and every dependency is pre-fetched and pre-compiled. Nothing of the business domain exists yet. Build a shopping-cart pricing engine in which **no money figure is ever stored**. Carts, cart items and coupons hold only raw facts; every subtotal, discount, tax and total is derived at read time from those facts plus load-time inputs. All money is expressed in integer cents and all percentages in basis points (`10_000` bps = 100%). ## Requirements ### Modules and files Create exactly these modules at exactly these paths: | Module | File | | --- | --- | | `CartPricing.Sales` | `lib/cart_pricing/sales.ex` | | `CartPricing.Sales.Cart` | `lib/cart_pricing/sales/cart.ex` | | `CartPricing.Sales.CartItem` | `lib/cart_pricing/sales/cart_item.ex` | | `CartPricing.Sales.Coupon` | `lib/cart_pricing/sales/coupon.ex` | | `CartPricing.Sales.Calculations.DiscountedLineTotal` | `lib/cart_pricing/sales/calculations/discounted_line_total.ex` | | `CartPricing.Sales.Calculations.CartQuote` | `lib/cart_pricing/sales/calculations/cart_quote.ex` | `CartPricing.Sales` is the Ash domain that owns the three resources. Every resource must persist through Ash's in-memory ETS data layer — the environment has no database and no network. ### Stored data `CartPricing.Sales.Cart` - `id` — UUID primary key, generated - `reference` — string, required - `region` — atom, required, restricted to `:us_ca`, `:us_or`, `:eu_de`, `:jp_13` - `items` — a to-many relationship to `CartPricing.Sales.CartItem` keyed by the item's `cart_id` `CartPricing.Sales.CartItem` - `id` — UUID primary key, generated - `sku` — string, required - `unit_price_cents` — integer, required - `quantity` — integer, required, minimum `1` - `cart` / `cart_id` — a to-one relationship to `CartPricing.Sales.Cart`, required `CartPricing.Sales.Coupon` - `id` — UUID primary key, generated - `code` — string, required - `percent_off_bps` — integer, required - `starts_at` — UTC datetime, required - `ends_at` — UTC datetime, required - `max_redemptions` — integer, nullable (`nil` means unlimited) - `redemption_count` — integer, required, default `0` - `min_subtotal_cents` — integer, required, default `0` - `max_discount_cents` — integer, nullable (`nil` means uncapped) ### Derived fields on `CartPricing.Sales.CartItem` - `line_total_cents` — integer, equal to `unit_price_cents * quantity`. It must be usable directly inside a query filter and inside a query sort. - `tier_discount_bps` — integer, derived only from that item's own `quantity`: `1`–`4` → `0`; `5`–`9` → `500`; `10`–`24` → `1000`; `25` or more → `1500`. It must also be usable directly inside a query filter. - `discounted_line_total_cents` — integer, equal to `line_total_cents` minus `floor(line_total_cents * tier_discount_bps / 10_000)`. Its value must be produced by `CartPricing.Sales.Calculations.DiscountedLineTotal`, and asking for it alone on a record that was fetched with nothing else loaded or selected must still yield the correct number. ### Derived fields on `CartPricing.Sales.Cart` - `item_count` — integer, the number of items belonging to the cart. It must be usable directly inside a query filter. - `pricing_quote` — a value of Ash type `:map`, produced by `CartPricing.Sales.Calculations.CartQuote`, accepting two load-time inputs: - `coupon_code` — string, optional, defaulting to `nil` - `as_of` — UTC datetime, required Its value must be a map whose key set is exactly `:gross_subtotal_cents`, `:tier_discount_cents`, `:subtotal_cents`, `:coupon_status`, `:coupon_discount_cents`, `:discounted_subtotal_cents`, `:tax_cents`, `:total_cents`, `:item_count`. Every value except `:coupon_status` must satisfy `is_integer/1`. `:coupon_status` must be one of the atoms `:none`, `:not_found`, `:not_yet_active`, `:expired`, `:exhausted`, `:below_minimum`, `:applied`. ### Pricing contract For one cart, given `coupon_code` and `as_of`: 1. `gross_subtotal_cents` — the sum of `line_total_cents` over the cart's items. 2. `subtotal_cents` — the sum of `discounted_line_total_cents` over the cart's items. 3. `tier_discount_cents` — `gross_subtotal_cents - subtotal_cents`. 4. `item_count` — the number of items in the cart. 5. `coupon_status` and `coupon_discount_cents` are resolved by the **first** matching rule in this exact order, where a coupon matches when its `code` is exactly equal to `coupon_code`: 1. `coupon_code` is `nil` → `:none`, discount `0` 2. no coupon has that code → `:not_found`, discount `0` 3. `as_of` is strictly before `starts_at` → `:not_yet_active`, discount `0` 4. `as_of` is strictly after `ends_at` → `:expired`, discount `0` 5. `max_redemptions` is not `nil` and `redemption_count` is greater than or equal to `max_redemptions` → `:exhausted`, discount `0` 6. `subtotal_cents` is strictly less than `min_subtotal_cents` → `:below_minimum`, discount `0` 7. otherwise → `:applied`, discount `floor(subtotal_cents * percent_off_bps / 10_000)`, then reduced to `max_discount_cents` if that field is not `nil` and the computed discount exceeds it The validity window is inclusive at both ends. 6. `discounted_subtotal_cents` — `subtotal_cents - coupon_discount_cents`. 7. `tax_cents` — the exact rational number `discounted_subtotal_cents * rate_bps / 10_000` converted to a whole number of cents using the cart region's rate and rounding rule: | `region` | `rate_bps` | rounding | | --- | --- | --- | | `:us_ca` | `925` | half away from zero | | `:us_or` | `0` | half away from zero | | `:eu_de` | `1900` | half to even | | `:jp_13` | `1000` | truncate toward zero | 8. `total_cents` — `discounted_subtotal_cents + tax_cents`. Every step is exact integer arithmetic. The checked inputs include values where floating-point evaluation and the three rounding rules all disagree, so an inexact or uniformly-rounded implementation produces wrong numbers. An empty cart produces `0` for every integer key, and its `coupon_status` is still resolved by the rules above against a `subtotal_cents` of `0`. ### Loading contract - `pricing_quote` must be obtainable while reading carts *and* on `%CartPricing.Sales.Cart{}` structs that were already fetched with no loads at all. - Loading a list of carts in one operation must give every cart its own quote, correctly paired with that cart, whatever order the carts were read in. - The same cart or list of carts must be loadable more than once with different `coupon_code` / `as_of` inputs, each load returning results for the inputs it was given. ## Implementation Hints - Project path: `/home/user/cart_pricing` - The machine is offline. Every dependency you need is already fetched and compiled into the project; do not add, remove or upgrade dependencies, and do not attempt to reach the network. - `mix compile` and `MIX_ENV=test mix compile` must both succeed from the project root with no errors. - Resources must carry their own domain, so that plain `Ash.read!/2`, `Ash.load!/3` and `Ash.Changeset` calls work on them without passing a `:domain` option. - `CartPricing.Sales` must expose these functions, each taking a map of attributes and raising on failure: `create_cart!/1`, `create_cart_item!/1`, `create_coupon!/1`. It must also expose `get_cart!/1`, which takes a cart `id` and returns that cart. The create functions must accept every attribute listed above for their resource. - Invalid writes must be rejected: creating a cart with a `region` outside the allowed set, or a cart item with `quantity` below `1`, must fail rather than persist. - Verification copies additional ExUnit files into `test/` of this project and runs `mix test`, replacing `test/test_helper.exs`. Leave the project in a state where `mix test` can run.   
+
+Pochi
+💭 Thinking for 86 characters   
+I'll start by exploring the existing project scaffold to understand what's already in place.   
+📂 Listing files in /home/user/cart_pricing recursively ✔ 
+💭 Thinking for 131 characters   
+Let me examine the key project files to understand the scaffold.   
+📖 Reading /home/user/cart_pricing/mix.exs ✔ 
+📖 Reading /home/user/cart_pricing/config/config.exs ✔ 
+📖 Reading /home/user/cart_pricing/lib/cart_pricing.ex ✔ 
+📖 Reading /home/user/cart_pricing/test/test_helper.exs ✔ 
+📖 Reading /home/user/cart_pricing/.formatter.exs ✔ 
+💭 Thinking for 352 characters   
+Let me study the Ash usage rules and DSL documentation to understand the correct patterns for calculations, domains, and resources.   
+📖 Reading /home/user/cart_pricing/deps/ash/usage-rules/calculations.md ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/usage-rules/querying_data.md ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/usage-rules/data_layers.md ✔ 
+💭 Thinking for 239 characters   
+Let me examine the Ash Resource Calculation behaviour and how arguments/load work with calculations.   
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/resource/calculation.ex ✖ "ENOENT: no such file or directory, open '/home/user/cart_pricing/deps/ash/lib/ash/resource/calculation.ex'"
+📖 Reading /home/user/cart_pricing/deps/ash/usage-rules/code_structure.md ✔ 
+💭 Thinking for 43 characters   
+🔍 Searching for **/*.ex in /home/user/cart_pricing/deps/ash/lib/ash/resource ✔ 
+🔍 Searching for **/calculation*.ex in /home/user/cart_pricing/deps/ash/lib/ash ✔ 
+💭 Thinking for 126 characters   
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/calculation.ex ✔ 
+💭 Thinking for 437 characters   
+Let me look at the calculation argument module, builtins, and example calculations to understand the patterns.   
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/argument.ex ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/expression.ex ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/resource/calculation/concat.ex ✔ 
+💭 Thinking for 529 characters   
+Let me look at how calculations load relationships and how the calculation runtime works.   
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/actions/read/calculations.ex ✔ 
+💭 Thinking for 3565 characters   
+Let me examine the ETS data layer capabilities and how filtering/sorting by calculations works.   
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/data_layer/ets.ex ✖ "ENOENT: no such file or directory, open '/home/user/cart_pricing/deps/ash/lib/ash/data_layer/ets.ex'"
+🔍 Searching for **/ets*.ex in /home/user/cart_pricing/deps/ash/lib/ash/data_layer ✔ 
+📂 Listing files in /home/user/cart_pricing/deps/ash/lib/ash/data_layer ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/data_layer/ets/ets.ex ✔ 
+💭 Thinking for 7413 characters   
+Let me look at how Ash loads calculations on existing records and handles the `load/3` callback for dependencies.   
+🔍 Searching for load*.ex in /home/user/cart_pricing/deps/ash/lib/ash/actions ✔ 
+🔍 Searching for defp load_calculation_requirements|calculation\.module.*load|\.load\(.*query.*opts.*context in /home/user/cart_pricing/deps/ash/lib/ash/actions ✔ 
+🔍 Searching for **/actions/load.ex in /home/user/cart_pricing/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/actions/read/calculations.ex ✔ 
+💭 Thinking for 212 characters   
+Let me find where the calculation `load/3` callback is invoked and `required_loads` is set.   
+🔍 Searching for required_loads|Resource\.Calculation\.load\( in /home/user/cart_pricing/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/query/query.ex ✔ 
+💭 Thinking for 9280 characters   
+Let me look at how expression calculations resolve their referenced calculations/aggregates.   
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/actions/read/calculations.ex ✔ 
+💭 Thinking for 34932 characters   
+Let me look at the Ash actions and code_interfaces usage rules, and check the `defaults` behavior.   
+📖 Reading /home/user/cart_pricing/deps/ash/usage-rules/actions.md ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/usage-rules/relationships.md ✔ 
+💭 Thinking for 965 characters   
+Let me check the Ash Resource DSL documentation for the exact `calculate`, `aggregates`, and `attributes` syntax.   
+🔍 Searching for ^## Resources\.Calculations|^### Calculations\.Calculate|argument : in /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/usage-rules/code_interfaces.md ✔ 
+💭 Thinking for 92 characters   
+🔍 Searching for ## Resources\.Calculations|## Resources\.Aggregates|## Resources\.Attributes|## Resources\.Relationships in /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+🔍 Searching for ^# DSL: Ash.Resource|^## Ash.Resource|^## Resources in /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+💭 Thinking for 78 characters   
+🔍 Searching for ^## calculations|^### calculations|^## aggregates|^### aggregates\.count|^### calculations\.calculate in /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+💭 Thinking for 162 characters   
+Let me check the Ash Domain DSL and the actions `defaults` syntax.   
+🔍 Searching for ^## resources|^### resources\.resource|^## domain in /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Domain.md ✔ 
+🔍 Searching for ^## actions|^### actions\.create|^### actions\.read|defaults in /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+💭 Thinking for 293 characters   
+📖 Reading /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+💭 Thinking for 1130 characters   
+Let me verify the integer type constraints and atom type constraints.   
+🔍 Searching for def constraints.*Integer|@constraints \[|:min|:max|one_of in /home/user/cart_pricing/deps/ash/lib/ash/type ✔ 
+🔍 Searching for **/integer*.ex in /home/user/cart_pricing/deps/ash/lib/ash/type ✔ 
+💭 Thinking for 409 characters   
+Let me verify the utc_datetime type and the atom type constraints.   
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/type/integer.ex ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/type/atom.ex ✔ 
+🔍 Searching for **/utc_datetime*.ex in /home/user/cart_pricing/deps/ash/lib/ash/type ✔ 
+💭 Thinking for 1369 characters   
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/type/utc_datetime.ex ✔ 
+💭 Thinking for 6495 characters   
+Let me check the datetime type's cast behavior to decide on precision.   
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/type/datetime.ex ✔ 
+💭 Thinking for 9138 characters   
+Let me check the Ash.Type.Map behavior regarding atom keys.   
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/type/map.ex ✔ 
+💭 Thinking for 22607 characters   
+Let me check the `uuid_primary_key` and `defaults` action details, and the `Ash.get` behavior.   
+📖 Reading /home/user/cart_pricing/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+🔍 Searching for def get\(resource, id in /home/user/cart_pricing/deps/ash/lib/ash ✔ 
+💭 Thinking for 325 characters   
+🔍 Searching for def get\(resource, id|def get!\(resource, id in /home/user/cart_pricing/deps/ash/lib/ash ✔ 
+🔍 Searching for defdelegate get\(|def get\(resource in /home/user/cart_pricing/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/helpers.ex ✔ 
+💭 Thinking for 79 characters   
+🔍 Searching for def get\(|def get!\(|def load\(|def load!\(|def read\(|def read!\(|def create\(|def create!\( in /home/user/cart_pricing/deps/ash/lib/ash.ex ✔ 
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash.ex ✔ 
+💭 Thinking for 7455 characters   
+Let me verify the `:utc_datetime_usec` type registration and check the `Ash.load` for existing records.   
+📖 Reading /home/user/cart_pricing/deps/ash/lib/ash/type/utc_datetime_usec.ex ✔ 
+🔍 Searching for :utc_datetime_usec|:utc_datetime\b in /home/user/cart_pricing/deps/ash/lib/ash/type ✔ 
+💭 Thinking for 265 characters   
+Let me look at the Ash.Actions.Load to confirm how loading calculations on existing records works.   
+🔍 Searching for **/*.ex in /home/user/cart_pricing/deps/ash/lib/ash/actions ✔ 
+🔍 Searching for def load\b|def run\b|requests|load_through in /home/user/cart_pricing/deps/ash/lib/ash/actions/read/relationships.ex ✔ 

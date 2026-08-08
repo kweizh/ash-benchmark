@@ -1,0 +1,97 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 40 items
+
+../tests/test_final_state.py ........................................    [100%]
+
+==================================== PASSES ====================================
+______________________ test_t01_currencies_and_exponents _______________________
+---------------------------- Captured stdout setup -----------------------------
+Compiling 12 files (.ex)
+Generated ledger app
+@@HARBOR@@test T01 supported currencies and their minor unit exponents@@pass@@
+@@HARBOR@@test T02 constructing money values@@pass@@
+@@HARBOR@@test T03 canonical string rendering@@pass@@
+@@HARBOR@@test T04 addition and subtraction are exact and currency safe@@pass@@
+@@HARBOR@@test T05 multiplication by integers@@pass@@
+@@HARBOR@@test T06 summing lists of money@@pass@@
+@@HARBOR@@test T07 comparison semantics@@pass@@
+@@HARBOR@@test T08 every accepted input shape produces the same value@@pass@@
+@@HARBOR@@test T09 canonical strings round trip for every currency and sign@@pass@@
+@@HARBOR@@test T10 unsupported currencies are reported before anything else@@pass@@
+@@HARBOR@@test T11 fractional minor units are rejected@@pass@@
+@@HARBOR@@test T12 unusable input shapes are rejected@@pass@@
+@@HARBOR@@test T13 different currencies and amounts are never equal@@pass@@
+@@HARBOR@@test T14 the storage type is a map@@pass@@
+@@HARBOR@@test T15 dumping and loading is lossless, including through JSON@@pass@@
+@@HARBOR@@test T16 arrays and nil survive the storage round trip@@pass@@
+@@HARBOR@@test T17 loading a value the type never wrote is rejected@@pass@@
+@@HARBOR@@test T18 the currencies constraint@@pass@@
+@@HARBOR@@test T19 the multiple_of constraint@@pass@@
+@@HARBOR@@test T20 the min and max constraints are inclusive@@pass@@
+@@HARBOR@@test T21 bounds in another currency are not comparable@@pass@@
+@@HARBOR@@test T22 constraints are checked in the documented order@@pass@@
+@@HARBOR@@test T23 array casting reports the failing element index@@pass@@
+@@HARBOR@@test T24 array constraints report the failing element index@@pass@@
+@@HARBOR@@test T25 the narrowed type is a new type over the money type@@pass@@
+@@HARBOR@@test T26 the narrowed type bakes in its constraints@@pass@@
+@@HARBOR@@test T27 money survives the data layer round trip@@pass@@
+@@HARBOR@@test T28 attribute currency constraints reject disallowed currencies@@pass@@
+@@HARBOR@@test T29 array element constraints report the index on the resource@@pass@@
+@@HARBOR@@test T30 adjustments must use the currency of the subtotal@@pass@@
+@@HARBOR@@test T31 applying adjustments appends them in order@@pass@@
+@@HARBOR@@test T32 an adjustment in another currency is rejected without touching the record@@pass@@
+@@HARBOR@@test T33 an adjustment breaking the element constraint leaves the record untouched@@pass@@
+@@HARBOR@@test T34 the total calculation folds the adjustments in@@pass@@
+@@HARBOR@@test T35 payments feed the aggregate and the balance@@pass@@
+@@HARBOR@@test T36 derived payment columns cannot be supplied and currencies are enforced@@pass@@
+@@HARBOR@@test T37 the derived minor unit column is an ordinary queryable integer@@pass@@
+@@HARBOR@@test T38 the generic action returns money@@pass@@
+@@HARBOR@@test T39 sorting by money orders by amount, not lexicographically@@pass@@
+@@HARBOR@@test T40 equality filters match currency and amount together@@pass@@
+
+
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_t01_currencies_and_exponents
+PASSED ../tests/test_final_state.py::test_t02_constructors
+PASSED ../tests/test_final_state.py::test_t03_canonical_string
+PASSED ../tests/test_final_state.py::test_t04_addition_and_subtraction
+PASSED ../tests/test_final_state.py::test_t05_multiplication
+PASSED ../tests/test_final_state.py::test_t06_sum
+PASSED ../tests/test_final_state.py::test_t07_comparison
+PASSED ../tests/test_final_state.py::test_t08_cast_shapes_agree
+PASSED ../tests/test_final_state.py::test_t09_canonical_string_casting
+PASSED ../tests/test_final_state.py::test_t10_unknown_currency_errors
+PASSED ../tests/test_final_state.py::test_t11_fractional_minor_units
+PASSED ../tests/test_final_state.py::test_t12_invalid_format
+PASSED ../tests/test_final_state.py::test_t13_equality
+PASSED ../tests/test_final_state.py::test_t14_storage_type
+PASSED ../tests/test_final_state.py::test_t15_storage_round_trip
+PASSED ../tests/test_final_state.py::test_t16_array_and_nil_round_trip
+PASSED ../tests/test_final_state.py::test_t17_invalid_stored_value
+PASSED ../tests/test_final_state.py::test_t18_currencies_constraint
+PASSED ../tests/test_final_state.py::test_t19_multiple_of_constraint
+PASSED ../tests/test_final_state.py::test_t20_min_and_max_constraints
+PASSED ../tests/test_final_state.py::test_t21_bound_currency_mismatch
+PASSED ../tests/test_final_state.py::test_t22_constraint_ordering
+PASSED ../tests/test_final_state.py::test_t23_array_cast_index
+PASSED ../tests/test_final_state.py::test_t24_array_constraint_index
+PASSED ../tests/test_final_state.py::test_t25_new_type_introspection
+PASSED ../tests/test_final_state.py::test_t26_new_type_constraints
+PASSED ../tests/test_final_state.py::test_t27_resource_round_trip
+PASSED ../tests/test_final_state.py::test_t28_attribute_currency_constraint
+PASSED ../tests/test_final_state.py::test_t29_resource_array_index
+PASSED ../tests/test_final_state.py::test_t30_adjustment_currency_validation
+PASSED ../tests/test_final_state.py::test_t31_apply_adjustment_appends
+PASSED ../tests/test_final_state.py::test_t32_apply_adjustment_currency_mismatch
+PASSED ../tests/test_final_state.py::test_t33_apply_adjustment_element_constraint
+PASSED ../tests/test_final_state.py::test_t34_total_calculation
+PASSED ../tests/test_final_state.py::test_t35_payments_aggregate_and_balance
+PASSED ../tests/test_final_state.py::test_t36_derived_columns_are_not_writable
+PASSED ../tests/test_final_state.py::test_t37_minor_unit_column_is_queryable
+PASSED ../tests/test_final_state.py::test_t38_generic_action_returns_money
+PASSED ../tests/test_final_state.py::test_t39_sorting_by_money
+PASSED ../tests/test_final_state.py::test_t40_equality_filter
+============================= 40 passed in 23.73s ==============================

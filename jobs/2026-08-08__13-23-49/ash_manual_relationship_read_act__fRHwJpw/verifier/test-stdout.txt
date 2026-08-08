@@ -1,0 +1,1608 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 35 items
+
+../../tests/test_final_state.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF      [100%]
+
+=================================== FAILURES ===================================
+_____________ test_t01_manual_relationships_declare_their_modules ______________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t01_manual_relationships_declare_their_modules(suite):
+>       _assert_scenario(suite, "T01")
+
+/tests/test_final_state.py:896: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T01'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T01 failed:
+E           1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:264
+E              ThreadGraph.Forum.Thread has no relationship named :recent_messages
+E              code: for {resource, name, module} <- expected do
+E              stacktrace:
+E                /tmp/harbor_manual_graph.exs:274: anonymous fn/2 in Harbor.Suite."test T01 manual relationships are declared and delegate to the required modules"/1
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                /tmp/harbor_manual_graph.exs:271: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+________________ test_t02_manual_actions_declare_their_modules _________________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t02_manual_actions_declare_their_modules(suite):
+>       _assert_scenario(suite, "T02")
+
+/tests/test_final_state.py:900: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T02'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T02 failed:
+E           1) test T02 manual actions are declared and delegate to the required modules (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:287
+E              Message has no :cross_board_highlights action
+E              code: assert read, "Message has no :cross_board_highlights action"
+E              stacktrace:
+E                /tmp/harbor_manual_graph.exs:289: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+____________ test_t03_manual_actions_expose_the_required_arguments _____________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t03_manual_actions_expose_the_required_arguments(suite):
+>       _assert_scenario(suite, "T03")
+
+/tests/test_final_state.py:904: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T03'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T03 failed:
+E           1) test T03 manual actions expose exactly the required arguments (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:303
+E              ** (KeyError) key :arguments not found in: nil
+E         
+E              If you are using the dot syntax, such as map.field, make sure the left-hand side of the dot is a map
+E              code: read_args = Map.new(read.arguments, &{&1.name, &1})
+E              stacktrace:
+E                /tmp/harbor_manual_graph.exs:305: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_____________ test_t04_reply_count_aggregate_counts_direct_replies _____________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t04_reply_count_aggregate_counts_direct_replies(suite):
+>       _assert_scenario(suite, "T04")
+
+/tests/test_final_state.py:908: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T04'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T04 failed:
+E           1) test T04 reply_count aggregate counts direct replies (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:332
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :reply_count is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2520: Ash.Query.do_load/3
+E                /tmp/harbor_manual_graph.exs:336: Harbor.Suite."test T04 reply_count aggregate counts direct replies"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: |> Ash.read!()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/actions/read/read.ex:32: Ash.Actions.Read.run/3
+E                (ash 3.31.0) lib/ash.ex:2938: Ash.read/2
+E                (ash 3.31.0) lib/ash.ex:2873: Ash.read!/2
+E                /tmp/harbor_manual_graph.exs:337: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+______________ test_t05_recent_messages_is_a_per_thread_top_three ______________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t05_recent_messages_is_a_per_thread_top_three(suite):
+>       _assert_scenario(suite, "T05")
+
+/tests/test_final_state.py:912: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T05'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T05 failed:
+E           1) test T05 recent_messages returns the top 3 per thread, not a global top 3 (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:349
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :recent_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2520: Ash.Query.do_load/3
+E                /tmp/harbor_manual_graph.exs:748: Harbor.Suite.load_all_threads/0
+E                /tmp/harbor_manual_graph.exs:350: Harbor.Suite."test T05 recent_messages returns the top 3 per thread, not a global top 3"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: threads = load_all_threads()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/actions/read/read.ex:32: Ash.Actions.Read.run/3
+E                (ash 3.31.0) lib/ash.ex:2938: Ash.read/2
+E                (ash 3.31.0) lib/ash.ex:2873: Ash.read!/2
+E                /tmp/harbor_manual_graph.exs:749: Harbor.Suite.load_all_threads/0
+E                /tmp/harbor_manual_graph.exs:350: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_______ test_t06_recent_messages_is_empty_for_a_thread_without_messages ________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t06_recent_messages_is_empty_for_a_thread_without_messages(suite):
+>       _assert_scenario(suite, "T06")
+
+/tests/test_final_state.py:916: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T06'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T06 failed:
+E           1) test T06 recent_messages yields [] for a thread without messages (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:358
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :recent_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2520: Ash.Query.do_load/3
+E                /tmp/harbor_manual_graph.exs:748: Harbor.Suite.load_all_threads/0
+E                /tmp/harbor_manual_graph.exs:359: Harbor.Suite."test T06 recent_messages yields [] for a thread without messages"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: threads = load_all_threads()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/actions/read/read.ex:32: Ash.Actions.Read.run/3
+E                (ash 3.31.0) lib/ash.ex:2938: Ash.read/2
+E                (ash 3.31.0) lib/ash.ex:2873: Ash.read!/2
+E                /tmp/harbor_manual_graph.exs:749: Harbor.Suite.load_all_threads/0
+E                /tmp/harbor_manual_graph.exs:359: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_______ test_t07_recent_messages_returns_fewer_than_three_when_available _______
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t07_recent_messages_returns_fewer_than_three_when_available(suite):
+>       _assert_scenario(suite, "T07")
+
+/tests/test_final_state.py:920: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T07'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T07 failed:
+E           1) test T07 recent_messages returns fewer than 3 entries when there are fewer messages (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:363
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :recent_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2520: Ash.Query.do_load/3
+E                /tmp/harbor_manual_graph.exs:748: Harbor.Suite.load_all_threads/0
+E                /tmp/harbor_manual_graph.exs:364: Harbor.Suite."test T07 recent_messages returns fewer than 3 entries when there are fewer messages"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: threads = load_all_threads()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/actions/read/read.ex:32: Ash.Actions.Read.run/3
+E                (ash 3.31.0) lib/ash.ex:2938: Ash.read/2
+E                (ash 3.31.0) lib/ash.ex:2873: Ash.read!/2
+E                /tmp/harbor_manual_graph.exs:749: Harbor.Suite.load_all_threads/0
+E                /tmp/harbor_manual_graph.exs:364: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+________ test_t08_recent_messages_breaks_position_ties_by_ascending_id _________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t08_recent_messages_breaks_position_ties_by_ascending_id(suite):
+>       _assert_scenario(suite, "T08")
+
+/tests/test_final_state.py:924: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T08'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T08 failed:
+E           1) test T08 recent_messages breaks a position tie with an ascending id (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:371
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :recent_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2520: Ash.Query.do_load/3
+E                /tmp/harbor_manual_graph.exs:748: Harbor.Suite.load_all_threads/0
+E                /tmp/harbor_manual_graph.exs:372: Harbor.Suite."test T08 recent_messages breaks a position tie with an ascending id"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: threads = load_all_threads()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/actions/read/read.ex:32: Ash.Actions.Read.run/3
+E                (ash 3.31.0) lib/ash.ex:2938: Ash.read/2
+E                (ash 3.31.0) lib/ash.ex:2873: Ash.read!/2
+E                /tmp/harbor_manual_graph.exs:749: Harbor.Suite.load_all_threads/0
+E                /tmp/harbor_manual_graph.exs:372: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+______________ test_t09_recent_messages_filters_before_truncating ______________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t09_recent_messages_filters_before_truncating(suite):
+>       _assert_scenario(suite, "T09")
+
+/tests/test_final_state.py:928: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T09'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T09 failed:
+E           1) test T09 recent_messages applies the load query filter before truncating (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:378
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * [recent_messages: #Ash.Query<resource: ThreadGraph.Forum.Message, filter: #Ash.Filter<score >= [36m50[0m>>] is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2229: anonymous fn/3 in Ash.Query.load/3
+E                /tmp/harbor_manual_graph.exs:381: Harbor.Suite."test T09 recent_messages applies the load query filter before truncating"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: |> Ash.read!()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/actions/read/read.ex:32: Ash.Actions.Read.run/3
+E                (ash 3.31.0) lib/ash.ex:2938: Ash.read/2
+E                (ash 3.31.0) lib/ash.ex:2873: Ash.read!/2
+E                /tmp/harbor_manual_graph.exs:382: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_______________ test_t10_recent_messages_is_loaded_in_one_batch ________________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t10_recent_messages_is_loaded_in_one_batch(suite):
+>       _assert_scenario(suite, "T10")
+
+/tests/test_final_state.py:932: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T10'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T10 failed:
+E           1) test T10 recent_messages is loaded in a single batch for every parent (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:389
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :recent_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2520: Ash.Query.do_load/3
+E                /tmp/harbor_manual_graph.exs:395: Harbor.Suite."test T10 recent_messages is loaded in a single batch for every parent"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: |> Ash.read!()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/actions/read/read.ex:32: Ash.Actions.Read.run/3
+E                (ash 3.31.0) lib/ash.ex:2938: Ash.read/2
+E                (ash 3.31.0) lib/ash.ex:2873: Ash.read!/2
+E                /tmp/harbor_manual_graph.exs:396: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+______________ test_t11_recent_messages_does_not_query_per_parent ______________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t11_recent_messages_does_not_query_per_parent(suite):
+>       _assert_scenario(suite, "T11")
+
+/tests/test_final_state.py:936: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T11'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T11 failed:
+E           1) test T11 recent_messages does not issue a read per parent record (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:402
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :recent_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2520: Ash.Query.do_load/3
+E                (ash 3.31.0) lib/ash.ex:2672: Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:186: Harbor.Helpers.with_read_count/1
+E                /tmp/harbor_manual_graph.exs:410: Harbor.Suite."test T11 recent_messages does not issue a read per parent record"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: {loaded, reads} = with_read_count(fn -> Ash.load!(threads, :recent_messages) end)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/error/error.ex:114: Ash.Error.to_error_class/2
+E                (ash 3.31.0) lib/ash.ex:2693: anonymous fn/1 in Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:186: Harbor.Helpers.with_read_count/1
+E                /tmp/harbor_manual_graph.exs:410: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+___________ test_t12_relationship_loads_under_a_manual_relationship ____________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t12_relationship_loads_under_a_manual_relationship(suite):
+>       _assert_scenario(suite, "T12")
+
+/tests/test_final_state.py:940: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T12'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T12 failed:
+E           1) test T12 a normal relationship loads underneath a manual relationship (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:416
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :recent_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2266: anonymous fn/3 in Ash.Query.load/3
+E                /tmp/harbor_manual_graph.exs:420: Harbor.Suite."test T12 a normal relationship loads underneath a manual relationship"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: |> Ash.read_one!()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/actions/read/read.ex:32: Ash.Actions.Read.run/3
+E                (ash 3.31.0) lib/ash.ex:3181: Ash.do_read_one/3
+E                (ash 3.31.0) lib/ash.ex:3085: Ash.read_one/2
+E                (ash 3.31.0) lib/ash.ex:3037: Ash.read_one!/2
+E                /tmp/harbor_manual_graph.exs:421: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_____________ test_t13_aggregate_loads_under_a_manual_relationship _____________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t13_aggregate_loads_under_a_manual_relationship(suite):
+>       _assert_scenario(suite, "T13")
+
+/tests/test_final_state.py:944: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T13'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T13 failed:
+E           1) test T13 an aggregate loads underneath a manual relationship (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:427
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :recent_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2266: anonymous fn/3 in Ash.Query.load/3
+E                /tmp/harbor_manual_graph.exs:431: Harbor.Suite."test T13 an aggregate loads underneath a manual relationship"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: |> Ash.read_one!()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/actions/read/read.ex:32: Ash.Actions.Read.run/3
+E                (ash 3.31.0) lib/ash.ex:3181: Ash.do_read_one/3
+E                (ash 3.31.0) lib/ash.ex:3085: Ash.read_one/2
+E                (ash 3.31.0) lib/ash.ex:3037: Ash.read_one!/2
+E                /tmp/harbor_manual_graph.exs:432: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+________ test_t14_manual_relationship_loads_under_a_manual_relationship ________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t14_manual_relationship_loads_under_a_manual_relationship(suite):
+>       _assert_scenario(suite, "T14")
+
+/tests/test_final_state.py:948: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T14'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T14 failed:
+E           1) test T14 a manual relationship loads underneath another manual relationship (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:437
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :recent_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2266: anonymous fn/3 in Ash.Query.load/3
+E                /tmp/harbor_manual_graph.exs:441: Harbor.Suite."test T14 a manual relationship loads underneath another manual relationship"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: |> Ash.read_one!()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/actions/read/read.ex:32: Ash.Actions.Read.run/3
+E                (ash 3.31.0) lib/ash.ex:3181: Ash.do_read_one/3
+E                (ash 3.31.0) lib/ash.ex:3085: Ash.read_one/2
+E                (ash 3.31.0) lib/ash.ex:3037: Ash.read_one!/2
+E                /tmp/harbor_manual_graph.exs:442: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+____________ test_t15_ancestor_messages_is_ordered_outermost_first _____________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t15_ancestor_messages_is_ordered_outermost_first(suite):
+>       _assert_scenario(suite, "T15")
+
+/tests/test_final_state.py:952: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T15'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T15 failed:
+E           1) test T15 ancestor_messages walks the whole parent chain, outermost first (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:451
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :ancestor_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2520: Ash.Query.do_load/3
+E                (ash 3.31.0) lib/ash.ex:2672: Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:769: Harbor.Suite.load_ancestors/0
+E                /tmp/harbor_manual_graph.exs:452: Harbor.Suite."test T15 ancestor_messages walks the whole parent chain, outermost first"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: ancestors = load_ancestors()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/error/error.ex:114: Ash.Error.to_error_class/2
+E                (ash 3.31.0) lib/ash.ex:2693: anonymous fn/1 in Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:769: Harbor.Suite.load_ancestors/0
+E                /tmp/harbor_manual_graph.exs:452: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_______________ test_t16_ancestor_messages_terminates_on_a_cycle _______________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t16_ancestor_messages_terminates_on_a_cycle(suite):
+>       _assert_scenario(suite, "T16")
+
+/tests/test_final_state.py:956: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T16'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T16 failed:
+E           1) test T16 ancestor_messages terminates on a cyclic parent chain (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:461
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :ancestor_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2520: Ash.Query.do_load/3
+E                (ash 3.31.0) lib/ash.ex:2672: Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:769: Harbor.Suite.load_ancestors/0
+E                /tmp/harbor_manual_graph.exs:462: Harbor.Suite."test T16 ancestor_messages terminates on a cyclic parent chain"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: ancestors = load_ancestors()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/error/error.ex:114: Ash.Error.to_error_class/2
+E                (ash 3.31.0) lib/ash.ex:2693: anonymous fn/1 in Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:769: Harbor.Suite.load_ancestors/0
+E                /tmp/harbor_manual_graph.exs:462: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+____________________ test_t17_ancestor_messages_is_batched _____________________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t17_ancestor_messages_is_batched(suite):
+>       _assert_scenario(suite, "T17")
+
+/tests/test_final_state.py:960: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T17'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T17 failed:
+E           1) test T17 ancestor_messages is batched and does not issue a read per parent record (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:468
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :ancestor_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2520: Ash.Query.do_load/3
+E                (ash 3.31.0) lib/ash.ex:2672: Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:186: Harbor.Helpers.with_read_count/1
+E                /tmp/harbor_manual_graph.exs:474: Harbor.Suite."test T17 ancestor_messages is batched and does not issue a read per parent record"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: {loaded, reads} = with_read_count(fn -> Ash.load!(messages, :ancestor_messages) end)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/error/error.ex:114: Ash.Error.to_error_class/2
+E                (ash 3.31.0) lib/ash.ex:2693: anonymous fn/1 in Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:186: Harbor.Helpers.with_read_count/1
+E                /tmp/harbor_manual_graph.exs:474: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_______________ test_t18_linked_messages_is_a_transitive_closure _______________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t18_linked_messages_is_a_transitive_closure(suite):
+>       _assert_scenario(suite, "T18")
+
+/tests/test_final_state.py:964: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T18'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T18 failed:
+E           1) test T18 linked_messages returns the transitive closure ordered by hop distance (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:481
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :linked_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2520: Ash.Query.do_load/3
+E                (ash 3.31.0) lib/ash.ex:2672: Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:775: Harbor.Suite.load_linked/0
+E                /tmp/harbor_manual_graph.exs:482: Harbor.Suite."test T18 linked_messages returns the transitive closure ordered by hop distance"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: linked = load_linked()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/error/error.ex:114: Ash.Error.to_error_class/2
+E                (ash 3.31.0) lib/ash.ex:2693: anonymous fn/1 in Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:775: Harbor.Suite.load_linked/0
+E                /tmp/harbor_manual_graph.exs:482: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+__________ test_t19_linked_messages_excludes_self_and_handles_leaves ___________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t19_linked_messages_excludes_self_and_handles_leaves(suite):
+>       _assert_scenario(suite, "T19")
+
+/tests/test_final_state.py:968: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T19'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T19 failed:
+E           1) test T19 linked_messages excludes the source in a cycle and yields [] without edges (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:489
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :linked_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2520: Ash.Query.do_load/3
+E                (ash 3.31.0) lib/ash.ex:2672: Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:775: Harbor.Suite.load_linked/0
+E                /tmp/harbor_manual_graph.exs:490: Harbor.Suite."test T19 linked_messages excludes the source in a cycle and yields [] without edges"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: linked = load_linked()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/error/error.ex:114: Ash.Error.to_error_class/2
+E                (ash 3.31.0) lib/ash.ex:2693: anonymous fn/1 in Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:775: Harbor.Suite.load_linked/0
+E                /tmp/harbor_manual_graph.exs:490: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+___________ test_t20_linked_messages_ignores_kind_and_shares_targets ___________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t20_linked_messages_ignores_kind_and_shares_targets(suite):
+>       _assert_scenario(suite, "T20")
+
+/tests/test_final_state.py:972: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T20'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T20 failed:
+E           1) test T20 linked_messages ignores the edge kind and shares targets between sources (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:497
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :linked_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2520: Ash.Query.do_load/3
+E                (ash 3.31.0) lib/ash.ex:2672: Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:775: Harbor.Suite.load_linked/0
+E                /tmp/harbor_manual_graph.exs:498: Harbor.Suite."test T20 linked_messages ignores the edge kind and shares targets between sources"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: linked = load_linked()
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/error/error.ex:114: Ash.Error.to_error_class/2
+E                (ash 3.31.0) lib/ash.ex:2693: anonymous fn/1 in Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:775: Harbor.Suite.load_linked/0
+E                /tmp/harbor_manual_graph.exs:498: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_____________________ test_t21_linked_messages_is_batched ______________________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t21_linked_messages_is_batched(suite):
+>       _assert_scenario(suite, "T21")
+
+/tests/test_final_state.py:976: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T21'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T21 failed:
+E           1) test T21 linked_messages is batched and does not issue a read per parent record (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:505
+E              ** (Ash.Error.Invalid) 
+E              Invalid Error
+E         
+E              * :linked_messages is not a valid load
+E                  at load
+E                (ash 3.31.0) lib/ash/query/query.ex:2520: Ash.Query.do_load/3
+E                (ash 3.31.0) lib/ash.ex:2672: Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:186: Harbor.Helpers.with_read_count/1
+E                /tmp/harbor_manual_graph.exs:511: Harbor.Suite."test T21 linked_messages is batched and does not issue a read per parent record"/1
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+E                (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+E                (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+E              code: {loaded, reads} = with_read_count(fn -> Ash.load!(messages, :linked_messages) end)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/error/error.ex:114: Ash.Error.to_error_class/2
+E                (ash 3.31.0) lib/ash.ex:2693: anonymous fn/1 in Ash.load/3
+E                (ash 3.31.0) lib/ash.ex:2540: Ash.load!/3
+E                /tmp/harbor_manual_graph.exs:186: Harbor.Helpers.with_read_count/1
+E                /tmp/harbor_manual_graph.exs:511: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+__________ test_t22_highlights_scopes_by_board_with_default_ordering ___________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t22_highlights_scopes_by_board_with_default_ordering(suite):
+>       _assert_scenario(suite, "T22")
+
+/tests/test_final_state.py:980: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T22'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T22 failed:
+E           1) test T22 cross_board_highlights scopes by board and applies the default ordering (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:518
+E              ** (ArgumentError) No such read action on resource ThreadGraph.Forum.Message: :cross_board_highlights
+E         
+E              Example Call:
+E         
+E                Ash.Query.for_read(query_or_resource, :action_name, input, options)
+E         
+E              Available read actions:
+E         
+E                  - `:read
+E         
+E              code: assert bodies(highlights(["general"], 0)) == [
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/query/query.ex:990: Ash.Query.raise_no_action/2
+E                /tmp/harbor_manual_graph.exs:781: Harbor.Suite.highlights/2
+E                /tmp/harbor_manual_graph.exs:519: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_________________ test_t23_highlights_honours_min_endorsements _________________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t23_highlights_honours_min_endorsements(suite):
+>       _assert_scenario(suite, "T23")
+
+/tests/test_final_state.py:984: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T23'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T23 failed:
+E           1) test T23 cross_board_highlights honours the min_endorsements threshold (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:533
+E              ** (ArgumentError) No such read action on resource ThreadGraph.Forum.Message: :cross_board_highlights
+E         
+E              Example Call:
+E         
+E                Ash.Query.for_read(query_or_resource, :action_name, input, options)
+E         
+E              Available read actions:
+E         
+E                  - `:read
+E         
+E              code: assert bodies(highlights(["general"], 2)) == ["alpha-1", "beta-1"]
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/query/query.ex:990: Ash.Query.raise_no_action/2
+E                /tmp/harbor_manual_graph.exs:781: Harbor.Suite.highlights/2
+E                /tmp/harbor_manual_graph.exs:534: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+__________________ test_t24_highlights_merges_several_boards ___________________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t24_highlights_merges_several_boards(suite):
+>       _assert_scenario(suite, "T24")
+
+/tests/test_final_state.py:988: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T24'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T24 failed:
+E           1) test T24 cross_board_highlights merges several boards (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:538
+E              ** (ArgumentError) No such read action on resource ThreadGraph.Forum.Message: :cross_board_highlights
+E         
+E              Example Call:
+E         
+E                Ash.Query.for_read(query_or_resource, :action_name, input, options)
+E         
+E              Available read actions:
+E         
+E                  - `:read
+E         
+E              code: assert bodies(highlights(["general", "random"], 0)) == [
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/query/query.ex:990: Ash.Query.raise_no_action/2
+E                /tmp/harbor_manual_graph.exs:781: Harbor.Suite.highlights/2
+E                /tmp/harbor_manual_graph.exs:539: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+___________ test_t25_highlights_attaches_endorsement_count_metadata ____________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t25_highlights_attaches_endorsement_count_metadata(suite):
+>       _assert_scenario(suite, "T25")
+
+/tests/test_final_state.py:992: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T25'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T25 failed:
+E           1) test T25 cross_board_highlights attaches the endorsement count as metadata (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:557
+E              ** (ArgumentError) No such read action on resource ThreadGraph.Forum.Message: :cross_board_highlights
+E         
+E              Example Call:
+E         
+E                Ash.Query.for_read(query_or_resource, :action_name, input, options)
+E         
+E              Available read actions:
+E         
+E                  - `:read
+E         
+E              code: |> highlights(1)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/query/query.ex:990: Ash.Query.raise_no_action/2
+E                /tmp/harbor_manual_graph.exs:781: Harbor.Suite.highlights/2
+E                /tmp/harbor_manual_graph.exs:560: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+__________________ test_t26_highlights_honours_a_query_filter __________________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t26_highlights_honours_a_query_filter(suite):
+>       _assert_scenario(suite, "T26")
+
+/tests/test_final_state.py:996: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T26'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T26 failed:
+E           1) test T26 cross_board_highlights honours a filter carried by the query (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:566
+E              ** (ArgumentError) No such read action on resource ThreadGraph.Forum.Message: :cross_board_highlights
+E         
+E              Example Call:
+E         
+E                Ash.Query.for_read(query_or_resource, :action_name, input, options)
+E         
+E              Available read actions:
+E         
+E                  - `:read
+E         
+E              code: |> Ash.Query.for_read(:cross_board_highlights, %{
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/query/query.ex:990: Ash.Query.raise_no_action/2
+E                /tmp/harbor_manual_graph.exs:569: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+___________________ test_t27_highlights_honours_a_query_sort ___________________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t27_highlights_honours_a_query_sort(suite):
+>       _assert_scenario(suite, "T27")
+
+/tests/test_final_state.py:1000: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T27'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T27 failed:
+E           1) test T27 a sort carried by the query replaces the default ordering (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:579
+E              ** (ArgumentError) No such read action on resource ThreadGraph.Forum.Message: :cross_board_highlights
+E         
+E              Example Call:
+E         
+E                Ash.Query.for_read(query_or_resource, :action_name, input, options)
+E         
+E              Available read actions:
+E         
+E                  - `:read
+E         
+E              code: |> Ash.Query.for_read(:cross_board_highlights, %{boards: ["general"], min_endorsements: 1})
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/query/query.ex:990: Ash.Query.raise_no_action/2
+E                /tmp/harbor_manual_graph.exs:582: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_________________ test_t28_highlights_honours_limit_and_offset _________________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t28_highlights_honours_limit_and_offset(suite):
+>       _assert_scenario(suite, "T28")
+
+/tests/test_final_state.py:1004: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T28'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T28 failed:
+E           1) test T28 cross_board_highlights honours limit and offset (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:589
+E              ** (ArgumentError) No such read action on resource ThreadGraph.Forum.Message: :cross_board_highlights
+E         
+E              Example Call:
+E         
+E                Ash.Query.for_read(query_or_resource, :action_name, input, options)
+E         
+E              Available read actions:
+E         
+E                  - `:read
+E         
+E              code: |> Ash.Query.for_read(:cross_board_highlights, %{boards: ["general"], min_endorsements: 0})
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/query/query.ex:990: Ash.Query.raise_no_action/2
+E                /tmp/harbor_manual_graph.exs:592: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+___________ test_t29_highlights_code_interface_runs_the_action_once ____________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t29_highlights_code_interface_runs_the_action_once(suite):
+>       _assert_scenario(suite, "T29")
+
+/tests/test_final_state.py:1008: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T29'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T29 failed:
+E           1) test T29 the code interface exposes cross_board_highlights and runs it once (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:610
+E              ** (ArgumentError) No such read action on resource ThreadGraph.Forum.Message: :cross_board_highlights
+E         
+E              Example Call:
+E         
+E                Ash.Query.for_read(query_or_resource, :action_name, input, options)
+E         
+E              Available read actions:
+E         
+E                  - `:read
+E         
+E              code: expected = bodies(highlights(["general"], 1))
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/query/query.ex:990: Ash.Query.raise_no_action/2
+E                /tmp/harbor_manual_graph.exs:781: Harbor.Suite.highlights/2
+E                /tmp/harbor_manual_graph.exs:611: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+___________________ test_t30_fork_copies_the_source_subtree ____________________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t30_fork_copies_the_source_subtree(suite):
+>       _assert_scenario(suite, "T30")
+
+/tests/test_final_state.py:1012: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T30'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T30 failed:
+E           1) test T30 fork copies the source message and its descendants into a new thread (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:622
+E              ** (UndefinedFunctionError) function ThreadGraph.Forum.fork_thread!/3 is undefined or private
+E              code: thread = apply(ThreadGraph.Forum, :fork_thread!, [F.message_id("fork-2"), "fk-a", "Fork A"])
+E              stacktrace:
+E                (thread_graph 0.1.0) ThreadGraph.Forum.fork_thread!("35ef2567-a5a9-438d-bee6-285fc76d7a08", "fk-a", "Fork A")
+E                /tmp/harbor_manual_graph.exs:623: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_____________ test_t31_fork_renumbers_positions_by_position_order ______________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t31_fork_renumbers_positions_by_position_order(suite):
+>       _assert_scenario(suite, "T31")
+
+/tests/test_final_state.py:1016: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T31'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T31 failed:
+E           1) test T31 fork renumbers positions by position order and ignores unrelated messages (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:644
+E              ** (UndefinedFunctionError) function ThreadGraph.Forum.fork_thread!/3 is undefined or private
+E              code: thread = apply(ThreadGraph.Forum, :fork_thread!, [F.message_id("fork-1"), "fk-b", "Fork B"])
+E              stacktrace:
+E                (thread_graph 0.1.0) ThreadGraph.Forum.fork_thread!("90b4640a-b593-4d63-a591-eb87557f6a1f", "fk-b", "Fork B")
+E                /tmp/harbor_manual_graph.exs:645: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_________________ test_t32_fork_records_a_single_fork_of_link __________________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t32_fork_records_a_single_fork_of_link(suite):
+>       _assert_scenario(suite, "T32")
+
+/tests/test_final_state.py:1020: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T32'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T32 failed:
+E           1) test T32 fork records exactly one :fork_of link from the new root to the source (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:661
+E              ** (UndefinedFunctionError) function ThreadGraph.Forum.fork_thread!/3 is undefined or private
+E              code: thread = apply(ThreadGraph.Forum, :fork_thread!, [F.message_id("fork-5"), "fk-c", "Fork C"])
+E              stacktrace:
+E                (thread_graph 0.1.0) ThreadGraph.Forum.fork_thread!("4a64616e-aeed-4247-b743-7f1194ddbc83", "fk-c", "Fork C")
+E                /tmp/harbor_manual_graph.exs:662: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_______________ test_t33_fork_rejects_an_unknown_source_message ________________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t33_fork_rejects_an_unknown_source_message(suite):
+>       _assert_scenario(suite, "T33")
+
+/tests/test_final_state.py:1024: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T33'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T33 failed:
+E           1) test T33 fork rejects an unknown source message without writing anything (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:680
+E              ** (ArgumentError) No such create action on resource ThreadGraph.Forum.Thread: :fork
+E         
+E              Example Call:
+E         
+E                Ash.Changeset.for_create(changeset_or_record, :action_name, input, options)
+E         
+E              Available create actions:
+E         
+E                  - `:create`
+E         
+E              code: |> Ash.Changeset.for_create(:fork, %{
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:3415: Ash.Changeset.raise_no_action/3
+E                /tmp/harbor_manual_graph.exs:685: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+_________________ test_t34_fork_rejects_a_locked_source_thread _________________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t34_fork_rejects_a_locked_source_thread(suite):
+>       _assert_scenario(suite, "T34")
+
+/tests/test_final_state.py:1028: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T34'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T34 failed:
+E           1) test T34 fork rejects a locked source thread without writing anything (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:706
+E              ** (ArgumentError) No such create action on resource ThreadGraph.Forum.Thread: :fork
+E         
+E              Example Call:
+E         
+E                Ash.Changeset.for_create(changeset_or_record, :action_name, input, options)
+E         
+E              Available create actions:
+E         
+E                  - `:create`
+E         
+E              code: |> Ash.Changeset.for_create(:fork, %{
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:3415: Ash.Changeset.raise_no_action/3
+E                /tmp/harbor_manual_graph.exs:711: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+______________ test_t35_fork_code_interface_runs_the_action_once _______________
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+
+    def test_t35_fork_code_interface_runs_the_action_once(suite):
+>       _assert_scenario(suite, "T35")
+
+/tests/test_final_state.py:1032: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({'T01': ('FAIL', '  1) test T01 manual relationships are declared and delegate to the required modules (Harbor.Suite)...wMzQiLCAiZmstZCIsICJGb3JrIEQiKQogICAgICAgL3RtcC9oYXJib3JfbWFudWFsX2dyYXBoLmV4czo3MzY6ICh0ZXN0KQo=\n\n--- stderr ---\n')
+scenario_id = 'T35'
+
+    def _assert_scenario(suite, scenario_id):
+        results, diagnostics = suite
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} did not run. The project most likely failed to "
+            f"compile or the suite crashed.\n{diagnostics}"
+        )
+        status, detail = results[scenario_id]
+>       assert status == "PASS", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T35 failed:
+E           1) test T35 the fork code interface runs the manual action exactly once (Harbor.Suite)
+E              /tmp/harbor_manual_graph.exs:732
+E              ** (UndefinedFunctionError) function ThreadGraph.Forum.fork_thread/3 is undefined or private
+E              code: apply(ThreadGraph.Forum, :fork_thread, [F.message_id("fork-4"), "fk-d", "Fork D"])
+E              stacktrace:
+E                (thread_graph 0.1.0) ThreadGraph.Forum.fork_thread("986e32d9-e98a-4dbf-8f6f-f5b323d49034", "fk-d", "Fork D")
+E                /tmp/harbor_manual_graph.exs:736: (test)
+E         
+E       assert 'FAIL' == 'PASS'
+E         - PASS
+E         + FAIL
+
+/tests/test_final_state.py:892: AssertionError
+=========================== short test summary info ============================
+FAILED ../../tests/test_final_state.py::test_t01_manual_relationships_declare_their_modules
+FAILED ../../tests/test_final_state.py::test_t02_manual_actions_declare_their_modules
+FAILED ../../tests/test_final_state.py::test_t03_manual_actions_expose_the_required_arguments
+FAILED ../../tests/test_final_state.py::test_t04_reply_count_aggregate_counts_direct_replies
+FAILED ../../tests/test_final_state.py::test_t05_recent_messages_is_a_per_thread_top_three
+FAILED ../../tests/test_final_state.py::test_t06_recent_messages_is_empty_for_a_thread_without_messages
+FAILED ../../tests/test_final_state.py::test_t07_recent_messages_returns_fewer_than_three_when_available
+FAILED ../../tests/test_final_state.py::test_t08_recent_messages_breaks_position_ties_by_ascending_id
+FAILED ../../tests/test_final_state.py::test_t09_recent_messages_filters_before_truncating
+FAILED ../../tests/test_final_state.py::test_t10_recent_messages_is_loaded_in_one_batch
+FAILED ../../tests/test_final_state.py::test_t11_recent_messages_does_not_query_per_parent
+FAILED ../../tests/test_final_state.py::test_t12_relationship_loads_under_a_manual_relationship
+FAILED ../../tests/test_final_state.py::test_t13_aggregate_loads_under_a_manual_relationship
+FAILED ../../tests/test_final_state.py::test_t14_manual_relationship_loads_under_a_manual_relationship
+FAILED ../../tests/test_final_state.py::test_t15_ancestor_messages_is_ordered_outermost_first
+FAILED ../../tests/test_final_state.py::test_t16_ancestor_messages_terminates_on_a_cycle
+FAILED ../../tests/test_final_state.py::test_t17_ancestor_messages_is_batched
+FAILED ../../tests/test_final_state.py::test_t18_linked_messages_is_a_transitive_closure
+FAILED ../../tests/test_final_state.py::test_t19_linked_messages_excludes_self_and_handles_leaves
+FAILED ../../tests/test_final_state.py::test_t20_linked_messages_ignores_kind_and_shares_targets
+FAILED ../../tests/test_final_state.py::test_t21_linked_messages_is_batched
+FAILED ../../tests/test_final_state.py::test_t22_highlights_scopes_by_board_with_default_ordering
+FAILED ../../tests/test_final_state.py::test_t23_highlights_honours_min_endorsements
+FAILED ../../tests/test_final_state.py::test_t24_highlights_merges_several_boards
+FAILED ../../tests/test_final_state.py::test_t25_highlights_attaches_endorsement_count_metadata
+FAILED ../../tests/test_final_state.py::test_t26_highlights_honours_a_query_filter
+FAILED ../../tests/test_final_state.py::test_t27_highlights_honours_a_query_sort
+FAILED ../../tests/test_final_state.py::test_t28_highlights_honours_limit_and_offset
+FAILED ../../tests/test_final_state.py::test_t29_highlights_code_interface_runs_the_action_once
+FAILED ../../tests/test_final_state.py::test_t30_fork_copies_the_source_subtree
+FAILED ../../tests/test_final_state.py::test_t31_fork_renumbers_positions_by_position_order
+FAILED ../../tests/test_final_state.py::test_t32_fork_records_a_single_fork_of_link
+FAILED ../../tests/test_final_state.py::test_t33_fork_rejects_an_unknown_source_message
+FAILED ../../tests/test_final_state.py::test_t34_fork_rejects_a_locked_source_thread
+FAILED ../../tests/test_final_state.py::test_t35_fork_code_interface_runs_the_action_once
+============================= 35 failed in 19.25s ==============================

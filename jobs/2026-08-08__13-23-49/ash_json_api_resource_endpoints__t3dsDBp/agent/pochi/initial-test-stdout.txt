@@ -1,0 +1,21 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: xprocess-1.0.2, json-ctrf-0.5.3
+collected 12 items
+
+../bootstrap/test_initial_state.py::test_elixir_toolchain_available PASSED
+../bootstrap/test_initial_state.py::test_elixir_runs PASSED
+../bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+../bootstrap/test_initial_state.py::test_mix_project_files_exist PASSED
+../bootstrap/test_initial_state.py::test_application_module_exists PASSED
+../bootstrap/test_initial_state.py::test_mix_exs_declares_required_dependencies PASSED
+../bootstrap/test_initial_state.py::test_dependencies_are_vendored PASSED
+../bootstrap/test_initial_state.py::test_dependencies_are_precompiled_for_dev_and_test PASSED
+../bootstrap/test_initial_state.py::test_json_api_media_type_is_configured PASSED
+../bootstrap/test_initial_state.py::test_no_domain_or_resource_modules_yet PASSED
+../bootstrap/test_initial_state.py::test_scaffold_has_no_json_api_wiring PASSED
+../bootstrap/test_initial_state.py::test_application_supervises_nothing_yet PASSED
+
+============================== 12 passed in 3.49s ==============================
+pytest-xprocess reminder::Be sure to terminate the started process by running 'pytest --xkill' if you have not explicitly done so in your fixture with 'xprocess.getinfo(<process_name>).terminate()'.
