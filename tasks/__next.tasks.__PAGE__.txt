@@ -1,5 +1,1088 @@
 1:"$Sreact.fragment"
-2:I[75049,["/ash-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/ash-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
-3:"$Sreact.suspense"
-0:{"buildId":"06lxGwRyA8CcuYlaRJkkf","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","div",null,{"className":"container mx-auto px-4 sm:px-8 lg:px-12 py-8 max-w-screen-2xl h-[100dvh] flex flex-col overflow-hidden","children":[["$","div",null,{"className":"mb-6 space-y-4 shrink-0","children":[["$","div",null,{"className":"flex items-center gap-4","children":["$","a",null,{"href":"/","className":"text-sm text-muted-foreground hover:text-foreground transition-colors","children":"← Back to Leaderboard"}]}],["$","div",null,{"children":["$","h1",null,{"className":"text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50","children":"Task"}]}]]}],["$","div",null,{"className":"relative overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-card/90 to-background/90 px-5 pb-10 pt-6 text-center shadow-[0_0_0_1px_hsl(var(--primary)/0.18),0_28px_72px_-32px_hsl(var(--foreground)/0.45)] backdrop-blur-sm sm:px-8 sm:pb-14 sm:pt-8","children":[["$","div",null,{"className":"pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-primary/20 blur-3xl sm:-right-14 sm:-top-14 sm:h-40 sm:w-40"}],["$","div",null,{"className":"pointer-events-none absolute -left-20 bottom-0 h-32 w-32 rounded-full bg-foreground/10 blur-3xl sm:h-36 sm:w-36"}],["$","div",null,{"className":"relative mx-auto mb-8 inline-flex items-center rounded-full border border-primary/40 bg-primary/15 px-3 py-1 text-xs font-semibold tracking-[0.12em] text-foreground sm:text-sm sm:tracking-[0.16em]","children":"⏳ PIPELINE PENDING REVIEW"}],["$","p",null,{"className":"relative mx-auto max-w-2xl px-4 text-center text-lg font-semibold tracking-wide text-foreground sm:px-5 sm:text-xl","children":[0," sample cases generated — pending review"]}],["$","p",null,{"className":"relative mx-auto mt-2 max-w-2xl px-4 text-left text-sm leading-relaxed text-muted-foreground sm:px-5","children":"Your sample cases are ready. Before moving forward, we do a quick review together to make sure everything looks right and aligns with real-world usage."}],["$","div",null,{"className":"relative mx-auto mt-8 max-w-2xl rounded-xl bg-primary/10 px-4 py-4 text-left sm:px-5","children":[["$","p",null,{"className":"text-base font-semibold text-foreground sm:text-lg text-center","children":"Next step: join Slack for review"}],["$","p",null,{"className":"mt-1 text-sm leading-relaxed text-muted-foreground","children":"We've sent you a Slack invitation to your registered email with Zealt. Please join and we'll walk through the next step together."}],["$","p",null,{"className":"mt-3 text-xs text-muted-foreground","children":["If you don't see it, just reach out at"," ",["$","a",null,{"href":"mailto:zealtdev@tabbyml.com","className":"font-normal text-foreground underline decoration-primary/60 underline-offset-4 hover:text-primary transition-colors","children":"zealtdev@tabbyml.com"}],"."]}]]}]]}]]}]]}],[["$","script","script-0",{"src":"/ash-benchmark/_next/static/chunks/d48fb1ff6b027b0b.js","async":true}],["$","script","script-1",{"src":"/ash-benchmark/_next/static/chunks/2ee232ed1e88c469.js","async":true}]],["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"loading":null,"isPartial":false}
-4:null
+2:"$Sreact.suspense"
+3:I[42654,["/ash-benchmark/_next/static/chunks/babff0e7418ab052.js","/ash-benchmark/_next/static/chunks/3ecbb78a8ff87549.js","/ash-benchmark/_next/static/chunks/d48fb1ff6b027b0b.js","/ash-benchmark/_next/static/chunks/2ee232ed1e88c469.js"],"TasksPageClient"]
+e:I[75049,["/ash-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/ash-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
+4:T1f5c,# Dynamic Cart Pricing Engine (Ash Framework 3.x)
+
+## Background
+
+An offline Elixir project scaffold lives at `/home/user/cart_pricing` (OTP application `:cart_pricing`). It already depends on Ash 3.x, and every dependency is pre-fetched and pre-compiled. Nothing of the business domain exists yet.
+
+Build a shopping-cart pricing engine in which **no money figure is ever stored**. Carts, cart items and coupons hold only raw facts; every subtotal, discount, tax and total is derived at read time from those facts plus load-time inputs. All money is expressed in integer cents and all percentages in basis points (`10_000` bps = 100%).
+
+## Requirements
+
+### Modules and files
+
+Create exactly these modules at exactly these paths:
+
+| Module | File |
+| --- | --- |
+| `CartPricing.Sales` | `lib/cart_pricing/sales.ex` |
+| `CartPricing.Sales.Cart` | `lib/cart_pricing/sales/cart.ex` |
+| `CartPricing.Sales.CartItem` | `lib/cart_pricing/sales/cart_item.ex` |
+| `CartPricing.Sales.Coupon` | `lib/cart_pricing/sales/coupon.ex` |
+| `CartPricing.Sales.Calculations.DiscountedLineTotal` | `lib/cart_pricing/sales/calculations/discounted_line_total.ex` |
+| `CartPricing.Sales.Calculations.CartQuote` | `lib/cart_pricing/sales/calculations/cart_quote.ex` |
+
+`CartPricing.Sales` is the Ash domain that owns the three resources. Every resource must persist through Ash's in-memory ETS data layer — the environment has no database and no network.
+
+### Stored data
+
+`CartPricing.Sales.Cart`
+- `id` — UUID primary key, generated
+- `reference` — string, required
+- `region` — atom, required, restricted to `:us_ca`, `:us_or`, `:eu_de`, `:jp_13`
+- `items` — a to-many relationship to `CartPricing.Sales.CartItem` keyed by the item's `cart_id`
+
+`CartPricing.Sales.CartItem`
+- `id` — UUID primary key, generated
+- `sku` — string, required
+- `unit_price_cents` — integer, required
+- `quantity` — integer, required, minimum `1`
+- `cart` / `cart_id` — a to-one relationship to `CartPricing.Sales.Cart`, required
+
+`CartPricing.Sales.Coupon`
+- `id` — UUID primary key, generated
+- `code` — string, required
+- `percent_off_bps` — integer, required
+- `starts_at` — UTC datetime, required
+- `ends_at` — UTC datetime, required
+- `max_redemptions` — integer, nullable (`nil` means unlimited)
+- `redemption_count` — integer, required, default `0`
+- `min_subtotal_cents` — integer, required, default `0`
+- `max_discount_cents` — integer, nullable (`nil` means uncapped)
+
+### Derived fields on `CartPricing.Sales.CartItem`
+
+- `line_total_cents` — integer, equal to `unit_price_cents * quantity`. It must be usable directly inside a query filter and inside a query sort.
+- `tier_discount_bps` — integer, derived only from that item's own `quantity`: `1`–`4` → `0`; `5`–`9` → `500`; `10`–`24` → `1000`; `25` or more → `1500`. It must also be usable directly inside a query filter.
+- `discounted_line_total_cents` — integer, equal to `line_total_cents` minus `floor(line_total_cents * tier_discount_bps / 10_000)`. Its value must be produced by `CartPricing.Sales.Calculations.DiscountedLineTotal`, and asking for it alone on a record that was fetched with nothing else loaded or selected must still yield the correct number.
+
+### Derived fields on `CartPricing.Sales.Cart`
+
+- `item_count` — integer, the number of items belonging to the cart. It must be usable directly inside a query filter.
+- `pricing_quote` — a value of Ash type `:map`, produced by `CartPricing.Sales.Calculations.CartQuote`, accepting two load-time inputs:
+  - `coupon_code` — string, optional, defaulting to `nil`
+  - `as_of` — UTC datetime, required
+
+  Its value must be a map whose key set is exactly
+  `:gross_subtotal_cents`, `:tier_discount_cents`, `:subtotal_cents`, `:coupon_status`, `:coupon_discount_cents`, `:discounted_subtotal_cents`, `:tax_cents`, `:total_cents`, `:item_count`.
+  Every value except `:coupon_status` must satisfy `is_integer/1`. `:coupon_status` must be one of the atoms `:none`, `:not_found`, `:not_yet_active`, `:expired`, `:exhausted`, `:below_minimum`, `:applied`.
+
+### Pricing contract
+
+For one cart, given `coupon_code` and `as_of`:
+
+1. `gross_subtotal_cents` — the sum of `line_total_cents` over the cart's items.
+2. `subtotal_cents` — the sum of `discounted_line_total_cents` over the cart's items.
+3. `tier_discount_cents` — `gross_subtotal_cents - subtotal_cents`.
+4. `item_count` — the number of items in the cart.
+5. `coupon_status` and `coupon_discount_cents` are resolved by the **first** matching rule in this exact order, where a coupon matches when its `code` is exactly equal to `coupon_code`:
+   1. `coupon_code` is `nil` → `:none`, discount `0`
+   2. no coupon has that code → `:not_found`, discount `0`
+   3. `as_of` is strictly before `starts_at` → `:not_yet_active`, discount `0`
+   4. `as_of` is strictly after `ends_at` → `:expired`, discount `0`
+   5. `max_redemptions` is not `nil` and `redemption_count` is greater than or equal to `max_redemptions` → `:exhausted`, discount `0`
+   6. `subtotal_cents` is strictly less than `min_subtotal_cents` → `:below_minimum`, discount `0`
+   7. otherwise → `:applied`, discount `floor(subtotal_cents * percent_off_bps / 10_000)`, then reduced to `max_discount_cents` if that field is not `nil` and the computed discount exceeds it
+
+   The validity window is inclusive at both ends.
+6. `discounted_subtotal_cents` — `subtotal_cents - coupon_discount_cents`.
+7. `tax_cents` — the exact rational number `discounted_subtotal_cents * rate_bps / 10_000` converted to a whole number of cents using the cart region's rate and rounding rule:
+
+   | `region` | `rate_bps` | rounding |
+   | --- | --- | --- |
+   | `:us_ca` | `925` | half away from zero |
+   | `:us_or` | `0` | half away from zero |
+   | `:eu_de` | `1900` | half to even |
+   | `:jp_13` | `1000` | truncate toward zero |
+
+8. `total_cents` — `discounted_subtotal_cents + tax_cents`.
+
+Every step is exact integer arithmetic. The checked inputs include values where floating-point evaluation and the three rounding rules all disagree, so an inexact or uniformly-rounded implementation produces wrong numbers.
+
+An empty cart produces `0` for every integer key, and its `coupon_status` is still resolved by the rules above against a `subtotal_cents` of `0`.
+
+### Loading contract
+
+- `pricing_quote` must be obtainable while reading carts *and* on `%CartPricing.Sales.Cart{}` structs that were already fetched with no loads at all.
+- Loading a list of carts in one operation must give every cart its own quote, correctly paired with that cart, whatever order the carts were read in.
+- The same cart or list of carts must be loadable more than once with different `coupon_code` / `as_of` inputs, each load returning results for the inputs it was given.
+
+## Implementation Hints
+
+- Project path: `/home/user/cart_pricing`
+- The machine is offline. Every dependency you need is already fetched and compiled into the project; do not add, remove or upgrade dependencies, and do not attempt to reach the network.
+- `mix compile` and `MIX_ENV=test mix compile` must both succeed from the project root with no errors.
+- Resources must carry their own domain, so that plain `Ash.read!/2`, `Ash.load!/3` and `Ash.Changeset` calls work on them without passing a `:domain` option.
+- `CartPricing.Sales` must expose these functions, each taking a map of attributes and raising on failure: `create_cart!/1`, `create_cart_item!/1`, `create_coupon!/1`. It must also expose `get_cart!/1`, which takes a cart `id` and returns that cart. The create functions must accept every attribute listed above for their resource.
+- Invalid writes must be rejected: creating a cart with a `region` outside the allowed set, or a cart item with `quantity` below `1`, must fail rather than persist.
+- Verification copies additional ExUnit files into `test/` of this project and runs `mix test`, replacing `test/test_helper.exs`. Leave the project in a state where `mix test` can run.
+
+5:T28bf,# A First-Class Money Type for Ash
+
+## Background
+
+`/home/user/ledger` is an Elixir 1.18 / OTP 27 project (OTP app `:ledger`) that already depends on `ash` 3.31.0 and `jason`. Every dependency is vendored and pre-compiled, and the project must keep building **entirely offline** — nothing may be fetched. You may not add, remove or upgrade dependencies, and the money libraries `ash_money` / `ex_money` are deliberately unavailable — the value type is yours to build.
+
+The project currently contains only the mix project, the config, and an empty Ash domain `Ledger.Billing` (already registered in `config/config.exs`). Everything described below is missing.
+
+Build an exact-integer money value, expose it to Ash as a real custom type, and model a small billing domain on top of it.
+
+## Requirements
+
+### 1. The money value — `Ledger.Money`
+
+A struct with exactly two fields, `:currency` (an atom) and `:amount` (an integer count of *minor units*).
+
+Supported currencies and their minor-unit exponents:
+
+| currency | code | exponent |
+| --- | --- | --- |
+| `:bhd` | `BHD` | 3 |
+| `:eur` | `EUR` | 2 |
+| `:jpy` | `JPY` | 0 |
+| `:usd` | `USD` | 2 |
+
+**Canonical string form**: the uppercase code, one space, then the amount in major units using exactly `exponent` fraction digits (no decimal point at all when the exponent is 0). A negative amount carries a single `-` immediately before the first digit. Examples: `"USD 12.50"`, `"USD -0.05"`, `"USD 0.00"`, `"JPY 500"`, `"JPY -7"`, `"BHD 1.234"`, `"BHD -0.001"`.
+
+Public API of `Ledger.Money` (exact names and arities):
+
+- `currencies/0` → `[:bhd, :eur, :jpy, :usd]`, in that order.
+- `exponent/1` — takes a supported currency atom, returns its exponent as an integer.
+- `new/2` — `new(amount, currency)`; returns `{:ok, money}`, or `{:error, :invalid_amount}` when `amount` is not an integer, or `{:error, :unknown_currency}` when the currency is not supported.
+- `new!/2` — same arguments, returns the money value or raises `ArgumentError`.
+- `zero/1` — `zero(currency)` returns the money value with amount `0`.
+- `add/2` and `subtract/2` — `{:ok, money}`, or `{:error, :currency_mismatch}` when the two operands differ in currency.
+- `multiply/2` — `multiply(money, factor)`; `{:ok, money}` for an integer factor, `{:error, :invalid_factor}` otherwise.
+- `sum/2` — `sum(list_of_money, currency)`; `{:ok, money}` (an empty list sums to zero of that currency), or `{:error, :currency_mismatch}` if any element uses a different currency.
+- `compare/2` — returns `:lt`, `:eq` or `:gt`, and raises `ArgumentError` when the currencies differ.
+- `to_string/1` — the canonical string form.
+
+All arithmetic is exact integer arithmetic; no floats, no rounding, no truncation.
+
+### 2. The Ash type — `Ledger.Money.Type`
+
+An `Ash.Type` whose valid instances are `Ledger.Money` structs. Its storage type must be `:map`.
+
+**Accepted inputs**, all of which must produce the same value when they denote the same money:
+
+- `nil` (which stays `nil`),
+- a `Ledger.Money` struct,
+- a map carrying a currency and an amount under *either* the atom keys `:currency` / `:amount` *or* the string keys `"currency"` / `"amount"` (a map missing either one is invalid),
+- the canonical string form.
+
+A currency may be supplied as a supported atom, or as a string whose upcased form is a supported code (`"usd"` and `"USD"` are both accepted). An amount may be supplied as an integer or as a string matching `^-?[0-9]+$`.
+
+The currency is resolved **before** the amount: if the currency is unsupported, the currency error is reported even when the amount is also unusable.
+
+**Every** cast failure returns `{:error, keyword}` where the keyword starts with `message:` and also carries `reason:`:
+
+| situation | `message` | `reason` | extra entry |
+| --- | --- | --- | --- |
+| currency not supported | `"unknown currency"` | `:unknown_currency` | `currency:` — the rejected value exactly as it was supplied |
+| amount is a float, or a string matching `^-?[0-9]+\.[0-9]+$` | `"amount must be a whole number of minor units"` | `:fractional_minor_units` | — |
+| anything else that cannot be interpreted | `"invalid money format"` | `:invalid_format` | — |
+
+A canonical string whose fraction-digit count does not match the currency's exponent is an `:invalid_format` failure.
+
+Loading a stored value must accept exactly what the type writes to storage and report `:invalid_format` for anything else. The stored form must round-trip losslessly, and it must still round-trip losslessly after being encoded and decoded with `Jason`.
+
+**Constraints** (these exact option names must be supported):
+
+- `:currencies` — the list of currency atoms that are allowed,
+- `:min` and `:max` — inclusive bounds, supplied in any of the accepted input shapes,
+- `:multiple_of` — a positive integer; the amount must be an exact multiple of it.
+
+Constraint violations also return `{:error, keyword}` with `message:` and `reason:`, and the checks are applied in the order `:currencies`, `:multiple_of`, `:min`, `:max` (the first failure wins):
+
+| situation | `message` | `reason` | extra entry |
+| --- | --- | --- | --- |
+| currency outside `:currencies` | `"currency is not allowed"` | `:currency_not_allowed` | `currency:` — the value's currency atom |
+| amount is not a multiple | `"must be a multiple of %{multiple_of} minor units"` | `:not_multiple_of` | `multiple_of:` — the constraint value |
+| below `:min` | `"must be greater than or equal to %{min}"` | `:below_min` | `min:` — the canonical string of the bound |
+| above `:max` | `"must be less than or equal to %{max}"` | `:above_max` | `max:` — the canonical string of the bound |
+| a bound's currency differs from the value's | `"cannot compare money in different currencies"` | `:currency_mismatch` | — |
+
+The currency-mismatch outcome replaces the corresponding `:min` / `:max` verdict.
+
+### 3. The narrowed type — `Ledger.Money.Usd`
+
+An `Ash.Type.NewType` whose subtype is `Ledger.Money.Type` and which bakes in these constraints: only `:usd` is allowed, the inclusive minimum is `USD 0.00`, and the inclusive maximum is `USD 10000.00`. Attributes typed with it must enforce those bounds without repeating them.
+
+### 4. The billing resources
+
+Both resources use `Ash.DataLayer.Ets` with **private** tables, and belong to the existing domain `Ledger.Billing`.
+
+`Ledger.Billing.Invoice`
+
+- Attributes: `:id` (uuid primary key), `:reference` (`:string`, required), `:subtotal` (`Ledger.Money.Type`, required, restricted to `:usd`, `:eur` and `:jpy`), `:adjustments` (an array of `Ledger.Money.Type` defaulting to `[]`, where every element must be a multiple of 5 minor units), `:credit_limit` (`Ledger.Money.Usd`, optional).
+- A `:payments` relationship to `Ledger.Billing.Payment`.
+- An aggregate `:paid_minor` — the sum of the payments' stored minor-unit amounts, which is `0` when there are no payments.
+- A calculation `:total` of type `Ledger.Money.Type` — the subtotal plus every adjustment.
+- A calculation `:balance` of type `Ledger.Money.Type` — the total minus everything paid.
+- Every adjustment must use the subtotal's currency. A violation must fail with `Ash.Error.Changes.InvalidAttribute` on field `:adjustments` carrying the message `"must all use the currency of the subtotal"`.
+- Actions: the default `:read` and `:destroy`; a create action `:issue` accepting `:reference`, `:subtotal`, `:adjustments` and `:credit_limit`; an update action `:apply_adjustment` taking a required argument `:adjustment` of the money type and appending it to `:adjustments`; and a generic action `:price_for` that returns `Ledger.Money.Type` and takes a required `:unit_price` (money) and a required `:units` (`:integer`), returning the unit price multiplied by the unit count.
+- `:apply_adjustment` must reject an adjustment whose currency differs from the invoice's subtotal with `Ash.Error.Changes.InvalidArgument` on field `:adjustment` carrying the message `"must use the currency of the subtotal"`, and must leave the stored record untouched.
+
+`Ledger.Billing.Payment`
+
+- Attributes: `:id` (uuid primary key), `:amount` (`Ledger.Money.Type`, required, restricted to `:usd`, `:eur` and `:jpy`), `:amount_minor` (`:integer`), `:amount_currency` (`:atom`), and a required `belongs_to` `:invoice` whose `:invoice_id` is writable.
+- Actions: the default `:read` and `:destroy`, plus a create action `:record` that accepts only `:amount` and `:invoice_id`. `:amount_minor` and `:amount_currency` are always derived from `:amount` and can never be supplied by the caller.
+- `:amount_minor` is a plain integer column, so it is filterable and summable with ordinary expressions.
+
+### 5. Domain code interface
+
+`Ledger.Billing` must expose these functions:
+
+- `issue_invoice(params)` and `issue_invoice!(params)`
+- `get_invoice(id)` and `get_invoice!(id)` — fetch a single invoice by primary key
+- `list_invoices()` and `list_invoices!()`
+- `apply_adjustment(invoice, adjustment)` and `apply_adjustment!(invoice, adjustment)`
+- `price_for(unit_price, units)` and `price_for!(unit_price, units)`
+- `record_payment(params)` and `record_payment!(params)`
+
+### 6. Querying
+
+Ascending sorting on `:subtotal` must order invoices of one currency by their amount ascending (so `USD 9.00` comes before `USD 100.00`), descending sorting must reverse that, and an equality filter on `:subtotal` against a money value must match only records whose currency *and* amount both agree.
+
+## Implementation Hints
+
+- Project path: `/home/user/ledger`.
+- Do not add, remove, change or fetch dependencies, and do not modify `mix.exs`, `mix.lock` or the `deps/` and `_build/` directories. `ash_money` and `ex_money` must not be used.
+- Everything lives in the existing OTP app `:ledger` under `/home/user/ledger/lib`, and `mix compile` must succeed from `/home/user/ledger`.
+- Verification loads the compiled application and drives your modules directly through the public Ash APIs (`Ash.Type.*`, `Ash.Query`, `Ash.load/2`, `Ash.read/1`) and through the `Ledger.Billing` code-interface functions listed above, so those names, arities and result shapes must match exactly.
+- Error keywords returned by the type are compared entry by entry: the `message` value is compared verbatim, including any `%{...}` placeholder, which is never interpolated by your code.
+- Money values compare equal only when both the currency and the amount agree.
+
+6:T2480,# Serve an Ash domain as a spec-compliant JSON:API
+
+## Background
+
+`/home/user/catalog` holds an empty Elixir/Mix project for the OTP application `:catalog`. Every dependency it will ever need is already fetched and compiled for both the `dev` and `test` Mix environments (Ash 3.x, `ash_json_api` 1.7.x, `open_api_spex`, `plug`, `bandit`, `jason`, `picosat_elixir`). The machine has **no network access**: do not add, remove, upgrade or re-resolve dependencies, and do not edit `mix.exs` or `mix.lock`.
+
+You must turn this empty project into a book-catalog service that publishes its whole domain as a JSON:API over HTTP, served by the application itself, backed entirely by an in-memory Ash data layer (there is no database in this environment).
+
+## Requirements
+
+### Domain model
+
+Define the Ash domain `Catalog.Library` (`otp_app: :catalog`) with exactly three resources, all using an in-memory data layer:
+
+| Module | JSON:API `type` | Attributes | Relationships |
+| --- | --- | --- | --- |
+| `Catalog.Library.Author` | `"author"` | `id` (uuid primary key), `name` (string, required, non-empty), `country` (string, optional) | `books` — many `Book` |
+| `Catalog.Library.Book` | `"book"` | `id` (uuid primary key), `title` (string, required, non-empty), `shelf` (string, required, non-empty), `year` (integer, required, 1450..2100), `price_cents` (integer, required, >= 0), `restricted` (boolean, required, defaults to `false`) | `author` — one `Author`, required; `reviews` — many `Review` |
+| `Catalog.Library.Review` | `"review"` | `id` (uuid primary key), `rating` (integer, required, 1..5), `body` (string, optional) | `book` — one `Book`, required |
+
+A record written through the API must remain readable by every later request for as long as the node is up.
+
+### HTTP surface
+
+Starting the `:catalog` application must start an HTTP server bound to `127.0.0.1` on TCP port `4001`; `mix run --no-halt` inside the project directory must therefore serve the API. Every JSON:API route lives under the URL prefix `/api/json`, so the base URL is `http://127.0.0.1:4001/api/json`. Routes below are written relative to that base URL.
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| GET | `/authors` | list authors |
+| POST | `/authors` | create an author |
+| GET | `/authors/:id` | fetch one author |
+| GET | `/authors/:id/books` | the author's books, as full resource objects |
+| GET | `/authors/:id/relationships/books` | the author's books, as resource identifier objects only |
+| GET | `/books` | list books |
+| POST | `/books` | create a book |
+| GET | `/books/:id` | fetch one book |
+| PATCH | `/books/:id` | update a book |
+| DELETE | `/books/:id` | delete a book |
+| GET | `/reviews/:id` | fetch one review |
+| POST | `/reviews` | create a review |
+| GET | `/reports/shelf_summary` | a non-CRUD report (see below) |
+
+### Document shape
+
+Every response — success or failure — must carry the `Content-Type` header `application/vnd.api+json`.
+
+A successful document has the top-level members `data`, `links`, `meta` and `jsonapi`, with `jsonapi.version` equal to `"1.0"`, and `links.self` equal to the full URL of the request that produced it (query string included, exactly as received). `included` appears only when the request asked for it.
+
+A resource object has the members `type`, `id`, `attributes`, `relationships`, `links` and `meta`. Its `links.self` is the canonical single-resource URL for that record (e.g. `<base>/books/<id>`). The `attributes` object of a `book` contains exactly the keys `title`, `shelf`, `year`, `price_cents` and `restricted` — the primary key and any foreign key must never leak into `attributes`. An `author` exposes exactly `name` and `country`; a `review` exposes exactly `rating` and `body`.
+
+On an `author` resource object, `relationships.books.links.related` must be `<base>/authors/<id>/books` and `relationships.books.links.self` must be `<base>/authors/<id>/relationships/books`.
+
+`GET /authors/:id/relationships/books` returns a `data` array whose entries are resource identifier objects carrying **only** the members `type` and `id`.
+
+### Query features (index and single-resource GETs)
+
+- **Sparse fieldsets** — `fields[<type>]=a,b` restricts the `attributes` of every resource of that type, in `data` and in `included` alike, to exactly the requested keys.
+- **Inclusion** — `include=<path>[,<path>]`. `book` must support `author` and `reviews`; `author` must support `books` and the nested path `books.reviews`. Every relationship named by `include` must expose resource identifier linkage under `relationships.<name>.data` on the resources that own it, and `included` must contain every reachable related resource exactly once, with no duplicates.
+- **Filtering** — `filter[<attribute>]=<value>` on the book and author list routes.
+- **Sorting** — `sort=<field>` and `sort=-<field>` (descending), comma-separated for multiple keys.
+- **Pagination** — the book list route accepts `page[limit]` and `page[offset]`. When paginating, `meta.page.limit` and `meta.page.offset` echo the applied values, and `links` gains `first`, `next` and `prev`; `next` is `null` on the final page and `prev` is `null` on the first page. When `page[count]=true` is also supplied, `meta.page.total` must be the total number of records matching the request, ignoring the page window.
+
+### Writes
+
+`POST /books` accepts a document whose `data.type` is `"book"`, whose `data.attributes` carries the book's own attributes, and whose `data.relationships.author.data` is an author resource identifier object. The owning author is settable **only** through that relationship member. `POST /reviews` works the same way with `data.relationships.book.data`. `POST /authors` takes attributes only. `PATCH /books/:id` accepts a partial `data.attributes` object and leaves unmentioned attributes untouched. Successful creation answers `201`; successful fetch, update and deletion answer `200`.
+
+### Errors
+
+Failures answer with a top-level `errors` array (and no `data` member). Each error object carries `id`, `status` (the HTTP status as a string), `code`, `title`, `detail`, plus a `source` object pointing at the cause. The following situations must produce exactly these HTTP statuses and `code` values:
+
+| Situation | Status | `code` | `source` |
+| --- | --- | --- | --- |
+| single-resource route addressed with an id that does not exist (or is not visible to the caller) | 404 | `not_found` | — |
+| submitted attribute violates its constraint | 400 | `invalid_attribute` | `pointer` = `/data/attributes/<attribute>` |
+| required attribute missing from the submitted document | 400 | `required` | `pointer` = `/data/attributes/<attribute>` |
+| required relationship missing from the submitted document | 400 | `required` | `pointer` = `/data/relationships/<relationship>` |
+| `data.type` in a submitted document does not match the route's resource type | 400 | `invalid_body` | `pointer` = `/data/type` |
+| `include` names a path the resource does not publish | 400 | `invalid_includes` | `parameter` = `include` |
+| the caller is not allowed to perform the action | 403 | `forbidden` | — |
+
+When one document violates several constraints at once, every violation must appear as its own error object.
+
+### Authorization
+
+The caller's identity comes from the request header `x-actor-role`. The value `curator` designates a curator; any other value, or a missing header, designates a caller who is not a curator. The rules are:
+
+- A book whose `restricted` is `true` is invisible to non-curators: it is absent from list results, and `GET /books/<id>` for it answers `404` for a non-curator and `200` for a curator. Pagination totals reported to a non-curator must likewise exclude it.
+- `DELETE /books/:id` is allowed only for a curator; for anyone else it answers `403` and the record must still exist afterwards.
+- Author and review routes, and book creation and update, are open to everybody.
+
+### The report route
+
+`GET /reports/shelf_summary?shelf=<shelf>` runs a non-CRUD action and answers `200` with the body
+
+```json
+{"result": {"shelf": "<shelf>", "book_count": 0, "review_count": 0, "total_price_cents": 0}}
+```
+
+where `book_count` is the number of books whose `shelf` equals the argument, `review_count` is the number of reviews attached to those books, and `total_price_cents` is the sum of their `price_cents`. This report always covers **every** matching book, including `restricted` ones, whatever the caller's role. Omitting the `shelf` query parameter answers `400` with an error whose `code` is `required`.
+
+## Implementation Hints
+
+- Project path: `/home/user/catalog`
+- Start command (run from the project path): `mix run --no-halt`
+- Port: `4001`, bound to `127.0.0.1`; JSON:API base URL `http://127.0.0.1:4001/api/json`
+- Requests are sent with `Content-Type: application/vnd.api+json`; verification reads raw JSON bodies and raw HTTP status codes, and never uses any Ash or AshJsonApi test helper.
+- All application code must live under `/home/user/catalog/lib`. `mix.exs`, `mix.lock` and everything under `deps/` must remain untouched, and `mix compile` must succeed with the existing dependency set.
+- The `:catalog` application must boot cleanly with `MIX_ENV=dev`; verification boots it exactly once and issues every request against the single running node.
+
+7:T2c4b,# Threaded Discussion Graph — Computed Relationships & Custom Actions (Ash Framework v3)
+
+## Background
+
+`/home/user/thread_graph` is an Elixir application (OTP app `:thread_graph`) that already compiles.
+It uses **Ash Framework v3.31** with the in-memory `Ash.DataLayer.Ets` data layer and contains a
+finished skeleton of a discussion board:
+
+- Domain `ThreadGraph.Forum`
+- `ThreadGraph.Forum.Author` — `handle`, `display_name`
+- `ThreadGraph.Forum.Thread` — `slug`, `title`, `board`, `locked`, `has_many :messages`
+- `ThreadGraph.Forum.Message` — `body`, `position` (integer), `score` (integer),
+  `belongs_to :thread`, `belongs_to :author`, `belongs_to :parent` (self-reference through
+  `parent_id`), `has_many :replies`
+- `ThreadGraph.Forum.MessageLink` — a directed edge between two messages:
+  `belongs_to :from_message`, `belongs_to :to_message`, `kind`
+  (one of `:follow_up`, `:duplicate_of`, `:fork_of`)
+- `ThreadGraph.Forum.LoadCounter` — a small global counter helper (see below)
+
+Product now wants threading and a "related work" graph on top of this. None of the required
+associations can be expressed as ordinary foreign-key relationships, so the framework's escape
+hatches have to be used — while still behaving like first-class relationships and actions
+(loadable, nestable, batched, and reachable through the domain's code interface).
+
+**Do not change** the existing attribute names, relationship names, resource module names, the
+domain module name, or `ThreadGraph.Forum.LoadCounter`. Everything listed below is additive.
+
+## Requirements
+
+Add the following to the existing resources.
+
+### 1. Aggregate `reply_count` on `ThreadGraph.Forum.Message`
+
+A public aggregate named `reply_count` that yields the number of messages whose `parent_id` is that
+message's `id`. It must be loadable both directly and as part of a nested load.
+
+### 2. Relationship `recent_messages` on `ThreadGraph.Forum.Thread`
+
+A public `has_many`-style relationship to `ThreadGraph.Forum.Message` named `recent_messages`,
+whose behaviour is implemented by the module `ThreadGraph.Forum.Threads.RecentMessages`.
+`Ash.Resource.Info.relationship(ThreadGraph.Forum.Thread, :recent_messages)` must report
+`type: :has_many`, `destination: ThreadGraph.Forum.Message`, and it must report
+`ThreadGraph.Forum.Threads.RecentMessages` as the module implementing it (a bare module or a
+`{module, opts}` pair are both accepted).
+
+Contract, for each source thread independently:
+
+- the value is that thread's own messages, ordered by `position` **descending**, ties broken by
+  `id` **ascending** (Elixir term comparison of the `id` values), truncated to **at most 3**;
+- the truncation is per thread — never a global cap over all source threads;
+- a filter present on the load query is applied to the candidate messages **before** the
+  truncation to 3;
+- the ordering and the cap of 3 defined here are part of the contract and are not affected by a
+  sort or limit present on the load query;
+- a thread with no matching message must still be present in the result with `[]`.
+
+### 3. Relationship `ancestor_messages` on `ThreadGraph.Forum.Message`
+
+A public `has_many`-style relationship to `ThreadGraph.Forum.Message` named `ancestor_messages`,
+implemented by the module `ThreadGraph.Forum.Messages.AncestorMessages`, reported by
+`Ash.Resource.Info.relationship/2` the same way as above.
+
+Contract, for each source message independently:
+
+- the value is the transitive chain of parents reached by repeatedly following `parent_id`;
+- ordering is outermost ancestor **first**, the immediate parent **last**;
+- the source message itself is never included, and no message appears twice;
+- traversal must terminate on a cyclic `parent_id` chain: stop as soon as the next hop is a message
+  that has already been collected or is the source message itself;
+- a message with `parent_id == nil` must be present in the result with `[]`.
+
+### 4. Relationship `linked_messages` on `ThreadGraph.Forum.Message`
+
+A public `has_many`-style relationship to `ThreadGraph.Forum.Message` named `linked_messages`,
+implemented by the module `ThreadGraph.Forum.Messages.LinkedMessages`, reported by
+`Ash.Resource.Info.relationship/2` the same way as above.
+
+Contract, for each source message independently:
+
+- consider the directed graph whose edges are the `ThreadGraph.Forum.MessageLink` records, pointing
+  from `from_message_id` to `to_message_id`, **regardless of `kind`**;
+- the value is every message reachable from the source message in one or more hops;
+- each reachable message appears exactly once and is associated with its **minimum** hop distance
+  from the source;
+- the source message itself is never included, even when a cycle makes it reachable;
+- ordering: minimum hop distance **ascending**, then `position` **ascending**, then `id`
+  **ascending**;
+- a message with no outgoing edge must be present in the result with `[]`.
+
+### 5. Read action `cross_board_highlights` on `ThreadGraph.Forum.Message`
+
+A read action named `cross_board_highlights`, implemented by the module
+`ThreadGraph.Forum.Messages.CrossBoardHighlights`, which
+`Ash.Resource.Info.action(ThreadGraph.Forum.Message, :cross_board_highlights)` must report as the
+module implementing the action (bare module or `{module, opts}`).
+
+Arguments, exactly:
+
+| name | type | required | default |
+| --- | --- | --- | --- |
+| `boards` | `{:array, :string}` | yes | — |
+| `min_endorsements` | `:integer` | no | `0` |
+
+Define the **endorsement count** of a message `M` as the number of `ThreadGraph.Forum.MessageLink`
+records whose `to_message_id` is `M.id` **and** whose `kind` is `:follow_up`.
+
+Contract:
+
+- the result contains exactly those messages whose thread's `board` is one of `boards` **and**
+  whose endorsement count is greater than or equal to `min_endorsements`;
+- every returned message carries its endorsement count as record metadata under the key
+  `:endorsement_count`, so that `Ash.Resource.get_metadata(message, :endorsement_count)` returns
+  that integer;
+- when the incoming query carries no sort, the result is ordered by endorsement count
+  **descending**, then `position` **ascending**, then `id` **ascending**;
+- when the incoming query carries a sort, that sort replaces the default ordering above;
+- a filter carried by the incoming query must be honoured;
+- `limit` and `offset` carried by the incoming query must be honoured, and must be applied after
+  filtering and ordering.
+
+### 6. Create action `fork` on `ThreadGraph.Forum.Thread`
+
+A create action named `fork` that accepts no attributes, implemented by the module
+`ThreadGraph.Forum.Threads.ForkThread`, which
+`Ash.Resource.Info.action(ThreadGraph.Forum.Thread, :fork)` must report as the module implementing
+the action (bare module or `{module, opts}`).
+
+Arguments, exactly: `source_message_id` (`:uuid`, required), `slug` (`:string`, required),
+`title` (`:string`, required).
+
+Let `S` be the message whose `id` is `source_message_id`. On success the action must, in one call:
+
+- create and return a new `ThreadGraph.Forum.Thread` whose `slug` and `title` are the given
+  arguments, whose `board` is copied from `S`'s thread, and whose `locked` is `false`;
+- copy `S` **and every transitive descendant of `S`** (following `parent_id`) into the new thread —
+  and nothing else. Each copy keeps the `body`, `score` and `author_id` of its original, and gets
+  `thread_id` set to the new thread;
+- reproduce the parent/child structure among the copies: the copy of `S` has `parent_id == nil`,
+  and every other copy's `parent_id` is the id of the copy of its original's parent;
+- renumber `position` on the copies: sort the copied originals by `position` ascending, ties broken
+  by `id` ascending, and give the copies the positions `1, 2, 3, …` in that order;
+- create exactly one new `ThreadGraph.Forum.MessageLink` with `kind: :fork_of`, `from_message_id`
+  set to the id of the copy of `S`, and `to_message_id` set to `S.id`.
+
+Failure modes — in both cases `Ash.create/2` must return `{:error, %Ash.Error.Invalid{}}` whose
+`errors` list contains an `%Ash.Error.Changes.InvalidArgument{}` with `field: :source_message_id`
+and the exact `message` given below, and **no** record of any resource may be created:
+
+- no message with that id exists → message `"source message not found"`;
+- `S`'s thread has `locked == true` → message `"source thread is locked"`.
+
+### 7. Code interface on the domain `ThreadGraph.Forum`
+
+- `ThreadGraph.Forum.highlights/2,3,4` and `ThreadGraph.Forum.highlights!/2,3,4` calling
+  `cross_board_highlights`, taking `boards` then `min_endorsements` as positional arguments;
+- `ThreadGraph.Forum.fork_thread/3,4,5` and `ThreadGraph.Forum.fork_thread!/3,4,5` calling `fork`,
+  taking `source_message_id`, `slug`, then `title` as positional arguments.
+
+`ThreadGraph.Forum.highlights!(boards, min_endorsements)` must return exactly what running the read
+action through `Ash.Query`/`Ash.read!` returns.
+
+## Implementation Hints
+
+- Project path: `/home/user/thread_graph`. The project must compile cleanly with `mix compile`
+  (`MIX_ENV=dev`); the verifier evaluates Elixir inside this project with `mix run`.
+- Everything must keep working with the existing `Ash.DataLayer.Ets` data layer. No new
+  dependencies may be added — the environment is offline and `mix.lock` is fixed.
+- `ThreadGraph.Forum.LoadCounter` is already implemented and **must not be modified**. Its API is
+  `reset/0`, `bump/1` (an atom key), `count/1` (an atom key → integer) and `counts/0` (a map).
+  Each of the five modules you write must call `ThreadGraph.Forum.LoadCounter.bump/1`
+  **exactly once per invocation of the callback the framework calls on it**, with these keys:
+
+  | module | key |
+  | --- | --- |
+  | `ThreadGraph.Forum.Threads.RecentMessages` | `:recent_messages` |
+  | `ThreadGraph.Forum.Messages.AncestorMessages` | `:ancestor_messages` |
+  | `ThreadGraph.Forum.Messages.LinkedMessages` | `:linked_messages` |
+  | `ThreadGraph.Forum.Messages.CrossBoardHighlights` | `:cross_board_highlights` |
+  | `ThreadGraph.Forum.Threads.ForkThread` | `:fork` |
+
+- Loading `recent_messages`, `ancestor_messages` or `linked_messages` for a list of `K` source
+  records must issue **at most 8 read actions in total across all resources, independent of `K`**.
+  The verifier counts this for real by attaching a `:telemetry` handler to
+  `[:ash, :forum, :read, :stop]` around the load, with `K` of at least 13. Per-source-record
+  querying will fail this.
+- All three relationships and the aggregate must be `public?`, must be loadable through
+  `Ash.Query.load/2` and through `Ash.load/3` on an already-fetched list of records, and must
+  survive being nested: the verifier loads normal relationships, the `reply_count` aggregate and
+  another one of the three relationships above *underneath* `recent_messages`.
+- Result values are compared by `id`, by exact list ordering and by list length, so empty results
+  must be `[]` (not `nil` and not `%Ash.NotLoaded{}`).
+- The seeded data used by the verifier is created through the resources' existing default
+  `:create`/`:update` actions, so those must keep working unchanged. Message `id`s are
+  server-generated UUID strings, so every ordering rule that mentions `id` must compare the actual
+  attribute values rather than insertion order.
+
+8:T29f0,# Transactional Outbox and Event Fan-out on Ash Framework v3
+
+## Background
+
+An Elixir project using **Ash Framework 3.31** lives at `/home/user/outbox`. It already models a tiny
+ledger: the domain `Outbox.Ledger` with the resources `Outbox.Ledger.Account` and
+`Outbox.Ledger.Transfer`, both backed by the in-memory ETS data layer. Today those writes leave no
+trace — nothing downstream can learn that they happened.
+
+Your job is to add an **outbox + fan-out** subsystem to the application. Every successful write to a
+ledger resource must be captured as an ordered outbox entry, and a local dispatcher process must
+hand those entries to interested subscribers with at-least-once delivery, bounded retries and a
+dead-letter path. Everything runs inside this one application: no broker, no database, no network.
+
+## Requirements
+
+### 1. Outbox capture
+
+* Every **successful** write (create, update or destroy) against a ledger resource appends exactly
+  one entry to the outbox. Reads never produce entries.
+* A write that fails (validation error, or any other error) must leave **no** entry behind, and a
+  partially-failing batch write must produce entries only for the rows that actually succeeded.
+* Capture must be driven by the framework's post-commit resource-notification mechanism rather than
+  by code hand-written into each action. As a direct consequence, a caller that asks Ash to hand the
+  notifications back instead of dispatching them (the documented per-call option for exactly that)
+  must see the write succeed while producing **no** outbox entry.
+* Batch writes must produce exactly one entry per successfully written record — never zero, never
+  duplicated.
+
+### 2. Outbox entry contents
+
+Each entry records the action name, the resource, the record id, the acting actor, the attribute
+diff, and two sequence numbers: a **global** one and a **per-aggregate** one.
+
+* `sequence` — global, starts at `1`, increases by exactly `1` per entry, never repeats.
+* `aggregate_sequence` — starts at `1` for each distinct aggregate (a pair of aggregate type and
+  record id) and increases by exactly `1` for each further entry about that same aggregate.
+* Both counters must stay correct when many processes write concurrently, including many concurrent
+  writes to the *same* record.
+
+### 3. Local dispatcher
+
+A supervised, long-lived process fans entries out to subscribers. Subscribers are registered at
+runtime under an id, with a topic pattern and a handler function. Delivery is per
+`(entry, subscriber)` pair:
+
+* A subscriber only ever receives entries whose topic matches its pattern, and only entries created
+  **after** it subscribed (replay aside).
+* An acknowledged delivery is never repeated, no matter how many drain passes happen afterwards.
+* A delivery that is not acknowledged is retried on later drain passes, up to a hard maximum of
+  **3 attempts** in total; after the third failed attempt it stops being retried and is recorded as
+  a dead letter instead.
+* A handler that raises must be contained: it counts as one failed attempt and must not take the
+  dispatcher down or disturb any other delivery.
+* Two delivery modes must be supported, and they must differ observably:
+  * `:sync` — the handler runs immediately, **in the process that performed the write**, before the
+    write call returns.
+  * `:async` — the handler is not run at the time of the write at all; it runs later, **in the
+    dispatcher process**, when a drain is requested.
+  * A `:sync` handler that does not acknowledge is not lost: the delivery joins the pending queue
+    and is retried exactly like an `:async` one, with the attempt it already burned counted.
+* Within one drain pass, deliveries are attempted in ascending `sequence`; when one entry matches
+  several subscribers, they are attempted in the order the subscribers were registered. This is what
+  gives per-aggregate ordering to a healthy subscriber.
+* Draining is caller-driven and must be fully deterministic: the drain request performs exactly one
+  attempt for each currently-pending delivery and only returns once that pass is complete. Nothing
+  may be delivered on a timer or in the background.
+
+### 4. Replay
+
+The outbox must be replayable: given a sequence number and a subscriber id, every stored entry after
+that sequence whose topic matches that subscriber is re-delivered to it in ascending sequence order,
+synchronously, in the caller's process — regardless of whether it was already acknowledged, and
+regardless of the subscriber's delivery mode. Replay never enqueues retries and never dead-letters.
+This capability must be exposed as a **generic action** on the outbox resource.
+
+## Implementation Hints
+
+Project path: `/home/user/outbox`. Ash 3.31 is already vendored; the environment is offline, so do
+not try to add or fetch dependencies. `mix compile` must succeed and emit no errors.
+
+**Topics.** A topic is exactly three dot-separated segments: `ledger.<aggregate_type>.<action_name>`,
+where `<aggregate_type>` is the snake_case of the last segment of the resource module name
+(`Outbox.Ledger.Account` → `account`, `Outbox.Ledger.Transfer` → `transfer`) and `<action_name>` is
+the name of the action that ran. Example: `ledger.account.freeze`.
+
+**Pattern matching.** A subscriber pattern is also dot-separated. A literal segment matches only an
+identical segment — there is no partial or prefix matching inside a segment. `*` matches exactly one
+segment. `#` is only legal as the final segment and matches zero or more remaining segments. If the
+pattern contains no `#`, it matches only topics with the same number of segments.
+
+**The outbox resource** is `Outbox.Eventing.Event`, in a new domain `Outbox.Eventing` (register it in
+the application's Ash domain configuration), stored in the ETS data layer with a UUID primary key
+`:id` and these public attributes:
+
+| attribute | type | notes |
+| --- | --- | --- |
+| `sequence` | `:integer` | global counter described above |
+| `aggregate_sequence` | `:integer` | per-aggregate counter described above |
+| `topic` | `:string` | as defined above |
+| `resource` | `:string` | the resource module's name without the `Elixir.` prefix, e.g. `"Outbox.Ledger.Account"` |
+| `aggregate_type` | `:string` | e.g. `"account"` |
+| `aggregate_id` | `:string` | the written record's primary key |
+| `action` | `:atom` | the action name |
+| `actor_id` | `:string` | see below; `nil` when there is no actor |
+| `changes` | `:map` | see below |
+| `dedup_key` | `:string` | `"<aggregate_type>:<aggregate_id>:<action>:<aggregate_sequence>"` |
+
+`dedup_key` must additionally be protected by a resource identity named `:unique_dedup_key` over
+`[:dedup_key]`, so that a duplicate entry can never be stored. The resource must also expose a
+primary create action that accepts all of the attributes listed above and a primary read action.
+
+`actor_id` is the value of the actor's `:id` key when the write was given an actor that has one and
+that value is a binary; otherwise `nil`.
+
+`changes` is a map keyed by **attribute name as a string**, whose values are maps with exactly the
+two string keys `"from"` and `"to"`. Encoding of a value: `nil` stays `nil`, an atom becomes
+`Atom.to_string/1`, anything else is stored unchanged. Which attributes appear:
+
+* create — every public, non-primary-key attribute of the created record whose value is not `nil`,
+  with `"from" => nil`;
+* update — every public, non-primary-key attribute whose value actually differs between the record
+  the action started from and the record it produced, with the before value under `"from"` and the
+  after value under `"to"`. Ash does not hand the pre-action record to notifications produced by a
+  *batch* update, so for entries coming from a batch update only the `"to"` value of each attribute
+  the action set has to be correct;
+* destroy — always the empty map `%{}`.
+
+**Dispatcher.** The process is registered under the name `Outbox.Eventing.Dispatcher`, is started as
+a child of the application's top-level supervisor `Outbox.Supervisor`, and exposes:
+
+* `subscribe(subscriber_id :: atom(), pattern :: String.t(), handler :: (Event.t() -> :ok | {:error, term()}), opts :: keyword())`
+  — must be callable with 3 or 4 arguments; the only option is `:mode`, which is `:sync` or `:async`
+  and defaults to `:async`. Returns `:ok`, or `{:error, :already_subscribed}` if that id is taken.
+* `unsubscribe(subscriber_id :: atom()) :: :ok` — always `:ok`; the subscriber's still-pending
+  deliveries are discarded, its dead letters are kept.
+* `flush() :: :ok` — perform exactly one drain pass, as described above.
+* `dead_letters() :: [map()]` — every dead-lettered delivery as a map containing at least the keys
+  `:subscriber_id`, `:sequence`, `:attempts` and `:reason`, sorted by `:sequence` ascending and, for
+  equal sequences, by subscriber registration order. `:attempts` is the total number of attempts
+  made. `:reason` is the term from `{:error, reason}` when the handler returned one, or
+  `{:raised, Exception.message(e)}` when the handler raised `e`.
+* `reset() :: :ok` — return the whole subsystem to a pristine state: no subscribers, no pending
+  deliveries, no dead letters, no stored outbox entries, and both counters rewound so the next entry
+  gets `sequence: 1` and `aggregate_sequence: 1`.
+
+Handlers receive the `Outbox.Eventing.Event` struct itself.
+
+**Queries and replay.** `Outbox.Eventing` must expose:
+
+* `list_events!() :: [Event.t()]` — all stored entries, ascending by `sequence`.
+* `events_for!(aggregate_type :: String.t(), aggregate_id :: String.t()) :: [Event.t()]` — entries for
+  one aggregate, ascending by `aggregate_sequence`.
+* `replay(after_sequence :: integer(), subscriber_id :: atom()) :: {:ok, [integer()]}` — performs the
+  replay described above and returns the delivered sequences in ascending order. An unknown
+  subscriber id yields `{:ok, []}` and delivers nothing. It must be backed by a generic action named
+  `:replay` on `Outbox.Eventing.Event` that takes the arguments `:after_sequence` and
+  `:subscriber_id` in that order.
+
+**Batch entry points.** Add a module `Outbox.Ledger.BulkOps` with:
+
+* `open_many(inputs :: [map()]) :: {:ok, [Outbox.Ledger.Account.t()]}` — creates every account in
+  `inputs` (maps with `:owner_id`, `:name` and optionally `:balance`) with a single Ash batch create,
+  returning the created records in any order.
+* `freeze_many(accounts :: [Outbox.Ledger.Account.t()]) :: {:ok, [Outbox.Ledger.Account.t()]}` —
+  applies the `:freeze` action to every given account with a single Ash batch update, returning the
+  updated records in any order.
+
+Both must produce exactly one outbox entry per record they write.
+
+9:T27d7,# Hierarchical Organisation RBAC with Ash Policies
+
+## Background
+
+`OrgGuard` is the access-control core of a document vault used by a large company. Documents belong
+to org units, org units form a tree, and the right to act on a document is inherited down that tree
+from role grants — but a lower org unit may also *revoke* an inherited role for a specific person.
+Security staff need a break-glass path, suspended accounts must be locked out immediately, and
+budget figures must stay invisible to people who are not allowed to see money.
+
+You must implement this authorization engine with Ash Framework 3.31.0 on top of an in-memory data
+layer. The project already exists and its dependencies are vendored; the container has **no network
+access**, so do not attempt to add or fetch dependencies.
+
+## Requirements
+
+### Project
+
+- Project path: `/home/user/orgguard` (OTP app `:orgguard`).
+- Everything you write must compile with `mix compile` offline, in both the `dev` and `test` Mix
+  environments.
+- The domain module is `OrgGuard.Access`. All four resources below must be registered on it.
+- Every resource must use `Ash.DataLayer.Ets`, and its storage must be **shared between processes**:
+  the verifier seeds records from one process and asserts from other processes.
+
+### Resources
+
+Create exactly these four resources with exactly these names, attributes, types, constraints and
+actions. Every attribute listed is public. Every action listed must be the primary action of its
+type on that resource.
+
+`OrgGuard.Access.User`
+
+- `id` — uuid primary key
+- `email` — `:string`, required
+- `status` — `:atom`, required, default `:active`, constrained to `[:active, :suspended]`
+- `global_role` — `:atom`, required, default `:member`, constrained to `[:member, :break_glass]`
+- actions: read `:read`; create `:create` accepting `email`, `status`, `global_role`
+
+`OrgGuard.Access.OrgUnit`
+
+- `id` — uuid primary key
+- `code` — `:string`, required
+- `name` — `:string`, required
+- an optional self-referential `belongs_to` relationship named `:parent` pointing at
+  `OrgGuard.Access.OrgUnit`, whose source attribute is `parent_id` and which is writable through the
+  create action, plus the matching `has_many` named `:children`
+- actions: read `:read`; create `:create` accepting `code`, `name`, `parent_id`
+
+`OrgGuard.Access.RoleAssignment`
+
+- `id` — uuid primary key
+- `role` — `:atom`, required, constrained to `[:viewer, :editor, :auditor, :unit_admin]`
+- `effect` — `:atom`, required, default `:grant`, constrained to `[:grant, :deny]`
+- required `belongs_to` relationships `:user` (source attribute `user_id`) and `:org_unit` (source
+  attribute `org_unit_id`), both writable through the create action
+- actions: read `:read`; create `:create` accepting `user_id`, `org_unit_id`, `role`, `effect`
+
+`OrgGuard.Access.Document`
+
+- `id` — uuid primary key
+- `title` — `:string`, required
+- `budget_cents` — `:integer`, required, default `0`
+- required `belongs_to` relationship `:org_unit` (source attribute `org_unit_id`), writable through
+  the create action
+- actions:
+  - read `:read`
+  - create `:create` accepting `title`, `budget_cents`, `org_unit_id`
+  - update `:update` accepting `title`, `budget_cents`
+  - destroy `:destroy`
+  - generic action `:relocate`, whose return type is `:struct` constrained to instances of
+    `OrgGuard.Access.Document`, taking two required `:uuid` arguments, `document_id` and
+    `target_org_unit_id`. When it is allowed to run, it moves the identified document to the target
+    org unit and returns the updated document; when it is not allowed to run, the document's
+    `org_unit_id` must be left untouched.
+- `OrgGuard.Access.Document` must be authorized by `Ash.Policy.Authorizer`. The other three
+  resources must remain freely accessible (no authorizer).
+
+### Domain code interface
+
+`OrgGuard.Access` must define these code-interface functions, so that the verifier can call them and
+so that Ash's generated `can_*?` helpers exist:
+
+| function | resource | action | notes |
+| --- | --- | --- | --- |
+| `create_user` | User | `:create` | |
+| `get_user` | User | `:read` | fetched by `:id` |
+| `create_org_unit` | OrgUnit | `:create` | |
+| `get_org_unit` | OrgUnit | `:read` | fetched by `:id` |
+| `create_role_assignment` | RoleAssignment | `:create` | |
+| `list_role_assignments` | RoleAssignment | `:read` | |
+| `create_document` | Document | `:create` | |
+| `list_documents` | Document | `:read` | |
+| `get_document` | Document | `:read` | fetched by `:id` |
+| `update_document` | Document | `:update` | |
+| `destroy_document` | Document | `:destroy` | |
+| `relocate_document` | Document | `:relocate` | positional args, in the order `document_id`, `target_org_unit_id` |
+
+The verifier calls them as `OrgGuard.Access.list_documents(actor: actor)`,
+`OrgGuard.Access.get_document(id, actor: actor)`,
+`OrgGuard.Access.update_document(document, %{title: "…"}, actor: actor)`,
+`OrgGuard.Access.destroy_document(document, actor: actor)`,
+`OrgGuard.Access.relocate_document(document_id, target_org_unit_id, actor: actor)`,
+`OrgGuard.Access.create_document(%{…}, actor: actor)`, and the corresponding
+`OrgGuard.Access.can_update_document?/2`, `can_destroy_document?/2`, `can_create_document?/2`,
+`can_relocate_document?/3` helpers. It seeds fixtures through the same functions with
+`authorize?: false`, which must always succeed and must always return real (unmasked) attribute
+values.
+
+### Capabilities
+
+Each role confers exactly this set of capabilities:
+
+| role | capabilities |
+| --- | --- |
+| `:viewer` | `read` |
+| `:editor` | `read`, `write` |
+| `:auditor` | `read`, `view_budget` |
+| `:unit_admin` | `read`, `write`, `delete`, `relocate`, `view_budget` |
+
+### Permission resolution (this precedence is normative)
+
+An actor's effective roles at an org unit `U` are resolved per role, independently, as follows.
+
+1. Build the path `U`, `parent(U)`, `parent(parent(U))`, …, up to the root — nearest unit first.
+2. For role `R`, walk that path from nearest to root and stop at the **first** unit that carries at
+   least one `RoleAssignment` for this actor with that role.
+3. If no unit on the path carries such an assignment, the actor does not hold `R` at `U`.
+4. If the stopping unit carries **any** assignment for this actor and role with `effect: :deny`,
+   the actor does not hold `R` at `U` — even if an ancestor granted it, and even if the same unit
+   also carries a `:grant` for it.
+5. Otherwise the actor holds `R` at `U`.
+
+The actor's capabilities at `U` are the union of the capabilities of every role held at `U`. A grant
+therefore flows down the whole subtree, a deny at a descendant cuts it off for that subtree, and a
+grant deeper still re-establishes it.
+
+### Authorization contracts
+
+These are the observable outcomes the verifier checks. `nil` below means no actor was supplied.
+
+**Break-glass.** An actor whose `global_role` is `:break_glass` may read, create, update, destroy
+and relocate every document, and sees every `budget_cents` value, regardless of role assignments —
+and this holds even when that actor's `status` is `:suspended`. `Document`'s policies must contain
+at least one bypass policy.
+
+**Suspension.** For any other actor whose `status` is `:suspended`, every document operation fails
+with `Ash.Error.Forbidden` — including list reads and fetches by id, and including operations the
+actor's roles would otherwise permit.
+
+**Reads.** For a non-suspended, non-break-glass actor, a list read returns exactly the documents
+whose org unit grants the actor the `read` capability; it never returns an error, not even for
+`nil` and not even when the actor holds no roles at all (it returns an empty list instead). Fetching
+a single document by id fails with `Ash.Error.Query.NotFound` when the actor lacks `read` on it, and
+succeeds when the actor has it.
+
+**Updates.** An update requires the `write` capability at the document's org unit. An update that
+changes `budget_cents` additionally requires the `view_budget` capability at that org unit. Denied
+updates fail with `Ash.Error.Forbidden`.
+
+**Creates.** Creating a document requires the `write` capability at the org unit named by the
+submitted `org_unit_id`. Denied creates fail with `Ash.Error.Forbidden`.
+
+**Destroys.** Destroying a document requires the `delete` capability at the document's org unit.
+Denied destroys fail with `Ash.Error.Forbidden`.
+
+**Relocation.** `:relocate` requires the `relocate` capability at **both** the document's current
+org unit **and** the target org unit. Denied relocations fail with `Ash.Error.Forbidden`.
+
+**Budget confidentiality.** `budget_cents` is readable only by an actor with the `view_budget`
+capability at that document's org unit (or by a break-glass actor). For every other actor that can
+read the document, the value that comes back in place of the integer must be the documented
+forbidden-field marker for that attribute. All other attributes stay visible to anyone who can read
+the document.
+
+**`can_*?` introspection.** The generated `can_*?` helpers must return `true`/`false` in agreement
+with the contracts above for every actor/record/action combination, including `nil` actors.
+
+### Check implementation constraints
+
+- At least one check module used by `Document`'s policies must be defined by you (i.e. its module
+  name must not start with `Ash.`) and must be a **filter** check.
+- At least one check module used by `Document`'s policies must be defined by you and must be a
+  **simple** check.
+- `budget_cents` must be governed by at least one field policy.
+
+## Implementation Hints
+
+- Project path: `/home/user/orgguard`
+- The verifier writes a self-contained Elixir script to `/tmp` and runs it with
+  `mix run <script>` from `/home/user/orgguard` with `MIX_ENV=dev`. The project must therefore
+  compile and boot with no network access, and `OrgGuard.Access` plus all four resource modules must
+  be loadable from that script.
+- Do not add, remove or upgrade dependencies, and do not change the OTP application name or the
+  domain/resource module names.
+- Leave `Logger` at a level no more verbose than `:warning` so the script's stdout is not flooded.
+
+a:T2146,# Cascading Soft-Delete, Global Read Scoping and Archive Recovery (Ash Framework v3)
+
+## Background
+
+`/home/user/forum` holds a Mix project (OTP app `:forum`) for a discussion-forum backend built on the
+Ash Framework v3 (`ash 3.31.0`). Content is three levels deep: a post owns comments, and a comment
+owns reactions.
+
+Deleting content in this product is never destructive: removed content stays in storage, stays
+invisible to ordinary readers, can be inspected by an administrator, and can be recovered later.
+Recovery has to be *precise* — undoing a deletion must bring back exactly what that deletion removed
+and must not resurrect content that had already been deleted by an earlier, unrelated operation.
+
+The project currently contains only the domain shell and the project configuration. Everything
+described below is missing and must be built.
+
+## Requirements
+
+### Domain and resources
+
+The domain module `Forum.Content` (`lib/forum/content.ex`) must expose exactly these three
+resources, each using `Ash.DataLayer.Ets` configured with `private? true`:
+
+| Module | File | Own attribute |
+| --- | --- | --- |
+| `Forum.Content.Post` | `lib/forum/content/post.ex` | `title` — `:string`, public, required |
+| `Forum.Content.Comment` | `lib/forum/content/comment.ex` | `body` — `:string`, public, required |
+| `Forum.Content.Reaction` | `lib/forum/content/reaction.ex` | `emoji` — `:string`, public, required |
+
+Every one of the three resources also has:
+
+- a primary key attribute named `id` of type `:uuid`, generated by default;
+- a public attribute `archived_at` of type `:utc_datetime_usec`, `nil` for live records;
+- a public attribute `archive_batch_id` of type `:uuid`, `nil` for live records.
+
+Relationships:
+
+- `Forum.Content.Post` — a to-many relationship named `:comments` pointing at
+  `Forum.Content.Comment`.
+- `Forum.Content.Comment` — a to-one relationship named `:post` pointing at `Forum.Content.Post`,
+  backed by a required and externally writable foreign-key attribute `post_id`; and a to-many
+  relationship named `:reactions` pointing at `Forum.Content.Reaction`.
+- `Forum.Content.Reaction` — a to-one relationship named `:comment` pointing at
+  `Forum.Content.Comment`, backed by a required and externally writable foreign-key attribute
+  `comment_id`.
+
+Aggregates:
+
+- `Forum.Content.Post` must expose a public `count` aggregate named `comment_count` over `:comments`.
+- `Forum.Content.Comment` must expose a public `count` aggregate named `reaction_count` over
+  `:reactions`.
+
+### Actions
+
+All three resources must define these seven actions under exactly these names:
+
+| Name | Action type | Input |
+| --- | --- | --- |
+| `:create` | create | the resource's own required attribute plus its foreign key (`post_id` for a comment, `comment_id` for a reaction) |
+| `:read` | read (**must be the resource's primary read action**) | none |
+| `:archived` | read | none |
+| `:with_archived` | read | none |
+| `:archive` | destroy | none |
+| `:restore` | update | none |
+| `:purge` | destroy | none |
+
+"Input: none" is binding: each of those actions must succeed when invoked with an empty parameter
+map and no additional arguments, e.g. `Ash.Query.for_read(Forum.Content.Post, :with_archived, %{})`,
+`Ash.Changeset.for_destroy(record, :archive, %{})` and
+`Ash.Changeset.for_update(record, :restore, %{})`.
+
+### Archive semantics — action `:archive`
+
+- Nothing is ever removed from storage by `:archive`.
+- If the target record is already archived, the call still succeeds but nothing changes anywhere:
+  the target keeps its existing `archived_at` and `archive_batch_id`, and no descendant is modified.
+- Otherwise the target and every descendant of the target that is not already archived (a post's
+  comments and those comments' reactions; a comment's reactions) are archived together as one
+  generation: all of them end up with the *same* non-`nil` `archived_at` value and the *same*
+  non-`nil` `archive_batch_id` value.
+- Descendants that were already archived before the call keep their existing `archived_at` and
+  `archive_batch_id` values byte-for-byte.
+- Two separate archive operations must never produce the same `archive_batch_id`.
+
+### Restore semantics — action `:restore`
+
+- On a record that is not archived the call succeeds and changes nothing, anywhere.
+- On an archived record: the target's `archived_at` and `archive_batch_id` both become `nil`, and
+  every descendant whose `archive_batch_id` equals the target's `archive_batch_id` as it was
+  immediately before the call is restored the same way (`archived_at` and `archive_batch_id` set to
+  `nil`), recursively.
+- Descendants carrying a different `archive_batch_id` are left exactly as they were.
+- `:restore` never affects ancestors of the target.
+
+### Purge semantics — action `:purge`
+
+- Invoked on a record whose `archived_at` is `nil`, the action must fail and change nothing: the
+  result must be `{:error, %Ash.Error.Invalid{errors: errors}}` where at least one element of
+  `errors` is an `%Ash.Error.Changes.InvalidChanges{}` whose `:fields` is `[:archived_at]` and whose
+  `:message` is exactly `"must be archived before it can be purged"`.
+- Invoked on an archived record, the record and every one of its descendants are permanently and
+  irrecoverably removed from storage.
+
+### Read scoping
+
+- `:read` returns only records whose `archived_at` is `nil`. This scoping is global, not merely
+  top-level: it must also hold everywhere a resource is reached indirectly — relationship loads
+  (`Ash.load/3`), the `comment_count` and `reaction_count` aggregates, and filter expressions that
+  traverse a relationship — so archived records can never leak into a result derived from an
+  ordinary read.
+- `:with_archived` returns both archived and live records.
+- `:archived` returns only records whose `archived_at` is not `nil`.
+- Fetching an archived record through the primary read (for example `Ash.get/3` with its default
+  action) must produce an `Ash.Error.Query.NotFound`.
+
+### Authorization
+
+- All three resources must run `Ash.Policy.Authorizer`.
+- An actor is a plain Elixir map. An actor is an administrator when its `:role` key equals `:admin`.
+- With authorization enabled, the `:archived` read must be reachable only by an administrator.
+  For any other actor, including `nil`, the call must return `{:error, %Ash.Error.Forbidden{}}` —
+  not an empty result set.
+- With authorization enabled, every other action on every resource must be permitted for every
+  actor, including `nil`.
+
+### Shared implementation modules
+
+Three modules must be written once and shared, rather than duplicated per resource:
+
+| Module | File | Behaviour | Must be referenced by |
+| --- | --- | --- | --- |
+| `Forum.Archive.Preparations.ArchiveScope` | `lib/forum/archive/preparations/archive_scope.ex` | `Ash.Resource.Preparation` | the `:read`, `:archived` and `:with_archived` actions of all three resources (directly on the action or through a resource-wide preparation) |
+| `Forum.Archive.Changes.CascadeArchive` | `lib/forum/archive/changes/cascade_archive.ex` | `Ash.Resource.Change` | the `:archive` action of all three resources |
+| `Forum.Archive.Changes.CascadeRestore` | `lib/forum/archive/changes/cascade_restore.ex` | `Ash.Resource.Change` | the `:restore` action of all three resources |
+
+## Implementation Hints
+
+- Project path: /home/user/forum
+- The project must keep compiling as a standard Mix project: `mix compile` from
+  `/home/user/forum` must succeed. Verification executes a standalone Elixir script from the
+  project root with `mix run <script>` in the default `dev` Mix environment, so everything
+  described above must be part of the ordinary `lib/` compilation of the `:forum` application.
+- The machine has no network access. `ash 3.31.0` and `simple_sat` are already fetched and compiled
+  for both the `dev` and `test` Mix environments. Do not add, remove or change dependencies in
+  `mix.exs` or `mix.lock`.
+- Keep `config/config.exs`'s `ash_domains: [Forum.Content]` entry intact and register all three
+  resources in `Forum.Content`.
+- Verification calls the actions through the plain `Ash` functions (`Ash.create/2`, `Ash.read/2`,
+  `Ash.load/3`, `Ash.get/3`, `Ash.update/3`, `Ash.destroy/2`) with the action selected explicitly,
+  and passes `authorize?: false` except where authorization itself is under test. Do not rely on
+  domain code interfaces existing; add them only if you want them.
+- Compiler warnings are tolerated; compilation errors are not.
+
+0:{"buildId":"DBsg0MyTSUZV_8ijx66pv","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","$2",null,{"fallback":["$","div",null,{"className":"container mx-auto py-8 text-center","children":"Loading tasks..."}],"children":["$","$L3",null,{"tasksData":[{"taskName":"ash_cart_pricing_calculation_engine","instruction":"$4","trials":[{"job_name":"2026-08-08__13-23-49","trial_name":"ash_cart_pricing_calculation_eng__qZZkofK","model":"gemini-3.5-flash","rawModel":"google/gemini-3.5-flash","agent":"Agents.pochi:Pochi","passed":true,"reward":1,"error":false,"latency_sec":739.911,"latency_breakdown":{"env_setup":140.972,"agent_setup":10.187,"agent_exec":509.881,"verifier":42.458},"taskName":"ash_cart_pricing_calculation_engine","exec_duration":509.881},{"job_name":"2026-08-08__13-23-50","trial_name":"ash_cart_pricing_calculation_eng__9FU9c35","model":"claude-5-sonnet","rawModel":"anthropic/claude-5-sonnet","agent":"Agents.pochi:Pochi","passed":true,"reward":1,"error":false,"latency_sec":643.034,"latency_breakdown":{"env_setup":119.636,"agent_setup":5.999,"agent_exec":466.941,"verifier":29.856},"taskName":"ash_cart_pricing_calculation_engine","exec_duration":466.941},{"job_name":"2026-08-08__19-10-04","trial_name":"ash_cart_pricing_calculation_eng__7LtTWr6","model":"glm-5.2","rawModel":"zai/glm-5.2","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":711.445,"latency_breakdown":{"env_setup":6.582,"agent_setup":8.628,"agent_exec":604.702,"verifier":44.052},"taskName":"ash_cart_pricing_calculation_engine","exec_duration":604.702},{"job_name":"2026-08-08__19-10-05","trial_name":"ash_cart_pricing_calculation_eng__9vezEfP","model":"deepseek-4-pro","rawModel":"deepseek/deepseek-4-pro","agent":"Agents.pochi:Pochi","passed":true,"reward":1,"error":true,"latency_sec":710.278,"latency_breakdown":{"env_setup":6.236,"agent_setup":8.308,"agent_exec":604.956,"verifier":46.183},"taskName":"ash_cart_pricing_calculation_engine","exec_duration":604.956}]},{"taskName":"ash_custom_type_money_ledger","instruction":"$5","trials":[{"job_name":"2026-08-08__13-23-49","trial_name":"ash_custom_type_money_ledger__ADtQ4rL","model":"gemini-3.5-flash","rawModel":"google/gemini-3.5-flash","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":164.605,"latency_breakdown":{"env_setup":110.509,"agent_setup":6.01,"agent_exec":13.102,"verifier":15.617},"taskName":"ash_custom_type_money_ledger","exec_duration":13.102},{"job_name":"2026-08-08__13-23-50","trial_name":"ash_custom_type_money_ledger__BhgfDgL","model":"claude-5-sonnet","rawModel":"anthropic/claude-5-sonnet","agent":"Agents.pochi:Pochi","passed":true,"reward":1,"error":true,"latency_sec":1135.652,"latency_breakdown":{"env_setup":148.719,"agent_setup":7.627,"agent_exec":925.197,"verifier":32.49},"taskName":"ash_custom_type_money_ledger","exec_duration":925.197},{"job_name":"2026-08-08__19-10-04","trial_name":"ash_custom_type_money_ledger__mD7pf2m","model":"glm-5.2","rawModel":"zai/glm-5.2","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":96.711,"latency_breakdown":{"env_setup":5.812,"agent_setup":6.124,"agent_exec":20.314,"verifier":26.714},"taskName":"ash_custom_type_money_ledger","exec_duration":20.314},{"job_name":"2026-08-08__19-10-05","trial_name":"ash_custom_type_money_ledger__Ynwi2Ra","model":"deepseek-4-pro","rawModel":"deepseek/deepseek-4-pro","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":94.79,"latency_breakdown":{"env_setup":5.394,"agent_setup":5.967,"agent_exec":20.286,"verifier":30.922},"taskName":"ash_custom_type_money_ledger","exec_duration":20.286}]},{"taskName":"ash_json_api_resource_endpoints","instruction":"$6","trials":[{"job_name":"2026-08-08__13-23-49","trial_name":"ash_json_api_resource_endpoints__t3dsDBp","model":"gemini-3.5-flash","rawModel":"google/gemini-3.5-flash","agent":"Agents.pochi:Pochi","passed":true,"reward":1,"error":true,"latency_sec":1215.867,"latency_breakdown":{"env_setup":161.867,"agent_setup":8.329,"agent_exec":983.127,"verifier":36.429},"taskName":"ash_json_api_resource_endpoints","exec_duration":983.127},{"job_name":"2026-08-08__13-23-50","trial_name":"ash_json_api_resource_endpoints__JyCDYFC","model":"claude-5-sonnet","rawModel":"anthropic/claude-5-sonnet","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":396.493,"latency_breakdown":{"env_setup":171.032,"agent_setup":8.145,"agent_exec":20.005,"verifier":163.332},"taskName":"ash_json_api_resource_endpoints","exec_duration":20.005},{"job_name":"2026-08-08__19-10-04","trial_name":"ash_json_api_resource_endpoints__if6aDd5","model":"glm-5.2","rawModel":"zai/glm-5.2","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":926.551,"latency_breakdown":{"env_setup":6.209,"agent_setup":7.942,"agent_exec":713.266,"verifier":162.596},"taskName":"ash_json_api_resource_endpoints","exec_duration":713.266},{"job_name":"2026-08-08__19-10-05","trial_name":"ash_json_api_resource_endpoints__CzXNXnL","model":"deepseek-4-pro","rawModel":"deepseek/deepseek-4-pro","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":606.718,"latency_breakdown":{"env_setup":6.368,"agent_setup":7.988,"agent_exec":538.224,"verifier":25.07},"taskName":"ash_json_api_resource_endpoints","exec_duration":538.224}]},{"taskName":"ash_manual_relationship_read_actions","instruction":"$7","trials":[{"job_name":"2026-08-08__13-23-49","trial_name":"ash_manual_relationship_read_act__fRHwJpw","model":"gemini-3.5-flash","rawModel":"google/gemini-3.5-flash","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":281.958,"latency_breakdown":{"env_setup":140.11,"agent_setup":7.825,"agent_exec":71.308,"verifier":28.089},"taskName":"ash_manual_relationship_read_actions","exec_duration":71.308},{"job_name":"2026-08-08__13-23-50","trial_name":"ash_manual_relationship_read_act__8wLrMPC","model":"claude-5-sonnet","rawModel":"anthropic/claude-5-sonnet","agent":"Agents.pochi:Pochi","passed":true,"reward":1,"error":false,"latency_sec":1183.984,"latency_breakdown":{"env_setup":138.988,"agent_setup":6.238,"agent_exec":981.049,"verifier":33.777},"taskName":"ash_manual_relationship_read_actions","exec_duration":981.049},{"job_name":"2026-08-08__19-10-04","trial_name":"ash_manual_relationship_read_act__CN7QsSq","model":"glm-5.2","rawModel":"zai/glm-5.2","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":790.353,"latency_breakdown":{"env_setup":5.814,"agent_setup":6.119,"agent_exec":715.02,"verifier":27.198},"taskName":"ash_manual_relationship_read_actions","exec_duration":715.02},{"job_name":"2026-08-08__19-10-05","trial_name":"ash_manual_relationship_read_act__jKbs5V3","model":"deepseek-4-pro","rawModel":"deepseek/deepseek-4-pro","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":1138.068,"latency_breakdown":{"env_setup":5.717,"agent_setup":6.107,"agent_exec":1078.89,"verifier":26.58},"taskName":"ash_manual_relationship_read_actions","exec_duration":1078.89}]},{"taskName":"ash_notifier_transactional_outbox","instruction":"$8","trials":[{"job_name":"2026-08-08__13-23-49","trial_name":"ash_notifier_transactional_outbo__z54RB22","model":"gemini-3.5-flash","rawModel":"google/gemini-3.5-flash","agent":"Agents.pochi:Pochi","passed":true,"reward":1,"error":true,"latency_sec":927.704,"latency_breakdown":{"env_setup":130.553,"agent_setup":6.165,"agent_exec":710.805,"verifier":58.519},"taskName":"ash_notifier_transactional_outbox","exec_duration":710.805},{"job_name":"2026-08-08__13-23-50","trial_name":"ash_notifier_transactional_outbo__4aRnSJz","model":"claude-5-sonnet","rawModel":"anthropic/claude-5-sonnet","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":237.14,"latency_breakdown":{"env_setup":128.945,"agent_setup":6.122,"agent_exec":42.347,"verifier":36.693},"taskName":"ash_notifier_transactional_outbox","exec_duration":42.347},{"job_name":"2026-08-08__19-10-04","trial_name":"ash_notifier_transactional_outbo__583VJu5","model":"glm-5.2","rawModel":"zai/glm-5.2","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":722.31,"latency_breakdown":{"env_setup":6.935,"agent_setup":6.094,"agent_exec":625.995,"verifier":45.444},"taskName":"ash_notifier_transactional_outbox","exec_duration":625.995},{"job_name":"2026-08-08__19-10-05","trial_name":"ash_notifier_transactional_outbo__bPWjV3h","model":"deepseek-4-pro","rawModel":"deepseek/deepseek-4-pro","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":1381.868,"latency_breakdown":{"env_setup":5.676,"agent_setup":5.993,"agent_exec":1301.062,"verifier":47.923},"taskName":"ash_notifier_transactional_outbox","exec_duration":1301.062}]},{"taskName":"ash_policy_bypass_rbac_hierarchy","instruction":"$9","trials":[{"job_name":"2026-08-08__13-23-49","trial_name":"ash_policy_bypass_rbac_hierarchy__rw3nbJe","model":"gemini-3.5-flash","rawModel":"google/gemini-3.5-flash","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":179.058,"latency_breakdown":{"env_setup":110.415,"agent_setup":5.864,"agent_exec":25.363,"verifier":15.938},"taskName":"ash_policy_bypass_rbac_hierarchy","exec_duration":25.363},{"job_name":"2026-08-08__13-23-50","trial_name":"ash_policy_bypass_rbac_hierarchy__GGGVJaS","model":"claude-5-sonnet","rawModel":"anthropic/claude-5-sonnet","agent":"Agents.pochi:Pochi","passed":true,"reward":1,"error":false,"latency_sec":1176.1,"latency_breakdown":{"env_setup":148.676,"agent_setup":7.65,"agent_exec":967.202,"verifier":31.654},"taskName":"ash_policy_bypass_rbac_hierarchy","exec_duration":967.202},{"job_name":"2026-08-08__19-10-04","trial_name":"ash_policy_bypass_rbac_hierarchy__WBNKpoz","model":"glm-5.2","rawModel":"zai/glm-5.2","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":719.345,"latency_breakdown":{"env_setup":8.996,"agent_setup":6.209,"agent_exec":630.726,"verifier":36.568},"taskName":"ash_policy_bypass_rbac_hierarchy","exec_duration":630.726},{"job_name":"2026-08-08__19-10-05","trial_name":"ash_policy_bypass_rbac_hierarchy__bPiEWhS","model":"deepseek-4-pro","rawModel":"deepseek/deepseek-4-pro","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":1391.473,"latency_breakdown":{"env_setup":7.34,"agent_setup":6.127,"agent_exec":1325.161,"verifier":31.115},"taskName":"ash_policy_bypass_rbac_hierarchy","exec_duration":1325.161}]},{"taskName":"ash_soft_delete_archive_cascade","instruction":"$a","trials":[{"job_name":"2026-08-08__13-23-49","trial_name":"ash_soft_delete_archive_cascade__WEdH3Av","model":"gemini-3.5-flash","rawModel":"google/gemini-3.5-flash","agent":"Agents.pochi:Pochi","passed":true,"reward":1,"error":false,"latency_sec":1026.793,"latency_breakdown":{"env_setup":120.237,"agent_setup":5.963,"agent_exec":854.908,"verifier":23.571},"taskName":"ash_soft_delete_archive_cascade","exec_duration":854.908},{"job_name":"2026-08-08__13-23-50","trial_name":"ash_soft_delete_archive_cascade__XqKDfSX","model":"claude-5-sonnet","rawModel":"anthropic/claude-5-sonnet","agent":"Agents.pochi:Pochi","passed":true,"reward":1,"error":false,"latency_sec":881.806,"latency_breakdown":{"env_setup":138.94,"agent_setup":6.099,"agent_exec":691.45,"verifier":23.345},"taskName":"ash_soft_delete_archive_cascade","exec_duration":691.45},{"job_name":"2026-08-08__19-10-04","trial_name":"ash_soft_delete_archive_cascade__rCUAJUr","model":"glm-5.2","rawModel":"zai/glm-5.2","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":746.496,"latency_breakdown":{"env_setup":5.784,"agent_setup":5.999,"agent_exec":659.946,"verifier":28.076},"taskName":"ash_soft_delete_archive_cascade","exec_duration":659.946},{"job_name":"2026-08-08__19-10-05","trial_name":"ash_soft_delete_archive_cascade__PvdVaZj","model":"deepseek-4-pro","rawModel":"deepseek/deepseek-4-pro","agent":"Agents.pochi:Pochi","passed":false,"reward":0,"error":true,"latency_sec":1148.323,"latency_breakdown":{"env_setup":5.53,"agent_setup":6.009,"agent_exec":1075.627,"verifier":32.261},"taskName":"ash_soft_delete_archive_cascade","exec_duration":1075.627}]}]}]}]]}],["$Lb","$Lc"],"$Ld"]}],"loading":null,"isPartial":false}
+b:["$","script","script-0",{"src":"/ash-benchmark/_next/static/chunks/d48fb1ff6b027b0b.js","async":true}]
+c:["$","script","script-1",{"src":"/ash-benchmark/_next/static/chunks/2ee232ed1e88c469.js","async":true}]
+d:["$","$Le",null,{"children":["$","$2",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
+f:null
