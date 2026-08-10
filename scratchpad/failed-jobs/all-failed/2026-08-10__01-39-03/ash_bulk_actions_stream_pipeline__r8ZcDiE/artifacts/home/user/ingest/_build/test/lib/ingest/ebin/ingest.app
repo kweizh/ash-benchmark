@@ -1,0 +1,9 @@
+{application,ingest,
+             [{modules,['Elixir.Ingest.Pipeline',
+                        'Elixir.Ingest.Pipeline.Meter',
+                        'Elixir.Inspect.Ingest.Pipeline.Meter']},
+              {optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger,ash,jason]},
+              {description,"ingest"},
+              {registered,[]},
+              {vsn,"0.1.0"}]}.

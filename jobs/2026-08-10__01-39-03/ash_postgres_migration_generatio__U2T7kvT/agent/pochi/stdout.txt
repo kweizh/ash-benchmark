@@ -1,0 +1,187 @@
+- Initializing MCP connections...
+You
+# Drive real PostgreSQL DDL from an Ash Framework v3 domain ## Background A freight operator wants its logistics database schema to be *derived* from its Ash resources instead of being hand-written. An empty Elixir/Mix project already exists at `/home/user/logistics` (OTP app `:logistics`). Its dependencies (`ash 3.31.0`, `ash_postgres 2.11.0` and their transitive dependencies) are already fetched and compiled, `mix.lock` is committed, and the environment is fully offline — do not attempt to add, upgrade or fetch dependencies. A PostgreSQL 16 server is installed inside this machine and listens on `127.0.0.1:5432` as the superuser `postgres` once it has been started. `config/config.exs` already contains the connection settings, the `ecto_repos` entry and the `ash_domains` entry, and `Logistics.Application` already supervises `Logistics.Repo`. Do not change `config/config.exs`, `mix.exs` or `mix.lock`. Your job is to model the domain in Ash, generate the migrations with the framework's own code-generation tooling, apply them, and make the *database itself* enforce the business rules. ## Requirements Build the following modules: | Module | File | | ------------------------------------ | --------------------------------------- | | `Logistics.Repo` | `lib/logistics/repo.ex` | | `Logistics.Freight` (the Ash domain) | `lib/logistics/freight.ex` | | `Logistics.Freight.Carrier` | `lib/logistics/freight/carrier.ex` | | `Logistics.Freight.Warehouse` | `lib/logistics/freight/warehouse.ex` | | `Logistics.Freight.Shipment` | `lib/logistics/freight/shipment.ex` | | `Logistics.Freight.Parcel` | `lib/logistics/freight/parcel.ex` | | `Logistics.Freight.ShipmentLeg` | `lib/logistics/freight/shipment_leg.ex` | All five resources are persisted in PostgreSQL through `Logistics.Repo`, and every resource is registered in the `Logistics.Freight` domain. ### 1. The repository `Logistics.Repo` must be an Ash-aware Ecto repository for the `:logistics` OTP app, backed by the PostgreSQL adapter. The minimum PostgreSQL version it declares must be exactly `%Version{major: 16, minor: 0, patch: 0}`, and the list of installed extensions it declares must be exactly `["ash-functions", "citext", "uuid-ossp"]`, in that order. After the schema is applied, the database must actually contain the `citext` and `uuid-ossp` extensions and the SQL functions `ash_elixir_and`, `ash_elixir_or` and `ash_raise_error`. ### 2. Tables, columns and SQL types The applied schema must contain exactly these five tables in the `public` schema (plus Ecto's own `schema_migrations`). Every table has an `id` column of SQL type `uuid`, `NOT NULL`, which is the sole column of a primary key named `<table>_pkey`, and which is populated by the database when no value is supplied. `carriers` (resource `Carrier`) | column | Ash attribute type | SQL type | nullable | column default | | ------------ | ----------------------- | ----------------------------- | -------- | -------------- | | `code` | case-insensitive string | `citext` | no | none | | `name` | `:string` | `text` | no | none | | `retired_at` | `:utc_datetime_usec` | `timestamp without time zone` | yes | none | `warehouses` (resource `Warehouse`) | column | Ash attribute type | SQL type | nullable | column default | | ------------------ | ------------------ | --------- | -------- | -------------- | | `code` | `:string` | `text` | no | none | | `name` | `:string` | `text` | no | none | | `region` | `:string` | `text` | no | none | | `capacity_parcels` | `:integer` | `bigint` | no | `0` | | `decommissioned` | `:boolean` | `boolean` | no | `false` | `shipments` (resource `Shipment`) | column | Ash attribute type | SQL type | nullable | column default | | ---------------------- | ------------------------------------------------------------------------------ | ----------------------------- | -------- | -------------- | | `reference` | `:string` | `text` | no | none | | `status` | `:atom`, one of `:draft`, `:booked`, `:in_transit`, `:delivered`, `:cancelled` | `text` | no | `'draft'` | | `declared_value_cents` | `:integer` | `bigint` | no | `0` | | `scheduled_for` | `:utc_datetime` | `timestamp with time zone` | yes | none | | `booked_at` | `:utc_datetime_usec` | `timestamp without time zone` | yes | `now()` | | `carrier_id` | belongs-to `Carrier` | `uuid` | no | none | | `origin_warehouse_id` | belongs-to `Warehouse` | `uuid` | yes | none | `parcels` (resource `Parcel`) | column | Ash attribute type | SQL type | nullable | column default | | --------------- | --------------------- | --------- | -------- | -------------- | | `tracking_code` | `:string` | `text` | no | none | | `weight_grams` | `:integer` | `bigint` | no | none | | `fragile` | `:boolean` | `boolean` | no | `false` | | `shipment_id` | belongs-to `Shipment` | `uuid` | no | none | `shipment_legs` (resource `ShipmentLeg`) | column | Ash attribute type | SQL type | nullable | column default | | -------------- | ---------------------- | -------- | -------- | -------------- | | `sequence` | `:integer` | `bigint` | no | none | | `shipment_id` | belongs-to `Shipment` | `uuid` | no | none | | `warehouse_id` | belongs-to `Warehouse` | `uuid` | no | none | `Shipment` also has the reverse relationships `parcels` and `legs`; `Carrier` has `shipments`; the `Warehouse` reverse relationship to `ShipmentLeg` is named `legs`. ### 3. Foreign keys The database must contain exactly these five foreign keys, with exactly these constraint names and referential actions: | constraint name | column | references | ON DELETE | ON UPDATE | | --------------------------------- | ------------------------------- | --------------- | ---------- | --------- | | `shipments_carrier_fkey` | `shipments.carrier_id` | `carriers.id` | `RESTRICT` | `CASCADE` | | `shipments_origin_warehouse_fkey` | `shipments.origin_warehouse_id` | `warehouses.id` | `SET NULL` | `CASCADE` | | `parcels_shipment_fkey` | `parcels.shipment_id` | `shipments.id` | `CASCADE` | `CASCADE` | | `shipment_legs_shipment_fkey` | `shipment_legs.shipment_id` | `shipments.id` | `CASCADE` | `CASCADE` | | `shipment_legs_warehouse_fkey` | `shipment_legs.warehouse_id` | `warehouses.id` | `RESTRICT` | `CASCADE` | In addition, the plain (non-unique) btree indexes `shipments_carrier_id_index`, `parcels_shipment_id_index`, `shipment_legs_shipment_id_index` and `shipment_legs_warehouse_id_index` must exist. ### 4. Unique indexes | index name | table | columns | unique | partial predicate | | ------------------------------------------- | --------------- | ------------------------- | ------ | ------------------------ | | `carriers_unique_code_index` | `carriers` | `(code)` | yes | `retired_at IS NULL` | | `warehouses_unique_active_code_index` | `warehouses` | `(code)` | yes | `decommissioned = false` | | `shipments_unique_reference_index` | `shipments` | `(reference)` | yes | none | | `parcels_unique_tracking_code_index` | `parcels` | `(tracking_code)` | yes | none | | `parcels_single_fragile_per_shipment_index` | `parcels` | `(shipment_id)` | yes | `fragile = true` | | `shipment_legs_unique_leg_sequence_index` | `shipment_legs` | `(shipment_id, sequence)` | yes | none | `carriers_unique_code_index` is partial because a `Carrier` is only "live" while `retired_at` is `NULL`: reading carriers through Ash must never return a carrier whose `retired_at` is set, even though the row stays in the table, and every read (including relationship loads) must be scoped that way without the caller asking for it. ### 5. Check constraints The database must contain exactly these four check constraints, and violating one through Ash must produce the given message: | constraint name | table | condition | Ash message | | --------------------------------------------- | --------------- | --------------------------- | ------------------------------------- | | `warehouses_capacity_parcels_non_negative` | `warehouses` | `capacity_parcels >= 0` | `capacity must not be negative` | | `shipments_declared_value_cents_non_negative` | `shipments` | `declared_value_cents >= 0` | `declared value must not be negative` | | `parcels_weight_grams_positive` | `parcels` | `weight_grams > 0` | `weight must be positive` | | `shipment_legs_sequence_positive` | `shipment_legs` | `sequence >= 1` | `sequence must be at least 1` | ### 6. Actions and observable error shapes Every resource must expose the standard `:read`, `:create`, `:update` and `:destroy` actions, and the `:create`/`:update` actions must accept **all** of the columns listed in section 2 — including the `_id` columns of the belongs-to relationships, which the tests set directly by value. `Shipment` must additionally expose a create action named `:intake` which accepts `reference`, `declared_value_cents`, `scheduled_for`, `carrier_id` and `origin_warehouse_id`, plus a required argument `parcels` of type `{:array, :map}` describing the parcels to create together with the shipment. The whole `:intake` call must be a single database transaction: if any parcel is rejected by the database, neither the shipment row nor any of its parcel rows may exist afterwards. `Shipment` must also expose an aggregate `parcel_count` (number of related parcels), an aggregate `total_weight_grams` (sum of the related parcels' `weight_grams`), and a calculation `heavy?` that is `true` exactly when `total_weight_grams > 5000`. Both aggregates and the calculation must be usable inside `Ash.Query.filter/2`, and a filtered read that also loads `parcel_count` must reach the database exactly once. All of the following must hold when the operation is attempted through the corresponding Ash action; each returns `{:error, %Ash.Error.Invalid{}}` whose `errors` list contains a single `%Ash.Error.Changes.InvalidAttribute{}` with the stated `field` and `message`, and must leave the database unchanged: | operation | `field` | `message` | | ------------------------------------------------------------------------- | ---------------- | ----------------------------------- | | creating a second live `Carrier` whose `code` differs only in letter case | `:code` | `has already been taken` | | creating a second live `Warehouse` with an existing `code` | `:code` | `has already been taken` | | creating a second `Shipment` with an existing `reference` | `:reference` | `has already been taken` | | creating a second `Parcel` with an existing `tracking_code` | `:tracking_code` | `has already been taken` | | creating a second *fragile* `Parcel` for a shipment that already has one | `:shipment_id` | `has already been taken` | | creating a second `ShipmentLeg` with the same `(shipment_id, sequence)` | `:shipment_id` | `has already been taken` | | destroying a `Carrier` that is still referenced by a `Shipment` | `:shipments` | `carrier still has shipments` | | destroying a `Warehouse` that is still referenced by a `ShipmentLeg` | `:legs` | `warehouse still has shipment legs` | A `Carrier` whose `code` collides with an already **retired** carrier must be accepted, and a `Warehouse` whose `code` collides with an already **decommissioned** warehouse must be accepted. ### 7. Code generation The migrations must be produced by `ash_postgres`' own migration generator (not hand-written) and stored in the repository, together with the resource snapshots the generator writes. After you are done, `mix ash.codegen --check` must exit with status `0`, and `mix ash.reset` must rebuild the entire database from those migration files. ## Implementation Hints * Project path: `/home/user/logistics` * Work entirely offline: `deps/` and `_build/` are already populated for `MIX_ENV=dev`, `HEX_OFFLINE=1` is set, and there is no network access. * Everything runs in `MIX_ENV=dev`; the verifier never runs `mix test`. * The verifier runs `mix compile`, then `mix ash.codegen --check` (which must exit `0`), then `mix ash.reset` (which must succeed and leave an empty, fully migrated database), and finally a script through `mix run` that talks to `Logistics.Freight` and to `Logistics.Repo` directly. Nothing may prompt for input. * The PostgreSQL server is not running when your shell starts; `pg-start` (already on `PATH`) starts it and blocks until it accepts connections. The verifier calls it too, so you do not have to keep it alive. * Constraint, index and column names in sections 2–5 are exact: the verifier reads them out of the live PostgreSQL catalog (`pg_class`, `pg_index`, `pg_constraint`, `pg_attribute`) after `mix ash.reset`. * Table and index names not listed above must not exist in the `public` schema.   
+
+Pochi
+📂 Listing files in /home/user/logistics recursively ✔ 
+📖 Reading /home/user/logistics/config/config.exs ✔ 
+📖 Reading /home/user/logistics/mix.exs ✔ 
+📖 Reading /home/user/logistics/lib/logistics/application.ex ✔ 
+📂 Listing files in /home/user/logistics/lib/logistics/freight ✔ 
+📂 Listing files in /home/user/logistics/priv/repo/migrations ✔ 
+📖 Reading /home/user/logistics/deps/ash_postgres/usage-rules/check_constraints.md ✔ 
+📖 Reading /home/user/logistics/deps/ash_postgres/usage-rules/foreign_keys.md ✔ 
+📖 Reading /home/user/logistics/deps/ash_postgres/usage-rules/custom_indexes.md ✔ 
+📖 Reading /home/user/logistics/deps/ash_postgres/usage-rules/configuration.md ✔ 
+📖 Reading /home/user/logistics/deps/ash_postgres/usage-rules/migrations.md ✔ 
+📖 Reading /home/user/logistics/deps/ash_postgres/lib/repo.ex ✔ 
+📖 Reading /home/user/logistics/deps/ash_postgres/documentation/dsls/DSL-AshPostgres.DataLayer.md ✔ 
+🔍 Searching for identities|identity |base_filter|ci_string|belongs_to |has_many |unique\(|precision in /home/user/logistics/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+📖 Reading /home/user/logistics/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+💭 Thinking for 363 characters   
+🔍 Searching for index_name|_index\"|identity_index_names in /home/user/logistics/deps/ash_postgres/lib/migration_generator/migration_generator.ex ✔ 
+💭 Thinking for 407 characters   
+🔍 Searching for has already been taken in /home/user/logistics/deps/ash/lib ✔ 
+📖 Reading /home/user/logistics/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+🔍 Searching for InvalidAttribute|unique_index_names|identity_index_names in /home/user/logistics/deps/ash_postgres/lib ✔ 
+📖 Reading /home/user/logistics/deps/ash_postgres/lib/data_layer.ex ✔ 
+🔍 Searching for unique_keys|:unique,|type: :unique|identity.keys|List.first in /home/user/logistics/deps/ash_postgres/lib/data_layer.ex ✔ 
+📖 Reading /home/user/logistics/deps/ash_postgres/lib/data_layer.ex ✔ 
+🔍 Searching for def unique_constraint in /home/user/logistics/deps/ecto/lib/ecto/changeset.ex ✔ 
+💭 Thinking for 786 characters   
+📖 Reading /home/user/logistics/deps/ash_postgres/lib/data_layer.ex ✔ 
+🔍 Searching for foreign_key_names|add_foreign_key_constraints|references( in /home/user/logistics/deps/ash_postgres/lib/data_layer.ex ✖ "rg command failed with code 2: rg: regex parse error:\n    (?:foreign_key_names|add_foreign_key_constraints|references()\n    ^\nerror: unclosed group\n"
+🔍 Searching for foreign_key_names|add_foreign_key_constraints in /home/user/logistics/deps/ash_postgres/lib/data_layer.ex ✔ 
+📖 Reading /home/user/logistics/deps/ash_postgres/lib/data_layer.ex ✔ 
+💭 Thinking for 348 characters   
+🔍 Searching for add_configured_foreign_key_constraints|add_my_foreign_key_constraints|add_unique_indexes\( in /home/user/logistics/deps/ash_postgres/lib/data_layer.ex ✔ 
+Good, confirms it's applied generally (including destroy). Now let's check attribute types (ci_string) and how to declare `:ci_string`, plus `Ash.Type.CiString`, and check the aggregate/calculation DSL syntax, plus `Ash.Resource.Validation` builtins, and `Ash.Resource.Change` builtins for intake action transaction. Let's check ash usage-rules on aggregates/calculations/actions.   
+📖 Reading /home/user/logistics/deps/ash/usage-rules/aggregates.md ✔ 
+📖 Reading /home/user/logistics/deps/ash/usage-rules/calculations.md ✔ 
+📖 Reading /home/user/logistics/deps/ash/usage-rules/actions.md ✔ 
+📖 Reading /home/user/logistics/deps/ash/usage-rules/relationships.md ✔ 
+💭 Thinking for 2178 characters   
+📖 Reading /home/user/logistics/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+💭 Thinking for 370 characters   
+🔍 Searching for base_filter_sql|base_filter in /home/user/logistics/deps/ash_postgres/lib ✔ 
+💭 Thinking for 2821 characters   
+🔍 Searching for identity_wheres_to_sql in /home/user/logistics/deps/ash_postgres ✔ 
+📖 Reading /home/user/logistics/deps/ash_postgres/lib/migration_generator/migration_generator.ex ✔ 
+💭 Thinking for 316 characters   
+🔍 Searching for ^## preparations|^### preparations|prepare |on: in /home/user/logistics/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+💭 Thinking for 3795 characters   
+🔍 Searching for def foreign_key_constraint in /home/user/logistics/deps/ecto/lib/ecto/changeset.ex ✔ 
+📖 Reading /home/user/logistics/deps/ecto/lib/ecto/changeset.ex ✔ 
+💭 Thinking for 1524 characters   
+📖 Reading /home/user/logistics/deps/ash_postgres/lib/ecto_migration_default.ex ✔ 
+💭 Thinking for 305 characters   
+🔍 Searching for defp default\(|EctoMigrationDefault|configured_default in /home/user/logistics/deps/ash_postgres/lib/migration_generator/migration_generator.ex ✔ 
+💭 Thinking for 318 characters   
+📖 Reading /home/user/logistics/deps/ash_postgres/lib/migration_generator/migration_generator.ex ✔ 
+💭 Thinking for 357 characters   
+🔍 Searching for migration_type|storage_type in integer.ex files in /home/user/logistics/deps/ash/lib/ash/type ✔ 
+💭 Thinking for 275 characters   
+📖 Reading /home/user/logistics/deps/ash_postgres/lib/type.ex ✔ 
+💭 Thinking for 856 characters   
+🔍 Searching for bigint in /home/user/logistics/deps/ash_postgres/lib ✔ 
+💭 Thinking for 343 characters   
+🔍 Searching for storage_type|ecto_type in utc_datetime*.ex files in /home/user/logistics/deps/ash/lib/ash/type ✔ 
+🔍 Searching for *utc* in /home/user/logistics/deps/ash/lib/ash/type ✔ 
+📖 Reading /home/user/logistics/deps/ash/lib/ash/type/utc_datetime.ex ✔ 
+📖 Reading /home/user/logistics/deps/ash/lib/ash/type/utc_datetime_usec.ex ✔ 
+💭 Thinking for 311 characters   
+🔍 Searching for storage_type|ecto_type|precision in datetime.ex files in /home/user/logistics/deps/ash/lib/ash/type ✔ 
+📖 Reading /home/user/logistics/deps/ash/lib/ash/type/datetime.ex ✔ 
+💭 Thinking for 253 characters   
+📖 Reading /home/user/logistics/deps/ash_postgres/lib/migration_generator/migration_generator.ex ✔ 
+🔍 Searching for migration_type in /home/user/logistics/deps/ash/lib/ash/type/datetime.ex ✔ 
+💭 Thinking for 264 characters   
+🔍 Searching for :utc_datetime|timestamptz|timestamp with time zone in /home/user/logistics/deps/ecto_sql/lib ✔ 
+💭 Thinking for 8 characters   
+📖 Reading /home/user/logistics/deps/ash_postgres/lib/types/timestamptz.ex ✔ 
+📖 Reading /home/user/logistics/deps/ash_postgres/lib/types/timestamptz_usec.ex ✔ 
+💭 Thinking for 1445 characters   
+🔍 Searching for utc_datetime in /home/user/logistics/deps/ecto/lib/ecto/type.ex ✔ 
+📖 Reading /home/user/logistics/deps/ecto/lib/ecto/type.ex ✔ 
+💭 Thinking for 2360 characters   
+📖 Reading /home/user/logistics/deps/ash_postgres/lib/reference.ex ✔ 
+🔍 Searching for on_delete|on_update|:restrict|:nilify|:delete_all|:nothing in /home/user/logistics/deps/ash_postgres/lib/migration_generator/operation.ex ✔ 
+💭 Thinking for 2281 characters   
+🔍 Searching for uuid_generate_v4|gen_random_uuid|uuid-ossp in /home/user/logistics/deps/ash_postgres/lib ✔ 
+Good, confirms with `"uuid-ossp"` extension, `&Ash.UUID.generate/0` default gets converted to a DB-level default. Let's check line 4558-4570 area for full logic.   
+📖 Reading /home/user/logistics/deps/ash_postgres/lib/migration_generator/migration_generator.ex ✔ 
+💭 Thinking for 1605 characters   
+🔍 Searching for check_constraint|CheckConstraint in /home/user/logistics/deps/ash_postgres/lib/data_layer.ex ✔ 
+Good, this confirms check_constraints are wired similarly, producing InvalidAttribute with field = attribute and message from config. This matches requirements directly. Now let's check `Ash.Type.Atom` constraints DSL (one_of) syntax and check `ci_string` attribute definition syntax, plus confirm `expr` needs `require Ash.Query` or use `Ash.Expr`.   
+🔍 Searching for one_of|:atom\b in /home/user/logistics/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+📖 Reading /home/user/logistics/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+💭 Thinking for 248 characters   
+📖 Reading /home/user/logistics/deps/ash/usage-rules/code_structure.md ✔ 
+📖 Reading /home/user/logistics/deps/ash/documentation/tutorials/get-started.md ✔ 
+💭 Thinking for 225 characters   
+📖 Reading /home/user/logistics/deps/ash/documentation/dsls/DSL-Ash.Domain.md ✔ 
+💭 Thinking for 466 characters   
+🔍 Searching for public\?.*Default|attributes-attribute-public in /home/user/logistics/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+💭 Thinking for 357 characters   
+🔍 Searching for accept.*:\*|expand_accept|def accept in /home/user/logistics/deps/ash/lib/ash/resource ✔ 
+💭 Thinking for 696 characters   
+🔍 Searching for aggregates-sum|aggregates-count|default.*aggregate|include_nil\? in /home/user/logistics/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+💭 Thinking for 1379 characters   
+✏️  Writing /home/user/logistics/lib/logistics/repo.ex ✔ 
+✏️  Writing /home/user/logistics/lib/logistics/freight.ex ✔ 
+Now let's write the Carrier resource.   
+✏️  Writing /home/user/logistics/lib/logistics/freight/carrier.ex ✔ 
+Now the Warehouse resource.   
+✏️  Writing /home/user/logistics/lib/logistics/freight/warehouse.ex ✔ 
+✏️  Writing /home/user/logistics/lib/logistics/freight/shipment.ex ✔ 
+Now the Parcel resource.   
+✏️  Writing /home/user/logistics/lib/logistics/freight/parcel.ex ✔ 
+Now the ShipmentLeg resource.   
+✏️  Writing /home/user/logistics/lib/logistics/freight/shipment_leg.ex ✔ 
+Now let's verify compilation. First check that the app compiles.   
+💫 Executing cd /home/user/logistics && MIX_ENV=dev HEX_OFFLINE=1 mix compile 2>&1 | tail -150 ✔ 
+💭 Thinking for 433 characters   
+🔍 Searching for defmacro expr in /home/user/logistics/deps/ash/lib/ash/expr ✔ 
+💭 Thinking for 14 characters   
+🔍 Searching for import Ash.Expr|use Ash.Expr|import Ash.Query in /home/user/logistics/deps/ash/lib/ash/resource.ex ✔ 
+💭 Thinking for 1044 characters   
+🔧 Applying diff to /home/user/logistics/lib/logistics/freight/carrier.ex ✔ 
+🔧 Applying diff to /home/user/logistics/lib/logistics/freight/warehouse.ex ✔ 
+🔧 Applying diff to /home/user/logistics/lib/logistics/freight/parcel.ex ✔ 
+🔧 Applying diff to /home/user/logistics/lib/logistics/freight/shipment.ex ✔ 
+💫 Executing cd /home/user/logistics && MIX_ENV=dev HEX_OFFLINE=1 mix compile 2>&1 | tail -200 ✔ 
+It compiles. Now let's start Postgres and run the codegen.   
+💫 Executing which pg-start; pg-start 2>&1 | tail -50 ✔ 
+💫 Executing cd /home/user/logistics && MIX_ENV=dev HEX_OFFLINE=1 mix ash.codegen initial_schema 2>&1 | tail -300 ✔ 
+Right, forgot the `identity_wheres_to_sql` for parcel's `single_fragile_per_shipment` identity.   
+🔧 Applying diff to /home/user/logistics/lib/logistics/freight/parcel.ex ✔ 
+💫 Executing cd /home/user/logistics && MIX_ENV=dev HEX_OFFLINE=1 mix ash.codegen initial_schema 2>&1 | tail -300 ✔ 
+Let's inspect the generated migrations.   
+📂 Listing files in /home/user/logistics/priv/repo/migrations ✔ 
+📖 Reading /home/user/logistics/priv/repo/migrations/20260809175346_initial_schema_extensions_1.exs ✔ 
+📖 Reading /home/user/logistics/priv/repo/migrations/20260809175347_initial_schema.exs ✔ 
+💭 Thinking for 152 characters   
+💫 Executing cd /home/user/logistics && MIX_ENV=dev HEX_OFFLINE=1 mix ash.codegen --check 2>&1 | tail -100 ✔ 
+Good, exits cleanly. Now let's run `mix ash.reset`.   
+💫 Executing cd /home/user/logistics && MIX_ENV=dev HEX_OFFLINE=1 mix ash.reset 2>&1 | tail -200 ✔ 
+The migration succeeded. Now let's verify the schema against the psql catalog directly to double-check column types, defaults, and constraints.   
+💫 Executing export PGPASSWORD=postgres; psql -h 127.0.0.1 -U postgres -d logistics_dev -c "\d+ shipments" -c "\d+ carriers" -c "\d+ warehouses" -c "\d+ parcels" -c "\d+ shipment_legs" 2>&1 ✔ 
+This matches every requirement in the spec exactly. Now let's verify extensions and functions exist, and there are no extra tables/indexes.   
+💫 Executing export PGPASSWORD=postgres; psql -h 127.0.0.1 -U postgres -d logistics_dev -c "\dx" -c "\dt public.*" -c "select proname from pg_proc where proname in ('ash_elixir_and','ash_elixir_or','ash_raise_error');" ✔ 
+Exactly matches: only the 5 required tables plus `schema_migrations`, both extensions installed, and all 3 required functions present. Now let's test the actual Ash behaviors via `mix run` script covering key scenarios.   
+✏️  Writing /tmp/verify.exs ✔ 
+💫 Executing cd /home/user/logistics && MIX_ENV=dev HEX_OFFLINE=1 mix run /tmp/verify.exs 2>&1 | tail -300 ✔ 
+💭 Thinking for 13 characters   
+✏️  Writing /tmp/verify2.exs ✔ 
+💫 Executing cd /home/user/logistics && MIX_ENV=dev HEX_OFFLINE=1 mix run /tmp/verify2.exs 2>&1 | tail -100 ✔ 
+All scenarios pass. Now let's clean up the temp test files and do a final reset to leave the database in a pristine, fully-migrated state as the verifier expects.   
+💫 Executing rm -f /tmp/verify.exs /tmp/verify2.exs
+cd /home/user/logistics && MIX_ENV=dev HEX_OFFLINE=1 mix ash.reset 2>&1 | tail -60 ✔ 
+Database reset to a fresh, fully-migrated, empty state. Let's do a final sanity check that `mix compile`, `mix ash.codegen --check`, and `mix ash.reset` all still succeed cleanly in one final pass.   
+💫 Executing cd /home/user/logistics && MIX_ENV=dev HEX_OFFLINE=1 mix compile 2>&1 | tail -30 && echo "---CODEGEN---" && MIX_ENV=dev HEX_OFFLINE=1 mix ash.codegen --check; echo "codegen exit: $?" ✔ 
+All checks pass cleanly.   
+🎉 Task Completed
+Implemented the full Ash Framework v3 + AshPostgres domain for the logistics project at `/home/user/logistics`:
+
+- `lib/logistics/repo.ex` — `Logistics.Repo` using `AshPostgres.Repo`, declaring `min_pg_version/0` as `%Version{major: 16, minor: 0, patch: 0}` and `installed_extensions/0` as `["ash-functions", "citext", "uuid-ossp"]`.
+- `lib/logistics/freight.ex` — `Logistics.Freight` domain registering all five resources.
+- `lib/logistics/freight/carrier.ex`, `warehouse.ex`, `shipment.ex`, `parcel.ex`, `shipment_leg.ex` — full resource definitions with:
+  - Exact attribute types/nullability/defaults matching the spec (including `ci_string` for `carriers.code`, `:timestamptz` override for `scheduled_for` via `migration_types`, `now()` DB default for `booked_at` via `migration_defaults`).
+  - `references` blocks giving the exact FK constraint names and `on_delete`/`on_update` behavior (RESTRICT/CASCADE/SET NULL, all ON UPDATE CASCADE), plus `index?: true` for the four required plain indexes.
+  - `identities` (with `identity_wheres_to_sql` for the partial ones) producing the exact required unique index names/predicates.
+  - `check_constraints` producing the four required named check constraints with the exact Ash error messages.
+  - `foreign_key_names` mapping the RESTRICT-violation errors to `:shipments`/`:legs` fields with the exact required messages.
+  - A `preparations`-based scoping (`is_nil(retired_at)`) so all reads/relationship loads of `Carrier` transparently hide retired carriers, without touching the DB-level partial unique index.
+  - `Shipment.parcel_count`/`total_weight_grams` aggregates and the `heavy?` calculation, all filterable.
+  - `Shipment`'s `:intake` create action with a required `parcels` array argument wired via `manage_relationship(:parcels, type: :create)`, running inside Ash's default transaction so a bad parcel rolls back the whole intake.
+
+Migrations and resource snapshots were generated purely via `mix ash.codegen initial_schema` (stored under `priv/repo/migrations` and `priv/resource_snapshots/repo`). Verified:
+- `mix compile` succeeds.
+- `mix ash.codegen --check` exits `0` (no drift).
+- `mix ash.reset` successfully rebuilds the database from the generated migrations alone.
+- Direct `psql` inspection confirms exact tables/columns/types/defaults, the 5 required FKs with correct names/actions, the 4 required plain indexes, the 6 required unique indexes (with correct partial predicates), the 4 required check constraints, and that `public` schema contains only the 5 expected tables (+ `schema_migrations`).
+- `citext`, `uuid-ossp` extensions and `ash_elixir_and`/`ash_elixir_or`/`ash_raise_error` functions exist in the database.
+- Exercised via `mix run` scripts against `Logistics.Freight`/`Logistics.Repo` directly: case-insensitive carrier code uniqueness (and reuse after retirement), warehouse code uniqueness (and reuse after decommission), shipment reference/parcel tracking-code/fragile-per-shipment/leg-sequence uniqueness errors, check-constraint violation errors, carrier/warehouse RESTRICT-delete errors, aggregate/calculation values, retired-carrier read/relationship-load scoping, and the `:intake` action's all-or-nothing transactional behavior — all produced the exact required error shapes (`Ash.Error.Invalid` wrapping a single `Ash.Error.Changes.InvalidAttribute` with the specified `field`/`message`) and left the database unchanged on failure.
+
+The database was left in a fresh, fully-migrated, empty state via a final `mix ash.reset`.   
+  

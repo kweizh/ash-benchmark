@@ -1,0 +1,1867 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 44 items
+
+../tests/test_final_state.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF [ 97%]
+F                                                                        [100%]
+
+=================================== FAILURES ===================================
+__ test_scenario[T01-T01 event resource declares the append only log schema] ___
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T01'
+description = 'T01 event resource declares the append only log schema'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T01'
+description = 'T01 event resource declares the append only log schema'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T01 (T01 event resource declares the append only log schema) failed:
+E           1) test T01 event resource declares the append only log schema (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:222
+E              ** (ArgumentError) `Vault.Ledger.Event` is not a Spark DSL module.
+E         
+E              code: assert Ash.Resource.Info.data_layer(res) == Ash.DataLayer.Ets,
+E              stacktrace:
+E                Vault.Ledger.Event.persisted(:data_layer)
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:158: Spark.Dsl.Extension.persisted!/3
+E                /tmp/harbor_event_sourcing_final.exs:225: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_________________ test_scenario[T02-T02 the log is immutable] __________________
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T02', description = 'T02 the log is immutable'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T02', description = 'T02 the log is immutable'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T02 (T02 the log is immutable) failed:
+E           1) test T02 the log is immutable (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:260
+E              ** (ArgumentError) `Vault.Ledger.Event` is not a Spark DSL module.
+E         
+E              code: actions = Ash.Resource.Info.actions(H.event())
+E              stacktrace:
+E                Vault.Ledger.Event.entities([:actions])
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:2190: Spark.Dsl.Extension.get_config_entry_with_fallback/6
+E                /tmp/harbor_event_sourcing_final.exs:261: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T03-T03 the global sequence cannot be supplied by the caller] __
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T03'
+description = 'T03 the global sequence cannot be supplied by the caller'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T03'
+description = 'T03 the global sequence cannot be supplied by the caller'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T03 (T03 the global sequence cannot be supplied by the caller) failed:
+E           1) test T03 the global sequence cannot be supplied by the caller (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:297
+E              ** (UndefinedFunctionError) function Vault.Ledger.append_event/1 is undefined (module Vault.Ledger is not available)
+E              code: H.append(%{
+E              stacktrace:
+E                Vault.Ledger.append_event(%{version: 1, sequence: 9, payload: %{"opening_balance_cents" => 0, "owner" => "Ada", "type" => "account_opened"}, account_id: "A", recorded_at: ~U[2026-03-01 10:00:01.000000Z]})
+E                /tmp/harbor_event_sourcing_final.exs:299: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T04-T04 sequences are globally contiguous and versions are per stream] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T04'
+description = 'T04 sequences are globally contiguous and versions are per stream'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T04'
+description = 'T04 sequences are globally contiguous and versions are per stream'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T04 (T04 sequences are globally contiguous and versions are per stream) failed:
+E           1) test T04 sequences are globally contiguous and versions are per stream (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:311
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:312: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T05-T05 a duplicate stream position is rejected by the identity] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T05'
+description = 'T05 a duplicate stream position is rejected by the identity'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T05'
+description = 'T05 a duplicate stream position is rejected by the identity'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T05 (T05 a duplicate stream position is rejected by the identity) failed:
+E           1) test T05 a duplicate stream position is rejected by the identity (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:333
+E              ** (UndefinedFunctionError) function Vault.Ledger.append_event!/1 is undefined (module Vault.Ledger is not available)
+E              code: H.append!(%{
+E              stacktrace:
+E                Vault.Ledger.append_event!(%{version: 1, payload: %{"opening_balance_cents" => 0, "owner" => "Ada", "type" => "account_opened"}, account_id: "A", recorded_at: ~U[2026-03-01 10:00:01.000000Z]})
+E                /tmp/harbor_event_sourcing_final.exs:334: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T06-T06 a version gap is rejected and consumes no sequence number] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T06'
+description = 'T06 a version gap is rejected and consumes no sequence number'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T06'
+description = 'T06 a version gap is rejected and consumes no sequence number'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T06 (T06 a version gap is rejected and consumes no sequence number) failed:
+E           1) test T06 a version gap is rejected and consumes no sequence number (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:357
+E              ** (UndefinedFunctionError) function Vault.Ledger.append_event!/1 is undefined (module Vault.Ledger is not available)
+E              code: H.append!(%{
+E              stacktrace:
+E                Vault.Ledger.append_event!(%{version: 1, payload: %{"opening_balance_cents" => 0, "owner" => "Ada", "type" => "account_opened"}, account_id: "A", recorded_at: ~U[2026-03-01 10:00:01.000000Z]})
+E                /tmp/harbor_event_sourcing_final.exs:358: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+__ test_scenario[T07-T07 every payload member round trips through the store] ___
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T07'
+description = 'T07 every payload member round trips through the store'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T07'
+description = 'T07 every payload member round trips through the store'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T07 (T07 every payload member round trips through the store) failed:
+E           1) test T07 every payload member round trips through the store (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:398
+E              ** (UndefinedFunctionError) function Vault.Ledger.append_event!/1 is undefined (module Vault.Ledger is not available)
+E              code: for {account, map, _type} <- specs do
+E              stacktrace:
+E                Vault.Ledger.append_event!(%{version: 1, payload: %{"opening_balance_cents" => 700, "owner" => "Ada", "type" => "account_opened"}, account_id: "P1", recorded_at: ~U[2026-03-01 10:00:01.000000Z]})
+E                /tmp/harbor_event_sourcing_final.exs:409: anonymous fn/2 in EventSourcingProjectionTest."test T07 every payload member round trips through the store"/1
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                /tmp/harbor_event_sourcing_final.exs:408: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+___ test_scenario[T08-T08 each payload member enforces its own constraints] ____
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T08'
+description = 'T08 each payload member enforces its own constraints'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T08'
+description = 'T08 each payload member enforces its own constraints'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T08 (T08 each payload member enforces its own constraints) failed:
+E           1) test T08 each payload member enforces its own constraints (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:428
+E              ** (UndefinedFunctionError) function Vault.Ledger.append_event/1 is undefined (module Vault.Ledger is not available)
+E              code: for {map, field} <- cases do
+E              stacktrace:
+E                Vault.Ledger.append_event(%{version: 1, payload: %{"amount_cents" => 0, "type" => "deposited"}, account_id: "A", recorded_at: ~U[2026-03-01 10:00:01.000000Z]})
+E                /tmp/harbor_event_sourcing_final.exs:440: anonymous fn/2 in EventSourcingProjectionTest."test T08 each payload member enforces its own constraints"/1
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                /tmp/harbor_event_sourcing_final.exs:439: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+________ test_scenario[T09-T09 an unrecognised payload tag is rejected] ________
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T09', description = 'T09 an unrecognised payload tag is rejected'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T09', description = 'T09 an unrecognised payload tag is rejected'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T09 (T09 an unrecognised payload tag is rejected) failed:
+E           1) test T09 an unrecognised payload tag is rejected (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:449
+E              ** (UndefinedFunctionError) function Vault.Ledger.append_event/1 is undefined (module Vault.Ledger is not available)
+E              code: H.append(%{
+E              stacktrace:
+E                Vault.Ledger.append_event(%{version: 1, payload: %{"amount_cents" => 1, "type" => "teleported"}, account_id: "A", recorded_at: ~U[2026-03-01 10:00:01.000000Z]})
+E                /tmp/harbor_event_sourcing_final.exs:452: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T10-T10 the payload type is a union new type with the five documented members] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T10'
+description = 'T10 the payload type is a union new type with the five documented members'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T10'
+description = 'T10 the payload type is a union new type with the five documented members'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T10 (T10 the payload type is a union new type with the five documented members) failed:
+E           1) test T10 the payload type is a union new type with the five documented members (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:465
+E              Assertion with == failed
+E              code:  assert Ash.Type.NewType.subtype_of(H.payload()) == Ash.Type.Union
+E              left:  Vault.Ledger.Payload
+E              right: Ash.Type.Union
+E              stacktrace:
+E                /tmp/harbor_event_sourcing_final.exs:466: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+____ test_scenario[T11-T11 the initial state is the documented zero value] _____
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T11'
+description = 'T11 the initial state is the documented zero value'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T11'
+description = 'T11 the initial state is the documented zero value'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T11 (T11 the initial state is the documented zero value) failed:
+E           1) test T11 the initial state is the documented zero value (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:484
+E              ** (UndefinedFunctionError) function Vault.Ledger.Fold.initial/1 is undefined (module Vault.Ledger.Fold is not available)
+E              code: state = H.initial("A")
+E              stacktrace:
+E                Vault.Ledger.Fold.initial("A")
+E                /tmp/harbor_event_sourcing_final.exs:485: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T12-T12 applying each event type produces the documented state] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T12'
+description = 'T12 applying each event type produces the documented state'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T12'
+description = 'T12 applying each event type produces the documented state'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T12 (T12 applying each event type produces the documented state) failed:
+E           1) test T12 applying each event type produces the documented state (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:498
+E              ** (UndefinedFunctionError) function Vault.Ledger.Fold.initial/1 is undefined (module Vault.Ledger.Fold is not available)
+E              code: s0 = H.initial("A")
+E              stacktrace:
+E                Vault.Ledger.Fold.initial("A")
+E                /tmp/harbor_event_sourcing_final.exs:499: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T13-T13 structural checks take precedence over business rules] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T13'
+description = 'T13 structural checks take precedence over business rules'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T13'
+description = 'T13 structural checks take precedence over business rules'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T13 (T13 structural checks take precedence over business rules) failed:
+E           1) test T13 structural checks take precedence over business rules (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:532
+E              ** (UndefinedFunctionError) function Vault.Ledger.Fold.initial/1 is undefined (module Vault.Ledger.Fold is not available)
+E              code: H.initial("A"),
+E              stacktrace:
+E                Vault.Ledger.Fold.initial("A")
+E                /tmp/harbor_event_sourcing_final.exs:535: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_____ test_scenario[T14-T14 business rules reject impossible transitions] ______
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T14'
+description = 'T14 business rules reject impossible transitions'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T14'
+description = 'T14 business rules reject impossible transitions'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T14 (T14 business rules reject impossible transitions) failed:
+E           1) test T14 business rules reject impossible transitions (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:549
+E              ** (UndefinedFunctionError) function Vault.Ledger.Fold.initial/1 is undefined (module Vault.Ledger.Fold is not available)
+E              code: s0 = H.initial("A")
+E              stacktrace:
+E                Vault.Ledger.Fold.initial("A")
+E                /tmp/harbor_event_sourcing_final.exs:550: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_______ test_scenario[T15-T15 an unknown event type is reported by name] _______
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T15'
+description = 'T15 an unknown event type is reported by name'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T15'
+description = 'T15 an unknown event type is reported by name'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T15 (T15 an unknown event type is reported by name) failed:
+E           1) test T15 an unknown event type is reported by name (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:600
+E              ** (UndefinedFunctionError) function Vault.Ledger.Payloads.Deposited.__struct__/0 is undefined (module Vault.Ledger.Payloads.Deposited is not available)
+E              code: H.hand_event("A", 1, 1, :deposited, %{amount_cents: 5})
+E              stacktrace:
+E                Vault.Ledger.Payloads.Deposited.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_event_sourcing_final.exs:160: H.union/2
+E                /tmp/harbor_event_sourcing_final.exs:170: H.hand_event/6
+E                /tmp/harbor_event_sourcing_final.exs:602: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+__ test_scenario[T16-T16 replay folds a tail and surfaces the first failure] ___
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T16'
+description = 'T16 replay folds a tail and surfaces the first failure'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T16'
+description = 'T16 replay folds a tail and surfaces the first failure'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T16 (T16 replay folds a tail and surfaces the first failure) failed:
+E           1) test T16 replay folds a tail and surfaces the first failure (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:609
+E              ** (UndefinedFunctionError) function Vault.Ledger.Fold.initial/1 is undefined (module Vault.Ledger.Fold is not available)
+E              code: state = H.initial("A")
+E              stacktrace:
+E                Vault.Ledger.Fold.initial("A")
+E                /tmp/harbor_event_sourcing_final.exs:610: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T17-T17 replay rejects out of order input instead of sorting it] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T17'
+description = 'T17 replay rejects out of order input instead of sorting it'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T17'
+description = 'T17 replay rejects out of order input instead of sorting it'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T17 (T17 replay rejects out of order input instead of sorting it) failed:
+E           1) test T17 replay rejects out of order input instead of sorting it (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:637
+E              ** (UndefinedFunctionError) function Vault.Ledger.Payloads.AccountOpened.__struct__/0 is undefined (module Vault.Ledger.Payloads.AccountOpened is not available)
+E              code: H.hand_event("A", 1, 1, :account_opened, %{owner: "Ada", opening_balance_cents: 100}),
+E              stacktrace:
+E                Vault.Ledger.Payloads.AccountOpened.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_event_sourcing_final.exs:160: H.union/2
+E                /tmp/harbor_event_sourcing_final.exs:170: H.hand_event/6
+E                /tmp/harbor_event_sourcing_final.exs:639: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+__________ test_scenario[T18-T18 the fold performs no storage access] __________
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T18', description = 'T18 the fold performs no storage access'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T18', description = 'T18 the fold performs no storage access'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T18 (T18 the fold performs no storage access) failed:
+E           1) test T18 the fold performs no storage access (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:655
+E              ** (UndefinedFunctionError) function Vault.Ledger.Payloads.AccountOpened.__struct__/0 is undefined (module Vault.Ledger.Payloads.AccountOpened is not available)
+E              code: H.hand_event("A", 1, 1, :account_opened, %{owner: "Ada", opening_balance_cents: 100}),
+E              stacktrace:
+E                Vault.Ledger.Payloads.AccountOpened.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_event_sourcing_final.exs:160: H.union/2
+E                /tmp/harbor_event_sourcing_final.exs:170: H.hand_event/6
+E                /tmp/harbor_event_sourcing_final.exs:657: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T19-T19 opening an account returns the documented command result] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T19'
+description = 'T19 opening an account returns the documented command result'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T19'
+description = 'T19 opening an account returns the documented command result'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T19 (T19 opening an account returns the documented command result) failed:
+E           1) test T19 opening an account returns the documented command result (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:674
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:676: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+______ test_scenario[T20-T20 deposits and withdrawals advance the stream] ______
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T20'
+description = 'T20 deposits and withdrawals advance the stream'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T20'
+description = 'T20 deposits and withdrawals advance the stream'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T20 (T20 deposits and withdrawals advance the stream) failed:
+E           1) test T20 deposits and withdrawals advance the stream (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:698
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:699: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T21-T21 a transfer appends two events with consecutive sequences] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T21'
+description = 'T21 a transfer appends two events with consecutive sequences'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T21'
+description = 'T21 a transfer appends two events with consecutive sequences'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T21 (T21 a transfer appends two events with consecutive sequences) failed:
+E           1) test T21 a transfer appends two events with consecutive sequences (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:714
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:715: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+__________ test_scenario[T22-T22 a rejected transfer leaves no trace] __________
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T22', description = 'T22 a rejected transfer leaves no trace'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T22', description = 'T22 a rejected transfer leaves no trace'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T22 (T22 a rejected transfer leaves no trace) failed:
+E           1) test T22 a rejected transfer leaves no trace (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:735
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 100, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 100})
+E                /tmp/harbor_event_sourcing_final.exs:736: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T23-T23 every invariant violation reports the documented field and message] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T23'
+description = 'T23 every invariant violation reports the documented field and message'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T23'
+description = 'T23 every invariant violation reports the documented field and message'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T23 (T23 every invariant violation reports the documented field and message) failed:
+E           1) test T23 every invariant violation reports the documented field and message (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:757
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:758: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T24-T24 freezing blocks money movement until the account is unfrozen] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T24'
+description = 'T24 freezing blocks money movement until the account is unfrozen'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T24'
+description = 'T24 freezing blocks money movement until the account is unfrozen'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T24 (T24 freezing blocks money movement until the account is unfrozen) failed:
+E           1) test T24 freezing blocks money movement until the account is unfrozen (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:798
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 500, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 500})
+E                /tmp/harbor_event_sourcing_final.exs:799: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T25-T25 an omitted recorded_at falls back to the current time] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T25'
+description = 'T25 an omitted recorded_at falls back to the current time'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T25'
+description = 'T25 an omitted recorded_at falls back to the current time'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T25 (T25 an omitted recorded_at falls back to the current time) failed:
+E           1) test T25 an omitted recorded_at falls back to the current time (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:815
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account/3 is undefined (module Vault.Ledger is not available)
+E              code: {:ok, result} = H.open("A", "Ada", %{opening_balance_cents: 1})
+E              stacktrace:
+E                Vault.Ledger.open_account("A", "Ada", %{opening_balance_cents: 1})
+E                /tmp/harbor_event_sourcing_final.exs:817: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T26-T26 commands are generic actions returning the command result struct] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T26'
+description = 'T26 commands are generic actions returning the command result struct'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T26'
+description = 'T26 commands are generic actions returning the command result struct'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T26 (T26 commands are generic actions returning the command result struct) failed:
+E           1) test T26 commands are generic actions returning the command result struct (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:825
+E              ** (ArgumentError) `Vault.Ledger.Event` is not a Spark DSL module.
+E         
+E              code: for name <- [:open_account, :deposit, :withdraw, :transfer, :freeze, :unfreeze] do
+E              stacktrace:
+E                Vault.Ledger.Event.entities([:actions])
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:2190: Spark.Dsl.Extension.get_config_entry_with_fallback/6
+E                (ash 3.31.0) lib/ash/resource/info.ex:738: Ash.Resource.Info.action/3
+E                /tmp/harbor_event_sourcing_final.exs:827: anonymous fn/2 in EventSourcingProjectionTest."test T26 commands are generic actions returning the command result struct"/1
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                /tmp/harbor_event_sourcing_final.exs:826: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+____ test_scenario[T27-T27 snapshot serialisation is exact and round trips] ____
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T27'
+description = 'T27 snapshot serialisation is exact and round trips'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T27'
+description = 'T27 snapshot serialisation is exact and round trips'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T27 (T27 snapshot serialisation is exact and round trips) failed:
+E           1) test T27 snapshot serialisation is exact and round trips (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:841
+E              ** (UndefinedFunctionError) function Vault.Ledger.Snapshots.interval/0 is undefined (module Vault.Ledger.Snapshots is not available)
+E              code: assert H.interval() == 5
+E              stacktrace:
+E                Vault.Ledger.Snapshots.interval()
+E                /tmp/harbor_event_sourcing_final.exs:842: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+___ test_scenario[T28-T28 the checksum covers exactly the documented fields] ___
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T28'
+description = 'T28 the checksum covers exactly the documented fields'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T28'
+description = 'T28 the checksum covers exactly the documented fields'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T28 (T28 the checksum covers exactly the documented fields) failed:
+E           1) test T28 the checksum covers exactly the documented fields (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:888
+E              ** (UndefinedFunctionError) function Vault.Ledger.AccountState.__struct__/0 is undefined (module Vault.Ledger.AccountState is not available)
+E              code: H.mkstate(%{
+E              stacktrace:
+E                Vault.Ledger.AccountState.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2474: Kernel.struct/3
+E                /tmp/harbor_event_sourcing_final.exs:890: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_________ test_scenario[T29-T29 commands snapshot every fifth version] _________
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T29', description = 'T29 commands snapshot every fifth version'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T29', description = 'T29 commands snapshot every fifth version'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T29 (T29 commands snapshot every fifth version) failed:
+E           1) test T29 commands snapshot every fifth version (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:916
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 0, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 0})
+E                /tmp/harbor_event_sourcing_final.exs:917: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+________ test_scenario[T30-T30 direct appends never create a snapshot] _________
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T30', description = 'T30 direct appends never create a snapshot'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T30', description = 'T30 direct appends never create a snapshot'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T30 (T30 direct appends never create a snapshot) failed:
+E           1) test T30 direct appends never create a snapshot (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:942
+E              ** (UndefinedFunctionError) function Vault.Ledger.append_event!/1 is undefined (module Vault.Ledger is not available)
+E              code: H.append!(%{
+E              stacktrace:
+E                Vault.Ledger.append_event!(%{version: 1, payload: %{"opening_balance_cents" => 100, "owner" => "Dee", "type" => "account_opened"}, account_id: "D", recorded_at: ~U[2026-03-01 10:00:01.000000Z]})
+E                /tmp/harbor_event_sourcing_final.exs:943: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+________ test_scenario[T31-T31 snapshot verification detects tampering] ________
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T31', description = 'T31 snapshot verification detects tampering'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T31', description = 'T31 snapshot verification detects tampering'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T31 (T31 snapshot verification detects tampering) failed:
+E           1) test T31 snapshot verification detects tampering (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:964
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 0, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 0})
+E                /tmp/harbor_event_sourcing_final.exs:965: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T32-T32 the current state is reconstructed from the newest valid snapshot] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T32'
+description = 'T32 the current state is reconstructed from the newest valid snapshot'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T32'
+description = 'T32 the current state is reconstructed from the newest valid snapshot'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T32 (T32 the current state is reconstructed from the newest valid snapshot) failed:
+E           1) test T32 the current state is reconstructed from the newest valid snapshot (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:991
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:992: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_______ test_scenario[T33-T33 a newer snapshot supersedes an older one] ________
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T33'
+description = 'T33 a newer snapshot supersedes an older one'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T33'
+description = 'T33 a newer snapshot supersedes an older one'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T33 (T33 a newer snapshot supersedes an older one) failed:
+E           1) test T33 a newer snapshot supersedes an older one (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1019
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:1020: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+___ test_scenario[T34-T34 a corrupt snapshot is ignored rather than trusted] ___
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T34'
+description = 'T34 a corrupt snapshot is ignored rather than trusted'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T34'
+description = 'T34 a corrupt snapshot is ignored rather than trusted'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T34 (T34 a corrupt snapshot is ignored rather than trusted) failed:
+E           1) test T34 a corrupt snapshot is ignored rather than trusted (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1043
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:1044: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+________ test_scenario[T35-T35 commands keep the read model up to date] ________
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T35', description = 'T35 commands keep the read model up to date'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T35', description = 'T35 commands keep the read model up to date'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T35 (T35 commands keep the read model up to date) failed:
+E           1) test T35 commands keep the read model up to date (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1069
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:1070: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T36-T36 direct appends only reach the read model through catch up] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T36'
+description = 'T36 direct appends only reach the read model through catch up'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T36'
+description = 'T36 direct appends only reach the read model through catch up'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T36 (T36 direct appends only reach the read model through catch up) failed:
+E           1) test T36 direct appends only reach the read model through catch up (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1100
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:1101: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+________________ test_scenario[T37-T37 catch up is idempotent] _________________
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T37', description = 'T37 catch up is idempotent'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T37', description = 'T37 catch up is idempotent'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T37 (T37 catch up is idempotent) failed:
+E           1) test T37 catch up is idempotent (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1128
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:1129: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T38-T38 a full rebuild reproduces the incrementally maintained rows] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T38'
+description = 'T38 a full rebuild reproduces the incrementally maintained rows'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T38'
+description = 'T38 a full rebuild reproduces the incrementally maintained rows'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T38 (T38 a full rebuild reproduces the incrementally maintained rows) failed:
+E           1) test T38 a full rebuild reproduces the incrementally maintained rows (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1150
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:1151: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T39-T39 a rebuild repairs a projection row edited behind its back] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T39'
+description = 'T39 a rebuild repairs a projection row edited behind its back'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T39'
+description = 'T39 a rebuild repairs a projection row edited behind its back'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T39 (T39 a rebuild repairs a projection row edited behind its back) failed:
+E           1) test T39 a rebuild repairs a projection row edited behind its back (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1167
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:1168: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_____ test_scenario[T40-T40 a rebuild recreates a deleted projection row] ______
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T40'
+description = 'T40 a rebuild recreates a deleted projection row'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T40'
+description = 'T40 a rebuild recreates a deleted projection row'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T40 (T40 a rebuild recreates a deleted projection row) failed:
+E           1) test T40 a rebuild recreates a deleted projection row (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1182
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:1183: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_____ test_scenario[T41-T41 rebuilding an empty log clears the read model] _____
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T41'
+description = 'T41 rebuilding an empty log clears the read model'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T41'
+description = 'T41 rebuilding an empty log clears the read model'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T41 (T41 rebuilding an empty log clears the read model) failed:
+E           1) test T41 rebuilding an empty log clears the read model (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1196
+E              ** (UndefinedFunctionError) function Vault.Ledger.AccountProjection.__struct__/0 is undefined (module Vault.Ledger.AccountProjection is not available)
+E              code: Ash.Seed.seed!(H.projection(), %{
+E              stacktrace:
+E                Vault.Ledger.AccountProjection.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/seed.ex:148: Ash.Seed.seed!/3
+E                /tmp/harbor_event_sourcing_final.exs:1197: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T42-T42 events appended during a rebuild belong to the next catch up] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T42'
+description = 'T42 events appended during a rebuild belong to the next catch up'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T42'
+description = 'T42 events appended during a rebuild belong to the next catch up'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T42 (T42 events appended during a rebuild belong to the next catch up) failed:
+E           1) test T42 events appended during a rebuild belong to the next catch up (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1217
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:1218: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T43-T43 an unfoldable event halts the projection at the last good sequence] _
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T43'
+description = 'T43 an unfoldable event halts the projection at the last good sequence'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T43'
+description = 'T43 an unfoldable event halts the projection at the last good sequence'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T43 (T43 an unfoldable event halts the projection at the last good sequence) failed:
+E           1) test T43 an unfoldable event halts the projection at the last good sequence (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1262
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:1263: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+____________ test_scenario[T44-T44 time travel and the audit trail] ____________
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T44', description = 'T44 time travel and the audit trail'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('fail', '  1) test T01 event resource declares the append only log schema (EventSourcingProjectio...3BlbmluZ19iYWxhbmNlX2NlbnRzOiAxMDAwfSkKICAgICAgIC90bXAvaGFyYm9yX2V2ZW50X3NvdXJjaW5nX2ZpbmFsLmV4czoxMjg3OiAodGVzdCkK\n'}
+scenario_id = 'T44', description = 'T44 time travel and the audit trail'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T44 (T44 time travel and the audit trail) failed:
+E           1) test T44 time travel and the audit trail (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1286
+E              ** (UndefinedFunctionError) function Vault.Ledger.open_account!/3 is undefined (module Vault.Ledger is not available)
+E              code: H.open!("A", "Ada", %{opening_balance_cents: 1000, recorded_at: H.t(1)})
+E              stacktrace:
+E                Vault.Ledger.open_account!("A", "Ada", %{recorded_at: ~U[2026-03-01 10:00:01.000000Z], opening_balance_cents: 1000})
+E                /tmp/harbor_event_sourcing_final.exs:1287: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+=========================== short test summary info ============================
+FAILED ../tests/test_final_state.py::test_scenario[T01-T01 event resource declares the append only log schema]
+FAILED ../tests/test_final_state.py::test_scenario[T02-T02 the log is immutable]
+FAILED ../tests/test_final_state.py::test_scenario[T03-T03 the global sequence cannot be supplied by the caller]
+FAILED ../tests/test_final_state.py::test_scenario[T04-T04 sequences are globally contiguous and versions are per stream]
+FAILED ../tests/test_final_state.py::test_scenario[T05-T05 a duplicate stream position is rejected by the identity]
+FAILED ../tests/test_final_state.py::test_scenario[T06-T06 a version gap is rejected and consumes no sequence number]
+FAILED ../tests/test_final_state.py::test_scenario[T07-T07 every payload member round trips through the store]
+FAILED ../tests/test_final_state.py::test_scenario[T08-T08 each payload member enforces its own constraints]
+FAILED ../tests/test_final_state.py::test_scenario[T09-T09 an unrecognised payload tag is rejected]
+FAILED ../tests/test_final_state.py::test_scenario[T10-T10 the payload type is a union new type with the five documented members]
+FAILED ../tests/test_final_state.py::test_scenario[T11-T11 the initial state is the documented zero value]
+FAILED ../tests/test_final_state.py::test_scenario[T12-T12 applying each event type produces the documented state]
+FAILED ../tests/test_final_state.py::test_scenario[T13-T13 structural checks take precedence over business rules]
+FAILED ../tests/test_final_state.py::test_scenario[T14-T14 business rules reject impossible transitions]
+FAILED ../tests/test_final_state.py::test_scenario[T15-T15 an unknown event type is reported by name]
+FAILED ../tests/test_final_state.py::test_scenario[T16-T16 replay folds a tail and surfaces the first failure]
+FAILED ../tests/test_final_state.py::test_scenario[T17-T17 replay rejects out of order input instead of sorting it]
+FAILED ../tests/test_final_state.py::test_scenario[T18-T18 the fold performs no storage access]
+FAILED ../tests/test_final_state.py::test_scenario[T19-T19 opening an account returns the documented command result]
+FAILED ../tests/test_final_state.py::test_scenario[T20-T20 deposits and withdrawals advance the stream]
+FAILED ../tests/test_final_state.py::test_scenario[T21-T21 a transfer appends two events with consecutive sequences]
+FAILED ../tests/test_final_state.py::test_scenario[T22-T22 a rejected transfer leaves no trace]
+FAILED ../tests/test_final_state.py::test_scenario[T23-T23 every invariant violation reports the documented field and message]
+FAILED ../tests/test_final_state.py::test_scenario[T24-T24 freezing blocks money movement until the account is unfrozen]
+FAILED ../tests/test_final_state.py::test_scenario[T25-T25 an omitted recorded_at falls back to the current time]
+FAILED ../tests/test_final_state.py::test_scenario[T26-T26 commands are generic actions returning the command result struct]
+FAILED ../tests/test_final_state.py::test_scenario[T27-T27 snapshot serialisation is exact and round trips]
+FAILED ../tests/test_final_state.py::test_scenario[T28-T28 the checksum covers exactly the documented fields]
+FAILED ../tests/test_final_state.py::test_scenario[T29-T29 commands snapshot every fifth version]
+FAILED ../tests/test_final_state.py::test_scenario[T30-T30 direct appends never create a snapshot]
+FAILED ../tests/test_final_state.py::test_scenario[T31-T31 snapshot verification detects tampering]
+FAILED ../tests/test_final_state.py::test_scenario[T32-T32 the current state is reconstructed from the newest valid snapshot]
+FAILED ../tests/test_final_state.py::test_scenario[T33-T33 a newer snapshot supersedes an older one]
+FAILED ../tests/test_final_state.py::test_scenario[T34-T34 a corrupt snapshot is ignored rather than trusted]
+FAILED ../tests/test_final_state.py::test_scenario[T35-T35 commands keep the read model up to date]
+FAILED ../tests/test_final_state.py::test_scenario[T36-T36 direct appends only reach the read model through catch up]
+FAILED ../tests/test_final_state.py::test_scenario[T37-T37 catch up is idempotent]
+FAILED ../tests/test_final_state.py::test_scenario[T38-T38 a full rebuild reproduces the incrementally maintained rows]
+FAILED ../tests/test_final_state.py::test_scenario[T39-T39 a rebuild repairs a projection row edited behind its back]
+FAILED ../tests/test_final_state.py::test_scenario[T40-T40 a rebuild recreates a deleted projection row]
+FAILED ../tests/test_final_state.py::test_scenario[T41-T41 rebuilding an empty log clears the read model]
+FAILED ../tests/test_final_state.py::test_scenario[T42-T42 events appended during a rebuild belong to the next catch up]
+FAILED ../tests/test_final_state.py::test_scenario[T43-T43 an unfoldable event halts the projection at the last good sequence]
+FAILED ../tests/test_final_state.py::test_scenario[T44-T44 time travel and the audit trail]
+============================= 44 failed in 39.23s ==============================

@@ -1,0 +1,440 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-09T18:07:55.658609+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 44,
+            "passed": 39,
+            "failed": 5,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786298847753,
+            "stop": 1786298875658
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_t01_root_query_exposes_exactly_the_required_fields",
+                "status": "passed",
+                "duration": 27794,
+                "start": 1786298847763,
+                "stop": 1786298875557,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_root_mutation_exposes_exactly_the_required_fields",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875558,
+                "stop": 1786298875558,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_ticket_object_exposes_renamed_and_hidden_fields_correctly",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875559,
+                "stop": 1786298875559,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_ticket_status_is_a_non_null_ticketstatus_enum",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875560,
+                "stop": 1786298875560,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_ticket_and_project_implement_node_user_does_not",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875561,
+                "stop": 1786298875561,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_user_object_hides_internal_notes_and_exposes_role_as_a_string",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875561,
+                "stop": 1786298875562,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_project_exposes_the_aggregate_as_a_non_null_int",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875562,
+                "stop": 1786298875563,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_riskscore_is_a_nullable_int_field_taking_a_weight_argument",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875563,
+                "stop": 1786298875564,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_tickets_is_a_relay_connection_with_the_standard_shape",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875564,
+                "stop": 1786298875565,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_projects_labels_and_users_are_plain_non_paginated_lists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 24,
+                "start": 1786298875565,
+                "stop": 1786298875589,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}\n\n    def test_t10_projects_labels_and_users_are_plain_non_paginated_lists(suite_results):\n>       _assert_scenario(suite_results, \"T10\", 'projects, labels and users are plain non paginated lists')\n\n/tests/test_final_state.py:1086: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}\nscenario_id = 'T10'\ndescription = 'projects, labels and users are plain non paginated lists'\n\n    def _assert_scenario(suite_results, scenario_id, description):\n        entry = suite_results.get(scenario_id)\n        assert entry is not None, (\n            \"Scenario {} ({}) did not run at all. Collected scenarios: {}\".format(\n                scenario_id, description, sorted(suite_results)\n            )\n        )\n        status, detail = entry\n        if status == \"pass\":\n            return\n    \n        import base64\n    \n        try:\n            rendered = base64.b64decode(detail).decode(\"utf-8\", \"replace\")\n        except Exception:\n            rendered = detail\n    \n>       raise AssertionError(\n            \"Scenario {} ({}) failed:\\n{}\".format(scenario_id, description, rendered)\n        )\nE       AssertionError: Scenario T10 (projects, labels and users are plain non paginated lists) failed:\nE         1) test T10 projects, labels and users are plain non paginated lists (TrackerGraphqlTest)\nE            /tmp/harbor_ash_graphql_final.exs:275\nE            Assertion with == failed\nE            code:  assert field[\"type\"] == %{\nE                     \"kind\" => \"NON_NULL\",\nE                     \"ofType\" => %{\nE                       \"kind\" => \"LIST\",\nE                       \"ofType\" => %{\"kind\" => \"NON_NULL\", \"ofType\" => %{\"name\" => inner}}\nE                     }\nE                   }\nE            left:  %{\"kind\" => \"OBJECT\", \"ofType\" => nil}\nE            right: %{\nE                     \"kind\" => \"NON_NULL\",\nE                     \"ofType\" => %{\nE                       \"kind\" => \"LIST\",\nE                       \"ofType\" => %{\"kind\" => \"NON_NULL\", \"ofType\" => %{\"name\" => \"Project\"}}\nE                     }\nE                   }\nE            stacktrace:\nE              /tmp/harbor_ash_graphql_final.exs:285: anonymous fn/3 in TrackerGraphqlTest.\"test T10 projects, labels and users are plain non paginated lists\"/1\nE              (elixir 1.18.4) lib/enum.ex:2546: Enum.\"-reduce/3-lists^foldl/2-0-\"/3\nE              /tmp/harbor_ash_graphql_final.exs:282: (test)\n\n/tests/test_final_state.py:1044: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t11_create_input_objects_are_derived_with_the_required_names",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875590,
+                "stop": 1786298875590,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_label_filtering_and_sorting_is_restricted_to_name",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875591,
+                "stop": 1786298875591,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_ticketorfail_is_non_null_while_ticket_is_nullable",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875592,
+                "stop": 1786298875592,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_the_generic_action_mutation_returns_a_string_result_plus_errors",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875593,
+                "stop": 1786298875593,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_the_hand_written_apiinfo_query_works",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875593,
+                "stop": 1786298875594,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_ticket_is_fetched_by_its_relay_global_id",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875594,
+                "stop": 1786298875595,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_a_raw_uuid_is_rejected_by_the_relay_aware_get_query",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875595,
+                "stop": 1786298875596,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_node_resolves_ticket_and_project_global_ids",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875596,
+                "stop": 1786298875597,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_topticket_read_one_returns_the_single_highest_severity_ticket",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875597,
+                "stop": 1786298875598,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_projects_exposes_the_filtered_count_aggregate",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 10,
+                "start": 1786298875598,
+                "stop": 1786298875608,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}\n\n    def test_t20_projects_exposes_the_filtered_count_aggregate(suite_results):\n>       _assert_scenario(suite_results, \"T20\", 'projects exposes the filtered count aggregate')\n\n/tests/test_final_state.py:1126: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}\nscenario_id = 'T20'\ndescription = 'projects exposes the filtered count aggregate'\n\n    def _assert_scenario(suite_results, scenario_id, description):\n        entry = suite_results.get(scenario_id)\n        assert entry is not None, (\n            \"Scenario {} ({}) did not run at all. Collected scenarios: {}\".format(\n                scenario_id, description, sorted(suite_results)\n            )\n        )\n        status, detail = entry\n        if status == \"pass\":\n            return\n    \n        import base64\n    \n        try:\n            rendered = base64.b64decode(detail).decode(\"utf-8\", \"replace\")\n        except Exception:\n            rendered = detail\n    \n>       raise AssertionError(\n            \"Scenario {} ({}) failed:\\n{}\".format(scenario_id, description, rendered)\n        )\nE       AssertionError: Scenario T20 (projects exposes the filtered count aggregate) failed:\nE         1) test T20 projects exposes the filtered count aggregate (TrackerGraphqlTest)\nE            /tmp/harbor_ash_graphql_final.exs:418\nE            ** (RuntimeError) unexpected top level errors: [%{message: \"Cannot query field \\\"name\\\" on type \\\"KeysetPageOfProject\\\".\", locations: [%{line: 1, column: 14}]}, %{message: \"Cannot query field \\\"slug\\\" on type \\\"KeysetPageOfProject\\\".\", locations: [%{line: 1, column: 19}]}, %{message: \"Cannot query field \\\"archived\\\" on type \\\"KeysetPageOfProject\\\".\", locations: [%{line: 1, column: 24}]}, %{message: \"Cannot query field \\\"openTicketCount\\\" on type \\\"KeysetPageOfProject\\\".\", locations: [%{line: 1, column: 33}]}]\nE            code: assert data(\"{ projects { name slug archived openTicketCount } }\") == %{\nE            stacktrace:\nE              /tmp/harbor_ash_graphql_final.exs:67: GqlHelper.data/2\nE              /tmp/harbor_ash_graphql_final.exs:419: (test)\n\n/tests/test_final_state.py:1044: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t21_labels_can_be_sorted_by_name",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 8,
+                "start": 1786298875608,
+                "stop": 1786298875616,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}\n\n    def test_t21_labels_can_be_sorted_by_name(suite_results):\n>       _assert_scenario(suite_results, \"T21\", 'labels can be sorted by name')\n\n/tests/test_final_state.py:1130: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}\nscenario_id = 'T21', description = 'labels can be sorted by name'\n\n    def _assert_scenario(suite_results, scenario_id, description):\n        entry = suite_results.get(scenario_id)\n        assert entry is not None, (\n            \"Scenario {} ({}) did not run at all. Collected scenarios: {}\".format(\n                scenario_id, description, sorted(suite_results)\n            )\n        )\n        status, detail = entry\n        if status == \"pass\":\n            return\n    \n        import base64\n    \n        try:\n            rendered = base64.b64decode(detail).decode(\"utf-8\", \"replace\")\n        except Exception:\n            rendered = detail\n    \n>       raise AssertionError(\n            \"Scenario {} ({}) failed:\\n{}\".format(scenario_id, description, rendered)\n        )\nE       AssertionError: Scenario T21 (labels can be sorted by name) failed:\nE         1) test T21 labels can be sorted by name (TrackerGraphqlTest)\nE            /tmp/harbor_ash_graphql_final.exs:437\nE            ** (RuntimeError) unexpected top level errors: [%{message: \"Cannot query field \\\"name\\\" on type \\\"KeysetPageOfLabel\\\".\", locations: [%{line: 1, column: 47}]}, %{message: \"Cannot query field \\\"colour\\\" on type \\\"KeysetPageOfLabel\\\". Did you mean \\\"count\\\"?\", locations: [%{line: 1, column: 52}]}]\nE            code: assert data(\"{ labels(sort: [{field: NAME, order: ASC}]) { name colour } }\") == %{\nE            stacktrace:\nE              /tmp/harbor_ash_graphql_final.exs:67: GqlHelper.data/2\nE              /tmp/harbor_ash_graphql_final.exs:438: (test)\n\n/tests/test_final_state.py:1044: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t22_hidden_attributes_are_not_part_of_the_schema",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 19,
+                "start": 1786298875617,
+                "stop": 1786298875636,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}\n\n    def test_t22_hidden_attributes_are_not_part_of_the_schema(suite_results):\n>       _assert_scenario(suite_results, \"T22\", 'hidden attributes are not part of the schema')\n\n/tests/test_final_state.py:1134: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}\nscenario_id = 'T22'\ndescription = 'hidden attributes are not part of the schema'\n\n    def _assert_scenario(suite_results, scenario_id, description):\n        entry = suite_results.get(scenario_id)\n        assert entry is not None, (\n            \"Scenario {} ({}) did not run at all. Collected scenarios: {}\".format(\n                scenario_id, description, sorted(suite_results)\n            )\n        )\n        status, detail = entry\n        if status == \"pass\":\n            return\n    \n        import base64\n    \n        try:\n            rendered = base64.b64decode(detail).decode(\"utf-8\", \"replace\")\n        except Exception:\n            rendered = detail\n    \n>       raise AssertionError(\n            \"Scenario {} ({}) failed:\\n{}\".format(scenario_id, description, rendered)\n        )\nE       AssertionError: Scenario T22 (hidden attributes are not part of the schema) failed:\nE         1) test T22 hidden attributes are not part of the schema (TrackerGraphqlTest)\nE            /tmp/harbor_ash_graphql_final.exs:447\nE            Assertion with =~ failed\nE            code:  assert user_message =~ \"Cannot query field \\\"internalNotes\\\" on type \\\"User\\\".\"\nE            left:  \"Cannot query field \\\"internalNotes\\\" on type \\\"KeysetPageOfUser\\\".\"\nE            right: \"Cannot query field \\\"internalNotes\\\" on type \\\"User\\\".\"\nE            stacktrace:\nE              /tmp/harbor_ash_graphql_final.exs:454: (test)\n\n/tests/test_final_state.py:1044: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t23_relationships_and_calculations_resolve_through_a_get_query",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875636,
+                "stop": 1786298875637,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_the_first_connection_page_reports_the_total_count_and_page_info",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875637,
+                "stop": 1786298875637,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_forward_pagination_walks_the_whole_connection_without_gaps",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875638,
+                "stop": 1786298875638,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_an_edge_cursor_can_be_used_as_the_after_argument",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875638,
+                "stop": 1786298875639,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t27_a_ticket_created_through_the_api_shows_up_at_the_end_of_the_connection",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875639,
+                "stop": 1786298875640,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t28_the_connection_honours_a_filter_and_reports_the_filtered_count",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875640,
+                "stop": 1786298875640,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t29_boolean_filter_combinators_are_derived_from_the_resource",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875641,
+                "stop": 1786298875641,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t30_an_or_filter_is_supported",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875641,
+                "stop": 1786298875642,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t31_the_renamed_attribute_is_filterable_and_sortable_under_its_graphql_name",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875642,
+                "stop": 1786298875643,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t32_filtering_across_a_relationship_works",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875643,
+                "stop": 1786298875643,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t33_the_calculation_can_be_used_as_a_sort_key_with_its_argument",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875643,
+                "stop": 1786298875644,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t34_createticket_returns_the_created_record_and_an_empty_error_list",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875644,
+                "stop": 1786298875645,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t35_the_managed_relationship_input_creates_and_links_labels",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7,
+                "start": 1786298875645,
+                "stop": 1786298875652,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}\n\n    def test_t35_the_managed_relationship_input_creates_and_links_labels(suite_results):\n>       _assert_scenario(suite_results, \"T35\", 'the managed relationship input creates and links labels')\n\n/tests/test_final_state.py:1186: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}\nscenario_id = 'T35'\ndescription = 'the managed relationship input creates and links labels'\n\n    def _assert_scenario(suite_results, scenario_id, description):\n        entry = suite_results.get(scenario_id)\n        assert entry is not None, (\n            \"Scenario {} ({}) did not run at all. Collected scenarios: {}\".format(\n                scenario_id, description, sorted(suite_results)\n            )\n        )\n        status, detail = entry\n        if status == \"pass\":\n            return\n    \n        import base64\n    \n        try:\n            rendered = base64.b64decode(detail).decode(\"utf-8\", \"replace\")\n        except Exception:\n            rendered = detail\n    \n>       raise AssertionError(\n            \"Scenario {} ({}) failed:\\n{}\".format(scenario_id, description, rendered)\n        )\nE       AssertionError: Scenario T35 (the managed relationship input creates and links labels) failed:\nE         1) test T35 the managed relationship input creates and links labels (TrackerGraphqlTest)\nE            /tmp/harbor_ash_graphql_final.exs:694\nE            ** (RuntimeError) unexpected top level errors: [%{message: \"Cannot query field \\\"name\\\" on type \\\"KeysetPageOfLabel\\\".\", locations: [%{line: 1, column: 47}]}]\nE            code: assert data(\"{ labels(sort: [{field: NAME, order: ASC}]) { name } }\") == %{\nE            stacktrace:\nE              /tmp/harbor_ash_graphql_final.exs:67: GqlHelper.data/2\nE              /tmp/harbor_ash_graphql_final.exs:715: (test)\n\n/tests/test_final_state.py:1044: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t36_a_validation_failure_is_reported_inside_the_mutation_result",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875653,
+                "stop": 1786298875653,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t37_updateticket_applies_changes_and_reports_validation_failures",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875653,
+                "stop": 1786298875654,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t38_updating_a_missing_record_yields_a_not_found_error_in_the_result",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875654,
+                "stop": 1786298875655,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t39_destroying_a_ticket_removes_it_and_ticketorfail_then_errors_at_the_top_level",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875655,
+                "stop": 1786298875655,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t40_archiveproject_is_forbidden_without_an_admin_actor",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875656,
+                "stop": 1786298875656,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t41_the_generic_action_mutation_returns_its_string_result",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875656,
+                "stop": 1786298875657,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t42_the_custom_exception_surfaces_through_the_ashgraphql_error_protocol",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875657,
+                "stop": 1786298875657,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t43_raised_errors_are_shown_because_the_domain_enables_them",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298875657,
+                "stop": 1786298875657,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t44_the_hand_written_ticketbyreference_query_loads_requested_fields",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298875657,
+                "stop": 1786298875658,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

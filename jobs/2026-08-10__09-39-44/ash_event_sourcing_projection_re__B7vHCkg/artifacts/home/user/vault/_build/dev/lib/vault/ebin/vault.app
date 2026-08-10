@@ -1,0 +1,9 @@
+{application,vault,
+             [{modules,['Elixir.Vault.Application',
+                        'Elixir.Vault.Ledger.Hook']},
+              {optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger,ash]},
+              {description,"vault"},
+              {registered,[]},
+              {vsn,"0.1.0"},
+              {mod,{'Elixir.Vault.Application',[]}}]}.

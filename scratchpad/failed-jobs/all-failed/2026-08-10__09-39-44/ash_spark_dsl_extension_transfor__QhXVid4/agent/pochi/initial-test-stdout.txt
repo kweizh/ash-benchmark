@@ -1,0 +1,23 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.3
+collected 15 items
+
+../bootstrap/test_initial_state.py::test_elixir_toolchain_available PASSED
+../bootstrap/test_initial_state.py::test_hex_offline_is_enabled PASSED
+../bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+../bootstrap/test_initial_state.py::test_scaffold_files_exist[mix.exs] PASSED
+../bootstrap/test_initial_state.py::test_scaffold_files_exist[mix.lock] PASSED
+../bootstrap/test_initial_state.py::test_scaffold_files_exist[config/config.exs] PASSED
+../bootstrap/test_initial_state.py::test_scaffold_files_exist[lib/lifecycle/records.ex] PASSED
+../bootstrap/test_initial_state.py::test_scaffold_files_exist[lib/lifecycle/records/archival_event.ex] PASSED
+../bootstrap/test_initial_state.py::test_scaffold_files_exist[lib/lifecycle/records/stamp_note.ex] PASSED
+../bootstrap/test_initial_state.py::test_dependencies_are_vendored PASSED
+../bootstrap/test_initial_state.py::test_pinned_dependency_versions PASSED
+../bootstrap/test_initial_state.py::test_existing_domain_and_resources_are_present PASSED
+../bootstrap/test_initial_state.py::test_archival_event_shape PASSED
+../bootstrap/test_initial_state.py::test_domain_registers_only_the_event_resource PASSED
+../bootstrap/test_initial_state.py::test_solution_modules_are_absent PASSED
+
+============================= 15 passed in 32.43s ==============================

@@ -1,0 +1,530 @@
+- Initializing MCP connections...
+You
+# Fleet Rollout Orchestration with Ash.Reactor ## Background `Orchestra` is an internal control plane that rolls new software out onto a fleet of edge nodes. A rollout has to reserve capacity on every target node, obtain an approval, deploy to the nodes, and — if anything goes wrong at any point — put the whole fleet back exactly the way it was. The persistence layer is `Ash.DataLayer.Ets`, which has **no transactions**. Nothing can be rolled back by the database: every reversal has to be performed explicitly by the workflow itself, including reversing work that had already completed successfully when a *later* step failed. Your job is to build the domain and the orchestration graph. Everything runs locally in this container; there are no external services and no network access. ## Requirements Build an Ash domain describing the fleet, and an `Ash.Reactor` workflow that orchestrates a rollout end to end with correct failure, retry and rollback semantics, an observable execution trace, and bounded parallelism. The workflow must be able to: - reserve capacity on many nodes at once and fail cleanly when a node cannot supply it, - branch on the size of the rollout to decide what kind of approval is required, - deploy to the nodes with bounded parallelism, retrying an attempt that fails transiently, - reverse *in-flight* work when an attempt fails, and reverse *already-completed* work when the rollout as a whole fails, - and expose an ordered trace of what happened that an operator (and the tests) can inspect. ## Implementation Hints - Project path: `/home/user/orchestra`. The mix project, its pinned dependencies and `lib/orchestra/application.ex` already exist and are pre-compiled; there is no network access, so do not add dependencies. Elixir 1.18.4 / OTP 27.3.4, `ash` 3.31.0, `reactor` 1.0.5. - The OTP application is `:orchestra` and `config/config.exs` already declares `config :orchestra, ash_domains: [Orchestra.Fleet]`. - `mix compile` must succeed with no compilation errors. ### Domain and resources Define the domain `Orchestra.Fleet` and five resources, all on `Ash.DataLayer.Ets`. Attribute names, types and defaults are fixed because the tests read them directly: `Orchestra.Fleet.Node` : `id` (uuid primary key), `name` (`:string`), `region` (`:atom`, one of `:us_east`, `:eu_west`, `:ap_south`), `slots_total` (`:integer`), `slots_used` (`:integer`, default `0`), `state` (`:atom`, one of `:idle`, `:reserved`, `:live`, default `:idle`), `deploy_failures_remaining` (`:integer`, default `0`). `Orchestra.Fleet.Rollout` : `id` (uuid primary key), `name` (`:string`), `strategy` (`:atom`, one of `:canary`, `:blast`), `status` (`:atom`, one of `:pending`, `:running`, `:succeeded`, `:rolled_back`, default `:pending`), `deployed_node_count` (`:integer`, default `0`). `Orchestra.Fleet.Placement` : `id` (uuid primary key), `rollout_id` (`:uuid`), `node_name` (`:string`), `slots` (`:integer`), `status` (`:atom`, one of `:reserved`, `:deploying`, `:deployed`, `:released`, default `:reserved`), `attempts` (`:integer`, default `0`), `compensations` (`:integer`, default `0`), `undos` (`:integer`, default `0`). `Orchestra.Fleet.Approval` : `id` (uuid primary key), `rollout_id` (`:uuid`), `level` (`:atom`, one of `:auto`, `:board`), `slots` (`:integer`), `status` (`:atom`, one of `:granted`, `:revoked`, default `:granted`). `Orchestra.Fleet.Lease` : `id` (uuid primary key), `rollout_name` (`:string`), `status` (`:atom`, one of `:held`, `:released`, default `:held`). The domain must expose exactly these code-interface functions (bang variants included): - `Orchestra.Fleet.register_node/3` — positional args `name`, `region`, `slots_total`; the optional params map may additionally carry `deploy_failures_remaining`. - `Orchestra.Fleet.get_node/1` — fetch a single node by `name`. - `Orchestra.Fleet.list_nodes/0`, `Orchestra.Fleet.list_rollouts/0`, `Orchestra.Fleet.list_placements/0`, `Orchestra.Fleet.list_approvals/0`, `Orchestra.Fleet.list_leases/0` — read every record of that resource. - `Orchestra.Fleet.plan_rollout/1` — a **generic action** taking one argument `targets` (`{:array, :map}`). `plan_rollout/1` returns `{:ok, %{total_slots: integer, node_names: [String.t()], target_count: integer}}` where `node_names` is sorted ascending. It must instead return `{:error, %Ash.Error.Invalid{}}` whose `errors` list contains an `%Ash.Error.Action.InvalidArgument{field: :targets}` when `targets` is empty, when any element's `slots` is not a positive integer, or when a node name appears more than once. ### The workflow `Orchestra.Rollout.Reactor` is executed by the tests as `Reactor.run(Orchestra.Rollout.Reactor, inputs)` where `inputs` is a map with exactly the keys `:rollout_name` (`String.t()`), `:strategy` (`:canary` or `:blast`), `:targets` and `:board_threshold` (integer). `:targets` is an ordered list of maps with the atom keys `:node_name` (`String.t()`) and `:slots` (positive integer). On success it must return `{:ok, result}` where `result` is a map with exactly the keys `:rollout_id` (the created rollout's id), `:status` (always `:succeeded`), `:deployed_nodes` (the target node names, sorted ascending), `:total_slots`, `:approval_level` (`:auto` or `:board`) and `:summary`. `:summary` must equal, with no leading or trailing whitespace: ``` Rollout <rollout_name> deployed <target count> node(s) in <strategy> mode with <approval level> approval. ``` On any failure it must return an `{:error, _}` tuple. Observable behaviour the tests rely on: 1. Exactly one `Lease` is created per run, with `rollout_name` set from the input. Whatever happens, by the time the run returns its `status` is `:released`. 2. Exactly one `Rollout` is created per run, with `name` and `strategy` from the input. On success it ends as `status: :succeeded` with `deployed_node_count` equal to the number of targets. On failure it ends as `status: :rolled_back` with `deployed_node_count` `0`. 3. For every target, capacity is reserved on the named node: the node's `slots_used` grows by the target's `slots` and its `state` becomes `:reserved`, and one `Placement` is created carrying the rollout's id, the node name and the slot count. Reserving more slots than a node has free (`slots_used + slots > slots_total`) must fail the run, and so must naming a node that does not exist. Reservations are not retried. 4. No deployment may begin until every reservation has succeeded. 5. Exactly one `Approval` is created per run, carrying the rollout's id and `slots` equal to the total slot count. Its `level` is `:board` when the total slot count is greater than or equal to `:board_threshold`, and `:auto` otherwise. On success it ends `:granted`; if the rollout fails it ends `:revoked`. The approval must be produced by a **separate, independently runnable** reactor `Orchestra.Rollout.ApprovalReactor`, which the tests also execute directly as `Reactor.run(Orchestra.Rollout.ApprovalReactor, %{rollout_id: id, total_slots: n, board_threshold: t})` and which must return `{:ok, %Orchestra.Fleet.Approval{}}`. That reactor must choose the level with Reactor's `switch` step. 6. Deploying one target is the responsibility of `Orchestra.Rollout.Steps.DeployNode`, a module implementing the `Reactor.Step` behaviour with `run/3`, `compensate/4` and `undo/4`. 7. Every deployment attempt takes at least 50 ms of wall-clock time, raises the target's `Placement.attempts` by one and sets its `status` to `:deploying`. 8. An attempt fails if and only if the node's `deploy_failures_remaining` is greater than `0` when the attempt begins; a failing attempt reduces `deploy_failures_remaining` by one. A successful attempt sets the placement `status` to `:deployed` and the node `state` to `:live`. 9. A failed attempt is compensated: the placement's `compensations` rises by one and its `status` returns to `:reserved`. The deployment is then retried, but a target is attempted **at most four times in total**; a node whose `deploy_failures_remaining` is `3` therefore ends up deployed, while `4` fails the run. 10. When the run fails, everything already done must be undone. Each placement whose deployment had succeeded gets `undos` raised by one and `status` set to `:released` — a placement that never deployed successfully keeps `undos` at `0`. Every reservation is reversed: the node's `slots_used` returns to its previous value and, once it reaches `0`, its `state` returns to `:idle`. Placement rows are never deleted. 11. Rollback of completed work only starts once the failing target has used up its attempts. 12. At most two deployments may be in flight at any instant, and the workflow must actually use that budget: with six targets the tests require the maximum observed overlap to be exactly two. ### Structure the tests introspect The tests read the reactor back with `Reactor.Info` and walk its steps, including nested ones. The following must hold: - All resource work other than deploying an individual node is carried out by `Ash.Reactor`'s resource-action step types rather than by calling Ash from inside plain step code: the reactor must contain at least one create step, one update step, one read step and one generic-action step. - The targets are iterated with a map step, and `Orchestra.Rollout.ApprovalReactor` is embedded with a compose step. - `Orchestra.Rollout.ApprovalReactor` picks the approval level with a switch step. ### The trace `Orchestra.Rollout.Trace` must expose `reset/0` (clears the trace and returns `:ok`) and `entries/0`, which returns the recorded entries **in the order they were recorded** as a list of `{event :: atom, label :: String.t()}` tuples. It must be usable from any process, including the processes Reactor spawns for asynchronous steps, and it must be running as soon as the application has started. `Orchestra.Rollout.Reactor` must be fitted with a `Reactor.Middleware` module of your own that records: - `{:reactor_init, "reactor"}`, `{:reactor_complete, "reactor"}` and `{:reactor_error, "reactor"}` for the corresponding middleware lifecycle callbacks, and - one entry per step event the middleware is handed, where `event` is the event's tag (the atom itself, or the first element when the event is a tuple) and `label` is `inspect/1` of the step's name. The workflow itself must additionally record, with the node's `name` as the label: - `{:deploy_enter, name}` immediately before each deployment attempt starts its work and `{:deploy_exit, name}` once that attempt has finished, whether it succeeded or failed; - `{:deploy_compensate, name}` once per compensated failed attempt; - `{:deploy_undo, name}` once per already-successful deployment that gets rolled back; - `{:reserve_undo, name}` once per reservation that gets rolled back.   
+
+Pochi
+📂 Listing files in /home/user/orchestra recursively ✔ 
+📖 Reading /home/user/orchestra/mix.exs ✔ 
+📖 Reading /home/user/orchestra/config/config.exs ✔ 
+📖 Reading /home/user/orchestra/lib/orchestra/application.ex ✔ 
+📂 Listing files in /home/user/orchestra/lib/orchestra recursively ✔ 
+📖 Reading /home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md ✔ 
+🔍 Searching for ^### reactor\.(create|update|read|destroy|transaction)$ in /home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md ✔ 
+📖 Reading /home/user/orchestra/deps/reactor/documentation/tutorials/reactor-cheatsheet.cheatmd ✔ 
+📖 Reading /home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md ✔ 
+📖 Reading /home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md ✔ 
+📖 Reading /home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md ✔ 
+💭 Thinking for 225 characters   
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/dsl ✖ "EISDIR: illegal operation on a directory, read"
+📂 Listing files in /home/user/orchestra/deps/reactor/lib/reactor/dsl ✔ 
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/dsl/map.ex ✔ 
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/dsl/switch.ex ✔ 
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/dsl/compose.ex ✔ 
+💭 Thinking for 5755 characters   
+📂 Listing files in /home/user/orchestra/deps/ash/lib/ash/reactor recursively ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/steps/update_step.ex ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/dsl/update.ex ✔ 
+💭 Thinking for 268 characters   
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/steps/utils.ex ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/steps/create_step.ex ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/steps/read_step.ex ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/steps/action_step.ex ✔ 
+💭 Thinking for 611 characters   
+🔍 Searching for *.ex in /home/user/orchestra/deps/ash/lib/ash/type ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/type/term.ex ✔ 
+💭 Thinking for 2312 characters   
+🔍 Searching for max_retries in /home/user/orchestra/deps/reactor/lib ✔ 
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/executor/sync.ex ✔ 
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/executor/step_runner.ex ✔ 
+💭 Thinking for 1752 characters   
+🔍 Searching for max_concurrency in /home/user/orchestra/deps/reactor/lib ✔ 
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/step ✖ "EISDIR: illegal operation on a directory, read"
+💭 Thinking for 2389 characters   
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/step/map.ex ✔ 
+💭 Thinking for 2064 characters   
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/step.ex ✔ 
+💭 Thinking for 244 characters   
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/reactor.ex ✔ 
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/dsl.ex ✔ 
+💭 Thinking for 9935 characters   
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/step/compose.ex ✔ 
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/builder/compose.ex ✔ 
+💭 Thinking for 1965 characters   
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/dsl/read.ex ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/steps/read_one_step.ex ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/dsl/read_one.ex ✔ 
+💭 Thinking for 473 characters   
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/dsl/action.ex ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/dsl/inputs.ex ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/dsl/create.ex ✔ 
+💭 Thinking for 289 characters   
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/builders/create.ex ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/builders/update.ex ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/builders/action.ex ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/builders/read_one.ex ✔ 
+💭 Thinking for 299 characters   
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/reactor/builders/utils.ex ✔ 
+💭 Thinking for 904 characters   
+🔍 Searching for *.ex in /home/user/orchestra/deps/ash/lib/ash/resource/change ✔ 
+🔍 Searching for *.ex in /home/user/orchestra/deps/ash/lib/ash/error/changes ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/resource/change/change.ex ✔ 
+💭 Thinking for 197 characters   
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/error/changes/invalid_changes.ex ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/error/action/invalid_argument.ex ✔ 
+💭 Thinking for 348 characters   
+🔍 Searching for generic action|Ash.ActionInput in /home/user/orchestra/deps/ash/documentation/topics/actions ✔ 
+📂 Listing files in /home/user/orchestra/deps/ash/documentation/topics/actions ✔ 
+📖 Reading /home/user/orchestra/deps/ash/documentation/topics/actions/generic-actions.md ✔ 
+💭 Thinking for 5282 characters   
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/middleware.ex ✔ 
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/dsl/middleware.ex ✔ 
+💭 Thinking for 6559 characters   
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/executor/step_runner.ex ✔ 
+🔍 Searching for defp perform_argument_subpath|defp get_step_arguments|Map.fetch|Keyword in /home/user/orchestra/deps/reactor/lib/reactor/executor/step_runner.ex ✔ 
+💭 Thinking for 312 characters   
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/dsl/argument.ex ✔ 
+💭 Thinking for 2011 characters   
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/dsl/step.ex ✔ 
+💭 Thinking for 646 characters   
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/step/switch.ex ✔ 
+💭 Thinking for 4646 characters   
+🌐 Fetching https://hexdocs.pm/ash/3.31.0/code-interfaces.html ✔ 
+🔍 Searching for **/code-interfaces.md in /home/user/orchestra/deps/ash/documentation ✔ 
+📖 Reading /home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Domain.md ✔ 
+💭 Thinking for 311 characters   
+📖 Reading /home/user/orchestra/deps/ash/documentation/topics/resources/code-interfaces.md ✔ 
+💭 Thinking for 379 characters   
+📖 Reading /home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.DataLayer.Ets.md ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/type/atom.ex ✔ 
+💭 Thinking for 251 characters   
+🔍 Searching for get\? true[\s\S]{0,200}filter expr in /home/user/orchestra/deps/ash/documentation ✔ 
+🔍 Searching for get\?|arg\( in /home/user/orchestra/deps/ash/documentation/topics/actions/read-actions.md ✔ 
+📖 Reading /home/user/orchestra/deps/ash/documentation/topics/actions/read-actions.md ✔ 
+💭 Thinking for 1797 characters   
+🔍 Searching for Implementation|action_schema|generic action|:action,\s*type in *.ex files in /home/user/orchestra/deps/ash/lib/ash/resource ✔ 
+📖 Reading /home/user/orchestra/deps/ash/lib/ash/resource/actions/action/implementation.ex ✔ 
+💭 Thinking for 15410 characters   
+Now let's create the resource files. Starting with the Node resource:   
+✏️  Writing /home/user/orchestra/lib/orchestra/fleet/changes/reserve_capacity.ex ✔ 
+✏️  Writing /home/user/orchestra/lib/orchestra/fleet/changes/release_reservation.ex ✔ 
+✏️  Writing /home/user/orchestra/lib/orchestra/fleet/node.ex ✔ 
+✏️  Writing /home/user/orchestra/lib/orchestra/fleet/rollout/plan.ex ✔ 
+✏️  Writing /home/user/orchestra/lib/orchestra/fleet/rollout.ex ✔ 
+✏️  Writing /home/user/orchestra/lib/orchestra/fleet/placement.ex ✔ 
+✏️  Writing /home/user/orchestra/lib/orchestra/fleet/approval.ex ✔ 
+✏️  Writing /home/user/orchestra/lib/orchestra/fleet/lease.ex ✔ 
+Now the domain module:   
+✏️  Writing /home/user/orchestra/lib/orchestra/fleet.ex ✔ 
+Now let's create the Trace and Semaphore modules, and update the application:   
+✏️  Writing /home/user/orchestra/lib/orchestra/rollout/trace.ex ✔ 
+✏️  Writing /home/user/orchestra/lib/orchestra/rollout/semaphore.ex ✔ 
+🔧 Applying diff to /home/user/orchestra/lib/orchestra/application.ex ✔ 
+Now the middleware and DeployNode step:   
+✏️  Writing /home/user/orchestra/lib/orchestra/rollout/trace_middleware.ex ✔ 
+✏️  Writing /home/user/orchestra/lib/orchestra/rollout/steps/deploy_node.ex ✔ 
+✏️  Writing /home/user/orchestra/lib/orchestra/rollout/approval_reactor.ex ✔ 
+✏️  Writing /home/user/orchestra/lib/orchestra/rollout/reactor.ex ✔ 
+Now let's compile and iterate on errors.   
+💫 Executing cd /home/user/orchestra && mix compile 2>&1 | head -200 ✔ 
+💭 Thinking for 12 characters   
+🔧 Applying diff to /home/user/orchestra/lib/orchestra/fleet/node.ex ✔ 
+🔧 Applying diff to /home/user/orchestra/lib/orchestra/fleet/placement.ex ✔ 
+💫 Executing cd /home/user/orchestra && mix compile 2>&1 | tail -100 ✔ 
+Clean compile with no warnings. Now let's write a quick smoke test to verify the reactor actually works end-to-end before finalizing.   
+💫 Executing cd /home/user/orchestra && cat > /tmp/smoke.exs << 'EOF'
+alias Orchestra.Fleet
+alias Orchestra.Rollout.Trace
+
+Fleet.register_node!("n1", :us_east, 10)
+Fleet.register_node!("n2", :us_east, 10)
+
+Trace.reset()
+
+inputs = %{
+  rollout_name: "r1",
+  strategy: :canary,
+  targets: [%{node_name: "n1", slots: 2}, %{node_name: "n2", slots: 3}],
+  board_threshold: 100
+}
+
+case Reactor.run(Orchestra.Rollout.Reactor, inputs) do
+  {:ok, result} ->
+    IO.inspect(result, label: "RESULT")
+  {:error, error} ->
+    IO.inspect(error, label: "ERROR")
+end
+
+IO.inspect(Trace.entries(), label: "TRACE")
+IO.inspect(Fleet.list_nodes!(), label: "NODES")
+IO.inspect(Fleet.list_placements!(), label: "PLACEMENTS")
+IO.inspect(Fleet.list_rollouts!(), label: "ROLLOUTS")
+IO.inspect(Fleet.list_leases!(), label: "LEASES")
+IO.inspect(Fleet.list_approvals!(), label: "APPROVALS")
+EOF
+mix run /tmp/smoke.exs 2>&1 | tail -150 ✔ 
+💭 Thinking for 1098 characters   
+🔧 Applying diff to /home/user/orchestra/lib/orchestra/fleet/node.ex ✔ 
+🔧 Applying diff to /home/user/orchestra/lib/orchestra/fleet/rollout.ex ✔ 
+🔧 Applying diff to /home/user/orchestra/lib/orchestra/fleet/placement.ex ✔ 
+🔧 Applying diff to /home/user/orchestra/lib/orchestra/fleet/approval.ex ✔ 
+🔧 Applying diff to /home/user/orchestra/lib/orchestra/fleet/lease.ex ✔ 
+💫 Executing cd /home/user/orchestra && mix compile 2>&1 | tail -50 && mix run /tmp/smoke.exs 2>&1 | tail -150 ✖ "Command execution timed out after 60 seconds."
+💭 Thinking for 49 characters   
+🛠️ Tool startBackgroundJob ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+💫 Executing sleep 15 ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+💫 Executing sleep 20 ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+💭 Thinking for 379 characters   
+💫 Executing cd /home/user/orchestra && time mix run /tmp/smoke.exs > /tmp/smoke2.log 2>&1; tail -5 /tmp/smoke2.log ✔ 
+💭 Thinking for 422 characters   
+💫 Executing cd /home/user/orchestra && grep -c "process_start\|run_start" /tmp/smoke2.log; grep -o '".*"' /tmp/smoke2.log | wc -l ✔ 
+💭 Thinking for 432 characters   
+💫 Executing cd /home/user/orchestra && time mix run -e "IO.puts :ok" 2>&1 | tail -5 ✔ 
+💭 Thinking for 508 characters   
+💫 Executing cat > /tmp/smoke2.exs << 'EOF'
+alias Orchestra.Fleet
+alias Orchestra.Rollout.Trace
+
+# Scenario 2: capacity failure -> full rollback
+Fleet.register_node!("a1", :us_east, 5)
+Fleet.register_node!("a2", :us_east, 1) # too small for 3 slots
+
+Trace.reset()
+
+inputs2 = %{
+  rollout_name: "r2",
+  strategy: :blast,
+  targets: [%{node_name: "a1", slots: 2}, %{node_name: "a2", slots: 3}],
+  board_threshold: 100
+}
+
+result2 = Reactor.run(Orchestra.Rollout.Reactor, inputs2)
+IO.inspect(result2, label: "R2 RESULT")
+IO.inspect(Fleet.list_nodes!() |> Enum.map(&{&1.name, &1.slots_used, &1.state}), label: "R2 NODES")
+IO.inspect(Fleet.list_rollouts!() |> Enum.map(&{&1.name, &1.status, &1.deployed_node_count}), label: "R2 ROLLOUTS")
+IO.inspect(Fleet.list_leases!() |> Enum.map(&{&1.rollout_name, &1.status}), label: "R2 LEASES")
+IO.inspect(Fleet.list_approvals!() |> Enum.map(&{&1.rollout_id, &1.status}), label: "R2 APPROVALS")
+
+# Scenario 3: deploy failure after retries (deploy_failures_remaining = 4 fails; = 3 succeeds)
+Fleet.register_node!("b1", :us_east, 5, %{deploy_failures_remaining: 3})
+Fleet.register_node!("b2", :us_east, 5, %{deploy_failures_remaining: 4})
+
+Trace.reset()
+inputs3 = %{
+  rollout_name: "r3",
+  strategy: :canary,
+  targets: [%{node_name: "b1", slots: 1}],
+  board_threshold: 100
+}
+result3 = Reactor.run(Orchestra.Rollout.Reactor, inputs3)
+IO.inspect(result3, label: "R3 (should succeed, 3 failures then success) RESULT")
+IO.inspect(Fleet.list_placements!() |> Enum.filter(&(&1.node_name == "b1")) |> Enum.map(&{&1.status, &1.attempts, &1.compensations, &1.undos}), label: "R3 PLACEMENT")
+
+Trace.reset()
+inputs4 = %{
+  rollout_name: "r4",
+  strategy: :canary,
+  targets: [%{node_name: "b2", slots: 1}],
+  board_threshold: 100
+}
+result4 = Reactor.run(Orchestra.Rollout.Reactor, inputs4)
+IO.inspect(result4, label: "R4 (should fail, 4 failures) RESULT")
+IO.inspect(Fleet.list_placements!() |> Enum.filter(&(&1.node_name == "b2")) |> Enum.map(&{&1.status, &1.attempts, &1.compensations, &1.undos}), label: "R4 PLACEMENT")
+
+# Scenario 5: bounded concurrency with 6 targets
+for i <- 1..6, do: Fleet.register_node!("c#{i}", :us_east, 5)
+Trace.reset()
+inputs5 = %{
+  rollout_name: "r5",
+  strategy: :blast,
+  targets: for(i <- 1..6, do: %{node_name: "c#{i}", slots: 1}),
+  board_threshold: 100
+}
+result5 = Reactor.run(Orchestra.Rollout.Reactor, inputs5)
+IO.inspect(elem(result5, 0), label: "R5 status")
+entries = Trace.entries()
+enters = for {:deploy_enter, name} <- entries, do: name
+exits = for {:deploy_exit, name} <- entries, do: name
+IO.inspect({enters, exits}, label: "R5 enter/exit order")
+
+# compute max overlap
+{max_overlap, _} =
+  entries
+  |> Enum.filter(fn {e, _} -> e in [:deploy_enter, :deploy_exit] end)
+  |> Enum.reduce({0, 0}, fn
+    {:deploy_enter, _}, {max, cur} -> {max(max, cur + 1), cur + 1}
+    {:deploy_exit, _}, {max, cur} -> {max, cur - 1}
+  end)
+IO.inspect(max_overlap, label: "R5 max overlap")
+EOF
+echo done ✔ 
+🛠️ Tool startBackgroundJob ✔ 
+💫 Executing sleep 40; grep -q DONE_MARKER /tmp/smoke2_out.log && echo READY || echo NOTYET ✔ 
+📖 Reading /tmp/smoke2_out.log ✔ 
+💭 Thinking for 2775 characters   
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/executor.ex ✔ 
+💭 Thinking for 3870 characters   
+💫 Executing cat > /tmp/smoke3.exs << 'EOF'
+alias Orchestra.Fleet
+approvals = Fleet.list_approvals!()
+IO.inspect(Enum.map(approvals, &{&1.rollout_id, &1.status}), label: "ALL APPROVALS")
+rollouts = Fleet.list_rollouts!()
+IO.inspect(Enum.map(rollouts, &{&1.name, &1.id, &1.status}), label: "ALL ROLLOUTS")
+EOF
+echo done ✔ 
+🔧 Applying diff to /tmp/smoke2.exs ✖ "File has not been read yet. Please read the file before editing it."
+📖 Reading /tmp/smoke2.exs ✔ 
+🔧 Applying diff to /tmp/smoke2.exs ✔ 
+🛠️ Tool startBackgroundJob ✔ 
+💫 Executing sleep 35; grep -q DONE_MARKER /tmp/smoke3_out.log && echo READY || echo NOTYET ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+📖 Reading /tmp/smoke3_out.log ✔ 
+💭 Thinking for 437 characters   
+💫 Executing cat > /tmp/smoke4.exs << 'EOF'
+alias Orchestra.Fleet
+
+# ApprovalReactor standalone
+{:ok, approval} = Reactor.run(Orchestra.Rollout.ApprovalReactor, %{rollout_id: Ash.UUID.generate(), total_slots: 50, board_threshold: 100})
+IO.inspect(approval.level, label: "approval level (should be :auto)")
+
+{:ok, approval2} = Reactor.run(Orchestra.Rollout.ApprovalReactor, %{rollout_id: Ash.UUID.generate(), total_slots: 150, board_threshold: 100})
+IO.inspect(approval2.level, label: "approval level (should be :board)")
+
+# plan_rollout validations
+IO.inspect(Fleet.plan_rollout([]), label: "plan empty")
+IO.inspect(Fleet.plan_rollout([%{node_name: "x", slots: 0}]), label: "plan bad slots")
+IO.inspect(Fleet.plan_rollout([%{node_name: "x", slots: 1}, %{node_name: "x", slots: 2}]), label: "plan dup")
+IO.inspect(Fleet.plan_rollout([%{node_name: "b", slots: 2}, %{node_name: "a", slots: 3}]), label: "plan ok (sorted names)")
+
+# get_node not found
+IO.inspect(Fleet.get_node("does-not-exist"), label: "get_node missing")
+
+# register_node with deploy_failures_remaining via params map
+n = Fleet.register_node!("zz1", :eu_west, 7, %{deploy_failures_remaining: 2})
+IO.inspect({n.name, n.slots_total, n.deploy_failures_remaining}, label: "register with params")
+
+# Reactor.Info introspection
+alias Reactor.Info
+steps = Info.steps(Orchestra.Rollout.Reactor)
+IO.inspect(Enum.map(steps, & &1.__struct__), label: "top-level step structs")
+
+defmodule Walk do
+  def collect(steps) do
+    Enum.flat_map(steps, fn step ->
+      children =
+        cond do
+          Map.has_key?(step, :steps) and is_list(step.steps) and step.steps != [] ->
+            Walk.collect(step.steps)
+
+          Map.has_key?(step, :matches) ->
+            (step.matches || [])
+            |> Enum.flat_map(& &1.steps)
+            |> Kernel.++(if step.default, do: step.default.steps, else: [])
+            |> Walk.collect()
+
+          true ->
+            []
+        end
+
+      [step.__struct__ | children]
+    end)
+  end
+end
+
+all_structs = Walk.collect(steps) |> Enum.uniq()
+IO.inspect(all_structs, label: "all nested step structs")
+EOF
+echo done ✔ 
+🛠️ Tool startBackgroundJob ✔ 
+💫 Executing sleep 25; grep -q DONE_MARKER /tmp/smoke4_out.log && echo READY || echo NOTYET ✔ 
+📖 Reading /tmp/smoke4_out.log ✔ 
+🔍 Searching for def  in /home/user/orchestra/deps/reactor/lib/reactor/info.ex ✔ 
+💭 Thinking for 340 characters   
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/info.ex ✔ 
+💭 Thinking for 4 characters   
+🔧 Applying diff to /tmp/smoke4.exs ✖ "File has not been read yet. Please read the file before editing it."
+📖 Reading /tmp/smoke4.exs ✔ 
+🔧 Applying diff to /tmp/smoke4.exs ✔ 
+🛠️ Tool startBackgroundJob ✔ 
+💫 Executing sleep 25; grep -q DONE_MARKER /tmp/smoke5_out.log && echo READY || echo NOTYET ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+📖 Reading /tmp/smoke5_out.log ✔ 
+💭 Thinking for 225 characters   
+💫 Executing cat > /tmp/smoke6.exs << 'EOF'
+alias Reactor.Info
+steps = Info.reactor(Orchestra.Rollout.ApprovalReactor)
+IO.inspect(Enum.map(steps, & &1.__struct__), label: "ApprovalReactor top-level structs")
+EOF
+cd /home/user/orchestra && timeout 30 mix run /tmp/smoke6.exs 2>&1 | tail -20 ✔ 
+All structural and behavioral requirements are verified. Let's clean up the temp test files (not part of the project) and do a final review of the full file tree.   
+📂 Listing files in /home/user/orchestra/lib recursively ✔ 
+Structure looks complete. Let's run the full compile one final time to confirm no errors/warnings remain, and verify `mix compile --warnings-as-errors` cleanliness.   
+💫 Executing cd /home/user/orchestra && rm -rf _build/dev/lib/orchestra && mix compile --warnings-as-errors 2>&1 | tail -80 ✔ 
+Clean compile with zero warnings/errors, even with `--warnings-as-errors`. Let's clean up temp files from the smoke tests.   
+💫 Executing rm -f /tmp/smoke*.exs /tmp/smoke*_out.log /tmp/smoke_out.log ✔ 
+💭 Thinking for 1645 characters   
+💫 Executing cat > /tmp/final_check.exs << 'EOF'
+alias Orchestra.Fleet
+Fleet.register_node!("solo", :us_east, 5)
+
+result = Reactor.run(Orchestra.Rollout.Reactor, %{
+  rollout_name: "rmissing",
+  strategy: :canary,
+  targets: [%{node_name: "solo", slots: 1}, %{node_name: "ghost", slots: 1}],
+  board_threshold: 100
+})
+
+IO.inspect(elem(result, 0), label: "missing-node run status (should be :error)")
+IO.inspect(Fleet.list_nodes!() |> Enum.map(&{&1.name, &1.slots_used, &1.state}), label: "nodes after")
+IO.inspect(Fleet.list_rollouts!() |> Enum.map(&{&1.name, &1.status, &1.deployed_node_count}), label: "rollouts after")
+IO.inspect(Fleet.list_leases!() |> Enum.map(&{&1.rollout_name, &1.status}), label: "leases after")
+EOF
+cd /home/user/orchestra && timeout 45 mix run /tmp/final_check.exs 2>&1 | tail -30
+rm -f /tmp/final_check.exs ✔ 
+💭 Thinking for 901 characters   
+📖 Reading /home/user/orchestra/deps/reactor/lib/reactor/executor/async.ex ✔ 
+💭 Thinking for 1113 characters   
+💫 Executing cat > /tmp/dbg.exs << 'EOF'
+alias Orchestra.Fleet
+alias Orchestra.Rollout.Trace
+Fleet.register_node!("solo2", :us_east, 5)
+Trace.reset()
+
+result = Reactor.run(Orchestra.Rollout.Reactor, %{
+  rollout_name: "rmissing2",
+  strategy: :canary,
+  targets: [%{node_name: "solo2", slots: 1}, %{node_name: "ghost2", slots: 1}],
+  board_threshold: 100
+})
+
+IO.inspect(result, label: "RESULT")
+IO.inspect(Trace.entries(), label: "TRACE")
+IO.inspect(Fleet.list_nodes!() |> Enum.map(&{&1.name, &1.slots_used, &1.state}), label: "nodes after")
+EOF
+cd /home/user/orchestra && timeout 45 mix run /tmp/dbg.exs 2>&1 | tail -200
+rm -f /tmp/dbg.exs ✔ 
+💫 Executing cat > /tmp/dbg2.exs << 'EOF'
+alias Orchestra.Fleet
+alias Orchestra.Rollout.Trace
+Fleet.register_node!("solo3", :us_east, 5)
+Trace.reset()
+
+result = Reactor.run(Orchestra.Rollout.Reactor, %{
+  rollout_name: "rmissing3",
+  strategy: :canary,
+  targets: [%{node_name: "solo3", slots: 1}, %{node_name: "ghost3", slots: 1}],
+  board_threshold: 100
+})
+
+IO.inspect(elem(result, 0), label: "status")
+entries = Trace.entries()
+IO.inspect(length(entries), label: "num entries")
+relevant = Enum.filter(entries, fn {e, l} ->
+  e in [:undo_start, :undo_complete, :undo_error, :run_error, :reactor_error] or
+    (is_binary(l) and String.contains?(l, "reserve_node"))
+end)
+IO.inspect(relevant, label: "relevant entries", limit: :infinity)
+IO.inspect(Fleet.list_nodes!() |> Enum.map(&{&1.name, &1.slots_used, &1.state}), label: "nodes after")
+EOF
+cd /home/user/orchestra && timeout 45 mix run /tmp/dbg2.exs 2>&1 | tail -100
+rm -f /tmp/dbg2.exs ✔ 
+💭 Thinking for 5914 characters   
+🔧 Applying diff to /home/user/orchestra/lib/orchestra/rollout/reactor.ex ✔ 
+💫 Executing cd /home/user/orchestra && mix compile 2>&1 | tail -20 ✔ 
+💫 Executing cat > /tmp/dbg3.exs << 'EOF'
+alias Orchestra.Fleet
+Fleet.register_node!("solo4", :us_east, 5)
+
+result = Reactor.run(Orchestra.Rollout.Reactor, %{
+  rollout_name: "rmissing4",
+  strategy: :canary,
+  targets: [%{node_name: "solo4", slots: 1}, %{node_name: "ghost4", slots: 1}],
+  board_threshold: 100
+})
+
+IO.inspect(elem(result, 0), label: "status (should be :error)")
+IO.inspect(Fleet.list_nodes!() |> Enum.map(&{&1.name, &1.slots_used, &1.state}), label: "nodes after (solo4 should be 0/idle)")
+IO.inspect(Fleet.list_rollouts!() |> Enum.map(&{&1.name, &1.status, &1.deployed_node_count}), label: "rollouts after")
+EOF
+cd /home/user/orchestra && timeout 45 mix run /tmp/dbg3.exs 2>&1 | tail -30
+rm -f /tmp/dbg3.exs ✔ 
+💭 Thinking for 6 characters   
+💫 Executing cat > /tmp/dbg4.exs << 'EOF'
+alias Orchestra.Fleet
+alias Orchestra.Rollout.Trace
+
+# capacity failure regression check
+Fleet.register_node!("a1", :us_east, 5)
+Fleet.register_node!("a2", :us_east, 1)
+r2 = Reactor.run(Orchestra.Rollout.Reactor, %{rollout_name: "r2", strategy: :blast, targets: [%{node_name: "a1", slots: 2}, %{node_name: "a2", slots: 3}], board_threshold: 100})
+IO.inspect(elem(r2, 0), label: "r2 status (error)")
+IO.inspect(Fleet.list_nodes!() |> Enum.map(&{&1.name, &1.slots_used, &1.state}), label: "r2 nodes (both idle/0)")
+
+# success with 2 targets regression check
+Fleet.register_node!("n1", :us_east, 10)
+Fleet.register_node!("n2", :us_east, 10)
+r1 = Reactor.run(Orchestra.Rollout.Reactor, %{rollout_name: "r1", strategy: :canary, targets: [%{node_name: "n1", slots: 2}, %{node_name: "n2", slots: 3}], board_threshold: 100})
+IO.inspect(r1, label: "r1 result")
+
+# deploy-phase race check: 4 targets, one permanently failing amid concurrent successes
+for i <- 1..3, do: Fleet.register_node!("d#{i}", :us_east, 5)
+Fleet.register_node!("dbad", :us_east, 5, %{deploy_failures_remaining: 4})
+Trace.reset()
+targets = [%{node_name: "d1", slots: 1}, %{node_name: "dbad", slots: 1}, %{node_name: "d2", slots: 1}, %{node_name: "d3", slots: 1}]
+r6 = Reactor.run(Orchestra.Rollout.Reactor, %{rollout_name: "r6", strategy: :blast, targets: targets, board_threshold: 100})
+IO.inspect(elem(r6, 0), label: "r6 status (error)")
+IO.inspect(Fleet.list_nodes!() |> Enum.filter(&(&1.name in ["d1","d2","d3","dbad"])) |> Enum.map(&{&1.name, &1.slots_used, &1.state}), label: "r6 nodes (all should be 0/idle)")
+IO.inspect(Fleet.list_placements!() |> Enum.filter(&(&1.node_name in ["d1","d2","d3","dbad"])) |> Enum.map(&{&1.node_name, &1.status, &1.undos}), label: "r6 placements")
+EOF
+cd /home/user/orchestra && timeout 45 mix run /tmp/dbg4.exs 2>&1 | tail -60
+rm -f /tmp/dbg4.exs ✔ 
+💭 Thinking for 33 characters   
+💫 Executing cat > /tmp/dbg5.exs << 'EOF'
+alias Orchestra.Fleet
+alias Orchestra.Rollout.Trace
+
+Fleet.register_node!("b1", :us_east, 5, %{deploy_failures_remaining: 3})
+Fleet.register_node!("b2", :us_east, 5, %{deploy_failures_remaining: 4})
+
+r3 = Reactor.run(Orchestra.Rollout.Reactor, %{rollout_name: "r3", strategy: :canary, targets: [%{node_name: "b1", slots: 1}], board_threshold: 100})
+IO.inspect(r3, label: "r3 (should succeed)")
+IO.inspect(Fleet.list_placements!() |> Enum.filter(&(&1.node_name == "b1")) |> Enum.map(&{&1.status, &1.attempts, &1.compensations, &1.undos}), label: "r3 placement")
+
+r4 = Reactor.run(Orchestra.Rollout.Reactor, %{rollout_name: "r4", strategy: :canary, targets: [%{node_name: "b2", slots: 1}], board_threshold: 100})
+IO.inspect(elem(r4, 0), label: "r4 (should fail)")
+IO.inspect(Fleet.list_placements!() |> Enum.filter(&(&1.node_name == "b2")) |> Enum.map(&{&1.status, &1.attempts, &1.compensations, &1.undos}), label: "r4 placement")
+
+for i <- 1..6, do: Fleet.register_node!("c#{i}", :us_east, 5)
+Trace.reset()
+r5 = Reactor.run(Orchestra.Rollout.Reactor, %{rollout_name: "r5", strategy: :blast, targets: for(i <- 1..6, do: %{node_name: "c#{i}", slots: 1}), board_threshold: 100})
+IO.inspect(elem(r5, 0), label: "r5 status")
+entries = Trace.entries()
+{max_overlap, _} =
+  entries
+  |> Enum.filter(fn {e, _} -> e in [:deploy_enter, :deploy_exit] end)
+  |> Enum.reduce({0, 0}, fn
+    {:deploy_enter, _}, {max, cur} -> {max(max, cur + 1), cur + 1}
+    {:deploy_exit, _}, {max, cur} -> {max, cur - 1}
+  end)
+IO.inspect(max_overlap, label: "r5 max overlap (should be 2)")
+EOF
+cd /home/user/orchestra && timeout 45 mix run /tmp/dbg5.exs 2>&1 | tail -30
+rm -f /tmp/dbg5.exs ✔ 
+Everything works correctly, including all the failure/retry/rollback scenarios and bounded concurrency. Let's do a final full recompile to confirm cleanliness and review the final reactor file once more.   
+💫 Executing cd /home/user/orchestra && rm -rf _build/dev/lib/orchestra && mix compile --warnings-as-errors 2>&1 | tail -40 ✔ 
+Clean compile confirmed. The implementation is complete and thoroughly tested.   
+🎉 Task Completed
+Built the full `Orchestra` domain and Ash.Reactor workflow at `/home/user/orchestra`.
+
+**Domain (`Orchestra.Fleet`)**: Five ETS-backed Ash resources (`Node`, `Rollout`, `Placement`, `Approval`, `Lease`) with the exact attributes specified, plus a `:plan` generic action on `Rollout` (backed by `Orchestra.Fleet.Rollout.Plan`) exposed as `plan_rollout/1`. All required code-interface functions (`register_node/3`, `get_node/1`, `list_*`, `plan_rollout/1`, plus bang variants) are defined on the domain — nothing extra.
+
+**Workflow**:
+- `Orchestra.Rollout.Reactor` — creates a `Lease` and `Rollout` (each with an `undo_action` that reverses them: `release`/`mark_failed`), computes a plan via a generic-action step, reserves capacity for every target inside a sequential `map` (read → update → create, each an `Ash.Reactor` resource-action step, with the node-capacity/not-found validation and reversible reservation via a custom `Change`), embeds `Orchestra.Rollout.ApprovalReactor` via `compose`, deploys every target inside an async `map` with a custom `Reactor.Step` (`Orchestra.Rollout.Steps.DeployNode`) bounded to 2 concurrent deployments via a semaphore, then finalizes with `update`/`update`/plain `step`s.
+- `Orchestra.Rollout.ApprovalReactor` — independently runnable; picks `:auto`/`:board` with a `switch` and creates the `Approval` (undoable via `revoke`).
+- `Orchestra.Rollout.Steps.DeployNode` — implements `run/3`, `compensate/4`, `undo/4` with the required attempt/failure/compensation/undo semantics and ≥50ms per attempt.
+- `Orchestra.Rollout.Trace` (GenServer) + `Orchestra.Rollout.TraceMiddleware` (`Reactor.Middleware`) provide the ordered, cross-process trace, started under the application supervisor alongside the `Semaphore`.
+
+Verified via ad-hoc scripts (not part of the codebase) that: `mix compile --warnings-as-errors` is clean; successful rollouts return the exact result/summary shape; capacity/not-found/deploy failures roll back nodes, placements, rollout, lease and approval correctly (including a subtle race I found and fixed by making the reservation `map` synchronous, since Reactor doesn't await other in-flight async steps once one fails); retry counts match spec (`deploy_failures_remaining` 3 succeeds on the 4th try, 4 exhausts retries and fails); and a 6-target deployment shows a max observed concurrency of exactly 2. `Reactor.Info.reactor/1` confirms the required `create`/`update`/`read_one`/`action`/`map`/`compose` (and `switch` inside the composed reactor) DSL entities are all present.   
+  

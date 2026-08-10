@@ -1,0 +1,351 @@
+- Initializing MCP connections...
+You
+# Server-driven nested order forms with Ash Framework v3 ## Background `Catering` is an Elixir application built on **Ash Framework 3.31.0** with the **ash_phoenix 2.3.24** form layer. Its domain `Catering.Orders` already models a catering order graph and is fully implemented — do **not** change it: - `Catering.Orders.Order` — attributes `reference` (string, required), `note` (string), `delivery_windows` (list of the embedded resource `Catering.Orders.DeliveryWindow`) and `fulfillment` (a tagged union whose members are the embedded resources `Catering.Orders.CourierDrop` and `Catering.Orders.CounterPickup`); a `belongs_to :customer` and a `has_many :line_items`. Its create action is `:place` and its update action is `:revise`. - `Catering.Orders.LineItem` — `dish` (string, required), `quantity` (integer, must be positive), `position` (integer); `belongs_to :order`, `has_many :modifiers`. - `Catering.Orders.Modifier` — `label` (string, required), `surcharge_cents` (integer, must not be negative), `position` (integer); `belongs_to :line_item`. - `Catering.Orders.Customer` — `name` and `email` (both strings, required). The `:place` and `:revise` actions already manage the whole `Order -> LineItem -> Modifier` graph, the embedded delivery windows, the fulfillment union and the customer (which may either be created inline from its attributes or matched to an already stored customer) from a single set of submitted parameters, and they derive each child's `position` from the order in which the children are submitted. The LiveView layer that will consume this is not part of this task: everything must be reachable through plain function calls, with no HTTP server and no browser. ## Requirements Create `Catering.Forms`, a single facade module that a LiveView would use to build, mutate, inspect and submit the whole nested order form. It must expose exactly these functions: 1. `new_order_form/0` — a blank create form for the order graph. 2. `edit_order_form/1` — takes an order id and returns an update form for the stored order, including nested forms for its existing line items and their modifiers. 3. `to_phoenix_form/1` — the `%Phoenix.HTML.Form{}` for a form. 4. `change/2` and `change/3` — revalidate a form against a fresh parameter map, with an optional keyword list of validation options. 5. `add_nested/2` and `add_nested/3` — add a nested form at a path, with an optional keyword list of options. 6. `remove_nested/2` — remove the nested form at a path. 7. `reorder/3` — reorder the nested list at a path, given the new ordering as a list of the current zero-based indices. 8. `move/3` — move the single nested form at a path one slot earlier (`:up`) or later (`:down`). 9. `submitted_params/1` — the parameter map that would be sent to the underlying action. 10. `hidden_inputs/2` — the hidden inputs required to render the form at a path. 11. `error_map/1` — the user-facing errors of the whole form tree. 12. `raw_error_list/2` — the untranslated errors of the form at a path. 13. `serialize/1` — a deterministic, plain-data snapshot of the whole form tree. 14. `save/2` — submit the form and persist the whole graph. ## Implementation Hints - Project path: `/home/user/catering`. Write the module to `/home/user/catering/lib/catering/forms.ex`. A stub of that file already exists; replace it. Do not add or remove dependencies, and do not modify anything under `/home/user/catering/lib/catering/orders/` or `/home/user/catering/lib/catering/orders.ex`. The environment is offline; everything needed is already vendored and compiled. - Every form-valued function returns an `%AshPhoenix.Form{}` struct (never a `%Phoenix.HTML.Form{}`), except `to_phoenix_form/1`. - The root form is named `order`: `form.name` and `form.id` are both `"order"`, so its nested forms are named `order[line_items][0]`, `order[line_items][0][modifiers][1]`, `order[delivery_windows][0]`, `order[customer]` and `order[fulfillment]`. A blank `new_order_form/0` must expose exactly the nested-form keys `:customer`, `:delivery_windows`, `:fulfillment` and `:line_items`. - Every `path` argument of `add_nested`, `remove_nested`, `reorder`, `move`, `hidden_inputs` and `raw_error_list` is one of those full HTML names as a `String.t()`, rooted at `"order"` — for example `"order[line_items]"`, `"order[line_items][0][modifiers]"` or `"order[line_items][0][modifiers][1]"`. `"order"` itself refers to the root form. Paths at any depth must work. - `new_order_form/0` builds a create form for `Catering.Orders.Order`'s `:place` action; `edit_order_form/1` builds an update form for the `:revise` action of the order with that id. - The third argument of `change/3` and `add_nested/3` is a keyword list that must be forwarded unchanged to the underlying ash_phoenix operation; callers rely on options that hide errors, restrict validation to touched fields, seed the new nested form with parameters, insert it at the front of the list, or give it a non-default action type. Both functions must also be callable at the lower arity with the options defaulting to `[]`. - `reorder/3` and `move/3` change the visible order **and** the order that will be submitted: the reordered children must appear in the new order in `submitted_params/1`, they must be renamed to their new indices, and `save/2` must persist the new order. `move/3` at either boundary of a list is a no-op. - `edit_order_form/1` must present nested children in ascending stored `position`, independently of the order the storage engine happens to return them in. - Removing a nested form from an edit form and saving must destroy exactly that stored record, leaving unrelated records untouched. - `save/2` takes the form and either a parameter map (which must be validated into the form before submitting) or `nil` (submit what the form already holds). On success it returns `{:ok, order}` where `order` is the persisted `Catering.Orders.Order` struct with `customer`, `line_items` and each line item's `modifiers` already loaded, and with the line items and the modifiers in ascending `position`. On failure it returns `{:error, form}` where `form` is the re-usable `%AshPhoenix.Form{}` carrying the errors, and nothing has been written. - `hidden_inputs/2` returns a `%{String.t() => String.t()}` map: every hidden input key (including the form-type marker `_form_type`, the touched-field marker `_touched`, the primary key of an existing record, and the union member marker `_union_type`) mapped to its string value. - `error_map/1` returns a `%{String.t() => [[String.t()]]}` map, keyed by the **HTML name of the form that owns the errors** (`"order"`, `"order[line_items][0]"`, …). Each value is the list of that form's own errors as two-element lists `[field_name, message]`, sorted ascending. Forms without errors must be absent from the map. - `raw_error_list/2` returns the errors of the form at `path` as a list of `{field :: atom(), message :: String.t(), vars :: keyword()}` tuples with the message left untranslated (substitution variables not interpolated), sorted ascending by field name and then by message. - `serialize/1` returns, for the form it is given and recursively for every nested form, a map with exactly these string keys: - `"name"` — the form's HTML name. - `"id"` — the form's HTML id. - `"type"` — `"create"`, `"update"` or `"read"`. - `"resource"` — the form's resource module rendered with `inspect/1`, e.g. `"Catering.Orders.LineItem"`. - `"valid"` — the form's validity as a boolean. - `"hidden"` — the same map as `hidden_inputs/2` would return for this form, but **without** the `_touched` entry. - `"values"` — a map from field name to the form's current value for that field, rendered with `to_string/1`, or `nil` when the value is `nil`. The fields are, per resource: `Order` → `reference`, `note`; `LineItem` → `dish`, `quantity`; `Modifier` → `label`, `surcharge_cents`; `Customer` → `name`, `email`; `DeliveryWindow` → `label`, `starts_at_minute`, `ends_at_minute`; `CourierDrop` → `street`, `postcode`; `CounterPickup` → `counter`. - `"errors"` — this form's own errors as two-element lists `[field_name, message]`, sorted ascending. - `"nested"` — a map whose keys are the string names of the nested-form keys that this form currently holds forms for, and whose values are the serialized child (for a single nested form), the list of serialized children in order (for a list of nested forms), or `nil`.   
+
+Pochi
+📂 Listing files in /home/user/catering recursively ✔ 
+📖 Reading /home/user/catering/lib/catering/orders/order.ex ✔ 
+📖 Reading /home/user/catering/lib/catering/orders/line_item.ex ✔ 
+📖 Reading /home/user/catering/lib/catering/orders/modifier.ex ✔ 
+📖 Reading /home/user/catering/lib/catering/orders/customer.ex ✔ 
+📖 Reading /home/user/catering/lib/catering/orders/delivery_window.ex ✔ 
+📖 Reading /home/user/catering/lib/catering/orders/fulfillment.ex ✔ 
+📖 Reading /home/user/catering/lib/catering/orders.ex ✔ 
+📖 Reading /home/user/catering/lib/catering/forms.ex ✔ 
+📂 Listing files in /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading /home/user/catering/deps/ash_phoenix/usage-rules/nested_forms.md ✔ 
+📖 Reading /home/user/catering/deps/ash_phoenix/usage-rules/union_forms.md ✔ 
+📖 Reading /home/user/catering/deps/ash_phoenix/usage-rules/form_integration.md ✔ 
+Now let's look at the main Form module implementation for the actual API.   
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+Let's see the rest of the file, especially add_form, remove_form, validate, submit, errors, hidden inputs, sort_forms, etc.   
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+Let me continue reading further sections - submit, add_form, remove_form, sort_forms/index, params, errors, hidden inputs.   
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+🔍 Searching for def add_form|def remove_form|def errors\(|def errors_for|def params\(|def value\(|def hidden|@doc.*hidden|def parse_path|defp parse_path in /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 273 characters   
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+🔍 Searching for def get_form|def has_form\?|defp has_form\?|def to_form\(|def to_form!|defmodule in /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 433 characters   
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/auto.ex ✔ 
+🔍 Searching for def add_auto|defp add_auto|def handle_forms|defmodule AshPhoenix.FormData.Helpers in /home/user/catering/deps/ash_phoenix/lib/ash_phoenix ✔ 
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 1058 characters   
+🔍 Searching for direct_control in /home/user/catering/deps/ash ✔ 
+📖 Reading /home/user/catering/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+💭 Thinking for 470 characters   
+🔍 Searching for def get\(|def get!\(|def load\(|def load!\( in /home/user/catering/deps/ash/lib/ash.ex ✔ 
+📖 Reading /home/user/catering/deps/ash/lib/ash.ex ✔ 
+💭 Thinking for 188 characters   
+🔍 Searching for load: \[.*: .*Query in /home/user/catering/deps/ash ✔ 
+Good, that confirms the nested query load pattern is supported. Let's check the querying_data usage doc for confirmation and syntax details.   
+📖 Reading /home/user/catering/deps/ash/usage-rules/querying_data.md ✔ 
+🔍 Searching for def load\(|@doc \"\"\"|def sort\( in /home/user/catering/deps/ash/lib/ash/query/query.ex ✔ 
+📖 Reading /home/user/catering/deps/ash/lib/ash/query/query.ex ✔ 
+🔍 Searching for @get_opts_schema|@read_opts_schema \=|load: in /home/user/catering/deps/ash/lib/ash.ex ✔ 
+Good, `load:` option is supported for `Ash.get!/3`. Now let's check how `serialize`, `error_map`, `raw_error_list` should work in more detail — check `forms` field structure for union / single-vs-list. Let's look at auto.ex again and see the `for` config and resulting form.forms map keys (atoms). Let's check `AshPhoenix.Form.value/2` more and `form.resource`, `form.type` for read/create/update.   
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 1076 characters   
+🔍 Searching for defp do_add_form in /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 3053 characters   
+🔍 Searching for def do_sort_forms|defp reindex_sorted_forms in /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 469 characters   
+🔍 Searching for def update_form\(|def get_form\(|def has_form\? in /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 3447 characters   
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 10541 characters   
+🔍 Searching for def to_form|defimpl Phoenix.HTML.FormData in /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+🔍 Searching for def to_form in /home/user/catering/deps/phoenix_live_view/lib/phoenix_component.ex ✔ 
+Good — `Phoenix.Component.to_form/1` exists. Let's check it briefly.   
+📖 Reading /home/user/catering/deps/phoenix_live_view/lib/phoenix_component.ex ✔ 
+💭 Thinking for 16349 characters   
+📖 Reading /home/user/catering/deps/phoenix_html/lib/phoenix_html/form_data.ex ✔ 
+📖 Reading /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+Good — `Phoenix.HTML.FormData.to_form(form, [])` works fine directly. Now let's write the module.   
+✏️  Writing /home/user/catering/lib/catering/forms.ex ✔ 
+Now let's compile to check for syntax/type errors.   
+💫 Executing cd /home/user/catering && mix compile 2>&1 | tail -100 ✔ 
+Compiles cleanly. Now let's write a quick manual exploratory test in `iex` (via a script) to sanity-check core flows: new_order_form, change, save, edit, reorder, move, error_map, serialize.   
+💫 Executing cd /home/user/catering && cat > /tmp/smoke.exs << 'EOF'
+alias Catering.Forms
+
+params = %{
+  "reference" => "ORD-1",
+  "note" => "test",
+  "customer" => %{"name" => "Alice", "email" => "alice@example.com"},
+  "delivery_windows" => %{
+    "0" => %{"label" => "Morning", "starts_at_minute" => "480", "ends_at_minute" => "600"}
+  },
+  "fulfillment" => %{"_union_type" => "pickup", "counter" => "3"},
+  "line_items" => %{
+    "0" => %{"dish" => "Pasta", "quantity" => "2", "modifiers" => %{"0" => %{"label" => "Extra cheese", "surcharge_cents" => "150"}}},
+    "1" => %{"dish" => "Salad", "quantity" => "1", "modifiers" => %{}}
+  }
+}
+
+form = Forms.new_order_form()
+form = Forms.change(form, params)
+IO.inspect(form.valid?, label: "valid?")
+IO.inspect(Forms.submitted_params(form), label: "submitted_params")
+
+{:ok, order} = Forms.save(form, nil)
+IO.inspect(order.reference, label: "order.reference")
+IO.inspect(Enum.map(order.line_items, & &1.dish), label: "line item dishes")
+IO.inspect(order.customer.name, label: "customer name")
+
+# Reload edit form
+edit_form = Forms.edit_order_form(order.id)
+IO.inspect(Enum.map(edit_form.forms[:line_items], & &1.data.dish), label: "edit order line items order")
+
+# reorder line_items
+reordered = Forms.reorder(edit_form, "order[line_items]", [1, 0])
+IO.inspect(Enum.map(reordered.forms[:line_items], & &1.data.dish), label: "after reorder")
+IO.inspect(Enum.map(reordered.forms[:line_items], & &1.name), label: "names after reorder")
+IO.inspect(Forms.submitted_params(reordered)["line_items"] |> Enum.map(& &1["dish"]), label: "submitted after reorder")
+
+# move
+moved = Forms.move(reordered, "order[line_items][0]", :down)
+IO.inspect(Enum.map(moved.forms[:line_items], & &1.data.dish), label: "after move down idx0")
+
+serialized = Forms.serialize(form)
+IO.inspect(Map.keys(serialized["nested"]), label: "serialized nested keys")
+
+hi = Forms.hidden_inputs(form, "order[customer]")
+IO.inspect(hi, label: "hidden inputs customer")
+
+em = Forms.error_map(form)
+IO.inspect(em, label: "error_map (should be empty since valid)")
+
+# Test invalid form for error_map / raw_error_list
+bad_params = Map.put(params, "reference", "")
+bad_form = Forms.change(Forms.new_order_form(), bad_params)
+IO.inspect(Forms.error_map(bad_form), label: "error_map bad form")
+IO.inspect(Forms.raw_error_list(bad_form, "order"), label: "raw_error_list root")
+EOF
+mix run /tmp/smoke.exs 2>&1 | tail -150 ✔ 
+💭 Thinking for 9179 characters   
+🔍 Searching for def get_params|defp get_params in /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form_data/helpers.ex ✔ 
+🔍 Searching for defp get_params|def get_params in /home/user/catering/deps/ash_phoenix/lib ✔ 
+💭 Thinking for 3193 characters   
+🔍 Searching for defmodule Ash.Resource.Change.ManageRelationship in /home/user/catering/deps/ash/lib/ash/resource ✔ 
+📖 Reading /home/user/catering/deps/ash/lib/ash/resource/change/manage_relationship.ex ✔ 
+💭 Thinking for 927 characters   
+🔧 Applying diff to /home/user/catering/lib/catering/forms.ex ✔ 
+🔧 Applying diff to /home/user/catering/lib/catering/forms.ex ✔ 
+💫 Executing cd /home/user/catering && mix compile 2>&1 | tail -50 ✔ 
+💫 Executing cd /home/user/catering && cat > /tmp/smoke2.exs << 'EOF'
+alias Catering.Forms
+
+params = %{
+  "reference" => "ORD-2",
+  "note" => "test",
+  "customer" => %{"name" => "Bob", "email" => "bob@example.com"},
+  "delivery_windows" => %{},
+  "fulfillment" => %{"_union_type" => "pickup", "counter" => "3"},
+  "line_items" => %{
+    "0" => %{"dish" => "Pasta", "quantity" => "2", "modifiers" => %{"0" => %{"label" => "Extra cheese", "surcharge_cents" => "150"}}},
+    "1" => %{"dish" => "Salad", "quantity" => "1", "modifiers" => %{}},
+    "2" => %{"dish" => "Soup", "quantity" => "3", "modifiers" => %{}}
+  }
+}
+
+form = Forms.new_order_form() |> Forms.change(params)
+{:ok, order} = Forms.save(form, nil)
+IO.inspect(Enum.map(order.line_items, & &1.dish), label: "initial order")
+
+edit_form = Forms.edit_order_form(order.id)
+reordered = Forms.reorder(edit_form, "order[line_items]", [2, 0, 1])
+sp = Forms.submitted_params(reordered)
+IO.inspect(sp["line_items"] |> Enum.map(&Map.take(&1, ["id","dish"])), label: "submitted line_items after reorder (no prior change)")
+
+{:ok, saved_order} = Forms.save(reordered, nil)
+IO.inspect(Enum.map(saved_order.line_items, & &1.dish), label: "persisted order after reorder")
+IO.inspect(Enum.map(saved_order.line_items, & &1.modifiers |> Enum.map(&(&1.label))), label: "modifiers preserved")
+
+# test remove_nested
+edit_form2 = Forms.edit_order_form(order.id)
+line_item_1_id = Enum.at(edit_form2.forms[:line_items], 1).data.id
+removed = Forms.remove_nested(edit_form2, "order[line_items][1]")
+{:ok, after_remove} = Forms.save(removed, nil)
+IO.inspect(Enum.map(after_remove.line_items, & &1.dish), label: "after remove index 1")
+remaining_ids = Enum.map(after_remove.line_items, & &1.id)
+IO.inspect(line_item_1_id in remaining_ids, label: "removed id still present? should be false")
+
+# move
+edit_form3 = Forms.edit_order_form(order.id)
+moved = Forms.move(edit_form3, "order[line_items][0]", :down)
+{:ok, after_move} = Forms.save(moved, nil)
+IO.inspect(Enum.map(after_move.line_items, & &1.dish), label: "after move idx0 down")
+
+# add_nested
+edit_form4 = Forms.edit_order_form(order.id)
+added = Forms.add_nested(edit_form4, "order[line_items]", params: %{"dish" => "Bread", "quantity" => "1"})
+{:ok, after_add} = Forms.save(added, nil)
+IO.inspect(Enum.map(after_add.line_items, & &1.dish), label: "after add nested")
+
+# error_map / serialize / hidden_inputs / raw_error_list on invalid
+bad = Forms.change(Forms.new_order_form(), Map.put(params, "reference", ""))
+IO.inspect(Forms.error_map(bad), label: "error_map (invalid reference)")
+IO.inspect(Forms.raw_error_list(bad, "order"), label: "raw_error_list root (invalid)")
+s = Forms.serialize(bad)
+IO.inspect(Map.keys(s), label: "serialize keys")
+IO.inspect(s["nested"]["line_items"] |> Enum.map(& &1["values"]), label: "serialize nested line_items values")
+IO.inspect(Forms.hidden_inputs(bad, "order[customer]"), label: "hidden customer")
+EOF
+mix run /tmp/smoke2.exs 2>&1 | tail -200 ✔ 
+🔧 Applying diff to /tmp/smoke2.exs ✖ "File has not been read yet. Please read the file before editing it."
+💫 Executing cd /home/user/catering && sed -i 's/IO.inspect(Enum.map(saved_order.line_items, & &1.modifiers |> Enum.map(&(&1.label))), label: "modifiers preserved")/IO.inspect(Enum.map(saved_order.line_items, fn li -> Enum.map(li.modifiers, \& \&1.label) end), label: "modifiers preserved")/' /tmp/smoke2.exs
+mix run /tmp/smoke2.exs 2>&1 | tail -200 ✔ 
+💭 Thinking for 348 characters   
+💫 Executing cd /home/user/catering && cat > /tmp/smoke3.exs << 'EOF'
+alias Catering.Forms
+
+params = %{
+  "reference" => "ORD-3",
+  "customer" => %{"name" => "Carl", "email" => "carl@example.com"},
+  "delivery_windows" => %{
+    "0" => %{"label" => "Morning", "starts_at_minute" => "480", "ends_at_minute" => "600"}
+  },
+  "fulfillment" => %{"_union_type" => "courier", "street" => "Main st", "postcode" => "12345"},
+  "line_items" => %{
+    "0" => %{"dish" => "", "quantity" => "-1", "modifiers" => %{"0" => %{"label" => "X", "surcharge_cents" => "-5"}}}
+  }
+}
+
+form = Forms.new_order_form() |> Forms.change(params)
+IO.inspect(form.valid?, label: "valid?")
+em = Forms.error_map(form)
+IO.inspect(em, label: "error_map")
+
+raw = Forms.raw_error_list(form, "order[line_items][0]")
+IO.inspect(raw, label: "raw_error_list line_item0")
+
+raw2 = Forms.raw_error_list(form, "order[line_items][0][modifiers][0]")
+IO.inspect(raw2, label: "raw_error_list modifier0")
+
+s = Forms.serialize(form)
+fulfillment_ser = s["nested"]["fulfillment"]
+IO.inspect(fulfillment_ser["resource"], label: "fulfillment resource")
+IO.inspect(fulfillment_ser["hidden"], label: "fulfillment hidden")
+IO.inspect(fulfillment_ser["values"], label: "fulfillment values")
+
+dw_ser = List.first(s["nested"]["delivery_windows"])
+IO.inspect(dw_ser["resource"], label: "dw resource")
+IO.inspect(dw_ser["values"], label: "dw values")
+
+hi = Forms.hidden_inputs(form, "order[fulfillment]")
+IO.inspect(hi, label: "hidden fulfillment")
+
+hi2 = Forms.hidden_inputs(form, "order")
+IO.inspect(hi2, label: "hidden root")
+EOF
+mix run /tmp/smoke3.exs 2>&1 | tail -200 ✔ 
+Excellent — everything works correctly, including error propagation, raw untranslated messages (vars unsubstituted), serialize with proper resource types/values, hidden inputs with `_union_type`, etc. Let's also verify `move` at boundaries is a no-op, and check `reorder`/`move` for the deep `modifiers` path.   
+💫 Executing cd /home/user/catering && cat > /tmp/smoke4.exs << 'EOF'
+alias Catering.Forms
+
+params = %{
+  "reference" => "ORD-4",
+  "customer" => %{"name" => "Dana", "email" => "dana@example.com"},
+  "line_items" => %{
+    "0" => %{"dish" => "Pasta", "quantity" => "2", "modifiers" => %{
+      "0" => %{"label" => "Cheese", "surcharge_cents" => "100"},
+      "1" => %{"label" => "Bacon", "surcharge_cents" => "200"},
+      "2" => %{"label" => "Olives", "surcharge_cents" => "50"}
+    }}
+  }
+}
+
+form = Forms.new_order_form() |> Forms.change(params)
+{:ok, order} = Forms.save(form, nil)
+IO.inspect(Enum.map(hd(order.line_items).modifiers, & &1.label), label: "initial modifiers")
+
+edit_form = Forms.edit_order_form(order.id)
+
+# move first modifier up (boundary, no-op expected)
+li_path = "order[line_items][0][modifiers][0]"
+moved_noop = Forms.move(edit_form, li_path, :up)
+IO.inspect(Enum.map(moved_noop.forms[:line_items] |> hd() |> Map.get(:forms) |> Map.get(:modifiers), & &1.data.label), label: "move up at index0 (noop expected)")
+
+# move last modifier down (boundary noop)
+li_path_last = "order[line_items][0][modifiers][2]"
+moved_noop2 = Forms.move(edit_form, li_path_last, :down)
+IO.inspect(Enum.map(moved_noop2.forms[:line_items] |> hd() |> Map.get(:forms) |> Map.get(:modifiers), & &1.data.label), label: "move down at last index (noop expected)")
+
+# move middle modifier up
+moved = Forms.move(edit_form, "order[line_items][0][modifiers][1]", :up)
+{:ok, saved} = Forms.save(moved, nil)
+IO.inspect(Enum.map(hd(saved.line_items).modifiers, & &1.label), label: "after moving modifier1 up")
+
+# reorder modifiers deep path
+edit_form2 = Forms.edit_order_form(order.id)
+reordered = Forms.reorder(edit_form2, "order[line_items][0][modifiers]", [2,0,1])
+{:ok, saved2} = Forms.save(reordered, nil)
+IO.inspect(Enum.map(hd(saved2.line_items).modifiers, & &1.label), label: "after reorder modifiers [2,0,1]")
+EOF
+mix run /tmp/smoke4.exs 2>&1 | tail -100 ✔ 
+All deep-path reorder/move operations, boundary no-ops, and persistence work correctly. Let's clean up temp files and run the project's existing test suite (if any) to make sure nothing else is broken.   
+💫 Executing cd /home/user/catering && rm -f /tmp/smoke*.exs && ls test 2>/dev/null && mix test 2>&1 | tail -60 ✖ "Command exited with code 2"
+📂 Listing files in /home/user/catering ✔ 
+💫 Executing cd /home/user/catering && mix compile --force --warnings-as-errors 2>&1 | tail -80 ✔ 
+Clean compile with no warnings. Let's view the final file once more for a last review.   
+📖 Reading /home/user/catering/lib/catering/forms.ex ✔ 
+💭 Thinking for 2997 characters   
+🔍 Searching for def on_lookup_read_action in /home/user/catering/deps/ash/lib/ash ✔ 
+💭 Thinking for 348 characters   
+💫 Executing cd /home/user/catering && cat > /tmp/smoke5.exs << 'EOF'
+alias Catering.Forms
+
+mk_params = fn ref ->
+  %{
+    "reference" => ref,
+    "customer" => %{"name" => "Eve", "email" => "eve@example.com"},
+    "line_items" => %{"0" => %{"dish" => "Rice", "quantity" => "1", "modifiers" => %{}}}
+  }
+end
+
+{:ok, o1} = Forms.new_order_form() |> Forms.change(mk_params.("E1")) |> Forms.save(nil)
+{:ok, o2} = Forms.new_order_form() |> Forms.change(mk_params.("E2")) |> Forms.save(nil)
+IO.inspect({o1.customer_id, o2.customer_id}, label: "customer ids (same expected if identity exists)")
+EOF
+mix run /tmp/smoke5.exs 2>&1 | tail -50; rm -f /tmp/smoke5.exs ✔ 
+💭 Thinking for 462 characters   
+💫 Executing cd /home/user/catering && cat > /tmp/smoke6.exs << 'EOF'
+alias Catering.Forms
+
+params = %{
+  "reference" => "ORD-6",
+  "customer" => %{"name" => "Frank", "email" => "frank@example.com"},
+  "line_items" => %{
+    "0" => %{"dish" => "A", "quantity" => "1", "modifiers" => %{}},
+    "1" => %{"dish" => "B", "quantity" => "1", "modifiers" => %{}}
+  }
+}
+
+form = Forms.new_order_form() |> Forms.change(params)
+prepended = Forms.add_nested(form, "order[line_items]", prepend: true, params: %{"dish" => "Z", "quantity" => "1"})
+IO.inspect(Enum.map(prepended.forms[:line_items], & &1.params["dish"]), label: "after prepend add")
+IO.inspect(Enum.map(prepended.forms[:line_items], & &1.name), label: "names after prepend")
+EOF
+mix run /tmp/smoke6.exs 2>&1 | tail -50; rm -f /tmp/smoke6.exs ✔ 
+Options forward correctly. The implementation is complete and thoroughly verified against real create/edit/reorder/move/add/remove/save/error/serialize flows.   
+🎉 Task Completed
+Implemented `Catering.Forms` at `/home/user/catering/lib/catering/forms.ex` as a thin, faithful facade over `AshPhoenix.Form`, exposing exactly the 14 required functions.
+
+Key design points:
+- `new_order_form/0` / `edit_order_form/1` use `AshPhoenix.Form.for_create(Order, :place, ...)` / `for_update(order, :revise, ...)`, relying entirely on `AshPhoenix.Form`'s automatic nested-form inference (from `manage_relationship`, embedded attributes and the union type) — no manual `forms:` wiring needed. `edit_order_form/1` loads the order via `Ash.get!/3` with `line_items` and `modifiers` queries sorted by `:position` so nested forms are built in ascending stored order regardless of the ETS layer's native ordering.
+- `to_phoenix_form/1` dispatches through the `Phoenix.HTML.FormData` protocol.
+- `change/2,3` and `add_nested/2,3` delegate directly to `Form.validate/3` and `Form.add_form/3`, forwarding options unchanged; `remove_nested/2` delegates to `Form.remove_form/2`.
+- `reorder/3` and `move/3` convert the HTML-name path into an atom/integer path via `Form.parse_path!/2`, use `Form.update_form/3` to reach the form that directly owns the target list (correctly walking through arbitrary depth, e.g. into a specific line item to reach its `modifiers`), then apply `Form.sort_forms/3` (which handles both full reorders and single-slot increments/decrements, including boundary no-ops) and explicitly mark the list key as touched so the new order is reflected in `submitted_params/1` and persists via `save/2`.
+- `submitted_params/1`, `hidden_inputs/2`, `error_map/1`, `raw_error_list/2` and `serialize/1` are built on top of `Form.params/1`, `Form.hidden_fields/1`, `Form.errors/2` (`:simple` for user-facing, `:raw` for untranslated) and `Form.get_form/2`, with small amounts of custom recursion/formatting to match the exact map/list shapes required (e.g. stringified hidden inputs, `[field, message]` error pairs sorted ascending, per-resource `values` field lists, and the fully recursive `serialize/1` snapshot).
+- `save/2` calls `Form.submit/2`, and on success reloads the resulting order with `customer`, `line_items` and `modifiers` (sorted by `position`) via `Ash.load!/2` before returning `{:ok, order}`; on failure it returns `{:error, form}` unchanged.
+
+Verified end-to-end via ad hoc `mix run` scripts (not committed) covering: creating an order with a customer, delivery window, union fulfillment, line items and modifiers; editing, reordering and moving both line items and nested modifiers (including no-ops at list boundaries) with correct renaming and persistence; removing a nested line item (destroying exactly that record); adding a nested line item with `prepend:`/`params:` options; and inspecting `error_map`, `raw_error_list`, `serialize` and `hidden_inputs` on both valid and invalid forms. `mix compile --warnings-as-errors` passes cleanly, and no files under `lib/catering/orders/` or `lib/catering/orders.ex` were modified.   
+  

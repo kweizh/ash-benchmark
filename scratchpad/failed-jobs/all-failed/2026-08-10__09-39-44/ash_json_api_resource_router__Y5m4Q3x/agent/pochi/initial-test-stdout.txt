@@ -1,0 +1,19 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.3
+collected 11 items
+
+../../../bootstrap/test_initial_state.py::test_elixir_toolchain_available PASSED
+../../../bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+../../../bootstrap/test_initial_state.py::test_required_dependencies_are_vendored PASSED
+../../../bootstrap/test_initial_state.py::test_dependencies_are_precompiled PASSED
+../../../bootstrap/test_initial_state.py::test_mix_exs_declares_ash_json_api PASSED
+../../../bootstrap/test_initial_state.py::test_domain_and_resources_exist PASSED
+../../../bootstrap/test_initial_state.py::test_fixtures_module_exposes_the_documented_helpers PASSED
+../../../bootstrap/test_initial_state.py::test_resources_use_the_private_ets_data_layer PASSED
+../../../bootstrap/test_initial_state.py::test_json_api_layer_is_not_implemented_yet PASSED
+../../../bootstrap/test_initial_state.py::test_no_extra_actions_are_predefined PASSED
+../../../bootstrap/test_initial_state.py::test_project_compiles_offline PASSED
+
+============================= 11 passed in 11.08s ==============================

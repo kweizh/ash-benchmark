@@ -1,0 +1,169 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 40 items
+
+../tests/test_final_state.py ...................F...............F.F..    [100%]
+
+=================================== FAILURES ===================================
+____________ test_t20_pending_stream_1_pages_through_the_data_layer ____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...nto the atomic strategy@@passed@@\n@@HARBOR@@test T40 the stream strategy applies each meter's own factor@@passed@@\n"}
+
+    def test_t20_pending_stream_1_pages_through_the_data_layer(suite_run):
+>       _scenario(suite_run, "T20")
+
+/tests/test_final_state.py:1080: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...nto the atomic strategy@@passed@@\n@@HARBOR@@test T40 the stream strategy applies each meter's own factor@@passed@@\n"}
+scenario_id = 'T20'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T20 failed:
+E           1) test T20 pending_stream/1 pages through the data layer (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:503
+E              Assertion with == failed
+E              code:  assert length(records) == 2400
+E              left:  251
+E              right: 2400
+E              stacktrace:
+E                /tmp/harbor_bulk_pipeline_suite.exs:513: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t36_the_stream_strategy_accepts_every_valid_row_of_the __________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...nto the atomic strategy@@passed@@\n@@HARBOR@@test T40 the stream strategy applies each meter's own factor@@passed@@\n"}
+
+    def test_t36_the_stream_strategy_accepts_every_valid_row_of_the(suite_run):
+>       _scenario(suite_run, "T36")
+
+/tests/test_final_state.py:1144: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...nto the atomic strategy@@passed@@\n@@HARBOR@@test T40 the stream strategy applies each meter's own factor@@passed@@\n"}
+scenario_id = 'T36'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T36 failed:
+E           1) test T36 the stream strategy accepts every valid row of the same query (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:803
+E              Assertion with == failed
+E              code:  assert result.status == :partial_success
+E              left:  :error
+E              right: :partial_success
+E              stacktrace:
+E                /tmp/harbor_bulk_pipeline_suite.exs:817: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t38_accepting_a_reading_that_is_not_normalized_fails_on _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...nto the atomic strategy@@passed@@\n@@HARBOR@@test T40 the stream strategy applies each meter's own factor@@passed@@\n"}
+
+    def test_t38_accepting_a_reading_that_is_not_normalized_fails_on(suite_run):
+>       _scenario(suite_run, "T38")
+
+/tests/test_final_state.py:1152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...nto the atomic strategy@@passed@@\n@@HARBOR@@test T40 the stream strategy applies each meter's own factor@@passed@@\n"}
+scenario_id = 'T38'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T38 failed:
+E           1) test T38 accepting a reading that is not normalized fails on :status (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:858
+E              Assertion with in failed
+E              code:  assert :status in H.error_fields(error)
+E              left:  :status
+E              right: []
+E              stacktrace:
+E                /tmp/harbor_bulk_pipeline_suite.exs:869: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_t01_reading_and_meterrollup_are_ets_backed_resources_of_the
+PASSED ../tests/test_final_state.py::test_t02_reading_attributes_have_the_required_names_and_types
+PASSED ../tests/test_final_state.py::test_t03_meterrollup_is_keyed_by_meter_code_and_has_the
+PASSED ../tests/test_final_state.py::test_t04_store_reset_0_removes_every_persisted_record
+PASSED ../tests/test_final_state.py::test_t05_a_clean_batch_is_fully_inserted_and_reported
+PASSED ../tests/test_final_state.py::test_t06_a_negative_reading_fails_with_its_input_index_while
+PASSED ../tests/test_final_state.py::test_t07_rows_with_a_missing_or_nil_required_value_are
+PASSED ../tests/test_final_state.py::test_t08_repeated_external_ids_inside_one_call_keep_the_first
+PASSED ../tests/test_final_state.py::test_t09_failure_reasons_follow_the_stated_precedence
+PASSED ../tests/test_final_state.py::test_t10_re_ingesting_an_identical_batch_inserts_nothing_and_skips
+PASSED ../tests/test_final_state.py::test_t11_a_known_external_id_is_never_overwritten_by_a
+PASSED ../tests/test_final_state.py::test_t12_new_known_and_invalid_rows_are_counted_separately_in
+PASSED ../tests/test_final_state.py::test_t13_a_batch_in_which_every_row_fails_reports_error
+PASSED ../tests/test_final_state.py::test_t14_an_empty_input_list_is_a_successful_no_op
+PASSED ../tests/test_final_state.py::test_t15_inserted_ids_keep_input_order_across_several_batches
+PASSED ../tests/test_final_state.py::test_t16_the_ingest_action_itself_rejects_a_negative_reading
+PASSED ../tests/test_final_state.py::test_t17_the_ingest_action_itself_rejects_a_duplicate_external_id
+PASSED ../tests/test_final_state.py::test_t18_ingest_stream_3_writes_nothing_until_it_is_consumed
+PASSED ../tests/test_final_state.py::test_t19_ingest_stream_3_emits_results_and_input_indices_in
+PASSED ../tests/test_final_state.py::test_t21_pending_stream_1_is_lazy
+PASSED ../tests/test_final_state.py::test_t22_pending_stream_1_only_yields_pending_readings
+PASSED ../tests/test_final_state.py::test_t23_reconcile_1_normalizes_accepts_and_reports_the_pass
+PASSED ../tests/test_final_state.py::test_t24_normalisation_rounds_halves_up
+PASSED ../tests/test_final_state.py::test_t25_readings_for_unknown_or_inactive_meters_are_rejected
+PASSED ../tests/test_final_state.py::test_t26_reconcile_1_builds_one_rollup_row_per_meter
+PASSED ../tests/test_final_state.py::test_t27_a_second_batch_accumulates_into_the_existing_rollup
+PASSED ../tests/test_final_state.py::test_t28_re_running_reconcile_1_for_the_same_batch_changes
+PASSED ../tests/test_final_state.py::test_t29_reconcile_1_leaves_other_batches_untouched
+PASSED ../tests/test_final_state.py::test_t30_a_rejected_batch_produces_no_rollup_at_all
+PASSED ../tests/test_final_state.py::test_t31_purge_rejected_1_destroys_only_the_rejected_rows_of
+PASSED ../tests/test_final_state.py::test_t32_purge_rejected_1_returns_zero_when_there_is_nothing
+PASSED ../tests/test_final_state.py::test_t33_the_accept_action_is_declared_fully_atomic
+PASSED ../tests/test_final_state.py::test_t34_an_atomic_bulk_accept_over_a_clean_query_succeeds
+PASSED ../tests/test_final_state.py::test_t35_an_atomic_bulk_accept_is_all_or_nothing_when
+PASSED ../tests/test_final_state.py::test_t37_atomic_batches_only_lose_the_batch_that_contains_a
+PASSED ../tests/test_final_state.py::test_t39_the_normalize_action_cannot_be_forced_onto_the_atomic
+PASSED ../tests/test_final_state.py::test_t40_the_stream_strategy_applies_each_meter_s_own_factor
+FAILED ../tests/test_final_state.py::test_t20_pending_stream_1_pages_through_the_data_layer
+FAILED ../tests/test_final_state.py::test_t36_the_stream_strategy_accepts_every_valid_row_of_the
+FAILED ../tests/test_final_state.py::test_t38_accepting_a_reading_that_is_not_normalized_fails_on
+======================== 3 failed, 37 passed in 25.33s =========================

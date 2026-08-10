@@ -1,0 +1,1965 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 40 items
+
+../tests/test_final_state.py ...FFF.F.FFFFF.FF.F...FFF..FF.FF.FFFF..F    [100%]
+
+=================================== FAILURES ===================================
+____________ test_t04_store_reset_0_removes_every_persisted_record _____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t04_store_reset_0_removes_every_persisted_record(suite_run):
+>       _scenario(suite_run, "T04")
+
+/tests/test_final_state.py:1016: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T04'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T04 failed:
+E           1) test T04 Store.reset!/0 removes every persisted record (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:212
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 5,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-RESET",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert length(H.readings()) == 1
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:214: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+____________ test_t05_a_clean_batch_is_fully_inserted_and_reported _____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t05_a_clean_batch_is_fully_inserted_and_reported(suite_run):
+>       _scenario(suite_run, "T05")
+
+/tests/test_final_state.py:1020: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T05'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T05 failed:
+E           1) test T05 a clean batch is fully inserted and reported (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:223
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 10,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-1",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A2",
+E                        meter_code: "M-BETA",
+E                        raw_kwh: 20,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-1",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A3",
+E                        meter_code: "M-GAMMA",
+E                        raw_kwh: 30,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-1",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: stored = H.readings()
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:248: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t06_a_negative_reading_fails_with_its_input_index_while _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t06_a_negative_reading_fails_with_its_input_index_while(suite_run):
+>       _scenario(suite_run, "T06")
+
+/tests/test_final_state.py:1024: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T06'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T06 failed:
+E           1) test T06 a negative reading fails with its input index while the rest are written (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:256
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 10,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-2",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A2",
+E                        meter_code: "M-BETA",
+E                        raw_kwh: 20,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-2",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A4",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 40,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-2",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert Enum.map(H.readings(), & &1.external_id) == ["A1", "A2", "A4"]
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:271: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+________ test_t08_repeated_external_ids_inside_one_call_keep_the_first _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t08_repeated_external_ids_inside_one_call_keep_the_first(suite_run):
+>       _scenario(suite_run, "T08")
+
+/tests/test_final_state.py:1032: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T08'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T08 failed:
+E           1) test T08 repeated external ids inside one call keep the first row only (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:297
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 10,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-4",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A2",
+E                        meter_code: "M-BETA",
+E                        raw_kwh: 20,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-4",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert Enum.map(H.readings(), &{&1.external_id, &1.raw_kwh}) == [{"A1", 10}, {"A2", 20}]
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:317: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+______ test_t10_re_ingesting_an_identical_batch_inserts_nothing_and_skips ______
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t10_re_ingesting_an_identical_batch_inserts_nothing_and_skips(suite_run):
+>       _scenario(suite_run, "T10")
+
+/tests/test_final_state.py:1040: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T10'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T10 failed:
+E           1) test T10 re-ingesting an identical batch inserts nothing and skips everything (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:338
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 10,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-6",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A2",
+E                        meter_code: "M-BETA",
+E                        raw_kwh: 20,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-6",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A3",
+E                        meter_code: "M-GAMMA",
+E                        raw_kwh: 30,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-6",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert length(H.readings()) == 3
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:353: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+____________ test_t11_a_known_external_id_is_never_overwritten_by_a ____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t11_a_known_external_id_is_never_overwritten_by_a(suite_run):
+>       _scenario(suite_run, "T11")
+
+/tests/test_final_state.py:1044: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T11'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T11 failed:
+E           1) test T11 a known external id is never overwritten by a later batch (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:357
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 10,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-8",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert length(H.readings()) == 1
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:368: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+________ test_t12_new_known_and_invalid_rows_are_counted_separately_in _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t12_new_known_and_invalid_rows_are_counted_separately_in(suite_run):
+>       _scenario(suite_run, "T12")
+
+/tests/test_final_state.py:1048: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T12'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T12 failed:
+E           1) test T12 new, known and invalid rows are counted separately in one call (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:371
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 10,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-10",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A2",
+E                        meter_code: "M-BETA",
+E                        raw_kwh: 20,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-10",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A3",
+E                        meter_code: "M-GAMMA",
+E                        raw_kwh: 30,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-11",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A5",
+E                        meter_code: "M-BETA",
+E                        raw_kwh: 50,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-11",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert length(H.readings()) == 4
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:389: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+___________ test_t13_a_batch_in_which_every_row_fails_reports_error ____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t13_a_batch_in_which_every_row_fails_reports_error(suite_run):
+>       _scenario(suite_run, "T13")
+
+/tests/test_final_state.py:1052: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T13'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T13 failed:
+E           1) test T13 a batch in which every row fails reports :error (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:392
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert H.readings() == []
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:404: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+______________ test_t14_an_empty_input_list_is_a_successful_no_op ______________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t14_an_empty_input_list_is_a_successful_no_op(suite_run):
+>       _scenario(suite_run, "T14")
+
+/tests/test_final_state.py:1056: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T14'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T14 failed:
+E           1) test T14 an empty input list is a successful no-op (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:407
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert H.readings() == []
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:415: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t16_the_ingest_action_itself_rejects_a_negative_reading _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t16_the_ingest_action_itself_rejects_a_negative_reading(suite_run):
+>       _scenario(suite_run, "T16")
+
+/tests/test_final_state.py:1064: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T16'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T16 failed:
+E           1) test T16 the ingest action itself rejects a negative reading (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:427
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert H.readings() == []
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:443: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+______ test_t17_the_ingest_action_itself_rejects_a_duplicate_external_id _______
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t17_the_ingest_action_itself_rejects_a_duplicate_external_id(suite_run):
+>       _scenario(suite_run, "T17")
+
+/tests/test_final_state.py:1068: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T17'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T17 failed:
+E           1) test T17 the ingest action itself rejects a duplicate external id (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:446
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 3,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-16",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert length(H.readings()) == 1
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:459: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t19_ingest_stream_3_emits_results_and_input_indices_in __________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t19_ingest_stream_3_emits_results_and_input_indices_in(suite_run):
+>       _scenario(suite_run, "T19")
+
+/tests/test_final_state.py:1076: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T19'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T19 failed:
+E           1) test T19 ingest_stream/3 emits results and input indices in input order (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:476
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "S1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 1,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-18",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "S3",
+E                        meter_code: "M-GAMMA",
+E                        raw_kwh: 3,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-18",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "S5",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 5,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-18",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert Enum.map(H.readings(), & &1.external_id) == ["S1", "S3", "S5"]
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:497: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t23_reconcile_1_normalizes_accepts_and_reports_the_pass _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t23_reconcile_1_normalizes_accepts_and_reports_the_pass(suite_run):
+>       _scenario(suite_run, "T23")
+
+/tests/test_final_state.py:1092: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T23'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T23 failed:
+E           1) test T23 reconcile/1 normalizes, accepts and reports the pass (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:550
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 40,
+E                        net_kwh: 40,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-20",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A2",
+E                        meter_code: "M-BETA",
+E                        raw_kwh: 40,
+E                        net_kwh: 50,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-20",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A3",
+E                        meter_code: "M-GAMMA",
+E                        raw_kwh: 10,
+E                        net_kwh: 10,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-20",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert Enum.map(H.readings(), &{&1.external_id, &1.status, &1.net_kwh}) == [
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:566: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+___________________ test_t24_normalisation_rounds_halves_up ____________________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t24_normalisation_rounds_halves_up(suite_run):
+>       _scenario(suite_run, "T24")
+
+/tests/test_final_state.py:1096: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T24'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T24 failed:
+E           1) test T24 normalisation rounds halves up (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:573
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-BETA",
+E                        raw_kwh: 2,
+E                        net_kwh: 3,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-21",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A2",
+E                        meter_code: "M-GAMMA",
+E                        raw_kwh: 3,
+E                        net_kwh: 3,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-21",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A3",
+E                        meter_code: "M-GAMMA",
+E                        raw_kwh: 7,
+E                        net_kwh: 7,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-21",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert Enum.map(H.readings(), &{&1.external_id, &1.net_kwh}) == [
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:583: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+________ test_t25_readings_for_unknown_or_inactive_meters_are_rejected _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t25_readings_for_unknown_or_inactive_meters_are_rejected(suite_run):
+>       _scenario(suite_run, "T25")
+
+/tests/test_final_state.py:1100: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T25'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T25 failed:
+E           1) test T25 readings for unknown or inactive meters are rejected (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:590
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 10,
+E                        net_kwh: 10,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-22",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A2",
+E                        meter_code: "M-NONE",
+E                        raw_kwh: 20,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-22",
+E                        status: :rejected,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A3",
+E                        meter_code: "M-OFF",
+E                        raw_kwh: 30,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-22",
+E                        status: :rejected,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert Enum.map(H.readings(), &{&1.external_id, &1.status, &1.net_kwh}) == [
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:604: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+__________ test_t28_re_running_reconcile_1_for_the_same_batch_changes __________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t28_re_running_reconcile_1_for_the_same_batch_changes(suite_run):
+>       _scenario(suite_run, "T28")
+
+/tests/test_final_state.py:1112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T28'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T28 failed:
+E           1) test T28 re-running reconcile/1 for the same batch changes nothing (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:655
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 10,
+E                        net_kwh: 10,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-26",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A2",
+E                        meter_code: "M-NONE",
+E                        raw_kwh: 20,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-26",
+E                        status: :rejected,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert Enum.map(H.readings(), &{&1.external_id, &1.status}) == [
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:671: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_____________ test_t29_reconcile_1_leaves_other_batches_untouched ______________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t29_reconcile_1_leaves_other_batches_untouched(suite_run):
+>       _scenario(suite_run, "T29")
+
+/tests/test_final_state.py:1116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T29'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T29 failed:
+E           1) test T29 reconcile/1 leaves other batches untouched (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:677
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 10,
+E                        net_kwh: 10,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-27",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "B1",
+E                        meter_code: "M-BETA",
+E                        raw_kwh: 40,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-28",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert Enum.map(H.readings(), &{&1.external_id, &1.status}) == [
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:684: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t31_purge_rejected_1_destroys_only_the_rejected_rows_of _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t31_purge_rejected_1_destroys_only_the_rejected_rows_of(suite_run):
+>       _scenario(suite_run, "T31")
+
+/tests/test_final_state.py:1124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T31'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T31 failed:
+E           1) test T31 purge_rejected/1 destroys only the rejected rows of its batch (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:704
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 10,
+E                        net_kwh: 10,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-30",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "B1",
+E                        meter_code: "M-NONE",
+E                        raw_kwh: 40,
+E                        net_kwh: nil,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-31",
+E                        status: :rejected,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert Enum.map(H.readings(), &{&1.external_id, &1.status}) == [
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:712: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t32_purge_rejected_1_returns_zero_when_there_is_nothing _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t32_purge_rejected_1_returns_zero_when_there_is_nothing(suite_run):
+>       _scenario(suite_run, "T32")
+
+/tests/test_final_state.py:1128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T32'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T32 failed:
+E           1) test T32 purge_rejected/1 returns zero when there is nothing to purge (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:718
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 10,
+E                        net_kwh: 10,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-32",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert length(H.readings()) == 1
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:723: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+__________ test_t34_an_atomic_bulk_accept_over_a_clean_query_succeeds __________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t34_an_atomic_bulk_accept_over_a_clean_query_succeeds(suite_run):
+>       _scenario(suite_run, "T34")
+
+/tests/test_final_state.py:1136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T34'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T34 failed:
+E           1) test T34 an atomic bulk accept over a clean query succeeds (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:750
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 1,
+E                        net_kwh: 1,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R2",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 2,
+E                        net_kwh: 2,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R3",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 3,
+E                        net_kwh: 3,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R4",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 4,
+E                        net_kwh: 4,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert Enum.all?(H.readings(), &(&1.status == :accepted))
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:773: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+____________ test_t35_an_atomic_bulk_accept_is_all_or_nothing_when _____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t35_an_atomic_bulk_accept_is_all_or_nothing_when(suite_run):
+>       _scenario(suite_run, "T35")
+
+/tests/test_final_state.py:1140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T35'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T35 failed:
+E           1) test T35 an atomic bulk accept is all-or-nothing when one row is not normalized (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:776
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 1,
+E                        net_kwh: 1,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R2",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 2,
+E                        net_kwh: 2,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :normalized,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R3",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 3,
+E                        net_kwh: 3,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :normalized,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R4",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 4,
+E                        net_kwh: 4,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :normalized,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R5",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 5,
+E                        net_kwh: 5,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :normalized,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R6",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 6,
+E                        net_kwh: 6,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :normalized,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert Enum.map(H.readings(), &{&1.external_id, &1.status}) == [
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:793: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t36_the_stream_strategy_accepts_every_valid_row_of_the __________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t36_the_stream_strategy_accepts_every_valid_row_of_the(suite_run):
+>       _scenario(suite_run, "T36")
+
+/tests/test_final_state.py:1144: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T36'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T36 failed:
+E           1) test T36 the stream strategy accepts every valid row of the same query (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:803
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 1,
+E                        net_kwh: 1,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R2",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 2,
+E                        net_kwh: 2,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R3",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 3,
+E                        net_kwh: 3,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R4",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 4,
+E                        net_kwh: 4,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R5",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 5,
+E                        net_kwh: 5,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R6",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 6,
+E                        net_kwh: 6,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :accepted,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert Enum.map(H.readings(), &{&1.external_id, &1.status}) == [
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:821: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t37_atomic_batches_only_lose_the_batch_that_contains_a __________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t37_atomic_batches_only_lose_the_batch_that_contains_a(suite_run):
+>       _scenario(suite_run, "T37")
+
+/tests/test_final_state.py:1148: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T37'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T37 failed:
+E           1) test T37 atomic batches only lose the batch that contains a bad row (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:831
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 1,
+E                        net_kwh: 1,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :normalized,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R2",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 2,
+E                        net_kwh: 2,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :normalized,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R3",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 3,
+E                        net_kwh: 3,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R4",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 4,
+E                        net_kwh: 4,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :pending,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R5",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 5,
+E                        net_kwh: 5,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :normalized,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "R6",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 6,
+E                        net_kwh: 6,
+E                        recorded_on: ~D[2026-03-01],
+E                        batch_ref: "B-STRAT",
+E                        status: :normalized,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: records = H.readings()
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:833: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t40_the_stream_strategy_applies_each_meter_s_own_factor _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+
+    def test_t40_the_stream_strategy_applies_each_meter_s_own_factor(suite_run):
+>       _scenario(suite_run, "T40")
+
+/tests/test_final_state.py:1160: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...i9lbnVtLmV4OjMzNjM6IEVudW0uc29ydF9ieS8zCiAgICAgICAvdG1wL2hhcmJvcl9idWxrX3BpcGVsaW5lX3N1aXRlLmV4czo5MDY6ICh0ZXN0KQo=\n'}
+scenario_id = 'T40'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T40 failed:
+E           1) test T40 the stream strategy applies each meter's own factor (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:885
+E              ** (Protocol.UndefinedError) protocol Enumerable not implemented for type Ash.Page.Keyset (a struct). This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, Iter, Jason.OrderedObject, List, Map, MapSet, Range, Stream, StreamData
+E         
+E              Got value:
+E         
+E                  #Ash.Page.Keyset<
+E                    results: [
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A1",
+E                        meter_code: "M-ALPHA",
+E                        raw_kwh: 40,
+E                        net_kwh: 40,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-34",
+E                        status: :normalized,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A2",
+E                        meter_code: "M-BETA",
+E                        raw_kwh: 40,
+E                        net_kwh: 50,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-34",
+E                        status: :normalized,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      %Ingest.Pipeline.Reading{
+E                        external_id: "A3",
+E                        meter_code: "M-GAMMA",
+E                        raw_kwh: 40,
+E                        net_kwh: 38,
+E                        recorded_on: ~D[2026-03-02],
+E                        batch_ref: "B-34",
+E                        status: :normalized,
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      }
+E                    ],
+E                    count: nil,
+E                    before: nil,
+E                    after: nil,
+E                    more?: false,
+E                    ...
+E                  >
+E         
+E              code: assert Enum.map(H.readings(), &{&1.external_id, &1.net_kwh, &1.status}) == [
+E              stacktrace:
+E                (elixir 1.18.4) lib/enum.ex:1: Enumerable.impl_for!/1
+E                (elixir 1.18.4) lib/enum.ex:166: Enumerable.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:4515: Enum.map/2
+E                (elixir 1.18.4) lib/enum.ex:3363: Enum.sort_by/3
+E                /tmp/harbor_bulk_pipeline_suite.exs:906: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_t01_reading_and_meterrollup_are_ets_backed_resources_of_the
+PASSED ../tests/test_final_state.py::test_t02_reading_attributes_have_the_required_names_and_types
+PASSED ../tests/test_final_state.py::test_t03_meterrollup_is_keyed_by_meter_code_and_has_the
+PASSED ../tests/test_final_state.py::test_t07_rows_with_a_missing_or_nil_required_value_are
+PASSED ../tests/test_final_state.py::test_t09_failure_reasons_follow_the_stated_precedence
+PASSED ../tests/test_final_state.py::test_t15_inserted_ids_keep_input_order_across_several_batches
+PASSED ../tests/test_final_state.py::test_t18_ingest_stream_3_writes_nothing_until_it_is_consumed
+PASSED ../tests/test_final_state.py::test_t20_pending_stream_1_pages_through_the_data_layer
+PASSED ../tests/test_final_state.py::test_t21_pending_stream_1_is_lazy
+PASSED ../tests/test_final_state.py::test_t22_pending_stream_1_only_yields_pending_readings
+PASSED ../tests/test_final_state.py::test_t26_reconcile_1_builds_one_rollup_row_per_meter
+PASSED ../tests/test_final_state.py::test_t27_a_second_batch_accumulates_into_the_existing_rollup
+PASSED ../tests/test_final_state.py::test_t30_a_rejected_batch_produces_no_rollup_at_all
+PASSED ../tests/test_final_state.py::test_t33_the_accept_action_is_declared_fully_atomic
+PASSED ../tests/test_final_state.py::test_t38_accepting_a_reading_that_is_not_normalized_fails_on
+PASSED ../tests/test_final_state.py::test_t39_the_normalize_action_cannot_be_forced_onto_the_atomic
+FAILED ../tests/test_final_state.py::test_t04_store_reset_0_removes_every_persisted_record
+FAILED ../tests/test_final_state.py::test_t05_a_clean_batch_is_fully_inserted_and_reported
+FAILED ../tests/test_final_state.py::test_t06_a_negative_reading_fails_with_its_input_index_while
+FAILED ../tests/test_final_state.py::test_t08_repeated_external_ids_inside_one_call_keep_the_first
+FAILED ../tests/test_final_state.py::test_t10_re_ingesting_an_identical_batch_inserts_nothing_and_skips
+FAILED ../tests/test_final_state.py::test_t11_a_known_external_id_is_never_overwritten_by_a
+FAILED ../tests/test_final_state.py::test_t12_new_known_and_invalid_rows_are_counted_separately_in
+FAILED ../tests/test_final_state.py::test_t13_a_batch_in_which_every_row_fails_reports_error
+FAILED ../tests/test_final_state.py::test_t14_an_empty_input_list_is_a_successful_no_op
+FAILED ../tests/test_final_state.py::test_t16_the_ingest_action_itself_rejects_a_negative_reading
+FAILED ../tests/test_final_state.py::test_t17_the_ingest_action_itself_rejects_a_duplicate_external_id
+FAILED ../tests/test_final_state.py::test_t19_ingest_stream_3_emits_results_and_input_indices_in
+FAILED ../tests/test_final_state.py::test_t23_reconcile_1_normalizes_accepts_and_reports_the_pass
+FAILED ../tests/test_final_state.py::test_t24_normalisation_rounds_halves_up
+FAILED ../tests/test_final_state.py::test_t25_readings_for_unknown_or_inactive_meters_are_rejected
+FAILED ../tests/test_final_state.py::test_t28_re_running_reconcile_1_for_the_same_batch_changes
+FAILED ../tests/test_final_state.py::test_t29_reconcile_1_leaves_other_batches_untouched
+FAILED ../tests/test_final_state.py::test_t31_purge_rejected_1_destroys_only_the_rejected_rows_of
+FAILED ../tests/test_final_state.py::test_t32_purge_rejected_1_returns_zero_when_there_is_nothing
+FAILED ../tests/test_final_state.py::test_t34_an_atomic_bulk_accept_over_a_clean_query_succeeds
+FAILED ../tests/test_final_state.py::test_t35_an_atomic_bulk_accept_is_all_or_nothing_when
+FAILED ../tests/test_final_state.py::test_t36_the_stream_strategy_accepts_every_valid_row_of_the
+FAILED ../tests/test_final_state.py::test_t37_atomic_batches_only_lose_the_batch_that_contains_a
+FAILED ../tests/test_final_state.py::test_t40_the_stream_strategy_applies_each_meter_s_own_factor
+======================== 24 failed, 16 passed in 29.44s ========================

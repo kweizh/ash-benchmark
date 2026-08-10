@@ -1,0 +1,22 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.3
+collected 14 items
+
+../bootstrap/test_initial_state.py::test_elixir_toolchain_available PASSED
+../bootstrap/test_initial_state.py::test_postgres_tooling_available PASSED
+../bootstrap/test_initial_state.py::test_postgres_server_starts_and_accepts_connections PASSED
+../bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+../bootstrap/test_initial_state.py::test_project_manifest_files_exist PASSED
+../bootstrap/test_initial_state.py::test_mix_lock_pins_ash_and_ash_postgres PASSED
+../bootstrap/test_initial_state.py::test_dependencies_are_prefetched_and_compiled PASSED
+../bootstrap/test_initial_state.py::test_scaffold_modules_exist PASSED
+../bootstrap/test_initial_state.py::test_repo_module_is_an_ash_postgres_repo PASSED
+../bootstrap/test_initial_state.py::test_trace_helper_is_provided PASSED
+../bootstrap/test_initial_state.py::test_domain_starts_out_without_resources PASSED
+../bootstrap/test_initial_state.py::test_repo_connection_settings_are_preconfigured PASSED
+../bootstrap/test_initial_state.py::test_solution_modules_are_absent PASSED
+../bootstrap/test_initial_state.py::test_scaffold_compiles_offline PASSED
+
+============================= 14 passed in 17.71s ==============================

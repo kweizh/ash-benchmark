@@ -1,0 +1,4938 @@
+# SPDX-FileCopyrightText: 2019 ash_postgres contributors <https://github.com/ash-project/ash_postgres/graphs/contributors>
+#
+# SPDX-License-Identifier: MIT
+
+defmodule AshPostgres.MigrationGenerator do
+  @moduledoc false
+
+  require Logger
+
+  alias AshPostgres.MigrationGenerator.{Operation, Phase}
+
+  defstruct snapshot_path: nil,
+            migration_path: nil,
+            name: nil,
+            tenant_migration_path: nil,
+            quiet: false,
+            concurrent_indexes: false,
+            current_snapshots: nil,
+            answers: [],
+            no_shell?: false,
+            format: true,
+            dry_run: false,
+            check: false,
+            dev: false,
+            snapshots_only: false,
+            auto_name: false,
+            dont_drop_columns: false
+
+  def generate(domains, opts \\ []) do
+    domains = List.wrap(domains)
+    opts = opts(opts)
+
+    all_resources = Enum.uniq(Enum.flat_map(domains, &Ash.Domain.Info.resources/1))
+
+    postgres_resources =
+      all_resources
+      |> Enum.filter(fn resource ->
+        Ash.DataLayer.data_layer(resource) == AshPostgres.DataLayer
+      end)
+
+    {managed_resources, unmanaged_resources} =
+      Enum.split_with(postgres_resources, &AshPostgres.DataLayer.Info.migrate?/1)
+
+    {tenant_snapshots, snapshots} =
+      managed_resources
+      |> Enum.flat_map(&get_snapshots(&1, all_resources))
+      |> Enum.split_with(&(&1.multitenancy.strategy == :context))
+
+    {unmanaged_tenant_snapshots, unmanaged_snapshots} =
+      unmanaged_resources
+      |> Enum.flat_map(&get_snapshots(&1, all_resources))
+      |> Enum.split_with(&(&1.multitenancy.strategy == :context))
+
+    tenant_snapshots_to_include_in_global =
+      tenant_snapshots
+      |> Enum.filter(& &1.multitenancy.global)
+      |> Enum.map(&Map.put(&1, :multitenancy, %{strategy: nil, attribute: nil, global: nil}))
+
+    snapshots = snapshots ++ tenant_snapshots_to_include_in_global
+
+    unmanaged_tenant_snapshots_to_include_in_global =
+      unmanaged_tenant_snapshots
+      |> Enum.filter(& &1.multitenancy.global)
+      |> Enum.map(&Map.put(&1, :multitenancy, %{strategy: nil, attribute: nil, global: nil}))
+
+    unmanaged_snapshots = unmanaged_snapshots ++ unmanaged_tenant_snapshots_to_include_in_global
+
+    repos =
+      (snapshots ++ tenant_snapshots)
+      |> Enum.map(& &1.repo)
+      |> Enum.concat(find_repos())
+      |> Enum.uniq()
+
+    extension_migration_files =
+      create_extension_migrations(repos, opts)
+
+    {tenant_migration_files, tenant_review_flags} =
+      create_migrations(tenant_snapshots, opts, true, snapshots, unmanaged_tenant_snapshots)
+
+    {migration_files, global_review_flags} =
+      create_migrations(snapshots, opts, false, [], unmanaged_snapshots)
+
+    review_flags = merge_review_flag_maps(tenant_review_flags, global_review_flags)
+
+    case extension_migration_files ++ tenant_migration_files ++ migration_files do
+      [] ->
+        if !opts.check || opts.dry_run do
+          if Enum.empty?(unmanaged_resources) do
+            Mix.shell().info(
+              "No changes detected, so no migrations or snapshots have been created."
+            )
+          else
+            Mix.shell().info("""
+            No changes detected, so no migrations or snapshots have been created.
+
+            Note: Some resources have `migrate?` set to `false` and were skipped.
+
+            If you expected migrations to be generated for them, remove `migrate?(false)`
+            from their `postgres` block. Resources generated with `mix ash_postgres.gen.resources
+            --no-migrations` have `migrate?` set to `false` by default.
+            """)
+          end
+        end
+
+        :ok
+
+      files ->
+        if !(opts.check or opts.quiet or opts.no_shell?) do
+          emit_review_warnings(review_flags)
+        end
+
+        cond do
+          opts.check ->
+            raise Ash.Error.Framework.PendingCodegen,
+              diff: files
+
+          opts.dry_run ->
+            Mix.shell().info(
+              files
+              |> Enum.sort_by(&elem(&1, 0))
+              |> Enum.map_join("\n\n", fn {file, contents} ->
+                "#{file}\n#{contents}"
+              end)
+            )
+
+          true ->
+            Enum.each(files, fn {file, contents} ->
+              Mix.Generator.create_file(file, contents, force: true)
+            end)
+        end
+    end
+  end
+
+  defp find_repos do
+    Mix.Project.config()[:app]
+    |> Application.get_env(:ecto_repos, [])
+    |> Enum.filter(fn repo ->
+      Spark.implements_behaviour?(repo, AshPostgres.Repo)
+    end)
+  end
+
+  @doc """
+  A work in progress utility for getting snapshots.
+
+  Does not support everything supported by the migration generator.
+  """
+  def take_snapshots(domain, repo, only_resources \\ nil) do
+    all_resources = domain |> Ash.Domain.Info.resources() |> Enum.uniq()
+
+    all_resources
+    |> Enum.filter(fn resource ->
+      Ash.DataLayer.data_layer(resource) == AshPostgres.DataLayer &&
+        AshPostgres.DataLayer.Info.repo(resource, :mutate) == repo &&
+        (is_nil(only_resources) || resource in only_resources)
+    end)
+    |> Enum.flat_map(&get_snapshots(&1, all_resources))
+  end
+
+  @doc """
+  A work in progress utility for getting operations between snapshots.
+
+  Does not support everything supported by the migration generator.
+  """
+  def get_operations_from_snapshots(old_snapshots, new_snapshots, opts \\ []) do
+    opts = %{opts(opts) | no_shell?: true}
+
+    old_snapshots =
+      old_snapshots
+      |> Enum.map(&sanitize_snapshot/1)
+
+    new_snapshots
+    |> deduplicate_snapshots(opts, [], old_snapshots)
+    |> fetch_operations(opts)
+    |> Enum.flat_map(&elem(&1, 1))
+    |> Enum.uniq()
+    |> organize_operations()
+  end
+
+  defp add_references_primary_key(snapshot, snapshots) do
+    %{
+      snapshot
+      | attributes:
+          snapshot.attributes
+          |> Enum.map(fn
+            %{references: references} = attribute when not is_nil(references) ->
+              if is_nil(Map.get(references, :primary_key?)) do
+                %{
+                  attribute
+                  | references:
+                      Map.put(
+                        references,
+                        :primary_key?,
+                        find_references_primary_key(
+                          references,
+                          snapshots
+                        )
+                      )
+                }
+              else
+                attribute
+              end
+
+            attribute ->
+              attribute
+          end)
+    }
+  end
+
+  defp find_references_primary_key(references, snapshots) do
+    Enum.find_value(snapshots, false, fn snapshot ->
+      if snapshot && references && snapshot.table == references.table do
+        Enum.any?(snapshot.attributes, fn attribute ->
+          attribute.source == references.destination_attribute && attribute.primary_key?
+        end)
+      end
+    end)
+  end
+
+  defp opts(opts) do
+    struct(__MODULE__, opts)
+  end
+
+  defp snapshot_path(%{snapshot_path: snapshot_path}, _) when not is_nil(snapshot_path),
+    do: snapshot_path
+
+  defp snapshot_path(_config, repo) do
+    # Copied from ecto's mix task, thanks Ecto ❤️
+    config = repo.config()
+
+    if snapshot_path = config[:snapshots_path] do
+      snapshot_path
+    else
+      app = Keyword.fetch!(config, :otp_app)
+      Path.join(Mix.Project.deps_paths()[app] || File.cwd!(), "priv/resource_snapshots")
+    end
+  end
+
+  defp create_extension_migrations(repos, opts) do
+    for repo <- repos, repo.migrate_extensions?() do
+      snapshot_path = snapshot_path(opts, repo)
+      repo_name = repo_name(repo)
+
+      legacy_snapshot_file = Path.join(snapshot_path, "extensions.json")
+
+      snapshot_file =
+        snapshot_path
+        |> Path.join(repo_name)
+        |> Path.join("extensions.json")
+
+      if !(opts.dry_run || opts.check) do
+        File.rename(legacy_snapshot_file, snapshot_file)
+      end
+
+      installed_extensions =
+        if File.exists?(snapshot_file) do
+          snapshot_file
+          |> File.read!()
+          |> Jason.decode!(keys: :atoms!)
+        else
+          []
+        end
+
+      {extensions_snapshot, installed_extensions} =
+        case installed_extensions do
+          installed when is_list(installed) ->
+            {%{
+               installed: installed
+             }, installed}
+
+          other ->
+            {other, other.installed}
+        end
+
+      requesteds =
+        repo.installed_extensions()
+        |> Enum.map(fn
+          extension_module when is_atom(extension_module) ->
+            {ext_name, version, _up_fn, _down_fn} = extension = extension_module.extension()
+
+            {"#{ext_name}_v#{version}", extension}
+
+          extension_name ->
+            {extension_name, extension_name}
+        end)
+
+      to_install =
+        requesteds
+        |> Enum.reject(fn
+          {"ash-functions", _} ->
+            extensions_snapshot[:ash_functions_version] ==
+              AshPostgres.MigrationGenerator.AshFunctions.latest_version()
+
+          {name, _} ->
+            Enum.member?(installed_extensions, name)
+        end)
+        |> Enum.map(fn {_name, extension} -> extension end)
+
+      if Enum.empty?(to_install) do
+        []
+      else
+        dev = if opts.dev, do: "_dev"
+
+        {module, migration_name} =
+          case to_install do
+            [{ext_name, version, _up_fn, _down_fn}] ->
+              {"install_#{ext_name}_v#{version}_#{timestamp()}",
+               "#{timestamp()}_install_#{ext_name}_v#{version}_extension#{dev}"}
+
+            ["ash_functions"] ->
+              {"install_ash_functions_extension_#{AshPostgres.MigrationGenerator.AshFunctions.latest_version()}_#{timestamp()}",
+               "#{timestamp()}_install_ash_functions_extension_#{AshPostgres.MigrationGenerator.AshFunctions.latest_version()}"}
+
+            _multiple ->
+              migration_path = migration_path(opts, repo, false)
+
+              require_name!(opts)
+
+              if opts.name do
+                count =
+                  migration_path
+                  |> Path.join("*_#{opts.name}_extensions*")
+                  |> Path.wildcard()
+                  |> Enum.map(fn path ->
+                    path
+                    |> Path.basename()
+                    |> String.split("_#{opts.name}_extensions", parts: 2)
+                    |> Enum.at(1)
+                    |> Integer.parse()
+                    |> case do
+                      {integer, _} ->
+                        integer
+
+                      _ ->
+                        0
+                    end
+                  end)
+                  |> Enum.max(fn -> 0 end)
+                  |> Kernel.+(1)
+
+                {"#{opts.name}_extensions_#{count}",
+                 "#{timestamp()}_#{opts.name}_extensions_#{count}#{dev}"}
+              else
+                count =
+                  migration_path
+                  |> Path.join("*_migrate_resources_extensions*")
+                  |> Path.wildcard()
+                  |> Enum.map(fn path ->
+                    path
+                    |> Path.basename()
+                    |> String.split("_migrate_resources_extensions", parts: 2)
+                    |> Enum.at(1)
+                    |> Integer.parse()
+                    |> case do
+                      {integer, _} ->
+                        integer
+
+                      _ ->
+                        0
+                    end
+                  end)
+                  |> Enum.max(fn -> 0 end)
+                  |> Kernel.+(1)
+
+                {"migrate_resources_extensions_#{count}",
+                 "#{timestamp()}_migrate_resources_extensions_#{count}#{dev}"}
+              end
+          end
+
+        migration_file =
+          opts
+          |> migration_path(repo)
+          |> Path.join(migration_name <> ".exs")
+
+        sanitized_module =
+          module
+          |> String.replace("-", "_")
+          |> Macro.camelize()
+
+        module_name = Module.concat([repo, Migrations, sanitized_module])
+
+        install =
+          Enum.map_join(to_install, "\n", fn
+            "ash-functions" ->
+              AshPostgres.MigrationGenerator.AshFunctions.install(
+                extensions_snapshot[:ash_functions_version],
+                use_builtin_uuidv7_function?: repo.use_builtin_uuidv7_function?()
+              )
+
+            {ext_name, _version, up_fn, _down_fn} when is_function(up_fn, 1) ->
+              current_version =
+                Enum.find_value(extensions_snapshot[:installed] || [], 0, fn name ->
+                  with ["", "_v" <> version] <- String.split(name, to_string(ext_name)),
+                       {integer, ""} <- Integer.parse(version) do
+                    integer
+                  else
+                    _ -> nil
+                  end
+                end)
+
+              up_fn.(current_version)
+
+            extension ->
+              "execute(\"CREATE EXTENSION IF NOT EXISTS \\\"#{extension}\\\"\")"
+          end)
+
+        uninstall =
+          Enum.map_join(to_install, "\n", fn
+            "ash-functions" ->
+              AshPostgres.MigrationGenerator.AshFunctions.drop(
+                extensions_snapshot[:ash_functions_version]
+              )
+
+            {_ext_name, version, _up_fn, down_fn} when is_function(down_fn, 1) ->
+              down_fn.(version)
+
+            extension ->
+              "# execute(\"DROP EXTENSION IF EXISTS \\\"#{extension}\\\"\")"
+          end)
+
+        contents = """
+        defmodule #{inspect(module_name)} do
+          @moduledoc \"\"\"
+          Installs any extensions that are mentioned in the repo's `installed_extensions/0` callback
+
+          This file was autogenerated with `mix ash_postgres.generate_migrations`
+          \"\"\"
+
+          use Ecto.Migration
+
+          def up do
+            #{install}
+          end
+
+          def down do
+            # Uncomment this if you actually want to uninstall the extensions
+            # when this migration is rolled back:
+            #{uninstall}
+          end
+        end
+        """
+
+        installed = Enum.map(requesteds, fn {name, _extension} -> name end)
+
+        snapshot_contents =
+          %{installed: installed}
+          |> set_ash_functions(installed)
+          |> to_ordered_object()
+          |> Jason.encode!(pretty: true)
+
+        contents = format(migration_file, contents, opts)
+
+        [
+          {snapshot_file, snapshot_contents},
+          {migration_file, contents}
+        ]
+      end
+    end
+    |> List.flatten()
+  end
+
+  defp set_ash_functions(snapshot, installed_extensions) do
+    if "ash-functions" in installed_extensions do
+      Map.put(
+        snapshot,
+        :ash_functions_version,
+        AshPostgres.MigrationGenerator.AshFunctions.latest_version()
+      )
+    else
+      snapshot
+    end
+  end
+
+  defp create_migrations(
+         snapshots,
+         opts,
+         tenant?,
+         non_tenant_snapshots,
+         unmanaged_snapshots
+       ) do
+    snapshots
+    |> Enum.group_by(& &1.repo)
+    |> Enum.reduce({[], initial_review_flags()}, fn {repo, snapshots}, {files_acc, flags_acc} ->
+      deduped = deduplicate_snapshots(snapshots, opts, non_tenant_snapshots)
+
+      managed_table_keys =
+        deduped
+        |> Enum.map(fn {%{table: t, schema: s}, _} -> {t, s} end)
+        |> MapSet.new()
+
+      unmanaged_table_keys =
+        unmanaged_snapshots
+        |> Enum.filter(&(&1.repo == repo))
+        |> Enum.map(fn %{table: t, schema: s} -> {t, s} end)
+        |> MapSet.new()
+
+      current_table_keys = MapSet.union(managed_table_keys, unmanaged_table_keys)
+
+      {drop_operations, orphan_snapshots, rename_map, schema_move_map} =
+        drop_operations_for_orphan_tables(
+          repo,
+          current_table_keys,
+          managed_table_keys,
+          opts,
+          tenant?
+        )
+
+      deduped_with_snapshot_matches =
+        Enum.map(deduped, fn {%{table: table, schema: schema} = snapshot, existing_snapshot} ->
+          cond do
+            move_info = Map.get(schema_move_map, {table, schema}) ->
+              if move_info[:declined?] do
+                {snapshot, nil}
+              else
+                {snapshot, move_info.snapshot}
+              end
+
+            rename_info = Map.get(rename_map, {table, schema}) ->
+              {snapshot, rename_info.snapshot}
+
+            existing_snapshot && existing_snapshot.schema != schema ->
+              if moving_table_to_schema?(
+                   {table, existing_snapshot.schema},
+                   {table, schema},
+                   opts
+                 ) do
+                {snapshot, existing_snapshot}
+              else
+                {snapshot, nil}
+              end
+
+            true ->
+              {snapshot, existing_snapshot}
+          end
+        end)
+
+      snapshots_with_operations =
+        deduped_with_snapshot_matches
+        |> fetch_operations(opts)
+        |> Enum.map(&add_order_to_operations/1)
+
+      snapshots = Enum.map(snapshots_with_operations, &elem(&1, 0))
+
+      rename_operations =
+        Enum.map(rename_map, fn {{new_table, schema}, %{old_table: old_table, snapshot: snapshot}} ->
+          %Operation.RenameTable{
+            old_table: old_table,
+            new_table: new_table,
+            schema: schema,
+            multitenancy: snapshot.multitenancy,
+            repo: repo
+          }
+        end)
+
+      operations =
+        snapshots_with_operations
+        |> Enum.flat_map(&elem(&1, 1))
+        |> Enum.concat(rename_operations)
+        |> Enum.concat(drop_operations)
+        |> Enum.uniq()
+
+      case operations do
+        [] ->
+          {files_acc, flags_acc}
+
+        operations ->
+          repo_flags = classify_operations(operations)
+
+          dev_migrations = get_dev_migrations(opts, tenant?, repo)
+
+          if !opts.dev and dev_migrations != [] do
+            if opts.check do
+              Mix.shell().error("""
+              Codegen check failed.
+
+              You have migrations remaining that were generated with the --dev flag.
+
+              Run `mix ash.codegen <name>` to remove the dev migrations and replace them
+              with production-ready migrations.
+              """)
+
+              exit({:shutdown, 1})
+            else
+              remove_dev_migrations(dev_migrations, tenant?, repo, opts)
+              remove_dev_snapshots(snapshots, opts)
+            end
+          end
+
+          {tenant_operations, public_operations} =
+            if tenant? do
+              public_ops = Enum.filter(operations, &public_custom_statement_operation?/1)
+              tenant_ops = Enum.reject(operations, &public_custom_statement_operation?/1)
+              {tenant_ops, public_ops}
+            else
+              {operations, []}
+            end
+
+          migrations =
+            if opts.snapshots_only do
+              []
+            else
+              operations_to_migrations(tenant_operations, repo, opts, tenant?) ++
+                operations_to_migrations(public_operations, repo, opts, false)
+            end
+
+          files =
+            migrations
+            |> Enum.concat(create_new_snapshot(snapshots, repo_name(repo), opts, tenant?))
+            |> then(fn files ->
+              remove_orphan_snapshots(orphan_snapshots, opts)
+              files
+            end)
+
+          {files_acc ++ files, merge_review_flag_maps(flags_acc, repo_flags)}
+      end
+    end)
+  end
+
+  defp emit_review_warnings(review_flags) do
+    shell = Mix.shell()
+
+    review_flags
+    |> review_warning_messages()
+    |> Enum.each(&shell.info/1)
+  end
+
+  defp review_warning_messages(review_flags) do
+    [
+      review_baseline_message(),
+      review_commented_safeguards_message(review_flags),
+      review_destructive_message(review_flags)
+    ]
+    |> Enum.reject(&is_nil/1)
+  end
+
+  defp review_baseline_message do
+    "Please always manually review the generated migrations for correctness."
+  end
+
+  defp review_commented_safeguards_message(%{commented_safeguards?: true}) do
+    "Warning: there are migration steps commented out and in need of manual review."
+  end
+
+  defp review_commented_safeguards_message(_), do: nil
+
+  defp review_destructive_message(%{destructive_uncommented?: true}) do
+    "Warning: this migration includes destructive operations (e.g. drops or column removals). Review carefully before migrating."
+  end
+
+  defp review_destructive_message(_), do: nil
+
+  defp classify_operations(operations) do
+    Enum.reduce(operations, initial_review_flags(), &merge_review_flags/2)
+  end
+
+  defp initial_review_flags do
+    %{commented_safeguards?: false, destructive_uncommented?: false}
+  end
+
+  defp merge_review_flags(op, acc) do
+    acc
+    |> Map.update!(:commented_safeguards?, &(&1 or commented_safeguard?(op)))
+    |> Map.update!(:destructive_uncommented?, &(&1 or destructive_uncommented?(op)))
+  end
+
+  defp merge_review_flag_maps(a, b) do
+    %{
+      commented_safeguards?: a.commented_safeguards? or b.commented_safeguards?,
+      destructive_uncommented?: a.destructive_uncommented? or b.destructive_uncommented?
+    }
+  end
+
+  defp commented_safeguard?(%{commented?: true}), do: true
+  defp commented_safeguard?(_), do: false
+
+  defp destructive_uncommented?(%Operation.DropTable{}), do: true
+  defp destructive_uncommented?(%Operation.RemoveAttribute{commented?: false}), do: true
+  defp destructive_uncommented?(%Operation.RemovePrimaryKey{}), do: true
+  defp destructive_uncommented?(%Operation.RemovePrimaryKeyDown{commented?: false}), do: true
+  defp destructive_uncommented?(%Operation.DropForeignKey{}), do: true
+  defp destructive_uncommented?(%Operation.RemoveCustomStatement{}), do: true
+  defp destructive_uncommented?(%Operation.RemoveCustomIndex{}), do: true
+  defp destructive_uncommented?(%Operation.RemoveReferenceIndex{}), do: true
+  defp destructive_uncommented?(%Operation.RemoveUniqueIndex{}), do: true
+  defp destructive_uncommented?(%Operation.RemoveCheckConstraint{}), do: true
+  defp destructive_uncommented?(%Operation.AddPrimaryKeyDown{remove_old?: true}), do: true
+  defp destructive_uncommented?(_), do: false
+
+  defp operations_to_migrations([], _repo, _opts, _tenant?), do: []
+
+  defp operations_to_migrations(operations, repo, opts, tenant?) do
+    operations
+    |> split_into_migrations()
+    |> Enum.with_index()
+    |> Enum.map(fn {operations, split_index} ->
+      run_without_transaction? =
+        Enum.any?(operations, fn
+          %Operation.AddCustomIndex{index: %{concurrently: true}} ->
+            true
+
+          %Operation.AddUniqueIndex{concurrently: true} ->
+            true
+
+          _ ->
+            false
+        end)
+
+      operations
+      |> organize_operations()
+      |> build_up_and_down()
+      |> migration(repo, opts, tenant?, run_without_transaction?, split_index)
+    end)
+  end
+
+  defp public_custom_statement_operation?(%Operation.AddCustomStatement{
+         statement: %{global?: true}
+       }),
+       do: true
+
+  defp public_custom_statement_operation?(%Operation.RemoveCustomStatement{
+         statement: %{global?: true}
+       }),
+       do: true
+
+  defp public_custom_statement_operation?(_), do: false
+
+  defp get_dev_migrations(opts, tenant?, repo) do
+    opts
+    |> migration_path(repo, tenant?)
+    |> File.ls()
+    |> case do
+      {:error, _error} -> []
+      {:ok, migrations} -> Enum.filter(migrations, &String.contains?(&1, "_dev.exs"))
+    end
+  end
+
+  defp require_name!(opts) do
+    if !opts.name && !opts.dry_run && !opts.check && !opts.snapshots_only && !opts.dev &&
+         !opts.auto_name do
+      raise """
+      Name must be provided when generating migrations, unless `--dry-run` or `--check` or `--dev` is also provided.
+
+      Please provide a name. for example:
+
+          mix ash_postgres.generate_migrations <name> ...args
+      """
+    end
+
+    :ok
+  end
+
+  defp remove_dev_migrations(dev_migrations, tenant?, repo, opts) do
+    dev_migrations =
+      Enum.map(dev_migrations, fn migration ->
+        opts
+        |> migration_path(repo, tenant?)
+        |> Path.join(migration)
+      end)
+
+    if tenant? do
+      Ecto.Migrator.with_repo(repo, fn repo ->
+        for prefix <- repo.all_tenants() do
+          {repo, query, opts} =
+            Ecto.Migration.SchemaMigration.versions(repo, repo.config(), prefix)
+
+          repo.transaction(fn ->
+            versions = repo.all(query, Keyword.put(opts, :timeout, :infinity))
+
+            dev_migrations
+            |> Enum.map(&extract_migration_info/1)
+            |> Enum.filter(& &1)
+            |> Enum.map(&load_migration!/1)
+            |> Enum.sort()
+            |> Enum.reverse()
+            |> Enum.filter(fn {version, _} ->
+              version in versions
+            end)
+            |> Enum.each(fn {version, mod} ->
+              Ecto.Migration.Runner.run(
+                repo,
+                [],
+                version,
+                mod,
+                :forward,
+                :down,
+                :down,
+                all: true,
+                prefix: prefix
+              )
+
+              Ecto.Migration.SchemaMigration.down(repo, repo.config(), version, prefix: prefix)
+            end)
+          end)
+        end
+      end)
+    else
+      Ecto.Migrator.with_repo(repo, fn repo ->
+        {repo, query, opts} = Ecto.Migration.SchemaMigration.versions(repo, repo.config(), nil)
+
+        repo.transaction(fn ->
+          versions = repo.all(query, opts)
+
+          dev_migrations
+          |> Enum.map(&extract_migration_info/1)
+          |> Enum.filter(& &1)
+          |> Enum.map(&load_migration!/1)
+          |> Enum.sort()
+          |> Enum.reverse()
+          |> Enum.filter(fn {version, _} ->
+            version in versions
+          end)
+          |> Enum.each(fn {version, mod} ->
+            Ecto.Migration.Runner.run(
+              repo,
+              [],
+              version,
+              mod,
+              :forward,
+              :down,
+              :down,
+              all: true
+            )
+
+            Ecto.Migration.SchemaMigration.down(repo, repo.config(), version, [])
+          end)
+        end)
+      end)
+    end
+
+    Enum.each(dev_migrations, &File.rm!/1)
+  end
+
+  defp extract_migration_info(file) do
+    base = Path.basename(file)
+
+    case Integer.parse(Path.rootname(base)) do
+      {integer, "_" <> name} -> {integer, name, file}
+      _ -> nil
+    end
+  end
+
+  defp load_migration!({version, _, file}) when is_binary(file) do
+    loaded_modules = file |> compile_file() |> Enum.map(&elem(&1, 0))
+
+    case Enum.find(loaded_modules, &migration?/1) do
+      nil ->
+        raise Ecto.MigrationError,
+              "file #{Path.relative_to_cwd(file)} does not define an Ecto.Migration"
+
+      mod ->
+        {version, mod}
+    end
+  end
+
+  defp compile_file(file) do
+    AshPostgres.MigrationCompileCache.start_link()
+    AshPostgres.MigrationCompileCache.compile_file(file)
+  end
+
+  defp migration?(mod) do
+    function_exported?(mod, :__migration__, 0)
+  end
+
+  def remove_dev_snapshots(snapshots, opts) do
+    Enum.each(snapshots, fn snapshot ->
+      folder = get_snapshot_folder(snapshot, opts)
+      snapshot_path = get_snapshot_path(snapshot, folder)
+
+      # Guard against missing directories - can happen for new resources or when
+      # get_snapshot_path's fallback logic returns a non-existent path for
+      # resources in non-public schemas
+      if File.dir?(snapshot_path) do
+        snapshot_path
+        |> File.ls!()
+        |> Enum.filter(&String.contains?(&1, "_dev.json"))
+        |> Enum.each(fn snapshot_name ->
+          snapshot_path
+          |> Path.join(snapshot_name)
+          |> File.rm!()
+        end)
+      end
+    end)
+  end
+
+  defp split_into_migrations(operations) do
+    operations
+    |> Enum.split_with(fn
+      %Operation.AddCustomIndex{index: %{concurrently: true}} ->
+        true
+
+      %Operation.AddUniqueIndex{concurrently: true} ->
+        true
+
+      _ ->
+        false
+    end)
+    |> case do
+      {[], ops} ->
+        [ops]
+
+      {concurrent_indexes, ops} ->
+        concurrent_unique_columns =
+          Enum.flat_map(concurrent_indexes, fn
+            %Operation.AddUniqueIndex{table: table, identity: %{keys: keys}} ->
+              Enum.map(keys, &{table, &1})
+
+            _ ->
+              []
+          end)
+
+        if Enum.empty?(concurrent_unique_columns) do
+          [ops, concurrent_indexes]
+        else
+          {deferred_fk_ops, regular_ops} =
+            Enum.split_with(
+              ops,
+              &references_concurrent_unique_column?(&1, concurrent_unique_columns)
+            )
+
+          [regular_ops, concurrent_indexes, deferred_fk_ops]
+        end
+    end
+    |> Enum.reject(&Enum.empty?/1)
+  end
+
+  defp references_concurrent_unique_column?(
+         %Operation.AlterAttribute{
+           new_attribute: %{references: %{table: ref_table, destination_attribute: ref_col}}
+         },
+         concurrent_unique_columns
+       )
+       when not is_nil(ref_table) do
+    {ref_table, ref_col} in concurrent_unique_columns
+  end
+
+  defp references_concurrent_unique_column?(
+         %Operation.AddAttribute{
+           attribute: %{references: %{table: ref_table, destination_attribute: ref_col}}
+         },
+         concurrent_unique_columns
+       )
+       when not is_nil(ref_table) do
+    {ref_table, ref_col} in concurrent_unique_columns
+  end
+
+  defp references_concurrent_unique_column?(
+         %Operation.DropForeignKey{
+           attribute: %{references: %{table: ref_table, destination_attribute: ref_col}}
+         },
+         concurrent_unique_columns
+       )
+       when not is_nil(ref_table) do
+    {ref_table, ref_col} in concurrent_unique_columns
+  end
+
+  defp references_concurrent_unique_column?(_op, _concurrent_unique_columns), do: false
+
+  defp add_order_to_operations({snapshot, operations}) do
+    operations_with_order = Enum.map(operations, &add_order_to_operation(&1, snapshot.attributes))
+
+    {snapshot, operations_with_order}
+  end
+
+  defp add_order_to_operation(%{attribute: attribute} = op, attributes) do
+    order = Enum.find_index(attributes, &(&1.source == attribute.source))
+    attribute = Map.put(attribute, :order, order)
+
+    %{op | attribute: attribute}
+  end
+
+  defp add_order_to_operation(%{new_attribute: attribute} = op, attributes) do
+    order = Enum.find_index(attributes, &(&1.source == attribute.source))
+    attribute = Map.put(attribute, :order, order)
+
+    %{op | new_attribute: attribute}
+  end
+
+  defp add_order_to_operation(op, _), do: op
+
+  defp organize_operations([]), do: []
+
+  defp organize_operations(operations) do
+    operations
+    |> sort_operations()
+    |> streamline()
+    |> group_into_phases()
+    |> clean_phases()
+  end
+
+  defp clean_phases(phases) do
+    phases
+    |> Enum.flat_map(fn
+      %{operations: []} ->
+        []
+
+      %{operations: operations} = phase ->
+        if Enum.all?(operations, &match?(%{commented?: true}, &1)) do
+          [%{phase | commented?: true}]
+        else
+          [phase]
+        end
+
+      op ->
+        [op]
+    end)
+  end
+
+  defp deduplicate_snapshots(snapshots, opts, non_tenant_snapshots, existing_snapshots \\ []) do
+    grouped =
+      snapshots
+      |> Enum.group_by(fn snapshot ->
+        {snapshot.table, snapshot.schema}
+      end)
+
+    old_snapshots =
+      Map.new(grouped, fn {key, [snapshot | _]} ->
+        old_snapshot =
+          if opts.no_shell? do
+            Enum.find(existing_snapshots, &(&1.table == snapshot.table))
+          else
+            get_existing_snapshot(snapshot, opts)
+          end
+
+        {
+          key,
+          old_snapshot
+        }
+      end)
+
+    old_non_tenant_snapshots =
+      non_tenant_snapshots
+      |> Enum.uniq_by(&{&1.table, &1.schema})
+      |> Enum.map(fn snapshot ->
+        if opts.no_shell? do
+          Enum.find(
+            existing_snapshots,
+            &(&1.table == snapshot.table && &1.schema == snapshot.schema)
+          )
+        else
+          get_existing_snapshot(snapshot, opts)
+        end
+      end)
+
+    old_snapshots_list = Map.values(old_snapshots) ++ old_non_tenant_snapshots
+
+    old_snapshots =
+      Map.new(old_snapshots, fn {key, old_snapshot} ->
+        if old_snapshot do
+          {key, add_references_primary_key(old_snapshot, old_snapshots_list)}
+        else
+          {key, old_snapshot}
+        end
+      end)
+
+    grouped
+    |> Enum.map(fn {key, [snapshot | _] = snapshots} ->
+      existing_snapshot = old_snapshots[key]
+
+      {primary_key, identities} = merge_primary_keys(existing_snapshot, snapshots, opts)
+
+      attributes = Enum.flat_map(snapshots, & &1.attributes)
+
+      count_with_create =
+        snapshots
+        |> Enum.count(& &1.has_create_action)
+
+      new_snapshot = %{
+        snapshot
+        | attributes: merge_attributes(attributes, snapshot.table, count_with_create),
+          identities: snapshots |> Enum.flat_map(& &1.identities) |> Enum.uniq(),
+          custom_indexes: snapshots |> Enum.flat_map(& &1.custom_indexes) |> Enum.uniq(),
+          custom_statements: snapshots |> Enum.flat_map(& &1.custom_statements) |> Enum.uniq()
+      }
+
+      all_identities =
+        new_snapshot.identities
+        |> Kernel.++(identities)
+        |> Enum.sort_by(& &1.name)
+        # We sort the identities by there being an identity with a matching name in the existing snapshot
+        # so that we prefer identities that currently exist over new ones
+        |> Enum.sort_by(fn identity ->
+          existing_snapshot
+          |> Kernel.||(%{})
+          |> Map.get(:identities, [])
+          |> Enum.any?(fn existing_identity ->
+            existing_identity.name == identity.name
+          end)
+          |> Kernel.!()
+        end)
+        |> Enum.uniq_by(fn identity ->
+          {identity.keys, identity.base_filter, identity.where}
+        end)
+
+      new_snapshot = %{new_snapshot | identities: all_identities}
+
+      {
+        %{
+          new_snapshot
+          | attributes:
+              Enum.map(new_snapshot.attributes, fn attribute ->
+                if attribute.source in primary_key do
+                  %{attribute | primary_key?: true}
+                else
+                  %{attribute | primary_key?: false}
+                end
+              end)
+        },
+        existing_snapshot
+      }
+    end)
+  end
+
+  defp merge_attributes(attributes, table, count) do
+    attributes
+    |> Enum.with_index()
+    |> Enum.map(fn {attr, i} -> Map.put(attr, :order, i) end)
+    |> Enum.group_by(& &1.source)
+    |> Enum.map(fn {source, attributes} ->
+      size =
+        attributes
+        |> Enum.map(& &1.size)
+        |> Enum.filter(& &1)
+        |> case do
+          [] ->
+            nil
+
+          sizes ->
+            Enum.max(sizes)
+        end
+
+      %{
+        source: source,
+        type: merge_types(Enum.map(attributes, & &1.type), source, table),
+        size: size,
+        default: merge_defaults(Enum.map(attributes, & &1.default)),
+        allow_nil?: Enum.any?(attributes, & &1.allow_nil?) || Enum.count(attributes) < count,
+        generated?: Enum.any?(attributes, & &1.generated?),
+        references: merge_references(Enum.map(attributes, & &1.references), source, table),
+        primary_key?: false,
+        scale: attributes |> Enum.map(& &1[:scale]) |> Enum.max(),
+        precision: attributes |> Enum.map(& &1[:precision]) |> Enum.max(),
+        order: attributes |> Enum.map(& &1.order) |> Enum.min()
+      }
+    end)
+    |> Enum.sort(&(&1.order < &2.order))
+    |> Enum.map(&Map.drop(&1, [:order]))
+  end
+
+  defp merge_references(references, name, table) do
+    references
+    |> Enum.reject(&is_nil/1)
+    |> Enum.uniq()
+    |> case do
+      [] ->
+        nil
+
+      references ->
+        %{
+          destination_attribute: merge_uniq!(references, table, :destination_attribute, name),
+          deferrable: merge_uniq!(references, table, :deferrable, name),
+          index?: merge_uniq!(references, table, :index?, name),
+          index_where: merge_uniq!(references, table, :index_where, name),
+          destination_attribute_default:
+            merge_uniq!(references, table, :destination_attribute_default, name),
+          destination_attribute_generated:
+            merge_uniq!(references, table, :destination_attribute_generated, name),
+          multitenancy: merge_uniq!(references, table, :multitenancy, name),
+          primary_key?: merge_uniq!(references, table, :primary_key?, name),
+          on_delete: merge_uniq!(references, table, :on_delete, name),
+          on_update: merge_uniq!(references, table, :on_update, name),
+          match_with: merge_uniq!(references, table, :match_with, name) |> to_map(),
+          match_type: merge_uniq!(references, table, :match_type, name),
+          name: merge_uniq!(references, table, :name, name),
+          table: merge_uniq!(references, table, :table, name),
+          schema: merge_uniq!(references, table, :schema, name)
+        }
+    end
+  end
+
+  defp to_map(nil), do: nil
+  defp to_map(kw_list) when is_list(kw_list), do: Map.new(kw_list)
+
+  defp merge_uniq!(references, table, field, attribute) do
+    references
+    |> Enum.map(&Map.get(&1, field))
+    |> Enum.reject(&is_nil/1)
+    |> Enum.uniq()
+    |> case do
+      [] ->
+        nil
+
+      [value] ->
+        value
+
+      values ->
+        values = Enum.map_join(values, "\n", &"  * #{inspect(&1)}")
+
+        raise """
+        Conflicting configurations for references for #{table}.#{attribute}:
+
+        Values:
+
+        #{values}
+        """
+    end
+  end
+
+  defp merge_types(types, name, table) do
+    types
+    |> Enum.uniq()
+    |> case do
+      [type] ->
+        type
+
+      types ->
+        raise "Conflicting types for table `#{table}.#{name}`: #{inspect(types)}"
+    end
+  end
+
+  defp merge_defaults(defaults) do
+    defaults
+    |> Enum.uniq()
+    |> case do
+      [default] -> default
+      _ -> "nil"
+    end
+  end
+
+  defp merge_primary_keys(nil, [snapshot | _] = snapshots, opts) do
+    snapshots
+    |> Enum.map(&pkey_names(&1.attributes))
+    |> Enum.uniq()
+    |> case do
+      [pkey_names] ->
+        {pkey_names, []}
+
+      unique_primary_keys ->
+        unique_primary_key_names =
+          unique_primary_keys
+          |> Enum.with_index()
+          |> Enum.map_join("\n", fn {pkey, index} ->
+            "#{index}: #{inspect(pkey)}"
+          end)
+
+        choice =
+          if opts.no_shell? do
+            raise "Unimplemented: cannot resolve primary key ambiguity without shell input"
+          else
+            message = """
+            Which primary key should be used for the table `#{snapshot.table}` (enter the number)?
+
+            #{unique_primary_key_names}
+            """
+
+            opts
+            |> prompt(message)
+            |> String.trim()
+            |> String.to_integer()
+          end
+
+        identities =
+          unique_primary_keys
+          |> List.delete_at(choice)
+          |> Enum.map(fn pkey_names ->
+            pkey_name_string = Enum.join(pkey_names, "_")
+            name = snapshot.table <> "_" <> pkey_name_string
+
+            %{
+              keys: pkey_names,
+              name: name,
+              index_name: name,
+              base_filter: nil,
+              all_tenants?: false,
+              nils_distinct?: false,
+              where: nil
+            }
+          end)
+
+        primary_key = Enum.sort(Enum.at(unique_primary_keys, choice))
+
+        identities =
+          Enum.reject(identities, fn identity ->
+            identity.keys == primary_key
+          end)
+
+        {primary_key, identities}
+    end
+  end
+
+  defp merge_primary_keys(existing_snapshot, snapshots, opts) do
+    pkey_names = pkey_names(existing_snapshot.attributes)
+
+    one_pkey_exists? =
+      Enum.any?(snapshots, fn snapshot ->
+        pkey_names(snapshot.attributes) == pkey_names
+      end)
+
+    if one_pkey_exists? do
+      identities =
+        snapshots
+        |> Enum.map(&pkey_names(&1.attributes))
+        |> Enum.uniq()
+        |> Enum.reject(&(&1 == pkey_names))
+        |> Enum.map(fn pkey_names ->
+          pkey_name_string = Enum.join(pkey_names, "_")
+          name = existing_snapshot.table <> "_" <> pkey_name_string
+
+          %{
+            keys: pkey_names,
+            name: name,
+            base_filter: nil,
+            all_tenants?: false,
+            nils_distinct?: false,
+            where: nil
+          }
+        end)
+
+      {pkey_names, identities}
+    else
+      merge_primary_keys(nil, snapshots, opts)
+    end
+  end
+
+  defp yes?(opts, message) do
+    if opts.check do
+      true
+    else
+      Mix.shell().yes?(message)
+    end
+  end
+
+  defp drop_table_confirmed?(existing_snapshot, opts) do
+    cond do
+      opts.check ->
+        false
+
+      opts.dev ->
+        true
+
+      opts.no_shell? ->
+        table_label =
+          if existing_snapshot.schema do
+            "#{existing_snapshot.schema}.#{existing_snapshot.table}"
+          else
+            existing_snapshot.table
+          end
+
+        raise "Unimplemented: cannot determine whether to generate DROP for table #{table_label} without shell input"
+
+      true ->
+        message =
+          if existing_snapshot.schema do
+            "Table #{existing_snapshot.schema}.#{existing_snapshot.table} no longer has a resource. " <>
+              "Generate a migration to DROP this table? This will permanently remove the table and its data."
+          else
+            "Table #{existing_snapshot.table} no longer has a resource. " <>
+              "Generate a migration to DROP this table? This will permanently remove the table and its data."
+          end
+
+        yes?(opts, message)
+    end
+  end
+
+  defp prompt(opts, message) do
+    if opts.check do
+      "response"
+    else
+      Mix.shell().prompt(message)
+    end
+  end
+
+  defp pkey_names(attributes) do
+    attributes
+    |> Enum.filter(& &1.primary_key?)
+    |> Enum.map(& &1.source)
+    |> Enum.sort()
+  end
+
+  defp migration_path(opts, repo, tenant? \\ false) do
+    # Copied from ecto's mix task, thanks Ecto ❤️
+    config = repo.config()
+
+    if tenant? do
+      case opts.tenant_migration_path || config[:tenant_migrations_path] do
+        nil ->
+          priv = AshPostgres.Mix.Helpers.source_repo_priv(repo)
+          Path.join(priv, "tenant_migrations")
+
+        path ->
+          path
+      end
+    else
+      case opts.migration_path || config[:migrations_path] do
+        nil ->
+          priv = AshPostgres.Mix.Helpers.source_repo_priv(repo)
+          Path.join(priv, "migrations")
+
+        path ->
+          path
+      end
+    end
+  end
+
+  defp repo_name(repo) do
+    repo |> Module.split() |> List.last() |> Macro.underscore()
+  end
+
+  defp migration({up, down}, repo, opts, tenant?, run_without_transaction?, split_index) do
+    migration_path = migration_path(opts, repo, tenant?)
+
+    require_name!(opts)
+
+    split_suffix = if split_index > 0, do: "_#{split_index}", else: ""
+
+    {migration_name, last_part} =
+      if opts.name do
+        {"#{timestamp()}_#{opts.name}#{split_suffix}", "#{opts.name}#{split_suffix}"}
+      else
+        count =
+          migration_path
+          |> Path.join("*_migrate_resources*")
+          |> Path.wildcard()
+          |> Enum.map(fn path ->
+            path
+            |> Path.basename()
+            |> String.split("_migrate_resources", parts: 2)
+            |> Enum.at(1)
+            |> Integer.parse()
+            |> case do
+              {integer, _} ->
+                integer
+
+              _ ->
+                0
+            end
+          end)
+          |> Enum.max(fn -> 0 end)
+          |> Kernel.+(1)
+
+        {"#{timestamp()}_migrate_resources#{count}#{split_suffix}",
+         "migrate_resources#{count}#{split_suffix}"}
+      end
+
+    migration_file =
+      migration_path
+      |> Path.join(migration_name <> "#{if opts.dev, do: "_dev"}.exs")
+
+    module_name =
+      if tenant? do
+        Module.concat([repo, TenantMigrations, Macro.camelize(last_part)])
+      else
+        Module.concat([repo, Migrations, Macro.camelize(last_part)])
+      end
+
+    module_attributes =
+      if run_without_transaction? do
+        """
+        @disable_ddl_transaction true
+        @disable_migration_lock true
+        """
+      end
+
+    contents = """
+    defmodule #{inspect(module_name)} do
+      @moduledoc \"\"\"
+      Updates resources based on their most recent snapshots.
+
+      This file was autogenerated with `mix ash_postgres.generate_migrations`
+      \"\"\"
+
+      use Ecto.Migration
+
+      #{module_attributes}
+
+      def up do
+        #{up}
+      end
+
+      def down do
+        #{down}
+      end
+    end
+    """
+
+    try do
+      {migration_file, format(migration_file, contents, opts)}
+    rescue
+      exception ->
+        reraise(
+          """
+          Exception while formatting generated code:
+          #{Exception.format(:error, exception, __STACKTRACE__)}
+
+          Code:
+
+          #{add_line_numbers(contents)}
+
+          To generate it unformatted anyway, but manually fix it, use the `--no-format` option.
+          """,
+          __STACKTRACE__
+        )
+    end
+  end
+
+  defp add_line_numbers(contents) do
+    lines = String.split(contents, "\n")
+
+    digits = String.length(to_string(Enum.count(lines)))
+
+    lines
+    |> Enum.with_index()
+    |> Enum.map_join("\n", fn {line, index} ->
+      "#{String.pad_trailing(to_string(index), digits, " ")} | #{line}"
+    end)
+  end
+
+  defp create_new_snapshot(snapshots, repo_name, opts, tenant?) do
+    Enum.map(snapshots, fn snapshot ->
+      snapshot_binary = snapshot_to_binary(snapshot)
+
+      snapshot_folder =
+        if tenant? do
+          opts
+          |> snapshot_path(snapshot.repo)
+          |> Path.join(repo_name)
+          |> Path.join("tenants")
+        else
+          opts
+          |> snapshot_path(snapshot.repo)
+          |> Path.join(repo_name)
+        end
+
+      dev = if opts.dev, do: "_dev"
+
+      snapshot_file =
+        if snapshot.schema do
+          Path.join(
+            snapshot_folder,
+            "#{snapshot.schema}.#{snapshot.table}/#{timestamp()}#{dev}.json"
+          )
+        else
+          Path.join(snapshot_folder, "#{snapshot.table}/#{timestamp()}#{dev}.json")
+        end
+
+      File.mkdir_p(Path.dirname(snapshot_file))
+
+      old_snapshot_folder = Path.join(snapshot_folder, "#{snapshot.table}#{dev}.json")
+
+      if File.exists?(old_snapshot_folder) do
+        new_snapshot_folder = Path.join(snapshot_folder, "#{snapshot.table}/initial#{dev}.json")
+        File.rename(old_snapshot_folder, new_snapshot_folder)
+      end
+
+      {snapshot_file, snapshot_binary}
+    end)
+  end
+
+  @doc false
+  def build_up_and_down(phases) do
+    up =
+      Enum.map_join(phases, "\n", fn phase ->
+        phase
+        |> phase.__struct__.up()
+        |> Kernel.<>("\n")
+        |> maybe_comment(phase)
+      end)
+
+    down =
+      phases
+      |> Enum.reverse()
+      |> Enum.map_join("\n", fn phase ->
+        phase
+        |> phase.__struct__.down()
+        |> Kernel.<>("\n")
+        |> maybe_comment(phase)
+      end)
+
+    {up, down}
+  end
+
+  defp maybe_comment(text, %{commented?: true}) do
+    text
+    |> String.split("\n")
+    |> Enum.map_join("\n", fn line ->
+      if String.starts_with?(line, "#") do
+        line
+      else
+        "# #{line}"
+      end
+    end)
+  end
+
+  defp maybe_comment(text, _), do: text
+
+  defp format(path, string, opts) do
+    if opts.format do
+      {func, _} = Mix.Tasks.Format.formatter_for_file(path)
+      func.(string)
+    else
+      string
+    end
+  rescue
+    exception ->
+      Mix.shell().error("""
+      Exception while formatting:
+
+      #{inspect(exception)}
+
+      #{inspect(string)}
+      """)
+
+      reraise exception, __STACKTRACE__
+  end
+
+  defp streamline(ops, acc \\ [])
+  defp streamline([], acc), do: Enum.reverse(acc)
+
+  defp streamline(
+         [
+           %Operation.AddAttribute{
+             attribute: %{
+               source: name
+             },
+             schema: schema,
+             table: table
+           } = add
+           | rest
+         ],
+         acc
+       ) do
+    rest
+    |> Enum.take_while(fn
+      %custom{} when custom in [Operation.AddCustomStatement, Operation.RemoveCustomStatement] ->
+        false
+
+      op ->
+        op.table == table && op.schema == schema
+    end)
+    |> Enum.with_index()
+    |> Enum.find(fn
+      {%Operation.AlterAttribute{
+         new_attribute: %{source: ^name, references: references},
+         old_attribute: %{source: ^name}
+       }, _}
+      when not is_nil(references) ->
+        true
+
+      _ ->
+        false
+    end)
+    |> case do
+      nil ->
+        streamline(rest, [add | acc])
+
+      {alter, index} ->
+        new_attribute = Map.put(add.attribute, :references, alter.new_attribute.references)
+        streamline(List.delete_at(rest, index), [%{add | attribute: new_attribute} | acc])
+    end
+  end
+
+  defp streamline([first | rest], acc) do
+    streamline(rest, [first | acc])
+  end
+
+  defp group_into_phases(ops, current \\ nil, acc \\ [])
+
+  defp group_into_phases([], nil, acc), do: Enum.reverse(acc)
+
+  defp group_into_phases([], phase, acc) do
+    phase = %{phase | operations: Enum.reverse(phase.operations)}
+    Enum.reverse([phase | acc])
+  end
+
+  defp group_into_phases(
+         [
+           %Operation.CreateTable{
+             table: table,
+             schema: schema,
+             multitenancy: multitenancy,
+             repo: repo,
+             create_table_options: create_table_options
+           }
+           | rest
+         ],
+         nil,
+         acc
+       ) do
+    group_into_phases(
+      rest,
+      %Phase.Create{
+        table: table,
+        schema: schema,
+        multitenancy: multitenancy,
+        repo: repo,
+        create_table_options: create_table_options
+      },
+      acc
+    )
+  end
+
+  defp group_into_phases(
+         [
+           %Operation.DropTable{
+             table: table,
+             schema: schema,
+             multitenancy: multitenancy,
+             repo: repo
+           }
+           | rest
+         ],
+         nil,
+         acc
+       ) do
+    group_into_phases(rest, nil, [
+      %Phase.Drop{
+        table: table,
+        schema: schema,
+        multitenancy: multitenancy,
+        repo: repo
+      }
+      | acc
+    ])
+  end
+
+  defp group_into_phases(
+         [%Operation.DropTable{} = op | rest],
+         phase,
+         acc
+       )
+       when not is_nil(phase) do
+    phase = %{phase | operations: Enum.reverse(phase.operations)}
+    group_into_phases([op | rest], nil, [phase | acc])
+  end
+
+  defp group_into_phases(
+         [%Operation.AddAttribute{table: table, schema: schema} = op | rest],
+         %{table: table, schema: schema} = phase,
+         acc
+       ) do
+    group_into_phases(rest, %{phase | operations: [op | phase.operations]}, acc)
+  end
+
+  defp group_into_phases(
+         [%Operation.AlterAttribute{table: table, schema: schema} = op | rest],
+         %Phase.Alter{table: table, schema: schema} = phase,
+         acc
+       ) do
+    group_into_phases(rest, %{phase | operations: [op | phase.operations]}, acc)
+  end
+
+  defp group_into_phases(
+         [%Operation.RenameAttribute{table: table, schema: schema} = op | rest],
+         %Phase.Alter{table: table, schema: schema} = phase,
+         acc
+       ) do
+    group_into_phases(rest, %{phase | operations: [op | phase.operations]}, acc)
+  end
+
+  defp group_into_phases(
+         [%Operation.RemoveAttribute{table: table, schema: schema} = op | rest],
+         %{table: table, schema: schema} = phase,
+         acc
+       ) do
+    group_into_phases(rest, %{phase | operations: [op | phase.operations]}, acc)
+  end
+
+  defp group_into_phases([%{no_phase: true} = op | rest], nil, acc) do
+    group_into_phases(rest, nil, [op | acc])
+  end
+
+  defp group_into_phases([operation | rest], nil, acc) do
+    phase = %Phase.Alter{
+      operations: [operation],
+      multitenancy: operation.multitenancy,
+      table: operation.table,
+      schema: operation.schema
+    }
+
+    group_into_phases(rest, phase, acc)
+  end
+
+  defp group_into_phases(operations, phase, acc) do
+    phase = %{phase | operations: Enum.reverse(phase.operations)}
+    group_into_phases(operations, nil, [phase | acc])
+  end
+
+  defp sort_operations(ops, acc \\ [])
+  defp sort_operations([], acc), do: acc
+
+  defp sort_operations([op | rest], []), do: sort_operations(rest, [op])
+
+  defp sort_operations([op | rest], acc) do
+    acc = Enum.reverse(acc)
+
+    after_index = Enum.find_index(acc, &after?(op, &1))
+
+    new_acc =
+      if after_index do
+        acc
+        |> List.insert_at(after_index, op)
+        |> Enum.reverse()
+      else
+        [op | Enum.reverse(acc)]
+      end
+
+    sort_operations(rest, new_acc)
+  end
+
+  defp after?(_, %Operation.AlterDeferrability{direction: :down}), do: true
+  defp after?(%Operation.AlterDeferrability{direction: :up}, _), do: true
+
+  defp after?(
+         %Operation.RemovePrimaryKey{},
+         %Operation.DropForeignKey{}
+       ),
+       do: true
+
+  defp after?(
+         %Operation.DropForeignKey{},
+         %Operation.RemovePrimaryKey{}
+       ),
+       do: false
+
+  defp after?(%Operation.RemovePrimaryKey{}, _), do: false
+  defp after?(_, %Operation.RemovePrimaryKey{}), do: true
+  defp after?(%Operation.RemovePrimaryKeyDown{}, _), do: true
+  defp after?(_, %Operation.RemovePrimaryKeyDown{}), do: false
+
+  defp after?(%Operation.AddPrimaryKeyDown{}, _), do: false
+  defp after?(_, %Operation.AddPrimaryKeyDown{}), do: true
+
+  defp after?(%Operation.AddPrimaryKey{}, _), do: true
+  defp after?(_, %Operation.AddPrimaryKey{}), do: false
+
+  defp after?(
+         %Operation.AddCustomStatement{},
+         _
+       ),
+       do: true
+
+  defp after?(
+         _,
+         %Operation.RemoveCustomStatement{}
+       ),
+       do: true
+
+  defp after?(
+         %Operation.AddAttribute{attribute: %{order: l}, table: table, schema: schema},
+         %Operation.AddAttribute{attribute: %{order: r}, table: table, schema: schema}
+       ),
+       do: l > r
+
+  defp after?(
+         %Operation.RenameUniqueIndex{
+           table: table,
+           schema: schema
+         },
+         %{table: table, schema: schema}
+       ) do
+    true
+  end
+
+  # CreateTable must appear before AddUniqueIndex for the same table (table must exist first).
+  defp after?(
+         %Operation.CreateTable{table: table, schema: schema},
+         %Operation.AddUniqueIndex{table: table, schema: schema}
+       ),
+       do: false
+
+  # Unique index must be created before any alter that adds FKs referencing it.
+  defp after?(
+         %Operation.AddUniqueIndex{table: table, schema: schema},
+         %Operation.AlterAttribute{table: table, schema: schema}
+       ),
+       do: false
+
+  # AddUniqueIndex must come after CreateTable (table must exist first).
+  defp after?(
+         %Operation.AddUniqueIndex{table: table, schema: schema},
+         %Operation.CreateTable{table: table, schema: schema}
+       ),
+       do: true
+
+  # Place AddUniqueIndex after a specific attribute (by source) for the same
+  # table so it appears before AlterAttributes (issue #236).
+  defp after?(
+         %Operation.AddUniqueIndex{
+           insert_after_attribute_source: source,
+           table: table,
+           schema: schema
+         },
+         %Operation.AddAttribute{
+           table: table,
+           schema: schema,
+           attribute: %{source: source}
+         }
+       )
+       when not is_nil(source),
+       do: true
+
+  defp after?(
+         %Operation.AddUniqueIndex{
+           insert_after_attribute_source: source,
+           table: table,
+           schema: schema
+         },
+         %Operation.AddAttribute{
+           table: table,
+           schema: schema
+         }
+       )
+       when not is_nil(source),
+       do: true
+
+  defp after?(
+         %Operation.AddUniqueIndex{
+           identity: %{keys: keys},
+           table: table,
+           schema: schema
+         },
+         %Operation.AlterAttribute{
+           table: table,
+           schema: schema,
+           new_attribute: %{
+             references: %{table: table, destination_attribute: destination_attribute}
+           }
+         }
+       ) do
+    destination_attribute not in List.wrap(keys)
+  end
+
+  defp after?(
+         %Operation.AddUniqueIndex{
+           table: table,
+           schema: schema
+         },
+         %{table: table, schema: schema}
+       ) do
+    true
+  end
+
+  defp after?(
+         %Operation.AddReferenceIndex{
+           table: table,
+           schema: schema
+         },
+         %{table: table, schema: schema}
+       ) do
+    true
+  end
+
+  defp after?(
+         %Operation.AddCheckConstraint{
+           constraint: %{attribute: attribute_or_attributes},
+           table: table,
+           multitenancy: multitenancy,
+           schema: schema
+         },
+         %Operation.AddAttribute{table: table, attribute: %{source: source}, schema: schema}
+       ) do
+    source in List.wrap(attribute_or_attributes) ||
+      (multitenancy.attribute && multitenancy.attribute in List.wrap(attribute_or_attributes))
+  end
+
+  defp after?(
+         %Operation.AddCustomIndex{
+           table: table,
+           schema: schema
+         },
+         %Operation.AddAttribute{table: table, schema: schema}
+       ) do
+    true
+  end
+
+  defp after?(
+         %Operation.AddCustomIndex{
+           table: table,
+           schema: schema
+         },
+         %Operation.RenameAttribute{
+           table: table,
+           schema: schema
+         }
+       ) do
+    true
+  end
+
+  defp after?(
+         %Operation.AddReferenceIndex{
+           table: table,
+           schema: schema
+         },
+         %Operation.AddAttribute{table: table, schema: schema}
+       ) do
+    true
+  end
+
+  defp after?(
+         %Operation.AddCustomIndex{
+           table: table,
+           schema: schema,
+           index: %{
+             concurrently: true
+           }
+         },
+         %Operation.AddCustomIndex{
+           table: table,
+           schema: schema,
+           index: %{
+             concurrently: false
+           }
+         }
+       ) do
+    true
+  end
+
+  defp after?(
+         %Operation.AddCheckConstraint{table: table, schema: schema, constraint: %{name: name}},
+         %Operation.RemoveCheckConstraint{
+           table: table,
+           schema: schema,
+           constraint: %{
+             name: name
+           }
+         }
+       ),
+       do: true
+
+  defp after?(
+         %Operation.RemoveCheckConstraint{
+           table: table,
+           schema: schema,
+           constraint: %{
+             name: name
+           }
+         },
+         %Operation.AddCheckConstraint{table: table, schema: schema, constraint: %{name: name}}
+       ),
+       do: false
+
+  defp after?(
+         %Operation.AddCheckConstraint{
+           constraint: %{attribute: attribute_or_attributes},
+           table: table,
+           schema: schema
+         },
+         %Operation.AlterAttribute{table: table, new_attribute: %{source: source}, schema: schema}
+       ) do
+    source in List.wrap(attribute_or_attributes)
+  end
+
+  defp after?(
+         %Operation.AddCheckConstraint{
+           constraint: %{attribute: attribute_or_attributes},
+           table: table,
+           schema: schema
+         },
+         %Operation.RenameAttribute{
+           table: table,
+           new_attribute: %{source: source},
+           schema: schema
+         }
+       ) do
+    source in List.wrap(attribute_or_attributes)
+  end
+
+  defp after?(
+         %Operation.RemoveUniqueIndex{table: table, schema: schema},
+         %Operation.AddUniqueIndex{table: table, schema: schema}
+       ) do
+    false
+  end
+
+  defp after?(
+         %Operation.RemoveCustomIndex{table: table, schema: schema},
+         %Operation.AddCustomIndex{table: table, schema: schema}
+       ) do
+    false
+  end
+
+  defp after?(
+         %Operation.RenameAttribute{
+           old_attribute: %{source: source},
+           table: table,
+           schema: schema
+         },
+         %Operation.RemoveUniqueIndex{
+           identity: %{keys: keys},
+           table: table,
+           schema: schema
+         }
+       ) do
+    source in List.wrap(keys)
+  end
+
+  defp after?(
+         %Operation.RemoveUniqueIndex{table: table, schema: schema},
+         %{table: table, schema: schema}
+       ) do
+    true
+  end
+
+  defp after?(
+         %Operation.RemoveCheckConstraint{
+           constraint: %{attribute: attributes},
+           table: table,
+           schema: schema
+         },
+         %Operation.RemoveAttribute{table: table, attribute: %{source: source}, schema: schema}
+       ) do
+    source in List.wrap(attributes)
+  end
+
+  defp after?(
+         %Operation.RemoveCheckConstraint{
+           constraint: %{attribute: attributes},
+           table: table,
+           schema: schema
+         },
+         %Operation.RenameAttribute{
+           table: table,
+           old_attribute: %{source: source},
+           schema: schema
+         }
+       ) do
+    source in List.wrap(attributes)
+  end
+
+  defp after?(%Operation.AlterAttribute{table: table, schema: schema}, %Operation.DropForeignKey{
+         table: table,
+         schema: schema,
+         direction: :up
+       }),
+       do: true
+
+  defp after?(
+         %Operation.AlterAttribute{table: table, schema: schema},
+         %Operation.DropForeignKey{
+           table: table,
+           schema: schema,
+           direction: :down
+         }
+       ),
+       do: false
+
+  defp after?(
+         %Operation.DropForeignKey{
+           table: table,
+           schema: schema,
+           direction: :down
+         },
+         %Operation.AlterAttribute{table: table, schema: schema}
+       ),
+       do: true
+
+  defp after?(%Operation.AddAttribute{table: table, schema: schema}, %Operation.CreateTable{
+         table: table,
+         schema: schema
+       }) do
+    true
+  end
+
+  defp after?(
+         %Operation.AddAttribute{
+           attribute: %{
+             references: %{table: table, destination_attribute: name}
+           }
+         },
+         %Operation.AddAttribute{table: table, attribute: %{source: name}}
+       ),
+       do: true
+
+  defp after?(
+         %Operation.AddAttribute{
+           table: table,
+           schema: schema,
+           attribute: %{
+             primary_key?: false
+           }
+         },
+         %Operation.AddAttribute{schema: schema, table: table, attribute: %{primary_key?: true}}
+       ),
+       do: true
+
+  defp after?(
+         %Operation.AddAttribute{
+           table: table,
+           schema: schema,
+           attribute: %{
+             primary_key?: true
+           }
+         },
+         %Operation.RemoveAttribute{
+           schema: schema,
+           table: table,
+           attribute: %{primary_key?: true}
+         }
+       ),
+       do: true
+
+  defp after?(
+         %Operation.AddAttribute{
+           table: table,
+           schema: schema,
+           attribute: %{
+             primary_key?: true
+           }
+         },
+         %Operation.AlterAttribute{
+           schema: schema,
+           table: table,
+           new_attribute: %{primary_key?: false},
+           old_attribute: %{primary_key?: true}
+         }
+       ),
+       do: true
+
+  defp after?(
+         %Operation.AddAttribute{
+           table: table,
+           schema: schema,
+           attribute: %{
+             primary_key?: true
+           }
+         },
+         %Operation.AlterAttribute{
+           schema: schema,
+           table: table,
+           new_attribute: %{primary_key?: false},
+           old_attribute: %{primary_key?: true}
+         }
+       ),
+       do: true
+
+  defp after?(
+         %Operation.RemoveAttribute{
+           schema: schema,
+           table: table,
+           attribute: %{primary_key?: true}
+         },
+         %Operation.AlterAttribute{
+           table: table,
+           schema: schema,
+           new_attribute: %{
+             primary_key?: true
+           },
+           old_attribute: %{
+             primary_key?: false
+           }
+         }
+       ),
+       do: true
+
+  defp after?(
+         %Operation.AlterAttribute{
+           schema: schema,
+           table: table,
+           new_attribute: %{primary_key?: false},
+           old_attribute: %{
+             primary_key?: true
+           }
+         },
+         %Operation.AlterAttribute{
+           table: table,
+           schema: schema,
+           new_attribute: %{
+             primary_key?: true
+           },
+           old_attribute: %{
+             primary_key?: false
+           }
+         }
+       ),
+       do: true
+
+  defp after?(
+         %Operation.AlterAttribute{
+           schema: schema,
+           table: table,
+           new_attribute: %{primary_key?: false},
+           old_attribute: %{
+             primary_key?: true
+           }
+         },
+         %Operation.AddAttribute{
+           table: table,
+           schema: schema,
+           attribute: %{
+             primary_key?: true
+           }
+         }
+       ),
+       do: false
+
+  defp after?(
+         %Operation.AlterAttribute{
+           table: table,
+           schema: schema,
+           new_attribute: %{primary_key?: false},
+           old_attribute: %{primary_key?: true}
+         },
+         %Operation.AddAttribute{
+           table: table,
+           schema: schema,
+           attribute: %{
+             primary_key?: true
+           }
+         }
+       ),
+       do: true
+
+  defp after?(
+         %Operation.AlterAttribute{
+           new_attribute: %{
+             references: %{destination_attribute: destination_attribute, table: table}
+           }
+         },
+         %Operation.AddUniqueIndex{identity: %{keys: keys}, table: table}
+       ) do
+    destination_attribute in keys
+  end
+
+  defp after?(
+         %Operation.AlterAttribute{
+           old_attribute: %{
+             source: source
+           },
+           table: table,
+           schema: schema
+         },
+         %Operation.RemoveUniqueIndex{identity: %{keys: keys}, table: table, schema: schema}
+       ) do
+    source in List.wrap(keys)
+  end
+
+  defp after?(
+         %Operation.AlterAttribute{
+           new_attribute: %{references: %{table: table, destination_attribute: source}}
+         },
+         %Operation.AlterAttribute{
+           new_attribute: %{
+             source: source
+           },
+           table: table
+         }
+       ) do
+    true
+  end
+
+  defp after?(
+         %Operation.AlterAttribute{
+           new_attribute: %{
+             source: source
+           },
+           table: table
+         },
+         %Operation.AlterAttribute{
+           new_attribute: %{references: %{table: table, destination_attribute: source}}
+         }
+       ) do
+    false
+  end
+
+  defp after?(
+         %Operation.RemoveAttribute{attribute: %{source: source}, table: table},
+         %Operation.AlterAttribute{
+           old_attribute: %{
+             references: %{table: table, destination_attribute: source}
+           }
+         }
+       ),
+       do: true
+
+  defp after?(
+         %Operation.AlterAttribute{
+           new_attribute: %{
+             references: %{table: table, destination_attribute: name}
+           }
+         },
+         %Operation.AddAttribute{table: table, attribute: %{source: name}}
+       ),
+       do: true
+
+  defp after?(%Operation.AddCheckConstraint{table: table, schema: schema}, %Operation.CreateTable{
+         table: table,
+         schema: schema
+       }) do
+    true
+  end
+
+  defp after?(
+         %Operation.AlterAttribute{new_attribute: %{references: references}, table: table},
+         %{table: table}
+       )
+       when not is_nil(references),
+       do: true
+
+  defp after?(%Operation.AddCheckConstraint{}, _), do: true
+  defp after?(%Operation.RemoveCheckConstraint{}, _), do: true
+
+  defp after?(
+         op,
+         %Operation.RenameTable{
+           new_table: table,
+           schema: schema
+         }
+       ) do
+    match?(%{table: ^table, schema: ^schema}, op)
+  end
+
+  defp after?(%Operation.RenameTable{}, _), do: false
+
+  defp after?(_, %Operation.DropTable{}), do: true
+  defp after?(%Operation.DropTable{}, _), do: false
+
+  defp after?(
+         %{table: table, schema: schema},
+         %Operation.MoveTableSchema{table: table, schema: schema}
+       ),
+       do: true
+
+  defp after?(%Operation.MoveTableSchema{}, _), do: false
+
+  defp after?(_, _), do: false
+
+  defp fetch_operations(snapshots, opts) do
+    # Reference diffs need to know when a prefix change is caused by moving
+    # the referenced table instead of by changing the foreign key itself.
+    schema_moves =
+      snapshots
+      |> Enum.flat_map(fn
+        {%{table: table, schema: new_schema}, %{schema: old_schema}}
+        when new_schema != old_schema ->
+          [{table, schema_key(old_schema), schema_key(new_schema)}]
+
+        _ ->
+          []
+      end)
+      |> MapSet.new()
+
+    snapshots
+    |> Enum.map(fn {snapshot, existing_snapshot} ->
+      {snapshot, do_fetch_operations(snapshot, existing_snapshot, opts, [], schema_moves)}
+    end)
+    |> Enum.reject(fn {_, ops} ->
+      Enum.empty?(ops)
+    end)
+  end
+
+  defp schema_key(nil), do: "public"
+  defp schema_key(schema), do: schema
+
+  defp resource_has_meaningful_content?(snapshot) do
+    [
+      snapshot.attributes,
+      snapshot.identities,
+      snapshot.custom_indexes,
+      snapshot.custom_statements,
+      snapshot.check_constraints
+    ]
+    |> Enum.any?(&Enum.any?/1)
+  end
+
+  defp do_fetch_operations(
+         snapshot,
+         existing_snapshot,
+         opts,
+         acc,
+         schema_moves
+       )
+
+  defp do_fetch_operations(
+         %{schema: new_schema} = snapshot,
+         %{schema: old_schema} = old_snapshot,
+         opts,
+         [],
+         schema_moves
+       )
+       when new_schema != old_schema do
+    # Preserve the old snapshot so schema changes become ALTER TABLE SET SCHEMA
+    # plus any real diffs, instead of create-table from an empty snapshot.
+    do_fetch_operations(
+      snapshot,
+      old_snapshot,
+      opts,
+      [
+        %Operation.MoveTableSchema{
+          table: snapshot.table,
+          schema: new_schema,
+          old_schema: old_schema,
+          new_schema: new_schema,
+          repo: snapshot.repo
+        }
+      ],
+      schema_moves
+    )
+  end
+
+  defp do_fetch_operations(snapshot, nil, opts, acc, schema_moves) do
+    if resource_has_meaningful_content?(snapshot) do
+      empty_snapshot = %{
+        attributes: [],
+        identities: [],
+        schema: nil,
+        custom_indexes: [],
+        custom_statements: [],
+        check_constraints: [],
+        table: snapshot.table,
+        repo: snapshot.repo,
+        base_filter: nil,
+        empty?: true,
+        multitenancy: %{
+          attribute: nil,
+          strategy: nil,
+          global: nil
+        }
+      }
+
+      do_fetch_operations(
+        snapshot,
+        empty_snapshot,
+        opts,
+        [
+          %Operation.CreateTable{
+            table: snapshot.table,
+            schema: snapshot.schema,
+            repo: snapshot.repo,
+            multitenancy: snapshot.multitenancy,
+            old_multitenancy: empty_snapshot.multitenancy,
+            create_table_options: snapshot.create_table_options
+          }
+          | acc
+        ],
+        schema_moves
+      )
+    else
+      if !opts.quiet do
+        Logger.info(
+          "Skipping migration for empty resource: #{snapshot.table} (no attributes, identities, indexes, statements, or constraints)"
+        )
+      end
+
+      acc
+    end
+  end
+
+  defp do_fetch_operations(snapshot, old_snapshot, opts, acc, schema_moves) do
+    attribute_operations = attribute_operations(snapshot, old_snapshot, opts, schema_moves)
+
+    {pkey_operations, attribute_operations} =
+      pkey_operations(snapshot, old_snapshot, attribute_operations, opts)
+
+    multitenancy_changed? =
+      Map.delete(snapshot.multitenancy, :global) != Map.delete(old_snapshot.multitenancy, :global)
+
+    custom_statements_to_add =
+      snapshot.custom_statements
+      |> Enum.reject(fn statement ->
+        Enum.any?(old_snapshot.custom_statements, &(&1.name == statement.name))
+      end)
+      |> Enum.map(&%Operation.AddCustomStatement{statement: &1, table: snapshot.table})
+
+    custom_statements_to_remove =
+      old_snapshot.custom_statements
+      |> Enum.reject(fn old_statement ->
+        Enum.any?(snapshot.custom_statements, &(&1.name == old_statement.name))
+      end)
+      |> Enum.map(&%Operation.RemoveCustomStatement{statement: &1, table: snapshot.table})
+
+    custom_statements_to_alter =
+      snapshot.custom_statements
+      |> Enum.flat_map(fn statement ->
+        old_statement = Enum.find(old_snapshot.custom_statements, &(&1.name == statement.name))
+
+        if old_statement &&
+             (old_statement.code? != statement.code? ||
+                old_statement.up != statement.up || old_statement.down != statement.down) do
+          [
+            %Operation.RemoveCustomStatement{statement: old_statement, table: snapshot.table},
+            %Operation.AddCustomStatement{statement: statement, table: snapshot.table}
+          ]
+        else
+          []
+        end
+      end)
+
+    custom_indexes_to_add =
+      Enum.filter(snapshot.custom_indexes, fn index ->
+        rewrite_for_multitenancy_change?(index, multitenancy_changed?) ||
+          !Enum.find(old_snapshot.custom_indexes, fn old_custom_index ->
+            indexes_match?(old_custom_index, old_snapshot, index, snapshot)
+          end)
+      end)
+      |> Enum.map(fn custom_index ->
+        %Operation.AddCustomIndex{
+          index: custom_index,
+          table: snapshot.table,
+          schema: snapshot.schema,
+          multitenancy: snapshot.multitenancy,
+          base_filter: snapshot.base_filter
+        }
+      end)
+
+    reference_indexes_to_add =
+      Enum.filter(snapshot.attributes, fn attribute ->
+        case Enum.find(old_snapshot.attributes, fn old_attribute ->
+               old_attribute.source == attribute.source
+             end) do
+          nil ->
+            attribute.references && attribute.references[:index?]
+
+          old_attribute ->
+            new_index? = attribute.references && attribute.references[:index?]
+            old_index? = old_attribute.references && old_attribute.references[:index?]
+            new_index_where = attribute.references && attribute.references[:index_where]
+            old_index_where = old_attribute.references && old_attribute.references[:index_where]
+
+            old_index? != new_index? ||
+              (new_index? && old_index_where != new_index_where) ||
+              (new_index? && multitenancy_changed?)
+        end
+      end)
+      |> Enum.map(fn attribute ->
+        %Operation.AddReferenceIndex{
+          table: snapshot.table,
+          schema: snapshot.schema,
+          source: attribute.source,
+          where: attribute.references[:index_where],
+          multitenancy: snapshot.multitenancy
+        }
+      end)
+
+    reference_indexes_to_remove =
+      Enum.filter(old_snapshot.attributes, fn old_attribute ->
+        attribute =
+          Enum.find(snapshot.attributes, fn attribute ->
+            attribute.source == old_attribute.source
+          end)
+
+        has_removed_index? =
+          attribute && !attribute[:references][:index?] && old_attribute[:references][:index?]
+
+        attribute_doesnt_exist? = !attribute && old_attribute[:references][:index?]
+
+        multitenancy_change_requires_rewrite? =
+          attribute && old_attribute[:references][:index?] && attribute[:references][:index?] &&
+            multitenancy_changed?
+
+        index_where_change_requires_rewrite? =
+          attribute && old_attribute[:references][:index?] && attribute[:references][:index?] &&
+            old_attribute[:references][:index_where] != attribute[:references][:index_where]
+
+        has_removed_index? || attribute_doesnt_exist? || multitenancy_change_requires_rewrite? ||
+          index_where_change_requires_rewrite?
+      end)
+      |> Enum.map(fn attribute ->
+        %Operation.RemoveReferenceIndex{
+          table: snapshot.table,
+          schema: snapshot.schema,
+          source: attribute.source,
+          where: attribute.references[:index_where],
+          multitenancy: snapshot.multitenancy,
+          old_multitenancy: old_snapshot.multitenancy
+        }
+      end)
+
+    custom_indexes_to_remove =
+      Enum.filter(old_snapshot.custom_indexes, fn old_custom_index ->
+        rewrite_for_multitenancy_change?(old_custom_index, multitenancy_changed?) ||
+          !Enum.find(snapshot.custom_indexes, fn index ->
+            indexes_match?(old_custom_index, old_snapshot, index, snapshot)
+          end)
+      end)
+      |> Enum.map(fn custom_index ->
+        %Operation.RemoveCustomIndex{
+          index: custom_index,
+          table: old_snapshot.table,
+          schema: old_snapshot.schema,
+          multitenancy: old_snapshot.multitenancy,
+          base_filter: old_snapshot.base_filter
+        }
+      end)
+
+    unique_indexes_to_remove =
+      Enum.filter(old_snapshot.identities, fn old_identity ->
+        rewrite_for_multitenancy_change?(old_identity, multitenancy_changed?) ||
+          !Enum.find(snapshot.identities, &identities_match?(&1, old_identity))
+      end)
+      |> Enum.map(fn identity ->
+        %Operation.RemoveUniqueIndex{
+          identity: identity,
+          table: snapshot.table,
+          schema: snapshot.schema
+        }
+      end)
+
+    unique_indexes_to_rename =
+      snapshot.identities
+      |> Enum.reject(&rewrite_for_multitenancy_change?(&1, multitenancy_changed?))
+      |> Enum.map(fn identity ->
+        Enum.find_value(old_snapshot.identities, fn old_identity ->
+          if identities_match?(old_identity, identity) &&
+               old_identity.index_name != identity.index_name do
+            {old_identity, identity}
+          end
+        end)
+      end)
+      |> Enum.filter(& &1)
+      |> Enum.map(fn {old_identity, new_identity} ->
+        %Operation.RenameUniqueIndex{
+          old_identity: old_identity,
+          new_identity: new_identity,
+          schema: snapshot.schema,
+          table: snapshot.table
+        }
+      end)
+
+    unique_indexes_to_add =
+      Enum.filter(snapshot.identities, fn identity ->
+        rewrite_for_multitenancy_change?(identity, multitenancy_changed?) ||
+          !Enum.find(old_snapshot.identities, &identities_match?(&1, identity))
+      end)
+      |> Enum.map(fn identity ->
+        {insert_after_attribute_source, _best_index} =
+          identity.keys
+          |> Enum.reduce({nil, -1}, fn key, {best_source, best_index} ->
+            case Enum.find_index(snapshot.attributes, &(&1.source == key)) do
+              nil ->
+                {best_source, best_index}
+
+              idx when idx > best_index ->
+                {key, idx}
+
+              _ ->
+                {best_source, best_index}
+            end
+          end)
+
+        %Operation.AddUniqueIndex{
+          identity: identity,
+          schema: snapshot.schema,
+          table: snapshot.table,
+          insert_after_attribute_source: insert_after_attribute_source,
+          concurrently: opts.concurrent_indexes
+        }
+      end)
+
+    constraints_to_add =
+      snapshot.check_constraints
+      |> Enum.reject(fn constraint ->
+        Enum.find(old_snapshot.check_constraints, fn old_constraint ->
+          old_constraint.check == constraint.check && old_constraint.name == constraint.name
+        end)
+      end)
+      |> Enum.map(fn constraint ->
+        %Operation.AddCheckConstraint{
+          constraint: constraint,
+          table: snapshot.table,
+          schema: snapshot.schema
+        }
+      end)
+
+    constraints_to_remove =
+      old_snapshot.check_constraints
+      |> Enum.reject(fn old_constraint ->
+        Enum.find(snapshot.check_constraints, fn constraint ->
+          old_constraint.check == constraint.check && old_constraint.name == constraint.name
+        end)
+      end)
+      |> Enum.map(fn old_constraint ->
+        %Operation.RemoveCheckConstraint{
+          constraint: old_constraint,
+          table: old_snapshot.table,
+          schema: old_snapshot.schema
+        }
+      end)
+
+    # Place unique indexes after create/add attributes but before alter attributes
+    # so FKs that reference identity columns see the unique index (issue #236).
+    {creates_and_adds, alter_and_rest} =
+      Enum.split_while(attribute_operations, fn
+        %Operation.AlterAttribute{} -> false
+        _ -> true
+      end)
+
+    # Schema moves must run before operations rendered against the new schema.
+    [
+      acc,
+      pkey_operations,
+      unique_indexes_to_remove,
+      creates_and_adds,
+      unique_indexes_to_add,
+      alter_and_rest,
+      reference_indexes_to_add,
+      reference_indexes_to_remove,
+      unique_indexes_to_rename,
+      constraints_to_remove,
+      constraints_to_add,
+      custom_indexes_to_add,
+      custom_indexes_to_remove,
+      custom_statements_to_add,
+      custom_statements_to_remove,
+      custom_statements_to_alter
+    ]
+    |> Enum.concat()
+    |> Enum.map(&Map.put(&1, :multitenancy, snapshot.multitenancy))
+    |> Enum.map(&Map.put(&1, :old_multitenancy, old_snapshot.multitenancy))
+  end
+
+  defp indexes_match?(left_index, left_snapshot, right_index, right_snapshot) do
+    custom_index_comparison_key(left_index, left_snapshot) ==
+      custom_index_comparison_key(right_index, right_snapshot)
+  end
+
+  defp custom_index_comparison_key(index, snapshot) do
+    index
+    |> Map.update!(:fields, fn fields ->
+      Enum.map(fields, &AshPostgres.CustomIndex.field_comparison_key/1)
+    end)
+    |> add_custom_index_name(snapshot.table)
+    |> Map.put(:where, {snapshot.base_filter, index.where})
+    |> Map.delete(:error_fields)
+  end
+
+  @identity_match_keys [:name, :keys, :base_filter, :all_tenants?, :nils_distinct?, :where]
+  defp identities_match?(left, right) do
+    Map.take(left, @identity_match_keys) == Map.take(right, @identity_match_keys)
+  end
+
+  defp rewrite_for_multitenancy_change?(index, multitenancy_changed?) do
+    !index.all_tenants? && multitenancy_changed?
+  end
+
+  defp add_custom_index_name(custom_index, table) do
+    custom_index
+    |> Map.put_new_lazy(:name, fn ->
+      AshPostgres.CustomIndex.name(table, %{fields: custom_index.fields})
+    end)
+    |> Map.update!(
+      :name,
+      &(&1 || AshPostgres.CustomIndex.name(table, %{fields: custom_index.fields}))
+    )
+  end
+
+  defp pkey_operations(snapshot, old_snapshot, attribute_operations, opts) do
+    if old_snapshot[:empty?] do
+      {[], attribute_operations}
+    else
+      must_drop_pkey? =
+        Enum.any?(
+          attribute_operations,
+          fn
+            %Operation.AlterAttribute{
+              old_attribute: %{primary_key?: old_primary_key},
+              new_attribute: %{primary_key?: new_primary_key}
+            }
+            when old_primary_key != new_primary_key ->
+              true
+
+            %Operation.AddAttribute{
+              attribute: %{primary_key?: true}
+            } ->
+              true
+
+            %Operation.RemoveAttribute{
+              attribute: %{primary_key?: true}
+            } ->
+              true
+
+            _ ->
+              false
+          end
+        )
+
+      must_add_primary_key? =
+        must_drop_pkey? &&
+          Enum.any?(snapshot.attributes, fn attribute ->
+            attribute.primary_key? &&
+              !Enum.any?(attribute_operations, fn
+                %Operation.AlterAttribute{} = operation ->
+                  operation.new_attribute.source == attribute.source
+
+                %Operation.AddAttribute{} = operation ->
+                  operation.attribute.source == attribute.source
+
+                _ ->
+                  false
+              end)
+          end)
+
+      must_add_primary_key_in_down? =
+        must_drop_pkey? &&
+          Enum.any?(snapshot.attributes, fn attribute ->
+            attribute.primary_key? &&
+              !Enum.any?(attribute_operations, fn
+                %Operation.AlterAttribute{} = operation ->
+                  operation.new_attribute.source == attribute.source
+
+                %Operation.AddAttribute{} = operation ->
+                  operation.attribute.source == attribute.source
+
+                _ ->
+                  false
+              end)
+          end)
+
+      drop_in_down? =
+        Enum.any?(attribute_operations, fn
+          %Operation.AlterAttribute{
+            new_attribute: %{primary_key?: true}
+          } ->
+            true
+
+          %Operation.AddAttribute{
+            attribute: %{primary_key?: true}
+          } ->
+            true
+
+          _ ->
+            false
+        end)
+
+      drop_in_down_commented? =
+        Enum.any?(attribute_operations, fn
+          %Operation.RemoveAttribute{
+            commented?: true,
+            attribute: %{primary_key?: true}
+          } ->
+            true
+
+          _ ->
+            false
+        end)
+
+      attribute_operations =
+        if must_add_primary_key? do
+          Enum.map(
+            attribute_operations,
+            fn
+              %Operation.AlterAttribute{} = operation ->
+                %{
+                  operation
+                  | new_attribute: %{
+                      operation.new_attribute
+                      | primary_key?: operation.old_attribute.primary_key?
+                    }
+                }
+
+              %Operation.AddAttribute{} = operation ->
+                %{operation | attribute: %{operation.attribute | primary_key?: false}}
+
+              other ->
+                other
+            end
+          )
+        else
+          attribute_operations
+        end
+
+      attribute_operations =
+        if must_add_primary_key_in_down? do
+          Enum.map(
+            attribute_operations,
+            fn
+              %Operation.AlterAttribute{} = operation ->
+                %{
+                  operation
+                  | old_attribute: %{
+                      operation.old_attribute
+                      | primary_key?: operation.new_attribute.primary_key?
+                    }
+                }
+
+              %Operation.RemoveAttribute{} = operation ->
+                %{operation | attribute: %{operation.attribute | primary_key?: false}}
+
+              other ->
+                other
+            end
+          )
+        else
+          attribute_operations
+        end
+
+      {[
+         must_drop_pkey? &&
+           %Operation.RemovePrimaryKey{schema: snapshot.schema, table: snapshot.table},
+         must_drop_pkey? && drop_in_down? &&
+           %Operation.RemovePrimaryKeyDown{
+             commented?: opts.dont_drop_columns && drop_in_down_commented?,
+             schema: snapshot.schema,
+             table: snapshot.table
+           },
+         must_add_primary_key? &&
+           %Operation.AddPrimaryKey{
+             schema: snapshot.schema,
+             table: snapshot.table,
+             keys:
+               Enum.flat_map(snapshot.attributes, fn attribute ->
+                 if attribute.primary_key? do
+                   [attribute.source]
+                 else
+                   []
+                 end
+               end)
+           },
+         must_add_primary_key_in_down? &&
+           %Operation.AddPrimaryKeyDown{
+             schema: old_snapshot.schema,
+             table: old_snapshot.table,
+             remove_old?: must_add_primary_key? && !(must_drop_pkey? && drop_in_down?),
+             keys:
+               Enum.flat_map(old_snapshot.attributes, fn attribute ->
+                 if attribute.primary_key? do
+                   [attribute.source]
+                 else
+                   []
+                 end
+               end)
+           }
+       ]
+       |> Enum.filter(& &1), attribute_operations}
+    end
+  end
+
+  defp attribute_operations(snapshot, old_snapshot, opts, schema_moves) do
+    attributes_to_add =
+      Enum.reject(snapshot.attributes, fn attribute ->
+        Enum.find(old_snapshot.attributes, &(&1.source == attribute.source))
+      end)
+
+    attributes_to_remove =
+      Enum.reject(old_snapshot.attributes, fn attribute ->
+        Enum.find(snapshot.attributes, &(&1.source == attribute.source))
+      end)
+
+    {attributes_to_add, attributes_to_remove, attributes_to_rename} =
+      resolve_renames(snapshot.table, attributes_to_add, attributes_to_remove, opts)
+
+    attributes_to_alter =
+      snapshot.attributes
+      |> Enum.map(fn attribute ->
+        {attribute,
+         Enum.find(
+           old_snapshot.attributes,
+           fn old_attribute ->
+             renaming_to_source =
+               Enum.find_value(attributes_to_rename, fn {new, old} ->
+                 if old.source == old_attribute.source do
+                   new.source
+                 end
+               end)
+
+             if (renaming_to_source || old_attribute.source) == attribute.source do
+               attributes_unequal?(
+                 old_attribute,
+                 attribute,
+                 snapshot.repo,
+                 old_snapshot,
+                 snapshot,
+                 not is_nil(renaming_to_source),
+                 schema_moves
+               )
+             end
+           end
+         )}
+      end)
+      |> Enum.filter(&elem(&1, 1))
+
+    rename_attribute_events =
+      Enum.map(attributes_to_rename, fn {new, old} ->
+        %Operation.RenameAttribute{
+          new_attribute: new,
+          old_attribute: old,
+          table: snapshot.table,
+          schema: snapshot.schema
+        }
+      end)
+
+    add_attribute_events =
+      Enum.flat_map(attributes_to_add, fn attribute ->
+        if attribute.references && has_reference?(snapshot.multitenancy, attribute) do
+          reference_ops =
+            if attribute.references.deferrable do
+              [
+                %Operation.AlterDeferrability{
+                  table: snapshot.table,
+                  schema: snapshot.schema,
+                  references: attribute.references,
+                  direction: :up
+                },
+                %Operation.AlterDeferrability{
+                  table: snapshot.table,
+                  schema: snapshot.schema,
+                  references: Map.get(attribute, :references),
+                  direction: :down
+                }
+              ]
+            else
+              []
+            end
+
+          [
+            %Operation.AddAttribute{
+              attribute: Map.delete(attribute, :references),
+              schema: snapshot.schema,
+              table: snapshot.table
+            },
+            %Operation.AlterAttribute{
+              old_attribute: Map.delete(attribute, :references),
+              new_attribute: attribute,
+              schema: snapshot.schema,
+              table: snapshot.table
+            },
+            %Operation.DropForeignKey{
+              attribute: attribute,
+              table: snapshot.table,
+              schema: snapshot.schema,
+              multitenancy: Map.get(attribute, :multitenancy),
+              direction: :down
+            }
+          ] ++ reference_ops
+        else
+          [
+            %Operation.AddAttribute{
+              attribute: attribute,
+              table: snapshot.table,
+              schema: snapshot.schema
+            }
+          ]
+        end
+      end)
+
+    alter_attribute_events =
+      Enum.flat_map(attributes_to_alter, fn {new_attribute, old_attribute} ->
+        deferrable_ops =
+          if differently_deferrable?(new_attribute, old_attribute) do
+            [
+              %Operation.AlterDeferrability{
+                table: snapshot.table,
+                schema: snapshot.schema,
+                references: new_attribute.references,
+                direction: :up
+              },
+              %Operation.AlterDeferrability{
+                table: snapshot.table,
+                schema: snapshot.schema,
+                references: Map.get(old_attribute, :references),
+                direction: :down
+              }
+            ]
+          else
+            []
+          end
+
+        if Map.get(old_attribute, :references) != Map.get(new_attribute, :references) and
+             references_differ_beyond_index?(old_attribute, new_attribute, schema_moves) do
+          redo_deferrability =
+            if has_reference?(old_snapshot.multitenancy, old_attribute) and
+                 differently_deferrable?(new_attribute, old_attribute) do
+              [
+                %Operation.AlterDeferrability{
+                  table: snapshot.table,
+                  schema: snapshot.schema,
+                  references: new_attribute.references,
+                  direction: :up
+                }
+              ]
+            else
+              []
+            end
+
+          old_and_alter =
+            if has_reference?(old_snapshot.multitenancy, old_attribute) do
+              [
+                %Operation.DropForeignKey{
+                  attribute: old_attribute,
+                  table: snapshot.table,
+                  schema: snapshot.schema,
+                  multitenancy: old_snapshot.multitenancy,
+                  direction: :up
+                },
+                %Operation.AlterAttribute{
+                  new_attribute: new_attribute,
+                  old_attribute: old_attribute,
+                  schema: snapshot.schema,
+                  table: snapshot.table
+                }
+              ]
+            else
+              [
+                %Operation.AlterAttribute{
+                  new_attribute: new_attribute,
+                  old_attribute: old_attribute,
+                  schema: snapshot.schema,
+                  table: snapshot.table
+                }
+              ]
+            end ++
+              redo_deferrability
+
+          if has_reference?(snapshot.multitenancy, new_attribute) do
+            reference_ops = [
+              %Operation.DropForeignKey{
+                attribute: new_attribute,
+                table: snapshot.table,
+                schema: snapshot.schema,
+                multitenancy: snapshot.multitenancy,
+                direction: :down
+              }
+            ]
+
+            old_and_alter ++
+              reference_ops
+          else
+            old_and_alter
+          end
+        else
+          [
+            %Operation.AlterAttribute{
+              new_attribute: Map.delete(new_attribute, :references),
+              old_attribute: Map.delete(old_attribute, :references),
+              schema: snapshot.schema,
+              table: snapshot.table
+            }
+          ]
+        end
+        |> Enum.concat(deferrable_ops)
+      end)
+
+    remove_attribute_events =
+      Enum.map(attributes_to_remove, fn attribute ->
+        %Operation.RemoveAttribute{
+          attribute: attribute,
+          table: snapshot.table,
+          schema: snapshot.schema,
+          commented?: opts.dont_drop_columns
+        }
+      end)
+
+    add_attribute_events ++
+      alter_attribute_events ++ remove_attribute_events ++ rename_attribute_events
+  end
+
+  defp differently_deferrable?(%{references: %{deferrable: left}}, %{
+         references: %{deferrable: right}
+       })
+       when left != right do
+    true
+  end
+
+  defp differently_deferrable?(%{references: %{deferrable: same}}, %{
+         references: %{deferrable: same}
+       }) do
+    false
+  end
+
+  defp differently_deferrable?(%{references: %{deferrable: left}}, _) when left != false, do: true
+
+  defp differently_deferrable?(_, %{references: %{deferrable: right}}) when right != false,
+    do: true
+
+  defp differently_deferrable?(_, _), do: false
+
+  # When the only reference change is index? (add/remove index), we should not emit
+  # DropForeignKey + AlterAttribute; the separate AddReferenceIndex/RemoveReferenceIndex
+  # operations handle it. This avoids migrations that drop and re-add the same FK.
+  defp references_differ_beyond_index?(old_attr, new_attr, schema_moves) do
+    old_refs = Map.get(old_attr, :references)
+    new_refs = Map.get(new_attr, :references)
+
+    cond do
+      old_refs == new_refs ->
+        false
+
+      is_nil(old_refs) or is_nil(new_refs) ->
+        true
+
+      true ->
+        # Ignore the reference prefix when it only changed because the target
+        # table moved schemas; Postgres keeps the FK attached to that table.
+        {old_refs, new_refs} =
+          normalize_reference_schema_move(old_refs, new_refs, schema_moves)
+
+        old_without_index =
+          old_refs
+          |> clean_references_for_comparison()
+          |> Map.delete(:index?)
+          |> Map.delete(:index_where)
+
+        new_without_index =
+          new_refs
+          |> clean_references_for_comparison()
+          |> Map.delete(:index?)
+          |> Map.delete(:index_where)
+
+        old_without_index != new_without_index
+    end
+  end
+
+  defp clean_references_for_comparison(references) do
+    Map.drop(references, [:destination_attribute_default, :destination_attribute_generated])
+  end
+
+  # This exists to handle the fact that the remapping of the key name -> source caused attributes
+  # to be considered unequal. We ignore things that only differ in that way using this function.
+  defp attributes_unequal?(
+         left,
+         right,
+         repo,
+         _old_snapshot,
+         _new_snapshot,
+         ignore_names?,
+         schema_moves
+       ) do
+    left = clean_for_equality(left, repo)
+
+    right = clean_for_equality(right, repo)
+
+    # A relationship field should not look altered just because the referenced
+    # table moved schemas in the same migration.
+    {left, right} =
+      normalize_attribute_reference_schema_move(left, right, schema_moves)
+
+    left = remove_reference_index_options(left)
+    right = remove_reference_index_options(right)
+
+    left =
+      if ignore_names? do
+        Map.drop(left, [:source, :name])
+      else
+        left
+      end
+
+    right =
+      if ignore_names? do
+        Map.drop(right, [:source, :name])
+      else
+        right
+      end
+
+    left != right
+  end
+
+  defp remove_reference_index_options(%{references: references} = attribute)
+       when is_map(references) do
+    %{attribute | references: Map.drop(references, [:index?, :index_where])}
+  end
+
+  defp remove_reference_index_options(attribute), do: attribute
+
+  defp normalize_attribute_reference_schema_move(left, right, schema_moves) do
+    old_refs = Map.get(left, :references)
+    new_refs = Map.get(right, :references)
+
+    if reference_schema_move?(old_refs, new_refs, schema_moves) do
+      {
+        Map.update!(left, :references, &Map.delete(&1, :schema)),
+        Map.update!(right, :references, &Map.delete(&1, :schema))
+      }
+    else
+      {left, right}
+    end
+  end
+
+  defp normalize_reference_schema_move(old_refs, new_refs, schema_moves) do
+    if reference_schema_move?(old_refs, new_refs, schema_moves) do
+      {Map.delete(old_refs, :schema), Map.delete(new_refs, :schema)}
+    else
+      {old_refs, new_refs}
+    end
+  end
+
+  defp reference_schema_move?(
+         %{table: table, schema: old_schema},
+         %{table: table, schema: new_schema},
+         schema_moves
+       ) do
+    old_schema = schema_key(old_schema)
+    new_schema = schema_key(new_schema)
+
+    Enum.any?([table, to_string(table)], fn table ->
+      MapSet.member?(schema_moves, {table, old_schema, new_schema})
+    end)
+  end
+
+  defp reference_schema_move?(_, _, _), do: false
+
+  defp clean_for_equality(attribute, repo) do
+    cond do
+      attribute[:source] ->
+        Map.put(attribute, :name, attribute[:source])
+        |> Map.update!(:source, &to_string/1)
+        |> Map.update!(:name, &to_string/1)
+
+      attribute[:name] ->
+        attribute
+        |> Map.put(:source, attribute[:name])
+        |> Map.update!(:source, &to_string/1)
+        |> Map.update!(:name, &to_string/1)
+
+      true ->
+        attribute
+    end
+    |> add_schema(repo)
+    |> add_ignore()
+    |> then(fn
+      # only :integer cares about `destination_attribute_generated`
+      # so we clean it here to avoid generating unnecessary snapshots
+      # during the transitionary period of adding it
+      %{type: type, references: references} = attribute
+      when not is_nil(references) and type != :integer ->
+        Map.update!(attribute, :references, &Map.delete(&1, :destination_attribute_generated))
+
+      attribute ->
+        attribute
+    end)
+  end
+
+  defp add_ignore(%{references: references} = attribute) when is_map(references) do
+    %{attribute | references: Map.put_new(references, :ignore?, false)}
+  end
+
+  defp add_ignore(attribute) do
+    attribute
+  end
+
+  defp add_schema(%{references: references} = attribute, repo) when is_map(references) do
+    schema = Map.get(references, :schema) || repo.config()[:default_prefix] || "public"
+
+    %{
+      attribute
+      | references: Map.put(references, :schema, schema)
+    }
+  end
+
+  defp add_schema(attribute, _) do
+    attribute
+  end
+
+  def has_reference?(multitenancy, attribute) do
+    multitenancy_strategy = multitenancy && multitenancy.strategy
+
+    not is_nil(Map.get(attribute, :references)) and
+      !(attribute.references.multitenancy &&
+          attribute.references.multitenancy.strategy == :context &&
+          multitenancy_strategy in [nil, :attribute])
+  end
+
+  def get_existing_snapshot(snapshot, opts) do
+    folder = get_snapshot_folder(snapshot, opts)
+    snapshot_path = get_snapshot_path(snapshot, folder)
+
+    if File.exists?(snapshot_path) do
+      snapshot_path
+      |> File.ls!()
+      |> Enum.filter(
+        &(String.match?(&1, ~r/^\d{14}\.json$/) or
+            (opts.dev and String.match?(&1, ~r/^\d{14}\_dev.json$/)))
+      )
+      |> case do
+        [] ->
+          get_old_snapshot(folder, snapshot)
+
+        snapshot_files ->
+          snapshot_path
+          |> Path.join(Enum.max(snapshot_files))
+          |> File.read!()
+          |> load_snapshot()
+      end
+    else
+      get_old_snapshot(folder, snapshot)
+    end
+  end
+
+  defp get_snapshot_folder(snapshot, opts) do
+    if snapshot.multitenancy.strategy == :context do
+      opts
+      |> snapshot_path(snapshot.repo)
+      |> Path.join(repo_name(snapshot.repo))
+      |> Path.join("tenants")
+    else
+      opts
+      |> snapshot_path(snapshot.repo)
+      |> Path.join(repo_name(snapshot.repo))
+    end
+  end
+
+  defp get_snapshot_path(snapshot, folder) do
+    if snapshot.schema do
+      schema_dir = Path.join(folder, "#{snapshot.schema}.#{snapshot.table}")
+
+      if File.dir?(schema_dir) do
+        schema_dir
+      else
+        Path.join(folder, snapshot.table)
+      end
+    else
+      Path.join(folder, snapshot.table)
+    end
+  end
+
+  defp get_latest_snapshot_file_path(snapshot, opts) do
+    folder = get_snapshot_folder(snapshot, opts)
+    snapshot_dir = get_snapshot_path(snapshot, folder)
+
+    if File.exists?(snapshot_dir) do
+      snapshot_files =
+        File.ls!(snapshot_dir)
+        |> Enum.filter(
+          &(String.match?(&1, ~r/^\d{14}\.json$/) or
+              (opts.dev and String.match?(&1, ~r/^\d{14}\_dev\.json$/)))
+        )
+
+      case snapshot_files do
+        [] ->
+          if snapshot.schema do
+            path = Path.join(folder, "#{snapshot.schema}.#{snapshot.table}.json")
+            if File.exists?(path), do: path, else: nil
+          else
+            path = Path.join(folder, "#{snapshot.table}.json")
+            if File.exists?(path), do: path, else: nil
+          end
+
+        files ->
+          Path.join(snapshot_dir, Enum.max(files))
+      end
+    else
+      nil
+    end
+  end
+
+  defp record_drop_table_opt_out(snapshot, opts) do
+    if opts.dry_run || opts.check || opts.snapshots_only do
+      :ok
+    else
+      case get_latest_snapshot_file_path(snapshot, opts) do
+        nil ->
+          :ok
+
+        path ->
+          path
+          |> File.read!()
+          |> Jason.decode!(keys: :atoms!)
+          |> Map.put(:drop_table_opted_out, true)
+          |> to_ordered_object()
+          |> Jason.encode!(pretty: true)
+          |> then(&File.write!(path, &1))
+      end
+    end
+  end
+
+  defp get_old_snapshot(folder, snapshot) do
+    schema_file =
+      if snapshot.schema do
+        old_snapshot_file = Path.join(folder, "#{snapshot.schema}.#{snapshot.table}.json")
+
+        if File.exists?(old_snapshot_file) do
+          old_snapshot_file
+          |> File.read!()
+          |> load_snapshot()
+        end
+      end
+
+    if schema_file do
+      schema_file
+    else
+      old_snapshot_file = Path.join(folder, "#{snapshot.table}.json")
+      # This is adapter code for the old version, where migrations were stored in a flat directory
+      if File.exists?(old_snapshot_file) do
+        old_snapshot_file
+        |> File.read!()
+        |> load_snapshot()
+      end
+    end
+  end
+
+  defp list_snapshot_tables(repo, opts, tenant?) do
+    base_folder =
+      if tenant? do
+        opts
+        |> snapshot_path(repo)
+        |> Path.join(repo_name(repo))
+        |> Path.join("tenants")
+      else
+        opts
+        |> snapshot_path(repo)
+        |> Path.join(repo_name(repo))
+      end
+
+    if File.exists?(base_folder) do
+      base_folder
+      |> File.ls!()
+      |> Enum.filter(fn name ->
+        path = Path.join(base_folder, name)
+        File.dir?(path) and name != "extensions" and File.ls!(path) != []
+      end)
+      |> Enum.map(fn name ->
+        if String.contains?(name, ".") do
+          [schema, table] = String.split(name, ".", parts: 2)
+          {table, schema}
+        else
+          {name, nil}
+        end
+      end)
+    else
+      []
+    end
+  end
+
+  defp drop_operations_for_orphan_tables(
+         repo,
+         current_table_keys,
+         managed_table_keys,
+         opts,
+         tenant?
+       ) do
+    snapshot_table_keys =
+      list_snapshot_tables(repo, opts, tenant?)
+      |> MapSet.new()
+
+    orphan_keys = MapSet.difference(snapshot_table_keys, current_table_keys)
+    added_keys = MapSet.difference(managed_table_keys, snapshot_table_keys)
+
+    added_keys_list = MapSet.to_list(added_keys)
+
+    multitenancy =
+      if tenant? do
+        %{strategy: :context, attribute: nil, global: nil}
+      else
+        %{strategy: nil, attribute: nil, global: nil}
+      end
+
+    {drop_ops, rename_map, schema_move_map, loaded} =
+      Enum.reduce(orphan_keys, {[], %{}, %{}, []}, fn {table, schema} = old_key,
+                                                      {ops, rename_map, schema_move_map,
+                                                       snapshots} ->
+        minimal_snapshot = %{
+          table: table,
+          schema: schema,
+          repo: repo,
+          multitenancy: multitenancy
+        }
+
+        case get_existing_snapshot(minimal_snapshot, opts) do
+          nil ->
+            {ops, rename_map, schema_move_map, snapshots}
+
+          existing_snapshot ->
+            if Map.get(existing_snapshot, :drop_table_opted_out, false) do
+              {ops, rename_map, schema_move_map, snapshots}
+            else
+              # Infer one same-table/different-schema candidate as an intentional schema move.
+              schema_move_candidates =
+                Enum.filter(added_keys_list, fn {new_table, new_schema} ->
+                  new_table == table && new_schema != schema
+                end)
+
+              # Only consider new tables in the same schema as rename candidates,
+              # excluding ones already claimed by another rename.
+              rename_candidates =
+                Enum.filter(added_keys_list, fn {new_table, new_schema} = candidate ->
+                  new_schema == schema && new_table != table &&
+                    not Map.has_key?(rename_map, candidate)
+                end)
+
+              {ops, rename_map, schema_move_map, snapshots} =
+                case schema_move_candidates do
+                  [{new_table, new_schema}] ->
+                    if moving_table_to_schema?(old_key, {new_table, new_schema}, opts) do
+                      new_schema_move_map =
+                        Map.put(schema_move_map, {new_table, new_schema}, %{
+                          old_schema: schema,
+                          snapshot: existing_snapshot
+                        })
+
+                      {ops, rename_map, new_schema_move_map, [existing_snapshot | snapshots]}
+                    else
+                      declined_schema_move_map =
+                        Map.put(schema_move_map, {new_table, new_schema}, %{declined?: true})
+
+                      if drop_table_confirmed?(existing_snapshot, opts) do
+                        drop_op = %Operation.DropTable{
+                          table: existing_snapshot.table,
+                          schema: existing_snapshot.schema,
+                          repo: existing_snapshot.repo,
+                          multitenancy: existing_snapshot.multitenancy
+                        }
+
+                        {[drop_op | ops], rename_map, declined_schema_move_map,
+                         [existing_snapshot | snapshots]}
+                      else
+                        record_drop_table_opt_out(existing_snapshot, opts)
+                        {ops, rename_map, declined_schema_move_map, snapshots}
+                      end
+                    end
+
+                  _ ->
+                    rename_target =
+                      case rename_candidates do
+                        [] ->
+                          nil
+
+                        [{new_table, new_schema}] ->
+                          if renaming_table_to?(old_key, {new_table, new_schema}, opts) do
+                            {new_table, new_schema}
+                          else
+                            nil
+                          end
+
+                        _ ->
+                          if renaming_table?(old_key, opts) do
+                            get_new_table(old_key, rename_candidates, opts)
+                          else
+                            nil
+                          end
+                      end
+
+                    case rename_target do
+                      nil ->
+                        if drop_table_confirmed?(existing_snapshot, opts) do
+                          drop_op = %Operation.DropTable{
+                            table: existing_snapshot.table,
+                            schema: existing_snapshot.schema,
+                            repo: existing_snapshot.repo,
+                            multitenancy: existing_snapshot.multitenancy
+                          }
+
+                          {[drop_op | ops], rename_map, schema_move_map,
+                           [existing_snapshot | snapshots]}
+                        else
+                          record_drop_table_opt_out(existing_snapshot, opts)
+                          {ops, rename_map, schema_move_map, snapshots}
+                        end
+
+                      {new_table, new_schema} ->
+                        new_rename_map =
+                          Map.put(rename_map, {new_table, new_schema}, %{
+                            old_table: table,
+                            old_schema: schema,
+                            snapshot: existing_snapshot
+                          })
+
+                        {ops, new_rename_map, schema_move_map, [existing_snapshot | snapshots]}
+                    end
+                end
+
+              {ops, rename_map, schema_move_map, snapshots}
+            end
+        end
+      end)
+
+    loaded = Enum.reverse(loaded)
+    drop_ops = Enum.reverse(drop_ops)
+
+    {sort_drop_table_operations(drop_ops, loaded), loaded, rename_map, schema_move_map}
+  end
+
+  defp sort_drop_table_operations(drop_ops, snapshots) do
+    snapshots_by_key =
+      Map.new(snapshots, fn snapshot ->
+        {drop_table_key(snapshot.table, snapshot.schema), snapshot}
+      end)
+
+    ops_by_key =
+      Map.new(drop_ops, fn op ->
+        {drop_table_key(op.table, op.schema), op}
+      end)
+
+    original_positions =
+      drop_ops
+      |> Enum.with_index()
+      |> Map.new(fn {op, index} ->
+        {drop_table_key(op.table, op.schema), index}
+      end)
+
+    adjacency =
+      Map.new(drop_ops, fn op ->
+        key = drop_table_key(op.table, op.schema)
+        snapshot = Map.fetch!(snapshots_by_key, key)
+
+        referenced_keys =
+          snapshot
+          |> referenced_drop_table_keys(snapshots_by_key)
+          |> Enum.uniq()
+
+        {key, referenced_keys}
+      end)
+
+    in_degrees =
+      Enum.reduce(adjacency, Map.new(Map.keys(adjacency), &{&1, 0}), fn {_key, referenced_keys},
+                                                                        acc ->
+        Enum.reduce(referenced_keys, acc, fn referenced_key, acc ->
+          Map.update!(acc, referenced_key, &(&1 + 1))
+        end)
+      end)
+
+    queue =
+      in_degrees
+      |> Enum.filter(fn {_key, in_degree} -> in_degree == 0 end)
+      |> Enum.map(&elem(&1, 0))
+      |> Enum.sort_by(&Map.fetch!(original_positions, &1))
+
+    {ordered_keys, _in_degrees} =
+      toposort_drop_table_keys(queue, adjacency, in_degrees, original_positions, [])
+
+    if length(ordered_keys) == map_size(ops_by_key) do
+      Enum.map(ordered_keys, &Map.fetch!(ops_by_key, &1))
+    else
+      # Fall back to the original order if we ever encounter an unexpected cycle.
+      drop_ops
+    end
+  end
+
+  defp toposort_drop_table_keys([], _adjacency, in_degrees, _original_positions, acc) do
+    {Enum.reverse(acc), in_degrees}
+  end
+
+  defp toposort_drop_table_keys(
+         [key | rest],
+         adjacency,
+         in_degrees,
+         original_positions,
+         acc
+       ) do
+    {in_degrees, newly_available} =
+      Enum.reduce(Map.get(adjacency, key, []), {in_degrees, []}, fn referenced_key,
+                                                                    {in_degrees, newly_available} ->
+        updated_in_degree = Map.fetch!(in_degrees, referenced_key) - 1
+        in_degrees = Map.put(in_degrees, referenced_key, updated_in_degree)
+
+        if updated_in_degree == 0 do
+          {in_degrees, [referenced_key | newly_available]}
+        else
+          {in_degrees, newly_available}
+        end
+      end)
+
+    queue =
+      rest ++
+        (newly_available
+         |> Enum.uniq()
+         |> Enum.sort_by(&Map.fetch!(original_positions, &1)))
+
+    toposort_drop_table_keys(queue, adjacency, in_degrees, original_positions, [key | acc])
+  end
+
+  defp referenced_drop_table_keys(snapshot, snapshots_by_key) do
+    Enum.flat_map(snapshot.attributes, fn
+      %{references: %{table: table} = references} ->
+        key = drop_table_key(table, Map.get(references, :schema))
+
+        if Map.has_key?(snapshots_by_key, key) do
+          [key]
+        else
+          []
+        end
+
+      _attribute ->
+        []
+    end)
+  end
+
+  defp drop_table_key(table, schema) do
+    {table, schema || "public"}
+  end
+
+  defp remove_orphan_snapshots(orphan_snapshots, opts) do
+    if opts.dry_run || opts.check || opts.snapshots_only || orphan_snapshots == [] do
+      :ok
+    else
+      Enum.each(orphan_snapshots, fn snapshot ->
+        folder = get_snapshot_folder(snapshot, opts)
+        path = get_snapshot_path(snapshot, folder)
+
+        if File.exists?(path) do
+          File.rm_rf(path)
+        end
+      end)
+    end
+  end
+
+  defp resolve_renames(_table, adding, [], _opts), do: {adding, [], []}
+
+  defp resolve_renames(_table, [], removing, _opts), do: {[], removing, []}
+
+  defp resolve_renames(table, [adding], [removing], opts) do
+    if renaming_to?(table, removing.source, adding.source, opts) do
+      {[], [], [{adding, removing}]}
+    else
+      {[adding], [removing], []}
+    end
+  end
+
+  defp resolve_renames(table, adding, [removing | rest], opts) do
+    {new_adding, new_removing, new_renames} =
+      if renaming?(table, removing, opts) do
+        new_attribute =
+          if opts.no_shell? do
+            raise "Unimplemented: Cannot get new_attribute without the shell!"
+          else
+            get_new_attribute(adding, opts)
+          end
+
+        {Enum.reject(adding, &(&1.source == new_attribute.source)), [],
+         [{new_attribute, removing}]}
+      else
+        {adding, [removing], []}
+      end
+
+    {rest_adding, rest_removing, rest_renames} = resolve_renames(table, new_adding, rest, opts)
+
+    {rest_adding, new_removing ++ rest_removing, rest_renames ++ new_renames}
+  end
+
+  defp renaming_to?(table, removing, adding, opts) do
+    if opts.no_shell? do
+      raise "Unimplemented: cannot determine: Are you renaming #{table}.#{removing} to #{table}.#{adding}? without shell input"
+    else
+      yes?(opts, "Are you renaming #{table}.#{removing} to #{table}.#{adding}?")
+    end
+  end
+
+  defp renaming?(table, removing, opts) do
+    if opts.dev do
+      false
+    else
+      if opts.no_shell? do
+        raise "Unimplemented: cannot determine: Are you renaming #{table}.#{removing.source}? without shell input"
+      else
+        yes?(opts, "Are you renaming #{table}.#{removing.source}?")
+      end
+    end
+  end
+
+  defp renaming_table_to?({old_table, schema}, {new_table, _new_schema}, opts) do
+    if opts.dev do
+      false
+    else
+      message =
+        if schema do
+          "Are you renaming #{schema}.#{old_table} to #{schema}.#{new_table}?"
+        else
+          "Are you renaming #{old_table} to #{new_table}?"
+        end
+
+      if opts.no_shell? do
+        raise "Unimplemented: cannot determine: #{message} without shell input"
+      else
+        yes?(opts, message)
+      end
+    end
+  end
+
+  defp moving_table_to_schema?({table, old_schema}, {_new_table, new_schema}, opts) do
+    if opts.dev do
+      false
+    else
+      message =
+        "Are you moving #{schema_table_name(table, old_schema)} to #{schema_table_name(table, new_schema)}?"
+
+      if opts.no_shell? do
+        raise "Unimplemented: cannot determine: #{message} without shell input"
+      else
+        yes?(opts, message)
+      end
+    end
+  end
+
+  defp schema_table_name(table, nil), do: table
+  defp schema_table_name(table, schema), do: "#{schema}.#{table}"
+
+  defp renaming_table?({old_table, schema}, opts) do
+    if opts.dev do
+      false
+    else
+      message =
+        if schema do
+          "Are you renaming #{schema}.#{old_table}?"
+        else
+          "Are you renaming #{old_table}?"
+        end
+
+      if opts.no_shell? do
+        raise "Unimplemented: cannot determine: #{message} without shell input"
+      else
+        yes?(opts, message)
+      end
+    end
+  end
+
+  defp get_new_table(old_key, candidates, opts, tries \\ 3)
+
+  defp get_new_table(_old_key, _candidates, _opts, 0) do
+    raise "Could not get matching table name after 3 attempts."
+  end
+
+  defp get_new_table(old_key, candidates, opts, tries) do
+    options = Enum.map_join(candidates, ", ", fn {new_table, _} -> new_table end)
+
+    name =
+      prompt(opts, "What are you renaming it to?: #{options}")
+
+    name =
+      if name do
+        String.trim(name)
+      else
+        nil
+      end
+
+    case Enum.find(candidates, fn {new_table, _} -> to_string(new_table) == name end) do
+      nil -> get_new_table(old_key, candidates, opts, tries - 1)
+      candidate -> candidate
+    end
+  end
+
+  defp get_new_attribute(adding, opts, tries \\ 3)
+
+  defp get_new_attribute(_adding, _opts, 0) do
+    raise "Could not get matching name after 3 attempts."
+  end
+
+  defp get_new_attribute(adding, opts, tries) do
+    name =
+      prompt(
+        opts,
+        "What are you renaming it to?: #{Enum.map_join(adding, ", ", & &1.source)}"
+      )
+
+    name =
+      if name do
+        String.trim(name)
+      else
+        nil
+      end
+
+    case Enum.find(adding, &(to_string(&1.source) == name)) do
+      nil -> get_new_attribute(adding, opts, tries - 1)
+      new_attribute -> new_attribute
+    end
+  end
+
+  defp timestamp do
+    {{y, m, d}, {hh, mm, ss}} = :calendar.universal_time()
+    current = "#{y}#{pad(m)}#{pad(d)}#{pad(hh)}#{pad(mm)}#{pad(ss)}"
+
+    last = Process.get(:ash_postgres_last_migration_timestamp)
+
+    result =
+      if last && current <= last do
+        increment_timestamp(last)
+      else
+        current
+      end
+
+    Process.put(:ash_postgres_last_migration_timestamp, result)
+    result
+  end
+
+  defp increment_timestamp(timestamp) do
+    <<y::binary-4, m::binary-2, d::binary-2, hh::binary-2, mm::binary-2, ss::binary-2>> =
+      timestamp
+
+    seconds =
+      :calendar.datetime_to_gregorian_seconds({
+        {String.to_integer(y), String.to_integer(m), String.to_integer(d)},
+        {String.to_integer(hh), String.to_integer(mm), String.to_integer(ss)}
+      })
+
+    {{y, m, d}, {hh, mm, ss}} = :calendar.gregorian_seconds_to_datetime(seconds + 1)
+    "#{y}#{pad(m)}#{pad(d)}#{pad(hh)}#{pad(mm)}#{pad(ss)}"
+  end
+
+  defp pad(i) when i < 10, do: <<?0, ?0 + i>>
+  defp pad(i), do: to_string(i)
+
+  def get_snapshots(resource, all_resources) do
+    Code.ensure_compiled!(AshPostgres.DataLayer.Info.repo(resource, :mutate))
+
+    if AshPostgres.DataLayer.Info.polymorphic?(resource) do
+      all_resources
+      |> Enum.flat_map(&Ash.Resource.Info.relationships/1)
+      |> Enum.filter(&(&1.destination == resource))
+      |> Enum.reject(&(&1.type == :belongs_to))
+      |> Enum.filter(& &1.context[:data_layer][:table])
+      |> Enum.uniq()
+      |> Enum.map(fn relationship ->
+        resource
+        |> do_snapshot(
+          relationship.context[:data_layer][:table],
+          relationship.context[:data_layer][:schema]
+        )
+        |> Map.update!(:identities, fn identities ->
+          identity_index_names = AshPostgres.DataLayer.Info.identity_index_names(resource)
+
+          Enum.map(identities, fn identity ->
+            Map.put(
+              identity,
+              :index_name,
+              identity_index_names[identity.name] ||
+                "#{relationship.context[:data_layer][:table]}_#{identity.name}_index"
+            )
+            |> Map.delete(:__spark_metadata__)
+          end)
+        end)
+        |> Map.update!(:attributes, fn attributes ->
+          Enum.map(attributes, fn attribute ->
+            destination_attribute_source =
+              relationship.destination
+              |> Ash.Resource.Info.attribute(relationship.destination_attribute)
+              |> Map.get(:source)
+
+            if attribute.source == destination_attribute_source do
+              source_attribute =
+                Ash.Resource.Info.attribute(relationship.source, relationship.source_attribute)
+
+              attribute
+              |> Map.delete(:__spark_metadata__)
+              |> Map.put(:references, %{
+                destination_attribute: source_attribute.source,
+                destination_attribute_default:
+                  default(
+                    source_attribute,
+                    relationship.destination,
+                    AshPostgres.DataLayer.Info.repo(relationship.destination, :mutate)
+                  ),
+                deferrable: false,
+                index?: false,
+                destination_attribute_generated: source_attribute.generated?,
+                multitenancy: multitenancy(relationship.source),
+                table: AshPostgres.DataLayer.Info.table(relationship.source),
+                schema: AshPostgres.DataLayer.Info.schema(relationship.source),
+                on_delete: AshPostgres.DataLayer.Info.polymorphic_on_delete(relationship.source),
+                on_update: AshPostgres.DataLayer.Info.polymorphic_on_update(relationship.source),
+                primary_key?: source_attribute.primary_key?,
+                name:
+                  AshPostgres.DataLayer.Info.polymorphic_name(relationship.source) ||
+                    "#{relationship.context[:data_layer][:table]}_#{destination_attribute_source}_fkey"
+              })
+            else
+              attribute
+            end
+          end)
+        end)
+      end)
+    else
+      [do_snapshot(resource, AshPostgres.DataLayer.Info.table(resource))]
+    end
+  end
+
+  defp do_snapshot(resource, table, schema \\ nil) do
+    snapshot = %{
+      attributes: attributes(resource, table),
+      identities: identities(resource),
+      table: table || AshPostgres.DataLayer.Info.table(resource),
+      schema: schema || AshPostgres.DataLayer.Info.schema(resource),
+      check_constraints: check_constraints(resource),
+      custom_indexes: custom_indexes(resource),
+      custom_statements: custom_statements(resource),
+      repo: AshPostgres.DataLayer.Info.repo(resource, :mutate),
+      multitenancy: multitenancy(resource),
+      base_filter: AshPostgres.DataLayer.Info.base_filter_sql(resource),
+      has_create_action: has_create_action?(resource),
+      create_table_options: AshPostgres.DataLayer.Info.create_table_options(resource)
+    }
+
+    hash =
+      :sha256
+      |> :crypto.hash(inspect(snapshot))
+      |> Base.encode16()
+
+    Map.put(snapshot, :hash, hash)
+  end
+
+  defp has_create_action?(resource) do
+    resource
+    |> Ash.Resource.Info.actions()
+    |> Enum.any?(&(&1.type == :create && !&1.manual))
+  end
+
+  defp check_constraints(resource) do
+    resource
+    |> AshPostgres.DataLayer.Info.check_constraints()
+    |> Enum.filter(& &1.check)
+    |> case do
+      [] ->
+        []
+
+      constraints ->
+        base_filter = Ash.Resource.Info.base_filter(resource)
+
+        if base_filter && !AshPostgres.DataLayer.Info.base_filter_sql(resource) do
+          raise """
+          Cannot create a check constraint for a resource with a base filter without also configuring `base_filter_sql`.
+
+          You must provide the `base_filter_sql` option, or manually create add the check constraint to your migrations.
+          """
+        end
+
+        constraints
+    end
+    |> Enum.map(fn constraint ->
+      attributes =
+        constraint.attribute
+        |> List.wrap()
+        |> Enum.map(fn attribute ->
+          attr =
+            resource
+            |> Ash.Resource.Info.attribute(attribute)
+
+          attr.source || attr.name
+        end)
+
+      %{
+        name: constraint.name,
+        attribute: attributes,
+        check: constraint.check,
+        base_filter: AshPostgres.DataLayer.Info.base_filter_sql(resource)
+      }
+    end)
+  end
+
+  defp custom_indexes(resource) do
+    resource
+    |> AshPostgres.DataLayer.Info.custom_indexes()
+    |> Enum.map(fn custom_index ->
+      Map.take(custom_index, AshPostgres.CustomIndex.fields())
+    end)
+  end
+
+  defp custom_statements(resource) do
+    resource
+    |> AshPostgres.DataLayer.Info.custom_statements()
+    |> Enum.map(fn custom_statement ->
+      Map.take(custom_statement, AshPostgres.Statement.fields())
+    end)
+  end
+
+  defp multitenancy(resource) do
+    strategy = Ash.Resource.Info.multitenancy_strategy(resource)
+    attribute = Ash.Resource.Info.multitenancy_attribute(resource)
+    global = Ash.Resource.Info.multitenancy_global?(resource)
+
+    %{
+      strategy: strategy,
+      attribute: attribute,
+      global: global
+    }
+  end
+
+  defp attributes(resource, table) do
+    repo = AshPostgres.DataLayer.Info.repo(resource, :mutate)
+    ignored = AshPostgres.DataLayer.Info.migration_ignore_attributes(resource) || []
+
+    resource
+    |> Ash.Resource.Info.attributes()
+    |> Enum.reject(&(&1.name in ignored))
+    |> Enum.map(
+      &Map.take(&1, [
+        :name,
+        :source,
+        :type,
+        :default,
+        :allow_nil?,
+        :generated?,
+        :primary_key?,
+        :constraints
+      ])
+    )
+    |> Enum.map(fn attribute ->
+      default = default(attribute, resource, repo)
+
+      type =
+        AshPostgres.DataLayer.Info.migration_types(resource)[attribute.name] ||
+          migration_type(attribute.type, attribute.constraints)
+
+      type =
+        if function_exported?(repo, :override_migration_type, 1) do
+          repo.override_migration_type(type)
+        else
+          type
+        end
+
+      {type, size, precision, scale} =
+        migration_type_to_type(type)
+
+      attribute
+      |> Map.put(:default, default)
+      |> Map.put(:size, size)
+      |> Map.put(:type, type)
+      |> Map.put(:source, attribute.source || attribute.name)
+      |> Map.drop([:name, :constraints])
+      |> then(fn map ->
+        if precision do
+          Map.put(map, :precision, precision)
+        else
+          map
+        end
+      end)
+      |> then(fn map ->
+        if scale do
+          Map.put(map, :scale, scale)
+        else
+          map
+        end
+      end)
+    end)
+    |> Enum.map(fn attribute ->
+      references = find_reference(resource, table, attribute)
+
+      Map.put(attribute, :references, references)
+    end)
+  end
+
+  defp migration_type_to_type(type) do
+    case type do
+      {:varchar, size} ->
+        {:varchar, size, nil, nil}
+
+      {:binary, size} ->
+        {:binary, size, nil, nil}
+
+      {:decimal, precision, scale} ->
+        {:decimal, nil, precision, scale}
+
+      {:decimal, precision} ->
+        {:decimal, nil, precision, nil}
+
+      {other, size} when is_atom(other) and is_integer(size) ->
+        {other, size, nil, nil}
+
+      {:array, other} ->
+        {nested, size, precision, scale} = migration_type_to_type(other)
+        {{:array, nested}, size, precision, scale}
+
+      other ->
+        {other, nil, nil, nil}
+    end
+  end
+
+  defp find_reference(resource, table, attribute) do
+    resource
+    |> Ash.Resource.Info.relationships()
+    |> Enum.filter(&(&1.type == :belongs_to))
+    |> Enum.find_value(fn relationship ->
+      source_attribute_name =
+        relationship.source
+        |> Ash.Resource.Info.attribute(relationship.source_attribute)
+        |> then(fn attribute ->
+          attribute.source || attribute.name
+        end)
+
+      if attribute.source == source_attribute_name &&
+           foreign_key?(relationship) do
+        configured_reference =
+          configured_reference(resource, table, attribute.source || attribute.name, relationship)
+
+        if !Map.get(configured_reference, :ignore?) do
+          destination_attribute =
+            Ash.Resource.Info.attribute(
+              relationship.destination,
+              relationship.destination_attribute
+            )
+
+          destination_attribute_source =
+            destination_attribute.source || destination_attribute.name
+
+          %{
+            destination_attribute: destination_attribute_source,
+            deferrable: configured_reference.deferrable,
+            index?: configured_reference.index?,
+            index_where:
+              reference_index_where(configured_reference.index_where, attribute.source),
+            multitenancy: multitenancy(relationship.destination),
+            on_delete: configured_reference.on_delete,
+            on_update: configured_reference.on_update,
+            match_with: configured_reference.match_with,
+            match_type: configured_reference.match_type,
+            name: configured_reference.name,
+            primary_key?: destination_attribute.primary_key?,
+            schema:
+              relationship.context[:data_layer][:schema] ||
+                AshPostgres.DataLayer.Info.schema(relationship.destination) ||
+                AshPostgres.DataLayer.Info.repo(relationship.destination, :mutate).config()[
+                  :default_prefix
+                ],
+            table:
+              relationship.context[:data_layer][:table] ||
+                AshPostgres.DataLayer.Info.table(relationship.destination)
+          }
+        end
+      end
+    end)
+  end
+
+  defp reference_index_where(:not_nil, source), do: "#{source} IS NOT NULL"
+  defp reference_index_where(index_where, _source) when is_binary(index_where), do: index_where
+  defp reference_index_where(nil, _source), do: nil
+
+  defp configured_reference(resource, table, attribute, relationship) do
+    ref =
+      resource
+      |> AshPostgres.DataLayer.Info.references()
+      |> Enum.find(&(&1.relationship == relationship.name))
+      |> Kernel.||(%{
+        on_delete: nil,
+        on_update: nil,
+        match_with: nil,
+        match_type: nil,
+        deferrable: false,
+        index?: false,
+        index_where: nil,
+        schema:
+          relationship.context[:data_layer][:schema] ||
+            AshPostgres.DataLayer.Info.schema(relationship.destination) ||
+            AshPostgres.DataLayer.Info.repo(relationship.destination, :mutate).config()[
+              :default_prefix
+            ],
+        name: nil,
+        ignore?: false
+      })
+
+    ref
+    |> Map.put(:name, ref.name || "#{table}_#{attribute}_fkey")
+    |> Map.put(
+      :primary_key?,
+      Ash.Resource.Info.attribute(
+        relationship.destination,
+        relationship.destination_attribute
+      ).primary_key?
+    )
+  end
+
+  def get_migration_type(type, constraints), do: migration_type(type, constraints)
+
+  defp migration_type({:array, type}, constraints),
+    do: {:array, migration_type(type, constraints)}
+
+  defp migration_type(Ash.Type.CiString, _), do: :citext
+  defp migration_type(Ash.Type.UUID, _), do: :uuid
+  defp migration_type(Ash.Type.UUIDv7, _), do: :uuid
+  defp migration_type(Ash.Type.Integer, _), do: :bigint
+
+  defp migration_type(Ash.Type.Vector, constraints) do
+    if constraints[:dimensions] do
+      {:vector, constraints[:dimensions]}
+    else
+      :vector
+    end
+  end
+
+  defp migration_type(Ash.Type.Decimal, constraints) do
+    precision =
+      case constraints[:precision] do
+        :arbitrary -> nil
+        nil -> nil
+        precision -> precision
+      end
+
+    scale =
+      case constraints[:scale] do
+        :arbitrary -> nil
+        nil -> nil
+        scale -> scale
+      end
+
+    {:decimal, precision, scale}
+  end
+
+  defp migration_type(other, constraints) do
+    type = Ash.Type.get_type(other)
+    Code.ensure_loaded(type)
+
+    if function_exported?(type, :migration_type, 1) do
+      type.migration_type(constraints)
+    else
+      migration_type_from_storage_type(Ash.Type.storage_type(type, constraints))
+    end
+  end
+
+  defp migration_type_from_storage_type(:string), do: :text
+  defp migration_type_from_storage_type(:ci_string), do: :citext
+  defp migration_type_from_storage_type(storage_type), do: storage_type
+
+  defp foreign_key?(relationship) do
+    Ash.DataLayer.data_layer(relationship.source) == AshPostgres.DataLayer &&
+      AshPostgres.DataLayer.Info.repo(relationship.source, :mutate) ==
+        AshPostgres.DataLayer.Info.repo(relationship.destination, :mutate)
+  end
+
+  defp identities(resource) do
+    identity_index_names = AshPostgres.DataLayer.Info.identity_index_names(resource)
+
+    resource
+    |> Ash.Resource.Info.identities()
+    |> case do
+      [] ->
+        []
+
+      identities ->
+        base_filter = Ash.Resource.Info.base_filter(resource)
+
+        if base_filter && !AshPostgres.DataLayer.Info.base_filter_sql(resource) do
+          raise """
+          Cannot create a unique index for a resource with a base filter without also configuring `base_filter_sql`.
+
+          You must provide the `base_filter_sql` option, or skip unique indexes with `skip_unique_indexes`"
+          """
+        end
+
+        identities
+    end
+    |> Enum.reject(fn identity ->
+      identity.name in AshPostgres.DataLayer.Info.skip_unique_indexes(resource)
+    end)
+    |> Enum.sort_by(& &1.name)
+    |> Enum.map(fn %{keys: keys} = identity ->
+      %{
+        identity
+        | keys:
+            Enum.map(keys, fn key ->
+              case Ash.Resource.Info.field(resource, key) do
+                %Ash.Resource.Attribute{} = attribute ->
+                  attribute.source || attribute.name
+
+                %Ash.Resource.Calculation{} ->
+                  sql =
+                    AshPostgres.DataLayer.Info.calculation_to_sql(resource, key) ||
+                      raise "Must define an entry for :#{key} in `postgres.calculations_to_sql`, or skip this identity with `postgres.skip_unique_indexes`"
+
+                  "(" <> sql <> ")"
+              end
+            end),
+          where:
+            if identity.where do
+              AshPostgres.DataLayer.Info.identity_where_to_sql(resource, identity.name) ||
+                raise("""
+                Must provide an entry for :#{identity.name} in `postgres.identity_wheres_to_sql`, or skip this identity with `postgres.skip_unique_indexes`.
+
+                See https://hexdocs.pm/ash_postgres/AshPostgres.DataLayer.Info.html#identity_wheres_to_sql/1 for an example.
+                """)
+            end
+      }
+    end)
+    |> Enum.map(&Map.take(&1, [:name, :keys, :where, :all_tenants?, :nils_distinct?]))
+    |> Enum.map(fn identity ->
+      Map.put(
+        identity,
+        :index_name,
+        identity_index_names[identity.name] ||
+          "#{AshPostgres.DataLayer.Info.table(resource)}_#{identity.name}_index"
+      )
+    end)
+    |> Enum.map(&Map.put(&1, :base_filter, AshPostgres.DataLayer.Info.base_filter_sql(resource)))
+  end
+
+  @uuid_functions [&Ash.UUID.generate/0, &Ecto.UUID.generate/0]
+
+  defp default(%{name: name, default: default, type: type}, resource, repo)
+       when is_function(default) do
+    configured_default(resource, name) ||
+      cond do
+        default in @uuid_functions ->
+          ~S[fragment("gen_random_uuid()")]
+
+        default == (&Ash.UUIDv7.generate/0) and repo.use_builtin_uuidv7_function?() ->
+          ~S[fragment("uuidv7()")]
+
+        default == (&Ash.UUIDv7.generate/0) ->
+          ~S[fragment("uuid_generate_v7()")]
+
+        default == (&DateTime.utc_now/0) && type == AshPostgres.Timestamptz ->
+          ~S[fragment("now()")]
+
+        default == (&DateTime.utc_now/0) ->
+          ~S[fragment("(now() AT TIME ZONE 'utc')")]
+
+        default == (&Date.utc_today/0) ->
+          ~S[fragment("CURRENT_DATE")]
+
+        true ->
+          "nil"
+      end
+  end
+
+  defp default(%{name: name, default: {_, _, _}}, resource, _),
+    do: configured_default(resource, name) || "nil"
+
+  defp default(%{name: name, default: nil}, resource, _),
+    do: configured_default(resource, name) || "nil"
+
+  defp default(%{name: name, default: []}, resource, _),
+    do: configured_default(resource, name) || "[]"
+
+  defp default(%{name: name, default: default}, resource, _) when default == %{},
+    do: configured_default(resource, name) || "%{}"
+
+  defp default(%{name: name, default: value, type: type} = attr, resource, _) do
+    case configured_default(resource, name) do
+      nil ->
+        case migration_default(type, Map.get(attr, :constraints, []), value) do
+          {:ok, default} ->
+            default
+
+          :error ->
+            EctoMigrationDefault.to_default(value)
+        end
+
+      default ->
+        default
+    end
+  end
+
+  defp migration_default(type, constraints, value) do
+    type =
+      type
+      |> unwrap_type()
+      |> Ash.Type.get_type()
+
+    type = Code.ensure_compiled!(type)
+
+    if function_exported?(type, :value_to_postgres_default, 3) do
+      type.value_to_postgres_default(type, constraints, value)
+    else
+      :error
+    end
+  end
+
+  defp unwrap_type({:array, type}), do: unwrap_type(type)
+  defp unwrap_type(type), do: type
+
+  defp configured_default(resource, attribute) do
+    AshPostgres.DataLayer.Info.migration_defaults(resource)[attribute]
+  end
+
+  defp snapshot_to_binary(snapshot) do
+    snapshot
+    |> Map.update!(:attributes, fn attributes ->
+      Enum.map(attributes, &attribute_to_binary/1)
+    end)
+    |> Map.update!(:custom_indexes, fn indexes ->
+      Enum.map(indexes, fn index ->
+        fields =
+          Enum.map(index.fields, &AshPostgres.CustomIndex.field_to_snapshot/1)
+
+        %{index | fields: fields}
+        |> Map.delete(:__spark_metadata__)
+      end)
+    end)
+    |> Map.update!(:identities, fn identities ->
+      Enum.map(identities, fn identity ->
+        keys =
+          Enum.map(identity.keys, fn
+            value when is_binary(value) -> %{"type" => "string", "value" => value}
+            value when is_atom(value) -> %{"type" => "atom", "value" => value}
+          end)
+
+        %{identity | keys: keys}
+        |> Map.delete(:__spark_metadata__)
+      end)
+    end)
+    |> to_ordered_object()
+    |> Jason.encode!(pretty: true)
+  end
+
+  defp attribute_to_binary(attribute) do
+    attribute
+    |> Map.update!(:references, fn
+      nil ->
+        nil
+
+      references ->
+        references
+        |> Map.update!(:on_delete, &(&1 && references_on_delete_to_binary(&1)))
+    end)
+    |> Map.update!(:type, fn type ->
+      sanitize_type(type, attribute[:size], attribute[:precision], attribute[:scale])
+    end)
+    |> Map.delete(:__spark_metadata__)
+  end
+
+  defp references_on_delete_to_binary(value) when is_atom(value), do: value
+  defp references_on_delete_to_binary({:nilify, columns}), do: [:nilify, columns]
+
+  defp sanitize_type({:array, type}, size, scale, precision) do
+    ["array", sanitize_type(type, size, scale, precision)]
+  end
+
+  defp sanitize_type(type, _, _, _) do
+    type
+  end
+
+  defp load_snapshot(json) do
+    json
+    |> Jason.decode!(keys: :atoms!)
+    |> sanitize_snapshot()
+  end
+
+  defp sanitize_snapshot(snapshot) do
+    snapshot
+    |> Map.put_new(:has_create_action, true)
+    |> Map.put_new(:schema, nil)
+    |> Map.update!(:identities, fn identities ->
+      Enum.map(identities, &load_identity(&1, snapshot.table))
+    end)
+    |> Map.update!(:attributes, fn attributes ->
+      Enum.map(attributes, fn attribute ->
+        attribute = load_attribute(attribute, snapshot.table)
+
+        if is_map(Map.get(attribute, :references)) do
+          %{
+            attribute
+            | references: rewrite(attribute.references, :ignore, :ignore?)
+          }
+        else
+          attribute
+        end
+      end)
+    end)
+    |> Map.put_new(:custom_indexes, [])
+    |> Map.update!(:custom_indexes, &load_custom_indexes/1)
+    |> Map.put_new(:custom_statements, [])
+    |> Map.update!(:custom_statements, &load_custom_statements/1)
+    |> Map.put_new(:check_constraints, [])
+    |> Map.update!(:check_constraints, &load_check_constraints/1)
+    |> Map.update!(:repo, &maybe_to_atom/1)
+    |> Map.put_new(:multitenancy, %{
+      attribute: nil,
+      strategy: nil,
+      global: nil
+    })
+    |> Map.update!(:multitenancy, &load_multitenancy/1)
+    |> Map.put_new(:base_filter, nil)
+    |> Map.put_new(:drop_table_opted_out, false)
+  end
+
+  defp load_check_constraints(constraints) do
+    Enum.map(constraints, fn constraint ->
+      Map.update!(constraint, :attribute, fn attribute ->
+        attribute
+        |> List.wrap()
+        |> Enum.map(&maybe_to_atom/1)
+      end)
+    end)
+  end
+
+  defp load_custom_indexes(custom_indexes) do
+    Enum.map(custom_indexes || [], fn custom_index ->
+      custom_index
+      |> Map.update(:fields, [], fn fields ->
+        Enum.map(fields, fn
+          %{type: "atom", value: field} ->
+            maybe_to_atom(field)
+
+          %{type: "string", value: field} ->
+            field
+
+          %{type: "directed", order: order, value: value} ->
+            {maybe_to_atom(order), maybe_to_atom(value)}
+
+          field ->
+            field
+        end)
+      end)
+      |> Map.put_new(:include, [])
+      |> Map.put_new(:nulls_distinct, true)
+      |> Map.put_new(:message, nil)
+      |> Map.put_new(:all_tenants?, false)
+      |> Map.put_new(:include_base_filter?, true)
+    end)
+  end
+
+  defp load_custom_statements(statements) do
+    Enum.map(statements || [], fn statement ->
+      statement
+      |> Map.update!(:name, &maybe_to_atom/1)
+      |> Map.put_new(:global?, false)
+    end)
+  end
+
+  defp load_multitenancy(multitenancy) do
+    multitenancy
+    |> Map.update!(:strategy, fn strategy -> strategy && maybe_to_atom(strategy) end)
+    |> Map.update!(:attribute, fn attribute -> attribute && maybe_to_atom(attribute) end)
+  end
+
+  defp load_attribute(attribute, table) do
+    type = load_type(attribute.type)
+
+    attribute =
+      if Map.has_key?(attribute, :name) do
+        Map.put(attribute, :source, maybe_to_atom(attribute.name))
+      else
+        Map.update!(attribute, :source, &maybe_to_atom/1)
+      end
+
+    attribute
+    |> Map.put(:type, type)
+    |> Map.put_new(:size, nil)
+    |> Map.put_new(:precision, nil)
+    |> Map.put_new(:scale, nil)
+    |> Map.put_new(:default, "nil")
+    |> Map.update!(:default, &(&1 || "nil"))
+    |> Map.update!(:references, fn
+      nil ->
+        nil
+
+      references ->
+        references
+        |> rewrite(
+          destination_field: :destination_attribute,
+          destination_field_default: :destination_attribute_default,
+          destination_field_generated: :destination_attribute_generated
+        )
+        |> Map.delete(:ignore)
+        |> rewrite(:ignore?, :ignore)
+        |> Map.update!(:destination_attribute, &maybe_to_atom/1)
+        |> Map.put_new(:deferrable, false)
+        |> Map.update!(:deferrable, fn
+          "initially" -> :initially
+          other -> other
+        end)
+        |> Map.put_new(:schema, nil)
+        |> Map.put_new(:destination_attribute_default, "nil")
+        |> Map.put_new(:destination_attribute_generated, false)
+        |> Map.put_new(:on_delete, nil)
+        |> Map.put_new(:on_update, nil)
+        |> Map.update!(:on_delete, &(&1 && load_references_on_delete(&1)))
+        |> Map.update!(:on_update, &(&1 && maybe_to_atom(&1)))
+        |> Map.put_new(:index?, false)
+        |> Map.put_new(:index_where, nil)
+        |> Map.put_new(:match_with, nil)
+        |> Map.put_new(:match_type, nil)
+        |> Map.update!(
+          :match_with,
+          &(&1 && Enum.into(&1, %{}, fn {k, v} -> {maybe_to_atom(k), maybe_to_atom(v)} end))
+        )
+        |> Map.update!(:match_type, &(&1 && maybe_to_atom(&1)))
+        |> Map.put(
+          :name,
+          Map.get(references, :name) || "#{table}_#{attribute.source}_fkey"
+        )
+        |> Map.put_new(:multitenancy, %{
+          attribute: nil,
+          strategy: nil,
+          global: nil
+        })
+        |> Map.update!(:multitenancy, &load_multitenancy/1)
+        |> sanitize_name(table)
+    end)
+  end
+
+  defp rewrite(map, keys) do
+    Enum.reduce(keys, map, fn {key, to}, map ->
+      rewrite(map, key, to)
+    end)
+  end
+
+  defp rewrite(map, key, to) do
+    if Map.has_key?(map, key) do
+      map
+      |> Map.put(to, Map.get(map, key))
+      |> Map.delete(key)
+    else
+      map
+    end
+  end
+
+  defp sanitize_name(reference, table) do
+    if String.starts_with?(reference.name, "_") do
+      Map.put(reference, :name, "#{table}#{reference.name}")
+    else
+      reference
+    end
+  end
+
+  defp load_type(["array", type]) do
+    {:array, load_type(type)}
+  end
+
+  defp load_type([type | _]), do: String.to_existing_atom(type)
+
+  defp load_type(type) do
+    maybe_to_atom(type)
+  end
+
+  defp load_identity(identity, table) do
+    identity
+    |> Map.update!(:name, &maybe_to_atom/1)
+    |> add_index_name(table)
+    |> Map.put_new(:base_filter, nil)
+    |> Map.put_new(:all_tenants?, false)
+    |> Map.put_new(:where, nil)
+    |> Map.put_new(:nils_distinct?, true)
+    |> Map.update!(
+      :keys,
+      &Enum.map(&1, fn
+        %{type: "atom", value: value} ->
+          maybe_to_atom(value)
+
+        %{type: "string", value: value} ->
+          value
+
+        value ->
+          if String.contains?(value, "(") do
+            value
+          else
+            maybe_to_atom(value)
+          end
+      end)
+    )
+  end
+
+  defp add_index_name(%{name: name} = index, table) do
+    Map.put_new(index, :index_name, "#{table}_#{name}_unique_index")
+  end
+
+  defp load_references_on_delete(["nilify", columns]) when is_list(columns) do
+    {:nilify, Enum.map(columns, &maybe_to_atom/1)}
+  end
+
+  defp load_references_on_delete(value) do
+    maybe_to_atom(value)
+  end
+
+  defp maybe_to_atom(value) when is_atom(value), do: value
+  defp maybe_to_atom(value), do: String.to_atom(value)
+
+  defp to_ordered_object(value) when is_map(value) do
+    value
+    |> Map.to_list()
+    |> List.keysort(0)
+    |> Enum.map(fn {key, value} -> {key, to_ordered_object(value)} end)
+    |> Jason.OrderedObject.new()
+  end
+
+  defp to_ordered_object(value) when is_list(value), do: Enum.map(value, &to_ordered_object/1)
+  defp to_ordered_object(value), do: value
+end

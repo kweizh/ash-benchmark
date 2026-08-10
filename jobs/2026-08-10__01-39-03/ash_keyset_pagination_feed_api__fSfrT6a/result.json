@@ -1,0 +1,118 @@
+{
+    "id": "b7da3274-b61c-468b-88b8-6a2e289c42ca",
+    "task_name": "ash_keyset_pagination_feed_api",
+    "trial_name": "ash_keyset_pagination_feed_api__fSfrT6a",
+    "trial_uri": "file:///home/kw/code/zealt/pochi-harbor/jobs/2026-08-10__01-39-03/ash_keyset_pagination_feed_api__fSfrT6a",
+    "task_id": {
+        "path": "/home/kw/code/zealt/ash-benchmark/scratchpad/pending-tasks/ash_keyset_pagination_feed_api"
+    },
+    "source": "pending-tasks",
+    "task_checksum": "d824757e997602d4901c0ae1dfa9666f900dabe1e209b2278ed98b68119fa482",
+    "config": {
+        "task": {
+            "path": "/home/kw/code/zealt/ash-benchmark/scratchpad/pending-tasks/ash_keyset_pagination_feed_api",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "pending-tasks"
+        },
+        "trial_name": "ash_keyset_pagination_feed_api__fSfrT6a",
+        "trials_dir": "jobs/2026-08-10__01-39-03",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "agents.pochi:Pochi",
+            "import_path": null,
+            "model_name": "anthropic/claude-5-sonnet",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "env": {
+                "POCHI_API_KEY": "${POCHI_API_KEY}"
+            },
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "daytona",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": 4096,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [
+            "/home/user"
+        ],
+        "extra_instruction_paths": [],
+        "job_id": "17a02420-07fc-4275-9761-41863b2b866a"
+    },
+    "agent_info": {
+        "name": "pochi",
+        "version": "0.6.20",
+        "model_info": {
+            "name": "claude-5-sonnet",
+            "provider": "anthropic"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 0,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 14210954,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-08-09T17:39:06.791233Z",
+    "finished_at": "2026-08-09T17:59:51.450543Z",
+    "environment_setup": {
+        "started_at": "2026-08-09T17:39:06.893406Z",
+        "finished_at": "2026-08-09T17:39:12.011862Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-09T17:39:12.011904Z",
+        "finished_at": "2026-08-09T17:39:18.135357Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-09T17:39:18.135455Z",
+        "finished_at": "2026-08-09T17:58:27.595859Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-09T17:58:48.135390Z",
+        "finished_at": "2026-08-09T17:59:50.620234Z"
+    },
+    "step_results": null
+}

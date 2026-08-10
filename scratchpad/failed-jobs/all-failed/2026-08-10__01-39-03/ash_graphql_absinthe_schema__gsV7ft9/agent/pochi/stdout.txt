@@ -1,0 +1,503 @@
+- Initializing MCP connections...
+You
+# Derive and hand-extend a GraphQL API from Ash resources ## Background `/home/user/tracker` is an offline Elixir/Mix project (`:tracker`) that already contains a working, ETS-backed Ash domain for a small project tracker. The Ash side is finished: the domain `Tracker.Delivery` and the resources `Tracker.Delivery.User`, `Tracker.Delivery.Project`, `Tracker.Delivery.Ticket`, `Tracker.Delivery.Label` and `Tracker.Delivery.TicketLabel` already declare every attribute, relationship, action, validation, calculation, aggregate and policy that is needed. `Tracker.Delivery.Seed.seed!/0` loads a deterministic fixture set. What is missing is the entire GraphQL surface. Your job is to build it with the `ash_graphql` and `absinthe` dependencies that are already vendored into the project. The repository is pinned to `ash 3.31.0`, `ash_graphql 1.10.0` and `absinthe 1.11.0`. Every dependency is already vendored in `deps/` and compiled into `_build/`, and the result is compiled and graded with the network disabled: do not add, remove or upgrade dependencies, do not edit `mix.lock`, and do not rely on fetching anything. ## Requirements Expose the existing domain as a single Absinthe schema and hand-extend it. The verifier never speaks HTTP: it executes GraphQL documents **in-process** with `Absinthe.run(document, Tracker.GraphqlSchema, opts)` and asserts on the returned `%{data: ..., errors: [...]}` map, so the schema module must be usable stand-alone. * A GraphQL API derived from the Ash resources, covering queries by primary key, single-record reads, list reads, a Relay connection, create/update/destroy mutations and a generic-action mutation. * Relay object identification, including a root `node` field. * Derived filter and sort inputs, a calculation exposed as a field that takes arguments, an aggregate exposed as a field, attribute renaming, attribute hiding and a nested input object for a managed relationship. * Ash errors mapped onto the GraphQL response with exact codes and shapes, including one project-specific exception that must surface with its own code. * Two hand-written root query fields that live alongside the derived ones. ## Implementation Hints * Project path: `/home/user/tracker`. Everything runs offline; `mix compile` must succeed with no network access. * The schema module must be `Tracker.GraphqlSchema`, defined in `lib/tracker/graphql_schema.ex`. * You may edit the existing modules under `lib/tracker/`, but the fixture data produced by `Tracker.Delivery.Seed.seed!/0`, the existing Ash action names and their behaviour, and the existing attribute/relationship/calculation/aggregate/policy definitions must keep working exactly as they do now. ### Root fields The root query type must expose **exactly** these fields and no others: `apiInfo`, `auditSprint`, `labels`, `node`, `project`, `projects`, `ticket`, `ticketByReference`, `ticketOrFail`, `tickets`, `topTicket`, `users`. The root mutation type must expose **exactly** these fields and no others: `archiveProject`, `createProject`, `createTicket`, `destroyTicket`, `freezeSprint`, `updateTicket`. Behaviour of each root field: * `ticket(id: ID!): Ticket` — fetch one ticket by primary key, `null` when absent. * `ticketOrFail(id: ID!): Ticket!` — same lookup, but a missing record must produce a top-level GraphQL error with `code` `"not_found"` and `data` `null`. * `topTicket: Ticket` — resolves the single ticket produced by the existing `:top_severity` read action. * `tickets(...): TicketConnection` — a Relay connection over the primary read action. * `project(id: ID!): Project` — fetch one project by primary key. * `projects: [Project!]!`, `labels: [Label!]!`, `users: [User!]!` — plain non-paginated lists (they must **not** return a page/connection object). * `node(id: ID!): Node!` — Relay object identification. * `auditSprint(slug: String!): String` — runs the existing `:audit_sprint` generic action. That action raises; the raised message must be visible in the top-level GraphQL error message (`data` is `null`). * `apiInfo: ApiInfo!` and `ticketByReference(reference: String!): Ticket` — hand written, see below. ### Object types GraphQL type names: `Ticket`, `Project`, `User`, `Label`. `Tracker.Delivery.TicketLabel` must not appear in the schema. * `Ticket` fields, exactly: `id`, `title`, `status`, `severity`, `points`, `sequence`, `projectId`, `assigneeId`, `project`, `assignee`, `labels`, `riskScore`. * The `estimate_points` attribute must be exposed under the name `points`; the name `estimatePoints` must not exist anywhere in the schema. * The `internal_reference` attribute must not be exposed at all. * `status` is `TicketStatus!`, where `TicketStatus` is a GraphQL enum whose values are exactly `OPEN`, `IN_PROGRESS`, `BLOCKED`, `DONE`. * `riskScore(weight: Int!): Int` — the existing `:risk_score` calculation, argument included. * `Ticket` must implement the `Node` interface. * `Project` fields, exactly: `id`, `name`, `slug`, `archived`, `tickets`, `openTicketCount`. `openTicketCount` is `Int!` and comes from the existing aggregate. `Project` must implement the `Node` interface. * `User` fields, exactly: `id`, `email`, `displayName`, `role`, `assignedTickets`. The `internal_notes` attribute must not be exposed. `role` must be typed `String!` — it must not become a GraphQL enum. `User` must **not** implement `Node`. * `Label` fields, exactly: `id`, `name`, `colour`, `tickets`. * Every to-many relationship field (`Ticket.labels`, `Project.tickets`, `User.assignedTickets`, `Label.tickets`) must accept `sort`, `filter`, `limit` and `offset` arguments and return a non-null list of non-null items. ### Relay * Every `id` returned for a `Ticket` or a `Project` must be a Relay global ID, and the same value must be accepted wherever that record's id is an input: `ticket`, `ticketOrFail`, `node`, `updateTicket`, `destroyTicket`, `archiveProject`, and the `projectId` / `assigneeId` inputs of `createTicket` and `updateTicket` (which take `Project` and `User` global IDs). * Passing a bare primary-key UUID where a global ID is expected must fail with a GraphQL error whose `code` is `"invalid_primary_key"`. * `tickets` returns `TicketConnection` with exactly the fields `count`, `edges` and `pageInfo`. `count` is the total number of records matching the query's filter across all pages. `edges` is a list of `TicketEdge`, which has exactly the fields `cursor: String!` and `node: Ticket!`. `pageInfo` exposes `hasNextPage`, `hasPreviousPage`, `startCursor` and `endCursor`. Forward pagination uses `first:` and `after:`, and any edge `cursor` must be usable as `after:`. ### Filtering and sorting * `tickets` accepts derived `filter:` and `sort:` arguments. The filter input must support `and`, `or` and `not` combinators, per-field operator objects (`eq`, `notEq`, `in`, `greaterThan`, `greaterThanOrEqual`, ...), and filtering through the `project`, `assignee` and `labels` relationships. The renamed `points` field must be filterable and sortable under its GraphQL name. * `TicketSortField` must contain exactly `ID`, `TITLE`, `STATUS`, `SEVERITY`, `POINTS`, `SEQUENCE`, `PROJECT_ID`, `ASSIGNEE_ID`, `RISK_SCORE`, and sorting by `RISK_SCORE` must be possible while supplying the calculation's argument. * `Label` must be restricted: `LabelSortField` must contain exactly `NAME`, and `LabelFilterInput` must have exactly the input fields `and`, `or`, `not`, `name`. ### Mutations All six mutations return an object with a `result` field and an `errors: [MutationError!]!` field. Action errors must appear in that per-mutation `errors` list — they must never be promoted to the response's top-level `errors` key. * `createTicket(input: CreateTicketInput!)`. `CreateTicketInput` must have exactly the input fields `title`, `status`, `severity`, `points`, `sequence`, `projectId`, `assigneeId`, `newLabels`. `newLabels` is a list of `TicketLabelInput`, a derived input object for the existing `:labels` managed-relationship argument, with exactly the input fields `name` and `colour`; supplying it must create the labels and link them to the new ticket. * `updateTicket(id: ID!, input: UpdateTicketInput)`. `UpdateTicketInput` must have exactly the input fields `title`, `status`, `severity`, `points`, `assigneeId`. * `destroyTicket(id: ID!)` returns the destroyed record in `result`. * `createProject(input: CreateProjectInput!)` and `archiveProject(id: ID!)` wrap the existing `:create` and `:archive` actions. `archiveProject` is policy-protected; when the caller is not authorised the mutation must return `result: null` and a single error with `code`, `message` and `shortMessage` all equal to `"forbidden"` and `fields` equal to `[]`. * `freezeSprint(input: FreezeSprintInput!)` wraps the existing `:freeze_sprint` generic action. `FreezeSprintInput` must have exactly the input fields `slug` and `reason` (both `String!`), and the mutation payload must expose `result: String` plus the same `errors` list, i.e. the action's errors must be reported inside the payload rather than at the top level. ### Error shapes `MutationError` entries must expose `message`, `shortMessage`, `code`, `fields`, `vars` and `path`. Concretely: * A failing attribute validation must produce `code` `"invalid_attribute"`, `fields` holding the offending attribute name, a `message` and `shortMessage` with `%{...}` placeholders already substituted from `vars`, and a `path` of the form `["input", "<graphqlFieldName>"]`. * A mutation whose target record does not exist must produce `code` `"not_found"` with `fields` `["id"]`. * `Tracker.Delivery.Errors.SprintFrozen` (raised by `:freeze_sprint` for an already archived project) must surface as exactly one error with `code` `"sprint_frozen"`, `shortMessage` `"sprint frozen"`, `message` `"sprint <slug> is already frozen"`, `fields` `["reason"]` and `vars` `%{project_slug: "<slug>"}`. ### Hand-written root fields * `apiInfo: ApiInfo!` where `ApiInfo` is an object with exactly `name: String!` and `ticketCount: Int!`. `name` is the constant `"tracker"`; `ticketCount` is the current number of `Tracker.Delivery.Ticket` records. * `ticketByReference(reference: String!): Ticket` resolves the single ticket whose `internal_reference` attribute equals the argument. It must support the full `Ticket` selection set — nested relationships, the aggregate reachable through `project`, and `riskScore` with its argument must all resolve correctly. When no ticket matches it must resolve to `null` **without** producing any GraphQL error. ### Authorization The verifier supplies the actor as `Absinthe.run(document, Tracker.GraphqlSchema, context: %{actor: user_struct})`, where `user_struct` is a `Tracker.Delivery.User` record. Authorization must stay enabled for the domain so the existing policies are enforced.   
+
+Pochi
+📂 Listing files in /home/user/tracker recursively ✔ 
+📖 Reading /home/user/tracker/lib/tracker/delivery.ex ✔ 
+📖 Reading /home/user/tracker/lib/tracker/delivery/ticket.ex ✔ 
+📖 Reading /home/user/tracker/lib/tracker/delivery/project.ex ✔ 
+📖 Reading /home/user/tracker/lib/tracker/delivery/user.ex ✔ 
+📖 Reading /home/user/tracker/lib/tracker/delivery/label.ex ✔ 
+📖 Reading /home/user/tracker/lib/tracker/delivery/ticket_label.ex ✔ 
+📖 Reading /home/user/tracker/lib/tracker/delivery/errors/sprint_frozen.ex ✔ 
+📖 Reading /home/user/tracker/lib/tracker/delivery/seed.ex ✔ 
+📖 Reading /home/user/tracker/lib/tracker/delivery/ticket_status.ex ✔ 
+📖 Reading /home/user/tracker/lib/tracker/delivery/user_role.ex ✔ 
+📖 Reading /home/user/tracker/mix.exs ✔ 
+💭 Thinking for 6 characters   
+📖 Reading /home/user/tracker/deps/ash_graphql/usage-rules/domain_configuration.md ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/usage-rules/resource_configuration.md ✔ 
+📖 Reading /home/user/tracker/lib/tracker/application.ex ✔ 
+📂 Listing files in /home/user/tracker/deps/ash_graphql/documentation/topics ✔ 
+Let me read the key documentation topics relevant to this task: relay, generic-actions, handle-errors, custom-queries-and-mutations, use-enums-with-graphql.   
+📖 Reading /home/user/tracker/deps/ash_graphql/documentation/topics/relay.md ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/documentation/topics/generic-actions.md ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/documentation/topics/handle-errors.md ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/documentation/topics/custom-queries-and-mutations.md ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/documentation/topics/use-enums-with-graphql.md ✔ 
+📂 Listing files in /home/user/tracker/deps/ash_graphql/documentation/dsls ✔ 
+📂 Listing files in /home/user/tracker/deps/ash_graphql/lib/resource ✔ 
+📂 Listing files in /home/user/tracker/deps/ash_graphql/lib/domain ✔ 
+These DSL reference docs will be extremely helpful for exact option names. Let me read both fully.   
+📖 Reading /home/user/tracker/deps/ash_graphql/documentation/dsls/DSL-AshGraphql.Domain.md ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/documentation/dsls/DSL-AshGraphql.Resource.md ✔ 
+🔍 Searching for managed_relationship|relay\?|primary_key_delimiter|generate_object|Node interface|node query|encode_primary_key" in /home/user/tracker/deps/ash_graphql/documentation/dsls/DSL-AshGraphql.Resource.md ✔ 
+🔍 Searching for Node|node_type|interfaces in /home/user/tracker/deps/ash_graphql/lib ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/domain/domain.ex ✔ 
+💭 Thinking for 1548 characters   
+🔍 Searching for relay_ids\?|encode_relay_id|decode_relay_id|global_id in /home/user/tracker/deps/ash_graphql/lib ✔ 
+💭 Thinking for 4546 characters   
+🔍 Searching for Input\"|_input\"|mutation_result|MutationError|payload_type|error_location in /home/user/tracker/deps/ash_graphql/lib ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+💭 Thinking for 275 characters   
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/ash_graphql.ex ✔ 
+💭 Thinking for 1906 characters   
+🔍 Searching for hide_fields|hidden_fields|show_fields in /home/user/tracker/deps/ash_graphql/lib ✔ 
+💭 Thinking for 305 characters   
+🔍 Searching for def filterable_fields|def sortable_fields|defp default_filterable|defp default_sortable in /home/user/tracker/deps/ash_graphql/lib/resource ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/info.ex ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/info.ex ✔ 
+💭 Thinking for 180 characters   
+🔍 Searching for sortable_field\?|filterable_field\?|show_field\? in /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+💭 Thinking for 297 characters   
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+💭 Thinking for 1998 characters   
+🔍 Searching for field_names\[ in /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+💭 Thinking for 308 characters   
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+🔍 Searching for defp related_list_args|defp related_list_type|defp relationship_pagination_strategy in /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+💭 Thinking for 4 characters   
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+🔍 Searching for defp args\( in /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+Good, this confirms the default behavior for relationships already satisfies the spec's requirements. Now let's check the `:list` args builder to see filter/sort inclusion and confirm derive_filter?/derive_sort? defaults apply to related lists too.   
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+💭 Thinking for 1701 characters   
+🔍 Searching for defp mutation_fields\( in /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+💭 Thinking for 738 characters   
+📖 Reading /home/user/tracker/deps/ash_graphql/documentation/dsls/DSL-AshGraphql.Resource.md ✔ 
+💭 Thinking for 352 characters   
+🔍 Searching for managed_relationship_field_type|manage_opts|manage_relationship|def managed_relationship|opts\[:type\]|derive_managed in /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+💭 Thinking for 337 characters   
+🔍 Searching for def manage_relationship_opts in /home/user/tracker/deps/ash/lib ✔ 
+📖 Reading /home/user/tracker/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+💭 Thinking for 1272 characters   
+🔍 Searching for defstruct.*public\?|field :public\?, :boolean|public\?: \[.*default in /home/user/tracker/deps/ash/lib ✔ 
+🔍 Searching for public\? in *.ex files in /home/user/tracker/deps/ash/lib/ash/resource ✔ 
+💭 Thinking for 1678 characters   
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/domain/domain.ex ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/error.ex ✔ 
+💭 Thinking for 300 characters   
+🔍 Searching for :path|path:|to_errors|to_absinthe_error in /home/user/tracker/deps/ash_graphql/lib ✔ 
+Let's look at graphql/errors.ex to understand default path computation.   
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/graphql/errors.ex ✔ 
+💭 Thinking for 842 characters   
+🔍 Searching for show_raised_errors|UnknownError|Unknown\.Unknown in /home/user/tracker/deps/ash_graphql/lib ✔ 
+🔍 Searching for defmodule Ash.Error.Unknown in /home/user/tracker/deps/ash/lib/ash/error ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/graphql/resolver.ex ✔ 
+💭 Thinking for 453 characters   
+🔍 Searching for defimpl AshGraphql.Error in /home/user/tracker/deps/ash_graphql/lib ✔ 
+💭 Thinking for 7 characters   
+🔍 Searching for def to_ash_error in /home/user/tracker/deps/ash/lib/ash/error.ex ✖ "rg command failed with code 2: rg: /home/user/tracker/deps/ash/lib/ash/error.ex: IO error for operation on /home/user/tracker/deps/ash/lib/ash/error.ex: No such file or directory (os error 2)\n"
+🔍 Searching for def to_ash_error in /home/user/tracker/deps/ash/lib ✔ 
+📖 Reading /home/user/tracker/deps/ash/lib/ash/error/error.ex ✔ 
+📖 Reading /home/user/tracker/deps/ash/lib/ash/error/unknown/unknown_error.ex ✔ 
+💭 Thinking for 345 characters   
+🔍 Searching for def unwrap_errors in /home/user/tracker/deps/ash_graphql/lib/graphql/resolver.ex ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/graphql/resolver.ex ✔ 
+💭 Thinking for 350 characters   
+🔍 Searching for **/*.ex in /home/user/tracker/deps/splode/lib ✔ 
+📖 Reading /home/user/tracker/deps/splode/lib/splode.ex ✔ 
+💭 Thinking for 4894 characters   
+🔍 Searching for Ash.Type.Enum|graphql_type\(|graphql_rename_value|EnumValueDefinition in /home/user/tracker/deps/ash_graphql/lib ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/ash_graphql.ex ✔ 
+💭 Thinking for 442 characters   
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/ash_graphql.ex ✔ 
+Now let's check custom-queries within `use AshGraphql` schema — how to add hand-written query fields alongside derived ones. Let's check the macro more to see how `query` block extension works.   
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/ash_graphql.ex ✔ 
+💭 Thinking for 1102 characters   
+🔍 Searching for def load_fields_on_query|def load_fields|def handle_errors in /home/user/tracker/deps/ash_graphql/lib/ash_graphql.ex ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/ash_graphql.ex ✔ 
+💭 Thinking for 490 characters   
+🔍 Searching for def count(|def count!\( in /home/user/tracker/deps/ash/lib/ash.ex ✖ "rg command failed with code 2: rg: regex parse error:\n    (?:def count(|def count!\\()\n    ^\nerror: unclosed group\n"
+🔍 Searching for def count in /home/user/tracker/deps/ash/lib/ash.ex ✔ 
+💭 Thinking for 785 characters   
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+💭 Thinking for 915 characters   
+🔍 Searching for defp args\(\s*:action|generic_action_args\(|def queries\(resource|defp query_args in /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+💭 Thinking for 760 characters   
+📖 Reading /home/user/tracker/deps/ash/lib/ash/resource/actions/action/action.ex ✔ 
+💭 Thinking for 339 characters   
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+💭 Thinking for 7086 characters   
+🔍 Searching for defp on_no_match_fields|defp on_match_fields|defp on_lookup_fields|defp manage_pkey_fields in /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/resource/resource.ex ✔ 
+💭 Thinking for 2271 characters   
+📖 Reading /home/user/tracker/deps/ash_graphql/lib/ash_graphql.ex ✔ 
+💭 Thinking for 152 characters   
+🔍 Searching for use Absinthe.Schema|@behaviour Absinthe.Schema|Absinthe.Schema.Notation in /home/user/tracker/deps/ash_graphql/lib/ash_graphql.ex ✔ 
+💭 Thinking for 540 characters   
+🔧 Applying diff to /home/user/tracker/lib/tracker/delivery/ticket_status.ex ✔ 
+Now the SprintFrozen error module with the AshGraphql.Error protocol implementation:   
+🔧 Applying diff to /home/user/tracker/lib/tracker/delivery/errors/sprint_frozen.ex ✔ 
+Now let's create a module for the `Ash.Error.Unknown.UnknownError` protocol implementation so raised errors surface their message:   
+✏️  Writing /home/user/tracker/lib/tracker/delivery/errors/graphql_unknown_error.ex ✔ 
+🔧 Applying diff to /home/user/tracker/lib/tracker/delivery/project.ex ✔ 
+🔧 Applying diff to /home/user/tracker/lib/tracker/delivery/project.ex ✔ 
+Now let's update the Ticket resource:   
+🔧 Applying diff to /home/user/tracker/lib/tracker/delivery/ticket.ex ✔ 
+Now the Label resource:   
+🔧 Applying diff to /home/user/tracker/lib/tracker/delivery/label.ex ✔ 
+Now the User resource:   
+🔧 Applying diff to /home/user/tracker/lib/tracker/delivery/user.ex ✔ 
+Now the Delivery domain:   
+🔧 Applying diff to /home/user/tracker/lib/tracker/delivery.ex ✔ 
+Now let's create the GraphQL schema module:   
+✏️  Writing /home/user/tracker/lib/tracker/graphql_schema.ex ✔ 
+Now let's compile the project to check for errors.   
+💫 Executing cd /home/user/tracker && mix compile 2>&1 | tail -150 ✔ 
+It compiled successfully. Now let's write a quick script to actually run some GraphQL queries in-process to validate behavior against the requirements.   
+💫 Executing cd /home/user/tracker && cat > /tmp/introspect.exs << 'EOF'
+{:ok, %{data: data}} = Absinthe.run("""
+{
+  __schema {
+    queryType { fields { name } }
+    mutationType { fields { name } }
+  }
+}
+""", Tracker.GraphqlSchema)
+
+IO.puts("QUERY FIELDS:")
+data["__schema"]["queryType"]["fields"] |> Enum.map(& &1["name"]) |> Enum.sort() |> Enum.each(&IO.puts/1)
+IO.puts("MUTATION FIELDS:")
+data["__schema"]["mutationType"]["fields"] |> Enum.map(& &1["name"]) |> Enum.sort() |> Enum.each(&IO.puts/1)
+EOF
+mix run /tmp/introspect.exs 2>&1 | tail -100 ✔ 
+💫 Executing cd /home/user/tracker && cat > /tmp/introspect2.exs << 'EOF'
+result = Absinthe.run("""
+{
+  __schema {
+    mutationType { name fields { name } }
+  }
+}
+""", Tracker.GraphqlSchema)
+
+IO.inspect(result, limit: :infinity)
+EOF
+mix run /tmp/introspect2.exs 2>&1 | tail -100 ✔ 
+💭 Thinking for 410 characters   
+🔍 Searching for mutation do|query do|use AshGraphql in /home/user/tracker/deps/ash_graphql/documentation/tutorials ✔ 
+📖 Reading /home/user/tracker/deps/ash_graphql/documentation/tutorials/getting-started-with-graphql.md ✔ 
+An empty `mutation do end` block is required to have Absinthe create the RootMutationType so AshGraphql can inject fields into it. Let's add it.   
+🔧 Applying diff to /home/user/tracker/lib/tracker/graphql_schema.ex ✔ 
+💫 Executing cd /home/user/tracker && mix compile 2>&1 | tail -60 && mix run /tmp/introspect.exs 2>&1 | tail -80 ✔ 
+Both root query and mutation field lists match exactly. Now let's check type shapes in detail (Ticket, Project, User, Label, enums, connections, inputs).   
+💫 Executing cd /home/user/tracker && cat > /tmp/introspect3.exs << 'EOF'
+defmodule I do
+  def type_fields(name) do
+    {:ok, %{data: %{"__type" => t}}} = Absinthe.run("""
+    { __type(name: "#{name}") { name kind fields { name type { name kind ofType { name kind ofType { name kind ofType { name kind } } } } } inputFields { name type { name kind ofType { name kind ofType {name kind} } } } enumValues { name } } }
+    """, Tracker.GraphqlSchema)
+    t
+  end
+end
+
+for name <- ["Ticket", "Project", "User", "Label", "TicketStatus", "TicketConnection", "TicketEdge", "CreateTicketInput", "UpdateTicketInput", "TicketLabelInput", "FreezeSprintInput", "TicketSortField", "LabelSortField", "LabelFilterInput", "MutationError", "ApiInfo"] do
+  IO.puts("== #{name} ==")
+  IO.inspect(I.type_fields(name), limit: :infinity, pretty: true)
+end
+EOF
+mix run /tmp/introspect3.exs 2>&1 | tail -400 ✔ 
+Excellent, everything matches spec exactly. Let's check the Ticket and Project and User types (output got truncated at top), and check Node interface implementation.   
+💫 Executing cd /home/user/tracker && mix run /tmp/introspect3.exs 2>&1 | sed -n '1,140p' ✔ 
+All Ticket/Project fields exactly match. Now let's verify Node interface membership and User exclusion, plus check TicketLabel doesn't appear.   
+💫 Executing cd /home/user/tracker && cat > /tmp/introspect4.exs << 'EOF'
+{:ok, %{data: %{"__schema" => %{"types" => types}}}} = Absinthe.run("""
+{ __schema { types { name kind interfaces { name } } } }
+""", Tracker.GraphqlSchema)
+
+for t <- types, t["name"] in ["Ticket", "Project", "User", "Label", "TicketLabel"] do
+  IO.inspect(t)
+end
+
+IO.puts("All type names containing 'Ticket_label' or 'TicketLabel' (non-input):")
+types |> Enum.map(& &1["name"]) |> Enum.filter(&String.contains?(&1 || "", "TicketLabel")) |> IO.inspect()
+EOF
+mix run /tmp/introspect4.exs 2>&1 | tail -60 ✔ 
+All matches expectations exactly: Ticket/Project implement Node, User/Label do not, and only `TicketLabelInput` (not `TicketLabel`) appears. Now let's test actual query/mutation execution end-to-end using the seed data.   
+💫 Executing cd /home/user/tracker && cat > /tmp/exec1.exs << 'EOF'
+Tracker.Delivery.Seed.seed!()
+
+alias Tracker.Delivery
+
+# get relay id for a ticket and project
+{:ok, ticket} = Ash.get(Delivery.Ticket, Delivery.Seed.ticket_id(1), authorize?: false)
+{:ok, project} = Ash.get(Delivery.Project, Delivery.Seed.apollo_id(), authorize?: false)
+{:ok, alice} = Ash.get(Delivery.User, Delivery.Seed.alice_id(), authorize?: false)
+
+ticket_gid = AshGraphql.Resource.encode_relay_id(ticket)
+project_gid = AshGraphql.Resource.encode_relay_id(project)
+alice_gid = AshGraphql.Resource.encode_relay_id(alice)
+
+IO.puts("ticket_gid: #{ticket_gid}")
+IO.puts("project_gid: #{project_gid}")
+
+query = """
+query($id: ID!) {
+  ticket(id: $id) {
+    id
+    title
+    status
+    points
+    riskScore(weight: 2)
+    project { id name openTicketCount }
+    assignee { id displayName }
+    labels { name colour }
+  }
+}
+"""
+
+result = Absinthe.run(query, Tracker.GraphqlSchema, variables: %{"id" => ticket_gid})
+IO.inspect(result, limit: :infinity, pretty: true)
+
+# ticketOrFail with bad id -> not_found
+bad_gid = AshGraphql.Resource.encode_relay_id(%{ticket | id: Ash.UUID.generate()})
+result2 = Absinthe.run("query($id: ID!) { ticketOrFail(id: $id) { id } }", Tracker.GraphqlSchema, variables: %{"id" => bad_gid})
+IO.inspect(result2, limit: :infinity, pretty: true)
+
+# bare primary key instead of relay id -> invalid_primary_key
+result3 = Absinthe.run("query($id: ID!) { ticket(id: $id) { id } }", Tracker.GraphqlSchema, variables: %{"id" => ticket.id})
+IO.inspect(result3, limit: :infinity, pretty: true)
+EOF
+mix run /tmp/exec1.exs 2>&1 | tail -150 ✔ 
+💫 Executing cd /home/user/tracker && cat > /tmp/exec2.exs << 'EOF'
+Tracker.Delivery.Seed.seed!()
+alias Tracker.Delivery
+
+{:ok, project} = Ash.get(Delivery.Project, Delivery.Seed.apollo_id(), authorize?: false)
+{:ok, bob} = Ash.get(Delivery.User, Delivery.Seed.bob_id(), authorize?: false)
+{:ok, alice} = Ash.get(Delivery.User, Delivery.Seed.alice_id(), authorize?: false)
+
+project_gid = AshGraphql.Resource.encode_relay_id(project)
+bob_gid = AshGraphql.Resource.encode_relay_id(bob)
+
+create_mutation = """
+mutation($input: CreateTicketInput!) {
+  createTicket(input: $input) {
+    result { id title points labels { name colour } }
+    errors { code message shortMessage fields path vars }
+  }
+}
+"""
+
+vars = %{
+  "input" => %{
+    "title" => "New bug",
+    "projectId" => project_gid,
+    "assigneeId" => bob_gid,
+    "points" => 5,
+    "newLabels" => [%{"name" => "urgent", "colour" => "#ff0000"}]
+  }
+}
+
+r1 = Absinthe.run(create_mutation, Tracker.GraphqlSchema, variables: vars)
+IO.inspect(r1, limit: :infinity, pretty: true)
+
+# invalid title -> invalid_attribute error
+vars_bad = put_in(vars, ["input", "title"], "ab")
+r2 = Absinthe.run(create_mutation, Tracker.GraphqlSchema, variables: vars_bad)
+IO.inspect(r2, limit: :infinity, pretty: true)
+
+# archiveProject unauthenticated (no actor) -> forbidden
+archive_mutation = """
+mutation($id: ID!) { archiveProject(id: $id) { result { id archived } errors { code message shortMessage fields } } }
+"""
+r3 = Absinthe.run(archive_mutation, Tracker.GraphqlSchema, variables: %{"id" => project_gid})
+IO.inspect(r3, limit: :infinity, pretty: true)
+
+# archiveProject as admin actor (alice) -> success
+r4 = Absinthe.run(archive_mutation, Tracker.GraphqlSchema, variables: %{"id" => project_gid}, context: %{actor: alice})
+IO.inspect(r4, limit: :infinity, pretty: true)
+
+# freezeSprint on now-archived apollo -> SprintFrozen error
+freeze_mutation = """
+mutation($input: FreezeSprintInput!) { freezeSprint(input: $input) { result errors { code message shortMessage fields vars } } }
+"""
+r5 = Absinthe.run(freeze_mutation, Tracker.GraphqlSchema, variables: %{"input" => %{"slug" => "apollo", "reason" => "test"}})
+IO.inspect(r5, limit: :infinity, pretty: true)
+
+# freezeSprint on zephyr (not archived) -> success result string
+r6 = Absinthe.run(freeze_mutation, Tracker.GraphqlSchema, variables: %{"input" => %{"slug" => "zephyr", "reason" => "test"}})
+IO.inspect(r6, limit: :infinity, pretty: true)
+
+# auditSprint raises
+r7 = Absinthe.run("query($slug: String!) { auditSprint(slug: $slug) }", Tracker.GraphqlSchema, variables: %{"slug" => "zephyr"})
+IO.inspect(r7, limit: :infinity, pretty: true)
+
+# ticketByReference
+r8 = Absinthe.run("""
+query { ticketByReference(reference: "APOLLO-1") { id title project { name openTicketCount } riskScore(weight: 1) } }
+""", Tracker.GraphqlSchema)
+IO.inspect(r8, limit: :infinity, pretty: true)
+
+r9 = Absinthe.run("""
+query { ticketByReference(reference: "NOPE") { id } }
+""", Tracker.GraphqlSchema)
+IO.inspect(r9, limit: :infinity, pretty: true)
+
+# apiInfo
+r10 = Absinthe.run("query { apiInfo { name ticketCount } }", Tracker.GraphqlSchema)
+IO.inspect(r10, limit: :infinity, pretty: true)
+
+# tickets connection
+r11 = Absinthe.run("""
+query { tickets(first: 2, sort: [{field: SEVERITY, order: DESC}]) { count edges { cursor node { title severity } } pageInfo { hasNextPage endCursor } } }
+""", Tracker.GraphqlSchema)
+IO.inspect(r11, limit: :infinity, pretty: true)
+EOF
+mix run /tmp/exec2.exs 2>&1 | tail -400 ✔ 
+💭 Thinking for 821 characters   
+🔧 Applying diff to /home/user/tracker/lib/tracker/delivery.ex ✔ 
+💫 Executing cd /home/user/tracker && mix compile 2>&1 | tail -60 && mix run /tmp/exec2.exs 2>&1 | sed -n '1,60p' ✔ 
+createTicket now works correctly with relay global IDs for `projectId`/`assigneeId`. Let's test `updateTicket` with a relay global assigneeId too, and double check the `destroyTicket` and `not_found` mutation error path.   
+💫 Executing cd /home/user/tracker && cat > /tmp/exec3.exs << 'EOF'
+Tracker.Delivery.Seed.seed!()
+alias Tracker.Delivery
+
+{:ok, ticket} = Ash.get(Delivery.Ticket, Delivery.Seed.ticket_id(2), authorize?: false)
+{:ok, alice} = Ash.get(Delivery.User, Delivery.Seed.alice_id(), authorize?: false)
+ticket_gid = AshGraphql.Resource.encode_relay_id(ticket)
+alice_gid = AshGraphql.Resource.encode_relay_id(alice)
+
+update_mutation = """
+mutation($id: ID!, $input: UpdateTicketInput) {
+  updateTicket(id: $id, input: $input) {
+    result { id assignee { displayName } status points }
+    errors { code message fields path }
+  }
+}
+"""
+r1 = Absinthe.run(update_mutation, Tracker.GraphqlSchema, variables: %{"id" => ticket_gid, "input" => %{"assigneeId" => alice_gid, "status" => "DONE"}})
+IO.inspect(r1, limit: :infinity, pretty: true)
+
+# destroy not found
+fake_gid = AshGraphql.Resource.encode_relay_id(%{ticket | id: Ash.UUID.generate()})
+destroy_mutation = "mutation($id: ID!) { destroyTicket(id: $id) { result { id } errors { code fields } } }"
+r2 = Absinthe.run(destroy_mutation, Tracker.GraphqlSchema, variables: %{"id" => fake_gid})
+IO.inspect(r2, limit: :infinity, pretty: true)
+
+# destroy success
+r3 = Absinthe.run(destroy_mutation, Tracker.GraphqlSchema, variables: %{"id" => ticket_gid})
+IO.inspect(r3, limit: :infinity, pretty: true)
+
+# node query
+r4 = Absinthe.run("query($id: ID!) { node(id: $id) { id ... on Ticket { title } } }", Tracker.GraphqlSchema, variables: %{"id" => AshGraphql.Resource.encode_relay_id(%{ticket | id: Delivery.Seed.ticket_id(3)})})
+IO.inspect(r4, limit: :infinity, pretty: true)
+
+# users / labels / projects plain lists
+r5 = Absinthe.run("query { users { displayName role } labels { name } projects { name } }", Tracker.GraphqlSchema)
+IO.inspect(r5, limit: :infinity, pretty: true)
+
+# topTicket
+r6 = Absinthe.run("query { topTicket { title severity } }", Tracker.GraphqlSchema)
+IO.inspect(r6, limit: :infinity, pretty: true)
+
+# ticket filter by points / labels
+r7 = Absinthe.run("""
+query { tickets(filter: {points: {greaterThan: 4}}, sort: [{field: POINTS, order: ASC}]) { count edges { node { title points } } } }
+""", Tracker.GraphqlSchema)
+IO.inspect(r7, limit: :infinity, pretty: true)
+
+r8 = Absinthe.run("""
+query { tickets(filter: {labels: {name: {eq: "bug"}}}) { count edges { node { title } } } }
+""", Tracker.GraphqlSchema)
+IO.inspect(r8, limit: :infinity, pretty: true)
+EOF
+mix run /tmp/exec3.exs 2>&1 | tail -300 ✔ 
+💭 Thinking for 378 characters   
+💫 Executing cd /home/user/tracker && cat > /tmp/check_pag.exs << 'EOF'
+for {mod, name} <- [{Tracker.Delivery.User, :read}, {Tracker.Delivery.Label, :read}, {Tracker.Delivery.Project, :read}] do
+  action = Ash.Resource.Info.action(mod, name)
+  IO.inspect({mod, action.pagination}, label: "pagination")
+end
+EOF
+mix run /tmp/check_pag.exs 2>&1 | tail -30 ✔ 
+💭 Thinking for 672 characters   
+🔧 Applying diff to /home/user/tracker/lib/tracker/delivery.ex ✔ 
+💭 Thinking for 414 characters   
+💫 Executing cd /home/user/tracker && mix compile 2>&1 | tail -60 && mix run /tmp/introspect.exs 2>&1 | tail -40 ✔ 
+💫 Executing cd /home/user/tracker && mix run /tmp/exec3.exs 2>&1 | tail -300 ✔ 
+All fixed now — `users`, `labels`, `projects` return plain lists, filtering by nested relationships (labels.name) works, filtering/sorting by renamed `points` field works, node interface works, destroy/update/not_found errors all correct. Let's also verify relationship list args (sort/filter/limit/offset) work on nested fields, and double-check the `Project.tickets`/`User.assignedTickets`/`Label.tickets` relationship fields aren't paginated (page-wrapped) due to the same pagination-default issue.   
+💫 Executing cd /home/user/tracker && cat > /tmp/exec4.exs << 'EOF'
+{:ok, %{data: %{"__type" => t}}} = Absinthe.run("""
+{ __type(name: "Project") { fields { name type { kind name ofType { kind name ofType { kind name } } } args { name } } } }
+""", Tracker.GraphqlSchema)
+IO.inspect(t, limit: :infinity, pretty: true)
+EOF
+mix run /tmp/exec4.exs 2>&1 | tail -80 ✔ 
+Confirmed: `Project.tickets` returns `[Ticket!]!` (non-paginated) with `filter`, `limit`, `offset`, `sort` args, as required (relationship fields use `related_list_args` which don't get the pagination-wrapping issue since that only affects root `list` queries with a fixed strategy). Let's verify the same for `Ticket.labels`, `User.assignedTickets`, and `Label.tickets`.   
+💫 Executing cd /home/user/tracker && cat > /tmp/exec5.exs << 'EOF'
+for {type, field} <- [{"Ticket", "labels"}, {"User", "assignedTickets"}, {"Label", "tickets"}] do
+  {:ok, %{data: %{"__type" => t}}} = Absinthe.run("""
+  { __type(name: "#{type}") { fields { name args { name } type { kind ofType { kind ofType { kind name } } } } } }
+  """, Tracker.GraphqlSchema)
+  f = Enum.find(t["fields"], &(&1["name"] == field))
+  IO.inspect({type, field, f})
+end
+EOF
+mix run /tmp/exec5.exs 2>&1 | tail -60 ✔ 
+All four to-many relationship fields correctly expose `sort`, `filter`, `limit`, `offset` and return `[Type!]!`. Let's now run the full test suite one more time (compile clean, no warnings) and double check mix compile with `--warnings-as-errors` isn't required but let's verify no compile warnings exist that could indicate issues.   
+💫 Executing cd /home/user/tracker && rm -rf _build/dev/lib/tracker && mix compile 2>&1 | tail -150 ✔ 
+Clean compile with no warnings. Now let's double check the `sortable by RISK_SCORE with the calculation's argument` and the `and`/`or`/`not` filter combinators plus operator objects work correctly end-to-end.   
+💫 Executing cd /home/user/tracker && cat > /tmp/exec6.exs << 'EOF'
+Tracker.Delivery.Seed.seed!()
+
+r1 = Absinthe.run("""
+query { tickets(sort: [{field: RISK_SCORE, order: DESC, riskScoreInput: {weight: 3}}]) { edges { node { title riskScore(weight: 3) } } } }
+""", Tracker.GraphqlSchema)
+IO.inspect(r1, limit: :infinity, pretty: true)
+
+r2 = Absinthe.run("""
+query { tickets(filter: {or: [{severity: {eq: 5}}, {and: [{status: {eq: OPEN}}, {points: {greaterThanOrEqual: 8}}]}]}) { count edges { node { title severity status points } } } }
+""", Tracker.GraphqlSchema)
+IO.inspect(r2, limit: :infinity, pretty: true)
+
+r3 = Absinthe.run("""
+query { tickets(filter: {not: [{status: {eq: DONE}}]}) { count } }
+""", Tracker.GraphqlSchema)
+IO.inspect(r3, limit: :infinity, pretty: true)
+
+r4 = Absinthe.run("""
+query { tickets(filter: {assignee: {displayName: {eq: "Alice"}}}) { count edges { node { title } } } }
+""", Tracker.GraphqlSchema)
+IO.inspect(r4, limit: :infinity, pretty: true)
+EOF
+mix run /tmp/exec6.exs 2>&1 | tail -200 ✔ 
+Everything works exactly as required: sorting by `RISK_SCORE` with the calculation argument, `and`/`or`/`not` filter combinators, per-field operators (`eq`, `greaterThanOrEqual`), and filtering through the `assignee` relationship. Let's clean up the temporary test scripts and do a final full compile check.   
+💫 Executing rm -f /tmp/introspect*.exs /tmp/exec*.exs /tmp/check_pag.exs; cd /home/user/tracker && mix compile 2>&1 | tail -30 ✔ 
+The project compiles cleanly with no output (nothing to recompile, no warnings). Let's do a final review of all the modified/created files to ensure everything is in order.   
+📖 Reading /home/user/tracker/lib/tracker/delivery.ex ✔ 
+📖 Reading /home/user/tracker/lib/tracker/graphql_schema.ex ✔ 
+This all looks correct and has been thoroughly verified through in-process `Absinthe.run/3` execution. Let's do one last check — running the full existing behavior (seed + basic Ash actions) to make sure nothing regressed on the Ash side (non-GraphQL usage).   
+💫 Executing cd /home/user/tracker && cat > /tmp/sanity.exs << 'EOF'
+:ok = Tracker.Delivery.Seed.seed!()
+{:ok, tickets} = Ash.read(Tracker.Delivery.Ticket, authorize?: false)
+IO.puts("tickets: #{length(tickets)}")
+{:ok, top} = Tracker.Delivery.Ticket |> Ash.Query.for_read(:top_severity) |> Ash.read_one(authorize?: false)
+IO.inspect(top.title)
+{:ok, project} = Ash.get(Tracker.Delivery.Project, Tracker.Delivery.Seed.apollo_id(), authorize?: false)
+IO.inspect(project.archived)
+EOF
+mix run /tmp/sanity.exs 2>&1 | tail -30 && rm -f /tmp/sanity.exs ✔ 
+Existing Ash resource behavior and seed data are unaffected. The implementation is complete and fully verified.   
+🎉 Task Completed
+Implemented a complete hand-extended GraphQL API for the Ash `Tracker.Delivery` domain, verified entirely through in-process `Absinthe.run/3` calls against `Tracker.GraphqlSchema`.
+
+**Files changed:**
+- `lib/tracker/delivery.ex` — added `AshGraphql.Domain` extension with a `graphql` block declaring all derived queries (`ticket`, `ticketOrFail` w/ `allow_nil?: false`, `topTicket` via `:top_severity`, `tickets` as a `relay?: true` connection, `project`, `projects`/`labels`/`users` as plain unpaginated lists via `paginate_with: nil`, and the `audit_sprint` generic action) and mutations (`createTicket`/`updateTicket`/`destroyTicket`, `createProject`/`archiveProject`, and `freeze_sprint` as `error_location: :in_result`), including `relay_id_translations` so `projectId`/`assigneeId` inputs accept Relay global IDs, plus `show_raised_errors? true`.
+- `lib/tracker/delivery/ticket.ex` — added `AshGraphql.Resource` extension, `type :ticket`, `field_names estimate_points: :points`, `hide_fields [:internal_reference]`, `argument_names create: [labels: :new_labels]`, and a `managed_relationships` block naming the nested input `TicketLabelInput`.
+- `lib/tracker/delivery/project.ex` — added `AshGraphql.Resource` extension, `type :project`, and `allow_nil? true` on `:audit_sprint` (schema nullability only, no behavior change).
+- `lib/tracker/delivery/label.ex` — added extension, `type :label`, restricted `sortable_fields`/`filterable_fields` to `[:name]`.
+- `lib/tracker/delivery/user.ex` — added extension, `type :user`, `hide_fields [:internal_notes]` (role stays a plain string since no `graphql_type/1` was added).
+- `lib/tracker/delivery/ticket_status.ex` — added `graphql_type/1` to expose `TicketStatus` as a proper enum.
+- `lib/tracker/delivery/errors/sprint_frozen.ex` — added an `AshGraphql.Error` impl producing the exact `sprint_frozen` shape.
+- `lib/tracker/delivery/errors/graphql_unknown_error.ex` (new) — `AshGraphql.Error` impl for `Ash.Error.Unknown.UnknownError` so raised exceptions (e.g. `auditSprint`) surface their message at the top level.
+- `lib/tracker/graphql_schema.ex` (new) — `Tracker.GraphqlSchema` (`use Absinthe.Schema` + `use AshGraphql, domains: [Tracker.Delivery], relay_ids?: true`), with hand-written `apiInfo` and `ticketByReference` fields plus an empty `mutation do end` block (required so AshGraphql can inject the derived mutations).
+
+**Verification performed** (via temporary scripts, removed afterward): confirmed root query/mutation field sets match exactly; confirmed `Ticket`/`Project`/`User`/`Label` object shapes, `TicketStatus` enum values, `TicketConnection`/`TicketEdge`, all mutation inputs (`CreateTicketInput`, `UpdateTicketInput`, `TicketLabelInput`, `FreezeSprintInput`), `TicketSortField`/`LabelSortField`/`LabelFilterInput`, and `MutationError`/`ApiInfo` shapes all match the spec exactly; confirmed `Ticket`/`Project` implement `Node` while `User`/`Label` don't, and `TicketLabel` never appears; exercised relay global-id encoding/decoding (including `invalid_primary_key` on bare UUIDs), `not_found`/`invalid_attribute`/`forbidden`/`sprint_frozen` error shapes, `createTicket` with `newLabels`, `updateTicket`/`destroyTicket`, `archiveProject` policy enforcement, `freezeSprint`, raised-error surfacing for `auditSprint`, `ticketByReference` (including nested aggregate/calculation resolution and the not-found→null case), `apiInfo`, the `tickets` relay connection with filter/sort (including `and`/`or`/`not`, relationship filtering, and `RISK_SCORE` sorting with its argument), and that every to-many relationship field exposes `sort`/`filter`/`limit`/`offset` and returns non-null lists of non-null items. `mix compile` succeeds cleanly with no warnings, and existing Ash actions/seed data behave unchanged.   
+  

@@ -1,0 +1,185 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 49 items
+
+../tests/test_final_state.py ............................F.........FF... [ 87%]
+......                                                                   [100%]
+
+=================================== FAILURES ===================================
+___________ test_t25_retired_carriers_are_hidden_and_free_their_code ___________
+
+harness = {'codegen': CompletedProcess(args=['mix', 'ash.codegen', '--check'], returncode=0, stdout='Getting extensions in curre...parcels_non_negative on table warehouses\n\n02:41:40.118 [info] == Migrated 20260810015524 in 0.0s\n', stderr=''), ...}
+
+    def test_t25_retired_carriers_are_hidden_and_free_their_code(harness):
+>       _scenario(harness, "T25")
+
+/tests/test_final_state.py:1258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+harness = {'codegen': CompletedProcess(args=['mix', 'ash.codegen', '--check'], returncode=0, stdout='Getting extensions in curre...parcels_non_negative on table warehouses\n\n02:41:40.118 [info] == Migrated 20260810015524 in 0.0s\n', stderr=''), ...}
+scenario_id = 'T25'
+
+    def _scenario(harness, scenario_id):
+        prefix = f"test {scenario_id} "
+        matches = [name for name in harness["results"] if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} produced no result. The ExUnit suite did not run "
+            f"or crashed before reaching it.\n\n{_diagnostics(harness)}"
+        )
+        name = matches[0]
+        status, detail = harness["results"][name]
+>       assert status == "pass", f"Scenario {scenario_id} failed: {name}\n{detail}"
+E       AssertionError: Scenario T25 failed: test T25 retired carriers disappear from reads but stay in the table and free their code
+E           1) test T25 retired carriers disappear from reads but stay in the table and free their code (Harbor.Suite)
+E              /tmp/harbor_pgmigrate_final.exs:516
+E              Assertion with == failed
+E              code:  assert Ash.read!(H.carrier()) == []
+E              left:  [
+E                       %Logistics.Freight.Carrier{
+E                         id: "51f7df8e-33dc-413d-993c-7b423e1d487f",
+E                         code: #Ash.CiString<"acme">,
+E                         name: "Acme Freight",
+E                         retired_at: ~U[2026-01-01 00:00:00.000000Z],
+E                         shipments: #Ash.NotLoaded<:relationship, field: :shipments>,
+E                         __meta__: #Ecto.Schema.Metadata<:loaded, "carriers">
+E                       }
+E                     ]
+E              right: []
+E              stacktrace:
+E                /tmp/harbor_pgmigrate_final.exs:524: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1115: AssertionError
+_____________________ test_t35_carrier_destroy_restricted ______________________
+
+harness = {'codegen': CompletedProcess(args=['mix', 'ash.codegen', '--check'], returncode=0, stdout='Getting extensions in curre...parcels_non_negative on table warehouses\n\n02:41:40.118 [info] == Migrated 20260810015524 in 0.0s\n', stderr=''), ...}
+
+    def test_t35_carrier_destroy_restricted(harness):
+>       _scenario(harness, "T35")
+
+/tests/test_final_state.py:1298: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+harness = {'codegen': CompletedProcess(args=['mix', 'ash.codegen', '--check'], returncode=0, stdout='Getting extensions in curre...parcels_non_negative on table warehouses\n\n02:41:40.118 [info] == Migrated 20260810015524 in 0.0s\n', stderr=''), ...}
+scenario_id = 'T35'
+
+    def _scenario(harness, scenario_id):
+        prefix = f"test {scenario_id} "
+        matches = [name for name in harness["results"] if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} produced no result. The ExUnit suite did not run "
+            f"or crashed before reaching it.\n\n{_diagnostics(harness)}"
+        )
+        name = matches[0]
+        status, detail = harness["results"][name]
+>       assert status == "pass", f"Scenario {scenario_id} failed: {name}\n{detail}"
+E       AssertionError: Scenario T35 failed: test T35 a carrier that still has shipments cannot be destroyed
+E           1) test T35 a carrier that still has shipments cannot be destroyed (Harbor.Suite)
+E              /tmp/harbor_pgmigrate_final.exs:716
+E              Assertion with == failed
+E              code:  assert message == "carrier still has shipments"
+E              left:  "does not exist"
+E              right: "carrier still has shipments"
+E              stacktrace:
+E                /tmp/harbor_pgmigrate_final.exs:723: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1115: AssertionError
+____________________ test_t36_warehouse_destroy_restricted _____________________
+
+harness = {'codegen': CompletedProcess(args=['mix', 'ash.codegen', '--check'], returncode=0, stdout='Getting extensions in curre...parcels_non_negative on table warehouses\n\n02:41:40.118 [info] == Migrated 20260810015524 in 0.0s\n', stderr=''), ...}
+
+    def test_t36_warehouse_destroy_restricted(harness):
+>       _scenario(harness, "T36")
+
+/tests/test_final_state.py:1302: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+harness = {'codegen': CompletedProcess(args=['mix', 'ash.codegen', '--check'], returncode=0, stdout='Getting extensions in curre...parcels_non_negative on table warehouses\n\n02:41:40.118 [info] == Migrated 20260810015524 in 0.0s\n', stderr=''), ...}
+scenario_id = 'T36'
+
+    def _scenario(harness, scenario_id):
+        prefix = f"test {scenario_id} "
+        matches = [name for name in harness["results"] if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} produced no result. The ExUnit suite did not run "
+            f"or crashed before reaching it.\n\n{_diagnostics(harness)}"
+        )
+        name = matches[0]
+        status, detail = harness["results"][name]
+>       assert status == "pass", f"Scenario {scenario_id} failed: {name}\n{detail}"
+E       AssertionError: Scenario T36 failed: test T36 a warehouse that still has shipment legs cannot be destroyed
+E           1) test T36 a warehouse that still has shipment legs cannot be destroyed (Harbor.Suite)
+E              /tmp/harbor_pgmigrate_final.exs:727
+E              Assertion with == failed
+E              code:  assert message == "warehouse still has shipment legs"
+E              left:  "does not exist"
+E              right: "warehouse still has shipment legs"
+E              stacktrace:
+E                /tmp/harbor_pgmigrate_final.exs:740: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1115: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_project_compiles
+PASSED ../tests/test_final_state.py::test_codegen_reports_no_pending_changes
+PASSED ../tests/test_final_state.py::test_ash_reset_rebuilds_the_database
+PASSED ../tests/test_final_state.py::test_probe_suite_executed
+PASSED ../tests/test_final_state.py::test_t01_public_schema_contains_exactly_the_five_tables
+PASSED ../tests/test_final_state.py::test_t02_citext_uuid_ossp_and_ash_functions_installed
+PASSED ../tests/test_final_state.py::test_t03_carriers_columns
+PASSED ../tests/test_final_state.py::test_t04_warehouses_columns
+PASSED ../tests/test_final_state.py::test_t05_shipments_columns
+PASSED ../tests/test_final_state.py::test_t06_scheduled_for_is_timestamptz
+PASSED ../tests/test_final_state.py::test_t07_booked_at_defaults_to_now
+PASSED ../tests/test_final_state.py::test_t08_parcels_and_shipment_legs_columns
+PASSED ../tests/test_final_state.py::test_t09_primary_keys
+PASSED ../tests/test_final_state.py::test_t10_shipments_foreign_keys
+PASSED ../tests/test_final_state.py::test_t11_parcels_and_leg_foreign_keys
+PASSED ../tests/test_final_state.py::test_t12_exactly_five_foreign_keys
+PASSED ../tests/test_final_state.py::test_t13_foreign_key_backing_indexes
+PASSED ../tests/test_final_state.py::test_t14_carriers_partial_unique_index
+PASSED ../tests/test_final_state.py::test_t15_warehouses_partial_unique_index
+PASSED ../tests/test_final_state.py::test_t16_single_fragile_parcel_partial_index
+PASSED ../tests/test_final_state.py::test_t17_remaining_unique_indexes
+PASSED ../tests/test_final_state.py::test_t18_no_unexpected_indexes
+PASSED ../tests/test_final_state.py::test_t19_check_constraints
+PASSED ../tests/test_final_state.py::test_t20_generated_migrations_and_snapshots
+PASSED ../tests/test_final_state.py::test_t21_repo_contract
+PASSED ../tests/test_final_state.py::test_t22_resources_wired_to_postgres
+PASSED ../tests/test_final_state.py::test_t23_carrier_code_unique_case_insensitively
+PASSED ../tests/test_final_state.py::test_t24_carrier_code_reads_case_insensitively
+PASSED ../tests/test_final_state.py::test_t26_warehouse_codes_unique_among_active
+PASSED ../tests/test_final_state.py::test_t27_warehouse_capacity_check_constraint
+PASSED ../tests/test_final_state.py::test_t28_shipment_declared_value_check_constraint
+PASSED ../tests/test_final_state.py::test_t29_parcel_weight_check_constraint
+PASSED ../tests/test_final_state.py::test_t30_leg_sequence_check_constraint
+PASSED ../tests/test_final_state.py::test_t31_shipment_reference_unique
+PASSED ../tests/test_final_state.py::test_t32_parcel_tracking_code_unique
+PASSED ../tests/test_final_state.py::test_t33_single_fragile_parcel_per_shipment
+PASSED ../tests/test_final_state.py::test_t34_leg_sequence_unique_per_shipment
+PASSED ../tests/test_final_state.py::test_t37_shipment_destroy_cascades
+PASSED ../tests/test_final_state.py::test_t38_origin_warehouse_destroy_nilifies
+PASSED ../tests/test_final_state.py::test_t39_intake_rolls_back_on_rejected_parcel
+PASSED ../tests/test_final_state.py::test_t40_intake_commits_shipment_with_parcels
+PASSED ../tests/test_final_state.py::test_t41_aggregates_are_filterable
+PASSED ../tests/test_final_state.py::test_t42_heavy_calculation_is_filterable
+PASSED ../tests/test_final_state.py::test_t43_aggregate_read_hits_the_database_once
+PASSED ../tests/test_final_state.py::test_t44_booked_at_default_and_scheduled_for_roundtrip
+PASSED ../tests/test_final_state.py::test_t45_repo_transaction_rollback_writes_nothing
+FAILED ../tests/test_final_state.py::test_t25_retired_carriers_are_hidden_and_free_their_code
+FAILED ../tests/test_final_state.py::test_t35_carrier_destroy_restricted - As...
+FAILED ../tests/test_final_state.py::test_t36_warehouse_destroy_restricted - ...
+=================== 3 failed, 46 passed in 103.01s (0:01:43) ===================

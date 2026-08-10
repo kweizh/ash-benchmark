@@ -1,0 +1,10 @@
+{application,billing,
+             [{modules,['Elixir.Billing.Application',
+                        'Elixir.Billing.Metering','Elixir.Billing.Repo',
+                        'Elixir.Billing.Trace']},
+              {optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger,ash,ash_postgres]},
+              {description,"billing"},
+              {registered,[]},
+              {vsn,"0.1.0"},
+              {mod,{'Elixir.Billing.Application',[]}}]}.

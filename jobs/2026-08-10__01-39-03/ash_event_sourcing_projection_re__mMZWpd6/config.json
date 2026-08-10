@@ -1,0 +1,23 @@
+{
+    "task": {
+        "path": "/home/kw/code/zealt/ash-benchmark/scratchpad/pending-tasks/ash_event_sourcing_projection_rebuild",
+        "source": "pending-tasks"
+    },
+    "trial_name": "ash_event_sourcing_projection_re__mMZWpd6",
+    "trials_dir": "jobs/2026-08-10__01-39-03",
+    "agent": {
+        "name": "agents.pochi:Pochi",
+        "model_name": "anthropic/claude-5-sonnet",
+        "env": {
+            "POCHI_API_KEY": "${POCHI_API_KEY}"
+        }
+    },
+    "environment": {
+        "type": "daytona",
+        "override_memory_mb": 4096
+    },
+    "artifacts": [
+        "/home/user"
+    ],
+    "job_id": "17a02420-07fc-4275-9761-41863b2b866a"
+}

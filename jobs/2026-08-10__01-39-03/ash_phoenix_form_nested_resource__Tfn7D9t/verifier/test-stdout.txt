@@ -1,0 +1,57 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 45 items
+
+../../../tests/test_final_state.py ..................................... [ 82%]
+........                                                                 [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../../../tests/test_final_state.py::test_t01_new_order_form_builds_a_create_form_for_order_place_named_order
+PASSED ../../../tests/test_final_state.py::test_t02_nested_form_keys_are_derived_automatically_from_the_action
+PASSED ../../../tests/test_final_state.py::test_t03_to_phoenix_form_returns_a_phoenix_html_form_wrapping_the_ashphoenix_fo
+PASSED ../../../tests/test_final_state.py::test_t04_a_fresh_form_submits_only_the_form_type_marker
+PASSED ../../../tests/test_final_state.py::test_t05_serialize_of_a_fresh_form_has_the_exact_documented_shape
+PASSED ../../../tests/test_final_state.py::test_t06_hidden_inputs_reports_the_form_type_and_the_touched_field_list
+PASSED ../../../tests/test_final_state.py::test_t07_add_nested_appends_list_forms_and_names_them_by_index
+PASSED ../../../tests/test_final_state.py::test_t08_add_nested_works_at_a_two_level_deep_path
+PASSED ../../../tests/test_final_state.py::test_t09_add_nested_honours_the_prepend_option
+PASSED ../../../tests/test_final_state.py::test_t10_remove_nested_drops_a_single_deep_form_and_reindexes_its_siblings
+PASSED ../../../tests/test_final_state.py::test_t11_remove_nested_drops_the_whole_subtree_of_the_removed_form
+PASSED ../../../tests/test_final_state.py::test_t12_embedded_delivery_windows_are_editable_as_nested_list_forms
+PASSED ../../../tests/test_final_state.py::test_t13_union_members_are_added_by_name_and_expose_the_union_type_as_a_hidden_
+PASSED ../../../tests/test_final_state.py::test_t14_replacing_the_union_member_swaps_the_nested_form_resource
+PASSED ../../../tests/test_final_state.py::test_t15_error_map_keys_every_failing_form_by_its_html_name
+PASSED ../../../tests/test_final_state.py::test_t16_validating_with_errors_disabled_hides_them_but_keeps_the_form_invalid
+PASSED ../../../tests/test_final_state.py::test_t17_revalidating_with_errors_enabled_reveals_them_again
+PASSED ../../../tests/test_final_state.py::test_t18_only_touched_restricts_the_submitted_params_to_touched_fields
+PASSED ../../../tests/test_final_state.py::test_t19_raw_error_list_exposes_untranslated_messages_and_substitution_vars
+PASSED ../../../tests/test_final_state.py::test_t20_errors_nested_two_levels_deep_keep_their_own_path
+PASSED ../../../tests/test_final_state.py::test_t21_embedded_window_validation_failures_are_reported_on_the_window_form
+PASSED ../../../tests/test_final_state.py::test_t22_union_member_validation_failures_are_reported_on_the_union_form
+PASSED ../../../tests/test_final_state.py::test_t23_the_submitted_params_rebuild_an_identical_form_tree
+PASSED ../../../tests/test_final_state.py::test_t24_the_add_checkbox_param_appends_an_empty_nested_form
+PASSED ../../../tests/test_final_state.py::test_t25_the_drop_checkbox_param_removes_the_nested_form_at_that_index
+PASSED ../../../tests/test_final_state.py::test_t26_the_sort_checkbox_param_reorders_the_nested_forms
+PASSED ../../../tests/test_final_state.py::test_t27_a_read_typed_customer_form_survives_a_params_round_trip
+PASSED ../../../tests/test_final_state.py::test_t28_add_nested_with_type_read_produces_a_read_typed_nested_form
+PASSED ../../../tests/test_final_state.py::test_t29_reorder_rearranges_a_top_level_nested_list_and_marks_it_for_submission
+PASSED ../../../tests/test_final_state.py::test_t30_reorder_rearranges_a_list_nested_inside_another_list_form
+PASSED ../../../tests/test_final_state.py::test_t31_move_shifts_a_single_nested_form_up_or_down
+PASSED ../../../tests/test_final_state.py::test_t32_move_is_a_no_op_at_the_boundaries_and_works_on_deep_paths
+PASSED ../../../tests/test_final_state.py::test_t33_save_persists_the_whole_graph_in_one_call
+PASSED ../../../tests/test_final_state.py::test_t34_save_stores_the_embedded_delivery_windows_and_the_union_member
+PASSED ../../../tests/test_final_state.py::test_t35_an_inline_customer_form_creates_exactly_one_customer_and_links_it
+PASSED ../../../tests/test_final_state.py::test_t36_a_read_typed_customer_form_relates_the_existing_customer_without_creat
+PASSED ../../../tests/test_final_state.py::test_t37_a_failed_save_returns_the_form_writes_nothing_and_stays_reusable
+PASSED ../../../tests/test_final_state.py::test_t38_save_accepts_params_and_validates_them_before_submitting
+PASSED ../../../tests/test_final_state.py::test_t39_edit_order_form_builds_update_forms_in_stored_order_with_hidden_ids
+PASSED ../../../tests/test_final_state.py::test_t40_edit_order_form_orders_nested_forms_by_stored_position_not_by_storage_
+PASSED ../../../tests/test_final_state.py::test_t41_removing_a_nested_form_from_an_edit_form_destroys_that_record_on_save
+PASSED ../../../tests/test_final_state.py::test_t42_removing_a_deep_nested_form_destroys_only_that_record
+PASSED ../../../tests/test_final_state.py::test_t43_reordering_a_deep_nested_list_on_an_edit_form_renumbers_its_positions
+PASSED ../../../tests/test_final_state.py::test_t44_adding_a_nested_form_to_an_existing_record_on_an_edit_form_creates_it
+PASSED ../../../tests/test_final_state.py::test_t45_an_edit_form_round_trips_its_own_submitted_params
+============================= 45 passed in 32.56s ==============================

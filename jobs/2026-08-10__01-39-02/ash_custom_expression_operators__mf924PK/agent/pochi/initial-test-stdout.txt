@@ -1,0 +1,20 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.3
+collected 12 items
+
+../bootstrap/test_initial_state.py::test_elixir_toolchain_available PASSED
+../bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+../bootstrap/test_initial_state.py::test_project_files_exist PASSED
+../bootstrap/test_initial_state.py::test_ash_dependency_is_pinned_and_prefetched PASSED
+../bootstrap/test_initial_state.py::test_project_compiles_and_ash_version_matches PASSED
+../bootstrap/test_initial_state.py::test_resources_are_registered_with_the_domain PASSED
+../bootstrap/test_initial_state.py::test_shipment_attributes_are_present PASSED
+../bootstrap/test_initial_state.py::test_seed_fixture_module_works PASSED
+../bootstrap/test_initial_state.py::test_custom_expressions_are_not_registered_yet PASSED
+../bootstrap/test_initial_state.py::test_solution_modules_do_not_exist_yet PASSED
+../bootstrap/test_initial_state.py::test_shipment_has_no_expression_calculations_yet PASSED
+../bootstrap/test_initial_state.py::test_carrier_has_no_aggregates_yet PASSED
+
+======================== 12 passed in 69.50s (0:01:09) =========================

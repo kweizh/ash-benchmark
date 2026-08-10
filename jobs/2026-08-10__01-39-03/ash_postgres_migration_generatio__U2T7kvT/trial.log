@@ -1,0 +1,227 @@
+Selected strategy: _DaytonaDirect
+Building environment from /home/kw/code/zealt/ash-benchmark/scratchpad/pending-tasks/ash_postgres_migration_generation/environment/Dockerfile
+Running command: set -euo pipefail; mkdir -p /logs/agent/pochi && pochi --version
+Command outputs captured
+Running command: mkdir -p ~/.pochi && mkdir -p /logs/agent/pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/MINIMAX_API_KEY/${MINIMAX_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    },
+    "minimax": {
+      "kind": "minimax",
+      "apiKey": "MINIMAX_API_KEY",
+      "models": {
+        "MiniMax-M3": {
+          "maxTokens": 10000,
+          "contextWindow": 1000000
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: cat > /tmp/pochi_cmd.sh << 'CMD_EOF'
+set -o pipefail
+pochi --model anthropic/claude-5-sonnet --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl --experimental-stream-trajectory-strip-duplicates > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Drive real PostgreSQL DDL from an Ash Framework v3 domain
+
+## Background
+
+A freight operator wants its logistics database schema to be *derived* from its Ash resources instead of being hand-written. An empty Elixir/Mix project already exists at `/home/user/logistics` (OTP app `:logistics`). Its dependencies (`ash 3.31.0`, `ash_postgres 2.11.0` and their transitive dependencies) are already fetched and compiled, `mix.lock` is committed, and the environment is fully offline — do not attempt to add, upgrade or fetch dependencies.
+
+A PostgreSQL 16 server is installed inside this machine and listens on `127.0.0.1:5432` as the superuser `postgres` once it has been started. `config/config.exs` already contains the connection settings, the `ecto_repos` entry and the `ash_domains` entry, and `Logistics.Application` already supervises `Logistics.Repo`. Do not change `config/config.exs`, `mix.exs` or `mix.lock`.
+
+Your job is to model the domain in Ash, generate the migrations with the framework's own code-generation tooling, apply them, and make the *database itself* enforce the business rules.
+
+## Requirements
+
+Build the following modules:
+
+| Module | File |
+| --- | --- |
+| `Logistics.Repo` | `lib/logistics/repo.ex` |
+| `Logistics.Freight` (the Ash domain) | `lib/logistics/freight.ex` |
+| `Logistics.Freight.Carrier` | `lib/logistics/freight/carrier.ex` |
+| `Logistics.Freight.Warehouse` | `lib/logistics/freight/warehouse.ex` |
+| `Logistics.Freight.Shipment` | `lib/logistics/freight/shipment.ex` |
+| `Logistics.Freight.Parcel` | `lib/logistics/freight/parcel.ex` |
+| `Logistics.Freight.ShipmentLeg` | `lib/logistics/freight/shipment_leg.ex` |
+
+All five resources are persisted in PostgreSQL through `Logistics.Repo`, and every resource is registered in the `Logistics.Freight` domain.
+
+### 1. The repository
+
+`Logistics.Repo` must be an Ash-aware Ecto repository for the `:logistics` OTP app, backed by the PostgreSQL adapter. The minimum PostgreSQL version it declares must be exactly `%Version{major: 16, minor: 0, patch: 0}`, and the list of installed extensions it declares must be exactly `["ash-functions", "citext", "uuid-ossp"]`, in that order. After the schema is applied, the database must actually contain the `citext` and `uuid-ossp` extensions and the SQL functions `ash_elixir_and`, `ash_elixir_or` and `ash_raise_error`.
+
+### 2. Tables, columns and SQL types
+
+The applied schema must contain exactly these five tables in the `public` schema (plus Ecto's own `schema_migrations`). Every table has an `id` column of SQL type `uuid`, `NOT NULL`, which is the sole column of a primary key named `<table>_pkey`, and which is populated by the database when no value is supplied.
+
+`carriers` (resource `Carrier`)
+
+| column | Ash attribute type | SQL type | nullable | column default |
+| --- | --- | --- | --- | --- |
+| `code` | case-insensitive string | `citext` | no | none |
+| `name` | `:string` | `text` | no | none |
+| `retired_at` | `:utc_datetime_usec` | `timestamp without time zone` | yes | none |
+
+`warehouses` (resource `Warehouse`)
+
+| column | Ash attribute type | SQL type | nullable | column default |
+| --- | --- | --- | --- | --- |
+| `code` | `:string` | `text` | no | none |
+| `name` | `:string` | `text` | no | none |
+| `region` | `:string` | `text` | no | none |
+| `capacity_parcels` | `:integer` | `bigint` | no | `0` |
+| `decommissioned` | `:boolean` | `boolean` | no | `false` |
+
+`shipments` (resource `Shipment`)
+
+| column | Ash attribute type | SQL type | nullable | column default |
+| --- | --- | --- | --- | --- |
+| `reference` | `:string` | `text` | no | none |
+| `status` | `:atom`, one of `:draft`, `:booked`, `:in_transit`, `:delivered`, `:cancelled` | `text` | no | `'draft'` |
+| `declared_value_cents` | `:integer` | `bigint` | no | `0` |
+| `scheduled_for` | `:utc_datetime` | `timestamp with time zone` | yes | none |
+| `booked_at` | `:utc_datetime_usec` | `timestamp without time zone` | yes | `now()` |
+| `carrier_id` | belongs-to `Carrier` | `uuid` | no | none |
+| `origin_warehouse_id` | belongs-to `Warehouse` | `uuid` | yes | none |
+
+`parcels` (resource `Parcel`)
+
+| column | Ash attribute type | SQL type | nullable | column default |
+| --- | --- | --- | --- | --- |
+| `tracking_code` | `:string` | `text` | no | none |
+| `weight_grams` | `:integer` | `bigint` | no | none |
+| `fragile` | `:boolean` | `boolean` | no | `false` |
+| `shipment_id` | belongs-to `Shipment` | `uuid` | no | none |
+
+`shipment_legs` (resource `ShipmentLeg`)
+
+| column | Ash attribute type | SQL type | nullable | column default |
+| --- | --- | --- | --- | --- |
+| `sequence` | `:integer` | `bigint` | no | none |
+| `shipment_id` | belongs-to `Shipment` | `uuid` | no | none |
+| `warehouse_id` | belongs-to `Warehouse` | `uuid` | no | none |
+
+`Shipment` also has the reverse relationships `parcels` and `legs`; `Carrier` has `shipments`; the `Warehouse` reverse relationship to `ShipmentLeg` is named `legs`.
+
+### 3. Foreign keys
+
+The database must contain exactly these five foreign keys, with exactly these constraint names and referential actions:
+
+| constraint name | column | references | ON DELETE | ON UPDATE |
+| --- | --- | --- | --- | --- |
+| `shipments_carrier_fkey` | `shipments.carrier_id` | `carriers.id` | `RESTRICT` | `CASCADE` |
+| `shipments_origin_warehouse_fkey` | `shipments.origin_warehouse_id` | `warehouses.id` | `SET NULL` | `CASCADE` |
+| `parcels_shipment_fkey` | `parcels.shipment_id` | `shipments.id` | `CASCADE` | `CASCADE` |
+| `shipment_legs_shipment_fkey` | `shipment_legs.shipment_id` | `shipments.id` | `CASCADE` | `CASCADE` |
+| `shipment_legs_warehouse_fkey` | `shipment_legs.warehouse_id` | `warehouses.id` | `RESTRICT` | `CASCADE` |
+
+In addition, the plain (non-unique) btree indexes `shipments_carrier_id_index`, `parcels_shipment_id_index`, `shipment_legs_shipment_id_index` and `shipment_legs_warehouse_id_index` must exist.
+
+### 4. Unique indexes
+
+| index name | table | columns | unique | partial predicate |
+| --- | --- | --- | --- | --- |
+| `carriers_unique_code_index` | `carriers` | `(code)` | yes | `retired_at IS NULL` |
+| `warehouses_unique_active_code_index` | `warehouses` | `(code)` | yes | `decommissioned = false` |
+| `shipments_unique_reference_index` | `shipments` | `(reference)` | yes | none |
+| `parcels_unique_tracking_code_index` | `parcels` | `(tracking_code)` | yes | none |
+| `parcels_single_fragile_per_shipment_index` | `parcels` | `(shipment_id)` | yes | `fragile = true` |
+| `shipment_legs_unique_leg_sequence_index` | `shipment_legs` | `(shipment_id, sequence)` | yes | none |
+
+`carriers_unique_code_index` is partial because a `Carrier` is only "live" while `retired_at` is `NULL`: reading carriers through Ash must never return a carrier whose `retired_at` is set, even though the row stays in the table, and every read (including relationship loads) must be scoped that way without the caller asking for it.
+
+### 5. Check constraints
+
+The database must contain exactly these four check constraints, and violating one through Ash must produce the given message:
+
+| constraint name | table | condition | Ash message |
+| --- | --- | --- | --- |
+| `warehouses_capacity_parcels_non_negative` | `warehouses` | `capacity_parcels >= 0` | `capacity must not be negative` |
+| `shipments_declared_value_cents_non_negative` | `shipments` | `declared_value_cents >= 0` | `declared value must not be negative` |
+| `parcels_weight_grams_positive` | `parcels` | `weight_grams > 0` | `weight must be positive` |
+| `shipment_legs_sequence_positive` | `shipment_legs` | `sequence >= 1` | `sequence must be at least 1` |
+
+### 6. Actions and observable error shapes
+
+Every resource must expose the standard `:read`, `:create`, `:update` and `:destroy` actions, and the `:create`/`:update` actions must accept **all** of the columns listed in section 2 — including the `_id` columns of the belongs-to relationships, which the tests set directly by value.
+
+`Shipment` must additionally expose a create action named `:intake` which accepts `reference`, `declared_value_cents`, `scheduled_for`, `carrier_id` and `origin_warehouse_id`, plus a required argument `parcels` of type `{:array, :map}` describing the parcels to create together with the shipment. The whole `:intake` call must be a single database transaction: if any parcel is rejected by the database, neither the shipment row nor any of its parcel rows may exist afterwards.
+
+`Shipment` must also expose an aggregate `parcel_count` (number of related parcels), an aggregate `total_weight_grams` (sum of the related parcels' `weight_grams`), and a calculation `heavy?` that is `true` exactly when `total_weight_grams > 5000`. Both aggregates and the calculation must be usable inside `Ash.Query.filter/2`, and a filtered read that also loads `parcel_count` must reach the database exactly once.
+
+All of the following must hold when the operation is attempted through the corresponding Ash action; each returns `{:error, %Ash.Error.Invalid{}}` whose `errors` list contains a single `%Ash.Error.Changes.InvalidAttribute{}` with the stated `field` and `message`, and must leave the database unchanged:
+
+| operation | `field` | `message` |
+| --- | --- | --- |
+| creating a second live `Carrier` whose `code` differs only in letter case | `:code` | `has already been taken` |
+| creating a second live `Warehouse` with an existing `code` | `:code` | `has already been taken` |
+| creating a second `Shipment` with an existing `reference` | `:reference` | `has already been taken` |
+| creating a second `Parcel` with an existing `tracking_code` | `:tracking_code` | `has already been taken` |
+| creating a second *fragile* `Parcel` for a shipment that already has one | `:shipment_id` | `has already been taken` |
+| creating a second `ShipmentLeg` with the same `(shipment_id, sequence)` | `:shipment_id` | `has already been taken` |
+| destroying a `Carrier` that is still referenced by a `Shipment` | `:shipments` | `carrier still has shipments` |
+| destroying a `Warehouse` that is still referenced by a `ShipmentLeg` | `:legs` | `warehouse still has shipment legs` |
+
+A `Carrier` whose `code` collides with an already **retired** carrier must be accepted, and a `Warehouse` whose `code` collides with an already **decommissioned** warehouse must be accepted.
+
+### 7. Code generation
+
+The migrations must be produced by `ash_postgres`' own migration generator (not hand-written) and stored in the repository, together with the resource snapshots the generator writes. After you are done, `mix ash.codegen --check` must exit with status `0`, and `mix ash.reset` must rebuild the entire database from those migration files.
+
+## Implementation Hints
+
+- Project path: `/home/user/logistics`
+- Work entirely offline: `deps/` and `_build/` are already populated for `MIX_ENV=dev`, `HEX_OFFLINE=1` is set, and there is no network access.
+- Everything runs in `MIX_ENV=dev`; the verifier never runs `mix test`.
+- The verifier runs `mix compile`, then `mix ash.codegen --check` (which must exit `0`), then `mix ash.reset` (which must succeed and leave an empty, fully migrated database), and finally a script through `mix run` that talks to `Logistics.Freight` and to `Logistics.Repo` directly. Nothing may prompt for input.
+- The PostgreSQL server is not running when your shell starts; `pg-start` (already on `PATH`) starts it and blocks until it accepts connections. The verifier calls it too, so you do not have to keep it alive.
+- Constraint, index and column names in sections 2–5 are exact: the verifier reads them out of the live PostgreSQL catalog (`pg_class`, `pg_index`, `pg_constraint`, `pg_attribute`) after `mix ash.reset`.
+- Table and index names not listed above must not exist in the `public` schema.
+
+
+EOF
+CMD_EOF
+setsid --wait bash /tmp/pochi_cmd.sh &
+SETSID_PID=$!
+echo $SETSID_PID > /tmp/setsid_bash_pochi_cmd.pid
+wait $SETSID_PID 2>/dev/null
+Command outputs captured
+Running command: if [ -f /tmp/setsid_bash_pochi_cmd.pid ]; then
+SETSID_PID=$(cat /tmp/setsid_bash_pochi_cmd.pid)
+kill -TERM -- -$SETSID_PID 2>/dev/null || true
+sleep 2
+kill -9 -- -$SETSID_PID 2>/dev/null || true
+fi
+rm -f ~/.pochi/config.jsonc /tmp/pochi_cmd.sh /tmp/setsid_bash_pochi_cmd.pid
+Command outputs captured
+Collecting main service artifacts

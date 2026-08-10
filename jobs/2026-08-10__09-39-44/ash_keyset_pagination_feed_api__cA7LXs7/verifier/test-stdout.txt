@@ -1,0 +1,53 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 42 items
+
+../tests/test_final_state.py ..........................................  [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_project_compiles
+PASSED ../tests/test_final_state.py::test_contract_suite_ran_completely
+PASSED ../tests/test_final_state.py::test_t01_feed_action_declares_keyset_pagination_contract
+PASSED ../tests/test_final_state.py::test_t02_other_feed_actions_declare_their_pagination_contracts
+PASSED ../tests/test_final_state.py::test_t03_first_keyset_page_struct_and_metadata
+PASSED ../tests/test_final_state.py::test_t04_keyset_page_carries_full_count
+PASSED ../tests/test_final_state.py::test_t05_default_limit_applies_when_omitted
+PASSED ../tests/test_final_state.py::test_t06_forward_keyset_chaining_walks_disjoint_windows
+PASSED ../tests/test_final_state.py::test_t07_backward_keyset_chaining_reproduces_previous_windows
+PASSED ../tests/test_final_state.py::test_t08_ash_page_continues_rewinds_replays_restarts
+PASSED ../tests/test_final_state.py::test_t09_continuing_past_end_yields_empty_page
+PASSED ../tests/test_final_state.py::test_t10_offset_feed_reports_offset_limit_more_and_default_count
+PASSED ../tests/test_final_state.py::test_t11_ash_page_seeks_offset_page_by_last_and_number
+PASSED ../tests/test_final_state.py::test_t12_max_page_size_caps_over_large_limit
+PASSED ../tests/test_final_state.py::test_t13_author_feed_filters_and_caps_at_own_max_page_size
+PASSED ../tests/test_final_state.py::test_t14_disabling_pagination_on_required_action_is_refused
+PASSED ../tests/test_final_state.py::test_t15_action_without_default_limit_demands_one
+PASSED ../tests/test_final_state.py::test_t16_non_countable_action_refuses_count
+PASSED ../tests/test_final_state.py::test_t17_dual_mode_action_is_optional_and_switches_page_type
+PASSED ../tests/test_final_state.py::test_t18_malformed_keyset_is_rejected
+PASSED ../tests/test_final_state.py::test_t19_public_feed_filters_and_counts_public_only
+PASSED ../tests/test_final_state.py::test_t20_hot_feed_orders_by_score_then_reactions_then_id
+PASSED ../tests/test_final_state.py::test_t21_hot_feed_keyset_walk_visits_every_activity_once
+PASSED ../tests/test_final_state.py::test_t22_heat_feed_keyset_walk_visits_every_activity_once
+PASSED ../tests/test_final_state.py::test_t23_aggregate_calculation_and_relationship_load_on_page
+PASSED ../tests/test_final_state.py::test_t24_api_fetch_returns_documented_envelope
+PASSED ../tests/test_final_state.py::test_t25_cursor_codec_round_trips_and_is_opaque
+PASSED ../tests/test_final_state.py::test_t26_cursor_codec_rejects_corrupt_and_forged_cursors
+PASSED ../tests/test_final_state.py::test_t27_api_forward_cursor_paging_matches_raw_keyset_chain
+PASSED ../tests/test_final_state.py::test_t28_api_backward_cursor_paging_returns_reversed_windows
+PASSED ../tests/test_final_state.py::test_t29_cursor_from_one_feed_is_refused_by_another
+PASSED ../tests/test_final_state.py::test_t30_cursor_failures_surface_as_codec_or_ash_errors
+PASSED ../tests/test_final_state.py::test_t31_api_enforces_max_page_size_and_rejects_bad_limits
+PASSED ../tests/test_final_state.py::test_t32_api_validates_feed_name_and_author_argument
+PASSED ../tests/test_final_state.py::test_t33_forward_walk_terminates_with_exact_totals
+PASSED ../tests/test_final_state.py::test_t34_walk_of_filtered_feed_and_of_empty_feed
+PASSED ../tests/test_final_state.py::test_t35_walk_back_visits_exactly_the_reversed_windows
+PASSED ../tests/test_final_state.py::test_t36_insertion_between_pages_neither_duplicates_nor_skips
+PASSED ../tests/test_final_state.py::test_t37_offset_paging_over_same_insertion_repeats_rows
+PASSED ../tests/test_final_state.py::test_t38_deletion_between_pages_does_not_skip_survivors
+PASSED ../tests/test_final_state.py::test_t39_rescoring_between_pages_keeps_window_anchored
+PASSED ../tests/test_final_state.py::test_t40_reported_total_stays_filtered_while_paging
+============================= 42 passed in 53.17s ==============================

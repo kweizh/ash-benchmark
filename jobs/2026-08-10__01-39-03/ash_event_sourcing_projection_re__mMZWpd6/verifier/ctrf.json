@@ -1,0 +1,449 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-09T18:24:06.147967+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 44,
+            "passed": 36,
+            "failed": 8,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786299806109,
+            "stop": 1786299846147
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 39863,
+                "start": 1786299806119,
+                "stop": 1786299845982,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 2,
+                "start": 1786299845982,
+                "stop": 1786299845984,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299845984,
+                "stop": 1786299845985,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299845985,
+                "stop": 1786299845986,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299845986,
+                "stop": 1786299845987,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299845987,
+                "stop": 1786299845988,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299845988,
+                "stop": 1786299845989,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299845989,
+                "stop": 1786299845990,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299845990,
+                "stop": 1786299845991,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299845992,
+                "stop": 1786299845992,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299845993,
+                "stop": 1786299845993,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299845994,
+                "stop": 1786299845995,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299845995,
+                "stop": 1786299845996,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299845996,
+                "stop": 1786299845997,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299845997,
+                "stop": 1786299845998,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299845998,
+                "stop": 1786299845999,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299845999,
+                "stop": 1786299846000,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299846000,
+                "stop": 1786299846001,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299846001,
+                "stop": 1786299846002,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299846003,
+                "stop": 1786299846003,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299846004,
+                "stop": 1786299846004,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299846005,
+                "stop": 1786299846005,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299846006,
+                "stop": 1786299846006,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299846007,
+                "stop": 1786299846008,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299846008,
+                "stop": 1786299846009,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299846009,
+                "stop": 1786299846010,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299846010,
+                "stop": 1786299846011,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299846011,
+                "stop": 1786299846012,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299846012,
+                "stop": 1786299846013,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299846013,
+                "stop": 1786299846014,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 47,
+                "start": 1786299846014,
+                "stop": 1786299846061,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299846062,
+                "stop": 1786299846063,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299846063,
+                "stop": 1786299846064,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299846064,
+                "stop": 1786299846065,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 27,
+                "start": 1786299846066,
+                "stop": 1786299846093,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T35', description = 'T35 commands keep the read model up to date'\n\n    @pytest.mark.parametrize(\"scenario_id,description\", SCENARIOS)\n    def test_scenario(suite_results, scenario_id, description):\n>       _assert_scenario(suite_results, scenario_id, description)\n\n/tests/test_final_state.py:1510: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T35', description = 'T35 commands keep the read model up to date'\n\n    def _assert_scenario(suite_results, scenario_id, description):\n        results = suite_results[\"results\"]\n        assert scenario_id in results, (\n            f\"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite \"\n            \"did not run to completion. Last output:\\n\" + suite_results[\"tail\"]\n        )\n        status, detail = results[scenario_id]\n>       assert status == \"pass\", (\n            f\"Scenario {scenario_id} ({description}) failed:\\n{detail}\"\n        )\nE       AssertionError: Scenario T35 (T35 commands keep the read model up to date) failed:\nE           1) test T35 commands keep the read model up to date (EventSourcingProjectionTest)\nE              /tmp/harbor_event_sourcing_final.exs:1069\nE              Assertion with == failed\nE              code:  assert H.checkpoint() == 6\nE              left:  0\nE              right: 6\nE              stacktrace:\nE                /tmp/harbor_event_sourcing_final.exs:1076: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:1503: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 10,
+                "start": 1786299846093,
+                "stop": 1786299846103,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T36'\ndescription = 'T36 direct appends only reach the read model through catch up'\n\n    @pytest.mark.parametrize(\"scenario_id,description\", SCENARIOS)\n    def test_scenario(suite_results, scenario_id, description):\n>       _assert_scenario(suite_results, scenario_id, description)\n\n/tests/test_final_state.py:1510: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T36'\ndescription = 'T36 direct appends only reach the read model through catch up'\n\n    def _assert_scenario(suite_results, scenario_id, description):\n        results = suite_results[\"results\"]\n        assert scenario_id in results, (\n            f\"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite \"\n            \"did not run to completion. Last output:\\n\" + suite_results[\"tail\"]\n        )\n        status, detail = results[scenario_id]\n>       assert status == \"pass\", (\n            f\"Scenario {scenario_id} ({description}) failed:\\n{detail}\"\n        )\nE       AssertionError: Scenario T36 (T36 direct appends only reach the read model through catch up) failed:\nE           1) test T36 direct appends only reach the read model through catch up (EventSourcingProjectionTest)\nE              /tmp/harbor_event_sourcing_final.exs:1100\nE              Assertion with == failed\nE              code:  assert checkpoint_before == 2\nE              left:  0\nE              right: 2\nE              stacktrace:\nE                /tmp/harbor_event_sourcing_final.exs:1106: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:1503: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 10,
+                "start": 1786299846104,
+                "stop": 1786299846114,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T37', description = 'T37 catch up is idempotent'\n\n    @pytest.mark.parametrize(\"scenario_id,description\", SCENARIOS)\n    def test_scenario(suite_results, scenario_id, description):\n>       _assert_scenario(suite_results, scenario_id, description)\n\n/tests/test_final_state.py:1510: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T37', description = 'T37 catch up is idempotent'\n\n    def _assert_scenario(suite_results, scenario_id, description):\n        results = suite_results[\"results\"]\n        assert scenario_id in results, (\n            f\"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite \"\n            \"did not run to completion. Last output:\\n\" + suite_results[\"tail\"]\n        )\n        status, detail = results[scenario_id]\n>       assert status == \"pass\", (\n            f\"Scenario {scenario_id} ({description}) failed:\\n{detail}\"\n        )\nE       AssertionError: Scenario T37 (T37 catch up is idempotent) failed:\nE           1) test T37 catch up is idempotent (EventSourcingProjectionTest)\nE              /tmp/harbor_event_sourcing_final.exs:1128\nE              match (=) failed\nE              code:  assert {:ok, %{applied: 1, checkpoint: 3}} = H.catch_up()\nE              left:  {:ok, %{applied: 1, checkpoint: 3}}\nE              right: {:ok, %{checkpoint: 3, applied: 3}}\nE              stacktrace:\nE                /tmp/harbor_event_sourcing_final.exs:1139: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:1503: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7,
+                "start": 1786299846114,
+                "stop": 1786299846121,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T38'\ndescription = 'T38 a full rebuild reproduces the incrementally maintained rows'\n\n    @pytest.mark.parametrize(\"scenario_id,description\", SCENARIOS)\n    def test_scenario(suite_results, scenario_id, description):\n>       _assert_scenario(suite_results, scenario_id, description)\n\n/tests/test_final_state.py:1510: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T38'\ndescription = 'T38 a full rebuild reproduces the incrementally maintained rows'\n\n    def _assert_scenario(suite_results, scenario_id, description):\n        results = suite_results[\"results\"]\n        assert scenario_id in results, (\n            f\"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite \"\n            \"did not run to completion. Last output:\\n\" + suite_results[\"tail\"]\n        )\n        status, detail = results[scenario_id]\n>       assert status == \"pass\", (\n            f\"Scenario {scenario_id} ({description}) failed:\\n{detail}\"\n        )\nE       AssertionError: Scenario T38 (T38 a full rebuild reproduces the incrementally maintained rows) failed:\nE           1) test T38 a full rebuild reproduces the incrementally maintained rows (EventSourcingProjectionTest)\nE              /tmp/harbor_event_sourcing_final.exs:1150\nE              Assertion with == failed\nE              code:  assert H.row_maps() == incremental\nE              left:  [\nE                       %{\nE                         owner: \"Ada\",\nE                         status: :open,\nE                         version: 6,\nE                         account_id: \"A\",\nE                         balance_cents: 850,\nE                         deposit_count: 1,\nE                         withdrawal_count: 2,\nE                         last_event_sequence: 8,\nE                         last_recorded_at: ~U[2026-03-01 10:00:07.000000Z]\nE                       },\nE                       %{\nE                         owner: \"Bo\",\nE                         status: :open,\nE                         version: 2,\nE                         account_id: \"B\",\nE                         balance_cents: 350,\nE                         deposit_count: 1,\nE                         withdrawal_count: 0,\nE                         last_event_sequence: 6,\nE                         last_recorded_at: ~U[2026-03-01 10:00:05.000000Z]\nE                       }\nE                     ]\nE              right: []\nE              stacktrace:\nE                /tmp/harbor_event_sourcing_final.exs:1163: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:1503: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 6,
+                "start": 1786299846121,
+                "stop": 1786299846127,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T39'\ndescription = 'T39 a rebuild repairs a projection row edited behind its back'\n\n    @pytest.mark.parametrize(\"scenario_id,description\", SCENARIOS)\n    def test_scenario(suite_results, scenario_id, description):\n>       _assert_scenario(suite_results, scenario_id, description)\n\n/tests/test_final_state.py:1510: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T39'\ndescription = 'T39 a rebuild repairs a projection row edited behind its back'\n\n    def _assert_scenario(suite_results, scenario_id, description):\n        results = suite_results[\"results\"]\n        assert scenario_id in results, (\n            f\"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite \"\n            \"did not run to completion. Last output:\\n\" + suite_results[\"tail\"]\n        )\n        status, detail = results[scenario_id]\n>       assert status == \"pass\", (\n            f\"Scenario {scenario_id} ({description}) failed:\\n{detail}\"\n        )\nE       AssertionError: Scenario T39 (T39 a rebuild repairs a projection row edited behind its back) failed:\nE           1) test T39 a rebuild repairs a projection row edited behind its back (EventSourcingProjectionTest)\nE              /tmp/harbor_event_sourcing_final.exs:1167\nE              ** (UndefinedFunctionError) function nil.__struct__/0 is undefined. If you are using the dot syntax, such as module.function(), make sure the left-hand side of the dot is a module atom\nE              code: Ash.Seed.update!(H.row(\"A\"), %{balance_cents: 42, version: 1, deposit_count: 99})\nE              stacktrace:\nE                nil.__struct__()\nE                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3\nE                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1\nE                (ash 3.31.0) lib/ash/seed.ex:319: Ash.Seed.update!/3\nE                /tmp/harbor_event_sourcing_final.exs:1173: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:1503: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 6,
+                "start": 1786299846128,
+                "stop": 1786299846134,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T40'\ndescription = 'T40 a rebuild recreates a deleted projection row'\n\n    @pytest.mark.parametrize(\"scenario_id,description\", SCENARIOS)\n    def test_scenario(suite_results, scenario_id, description):\n>       _assert_scenario(suite_results, scenario_id, description)\n\n/tests/test_final_state.py:1510: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T40'\ndescription = 'T40 a rebuild recreates a deleted projection row'\n\n    def _assert_scenario(suite_results, scenario_id, description):\n        results = suite_results[\"results\"]\n        assert scenario_id in results, (\n            f\"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite \"\n            \"did not run to completion. Last output:\\n\" + suite_results[\"tail\"]\n        )\n        status, detail = results[scenario_id]\n>       assert status == \"pass\", (\n            f\"Scenario {scenario_id} ({description}) failed:\\n{detail}\"\n        )\nE       AssertionError: Scenario T40 (T40 a rebuild recreates a deleted projection row) failed:\nE           1) test T40 a rebuild recreates a deleted projection row (EventSourcingProjectionTest)\nE              /tmp/harbor_event_sourcing_final.exs:1182\nE              ** (ArgumentError) Expected an `Ash.Resource` or a record in `Ash.destroy!/2`, got: nil\nE              code: Ash.destroy!(H.row(\"A\"))\nE              stacktrace:\nE                (ash 3.31.0) lib/ash.ex:3971: Ash.destroy!/2\nE                /tmp/harbor_event_sourcing_final.exs:1188: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:1503: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299846134,
+                "stop": 1786299846135,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7,
+                "start": 1786299846135,
+                "stop": 1786299846142,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T42'\ndescription = 'T42 events appended during a rebuild belong to the next catch up'\n\n    @pytest.mark.parametrize(\"scenario_id,description\", SCENARIOS)\n    def test_scenario(suite_results, scenario_id, description):\n>       _assert_scenario(suite_results, scenario_id, description)\n\n/tests/test_final_state.py:1510: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T42'\ndescription = 'T42 events appended during a rebuild belong to the next catch up'\n\n    def _assert_scenario(suite_results, scenario_id, description):\n        results = suite_results[\"results\"]\n        assert scenario_id in results, (\n            f\"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite \"\n            \"did not run to completion. Last output:\\n\" + suite_results[\"tail\"]\n        )\n        status, detail = results[scenario_id]\n>       assert status == \"pass\", (\n            f\"Scenario {scenario_id} ({description}) failed:\\n{detail}\"\n        )\nE       AssertionError: Scenario T42 (T42 events appended during a rebuild belong to the next catch up) failed:\nE           1) test T42 events appended during a rebuild belong to the next catch up (EventSourcingProjectionTest)\nE              /tmp/harbor_event_sourcing_final.exs:1217\nE              Assertion with == failed\nE              code:  assert H.checkpoint() == 3\nE              left:  0\nE              right: 3\nE              stacktrace:\nE                /tmp/harbor_event_sourcing_final.exs:1222: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:1503: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 5,
+                "start": 1786299846142,
+                "stop": 1786299846147,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T43'\ndescription = 'T43 an unfoldable event halts the projection at the last good sequence'\n\n    @pytest.mark.parametrize(\"scenario_id,description\", SCENARIOS)\n    def test_scenario(suite_results, scenario_id, description):\n>       _assert_scenario(suite_results, scenario_id, description)\n\n/tests/test_final_state.py:1510: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\\n'}\nscenario_id = 'T43'\ndescription = 'T43 an unfoldable event halts the projection at the last good sequence'\n\n    def _assert_scenario(suite_results, scenario_id, description):\n        results = suite_results[\"results\"]\n        assert scenario_id in results, (\n            f\"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite \"\n            \"did not run to completion. Last output:\\n\" + suite_results[\"tail\"]\n        )\n        status, detail = results[scenario_id]\n>       assert status == \"pass\", (\n            f\"Scenario {scenario_id} ({description}) failed:\\n{detail}\"\n        )\nE       AssertionError: Scenario T43 (T43 an unfoldable event halts the projection at the last good sequence) failed:\nE           1) test T43 an unfoldable event halts the projection at the last good sequence (EventSourcingProjectionTest)\nE              /tmp/harbor_event_sourcing_final.exs:1262\nE              Assertion with == failed\nE              code:  assert H.checkpoint() == 2\nE              left:  0\nE              right: 2\nE              stacktrace:\nE                /tmp/harbor_event_sourcing_final.exs:1267: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:1503: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299846147,
+                "stop": 1786299846147,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

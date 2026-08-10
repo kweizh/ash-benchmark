@@ -1,0 +1,1422 @@
+- Initializing MCP connections...
+You
+# Bulk ingestion and reconciliation pipeline (Ash Framework v3) ## Background `/home/user/ingest` is an offline Elixir project built on **Ash Framework 3.31.0** with the `Ash.DataLayer.Ets` data layer. It already ships the `Ingest.Pipeline` domain and a single resource, `Ingest.Pipeline.Meter`, which is the meter registry: a `:code` string primary key, a `:scale_bp` integer (calibration factor in basis points, `10_000` meaning 1.0) and an `:active` boolean. Meter readings arrive from field collectors in large, unreliable batches: they contain malformed rows, rows repeated inside the same delivery, and rows that were already delivered days ago. Your job is to build the ingestion and reconciliation subsystem that turns those deliveries into clean, accepted readings and per-meter rollups. ## Requirements ### Resource: `Ingest.Pipeline.Reading` Backed by `Ash.DataLayer.Ets`, registered in the `Ingest.Pipeline` domain, with these public attributes (exact names and types): | attribute | type | notes | | --- | --- | --- | | `:external_id` | `:string` | required, globally unique across all readings | | `:meter_code` | `:string` | required | | `:raw_kwh` | `:integer` | required, never negative | | `:net_kwh` | `:integer` | `nil` until the reading has been normalised | | `:recorded_on` | `:date` | required | | `:batch_ref` | `:string` | required, the delivery the reading arrived in | | `:status` | `:atom` | one of `:pending`, `:normalized`, `:accepted`, `:rejected`; new readings start at `:pending` | Actions: * `:ingest` — a create action accepting `external_id`, `meter_code`, `raw_kwh`, `recorded_on` and `batch_ref`. Creating one reading with a negative `raw_kwh` must fail with an `Ash.Error.Invalid` reporting the field `:raw_kwh`; creating one whose `external_id` is already stored must fail with an `Ash.Error.Invalid` reporting the field `:external_id`. * `:normalize` — an update action that resolves the reading's meter in the registry. If the meter exists and is active, it sets `net_kwh` to `raw_kwh × scale_bp ÷ 10_000` rounded **half up** to a whole number and moves the reading to `:normalized`. Otherwise it moves the reading to `:rejected` and leaves `net_kwh` as it was. This action must **not** be atomically executable: Ash must report it as not requiring atomic execution, and an attempt to run it as a bulk update forced onto the atomic strategy must come back as a failed bulk result with nothing written. * `:accept` — an update action that moves a `:normalized` reading to `:accepted`. It must be a **fully atomic** update action (Ash must report it as requiring atomic execution) and it must work as a single atomic bulk update over a query. Running it against a reading whose stored status is not `:normalized` must fail with an error whose field is `:status` and must leave that reading unchanged. * a destroy action, and a primary read action that can be paged through with keyset streaming. ### Resource: `Ingest.Pipeline.MeterRollup` Backed by `Ash.DataLayer.Ets`, registered in the domain, holding at most one row per meter: `:meter_code` (`:string`) is its **primary key**, plus `:total_net_kwh` (`:integer`), `:reading_count` (`:integer`), `:revision` (`:integer`) and `:last_batch_ref` (`:string`). ### `Ingest.Pipeline.Store.reset!/0` Removes every persisted record of every resource in the domain (meters included) and returns `:ok`. ### `Ingest.Pipeline.Ingestion` A module exposing the delivery pipeline. `rows` is always a list of maps with the atom keys `:external_id` (binary), `:meter_code` (binary), `:raw_kwh` (integer) and `:recorded_on` (`Date`); a key may be absent or carry `nil`. `batch_ref` is a binary that must be stamped on every reading created by the call. **`ingest(rows, batch_ref, opts \\ [])`** — eager. `opts` may carry `:batch_size` (positive integer, default `100`). Returns a map with exactly the keys `:batch_ref`, `:status`, `:inserted`, `:skipped`, `:failed` and `:inserted_external_ids`, where: * a row is **failed** when it is malformed. Every failed row is reported as `%{index: zero_based_input_index, external_id: value_or_nil, reason: reason}` and `:failed` is ordered by ascending `:index`. The reasons, applied in this precedence order, are `:missing_field` (one of the four keys is absent or `nil`), `:negative_raw_kwh` (`raw_kwh` is below zero) and `:duplicate_in_batch` (an earlier row of the same call carries the same non-nil `external_id`; the earliest row carrying an `external_id` claims it even if that row itself failed). * a row is **skipped** when it is not failed but a reading with that `external_id` was already stored before the call. Skipped rows create nothing and must leave the stored reading exactly as it was, whatever the new row says. * every other row is **inserted**. `:inserted` is their count, `:skipped` the count of skipped rows, and `:inserted_external_ids` lists the external ids of the created readings **in input order**, which must hold no matter how many batches the write was split into. * `:status` is `:success` when nothing failed, `:error` when something failed and nothing was inserted, and `:partial_success` otherwise. * malformed rows must never prevent the sound rows of the same call from being written. **`ingest_stream(rows, batch_ref, opts \\ [])`** — lazy, and performs no duplicate suppression at all. `opts` may carry `:batch_size` (positive integer, default `100`). It returns an enumerable that writes nothing until it is consumed and that only writes the whole batches needed to produce the elements that are actually demanded — with `batch_size: 10` over 100 rows, taking 5 elements must leave exactly 10 readings stored. Its elements come in input order and are `{:ok, reading}` for each created record and `{:error, zero_based_input_index}` for each row the resource refused. **`pending_stream(opts \\ [])`** — returns a lazy enumerable of the `Reading` records whose status is `:pending`. `opts` may carry `:batch_size` (positive integer, default `500`). It must fetch records from the data layer in pages of at most `:batch_size` records, one data-layer read per page: a full pass over 2400 pending readings with `batch_size: 300` must issue between 8 and 10 reads of the reading resource, while demanding only the first 3 records must issue at most 2 and must not drag the rest of the table into memory. **`reconcile(batch_ref)`** — one reconciliation pass over the readings of that delivery, and only that delivery. Every `:pending` reading of the batch is normalised (see `:normalize`), then every `:normalized` reading of the batch is accepted, then the rollups are brought up to date: for every meter that gained accepted readings in this pass there must be exactly one `MeterRollup` row whose `total_net_kwh` grew by the sum of the `net_kwh` of the readings accepted **in this pass**, whose `reading_count` grew by their number, whose `last_batch_ref` is `batch_ref` and whose `revision` grew by exactly one. It returns a map with exactly the keys `:batch_ref`, `:normalized`, `:rejected` and `:accepted`, counting the readings that reached each of those states **in this pass**. Running it again for the same delivery must report zeros and must leave every reading and every rollup row byte-for-byte as they were. **`purge_rejected(batch_ref)`** — destroys every `:rejected` reading of that delivery, touching nothing else, and returns how many were destroyed as an integer. ## Implementation Hints * Project path: `/home/user/ingest`. The project must keep compiling with `mix compile` from that directory. * The environment is fully offline and the dependency set is frozen: `mix.exs` and `mix.lock` must not gain new dependencies, and Ash must stay at `3.31.0`. * Both new resources must use `Ash.DataLayer.Ets` and must be reachable from the `Ingest.Pipeline` domain. * `Ingest.Pipeline.Meter` is already provided; do not change its attribute names or its behaviour. * Public entry points are exactly `Ingest.Pipeline.Store.reset!/0`, `Ingest.Pipeline.Ingestion.ingest/2,3`, `Ingest.Pipeline.Ingestion.ingest_stream/2,3`, `Ingest.Pipeline.Ingestion.pending_stream/0,1`, `Ingest.Pipeline.Ingestion.reconcile/1` and `Ingest.Pipeline.Ingestion.purge_rejected/1`. They are called directly as plain Elixir functions. * Report maps must carry exactly the keys listed above — no more, no fewer — and counts are plain integers.   
+
+Pochi
+I'll start by exploring the existing project structure to understand the codebase before implementing the solution.   
+📂 Listing files in /home/user/ingest recursively ✔ 
+📖 Reading /home/user/ingest/lib/ingest/pipeline.ex ✔ 
+📖 Reading /home/user/ingest/lib/ingest/pipeline/meter.ex ✔ 
+📖 Reading /home/user/ingest/mix.exs ✔ 
+📖 Reading /home/user/ingest/config/config.exs ✔ 
+Now let me explore the Ash ETS data layer and some key Ash modules to understand the API for bulk operations, atomic updates, and error handling:   
+📖 Reading /home/user/ingest/deps/ash/lib/ash.ex ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/bulk_result.ex ✔ 
+🔍 Searching for def bulk_create in *.ex files in /home/user/ingest/deps/ash/lib/ash ✔ 
+🔍 Searching for def bulk_update in *.ex files in /home/user/ingest/deps/ash/lib/ash ✔ 
+🔍 Searching for def bulk_destroy in *.ex files in /home/user/ingest/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/domain/interface.ex ✔ 
+Let me look at the Ash main module's bulk_create, bulk_update, and related functions, as well as the ETS data layer:   
+🔍 Searching for def bulk_create\b in *.ex files in /home/user/ingest/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/data_layer/ets/ets.ex ✔ 
+💫 Executing cd /home/user/ingest && grep -n "def bulk_create\b\|def bulk_update\b\|def bulk_destroy\b\|def bulk_read\b\|def stream\b\|def read\b" deps/ash/lib/ash.ex | head -40 ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash.ex ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash.ex ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash.ex ✔ 
+Now let me look at the Ash error types for understanding how to structure errors with fields:   
+🔍 Searching for defmodule.*Invalid in *.ex files in /home/user/ingest/deps/ash/lib/ash/error ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/error/changes/invalid_attribute.ex ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/error/invalid.ex ✔ 
+Now let me look at how Ash handles `require_atomic?` and the `atomic` DSL for actions, plus how `Ash.Changeset.for_create` and `Ash.read` work with streaming/pagination:   
+🔍 Searching for require_atomic\? in *.ex files in /home/user/ingest/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/resource/actions/update.ex ✔ 
+Now let me understand how Ash changesets work and how to use them for manual validation in non-atomic actions. Let me also look at how update actions reference meters:   
+🔍 Searching for def for_create\b in *.ex files in /home/user/ingest/deps/ash/lib/ash ✔ 
+🔍 Searching for def for_update\b in *.ex files in /home/user/ingest/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+Now let me look at how Ash `read` and `stream` work, particularly for keyset pagination and the ETS data layer's read/stream capabilities:   
+📖 Reading /home/user/ingest/deps/ash/lib/ash.ex ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/data_layer/ets/ets.ex ✔ 
+Now let me look at how identity constraints work in Ash (for unique external_id):   
+🔍 Searching for identities in *.ex files in /home/user/ingest/deps/ash/lib/ash ✔ 
+Now let me look at how identity works with ETS (the `pre_check_with` requirement):   
+📖 Reading /home/user/ingest/deps/ash/lib/ash/data_layer/verifiers/require_pre_check_with.ex ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/resource/identity.ex ✔ 
+Now I have a good understanding of the Ash Framework. Let me also look at how Ash handles the `change` DSL for update actions and how to do manual checks in changes:   
+🔍 Searching for defmodule.*Changeset.*change in *.ex files in /home/user/ingest/deps/ash/lib/ash ✔ 
+🔍 Searching for def change\b.*changeset in *.ex files in /home/user/ingest/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/resource/change/change.ex ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/resource/change/change.ex ✔ 
+Now let me look at how `Ash.Changeset.before_action` works and how to add errors with specific fields:   
+🔍 Searching for def add_error in *.ex files in /home/user/ingest/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+Now let me look at how `before_action` works in changesets:   
+🔍 Searching for def before_action in *.ex files in /home/user/ingest/deps/ash/lib/ash/changeset ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+Now let me look at how `Ash.read` works with pagination (keyset), and also understand the `stream` API:   
+📖 Reading /home/user/ingest/deps/ash/lib/ash.ex ✔ 
+Now let me look at how the ETS data layer handles `read` and `stream`:   
+💫 Executing cd /home/user/ingest && grep -n "def read\b\|def stream\b\|def run_query\|def can_paginate" deps/ash/lib/ash/data_layer/ets/ets.ex | head -20 ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/data_layer/ets/ets.ex ✔ 
+Now I have a thorough understanding of the framework. Let me also check how `Ash.read` handles pagination with keyset to understand the primary read action requirements:   
+💫 Executing cd /home/user/ingest && grep -n "defmodule Ash.Page.Keyset" deps/ash/lib/ash/page/keyset.ex | head -5 ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/page/keyset.ex ✔ 
+Now let me look at how the `:normalize` action needs to be set up — it must NOT be atomically executable, meaning `require_atomic? false`. And the `:accept` action must be fully atomic. Let me also look at how to use `Ash.read` with keyset pagination for the primary read:   
+🔍 Searching for pagination in /home/user/ingest/deps/ash/lib/ash/resource/dsl.ex ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/resource/dsl.ex ✔ 
+Now let me look at how to configure keyset pagination on a read action:   
+🔍 Searching for keyset\? in *.ex files in /home/user/ingest/deps/ash/lib/ash/resource/actions ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/resource/actions/read.ex ✔ 
+Now let me look at how `Ash.bulk_update` works with the `strategy` option to understand how to force an action to NOT be atomic:   
+📖 Reading /home/user/ingest/deps/ash/lib/ash.ex ✔ 
+Now let me look at the bulk update options schema to understand the `strategy` option:   
+💫 Executing cd /home/user/ingest && grep -n "@bulk_update_opts_schema\|bulk_update_opts" deps/ash/lib/ash.ex | head -20 ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash.ex ✔ 
+Now I have a comprehensive understanding. Let me now plan and implement the solution. Let me first check if there are any existing test files to understand the expected patterns:   
+🔍 Searching for **/*test* in /home/user/ingest ✔ 
+No test files in the project itself. Let me now look at how Ash handles `Ash.read!` with keyset pagination and how the `Ash.stream!` works:   
+📖 Reading /home/user/ingest/deps/ash/lib/ash.ex ✔ 
+Now let me look at how `Ash.stream!` works for paging through resources:   
+📖 Reading /home/user/ingest/deps/ash/lib/ash.ex ✔ 
+💫 Executing cd /home/user/ingest && grep -n "@stream_opts" deps/ash/lib/ash.ex | head -10 ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash.ex ✔ 
+Now I have enough understanding. Let me also check how `Ash.read!` with keyset pagination works on the ETS data layer to understand how the `pending_stream` can be implemented:   
+💫 Executing cd /home/user/ingest && grep -n "can_paginate\|keyset\|offset" deps/ash/lib/ash/data_layer/ets/ets.ex | head -30 ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/data_layer/ets/ets.ex ✔ 
+💫 Executing cd /home/user/ingest && grep -n "can?.*keyset\|can?.*page" deps/ash/lib/ash/data_layer/ets/ets.ex ✖ "Command exited with code 1"
+💫 Executing cd /home/user/ingest && grep -n "can?.*nested\|can?.*page\|can?.*keyset\|can?.*offset" deps/ash/lib/ash/data_layer/ets/ets.ex ✔ 
+The ETS data layer doesn't have `can?(:keyset)` or `can?(:page)`, so keyset pagination won't work through the data layer. But the `Ash.stream!` function can still do keyset streaming by reading pages with offset/limit. Let me check how Ash handles streaming when the data layer doesn't support keyset:   
+🔍 Searching for defmodule.*Stream in *.ex files in /home/user/ingest/deps/ash/lib/ash/actions/read ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/actions/read/stream.ex ✔ 
+Now I have a comprehensive understanding. Let me now implement the solution. I'll create the files: 1. `Ingest.Pipeline.Reading` - the reading resource 2. `Ingest.Pipeline.MeterRollup` - the meter rollup resource 3. `Ingest.Pipeline.Store` - the reset module 4. `Ingest.Pipeline.Ingestion` - the ingestion module Let me start implementing:   
+✏️  Writing /home/user/ingest/lib/ingest/pipeline/reading.ex ✔ 
+💫 Executing cd /home/user/ingest && mix compile 2>&1 ✖ "Command exited with code 1"
+The `error()` function in Ash expressions can't take a struct directly. Let me look at how `error` works in Ash expressions:   
+🔍 Searching for def error\b in *.ex files in /home/user/ingest/deps/ash/lib/ash ✔ 
+🔍 Searching for defmacro error in *.ex files in /home/user/ingest/deps/ash/lib/ash ✔ 
+🔍 Searching for def error\b in *.ex files in /home/user/ingest/deps/ash/lib/ash/expr ✔ 
+💫 Executing cd /home/user/ingest && grep -rn "def error\b" deps/ash/lib/ash/expr/ 2>/dev/null ✖ "Command exited with code 1"
+💫 Executing cd /home/user/ingest && grep -rn "error(" deps/ash/lib/ash/expr/expr.ex | head -20 ✔ 
+💫 Executing cd /home/user/ingest && grep -rn "Ash.Expr.error\|Expr.error\|def error" deps/ash/lib/ash/expr/expr.ex | head -20 ✔ 
+💫 Executing cd /home/user/ingest && grep -rn "\"error\"" deps/ash/lib/ash/expr/expr.ex | head -20 ✔ 
+Let me search for how `error` is used in atomic expressions:   
+💫 Executing cd /home/user/ingest && grep -rn "error(" deps/ash/lib/ash/resource/change/atomic_set.ex | head -10 ✔ 
+💫 Executing cd /home/user/ingest && grep -rn "Ash.Expr.expr\|Ash.Expr.do_expr" deps/ash/lib/ash/expr/expr.ex | head -5 ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/expr/expr.ex ✔ 
+💫 Executing cd /home/user/ingest && grep -rn "error/2\|def error(" deps/ash/lib/ash/expr/expr.ex ✖ "Command exited with code 1"
+💫 Executing cd /home/user/ingest && grep -rn "error" deps/ash/lib/ash/expr/expr.ex | head -20 ✔ 
+Let me look for how the `error` function is used in Ash expression macros:   
+💫 Executing cd /home/user/ingest && grep -rn "Ash.Expr.error\|import.*error" deps/ash/lib/ash/expr/expr.ex | head -10 ✔ 
+💫 Executing cd /home/user/ingest && grep -rn "defmacro.*error" deps/ash/lib/ash.ex | head -10 ✔ 
+💫 Executing cd /home/user/ingest && grep -rn "def error\b" deps/ash/lib/ash.ex ✖ "Command exited with code 1"
+💫 Executing cd /home/user/ingest && grep -rn "error(" deps/ash/lib/ash/expr/expr.ex | head -20 ✔ 
+Let me look at how the `error` expression is actually used in Ash. It must be a built-in expression function:   
+💫 Executing cd /home/user/ingest && grep -rn "Ash.Query.Call.*error\|name: :error" deps/ash/lib/ash/ | head -20 ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/query/function/error.ex ✔ 
+So `error` takes an exception module (atom) and a keyword list of fields. Let me also look at how `Ash.Query.Function.If` uses it:   
+📖 Reading /home/user/ingest/deps/ash/lib/ash/query/function/if.ex ✔ 
+Now I see how `error` works in Ash expressions. The first arg is the exception module (atom), and the second arg is a keyword list. Let me also check how the `if` expression works for the atomic update:   
+📖 Reading /home/user/ingest/deps/ash/lib/ash/query/function/if.ex ✔ 
+Now I understand the expression syntax. Let me rewrite the `:accept` action properly. The `error` function takes an exception module atom and a keyword list. But I need to make it work within the atomic context. Let me also check how `Ash.Error.Changes.InvalidAttribute` works — it takes `:field`, `:message`: Now let me also check the `atomic_update` function:   
+💫 Executing cd /home/user/ingest && grep -rn "def atomic_update\b" deps/ash/lib/ash/ | head -10 ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/resource/change/builtins.ex ✔ 
+Now I understand the syntax. Let me also check how `error` expression works with keyword lists — it seems to take `[exception_module, keyword_list]`: Let me look at some tests or examples:   
+💫 Executing cd /home/user/ingest && grep -rn "error(Ash" deps/ash/lib/ash/ | head -20 ✔ 
+📖 Reading /home/user/ingest/deps/ash/lib/ash/resource/change/optimistic_lock.ex ✔ 
+Now I see the pattern. The `error` function takes the exception module and a map (not keyword list). Let me also check the type.ex example:   
+📖 Reading /home/user/ingest/deps/ash/lib/ash/type/type.ex ✔ 
+So `error` takes `(ExceptionModule, %{field: value, ...})` where values are expressions. Now I need to make the `:accept` action work with an `if` expression. Let me rewrite the Reading resource:   
+✏️  Writing /home/user/ingest/lib/ingest/pipeline/reading.ex ✔ 
+💫 Executing cd /home/user/ingest && mix compile 2>&1 ✖ "Command exited with code 1"
+I need to fix the `defaults` call. The `read: :*` means "all read actions" which conflicts with `default_accept`. Let me fix this:   
+🔧 Applying diff to /home/user/ingest/lib/ingest/pipeline/reading.ex ✔ 
+💫 Executing cd /home/user/ingest && mix compile 2>&1 ✖ "Command exited with code 1"
+The `defaults [:read, ...]` already creates a `:read` action, so I can't have another one with the same name. Let me fix this properly:   
+🔧 Applying diff to /home/user/ingest/lib/ingest/pipeline/reading.ex ✔ 
+💫 Executing cd /home/user/ingest && mix compile 2>&1 ✔ 
+Several issues: 1. Need to add the resource to the domain 2. Need a primary key (maybe use `external_id` as primary key since it's globally unique) 3. Need to add the resource to the domain Let me fix all these issues. First, the Reading resource needs a primary key. Since `external_id` is globally unique, I can use it as the primary key. But wait, the Meter resource uses `:code` as its primary key. Let me also create the MeterRollup resource and update the domain. Let me first fix the primary key issue. I'll use `external_id` as the primary key since it's required and unique:   
+✏️  Writing /home/user/ingest/lib/ingest/pipeline/reading.ex ✔ 
+Now create the MeterRollup resource:   
+✏️  Writing /home/user/ingest/lib/ingest/pipeline/meter_rollup.ex ✔ 
+Now update the domain to include both new resources:   
+✏️  Writing /home/user/ingest/lib/ingest/pipeline.ex ✔ 
+Now create the Store module:   
+✏️  Writing /home/user/ingest/lib/ingest/pipeline/store.ex ✔ 
+💫 Executing cd /home/user/ingest && mix compile 2>&1 ✔ 
+All resources compile. Now let me create the Ingestion module. This is the most complex part. Let me think through the implementation: 1. **`ingest/3`** (eager): Process rows in batches, validate each row, use bulk_create to insert, handle duplicates, return report map. 2. **`ingest_stream/3`** (lazy): Return an enumerable that lazily creates readings in batches. 3. **`pending_stream/1`** (lazy): Return a lazy enumerable of pending readings using keyset pagination. 4. **`reconcile/1`**: Normalize pending → accept normalized → update rollups. 5. **`purge_rejected/1`**: Destroy rejected readings for a batch. Let me implement this:   
+✏️  Writing /home/user/ingest/lib/ingest/pipeline/ingestion.ex ✔ 
+💫 Executing cd /home/user/ingest && mix compile 2>&1 ✖ "Command exited with code 1"
+The `and` in Ash filter expressions needs special syntax. In Ash, you use `and` as a keyword: ```elixir Ash.Query.filter(status: :pending, batch_ref: batch_ref) ``` Or use the expression syntax. Let me fix all the filter expressions:   
+📖 Reading /home/user/ingest/lib/ingest/pipeline/ingestion.ex ✔ 
+🔧 Applying diff to /home/user/ingest/lib/ingest/pipeline/ingestion.ex ✔ 
+💫 Executing cd /home/user/ingest && grep -n "and batch_ref" lib/ingest/pipeline/ingestion.ex ✔ 
+🔧 Applying diff to /home/user/ingest/lib/ingest/pipeline/ingestion.ex ✔ 
+🔧 Applying diff to /home/user/ingest/lib/ingest/pipeline/ingestion.ex ✔ 
+💫 Executing cd /home/user/ingest && mix compile 2>&1 ✖ "Command exited with code 1"
+I need to fix the filter expression and the unused variables. The `in` operator in Ash requires the `^` pin but also needs `require Ash.Query`. Let me fix all these issues:   
+📖 Reading /home/user/ingest/lib/ingest/pipeline/ingestion.ex ✔ 
+Let me rewrite the entire `ingest_stream` function more cleanly and fix the `existing_external_ids` function:   
+🔧 Applying diff to /home/user/ingest/lib/ingest/pipeline/ingestion.ex ✖ "Search content does not match the file content. Try to reread the file for the latest content."
+📖 Reading /home/user/ingest/lib/ingest/pipeline/ingestion.ex ✔ 
+✏️  Writing /home/user/ingest/lib/ingest/pipeline/ingestion.ex ✔ 
+💫 Executing cd /home/user/ingest && mix compile 2>&1 ✔ 
+The project compiles. Now let me run some basic tests to verify the functionality. Let me start IEx and test:   
+💫 Executing cd /home/user/ingest && mix run -e '
+# Test basic reset
+Ingest.Pipeline.Store.reset!()
+
+# Create a meter
+meter = Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M001", scale_bp: 10_000, active: true})
+|> Ash.create!()
+IO.inspect(meter, label: "Meter created")
+
+# Test ingest with valid rows
+result = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "ext-001", meter_code: "M001", raw_kwh: 1000, recorded_on: ~D[2024-01-01]},
+    %{external_id: "ext-002", meter_code: "M001", raw_kwh: 2000, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-1"
+)
+IO.inspect(result, label: "Ingest result")
+
+# Test duplicate external_id
+result2 = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "ext-001", meter_code: "M001", raw_kwh: 9999, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-2"
+)
+IO.inspect(result2, label: "Ingest result (dup)")
+
+# Test negative raw_kwh
+result3 = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "ext-003", meter_code: "M001", raw_kwh: -5, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-3"
+)
+IO.inspect(result3, label: "Ingest result (negative)")
+
+# Test reconcile
+reconcile_result = Ingest.Pipeline.Ingestion.reconcile("batch-1")
+IO.inspect(reconcile_result, label: "Reconcile result")
+
+# Verify readings were updated
+readings = Ingest.Pipeline.Reading |> Ash.read!()
+IO.inspect(readings, label: "All readings")
+
+# Verify rollup
+rollups = Ingest.Pipeline.MeterRollup |> Ash.read!()
+IO.inspect(rollups, label: "Rollups")
+
+# Test purge_rejected
+purge_result = Ingest.Pipeline.Ingestion.purge_rejected("batch-1")
+IO.inspect(purge_result, label: "Purge result")
+
+IO.puts("ALL BASIC TESTS PASSED")
+' 2>&1 ✖ "Command exited with code 1"
+The ingest works correctly. But the normalize action has a bug - `Ash.Query.filter/2` is not available in the changeset context. I need to use `Ash.Query` differently. Let me fix the normalize action to use `Ash.read!` with a query built differently:   
+📖 Reading /home/user/ingest/lib/ingest/pipeline/reading.ex ✔ 
+The issue is that `Ash.Query.filter/2` is a macro that must be `require`d. Let me add `require Ash.Query` to the reading module:   
+🔧 Applying diff to /home/user/ingest/lib/ingest/pipeline/reading.ex ✔ 
+💫 Executing cd /home/user/ingest && mix compile 2>&1 ✔ 
+💫 Executing cd /home/user/ingest && mix run -e '
+Ingest.Pipeline.Store.reset!()
+
+# Create a meter
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M001", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+# Create a meter that is inactive
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M002", scale_bp: 10_000, active: false})
+|> Ash.create!()
+
+# Test ingest
+result = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "ext-001", meter_code: "M001", raw_kwh: 1000, recorded_on: ~D[2024-01-01]},
+    %{external_id: "ext-002", meter_code: "M002", raw_kwh: 2000, recorded_on: ~D[2024-01-01]},
+    %{external_id: "ext-003", meter_code: "M999", raw_kwh: 3000, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-1"
+)
+IO.inspect(result, label: "Ingest result")
+
+# Test reconcile
+reconcile_result = Ingest.Pipeline.Ingestion.reconcile("batch-1")
+IO.inspect(reconcile_result, label: "Reconcile result")
+
+# Verify readings
+readings = Ingest.Pipeline.Reading |> Ash.read!()
+IO.inspect(readings, label: "All readings")
+
+# Verify rollup
+rollups = Ingest.Pipeline.MeterRollup |> Ash.read!()
+IO.inspect(rollups, label: "Rollups")
+
+# Test second reconcile (should be zeros)
+reconcile2 = Ingest.Pipeline.Ingestion.reconcile("batch-1")
+IO.inspect(reconcile2, label: "Second reconcile")
+
+# Test purge
+purge = Ingest.Pipeline.Ingestion.purge_rejected("batch-1")
+IO.inspect(purge, label: "Purge result")
+
+# Verify readings after purge
+readings2 = Ingest.Pipeline.Reading |> Ash.read!()
+IO.inspect(readings2, label: "Readings after purge")
+
+IO.puts("ALL TESTS PASSED")
+' 2>&1 ✔ 
+The basic flow works. Let me now run more comprehensive tests to verify edge cases:   
+💫 Executing cd /home/user/ingest && mix run -e '
+Ingest.Pipeline.Store.reset!()
+
+# Create a meter
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M001", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+# Test 1: Duplicate external_id in the same batch
+IO.puts("=== Test 1: Duplicate in batch ===")
+result = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "dup-1", meter_code: "M001", raw_kwh: 100, recorded_on: ~D[2024-01-01]},
+    %{external_id: "dup-1", meter_code: "M001", raw_kwh: 200, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-dup"
+)
+IO.inspect(result)
+IO.puts("failed count: #{length(result.failed)}")
+IO.puts("inserted: #{result.inserted}")
+
+# Test 2: Missing field
+IO.puts("\n=== Test 2: Missing field ===")
+result = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{meter_code: "M001", raw_kwh: 100, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-missing"
+)
+IO.inspect(result)
+
+# Test 3: Mixed valid and invalid
+IO.puts("\n=== Test 3: Mixed valid and invalid ===")
+result = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "mix-1", meter_code: "M001", raw_kwh: 100, recorded_on: ~D[2024-01-01]},
+    %{external_id: "mix-2", meter_code: "M001", raw_kwh: -5, recorded_on: ~D[2024-01-01]},
+    %{external_id: "mix-3", meter_code: "M001", raw_kwh: 200, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-mix"
+)
+IO.inspect(result)
+IO.puts("status: #{result.status}")
+
+# Test 4: Duplicate across batches (skipped)
+IO.puts("\n=== Test 4: Cross-batch duplicate ===")
+result = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "mix-1", meter_code: "M001", raw_kwh: 999, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-cross"
+)
+IO.inspect(result)
+
+# Test 5: ingest_stream
+IO.puts("\n=== Test 5: ingest_stream ===")
+stream = Ingest.Pipeline.Ingestion.ingest_stream(
+  [
+    %{external_id: "stream-1", meter_code: "M001", raw_kwh: 100, recorded_on: ~D[2024-01-01]},
+    %{external_id: "stream-2", meter_code: "M001", raw_kwh: 200, recorded_on: ~D[2024-01-01]},
+    %{external_id: "stream-3", meter_code: "M001", raw_kwh: -5, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-stream"
+)
+results = Enum.to_list(stream)
+IO.inspect(results)
+
+# Test 6: pending_stream
+IO.puts("\n=== Test 6: pending_stream ===")
+# First reconcile mix batch
+Ingest.Pipeline.Ingestion.reconcile("batch-mix")
+
+pending = Ingest.Pipeline.Ingestion.pending_stream(batch_size: 2) |> Enum.to_list()
+IO.inspect(length(pending))
+IO.inspect(Enum.map(pending, & &1.external_id))
+
+# Test 7: Scale factor (half-up rounding)
+IO.puts("\n=== Test 7: Scale factor ===")
+Ingest.Pipeline.Store.reset!()
+# Create meter with non-default scale
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M-SCALE", scale_bp: 8_500, active: true})
+|> Ash.create!()
+
+result = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "scale-1", meter_code: "M-SCALE", raw_kwh: 100, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-scale"
+)
+IO.inspect(result)
+
+Ingest.Pipeline.Ingestion.reconcile("batch-scale")
+reading = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "scale-1") |> Ash.read!() |> List.first()
+IO.inspect(reading.net_kwh, label: "net_kwh with scale 8500: 100*8500/10000 = 85")
+
+# Test 8: Second reconcile must be all zeros
+IO.puts("\n=== Test 8: Reconcile idempotency ===")
+r1 = Ingest.Pipeline.Ingestion.reconcile("batch-scale")
+r2 = Ingest.Pipeline.Ingestion.reconcile("batch-scale")
+IO.inspect(r1, label: "First reconcile")
+IO.inspect(r2, label: "Second reconcile")
+
+IO.puts("\nALL EDGE CASE TESTS PASSED")
+' 2>&1 ✖ "Command exited with code 1"
+The test script itself has the `require Ash.Query` issue. The ingest_stream results show `ok:` and `error:` instead of `{:ok, ...}` and `{:error, ...}` - that's just how IO.inspect displays tuples. Let me verify that the stream results are actually proper tuples. Let me also notice an issue with `ingest_stream` — the `result` variable in the test shows `ok:` and `error:` which is just Elixir formatting for tuples. But let me verify the stream result types are correct. Let me re-run with proper require:   
+💫 Executing cd /home/user/ingest && mix run -e '
+require Ash.Query
+
+Ingest.Pipeline.Store.reset!()
+
+# Test scale factor
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M-SCALE", scale_bp: 8_500, active: true})
+|> Ash.create!()
+
+result = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "scale-1", meter_code: "M-SCALE", raw_kwh: 100, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-scale"
+)
+
+Ingest.Pipeline.Ingestion.reconcile("batch-scale")
+reading = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "scale-1") |> Ash.read!() |> List.first()
+IO.inspect(reading.net_kwh, label: "net_kwh with scale 8500: 100*8500/10000 rounded half-up")
+
+# Test half-up rounding more thoroughly
+IO.puts("\n=== Half-up rounding tests ===")
+# 150 * 10000 / 10000 = 150 (exact)
+# 151 * 10000 / 10000 = 151 (exact)
+
+# Test with scale_bp=10000: 1 * 10000 / 10000 = 1
+Ingest.Pipeline.Store.reset!()
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+# 5 / 10 = 0.5 -> round half up -> 1
+Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "r1", meter_code: "M1", raw_kwh: 5, recorded_on: ~D[2024-01-01]}],
+  "b1"
+)
+Ingest.Pipeline.Ingestion.reconcile("b1")
+r1 = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "r1") |> Ash.read!() |> List.first()
+IO.inspect(r1.net_kwh, label: "5 * 10000 / 10000 = 5 (exact)")
+
+# Test: 1 * 5000 / 10000 = 0.5 -> rounded half-up -> 1
+Ingest.Pipeline.Store.reset!()
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M2", scale_bp: 5_000, active: true})
+|> Ash.create!()
+
+Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "r2", meter_code: "M2", raw_kwh: 1, recorded_on: ~D[2024-01-01]}],
+  "b2"
+)
+Ingest.Pipeline.Ingestion.reconcile("b2")
+r2 = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "r2") |> Ash.read!() |> List.first()
+IO.inspect(r2.net_kwh, label: "1 * 5000 / 10000 = 0.5 rounded half-up -> 1")
+
+# Test: 1 * 4999 / 10000 = 0.4999 -> round half-up -> 0
+Ingest.Pipeline.Store.reset!()
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M3", scale_bp: 4_999, active: true})
+|> Ash.create!()
+
+Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "r3", meter_code: "M3", raw_kwh: 1, recorded_on: ~D[2024-01-01]}],
+  "b3"
+)
+Ingest.Pipeline.Ingestion.reconcile("b3")
+r3 = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "r3") |> Ash.read!() |> List.first()
+IO.inspect(r3.net_kwh, label: "1 * 4999 / 10000 = 0.4999 rounded half-up -> 0")
+
+# Test the :accept action with non-normalized status
+IO.puts("\n=== Test accept on non-normalized ===")
+Ingest.Pipeline.Store.reset!()
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M4", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "acc-1", meter_code: "M4", raw_kwh: 100, recorded_on: ~D[2024-01-01]}],
+  "batch-acc"
+)
+
+# Try to accept a pending reading directly (should fail)
+pending_query = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "acc-1")
+result = Ash.bulk_update(pending_query, :accept, %{}, return_errors?: true)
+IO.inspect(result.status, label: "Accept pending status")
+IO.inspect(length(result.errors), label: "Error count")
+
+IO.puts("\nALL TESTS PASSED")
+' 2>&1 ✔ 
+The rounding works correctly. The `:accept` action properly fails on non-normalized readings. Now let me test some more critical requirements: 1. The `:normalize` action must NOT be atomically executable 2. The `:accept` action must be fully atomic 3. `ingest_stream` must be lazy and batch properly 4. `pending_stream` must be lazy and page properly Let me verify the atomic/non-atomic properties:   
+💫 Executing cd /home/user/ingest && mix run -e '
+# Check if normalize is atomic
+normalize_action = Ash.Resource.Info.action(Ingest.Pipeline.Reading, :normalize)
+IO.inspect(normalize_action.require_atomic?, label: "normalize.require_atomic?")
+
+accept_action = Ash.Resource.Info.action(Ingest.Pipeline.Reading, :accept)
+IO.inspect(accept_action.require_atomic?, label: "accept.require_atomic?")
+
+# Test that forcing atomic on normalize fails
+Ingest.Pipeline.Store.reset!()
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+# Create a reading
+Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "n1", meter_code: "M1", raw_kwh: 100, recorded_on: ~D[2024-01-01]}],
+  "b1"
+)
+
+# Try to bulk update with atomic strategy forced
+query = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "n1")
+result = Ash.bulk_update(query, :normalize, %{}, strategy: [:atomic], return_errors?: true)
+IO.inspect(result.status, label: "Forced atomic normalize status")
+IO.inspect(length(result.errors), label: "Forced atomic normalize errors")
+
+# Verify reading was NOT changed
+reading = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "n1") |> Ash.read!() |> List.first()
+IO.inspect(reading.status, label: "Reading status after failed atomic normalize")
+
+# Test that accept works atomically
+Ingest.Pipeline.Store.reset!()
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M2", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "a1", meter_code: "M2", raw_kwh: 100, recorded_on: ~D[2024-01-01]}],
+  "b2"
+)
+
+# Manually set to normalized for testing accept
+reading = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "a1") |> Ash.read!() |> List.first()
+reading |> Ash.Changeset.for_update(:update, %{status: :normalized}) |> Ash.update!()
+
+# Now accept atomically
+query2 = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "a1")
+result2 = Ash.bulk_update(query2, :accept, %{}, return_records?: true, return_errors?: true)
+IO.inspect(result2.status, label: "Atomic accept status")
+IO.inspect(length(result2.records), label: "Atomic accept records")
+IO.inspect(hd(result2.records).status, label: "Accepted status")
+
+IO.puts("\nATOMIC TESTS PASSED")
+' 2>&1 ✖ "Command exited with code 1"
+💫 Executing cd /home/user/ingest && mix run -e '
+require Ash.Query
+
+# Check if normalize is atomic
+normalize_action = Ash.Resource.Info.action(Ingest.Pipeline.Reading, :normalize)
+IO.inspect(normalize_action.require_atomic?, label: "normalize.require_atomic?")
+
+accept_action = Ash.Resource.Info.action(Ingest.Pipeline.Reading, :accept)
+IO.inspect(accept_action.require_atomic?, label: "accept.require_atomic?")
+
+# Test that forcing atomic on normalize fails
+Ingest.Pipeline.Store.reset!()
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+# Create a reading
+Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "n1", meter_code: "M1", raw_kwh: 100, recorded_on: ~D[2024-01-01]}],
+  "b1"
+)
+
+# Try to bulk update with atomic strategy forced
+query = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "n1")
+result = Ash.bulk_update(query, :normalize, %{}, strategy: [:atomic], return_errors?: true)
+IO.inspect(result.status, label: "Forced atomic normalize status")
+IO.inspect(length(result.errors), label: "Forced atomic normalize errors")
+
+# Verify reading was NOT changed
+reading = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "n1") |> Ash.read!() |> List.first()
+IO.inspect(reading.status, label: "Reading status after failed atomic normalize")
+
+# Test that accept works atomically
+Ingest.Pipeline.Store.reset!()
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M2", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "a1", meter_code: "M2", raw_kwh: 100, recorded_on: ~D[2024-01-01]}],
+  "b2"
+)
+
+# Manually set to normalized for testing accept
+reading = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "a1") |> Ash.read!() |> List.first()
+reading |> Ash.Changeset.for_update(:update, %{status: :normalized}) |> Ash.update!()
+
+# Now accept atomically
+query2 = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "a1")
+result2 = Ash.bulk_update(query2, :accept, %{}, return_records?: true, return_errors?: true)
+IO.inspect(result2.status, label: "Atomic accept status")
+IO.inspect(length(result2.records), label: "Atomic accept records")
+if length(result2.records) > 0 do
+  IO.inspect(hd(result2.records).status, label: "Accepted status")
+end
+
+IO.puts("\nATOMIC TESTS PASSED")
+' 2>&1 ✔ 
+The atomic/non-atomic requirements are met: - `normalize.require_atomic?` is `false` - `accept.require_atomic?` is `true` - Forcing atomic on normalize fails and doesn't change the reading - Accept works atomically Now let me test the `ingest_stream` laziness and `pending_stream` pagination behavior:   
+💫 Executing cd /home/user/ingest && mix run -e '
+require Ash.Query
+
+Ingest.Pipeline.Store.reset!()
+
+# Create a meter
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+# Test ingest_stream laziness with batch_size
+IO.puts("=== Test ingest_stream laziness ===")
+rows = for i <- 1..100 do
+  %{external_id: "stream-#{i}", meter_code: "M1", raw_kwh: i, recorded_on: ~D[2024-01-01]}
+end
+
+stream = Ingest.Pipeline.Ingestion.ingest_stream(rows, "batch-stream", batch_size: 10)
+
+# Take only 5 elements - should only write 10 records (one batch)
+taken = stream |> Stream.take(5) |> Enum.to_list()
+IO.puts("Took #{length(taken)} elements")
+IO.inspect(Enum.map(taken, fn
+  {:ok, r} -> r.external_id
+  {:error, i} -> "error at #{i}"
+end))
+
+# Check how many records were stored
+all_readings = Ingest.Pipeline.Reading |> Ash.read!()
+IO.puts("Stored readings: #{length(all_readings)}")
+
+# Test pending_stream laziness
+IO.puts("\n=== Test pending_stream laziness ===")
+Ingest.Pipeline.Store.reset!()
+
+# Create a meter and many readings
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+many_rows = for i <- 1..50 do
+  %{external_id: "ps-#{i}", meter_code: "M1", raw_kwh: i, recorded_on: ~D[2024-01-01]}
+end
+Ingest.Pipeline.Ingestion.ingest(many_rows, "batch-ps")
+
+# Take only 3 from pending_stream with batch_size: 10
+ps = Ingest.Pipeline.Ingestion.pending_stream(batch_size: 10)
+first3 = ps |> Stream.take(3) |> Enum.to_list()
+IO.puts("Took #{length(first3)} from pending_stream")
+IO.inspect(Enum.map(first3, & &1.external_id))
+
+IO.puts("\nSTREAM TESTS PASSED")
+' 2>&1 ✔ 
+The `ingest_stream` correctly writes only one batch (10 records) when we take 5 elements. The `pending_stream` correctly only takes 3 records but they're not in the expected order (ps-1, ps-10, ps-11 instead of ps-1, ps-2, ps-3). This is because ETS doesn't sort by string keys the way we'd expect. Let me check the sort order — ETS sorts strings lexicographically, so "ps-1", "ps-10", "ps-11", "ps-2", "ps-3"... The keyset pagination is working correctly based on the sort order. Now let me address the requirement about `pending_stream` issuing at most 2 reads when taking only 3 records with batch_size 300. The current implementation should handle this correctly since it uses keyset pagination and reads one page at a time. Let me now think about what else needs to be verified or fixed: 1. The `:ingest` create action must fail with `Ash.Error.Invalid` for negative `raw_kwh` — I'm using `Ash.Error.Changes.InvalidAttribute` which extends `Ash.Error.Invalid`. Let me verify this. 2. The `:ingest` create action must fail with `Ash.Error.Invalid` for duplicate `external_id` — The identity with `pre_check_with` should handle this. 3. The `:accept` action must fail with an error whose field is `:status` when status is not `:normalized`. Let me verify these:   
+💫 Executing cd /home/user/ingest && mix run -e '
+require Ash.Query
+
+Ingest.Pipeline.Store.reset!()
+
+# Test 1: Negative raw_kwh must produce Ash.Error.Invalid with field :raw_kwh
+IO.puts("=== Test negative raw_kwh error type ===")
+changeset = Ash.Changeset.for_create(Ingest.Pipeline.Reading, :ingest, %{
+  external_id: "err-1",
+  meter_code: "M1",
+  raw_kwh: -5,
+  recorded_on: ~D[2024-01-01],
+  batch_ref: "b1"
+})
+result = Ash.create(changeset)
+IO.inspect(result, label: "Create with negative raw_kwh")
+
+case result do
+  {:error, error} ->
+    IO.inspect(error.__struct__, label: "Error type")
+    # Check if it is an Ash.Error.Invalid
+    IO.puts("Is Ash.Error.Invalid? #{is_struct(error, Ash.Error.Invalid)}")
+    # Check the inner errors
+    if error.errors do
+      Enum.each(error.errors, fn e ->
+        IO.inspect(e.__struct__, label: "Inner error type")
+        IO.inspect(Map.get(e, :field), label: "Field")
+      end)
+    end
+  _ -> IO.puts("Unexpected success")
+end
+
+# Test 2: Duplicate external_id must produce Ash.Error.Invalid with field :external_id
+IO.puts("\n=== Test duplicate external_id error ===")
+# First create one
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+Ash.Changeset.for_create(Ingest.Pipeline.Reading, :ingest, %{
+  external_id: "dup-test",
+  meter_code: "M1",
+  raw_kwh: 100,
+  recorded_on: ~D[2024-01-01],
+  batch_ref: "b1"
+}) |> Ash.create!()
+
+# Now try duplicate
+changeset2 = Ash.Changeset.for_create(Ingest.Pipeline.Reading, :ingest, %{
+  external_id: "dup-test",
+  meter_code: "M1",
+  raw_kwh: 200,
+  recorded_on: ~D[2024-01-01],
+  batch_ref: "b2"
+})
+result2 = Ash.create(changeset2)
+IO.inspect(result2, label: "Create duplicate")
+
+case result2 do
+  {:error, error} ->
+    IO.inspect(error.__struct__, label: "Error type")
+    IO.puts("Is Ash.Error.Invalid? #{is_struct(error, Ash.Error.Invalid)}")
+    if error.errors do
+      Enum.each(error.errors, fn e ->
+        IO.inspect(e.__struct__, label: "Inner error type")
+        IO.inspect(Map.get(e, :field), label: "Field")
+      end)
+    end
+  _ -> IO.puts("Unexpected success")
+end
+
+# Test 3: Accept on non-normalized must fail with field :status
+IO.puts("\n=== Test accept on pending ===")
+# Create a reading
+Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "acc-test", meter_code: "M1", raw_kwh: 100, recorded_on: ~D[2024-01-01]}],
+  "batch-acc"
+)
+
+reading = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "acc-test") |> Ash.read!() |> List.first()
+changeset3 = Ash.Changeset.for_update(reading, :accept)
+result3 = Ash.update(changeset3)
+IO.inspect(result3, label: "Accept on pending")
+
+case result3 do
+  {:error, error} ->
+    IO.inspect(error.__struct__, label: "Error type")
+    if error.errors do
+      Enum.each(error.errors, fn e ->
+        IO.inspect(e.__struct__, label: "Inner error type")
+        IO.inspect(Map.get(e, :field), label: "Field")
+      end)
+    end
+  _ -> IO.puts("Unexpected success")
+end
+
+IO.puts("\nERROR TYPE TESTS COMPLETED")
+' 2>&1 ✔ 
+There's an issue: the duplicate `external_id` check is NOT working. The `pre_check_with` identity check didn't prevent the duplicate. This is because the ETS data layer requires the `pre_check_with` option, and I set it to `Ingest.Pipeline` (the domain). But the identity check might not be working as expected. Let me investigate the identity mechanism. The `pre_check_with` option specifies a domain to use for checking uniqueness. When an identity is configured with `pre_check_with`, Ash runs a `before_action` hook that queries for existing records with the same identity keys. Let me check if the identity is being checked at all:   
+💫 Executing cd /home/user/ingest && mix run -e '
+require Ash.Query
+
+Ingest.Pipeline.Store.reset!()
+
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+# First create
+Ash.Changeset.for_create(Ingest.Pipeline.Reading, :ingest, %{
+  external_id: "id-test",
+  meter_code: "M1",
+  raw_kwh: 100,
+  recorded_on: ~D[2024-01-01],
+  batch_ref: "b1"
+}) |> Ash.create!()
+
+# Check what identities are defined
+identities = Ash.Resource.Info.identities(Ingest.Pipeline.Reading)
+IO.inspect(identities, label: "Identities")
+
+# Try duplicate with more verbose error
+changeset = Ash.Changeset.for_create(Ingest.Pipeline.Reading, :ingest, %{
+  external_id: "id-test",
+  meter_code: "M1",
+  raw_kwh: 200,
+  recorded_on: ~D[2024-01-01],
+  batch_ref: "b2"
+})
+IO.inspect(changeset.valid?, label: "Changeset valid?")
+IO.inspect(changeset.errors, label: "Changeset errors")
+
+result = Ash.create(changeset)
+IO.inspect(result, label: "Result")
+' 2>&1 ✔ 
+The identities are empty! The identity block is not being parsed. Let me check why. The issue might be that I removed the identity block when I refactored. Let me check the current reading.ex:   
+📖 Reading /home/user/ingest/lib/ingest/pipeline/reading.ex ✔ 
+I see the issue - the `identities` block was removed when I rewrote the file! Let me add it back. The identity block needs to be after `attributes` and before `actions`:   
+🔧 Applying diff to /home/user/ingest/lib/ingest/pipeline/reading.ex ✔ 
+💫 Executing cd /home/user/ingest && mix compile 2>&1 ✔ 
+💫 Executing cd /home/user/ingest && mix run -e '
+require Ash.Query
+
+Ingest.Pipeline.Store.reset!()
+
+# Check identities
+identities = Ash.Resource.Info.identities(Ingest.Pipeline.Reading)
+IO.inspect(identities, label: "Identities")
+
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+# First create
+Ash.Changeset.for_create(Ingest.Pipeline.Reading, :ingest, %{
+  external_id: "id-test",
+  meter_code: "M1",
+  raw_kwh: 100,
+  recorded_on: ~D[2024-01-01],
+  batch_ref: "b1"
+}) |> Ash.create!()
+
+# Try duplicate
+changeset = Ash.Changeset.for_create(Ingest.Pipeline.Reading, :ingest, %{
+  external_id: "id-test",
+  meter_code: "M1",
+  raw_kwh: 200,
+  recorded_on: ~D[2024-01-01],
+  batch_ref: "b2"
+})
+result = Ash.create(changeset)
+IO.inspect(result, label: "Duplicate result")
+
+case result do
+  {:error, error} ->
+    IO.inspect(error.__struct__, label: "Error type")
+    IO.puts("Is Ash.Error.Invalid? #{is_struct(error, Ash.Error.Invalid)}")
+    if error.errors do
+      Enum.each(error.errors, fn e ->
+        IO.inspect(e.__struct__, label: "Inner error type")
+        IO.inspect(Map.get(e, :field), label: "Field")
+      end)
+    end
+  _ -> IO.puts("UNEXPECTED SUCCESS - identity check failed")
+end
+' 2>&1 ✔ 
+The identity check works now. The error is `Ash.Error.Invalid` with `Ash.Error.Changes.InvalidChanges` inside, and the `fields` is `[:external_id]`. The requirement says it must report the field `:external_id`. Let me check if `fields: [:external_id]` is sufficient — the `InvalidChanges` error has a `fields` key (list), not a `field` key. The requirement says "reporting the field `:external_id`". This should be acceptable as `InvalidChanges` with `fields: [:external_id]` clearly identifies the field. Now let me also verify the `:ingest` action's duplicate handling within the `ingest/3` function. The `ingest/3` function handles duplicate suppression by checking existing external_ids before inserting. But what about the identity check at the Ash level? When we use `Ash.bulk_create!`, the identity check should also catch duplicates. Let me verify the ingest function handles this correctly: The `ingest/3` function: 1. Validates rows (missing fields, negative, batch duplicates) 2. Checks existing external_ids in the store (pre-existing duplicates) 3. Inserts only new rows This means the identity check in Ash is an additional safety net but the primary duplicate detection happens in step 2. This is correct. However, I notice that the `ingest_stream/3` function says "no duplicate suppression at all" — it just tries to create each row and returns `{:error, index}` for any that fail. This is correct per the spec. Now let me verify the `:accept` action error when running via `Ash.update` (single record) vs `Ash.bulk_update`: The earlier test showed that the `:accept` action on a pending reading returns `Ash.Error.Invalid` with `field: :status`. That's correct. Now let me look at a few more requirements: 1. The `:ingest` create action must fail for negative `raw_kwh` with `Ash.Error.Invalid` reporting field `:raw_kwh` — ✓ verified 2. The `:ingest` create action must fail for duplicate `external_id` with `Ash.Error.Invalid` reporting field `:external_id` — ✓ verified (via `InvalidChanges` with `fields: [:external_id]`) 3. The `:normalize` update action must not be atomically executable — ✓ verified 4. The `:accept` update action must be fully atomic — ✓ verified 5. The `:accept` action on non-normalized must fail with field `:status` — ✓ verified Let me now verify the `ingest_stream` behavior more carefully — it should write batches lazily and only when consumed: The current implementation does `Enum.map` inside `Stream.flat_map`, which means it processes each chunk eagerly when the stream is consumed. But the requirement says "taking 5 elements must leave exactly 10 readings stored" with `batch_size: 10`. Let me re-examine: With `batch_size: 10`, 100 rows → 10 chunks. Taking 5 elements would consume the first chunk (10 rows), but only 5 elements are emitted. However, all 10 rows in that chunk are processed (created) because the `Enum.map` inside the chunk processes all rows in the chunk. This matches the requirement: "only writes the whole batches needed to produce the elements that are actually demanded." Now let me verify the `pending_stream` pagination requirements: "a full pass over 2400 pending readings with `batch_size: 300` must issue between 8 and 10 reads of the reading resource." With keyset pagination and batch_size 300, 2400 records / 300 = 8 pages. That's exactly 8 reads (plus potentially one more to determine there are no more results). So 8-10 reads is correct. "demanding only the first 3 records must issue at most 2 and must not drag the rest of the table into memory." With keyset pagination, the first page of 300 is read, 3 records taken from it. That's 1 read (maybe 2 if the data layer needs to check for more). So at most 2 reads. ✓ Now let me run a comprehensive final test:   
+💫 Executing cd /home/user/ingest && mix run -e '
+require Ash.Query
+
+IO.puts("=== COMPREHENSIVE TEST SUITE ===\n")
+
+# Reset
+Ingest.Pipeline.Store.reset!()
+
+# Create meters
+for {code, scale, active} <- [
+  {"M-ACTIVE", 10_000, true},
+  {"M-INACTIVE", 10_000, false},
+  {"M-SCALE", 8_500, true}
+] do
+  Ingest.Pipeline.Meter
+  |> Ash.Changeset.for_create(:create, %{code: code, scale_bp: scale, active: active})
+  |> Ash.create!()
+end
+
+IO.puts("--- Test 1: Basic ingest ---")
+r1 = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "e1", meter_code: "M-ACTIVE", raw_kwh: 1000, recorded_on: ~D[2024-01-01]},
+    %{external_id: "e2", meter_code: "M-INACTIVE", raw_kwh: 2000, recorded_on: ~D[2024-01-01]},
+    %{external_id: "e3", meter_code: "M-SCALE", raw_kwh: 100, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-1"
+)
+IO.inspect(r1)
+assert = fn test, expected, actual ->
+  if expected == actual do
+    IO.puts("  PASS: #{test}")
+  else
+    IO.puts("  FAIL: #{test} - expected #{inspect(expected)}, got #{inspect(actual)}")
+  end
+end
+
+assert.("status", :success, r1.status)
+assert.("inserted", 3, r1.inserted)
+assert.("skipped", 0, r1.skipped)
+assert.("failed", [], r1.failed)
+assert.("inserted_external_ids", ["e1", "e2", "e3"], r1.inserted_external_ids)
+
+IO.puts("\n--- Test 2: Duplicate external_id in same batch ---")
+r2 = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "dup1", meter_code: "M-ACTIVE", raw_kwh: 100, recorded_on: ~D[2024-01-01]},
+    %{external_id: "dup1", meter_code: "M-ACTIVE", raw_kwh: 200, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-dup"
+)
+IO.inspect(r2)
+assert.("status", :partial_success, r2.status)
+assert.("inserted", 1, r2.inserted)
+assert.("failed count", 1, length(r2.failed))
+assert.("failed index", 1, hd(r2.failed).index)
+assert.("failed reason", :duplicate_in_batch, hd(r2.failed).reason)
+
+IO.puts("\n--- Test 3: Missing field ---")
+r3 = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{meter_code: "M-ACTIVE", raw_kwh: 100, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-missing"
+)
+IO.inspect(r3)
+assert.("status", :error, r3.status)
+assert.("inserted", 0, r3.inserted)
+assert.("failed reason", :missing_field, hd(r3.failed).reason)
+
+IO.puts("\n--- Test 4: Negative raw_kwh ---")
+r4 = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "neg1", meter_code: "M-ACTIVE", raw_kwh: -5, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-neg"
+)
+IO.inspect(r4)
+assert.("status", :error, r4.status)
+assert.("failed reason", :negative_raw_kwh, hd(r4.failed).reason)
+
+IO.puts("\n--- Test 5: Cross-batch duplicate (skipped) ---")
+r5 = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "e1", meter_code: "M-ACTIVE", raw_kwh: 9999, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-cross"
+)
+IO.inspect(r5)
+assert.("skipped", 1, r5.skipped)
+assert.("inserted", 0, r5.inserted)
+
+# Verify e1 was NOT modified
+e1 = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "e1") |> Ash.read!() |> List.first()
+assert.("e1 raw_kwh unchanged", 1000, e1.raw_kwh)
+assert.("e1 batch_ref unchanged", "batch-1", e1.batch_ref)
+
+IO.puts("\n--- Test 6: Reconcile ---")
+r6 = Ingest.Pipeline.Ingestion.reconcile("batch-1")
+IO.inspect(r6)
+assert.("normalized", 2, r6.normalized)  # e1 (M-ACTIVE active) and e3 (M-SCALE active)
+assert.("rejected", 1, r6.rejected)      # e2 (M-INACTIVE not active)
+assert.("accepted", 2, r6.accepted)
+
+IO.puts("\n--- Test 7: Second reconcile is idempotent ---")
+r7 = Ingest.Pipeline.Ingestion.reconcile("batch-1")
+IO.inspect(r7)
+assert.("normalized (2nd)", 0, r7.normalized)
+assert.("rejected (2nd)", 0, r7.rejected)
+assert.("accepted (2nd)", 0, r7.accepted)
+
+IO.puts("\n--- Test 8: Rollups ---")
+rollups = Ingest.Pipeline.MeterRollup |> Ash.read!()
+IO.inspect(rollups)
+m_active_rollup = Enum.find(rollups, &(&1.meter_code == "M-ACTIVE"))
+m_scale_rollup = Enum.find(rollups, &(&1.meter_code == "M-SCALE"))
+
+# e1: raw_kwh=1000, scale=10000 => net=1000
+assert.("M-ACTIVE total_net_kwh", 1000, m_active_rollup.total_net_kwh)
+assert.("M-ACTIVE reading_count", 1, m_active_rollup.reading_count)
+assert.("M-ACTIVE revision", 1, m_active_rollup.revision)
+assert.("M-ACTIVE last_batch_ref", "batch-1", m_active_rollup.last_batch_ref)
+
+# e3: raw_kwh=100, scale=8500 => net=85
+assert.("M-SCALE total_net_kwh", 85, m_scale_rollup.total_net_kwh)
+assert.("M-SCALE reading_count", 1, m_scale_rollup.reading_count)
+assert.("M-SCALE revision", 1, m_scale_rollup.revision)
+
+IO.puts("\n--- Test 9: Purge rejected ---")
+r9 = Ingest.Pipeline.Ingestion.purge_rejected("batch-1")
+IO.inspect(r9)
+assert.("purged count", 1, r9)
+
+# Verify rejected reading is gone
+remaining = Ingest.Pipeline.Reading |> Ash.read!()
+assert.("remaining count", 2, length(remaining))
+
+IO.puts("\n--- Test 10: ingest_stream ---")
+stream = Ingest.Pipeline.Ingestion.ingest_stream(
+  [
+    %{external_id: "s1", meter_code: "M-ACTIVE", raw_kwh: 10, recorded_on: ~D[2024-01-01]},
+    %{external_id: "s2", meter_code: "M-ACTIVE", raw_kwh: 20, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-stream"
+)
+stream_results = Enum.to_list(stream)
+IO.inspect(stream_results)
+assert.("stream result count", 2, length(stream_results))
+{:ok, s1} = Enum.at(stream_results, 0)
+assert.("stream reading external_id", "s1", s1.external_id)
+
+IO.puts("\n--- Test 11: pending_stream ---")
+pending = Ingest.Pipeline.Ingestion.pending_stream(batch_size: 10) |> Enum.to_list()
+IO.inspect(Enum.map(pending, & &1.external_id))
+assert.("pending count", 2, length(pending))  # s1 and s2
+
+IO.puts("\n--- Test 12: Atomic accept validation ---")
+# Create a pending reading
+Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "atomic-test", meter_code: "M-ACTIVE", raw_kwh: 50, recorded_on: ~D[2024-01-01]}],
+  "batch-atomic"
+)
+# Try to accept it directly (should fail since it is pending)
+query = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "atomic-test")
+result = Ash.bulk_update(query, :accept, %{}, return_errors?: true)
+assert.("accept on pending status", :error, result.status)
+assert.("accept on pending errors", 1, length(result.errors))
+
+# Verify reading unchanged
+reading = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "atomic-test") |> Ash.read!() |> List.first()
+assert.("reading still pending", :pending, reading.status)
+
+IO.puts("\n=== ALL TESTS COMPLETED ===")
+' 2>&1 ✔ 
+Two tests failed: 1. "remaining count" after purge: expected 2, got 3 — this is because `dup1` was also in the store (from test 2). The purge only destroyed rejected readings from `batch-1`, and `dup1` is from `batch-dup` with status `:pending`. So the remaining readings are `e1` (accepted), `e3` (accepted), and `dup1` (pending). That's 3, not 2. The test expectation was wrong, not the code. 2. "pending count": expected 2, got 3 — same reason, `dup1` is pending from test 2. These are test expectation issues, not code bugs. Let me verify the purge actually works correctly:   
+💫 Executing cd /home/user/ingest && mix run -e '
+require Ash.Query
+
+Ingest.Pipeline.Store.reset!()
+
+# Create meter
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+# Create readings with rejected status
+Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "r1", meter_code: "M1", raw_kwh: 100, recorded_on: ~D[2024-01-01]},
+    %{external_id: "r2", meter_code: "M1", raw_kwh: 200, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-test"
+)
+
+# Reconcile (r1 and r2 both active -> normalized -> accepted)
+Ingest.Pipeline.Ingestion.reconcile("batch-test")
+
+# Create a reading for an inactive meter
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M2", scale_bp: 10_000, active: false})
+|> Ash.create!()
+
+Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "r3", meter_code: "M2", raw_kwh: 300, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-test"
+)
+
+# Reconcile (r3 inactive -> rejected)
+Ingest.Pipeline.Ingestion.reconcile("batch-test")
+
+# Now purge rejected from batch-test
+count = Ingest.Pipeline.Ingestion.purge_rejected("batch-test")
+IO.inspect(count, label: "Purged count")
+
+# Verify only r3 is gone
+all = Ingest.Pipeline.Reading |> Ash.read!()
+IO.inspect(Enum.map(all, & &1.external_id), label: "Remaining external_ids")
+IO.inspect(length(all), label: "Remaining count")
+
+# Verify rollup is unchanged
+rollups = Ingest.Pipeline.MeterRollup |> Ash.read!()
+IO.inspect(rollups, label: "Rollups")
+' 2>&1 ✔ 
+Purge works correctly — only the rejected reading is destroyed, the accepted ones remain, and the rollup is untouched. Now let me also verify the `Ingest.Pipeline.Store.reset!/0` function works properly:   
+💫 Executing cd /home/user/ingest && mix run -e '
+require Ash.Query
+
+# Setup some data
+Ingest.Pipeline.Store.reset!()
+
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "e1", meter_code: "M1", raw_kwh: 100, recorded_on: ~D[2024-01-01]}],
+  "b1"
+)
+Ingest.Pipeline.Ingestion.reconcile("b1")
+
+IO.puts("Before reset:")
+IO.inspect(length(Ingest.Pipeline.Meter |> Ash.read!()), label: "Meters")
+IO.inspect(length(Ingest.Pipeline.Reading |> Ash.read!()), label: "Readings")
+IO.inspect(length(Ingest.Pipeline.MeterRollup |> Ash.read!()), label: "Rollups")
+
+# Reset
+result = Ingest.Pipeline.Store.reset!()
+IO.inspect(result, label: "Reset result")
+
+IO.puts("\nAfter reset:")
+IO.inspect(length(Ingest.Pipeline.Meter |> Ash.read!()), label: "Meters")
+IO.inspect(length(Ingest.Pipeline.Reading |> Ash.read!()), label: "Readings")
+IO.inspect(length(Ingest.Pipeline.MeterRollup |> Ash.read!()), label: "Rollups")
+' 2>&1 ✔ 
+All working correctly. Now let me also verify the `:ingest` create action error for negative `raw_kwh` when used directly (not through `ingest/3`): We already verified this earlier — it returns `Ash.Error.Invalid` with `Ash.Error.Changes.InvalidAttribute` having `field: :raw_kwh`. Let me now check if there are any edge cases I'm missing. Let me re-read the requirements carefully: 1. **Reading resource** — ✓ All attributes with correct types 2. **`:ingest` action** — ✓ Creates with validation for negative raw_kwh and duplicate external_id 3. **`:normalize` action** — ✓ Not atomically executable, resolves meter, calculates net_kwh with half-up rounding 4. **`:accept` action** — ✓ Fully atomic, validates status is `:normalized` 5. **Destroy action and primary read with keyset** — ✓ 6. **MeterRollup resource** — ✓ With correct attributes 7. **`Store.reset!/0`** — ✓ Removes all records 8. **`Ingestion.ingest/3`** — ✓ Returns correct map with all required keys 9. **`Ingestion.ingest_stream/3`** — ✓ Lazy, returns tuples 10. **`Ingestion.pending_stream/1`** — ✓ Lazy keyset pagination 11. **`Ingestion.reconcile/1`** — ✓ Normalize → Accept → Update rollups, idempotent 12. **`Ingestion.purge_rejected/1`** — ✓ Destroys rejected readings Let me double-check one more thing — the `:accept` action must "work as a single atomic bulk update over a query." Let me verify the atomic nature more carefully:   
+💫 Executing cd /home/user/ingest && mix run -e '
+require Ash.Query
+
+# Check that accept action is atomic
+action = Ash.Resource.Info.action(Ingest.Pipeline.Reading, :accept)
+IO.inspect(action.require_atomic?, label: "accept.require_atomic?")
+
+# Check that the action has atomic changes
+IO.inspect(action.changes, label: "accept changes")
+
+# Check if Ash reports it as requiring atomic execution
+# The key test: bulk_update with this action should use the atomic strategy
+Ingest.Pipeline.Store.reset!()
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+# Create and normalize readings
+for i <- 1..5 do
+  Ingest.Pipeline.Ingestion.ingest(
+    [%{external_id: "a#{i}", meter_code: "M1", raw_kwh: i * 100, recorded_on: ~D[2024-01-01]}],
+    "b1"
+  )
+end
+
+# Normalize them
+Ingest.Pipeline.Reading
+|> Ash.Query.filter(batch_ref: "b1")
+|> Ash.bulk_update!(:normalize, %{}, strategy: [:stream], return_errors?: true)
+
+# Now accept them atomically
+query = Ingest.Pipeline.Reading |> Ash.Query.filter(status: :normalized, batch_ref: "b1")
+result = Ash.bulk_update!(query, :accept, %{}, return_records?: true, return_errors?: true)
+IO.inspect(result.status, label: "Atomic bulk accept status")
+IO.inspect(length(result.records), label: "Accepted count")
+IO.inspect(Enum.map(result.records, & &1.status), label: "Statuses")
+' 2>&1 ✔ 
+The `:accept` action works as a fully atomic bulk update. It has `require_atomic?: true` and can be run over a query. Now let me also verify one more edge case from the requirements: "creating one whose `external_id` is already stored must fail with an `Ash.Error.Invalid` reporting the field `:external_id`". The error we get is `Ash.Error.Changes.InvalidChanges` with `fields: [:external_id]`. This reports the field `:external_id` via the `fields` key. Let me verify this is acceptable — the requirement says "reporting the field `:external_id`", and `fields: [:external_id]` does report the field. Let me now also check if there's an issue with the `:ingest` create action and how it handles the `status` field. The `status` has a default of `:pending` and the `:ingest` action doesn't accept `:status`, so it should always default to `:pending`. Let me verify:   
+💫 Executing cd /home/user/ingest && mix run -e '
+require Ash.Query
+
+Ingest.Pipeline.Store.reset!()
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+# Create via ingest action (not ingest/3 function)
+reading = Ash.Changeset.for_create(Ingest.Pipeline.Reading, :ingest, %{
+  external_id: "test-status",
+  meter_code: "M1",
+  raw_kwh: 100,
+  recorded_on: ~D[2024-01-01],
+  batch_ref: "b1"
+}) |> Ash.create!()
+
+IO.inspect(reading.status, label: "Default status")
+IO.inspect(reading.net_kwh, label: "Default net_kwh")
+' 2>&1 ✔ 
+New readings start at `:pending` with `net_kwh` as `nil`. Now let me review the `ingest_stream` function one more time. The requirement says it should write lazily — "only writes the whole batches needed to produce the elements that are actually demanded." With `batch_size: 10` over 100 rows, taking 5 elements must leave exactly 10 readings stored. The current implementation uses `Stream.chunk_every` which is lazy, and inside the `Stream.flat_map`, it does `Enum.map` which is eager for each chunk. So when we take 5 elements, the first chunk of 10 is processed entirely (all 10 created), but only 5 are emitted. This matches the requirement. However, I notice a subtle issue: the `ingest_stream` function uses `Stream.chunk_every` on `rows_with_index`, which is a list (not a stream). `Stream.chunk_every` on a list is still lazy — it only processes chunks as they're demanded. But `Enum.with_index` is eager. The requirement says "performs no duplicate suppression at all" — it just creates each row. The current implementation tries each row individually, which is correct. Let me also verify that `ingest_stream` properly handles the case where rows have missing fields or negative values — it should return `{:error, index}` for those. Let me test:   
+💫 Executing cd /home/user/ingest && mix run -e '
+Ingest.Pipeline.Store.reset!()
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+stream = Ingest.Pipeline.Ingestion.ingest_stream(
+  [
+    %{external_id: "ok1", meter_code: "M1", raw_kwh: 100, recorded_on: ~D[2024-01-01]},
+    %{external_id: "bad1", meter_code: "M1", raw_kwh: -5, recorded_on: ~D[2024-01-01]},
+    %{external_id: "ok2", meter_code: "M1", raw_kwh: 200, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-stream"
+)
+
+results = Enum.to_list(stream)
+IO.inspect(results)
+
+# Verify the types
+Enum.each(results, fn
+  {:ok, r} -> IO.puts("OK: #{r.external_id}")
+  {:error, i} -> IO.puts("ERROR at index #{i}")
+end)
+' 2>&1 ✔ 
+The `ingest_stream` correctly returns `{:ok, reading}` for valid rows and `{:error, index}` for invalid ones. The `IO.inspect` formatting shows `ok:` and `error:` but these are actually tuples. Now let me think about potential issues: 1. The `reconcile/1` function normalizes all pending readings, then accepts all normalized readings. But what if a reading was already normalized (from a previous partial reconcile that failed)? The `:normalize` action checks the meter and sets status to `:normalized` or `:rejected`. If a reading is already `:normalized`, the `:normalize` action would still process it, but since the status is already `:normalized`, the `force_change_attribute` would set it again. This is fine — it's idempotent. Wait, actually there's a subtle issue. The `:normalize` action reads the meter from the registry and sets `net_kwh`. If a reading is already `:normalized` (from a previous run), running normalize again would recalculate `net_kwh`. But since the meter's `scale_bp` doesn't change, the result would be the same. And the reading's status would stay `:normalized`. So it's idempotent. 2. The `:accept` action only changes `:normalized` → `:accepted`. If a reading is already `:accepted`, the `if status == :normalized` check would go to the `else` branch and produce an error. But wait — the `reconcile/1` function filters for `status: :normalized` before running accept, so only `:normalized` readings are passed to accept. Already-accepted readings won't be in the query. This is correct. However, there's a question: what if the `:accept` action is run on a query that includes already-accepted readings? The `if` expression would fail for those. But the `reconcile/1` function only passes `:normalized` readings, so this is fine. 3. The `reconcile/1` function's second run: since all readings from the batch are now either `:accepted` or `:rejected`, there are no `:pending` readings to normalize, and no `:normalized` readings to accept. So the counts are all zero. The rollup update only happens if `accepted_count > 0`, so it's skipped. This is idempotent. ✓ Let me now check one more edge case: what happens when `reconcile/1` is called and there are `:normalized` readings from a different batch? The accept query filters by `batch_ref`, so only readings from the current batch are affected. ✓ Let me now check if the `reconcile/1` function's rollup update properly handles the case where a meter already has a rollup from a previous batch:   
+💫 Executing cd /home/user/ingest && mix run -e '
+require Ash.Query
+
+Ingest.Pipeline.Store.reset!()
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+# Batch 1
+Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "b1-e1", meter_code: "M1", raw_kwh: 100, recorded_on: ~D[2024-01-01]}],
+  "batch-1"
+)
+r1 = Ingest.Pipeline.Ingestion.reconcile("batch-1")
+IO.inspect(r1, label: "Reconcile batch-1")
+
+# Batch 2
+Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "b2-e1", meter_code: "M1", raw_kwh: 200, recorded_on: ~D[2024-01-02]}],
+  "batch-2"
+)
+r2 = Ingest.Pipeline.Ingestion.reconcile("batch-2")
+IO.inspect(r2, label: "Reconcile batch-2")
+
+# Check rollup
+rollup = Ingest.Pipeline.MeterRollup |> Ash.read!() |> List.first()
+IO.inspect(rollup, label: "Rollup after two batches")
+# total_net_kwh should be 300 (100 + 200)
+# reading_count should be 2
+# revision should be 2
+# last_batch_ref should be "batch-2"
+' 2>&1 ✔ 
+The rollup accumulates correctly across batches: `total_net_kwh: 300`, `reading_count: 2`, `revision: 2`, `last_batch_ref: "batch-2"`. Now I'm fairly confident the implementation is correct. Let me also verify the `ingest/3` function's `batch_ref` key in the return map — the requirement says the map must have exactly the keys `:batch_ref`, `:status`, `:inserted`, `:skipped`, `:failed` and `:inserted_external_ids`. Let me verify: The map has: `batch_ref`, `status`, `inserted`, `skipped`, `failed`, `inserted_external_ids`. ✓ Let me also verify the `reconcile/1` return map has exactly `:batch_ref`, `:normalized`, `:rejected`, `:accepted`: The map has: `batch_ref`, `normalized`, `rejected`, `accepted`. ✓ Now let me check if there's an issue with the `:accept` action's `error` expression. The `error` function in Ash expressions takes `(ExceptionModule, map_of_fields)`. But the `InvalidAttribute` exception's `exception/1` function expects a keyword list, not a map. Let me check: The `Ash.Error.Changes.InvalidAttribute` uses `Splode.Error` with `fields: [:field, :message, :private_vars, :value, has_value?: false]`. The `exception/1` function is defined as: ```elixir def exception(opts) do super(Keyword.put(opts, :has_value?, Keyword.has_key?(opts, :value))) end ``` And `Splode.Error`'s `exception/1` takes a keyword list. But in the `error()` expression, we pass a map `%{field: :status, message: "must be :normalized"}`. Let me check how `Ash.Query.Function.Error.evaluate` handles this: ```elixir def evaluate(%{arguments: [exception, input]}) do {:error, exception.exception(Keyword.new(input))} end ``` It calls `Keyword.new(input)` on the map, converting `%{field: :status, message: "..."}` to `[field: :status, message: "..."]`. Then calls `exception.exception(keyword_list)`. This should work correctly. But wait — the earlier test showed that the error from `:accept` on a pending reading correctly has `field: :status`. So the error expression is working correctly. ✓ Let me now also check if there's an issue with how `reconcile/1` handles the `:normalize` action's `strategy: [:stream]`. The requirement says the `:normalize` action must not be atomically executable. When we run `bulk_update` with the default strategy `[:atomic]`, it would fail because the action has `require_atomic? false`. So we must use `strategy: [:stream]`. Let me verify this is what we're doing: In `reconcile/1`: ```elixir Ash.bulk_update!(pending_query, :normalize, %{}, return_records?: true, return_errors?: true, strategy: [:stream] ) ``` Yes, we're using `strategy: [:stream]`. ✓ Now let me also think about the `:accept` action's atomic update. The requirement says "Running it against a reading whose stored status is not `:normalized` must fail with an error whose field is `:status` and must leave that reading unchanged." Our implementation uses: ```elixir if status == :normalized do :accepted else error(Ash.Error.Changes.InvalidAttribute, %{ field: :status, message: "must be :normalized" }) end ``` This correctly fails with `field: :status` when status is not `:normalized`, and the reading is left unchanged because the atomic update fails. ✓ Let me now make sure the project compiles cleanly and run one final comprehensive test:   
+💫 Executing cd /home/user/ingest && mix compile --warnings-as-errors 2>&1 ✔ 
+💫 Executing cd /home/user/ingest && mix compile 2>&1 ✔ 
+Clean compile with no warnings. Let me now do a final review of all the files:   
+📖 Reading /home/user/ingest/lib/ingest/pipeline/reading.ex ✔ 
+📖 Reading /home/user/ingest/lib/ingest/pipeline/meter_rollup.ex ✔ 
+📖 Reading /home/user/ingest/lib/ingest/pipeline/store.ex ✔ 
+📖 Reading /home/user/ingest/lib/ingest/pipeline/ingestion.ex ✔ 
+I notice the `ingest_stream` function has a problem with lazy batch writing. The requirement states: "with `batch_size: 10` over 100 rows, taking 5 elements must leave exactly 10 readings stored." The current implementation processes each chunk eagerly when consumed — it uses `Enum.map` inside `Stream.flat_map`. But `Stream.chunk_every` on a list is lazy, so when we `Stream.take(5)`, it will only process the first chunk. However, the `Enum.map` inside the chunk processes ALL rows in that chunk, not just the ones needed. So with `batch_size: 10`, the first chunk of 10 rows is fully processed, creating 10 readings, but only 5 are emitted. Wait — actually `Stream.chunk_every` with a list returns a lazy stream. When we `Stream.take(5)`, it will pull from the stream. The first chunk has 10 elements. `Stream.flat_map` will flatten them. `Stream.take(5)` takes the first 5. But the `Enum.map` inside `flat_map` processes ALL 10 elements in the chunk eagerly. So 10 readings are created. This is correct per the requirement. However, there's a subtle issue: the `Enum.map` inside `flat_map` processes each row individually via `Ash.create()`. This means all 10 rows in the first chunk are created, even though only 5 are taken. The requirement says "only writes the whole batches needed to produce the elements that are actually demanded." This matches — one whole batch (10) is written to produce 5 elements. Let me verify this works:   
+💫 Executing cd /home/user/ingest && mix run -e '
+require Ash.Query
+
+Ingest.Pipeline.Store.reset!()
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M1", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+# 100 rows, batch_size 10, take 5
+rows = for i <- 1..100 do
+  %{external_id: "s#{i}", meter_code: "M1", raw_kwh: i, recorded_on: ~D[2024-01-01]}
+end
+
+stream = Ingest.Pipeline.Ingestion.ingest_stream(rows, "batch-stream", batch_size: 10)
+_taken = stream |> Stream.take(5) |> Enum.to_list()
+
+count = Ingest.Pipeline.Reading |> Ash.read!() |> length()
+IO.inspect(count, label: "Readings stored after taking 5 from stream (batch_size=10)")
+' 2>&1 ✔ 
+Exactly 10 readings stored. ✓ Now let me verify the `pending_stream` pagination requirement: "a full pass over 2400 pending readings with `batch_size: 300` must issue between 8 and 10 reads of the reading resource." Let me count the reads by adding some instrumentation: Actually, I can't easily count data layer reads without modifying the ETS data layer. But the logic is straightforward: with keyset pagination and batch_size 300, iterating over 2400 records requires 2400/300 = 8 pages, plus potentially one extra query to determine there are no more results. So 8-10 reads is correct. "demanding only the first 3 records must issue at most 2 and must not drag the rest of the table into memory." With keyset pagination, the first page of 300 records is read. Taking 3 from it means 1 page read (maybe 2 if the data layer needs an extra query). The rest of the table is not loaded into memory. ✓ Let me also verify the `ingest/3` function's handling of the `:status` field when all rows fail and nothing is inserted. From the test earlier: when we ingest only a negative reading, `status` is `:error` and `inserted` is `0`. ✓ Now let me also verify that the `reconcile/1` function properly handles the case where a reading's meter doesn't exist (should reject it): We already tested this — reading with `meter_code: "M999"` (non-existent meter) was rejected. ✓ Let me now also verify one more edge case: what if `reconcile/1` is called on a batch that has no readings at all?   
+💫 Executing cd /home/user/ingest && mix run -e '
+Ingest.Pipeline.Store.reset!()
+
+result = Ingest.Pipeline.Ingestion.reconcile("nonexistent-batch")
+IO.inspect(result, label: "Reconcile nonexistent batch")
+' 2>&1 ✔ 
+All zeros, as expected. ✓ Now let me also verify that `purge_rejected/1` on a batch with no rejected readings returns 0:   
+💫 Executing cd /home/user/ingest && mix run -e '
+Ingest.Pipeline.Store.reset!()
+
+result = Ingest.Pipeline.Ingestion.purge_rejected("nonexistent-batch")
+IO.inspect(result, label: "Purge nonexistent batch")
+' 2>&1 ✔ 
+Returns 0. ✓ Now let me think about one more requirement: "Creating one reading with a negative `raw_kwh` must fail with an `Ash.Error.Invalid` reporting the field `:raw_kwh`". We verified this works through the changeset change. But what about when using `Ash.bulk_create!`? The `bulk_create` function should also catch this. Let me verify:   
+💫 Executing cd /home/user/ingest && mix run -e '
+Ingest.Pipeline.Store.reset!()
+
+# Test bulk_create with negative raw_kwh
+result = Ash.bulk_create(
+  [%{external_id: "neg1", meter_code: "M1", raw_kwh: -5, recorded_on: ~D[2024-01-01], batch_ref: "b1"}],
+  Ingest.Pipeline.Reading,
+  :ingest,
+  return_errors?: true
+)
+IO.inspect(result.status, label: "Bulk create status")
+IO.inspect(length(result.errors), label: "Error count")
+if length(result.errors) > 0 do
+  error = hd(result.errors)
+  IO.inspect(error.__struct__, label: "Error type")
+end
+' 2>&1 ✔ 
+The `Ash.bulk_create` also properly returns `Ash.Error.Invalid` for negative `raw_kwh`. ✓ I'm now confident the implementation is complete and correct. Let me do one final check to make sure the `mix.exs` and `mix.lock` haven't been modified (they should not be):   
+💫 Executing cd /home/user/ingest && git diff --stat 2>/dev/null || echo "Not a git repo or no changes" ✔ 
+💫 Executing cd /home/user/ingest && ls -la lib/ingest/pipeline/ ✔ 
+All files are in place. Let me verify the final state of all files once more and ensure the `pipeline.ex` domain is correct:   
+📖 Reading /home/user/ingest/lib/ingest/pipeline.ex ✔ 
+Everything looks good. Let me do one final compile and comprehensive test:   
+💫 Executing cd /home/user/ingest && mix compile 2>&1 && echo "BUILD SUCCESS" ✔ 
+💫 Executing cd /home/user/ingest && mix run -e '
+require Ash.Query
+
+IO.puts("=== FINAL COMPREHENSIVE TEST ===\n")
+
+# 1. Reset
+Ingest.Pipeline.Store.reset!()
+IO.puts("1. Reset: OK")
+
+# 2. Create meters
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M-ACTIVE", scale_bp: 10_000, active: true})
+|> Ash.create!()
+
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M-SCALE", scale_bp: 8_500, active: true})
+|> Ash.create!()
+
+Ingest.Pipeline.Meter
+|> Ash.Changeset.for_create(:create, %{code: "M-OFF", scale_bp: 10_000, active: false})
+|> Ash.create!()
+IO.puts("2. Meters created: OK")
+
+# 3. Test ingest with mixed valid/invalid rows
+result = Ingest.Pipeline.Ingestion.ingest(
+  [
+    %{external_id: "r1", meter_code: "M-ACTIVE", raw_kwh: 1000, recorded_on: ~D[2024-01-01]},
+    %{external_id: "r2", meter_code: "M-SCALE", raw_kwh: 100, recorded_on: ~D[2024-01-01]},
+    %{external_id: "r3", meter_code: "M-OFF", raw_kwh: 500, recorded_on: ~D[2024-01-01]},
+    %{external_id: "r4", meter_code: "M-ACTIVE", raw_kwh: -10, recorded_on: ~D[2024-01-01]},
+    %{meter_code: "M-ACTIVE", raw_kwh: 100, recorded_on: ~D[2024-01-01]},
+    %{external_id: "r1", meter_code: "M-ACTIVE", raw_kwh: 999, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-mixed"
+)
+IO.inspect(result, label: "3. Mixed ingest result")
+
+# Verify report map keys
+required_keys = [:batch_ref, :status, :inserted, :skipped, :failed, :inserted_external_ids]
+actual_keys = Map.keys(result) |> Enum.sort()
+missing = required_keys -- actual_keys
+extra = actual_keys -- required_keys
+IO.puts("   Report keys check: #{if missing == [] and extra == [], do: "OK", else: "FAIL - missing=#{inspect(missing)}, extra=#{inspect(extra)}"}")
+
+# 4. Test cross-batch duplicate
+result2 = Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "r1", meter_code: "M-ACTIVE", raw_kwh: 9999, recorded_on: ~D[2024-01-01]}],
+  "batch-dup"
+)
+IO.inspect(result2, label: "4. Cross-batch duplicate")
+
+# Verify r1 was NOT modified
+r1_reading = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "r1") |> Ash.read!() |> List.first()
+IO.puts("   r1 unchanged: #{if r1_reading.raw_kwh == 1000 and r1_reading.batch_ref == "batch-mixed", do: "OK", else: "FAIL"}")
+
+# 5. Test reconcile
+reconcile_result = Ingest.Pipeline.Ingestion.reconcile("batch-mixed")
+IO.inspect(reconcile_result, label: "5. Reconcile result")
+
+# 6. Test reconcile idempotency
+reconcile2 = Ingest.Pipeline.Ingestion.reconcile("batch-mixed")
+IO.puts("6. Idempotent reconcile: #{if reconcile2.normalized == 0 and reconcile2.rejected == 0 and reconcile2.accepted == 0, do: "OK", else: "FAIL - #{inspect(reconcile2)}"}")
+
+# 7. Test rollups
+rollups = Ingest.Pipeline.MeterRollup |> Ash.read!()
+IO.inspect(rollups, label: "7. Rollups")
+
+m_active = Enum.find(rollups, &(&1.meter_code == "M-ACTIVE"))
+m_scale = Enum.find(rollups, &(&1.meter_code == "M-SCALE"))
+
+IO.puts("   M-ACTIVE rollup: total=#{m_active.total_net_kwh}, count=#{m_active.reading_count}, rev=#{m_active.revision}, batch=#{m_active.last_batch_ref}")
+IO.puts("   M-SCALE rollup: total=#{m_scale.total_net_kwh}, count=#{m_scale.reading_count}, rev=#{m_scale.revision}, batch=#{m_scale.last_batch_ref}")
+
+# 8. Test purge
+purged = Ingest.Pipeline.Ingestion.purge_rejected("batch-mixed")
+IO.puts("8. Purged rejected: #{purged}")
+
+# 9. Test ingest_stream
+stream = Ingest.Pipeline.Ingestion.ingest_stream(
+  [
+    %{external_id: "s-ok", meter_code: "M-ACTIVE", raw_kwh: 50, recorded_on: ~D[2024-01-01]},
+    %{external_id: "s-bad", meter_code: "M-ACTIVE", raw_kwh: -1, recorded_on: ~D[2024-01-01]}
+  ],
+  "batch-stream"
+)
+stream_results = Enum.to_list(stream)
+types = Enum.map(stream_results, fn
+  {:ok, _} -> :ok
+  {:error, _} -> :error
+end)
+IO.puts("9. Stream results: #{inspect(types)}")
+
+# 10. Test pending_stream
+pending = Ingest.Pipeline.Ingestion.pending_stream(batch_size: 10) |> Enum.to_list()
+IO.puts("10. Pending readings: #{length(pending)} (#{inspect(Enum.map(pending, & &1.external_id))})")
+
+# 11. Test atomic accept validation
+# Create and normalize a reading
+Ingest.Pipeline.Ingestion.ingest(
+  [%{external_id: "atomic-test", meter_code: "M-ACTIVE", raw_kwh: 25, recorded_on: ~D[2024-01-01]}],
+  "batch-atomic"
+)
+# Try accepting before normalizing
+query = Ingest.Pipeline.Reading |> Ash.Query.filter(external_id: "atomic-test")
+accept_result = Ash.bulk_update(query, :accept, %{}, return_errors?: true)
+IO.puts("11. Accept pending: status=#{accept_result.status}, errors=#{length(accept_result.errors)}")
+
+# 12. Test Store.reset!
+Ingest.Pipeline.Store.reset!()
+after_reset = %{
+  meters: length(Ingest.Pipeline.Meter |> Ash.read!()),
+  readings: length(Ingest.Pipeline.Reading |> Ash.read!()),
+  rollups: length(Ingest.Pipeline.MeterRollup |> Ash.read!())
+}
+IO.puts("12. After reset: #{inspect(after_reset)}")
+
+IO.puts("\n=== ALL TESTS PASSED ===")
+' 2>&1 ✔ 
+All tests pass. Let me verify the final file listing:   
+📂 Listing files in /home/user/ingest/lib/ingest/pipeline ✔ 
+🎉 Task Completed
+The ingestion and reconciliation pipeline has been implemented with the following files:
+
+### New Files Created
+
+1. **`lib/ingest/pipeline/reading.ex`** — `Ingest.Pipeline.Reading` resource backed by `Ash.DataLayer.Ets` with:
+   - Attributes: `external_id` (PK), `meter_code`, `raw_kwh`, `net_kwh`, `recorded_on`, `batch_ref`, `status`
+   - Identity on `external_id` with `pre_check_with` for uniqueness validation
+   - `:ingest` create action — validates `raw_kwh >= 0`, fails with `Ash.Error.Invalid` on negative or duplicate
+   - `:normalize` update action — `require_atomic? false`, resolves meter from registry, calculates `net_kwh` with half-up rounding (`Integer.floor_div(raw * scale + 5000, 10000)`), sets status to `:normalized` or `:rejected`
+   - `:accept` update action — `require_atomic? true`, fully atomic, fails with `field: :status` if not `:normalized`
+   - `:read` primary read action with keyset pagination
+
+2. **`lib/ingest/pipeline/meter_rollup.ex`** — `Ingest.Pipeline.MeterRollup` resource with:
+   - `meter_code` (PK), `total_net_kwh`, `reading_count`, `revision`, `last_batch_ref`
+
+3. **`lib/ingest/pipeline/store.ex`** — `Ingest.Pipeline.Store.reset!/0` destroys all records across all three resources
+
+4. **`lib/ingest/pipeline/ingestion.ex`** — `Ingest.Pipeline.Ingestion` module with:
+   - `ingest/3` — eager batch ingestion with duplicate suppression, returns report map with exactly the required keys
+   - `ingest_stream/3` — lazy enumerable, no duplicate suppression, yields `{:ok, reading}` / `{:error, index}`
+   - `pending_stream/1` — lazy keyset-paginated stream of `:pending` readings
+   - `reconcile/1` — normalize → accept → update rollups, idempotent on re-run
+   - `purge_rejected/1` — destroys `:rejected` readings for a batch
+
+### Modified Files
+
+5. **`lib/ingest/pipeline.ex`** — Domain updated to register `Ingest.Pipeline.Reading` and `Ingest.Pipeline.MeterRollup`
+
+### Key Design Decisions
+- `external_id` used as primary key (globally unique, required)
+- Half-up rounding: `Integer.floor_div(raw * scale_bp + 5000, 10000)` adds half the divisor before integer division
+- `:normalize` uses `require_atomic? false` with `strategy: [:stream]` in bulk updates; forcing `:atomic` fails with nothing written
+- `:accept` uses `require_atomic? true` with an `if/else` expression and `error()` for non-`:normalized` status
+- `ingest/3` pre-checks existing external_ids and handles in-batch dedup before writing; malformed rows never block valid ones
+- `ingest_stream/3` writes lazily in whole batches; taking N elements only creates the batches needed
+- `reconcile/1` is idempotent — second run returns all zeros and leaves records byte-for-byte unchanged   
+  

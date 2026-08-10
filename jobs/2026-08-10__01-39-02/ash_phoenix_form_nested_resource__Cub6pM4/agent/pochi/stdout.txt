@@ -1,0 +1,205 @@
+- Initializing MCP connections...
+You
+# Server-driven nested order forms with Ash Framework v3 ## Background `Catering` is an Elixir application built on **Ash Framework 3.31.0** with the **ash_phoenix 2.3.24** form layer. Its domain `Catering.Orders` already models a catering order graph and is fully implemented — do **not** change it: - `Catering.Orders.Order` — attributes `reference` (string, required), `note` (string), `delivery_windows` (list of the embedded resource `Catering.Orders.DeliveryWindow`) and `fulfillment` (a tagged union whose members are the embedded resources `Catering.Orders.CourierDrop` and `Catering.Orders.CounterPickup`); a `belongs_to :customer` and a `has_many :line_items`. Its create action is `:place` and its update action is `:revise`. - `Catering.Orders.LineItem` — `dish` (string, required), `quantity` (integer, must be positive), `position` (integer); `belongs_to :order`, `has_many :modifiers`. - `Catering.Orders.Modifier` — `label` (string, required), `surcharge_cents` (integer, must not be negative), `position` (integer); `belongs_to :line_item`. - `Catering.Orders.Customer` — `name` and `email` (both strings, required). The `:place` and `:revise` actions already manage the whole `Order -> LineItem -> Modifier` graph, the embedded delivery windows, the fulfillment union and the customer (which may either be created inline from its attributes or matched to an already stored customer) from a single set of submitted parameters, and they derive each child's `position` from the order in which the children are submitted. The LiveView layer that will consume this is not part of this task: everything must be reachable through plain function calls, with no HTTP server and no browser. ## Requirements Create `Catering.Forms`, a single facade module that a LiveView would use to build, mutate, inspect and submit the whole nested order form. It must expose exactly these functions: 1. `new_order_form/0` — a blank create form for the order graph. 2. `edit_order_form/1` — takes an order id and returns an update form for the stored order, including nested forms for its existing line items and their modifiers. 3. `to_phoenix_form/1` — the `%Phoenix.HTML.Form{}` for a form. 4. `change/2` and `change/3` — revalidate a form against a fresh parameter map, with an optional keyword list of validation options. 5. `add_nested/2` and `add_nested/3` — add a nested form at a path, with an optional keyword list of options. 6. `remove_nested/2` — remove the nested form at a path. 7. `reorder/3` — reorder the nested list at a path, given the new ordering as a list of the current zero-based indices. 8. `move/3` — move the single nested form at a path one slot earlier (`:up`) or later (`:down`). 9. `submitted_params/1` — the parameter map that would be sent to the underlying action. 10. `hidden_inputs/2` — the hidden inputs required to render the form at a path. 11. `error_map/1` — the user-facing errors of the whole form tree. 12. `raw_error_list/2` — the untranslated errors of the form at a path. 13. `serialize/1` — a deterministic, plain-data snapshot of the whole form tree. 14. `save/2` — submit the form and persist the whole graph. ## Implementation Hints - Project path: `/home/user/catering`. Write the module to `/home/user/catering/lib/catering/forms.ex`. A stub of that file already exists; replace it. Do not add or remove dependencies, and do not modify anything under `/home/user/catering/lib/catering/orders/` or `/home/user/catering/lib/catering/orders.ex`. The environment is offline; everything needed is already vendored and compiled. - Every form-valued function returns an `%AshPhoenix.Form{}` struct (never a `%Phoenix.HTML.Form{}`), except `to_phoenix_form/1`. - The root form is named `order`: `form.name` and `form.id` are both `"order"`, so its nested forms are named `order[line_items][0]`, `order[line_items][0][modifiers][1]`, `order[delivery_windows][0]`, `order[customer]` and `order[fulfillment]`. A blank `new_order_form/0` must expose exactly the nested-form keys `:customer`, `:delivery_windows`, `:fulfillment` and `:line_items`. - Every `path` argument of `add_nested`, `remove_nested`, `reorder`, `move`, `hidden_inputs` and `raw_error_list` is one of those full HTML names as a `String.t()`, rooted at `"order"` — for example `"order[line_items]"`, `"order[line_items][0][modifiers]"` or `"order[line_items][0][modifiers][1]"`. `"order"` itself refers to the root form. Paths at any depth must work. - `new_order_form/0` builds a create form for `Catering.Orders.Order`'s `:place` action; `edit_order_form/1` builds an update form for the `:revise` action of the order with that id. - The third argument of `change/3` and `add_nested/3` is a keyword list that must be forwarded unchanged to the underlying ash_phoenix operation; callers rely on options that hide errors, restrict validation to touched fields, seed the new nested form with parameters, insert it at the front of the list, or give it a non-default action type. Both functions must also be callable at the lower arity with the options defaulting to `[]`. - `reorder/3` and `move/3` change the visible order **and** the order that will be submitted: the reordered children must appear in the new order in `submitted_params/1`, they must be renamed to their new indices, and `save/2` must persist the new order. `move/3` at either boundary of a list is a no-op. - `edit_order_form/1` must present nested children in ascending stored `position`, independently of the order the storage engine happens to return them in. - Removing a nested form from an edit form and saving must destroy exactly that stored record, leaving unrelated records untouched. - `save/2` takes the form and either a parameter map (which must be validated into the form before submitting) or `nil` (submit what the form already holds). On success it returns `{:ok, order}` where `order` is the persisted `Catering.Orders.Order` struct with `customer`, `line_items` and each line item's `modifiers` already loaded, and with the line items and the modifiers in ascending `position`. On failure it returns `{:error, form}` where `form` is the re-usable `%AshPhoenix.Form{}` carrying the errors, and nothing has been written. - `hidden_inputs/2` returns a `%{String.t() => String.t()}` map: every hidden input key (including the form-type marker `_form_type`, the touched-field marker `_touched`, the primary key of an existing record, and the union member marker `_union_type`) mapped to its string value. - `error_map/1` returns a `%{String.t() => [[String.t()]]}` map, keyed by the **HTML name of the form that owns the errors** (`"order"`, `"order[line_items][0]"`, …). Each value is the list of that form's own errors as two-element lists `[field_name, message]`, sorted ascending. Forms without errors must be absent from the map. - `raw_error_list/2` returns the errors of the form at `path` as a list of `{field :: atom(), message :: String.t(), vars :: keyword()}` tuples with the message left untranslated (substitution variables not interpolated), sorted ascending by field name and then by message. - `serialize/1` returns, for the form it is given and recursively for every nested form, a map with exactly these string keys: - `"name"` — the form's HTML name. - `"id"` — the form's HTML id. - `"type"` — `"create"`, `"update"` or `"read"`. - `"resource"` — the form's resource module rendered with `inspect/1`, e.g. `"Catering.Orders.LineItem"`. - `"valid"` — the form's validity as a boolean. - `"hidden"` — the same map as `hidden_inputs/2` would return for this form, but **without** the `_touched` entry. - `"values"` — a map from field name to the form's current value for that field, rendered with `to_string/1`, or `nil` when the value is `nil`. The fields are, per resource: `Order` → `reference`, `note`; `LineItem` → `dish`, `quantity`; `Modifier` → `label`, `surcharge_cents`; `Customer` → `name`, `email`; `DeliveryWindow` → `label`, `starts_at_minute`, `ends_at_minute`; `CourierDrop` → `street`, `postcode`; `CounterPickup` → `counter`. - `"errors"` — this form's own errors as two-element lists `[field_name, message]`, sorted ascending. - `"nested"` — a map whose keys are the string names of the nested-form keys that this form currently holds forms for, and whose values are the serialized child (for a single nested form), the list of serialized children in order (for a list of nested forms), or `nil`.   
+
+Pochi
+💭 Thinking for 266 characters   
+📂 Listing files in . recursively ✔ 
+📖 Reading lib/catering/forms.ex ✔ 
+📖 Reading lib/catering/orders.ex ✔ 
+📖 Reading lib/catering/orders/order.ex ✔ 
+📖 Reading lib/catering/orders/customer.ex ✔ 
+📖 Reading lib/catering/orders/line_item.ex ✔ 
+📖 Reading lib/catering/orders/modifier.ex ✔ 
+📖 Reading lib/catering/orders/delivery_window.ex ✔ 
+📖 Reading lib/catering/orders/fulfillment.ex ✔ 
+💭 Thinking for 306 characters   
+🔍 Searching for **/*test*.exs in . ✔ 
+💭 Thinking for 285 characters   
+💫 Executing mix test ✔ 
+💭 Thinking for 272 characters   
+💫 Executing mix test ✔ 
+💭 Thinking for 224 characters   
+💫 Executing mix test ✔ 
+🛠️ Tool startBackgroundJob ✔ 
+💭 Thinking for 261 characters   
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form.ex ✖ "ENOENT: no such file or directory, open '/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form.ex'"
+💭 Thinking for 322 characters   
+🔍 Searching for **/*.ex in deps/ash_phoenix/lib/ash_phoenix ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+💭 Thinking for 305 characters   
+🔍 Searching for def for_create in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 260 characters   
+📖 Reading deps/ash_phoenix/documentation/topics/nested-forms.md ✔ 
+📖 Reading deps/ash_phoenix/documentation/topics/nested-forms.md ✔ 
+🔍 Searching for def (add_form|remove_form) in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+💭 Thinking for 659 characters   
+🔍 Searching for @for_opts in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 702 characters   
+📖 Reading deps/ash_phoenix/documentation/topics/union-forms.md ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+💭 Thinking for 634 characters   
+🔍 Searching for defp handle_forms in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+💭 Thinking for 559 characters   
+🛠️ Tool readBackgroundJobOutput ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+💭 Thinking for 259 characters   
+📖 Reading mix.exs ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+💭 Thinking for 1957 characters   
+🛠️ Tool readBackgroundJobOutput ✔ 
+💭 Thinking for 280 characters   
+🔍 Searching for def.*to_form in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 355 characters   
+🛠️ Tool readBackgroundJobOutput ✔ 
+💭 Thinking for 311 characters   
+🔍 Searching for def validate in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 616 characters   
+🔍 Searching for def.*parse_path! in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 269 characters   
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 517 characters   
+🔍 Searching for @add_form_opts in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 688 characters   
+🛠️ Tool readBackgroundJobOutput ✔ 
+💭 Thinking for 231 characters   
+🔍 Searching for (sort|reorder) in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 604 characters   
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 1219 characters   
+🛠️ Tool readBackgroundJobOutput ✔ 
+💭 Thinking for 220 characters   
+🔍 Searching for def.*params in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 292 characters   
+🔍 Searching for def submit in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 1380 characters   
+🛠️ Tool readBackgroundJobOutput ✔ 
+💭 Thinking for 262 characters   
+🔍 Searching for def hidden_fields in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 303 characters   
+🔍 Searching for def (get_form|find_form) in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 870 characters   
+🔍 Searching for def errors in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 262 characters   
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 1619 characters   
+🔍 Searching for def.*transform_errors in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+🔍 Searching for defp transform_errors in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+🔍 Searching for transform_errors in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+💭 Thinking for 308 characters   
+🔍 Searching for update_all_forms in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+💭 Thinking for 1630 characters   
+🔍 Searching for defp transform_errors in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+🔍 Searching for transform_errors\( in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+🔍 Searching for def(p)? transform_errors in *.ex files in deps/ash_phoenix ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form_data/helpers.ex ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form_data/helpers.ex ✔ 
+💭 Thinking for 625 characters   
+🛠️ Tool readBackgroundJobOutput ✔ 
+💭 Thinking for 1412 characters   
+🔍 Searching for def value in form.ex files in deps/ash_phoenix/lib/ash_phoenix/form ✔ 
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 2716 characters   
+✏️  Writing test_form.exs ✔ 
+💫 Executing mix run test_form.exs ✖ "Command exited with code 1"
+💭 Thinking for 1038 characters   
+📖 Reading deps/ash_phoenix/lib/ash_phoenix/form/form.ex ✔ 
+💭 Thinking for 2301 characters   
+✏️  Writing test_union.exs ✔ 
+💫 Executing mix run test_union.exs ✖ "Command exited with code 1"
+💭 Thinking for 291 characters   
+✏️  Writing test_auto.exs ✔ 
+💫 Executing mix run test_auto.exs ✔ 
+💭 Thinking for 314 characters   
+✏️  Writing test_auto_add.exs ✔ 
+💫 Executing mix run test_auto_add.exs ✔ 
+💭 Thinking for 1390 characters   
+✏️  Writing test_save_and_edit.exs ✔ 
+💫 Executing mix run test_save_and_edit.exs ✔ 
+💭 Thinking for 387 characters   
+✏️  Writing test_save_and_edit.exs ✔ 
+💫 Executing mix run test_save_and_edit.exs ✔ 
+✏️  Writing test_save_and_edit.exs ✔ 
+💫 Executing mix run test_save_and_edit.exs ✔ 
+💭 Thinking for 376 characters   
+✏️  Writing test_save_and_edit.exs ✔ 
+💫 Executing mix run test_save_and_edit.exs ✔ 
+💭 Thinking for 955 characters   
+✏️  Writing test_remove_and_save.exs ✔ 
+💫 Executing mix run test_remove_and_save.exs ✔ 
+💭 Thinking for 687 characters   
+✏️  Writing test_reorder_and_save.exs ✔ 
+💫 Executing mix run test_reorder_and_save.exs ✔ 
+💭 Thinking for 294 characters   
+✏️  Writing test_move.exs ✔ 
+💫 Executing mix run test_move.exs ✔ 
+💭 Thinking for 307 characters   
+✏️  Writing test_move.exs ✔ 
+💫 Executing mix run test_move.exs ✔ 
+💭 Thinking for 598 characters   
+✏️  Writing test_raw_error_list.exs ✔ 
+💫 Executing mix run test_raw_error_list.exs ✔ 
+💭 Thinking for 670 characters   
+✏️  Writing test_raw_error_list.exs ✔ 
+💫 Executing mix run test_raw_error_list.exs ✔ 
+💭 Thinking for 1579 characters   
+✏️  Writing test_to_form.exs ✔ 
+💫 Executing mix run test_to_form.exs ✔ 
+💭 Thinking for 2570 characters   
+✏️  Writing lib/catering/forms.ex ✔ 
+💫 Executing mix compile ✔ 
+💭 Thinking for 857 characters   
+✏️  Writing test_all_requirements.exs ✔ 
+💫 Executing mix run test_all_requirements.exs ✔ 
+💭 Thinking for 507 characters   
+💫 Executing rm test_form.exs test_union.exs test_auto.exs test_auto_add.exs test_save_and_edit.exs test_remove_and_save.exs test_reorder_and_save.exs test_move.exs test_to_form.exs test_raw_error_list.exs test_all_requirements.exs ✔ 
+💫 Executing git status ✖ "Command exited with code 128"
+💭 Thinking for 169 characters   
+🎉 Task Completed
+I have successfully implemented the `Catering.Forms` facade module in `/home/user/catering/lib/catering/forms.ex`.
+
+### Key Implementations
+
+1. **`new_order_form/0`**: Generates a blank create form for `Catering.Orders.Order`'s `:place` action. It automatically exposes exactly the nested-form keys `:customer`, `:delivery_windows`, `:fulfillment`, and `:line_items`.
+2. **`edit_order_form/1`**: Retrieves the persisted order by ID, preloads customer, line items, and modifiers, and sorts the line items and modifiers in ascending order of their stored `position` so they are presented in the correct order.
+3. **`to_phoenix_form/1`**: Generates the `%Phoenix.HTML.Form{}` struct from the `AshPhoenix.Form` struct using `Phoenix.Component.to_form/1`.
+4. **`change/2` and `change/3`**: Revalidates the form against a fresh parameter map, forwarding any keyword list of validation options directly to `AshPhoenix.Form.validate/3`.
+5. **`add_nested/2` and `add_nested/3`**: Adds a nested form at a path (e.g. `"order[line_items]"`) using `AshPhoenix.Form.add_form/3`.
+6. **`remove_nested/2`**: Removes a nested form at a path using `AshPhoenix.Form.remove_form/2`.
+7. **`reorder/3`**: Reorders a nested list at a path given the list of indices, using `AshPhoenix.Form.sort_forms/3`.
+8. **`move/3`**: Moves a single nested form at a path one slot earlier (`:up`/`:decrement`) or later (`:down`/`:increment`), returning a no-op at boundaries.
+9. **`submitted_params/1`**: Resolves the parameter map to be sent to the underlying action via `AshPhoenix.Form.params/1`.
+10. **`hidden_inputs/2`**: Returns a string-keyed and string-valued map containing all hidden fields for the form at the specified path, including markers like `_form_type`, `_touched`, primary keys, and `_union_type`.
+11. **`error_map/1`**: Recursively collects and returns a map of user-facing errors (with variable interpolation) keyed by the HTML name of the form owning the errors, sorted ascending.
+12. **`raw_error_list/2`**: Returns the untranslated (uninterpolated) errors of the form at a path as a list of `{field, message, vars}` tuples, sorted ascending by field name and then message.
+13. **`serialize/1`**: Returns a deterministic, plain-data snapshot of the whole form tree, including names, ids, types, inspected resources, validity, hidden inputs, values (rendered with `to_string/1` or `nil`), errors, and nested form structures recursively.
+14. **`save/2`**: Submits the form and persists the whole graph. On success, it returns `{:ok, order}` with all nested associations loaded and sorted by ascending `position`. On failure, it returns `{:error, form}` with the errors populated.   
+  

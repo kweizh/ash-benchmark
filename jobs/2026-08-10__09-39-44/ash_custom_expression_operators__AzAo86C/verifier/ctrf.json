@@ -1,0 +1,374 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-10T02:18:14.591058+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 37,
+            "passed": 33,
+            "failed": 4,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786328271643,
+            "stop": 1786328294590
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_t01_custom_expressions_are_registered_with_ash",
+                "status": "passed",
+                "duration": 22819,
+                "start": 1786328271655,
+                "stop": 1786328294474,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_custom_expression_modules_report_name_0_and_arguments_0",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294474,
+                "stop": 1786328294475,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_expression_2_dispatches_per_data_layer",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294475,
+                "stop": 1786328294476,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_both_data_layer_clauses_produce_the_same_values",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294476,
+                "stop": 1786328294477,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_route_key_normalises_and_orders_its_arguments",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328294477,
+                "stop": 1786328294477,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_ratio_bps_computes_integral_basis_points",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328294478,
+                "stop": 1786328294478,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_ratio_bps_rounds_halves_upwards",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294478,
+                "stop": 1786328294479,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_ratio_bps_clamps_to_the_closed_range_0_20000",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294479,
+                "stop": 1786328294480,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_ratio_bps_returns_nil_for_nil_arguments_and_a_zero_denominator",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294480,
+                "stop": 1786328294481,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_custom_expressions_compose_with_each_other",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328294481,
+                "stop": 1786328294481,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_custom_expressions_short_circuit_inside_if_cond",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294481,
+                "stop": 1786328294482,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_custom_expression_results_can_be_cast_with_type_2",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294482,
+                "stop": 1786328294483,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_arguments_outside_the_declared_types_are_rejected",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328294483,
+                "stop": 1786328294483,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_route_key_is_available_as_an_expression_calculation",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294483,
+                "stop": 1786328294484,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_sla_ratio_bps_is_available_as_an_expression_calculation",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294484,
+                "stop": 1786328294485,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_status_label_composes_the_custom_expression_with_conditionals",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328294485,
+                "stop": 1786328294485,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_the_on_route_read_action_filters_on_the_custom_expression",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328294486,
+                "stop": 1786328294486,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_custom_expressions_can_be_used_directly_in_a_query_filter",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294486,
+                "stop": 1786328294487,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_calculations_built_on_custom_expressions_are_filterable",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328294487,
+                "stop": 1786328294487,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_calculations_built_on_custom_expressions_are_sortable",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328294488,
+                "stop": 1786328294488,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t21_custom_expressions_can_be_sorted_on_inline",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294488,
+                "stop": 1786328294489,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_aggregate_filters_accept_custom_expressions",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294489,
+                "stop": 1786328294490,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_custom_expressions_can_be_applied_to_aggregates",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328294490,
+                "stop": 1786328294490,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_custom_expressions_over_aggregates_are_filterable",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294490,
+                "stop": 1786328294491,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_custom_expressions_work_inside_exists_1",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294491,
+                "stop": 1786328294492,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_record_delivery_accepts_a_delivery_within_the_allowed_ratio",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 59,
+                "start": 1786328294492,
+                "stop": 1786328294551,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite = {'output': 'onditionals@@pass@@\\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}\n\n    def test_t26_record_delivery_accepts_a_delivery_within_the_allowed_ratio(suite):\n        \"\"\"T26 record_delivery accepts a delivery within the allowed ratio\"\"\"\n>       check(suite, \"T26\")\n\n/tests/test_final_state.py:778: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite = {'output': 'onditionals@@pass@@\\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}\nscenario = 'T26'\n\n    def check(suite, scenario):\n        results = suite[\"results\"]\n        if not results:\n            pytest.fail(\n                \"The ExUnit verification suite produced no results (the project most \"\n                \"likely does not compile).\\n\"\n                f\"mix run exit code: {suite['returncode']}\\n\"\n                f\"output:\\n{suite['output']}\"\n            )\n    \n        prefix = \"test \" + scenario + \" \"\n        matching = [name for name in results if name.startswith(prefix)]\n        assert matching, (\n            f\"Scenario {scenario} did not run. Known scenarios: {sorted(results)}\\n\"\n            f\"output:\\n{suite['output']}\"\n        )\n    \n        name = matching[0]\n        status, detail = results[name]\n>       assert status == \"pass\", f\"Scenario {name} failed:\\n{detail}\"\nE       AssertionError: Scenario test T26 record_delivery accepts a delivery within the allowed ratio failed:\nE           1) test T26 record_delivery accepts a delivery within the allowed ratio (SlaLabSuite)\nE              /tmp/harbor_expr_suite.exs:394\nE              ** (MatchError) no match of right hand side value: {:error, %Ash.Error.Invalid{changeset: \"#Changeset<>\",  errors: [%Ash.Error.Query.NoSuchFunction{function: :atomic_ref, arity: nil, resource: SlaLab.Ops.Shipment, could_be_calculation?: false, splode: Ash.Error, bread_crumbs: [], vars: [], path: [], stacktrace: #Splode.Stacktrace<>, class: :invalid}]}}\nE              code: {:ok, updated} =\nE              stacktrace:\nE                /tmp/harbor_expr_suite.exs:403: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:648: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t27_record_delivery_rejects_a_delivery_beyond_the_allowed_ratio",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 9,
+                "start": 1786328294552,
+                "stop": 1786328294561,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite = {'output': 'onditionals@@pass@@\\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}\n\n    def test_t27_record_delivery_rejects_a_delivery_beyond_the_allowed_ratio(suite):\n        \"\"\"T27 record_delivery rejects a delivery beyond the allowed ratio\"\"\"\n>       check(suite, \"T27\")\n\n/tests/test_final_state.py:783: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite = {'output': 'onditionals@@pass@@\\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}\nscenario = 'T27'\n\n    def check(suite, scenario):\n        results = suite[\"results\"]\n        if not results:\n            pytest.fail(\n                \"The ExUnit verification suite produced no results (the project most \"\n                \"likely does not compile).\\n\"\n                f\"mix run exit code: {suite['returncode']}\\n\"\n                f\"output:\\n{suite['output']}\"\n            )\n    \n        prefix = \"test \" + scenario + \" \"\n        matching = [name for name in results if name.startswith(prefix)]\n        assert matching, (\n            f\"Scenario {scenario} did not run. Known scenarios: {sorted(results)}\\n\"\n            f\"output:\\n{suite['output']}\"\n        )\n    \n        name = matching[0]\n        status, detail = results[name]\n>       assert status == \"pass\", f\"Scenario {name} failed:\\n{detail}\"\nE       AssertionError: Scenario test T27 record_delivery rejects a delivery beyond the allowed ratio failed:\nE           1) test T27 record_delivery rejects a delivery beyond the allowed ratio (SlaLabSuite)\nE              /tmp/harbor_expr_suite.exs:412\nE              match (=) failed\nE              code:  assert %Ash.Error.Changes.InvalidAttribute{} = error\nE              left:  %Ash.Error.Changes.InvalidAttribute{}\nE              right: %Ash.Error.Query.NoSuchFunction{\nE                       function: :atomic_ref,\nE                       arity: nil,\nE                       resource: SlaLab.Ops.Shipment,\nE                       could_be_calculation?: false,\nE                       splode: Ash.Error,\nE                       bread_crumbs: [],\nE                       vars: [],\nE                       path: [],\nE                       stacktrace: #Splode.Stacktrace<>,\nE                       class: :invalid\nE                     }\nE              stacktrace:\nE                /tmp/harbor_expr_suite.exs:421: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:648: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t28_the_delivery_validation_is_enforced_atomically",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 9,
+                "start": 1786328294562,
+                "stop": 1786328294571,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite = {'output': 'onditionals@@pass@@\\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}\n\n    def test_t28_the_delivery_validation_is_enforced_atomically(suite):\n        \"\"\"T28 the delivery validation is enforced atomically\"\"\"\n>       check(suite, \"T28\")\n\n/tests/test_final_state.py:788: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite = {'output': 'onditionals@@pass@@\\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}\nscenario = 'T28'\n\n    def check(suite, scenario):\n        results = suite[\"results\"]\n        if not results:\n            pytest.fail(\n                \"The ExUnit verification suite produced no results (the project most \"\n                \"likely does not compile).\\n\"\n                f\"mix run exit code: {suite['returncode']}\\n\"\n                f\"output:\\n{suite['output']}\"\n            )\n    \n        prefix = \"test \" + scenario + \" \"\n        matching = [name for name in results if name.startswith(prefix)]\n        assert matching, (\n            f\"Scenario {scenario} did not run. Known scenarios: {sorted(results)}\\n\"\n            f\"output:\\n{suite['output']}\"\n        )\n    \n        name = matching[0]\n        status, detail = results[name]\n>       assert status == \"pass\", f\"Scenario {name} failed:\\n{detail}\"\nE       AssertionError: Scenario test T28 the delivery validation is enforced atomically failed:\nE           1) test T28 the delivery validation is enforced atomically (SlaLabSuite)\nE              /tmp/harbor_expr_suite.exs:429\nE              Assertion with == failed\nE              code:  assert result.status == :success\nE              left:  :error\nE              right: :success\nE              stacktrace:\nE                /tmp/harbor_expr_suite.exs:451: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:648: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t29_the_read_policy_authorises_on_the_custom_expression",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 10,
+                "start": 1786328294572,
+                "stop": 1786328294582,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite = {'output': 'onditionals@@pass@@\\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}\n\n    def test_t29_the_read_policy_authorises_on_the_custom_expression(suite):\n        \"\"\"T29 the read policy authorises on the custom expression\"\"\"\n>       check(suite, \"T29\")\n\n/tests/test_final_state.py:793: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite = {'output': 'onditionals@@pass@@\\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}\nscenario = 'T29'\n\n    def check(suite, scenario):\n        results = suite[\"results\"]\n        if not results:\n            pytest.fail(\n                \"The ExUnit verification suite produced no results (the project most \"\n                \"likely does not compile).\\n\"\n                f\"mix run exit code: {suite['returncode']}\\n\"\n                f\"output:\\n{suite['output']}\"\n            )\n    \n        prefix = \"test \" + scenario + \" \"\n        matching = [name for name in results if name.startswith(prefix)]\n        assert matching, (\n            f\"Scenario {scenario} did not run. Known scenarios: {sorted(results)}\\n\"\n            f\"output:\\n{suite['output']}\"\n        )\n    \n        name = matching[0]\n        status, detail = results[name]\n>       assert status == \"pass\", f\"Scenario {name} failed:\\n{detail}\"\nE       AssertionError: Scenario test T29 the read policy authorises on the custom expression failed:\nE           1) test T29 the read policy authorises on the custom expression (SlaLabSuite)\nE              /tmp/harbor_expr_suite.exs:458\nE              ** (Ash.Error.Invalid) \nE              Bread Crumbs:\nE                > Error returned from: SlaLab.Ops.Shipment.read\nE         \nE              Invalid Error\nE         \nE              * got %Ash.Error.Query.NoSuchFunction{function: :actor, arity: nil, resource: SlaLab.Ops.Shipment, could_be_calculation?: false, splode: Ash.Error, bread_crumbs: [], vars: [], path: [], stacktrace: #Splode.Stacktrace<>, class: :invalid} while retrieving Exception.message/1 for %Ash.Error.Query.NoSuchFunction{function: :actor, arity: nil, resource: SlaLab.Ops.Shipment, could_be_calculation?: false, splode: Ash.Error, bread_crumbs: [], vars: [], path: [], stacktrace: #Splode.Stacktrace<>, class: :invalid} (expected a string)\nE                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3\nE                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3\nE                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3\nE                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3\nE                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1\nE              code: records = Ash.read!(@shipment, actor: %{home_route: \"AMS|LHR\", role: :ops})\nE              stacktrace:\nE                (ash 3.31.0) lib/ash/error/error.ex:114: Ash.Error.to_error_class/2\nE                (ash 3.31.0) lib/ash.ex:1878: Ash.can/3\nE                (ash 3.31.0) lib/ash/actions/read/read.ex:88: Ash.Actions.Read.run/3\nE                (ash 3.31.0) lib/ash.ex:2938: Ash.read/2\nE                (ash 3.31.0) lib/ash.ex:2873: Ash.read!/2\nE                /tmp/harbor_expr_suite.exs:459: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:648: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t30_admins_bypass_the_route_policy_and_anonymous_readers_are_forbidden",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294583,
+                "stop": 1786328294584,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t31_the_penalty_points_function_module_reports_its_contract",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328294584,
+                "stop": 1786328294584,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t32_penalty_points_evaluates_eagerly_for_literal_arguments",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328294585,
+                "stop": 1786328294585,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t33_penalty_points_is_never_evaluated_with_nil_arguments",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328294586,
+                "stop": 1786328294586,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t34_penalty_points_reports_unknown_and_invalid_inputs",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294586,
+                "stop": 1786328294587,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t35_penalty_points_can_be_used_inside_a_query_filter",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294587,
+                "stop": 1786328294588,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t36_penalty_points_evaluates_against_a_record",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294588,
+                "stop": 1786328294589,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t37_programmatically_parsed_filters_behave_identically",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328294589,
+                "stop": 1786328294590,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

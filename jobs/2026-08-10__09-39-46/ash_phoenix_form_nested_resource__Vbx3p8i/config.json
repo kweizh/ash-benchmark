@@ -1,0 +1,23 @@
+{
+    "task": {
+        "path": "/home/kw/code/zealt/ash-benchmark/scratchpad/pending-tasks/ash_phoenix_form_nested_resources",
+        "source": "pending-tasks"
+    },
+    "trial_name": "ash_phoenix_form_nested_resource__Vbx3p8i",
+    "trials_dir": "jobs/2026-08-10__09-39-46",
+    "agent": {
+        "name": "agents.pochi:Pochi",
+        "model_name": "deepseek/deepseek-4-pro",
+        "env": {
+            "POCHI_API_KEY": "${POCHI_API_KEY}"
+        }
+    },
+    "environment": {
+        "type": "daytona",
+        "override_memory_mb": 4096
+    },
+    "artifacts": [
+        "/home/user"
+    ],
+    "job_id": "eeead91c-330d-4312-a793-23ab7399f12e"
+}

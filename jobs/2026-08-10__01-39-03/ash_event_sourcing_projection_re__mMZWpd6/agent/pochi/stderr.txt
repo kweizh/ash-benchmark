@@ -1,0 +1,348 @@
+[37m2026-08-09 17:39:49.368[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	pochi v0.6.20
+[37m2026-08-09 17:39:49.373[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	PochiConfigManager[39m[22m[0m[0m	add workspace config: /root/.pochi/config.jsonc
+[37m2026-08-09 17:39:49.496[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	BuiltInBundle[39m[22m[0m[0m	Materializing 16 built-in files to /tmp/pochi-builtin-ef402bc2bbe8f440
+[37m2026-08-09 17:39:49.762[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:532913[39m[0m[0m[1m[37m	loadAgents[39m[22m[0m[0m	Loaded 6 custom agents (6 valid, 0 invalid)
+[37m2026-08-09 17:39:49.862[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:532914[39m[0m[0m[1m[37m	loadSkills[39m[22m[0m[0m	Loaded 3 skills (3 valid, 0 invalid)
+[37m2026-08-09 17:39:49.978[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:443306[39m[0m[0m[1m[37m	PochiVendor[39m[22m[0m[0m	JWT is expiring or missing, fetching a new one
+[37m2026-08-09 17:39:51.304[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:419194[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	MCP servers configuration changed via signal:
+[37m2026-08-09 17:39:51.305[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:419306[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	Build MCPHub Status
+[37m2026-08-09 17:39:51.567[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Starting task runner...
+[37m2026-08-09 17:39:51.797[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: null, new: # Event-Sourced Ledger with Rebuildable Projections (Ash Framework v3)
+[37m2026-08-09 17:40:01.445[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/vault and recursive [33mtrue[39m
+[37m2026-08-09 17:40:04.275[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: # Event-Sourced Ledger with Rebuildable Projections (Ash Framework v3), new: Build event-sourced ledger with Ash Framework in Elixir
+[37m2026-08-09 17:40:05.508[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/lib/vault/ledger/hook.ex" resolvedPath="/home/user/vault/lib/vault/ledger/hook.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:05.508[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:05.509[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/config/config.exs" resolvedPath="/home/user/vault/config/config.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:05.509[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:05.509[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/mix.exs" resolvedPath="/home/user/vault/mix.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:05.509[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:05.509[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/lib/vault/application.ex" resolvedPath="/home/user/vault/lib/vault/application.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:05.510[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:05.511[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/lib/vault/ledger/hook.ex" mtime=1786284242716 contentLen=1518
+[37m2026-08-09 17:40:05.513[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/config/config.exs" mtime=1786284242063 contentLen=145
+[37m2026-08-09 17:40:05.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/mix.exs" mtime=1786284241722 contentLen=436
+[37m2026-08-09 17:40:05.517[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/lib/vault/application.ex" mtime=1786284242383 contentLen=199
+[37m2026-08-09 17:40:09.751[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/documentation/dsls/DSL-Ash.DataLayer.Ets.md" resolvedPath="/home/user/vault/deps/ash/documentation/dsls/DSL-Ash.DataLayer.Ets.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:09.752[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:09.753[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/documentation/topics Ash.Type.Union|NewType|union [90mundefined[39m
+[37m2026-08-09 17:40:09.753[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'Ash.Type.Union|NewType|union'[39m,
+  [32m'/home/user/vault/deps/ash/documentation/topics'[39m
+]
+[37m2026-08-09 17:40:09.759[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/documentation/dsls/DSL-Ash.DataLayer.Ets.md" mtime=1786284244000 contentLen=1048
+[37m2026-08-09 17:40:13.703[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/documentation/topics/resources/code-interfaces.md" resolvedPath="/home/user/vault/deps/ash/documentation/topics/resources/code-interfaces.md" isVirtual=false cacheExists=true shouldCache=true startLine=270 endLine=360
+[37m2026-08-09 17:40:13.703[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:13.703[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/type/union.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/type/union.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:13.703[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:13.705[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/documentation/topics/resources/code-interfaces.md" mtime=1786284244000 contentLen=2812
+[37m2026-08-09 17:40:13.709[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/type/union.ex" mtime=1786284244000 contentLen=30000
+[37m2026-08-09 17:40:20.302[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/usage-rules/actions.md" resolvedPath="/home/user/vault/deps/ash/usage-rules/actions.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:20.302[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:20.302[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/usage-rules/code_interfaces.md" resolvedPath="/home/user/vault/deps/ash/usage-rules/code_interfaces.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:20.302[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:20.305[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/usage-rules/actions.md" mtime=1786284244000 contentLen=14482
+[37m2026-08-09 17:40:20.308[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/usage-rules/code_interfaces.md" mtime=1786284244000 contentLen=5563
+[37m2026-08-09 17:40:25.885[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash defmodule Ash.Error.Action.InvalidArgument|defmodule Ash.Error.Changes.InvalidChanges|defmodule Ash.Error.Changes.InvalidAttribute [90mundefined[39m
+[37m2026-08-09 17:40:25.885[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmodule Ash.Error.Action.InvalidArgument|defmodule Ash.Error.Changes.InvalidChanges|defmodule Ash.Error.Changes.InvalidAttribute'[39m,
+  [32m'/home/user/vault/deps/ash'[39m
+]
+[37m2026-08-09 17:40:25.887[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/documentation generic action|action :\w+, :\w+ do|Ash.Resource.Actions.Implementation|use Ash.Resource.Actions.Implementation [90mundefined[39m
+[37m2026-08-09 17:40:25.887[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'generic action|action :\\w+, :\\w+ do|Ash.Resource.Actions.Implementation|use Ash.Resource.Actions.Implementation'[39m,
+  [32m'/home/user/vault/deps/ash/documentation'[39m
+]
+[37m2026-08-09 17:40:31.514[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/documentation/topics/actions/generic-actions.md" resolvedPath="/home/user/vault/deps/ash/documentation/topics/actions/generic-actions.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:31.514[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:31.514[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/error/action/invalid_argument.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/error/action/invalid_argument.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:31.514[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:31.514[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/error/changes/invalid_attribute.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/error/changes/invalid_attribute.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:31.514[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:31.514[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/error/changes/invalid_changes.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/error/changes/invalid_changes.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:31.514[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:31.516[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/documentation/topics/actions/generic-actions.md" mtime=1786284244000 contentLen=10713
+[37m2026-08-09 17:40:31.518[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/error/action/invalid_argument.ex" mtime=1786284244000 contentLen=713
+[37m2026-08-09 17:40:31.520[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/error/changes/invalid_attribute.ex" mtime=1786284244000 contentLen=1025
+[37m2026-08-09 17:40:31.522[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/error/changes/invalid_changes.ex" mtime=1786284244000 contentLen=1008
+[37m2026-08-09 17:40:36.403[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/error vars [90mundefined[39m
+[37m2026-08-09 17:40:36.403[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'vars'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/error'[39m
+]
+[37m2026-08-09 17:40:41.436[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/error/error.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/error/error.ex" isVirtual=false cacheExists=true shouldCache=true startLine=190 endLine=260
+[37m2026-08-09 17:40:41.436[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:41.438[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/splode/lib/splode/error.ex" resolvedPath="/home/user/vault/deps/splode/lib/splode/error.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:41.438[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:41.474[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/error/error.ex" mtime=1786284244000 contentLen=1921
+[37m2026-08-09 17:40:41.486[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/splode/lib/splode/error.ex" mtime=1786284245000 contentLen=6522
+[37m2026-08-09 17:40:50.354[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash has already been taken [90mundefined[39m
+[37m2026-08-09 17:40:50.355[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'has already been taken'[39m,
+  [32m'/home/user/vault/deps/ash'[39m
+]
+[37m2026-08-09 17:40:50.357[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/data_layer identities|identity [90mundefined[39m
+[37m2026-08-09 17:40:50.357[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'identities|identity'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/data_layer'[39m
+]
+[37m2026-08-09 17:40:56.323[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" isVirtual=false cacheExists=true shouldCache=true startLine=3260 endLine=3345
+[37m2026-08-09 17:40:56.323[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:56.323[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/data_layer/verifiers/require_pre_check_with.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/data_layer/verifiers/require_pre_check_with.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:56.323[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:56.330[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/data_layer/verifiers/require_pre_check_with.ex" mtime=1786284244000 contentLen=1077
+[37m2026-08-09 17:40:56.336[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" mtime=1786284244000 contentLen=2850
+[37m2026-08-09 17:42:26.453[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/error NoSuchInput|no such input [90mundefined[39m
+[37m2026-08-09 17:42:26.454[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'NoSuchInput|no such input'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/error'[39m
+]
+[37m2026-08-09 17:42:26.456[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/documentation/topics/resources/embedded-resources.md" resolvedPath="/home/user/vault/deps/ash/documentation/topics/resources/embedded-resources.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:42:26.456[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:42:26.470[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/documentation/topics/resources/embedded-resources.md" mtime=1786284244000 contentLen=8124
+[37m2026-08-09 17:42:43.270[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash cast_tag\? [90mundefined[39m
+[37m2026-08-09 17:42:43.271[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'cast_tag\\?'[39m,
+  [32m'/home/user/vault/deps/ash'[39m
+]
+[37m2026-08-09 17:42:48.385[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/embeddable_type.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/embeddable_type.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:42:48.386[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:42:48.391[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/embeddable_type.ex" mtime=1786284244000 contentLen=30000
+[37m2026-08-09 17:43:27.168[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/code_interface.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/code_interface.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:43:27.169[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:43:27.177[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/code_interface.ex" mtime=1786284244000 contentLen=30000
+[37m2026-08-09 17:43:36.837[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/code_interface.ex arg_vars_function|params_or_opts\)|def unquote\(interface.name\) [90mundefined[39m
+[37m2026-08-09 17:43:36.838[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'arg_vars_function|params_or_opts\\)|def unquote\\(interface.name\\)'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/code_interface.ex'[39m
+]
+[37m2026-08-09 17:43:41.184[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/code_interface.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/code_interface.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1000 endLine=1110
+[37m2026-08-09 17:43:41.184[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786284244000}
+[37m2026-08-09 17:43:41.189[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/code_interface.ex" mtime=1786284244000 contentLen=3772
+[37m2026-08-09 17:43:46.406[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/code_interface.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/code_interface.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1110 endLine=1200
+[37m2026-08-09 17:43:46.406[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1000, endLine=1110, timestamp=1786284244000}
+[37m2026-08-09 17:43:46.414[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/code_interface.ex" mtime=1786284244000 contentLen=3223
+[37m2026-08-09 17:45:04.677[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/resource/actions Implementation [90mundefined[39m
+[37m2026-08-09 17:45:04.677[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'Implementation'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/resource/actions'[39m
+]
+[37m2026-08-09 17:45:04.680[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/vault/deps/ash/lib/ash/resource/actions and pattern *implementation*
+[37m2026-08-09 17:45:04.713[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 0 files matching pattern *implementation*
+[37m2026-08-09 17:45:08.959[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/resource/actions/action/implementation.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/resource/actions/action/implementation.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:45:08.959[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:45:08.970[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/resource/actions/action/implementation.ex" mtime=1786284244000 contentLen=1776
+[37m2026-08-09 17:45:33.000[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/code_interface.ex def resolve_params_and_opts [90mundefined[39m
+[37m2026-08-09 17:45:33.000[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def resolve_params_and_opts'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/code_interface.ex'[39m
+]
+[37m2026-08-09 17:45:36.691[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/code_interface.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/code_interface.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1960 endLine=2060
+[37m2026-08-09 17:45:36.692[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1110, endLine=1200, timestamp=1786284244000}
+[37m2026-08-09 17:45:36.701[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/code_interface.ex" mtime=1786284244000 contentLen=2731
+[37m2026-08-09 17:47:37.705[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/changeset/changeset.ex defp validate_required_belongs_to|Required.exception|defp require_values|require_attributes [90mundefined[39m
+[37m2026-08-09 17:47:37.705[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defp validate_required_belongs_to|Required.exception|defp require_values|require_attributes'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex'[39m
+]
+[37m2026-08-09 17:47:42.034[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" isVirtual=false cacheExists=true shouldCache=true startLine=3320 endLine=3380
+[37m2026-08-09 17:47:42.034[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=3260, endLine=3345, timestamp=1786284244000}
+[37m2026-08-09 17:47:42.046[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" mtime=1786284244000 contentLen=1626
+[37m2026-08-09 17:47:48.422[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" isVirtual=false cacheExists=true shouldCache=true startLine=4420 endLine=4540
+[37m2026-08-09 17:47:48.422[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=3320, endLine=3380, timestamp=1786284244000}
+[37m2026-08-09 17:47:48.433[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" mtime=1786284244000 contentLen=3679
+[37m2026-08-09 17:47:54.190[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/changeset/changeset.ex defp attributes_to_require|def require_values\(changeset, :create [90mundefined[39m
+[37m2026-08-09 17:47:54.190[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defp attributes_to_require|def require_values\\(changeset, :create'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex'[39m
+]
+[37m2026-08-09 17:47:58.266[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" isVirtual=false cacheExists=true shouldCache=true startLine=4600 endLine=4640
+[37m2026-08-09 17:47:58.266[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=4420, endLine=4540, timestamp=1786284244000}
+[37m2026-08-09 17:47:58.282[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" mtime=1786284244000 contentLen=1421
+[37m2026-08-09 17:48:05.512[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash require_values\(changeset, .*true [90mundefined[39m
+[37m2026-08-09 17:48:05.512[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'require_values\\(changeset, .*true'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash'[39m
+]
+[37m2026-08-09 17:48:09.273[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash require_values\( [90mundefined[39m
+[37m2026-08-09 17:48:09.273[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'require_values\\('[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash'[39m
+]
+[37m2026-08-09 17:48:14.365[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/actions/create/create.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/actions/create/create.ex" isVirtual=false cacheExists=true shouldCache=true startLine=330 endLine=440
+[37m2026-08-09 17:48:14.366[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:48:14.372[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/actions/create/create.ex" mtime=1786284244000 contentLen=4309
+[37m2026-08-09 17:48:27.652[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/resource/info.ex def attributes_to_require [90mundefined[39m
+[37m2026-08-09 17:48:27.652[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def attributes_to_require'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/resource/info.ex'[39m
+]
+[37m2026-08-09 17:48:31.412[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/resource/info.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/resource/info.ex" isVirtual=false cacheExists=true shouldCache=true startLine=440 endLine=475
+[37m2026-08-09 17:48:31.412[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:48:31.425[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/resource/info.ex" mtime=1786284244000 contentLen=976
+[37m2026-08-09 17:48:47.408[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/changeset/changeset.ex NoSuchInput|skip_unknown_inputs [90mundefined[39m
+[37m2026-08-09 17:48:47.408[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'NoSuchInput|skip_unknown_inputs'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex'[39m
+]
+[37m2026-08-09 17:48:53.909[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/documentation/dsls/DSL-Ash.Resource.md identities-identity|pre_check_with|field_names [90mundefined[39m
+[37m2026-08-09 17:48:53.910[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'identities-identity|pre_check_with|field_names'[39m,
+  [32m'/home/user/vault/deps/ash/documentation/dsls/DSL-Ash.Resource.md'[39m
+]
+[37m2026-08-09 17:49:01.092[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/changeset/changeset.ex eager_check_with|pre_check_with|pre_check\?|defp validate_identity|eager_check\? [90mundefined[39m
+[37m2026-08-09 17:49:01.093[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'eager_check_with|pre_check_with|pre_check\\?|defp validate_identity|eager_check\\?'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex'[39m
+]
+[37m2026-08-09 17:49:06.243[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" isVirtual=false cacheExists=true shouldCache=true startLine=3190 endLine=3235
+[37m2026-08-09 17:49:06.244[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=4600, endLine=4640, timestamp=1786284244000}
+[37m2026-08-09 17:49:06.271[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/changeset/changeset.ex" mtime=1786284244000 contentLen=1214
+[37m2026-08-09 17:51:32.192[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/resource/validation defmodule Ash.Resource.Validation$|def validate|CustomExpression|behaviour"| exception [90mundefined[39m
+[37m2026-08-09 17:51:32.193[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmodule Ash.Resource.Validation$|def validate|CustomExpression|behaviour"| exception'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/resource/validation'[39m
+]
+[37m2026-08-09 17:51:32.194[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/vault/deps/ash/lib/ash/resource and pattern validation.ex
+[37m2026-08-09 17:51:32.223[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 1 files matching pattern validation.ex
+[37m2026-08-09 17:51:38.534[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/vault/deps/ash/lib/ash/resource/validation.ex" resolvedPath="/home/user/vault/deps/ash/lib/ash/resource/validation.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:51:38.534[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:51:38.544[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/vault/deps/ash/lib/ash/resource/validation.ex" mtime=1786284244000 contentLen=11957
+[37m2026-08-09 17:52:59.318[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/resource/change.ex require Ash.Query|defmacro __using__ [90mundefined[39m
+[37m2026-08-09 17:52:59.319[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'require Ash.Query|defmacro __using__'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/resource/change.ex'[39m
+]
+[37m2026-08-09 17:52:59.334[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37mevents:98[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	rg command stderr:  rg: /home/user/vault/deps/ash/lib/ash/resource/change.ex: IO error for operation on /home/user/vault/deps/ash/lib/ash/resource/change.ex: No such file or directory (os error 2)
+
+[37m2026-08-09 17:53:08.904[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/vault/deps/ash/lib/ash/resource and pattern change.ex
+[37m2026-08-09 17:53:08.904[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/resource defmodule Ash.Resource.Change do [90mundefined[39m
+[37m2026-08-09 17:53:08.905[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmodule Ash.Resource.Change do'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/resource'[39m
+]
+[37m2026-08-09 17:53:08.925[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 0 files matching pattern change.ex
+[37m2026-08-09 17:53:14.944[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/vault/deps/ash/lib/ash/data_layer/ets defmodule Ash.DataLayer.Ets [90mundefined[39m
+[37m2026-08-09 17:53:14.944[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmodule Ash.DataLayer.Ets'[39m,
+  [32m'/home/user/vault/deps/ash/lib/ash/data_layer/ets'[39m
+]
+[37m2026-08-09 18:06:04.756[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/vault/lib/vault and recursive [33mtrue[39m
+[37m2026-08-09 18:23:02.975[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Task runner finished successfully.
+[37m2026-08-09 18:23:02.976[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Shutting down...
+[37m2026-08-09 18:23:03.264[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Shutdown completed. Process will exit.
+[37m2026-08-09 18:23:03.264[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Process exiting with code 0

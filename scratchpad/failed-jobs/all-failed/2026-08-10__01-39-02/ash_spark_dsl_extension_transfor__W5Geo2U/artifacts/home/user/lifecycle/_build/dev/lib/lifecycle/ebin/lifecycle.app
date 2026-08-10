@@ -1,0 +1,10 @@
+{application,lifecycle,
+             [{modules,['Elixir.Inspect.Lifecycle.Records.ArchivalEvent',
+                        'Elixir.Lifecycle.Records',
+                        'Elixir.Lifecycle.Records.ArchivalEvent',
+                        'Elixir.Lifecycle.Records.StampNote']},
+              {optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger,ash,spark,jason]},
+              {description,"lifecycle"},
+              {registered,[]},
+              {vsn,"0.1.0"}]}.

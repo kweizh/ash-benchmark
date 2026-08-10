@@ -1,0 +1,48 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 37 items
+
+../tests/test_final_state.py .....................................       [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_t01_custom_expressions_are_registered_with_ash
+PASSED ../tests/test_final_state.py::test_t02_custom_expression_modules_report_name_0_and_arguments_0
+PASSED ../tests/test_final_state.py::test_t03_expression_2_dispatches_per_data_layer
+PASSED ../tests/test_final_state.py::test_t04_both_data_layer_clauses_produce_the_same_values
+PASSED ../tests/test_final_state.py::test_t05_route_key_normalises_and_orders_its_arguments
+PASSED ../tests/test_final_state.py::test_t06_ratio_bps_computes_integral_basis_points
+PASSED ../tests/test_final_state.py::test_t07_ratio_bps_rounds_halves_upwards
+PASSED ../tests/test_final_state.py::test_t08_ratio_bps_clamps_to_the_closed_range_0_20000
+PASSED ../tests/test_final_state.py::test_t09_ratio_bps_returns_nil_for_nil_arguments_and_a_zero_denominator
+PASSED ../tests/test_final_state.py::test_t10_custom_expressions_compose_with_each_other
+PASSED ../tests/test_final_state.py::test_t11_custom_expressions_short_circuit_inside_if_cond
+PASSED ../tests/test_final_state.py::test_t12_custom_expression_results_can_be_cast_with_type_2
+PASSED ../tests/test_final_state.py::test_t13_arguments_outside_the_declared_types_are_rejected
+PASSED ../tests/test_final_state.py::test_t14_route_key_is_available_as_an_expression_calculation
+PASSED ../tests/test_final_state.py::test_t15_sla_ratio_bps_is_available_as_an_expression_calculation
+PASSED ../tests/test_final_state.py::test_t16_status_label_composes_the_custom_expression_with_conditionals
+PASSED ../tests/test_final_state.py::test_t17_the_on_route_read_action_filters_on_the_custom_expression
+PASSED ../tests/test_final_state.py::test_t18_custom_expressions_can_be_used_directly_in_a_query_filter
+PASSED ../tests/test_final_state.py::test_t19_calculations_built_on_custom_expressions_are_filterable
+PASSED ../tests/test_final_state.py::test_t20_calculations_built_on_custom_expressions_are_sortable
+PASSED ../tests/test_final_state.py::test_t21_custom_expressions_can_be_sorted_on_inline
+PASSED ../tests/test_final_state.py::test_t22_aggregate_filters_accept_custom_expressions
+PASSED ../tests/test_final_state.py::test_t23_custom_expressions_can_be_applied_to_aggregates
+PASSED ../tests/test_final_state.py::test_t24_custom_expressions_over_aggregates_are_filterable
+PASSED ../tests/test_final_state.py::test_t25_custom_expressions_work_inside_exists_1
+PASSED ../tests/test_final_state.py::test_t26_record_delivery_accepts_a_delivery_within_the_allowed_ratio
+PASSED ../tests/test_final_state.py::test_t27_record_delivery_rejects_a_delivery_beyond_the_allowed_ratio
+PASSED ../tests/test_final_state.py::test_t28_the_delivery_validation_is_enforced_atomically
+PASSED ../tests/test_final_state.py::test_t29_the_read_policy_authorises_on_the_custom_expression
+PASSED ../tests/test_final_state.py::test_t30_admins_bypass_the_route_policy_and_anonymous_readers_are_forbidden
+PASSED ../tests/test_final_state.py::test_t31_the_penalty_points_function_module_reports_its_contract
+PASSED ../tests/test_final_state.py::test_t32_penalty_points_evaluates_eagerly_for_literal_arguments
+PASSED ../tests/test_final_state.py::test_t33_penalty_points_is_never_evaluated_with_nil_arguments
+PASSED ../tests/test_final_state.py::test_t34_penalty_points_reports_unknown_and_invalid_inputs
+PASSED ../tests/test_final_state.py::test_t35_penalty_points_can_be_used_inside_a_query_filter
+PASSED ../tests/test_final_state.py::test_t36_penalty_points_evaluates_against_a_record
+PASSED ../tests/test_final_state.py::test_t37_programmatically_parsed_filters_behave_identically
+============================= 37 passed in 17.86s ==============================

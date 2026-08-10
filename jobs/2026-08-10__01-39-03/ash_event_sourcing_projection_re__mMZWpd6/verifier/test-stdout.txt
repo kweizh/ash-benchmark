@@ -1,0 +1,413 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 44 items
+
+../tests/test_final_state.py ..................................FFFFFF.FF [ 97%]
+.                                                                        [100%]
+
+=================================== FAILURES ===================================
+________ test_scenario[T35-T35 commands keep the read model up to date] ________
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T35', description = 'T35 commands keep the read model up to date'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T35', description = 'T35 commands keep the read model up to date'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T35 (T35 commands keep the read model up to date) failed:
+E           1) test T35 commands keep the read model up to date (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1069
+E              Assertion with == failed
+E              code:  assert H.checkpoint() == 6
+E              left:  0
+E              right: 6
+E              stacktrace:
+E                /tmp/harbor_event_sourcing_final.exs:1076: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T36-T36 direct appends only reach the read model through catch up] _
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T36'
+description = 'T36 direct appends only reach the read model through catch up'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T36'
+description = 'T36 direct appends only reach the read model through catch up'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T36 (T36 direct appends only reach the read model through catch up) failed:
+E           1) test T36 direct appends only reach the read model through catch up (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1100
+E              Assertion with == failed
+E              code:  assert checkpoint_before == 2
+E              left:  0
+E              right: 2
+E              stacktrace:
+E                /tmp/harbor_event_sourcing_final.exs:1106: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+________________ test_scenario[T37-T37 catch up is idempotent] _________________
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T37', description = 'T37 catch up is idempotent'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T37', description = 'T37 catch up is idempotent'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T37 (T37 catch up is idempotent) failed:
+E           1) test T37 catch up is idempotent (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1128
+E              match (=) failed
+E              code:  assert {:ok, %{applied: 1, checkpoint: 3}} = H.catch_up()
+E              left:  {:ok, %{applied: 1, checkpoint: 3}}
+E              right: {:ok, %{checkpoint: 3, applied: 3}}
+E              stacktrace:
+E                /tmp/harbor_event_sourcing_final.exs:1139: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T38-T38 a full rebuild reproduces the incrementally maintained rows] _
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T38'
+description = 'T38 a full rebuild reproduces the incrementally maintained rows'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T38'
+description = 'T38 a full rebuild reproduces the incrementally maintained rows'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T38 (T38 a full rebuild reproduces the incrementally maintained rows) failed:
+E           1) test T38 a full rebuild reproduces the incrementally maintained rows (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1150
+E              Assertion with == failed
+E              code:  assert H.row_maps() == incremental
+E              left:  [
+E                       %{
+E                         owner: "Ada",
+E                         status: :open,
+E                         version: 6,
+E                         account_id: "A",
+E                         balance_cents: 850,
+E                         deposit_count: 1,
+E                         withdrawal_count: 2,
+E                         last_event_sequence: 8,
+E                         last_recorded_at: ~U[2026-03-01 10:00:07.000000Z]
+E                       },
+E                       %{
+E                         owner: "Bo",
+E                         status: :open,
+E                         version: 2,
+E                         account_id: "B",
+E                         balance_cents: 350,
+E                         deposit_count: 1,
+E                         withdrawal_count: 0,
+E                         last_event_sequence: 6,
+E                         last_recorded_at: ~U[2026-03-01 10:00:05.000000Z]
+E                       }
+E                     ]
+E              right: []
+E              stacktrace:
+E                /tmp/harbor_event_sourcing_final.exs:1163: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T39-T39 a rebuild repairs a projection row edited behind its back] _
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T39'
+description = 'T39 a rebuild repairs a projection row edited behind its back'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T39'
+description = 'T39 a rebuild repairs a projection row edited behind its back'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T39 (T39 a rebuild repairs a projection row edited behind its back) failed:
+E           1) test T39 a rebuild repairs a projection row edited behind its back (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1167
+E              ** (UndefinedFunctionError) function nil.__struct__/0 is undefined. If you are using the dot syntax, such as module.function(), make sure the left-hand side of the dot is a module atom
+E              code: Ash.Seed.update!(H.row("A"), %{balance_cents: 42, version: 1, deposit_count: 99})
+E              stacktrace:
+E                nil.__struct__()
+E                (elixir 1.18.4) lib/kernel.ex:2470: Kernel.struct/3
+E                (ash 3.31.0) lib/ash/changeset/changeset.ex:511: Ash.Changeset.new/1
+E                (ash 3.31.0) lib/ash/seed.ex:319: Ash.Seed.update!/3
+E                /tmp/harbor_event_sourcing_final.exs:1173: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_____ test_scenario[T40-T40 a rebuild recreates a deleted projection row] ______
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T40'
+description = 'T40 a rebuild recreates a deleted projection row'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T40'
+description = 'T40 a rebuild recreates a deleted projection row'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T40 (T40 a rebuild recreates a deleted projection row) failed:
+E           1) test T40 a rebuild recreates a deleted projection row (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1182
+E              ** (ArgumentError) Expected an `Ash.Resource` or a record in `Ash.destroy!/2`, got: nil
+E              code: Ash.destroy!(H.row("A"))
+E              stacktrace:
+E                (ash 3.31.0) lib/ash.ex:3971: Ash.destroy!/2
+E                /tmp/harbor_event_sourcing_final.exs:1188: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T42-T42 events appended during a rebuild belong to the next catch up] _
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T42'
+description = 'T42 events appended during a rebuild belong to the next catch up'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T42'
+description = 'T42 events appended during a rebuild belong to the next catch up'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T42 (T42 events appended during a rebuild belong to the next catch up) failed:
+E           1) test T42 events appended during a rebuild belong to the next catch up (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1217
+E              Assertion with == failed
+E              code:  assert H.checkpoint() == 3
+E              left:  0
+E              right: 3
+E              stacktrace:
+E                /tmp/harbor_event_sourcing_final.exs:1222: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+_ test_scenario[T43-T43 an unfoldable event halts the projection at the last good sequence] _
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T43'
+description = 'T43 an unfoldable event halts the projection at the last good sequence'
+
+    @pytest.mark.parametrize("scenario_id,description", SCENARIOS)
+    def test_scenario(suite_results, scenario_id, description):
+>       _assert_scenario(suite_results, scenario_id, description)
+
+/tests/test_final_state.py:1510: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'results': {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, 'returncode': 0...3JfZXZlbnRfc291cmNpbmdfZmluYWwuZXhzOjEyNjc6ICh0ZXN0KQo=\n@@HARBOR@@test T44 time travel and the audit trail@@pass@@\n'}
+scenario_id = 'T43'
+description = 'T43 an unfoldable event halts the projection at the last good sequence'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results = suite_results["results"]
+        assert scenario_id in results, (
+            f"Scenario {scenario_id} ({description}) produced no result. The ExUnit suite "
+            "did not run to completion. Last output:\n" + suite_results["tail"]
+        )
+        status, detail = results[scenario_id]
+>       assert status == "pass", (
+            f"Scenario {scenario_id} ({description}) failed:\n{detail}"
+        )
+E       AssertionError: Scenario T43 (T43 an unfoldable event halts the projection at the last good sequence) failed:
+E           1) test T43 an unfoldable event halts the projection at the last good sequence (EventSourcingProjectionTest)
+E              /tmp/harbor_event_sourcing_final.exs:1262
+E              Assertion with == failed
+E              code:  assert H.checkpoint() == 2
+E              left:  0
+E              right: 2
+E              stacktrace:
+E                /tmp/harbor_event_sourcing_final.exs:1267: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:1503: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_scenario[T01-T01 event resource declares the append only log schema]
+PASSED ../tests/test_final_state.py::test_scenario[T02-T02 the log is immutable]
+PASSED ../tests/test_final_state.py::test_scenario[T03-T03 the global sequence cannot be supplied by the caller]
+PASSED ../tests/test_final_state.py::test_scenario[T04-T04 sequences are globally contiguous and versions are per stream]
+PASSED ../tests/test_final_state.py::test_scenario[T05-T05 a duplicate stream position is rejected by the identity]
+PASSED ../tests/test_final_state.py::test_scenario[T06-T06 a version gap is rejected and consumes no sequence number]
+PASSED ../tests/test_final_state.py::test_scenario[T07-T07 every payload member round trips through the store]
+PASSED ../tests/test_final_state.py::test_scenario[T08-T08 each payload member enforces its own constraints]
+PASSED ../tests/test_final_state.py::test_scenario[T09-T09 an unrecognised payload tag is rejected]
+PASSED ../tests/test_final_state.py::test_scenario[T10-T10 the payload type is a union new type with the five documented members]
+PASSED ../tests/test_final_state.py::test_scenario[T11-T11 the initial state is the documented zero value]
+PASSED ../tests/test_final_state.py::test_scenario[T12-T12 applying each event type produces the documented state]
+PASSED ../tests/test_final_state.py::test_scenario[T13-T13 structural checks take precedence over business rules]
+PASSED ../tests/test_final_state.py::test_scenario[T14-T14 business rules reject impossible transitions]
+PASSED ../tests/test_final_state.py::test_scenario[T15-T15 an unknown event type is reported by name]
+PASSED ../tests/test_final_state.py::test_scenario[T16-T16 replay folds a tail and surfaces the first failure]
+PASSED ../tests/test_final_state.py::test_scenario[T17-T17 replay rejects out of order input instead of sorting it]
+PASSED ../tests/test_final_state.py::test_scenario[T18-T18 the fold performs no storage access]
+PASSED ../tests/test_final_state.py::test_scenario[T19-T19 opening an account returns the documented command result]
+PASSED ../tests/test_final_state.py::test_scenario[T20-T20 deposits and withdrawals advance the stream]
+PASSED ../tests/test_final_state.py::test_scenario[T21-T21 a transfer appends two events with consecutive sequences]
+PASSED ../tests/test_final_state.py::test_scenario[T22-T22 a rejected transfer leaves no trace]
+PASSED ../tests/test_final_state.py::test_scenario[T23-T23 every invariant violation reports the documented field and message]
+PASSED ../tests/test_final_state.py::test_scenario[T24-T24 freezing blocks money movement until the account is unfrozen]
+PASSED ../tests/test_final_state.py::test_scenario[T25-T25 an omitted recorded_at falls back to the current time]
+PASSED ../tests/test_final_state.py::test_scenario[T26-T26 commands are generic actions returning the command result struct]
+PASSED ../tests/test_final_state.py::test_scenario[T27-T27 snapshot serialisation is exact and round trips]
+PASSED ../tests/test_final_state.py::test_scenario[T28-T28 the checksum covers exactly the documented fields]
+PASSED ../tests/test_final_state.py::test_scenario[T29-T29 commands snapshot every fifth version]
+PASSED ../tests/test_final_state.py::test_scenario[T30-T30 direct appends never create a snapshot]
+PASSED ../tests/test_final_state.py::test_scenario[T31-T31 snapshot verification detects tampering]
+PASSED ../tests/test_final_state.py::test_scenario[T32-T32 the current state is reconstructed from the newest valid snapshot]
+PASSED ../tests/test_final_state.py::test_scenario[T33-T33 a newer snapshot supersedes an older one]
+PASSED ../tests/test_final_state.py::test_scenario[T34-T34 a corrupt snapshot is ignored rather than trusted]
+PASSED ../tests/test_final_state.py::test_scenario[T41-T41 rebuilding an empty log clears the read model]
+PASSED ../tests/test_final_state.py::test_scenario[T44-T44 time travel and the audit trail]
+FAILED ../tests/test_final_state.py::test_scenario[T35-T35 commands keep the read model up to date]
+FAILED ../tests/test_final_state.py::test_scenario[T36-T36 direct appends only reach the read model through catch up]
+FAILED ../tests/test_final_state.py::test_scenario[T37-T37 catch up is idempotent]
+FAILED ../tests/test_final_state.py::test_scenario[T38-T38 a full rebuild reproduces the incrementally maintained rows]
+FAILED ../tests/test_final_state.py::test_scenario[T39-T39 a rebuild repairs a projection row edited behind its back]
+FAILED ../tests/test_final_state.py::test_scenario[T40-T40 a rebuild recreates a deleted projection row]
+FAILED ../tests/test_final_state.py::test_scenario[T42-T42 events appended during a rebuild belong to the next catch up]
+FAILED ../tests/test_final_state.py::test_scenario[T43-T43 an unfoldable event halts the projection at the last good sequence]
+======================== 8 failed, 36 passed in 40.04s =========================

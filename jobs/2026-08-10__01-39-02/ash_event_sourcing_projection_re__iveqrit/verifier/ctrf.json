@@ -1,0 +1,425 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-09T18:14:21.024632+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 44,
+            "passed": 44,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786299222745,
+            "stop": 1786299261024
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 38180,
+                "start": 1786299222754,
+                "stop": 1786299260934,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260934,
+                "stop": 1786299260935,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299260936,
+                "stop": 1786299260936,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260937,
+                "stop": 1786299260938,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260938,
+                "stop": 1786299260939,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299260939,
+                "stop": 1786299260939,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299260940,
+                "stop": 1786299260940,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299260941,
+                "stop": 1786299260941,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299260942,
+                "stop": 1786299260942,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299260943,
+                "stop": 1786299260943,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260944,
+                "stop": 1786299260945,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260945,
+                "stop": 1786299260946,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260946,
+                "stop": 1786299260947,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260947,
+                "stop": 1786299260948,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260948,
+                "stop": 1786299260949,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260949,
+                "stop": 1786299260950,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260950,
+                "stop": 1786299260951,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260951,
+                "stop": 1786299260952,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260952,
+                "stop": 1786299260953,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260953,
+                "stop": 1786299260954,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260954,
+                "stop": 1786299260955,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260955,
+                "stop": 1786299260956,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299260956,
+                "stop": 1786299260957,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 46,
+                "start": 1786299260957,
+                "stop": 1786299261003,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299261004,
+                "stop": 1786299261005,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299261005,
+                "stop": 1786299261006,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299261006,
+                "stop": 1786299261007,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299261007,
+                "stop": 1786299261008,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299261008,
+                "stop": 1786299261009,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299261009,
+                "stop": 1786299261010,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299261010,
+                "stop": 1786299261011,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299261011,
+                "stop": 1786299261012,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299261012,
+                "stop": 1786299261013,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299261013,
+                "stop": 1786299261014,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299261014,
+                "stop": 1786299261015,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299261015,
+                "stop": 1786299261016,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299261016,
+                "stop": 1786299261016,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299261017,
+                "stop": 1786299261018,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299261018,
+                "stop": 1786299261018,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299261019,
+                "stop": 1786299261019,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299261020,
+                "stop": 1786299261020,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299261021,
+                "stop": 1786299261021,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299261021,
+                "stop": 1786299261022,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_scenario",
+                "status": "passed",
+                "duration": 2,
+                "start": 1786299261022,
+                "stop": 1786299261024,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

@@ -1,0 +1,1621 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 35 items
+
+../tests/test_final_state.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF         [100%]
+
+=================================== FAILURES ===================================
+_________ test_t01_the_fleet_domain_exposes_the_five_rollout_resources _________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t01_the_fleet_domain_exposes_the_five_rollout_resources(suite_results):
+        """T01 — the fleet domain exposes the five rollout resources."""
+>       _check(suite_results, "T01")
+
+/tests/test_final_state.py:870: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T01'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T01 the fleet domain exposes the five rollout resources failed:
+E           1) test T01 the fleet domain exposes the five rollout resources (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:282
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:283: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+______ test_t02_resource_attributes_have_the_required_types_and_defaults _______
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t02_resource_attributes_have_the_required_types_and_defaults(suite_results):
+        """T02 — resource attributes have the required types and defaults."""
+>       _check(suite_results, "T02")
+
+/tests/test_final_state.py:875: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T02'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T02 resource attributes have the required types and defaults failed:
+E           1) test T02 resource attributes have the required types and defaults (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:297
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:298: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+_______ test_t03_the_rollout_reactor_declares_the_four_documented_inputs _______
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t03_the_rollout_reactor_declares_the_four_documented_inputs(suite_results):
+        """T03 — the rollout reactor declares the four documented inputs."""
+>       _check(suite_results, "T03")
+
+/tests/test_final_state.py:880: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T03'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T03 the rollout reactor declares the four documented inputs failed:
+E           1) test T03 the rollout reactor declares the four documented inputs (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:340
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:341: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+______ test_t04_the_rollout_reactor_installs_a_bespoke_middleware_module _______
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t04_the_rollout_reactor_installs_a_bespoke_middleware_module(suite_results):
+        """T04 — the rollout reactor installs a bespoke middleware module."""
+>       _check(suite_results, "T04")
+
+/tests/test_final_state.py:885: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T04'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T04 the rollout reactor installs a bespoke middleware module failed:
+E           1) test T04 the rollout reactor installs a bespoke middleware module (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:349
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:350: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+_____ test_t05_resource_work_is_performed_through_ash_reactor_action_steps _____
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t05_resource_work_is_performed_through_ash_reactor_action_steps(suite_results):
+        """T05 — resource work is performed through Ash.Reactor action steps."""
+>       _check(suite_results, "T05")
+
+/tests/test_final_state.py:890: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T05'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T05 resource work is performed through Ash.Reactor action steps failed:
+E           1) test T05 resource work is performed through Ash.Reactor action steps (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:365
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:366: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+___ test_t06_the_reactor_maps_over_targets_and_composes_the_approval_reactor ___
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t06_the_reactor_maps_over_targets_and_composes_the_approval_reactor(suite_results):
+        """T06 — the reactor maps over targets and composes the approval reactor."""
+>       _check(suite_results, "T06")
+
+/tests/test_final_state.py:895: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T06'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T06 the reactor maps over targets and composes the approval reactor failed:
+E           1) test T06 the reactor maps over targets and composes the approval reactor (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:378
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:379: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+______ test_t07_the_deployment_step_implements_the_reactor_step_callbacks ______
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t07_the_deployment_step_implements_the_reactor_step_callbacks(suite_results):
+        """T07 — the deployment step implements the Reactor.Step callbacks."""
+>       _check(suite_results, "T07")
+
+/tests/test_final_state.py:900: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T07'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T07 the deployment step implements the Reactor.Step callbacks failed:
+E           1) test T07 the deployment step implements the Reactor.Step callbacks (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:392
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:393: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+__________ test_t08_the_approval_reactor_branches_with_a_switch_step ___________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t08_the_approval_reactor_branches_with_a_switch_step(suite_results):
+        """T08 — the approval reactor branches with a switch step."""
+>       _check(suite_results, "T08")
+
+/tests/test_final_state.py:905: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T08'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T08 the approval reactor branches with a switch step failed:
+E           1) test T08 the approval reactor branches with a switch step (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:402
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:403: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+_____________ test_t09_the_planning_action_summarises_the_targets ______________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t09_the_planning_action_summarises_the_targets(suite_results):
+        """T09 — the planning action summarises the targets."""
+>       _check(suite_results, "T09")
+
+/tests/test_final_state.py:910: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T09'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T09 the planning action summarises the targets failed:
+E           1) test T09 the planning action summarises the targets (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:412
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:413: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+__________ test_t10_the_planning_action_rejects_an_empty_target_list ___________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t10_the_planning_action_rejects_an_empty_target_list(suite_results):
+        """T10 — the planning action rejects an empty target list."""
+>       _check(suite_results, "T10")
+
+/tests/test_final_state.py:915: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T10'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T10 the planning action rejects an empty target list failed:
+E           1) test T10 the planning action rejects an empty target list (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:421
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:422: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+__________ test_t11_the_planning_action_rejects_duplicate_node_names ___________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t11_the_planning_action_rejects_duplicate_node_names(suite_results):
+        """T11 — the planning action rejects duplicate node names."""
+>       _check(suite_results, "T11")
+
+/tests/test_final_state.py:920: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T11'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T11 the planning action rejects duplicate node names failed:
+E           1) test T11 the planning action rejects duplicate node names (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:429
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:430: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+________ test_t12_the_planning_action_rejects_non_positive_slot_counts _________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t12_the_planning_action_rejects_non_positive_slot_counts(suite_results):
+        """T12 — the planning action rejects non-positive slot counts."""
+>       _check(suite_results, "T12")
+
+/tests/test_final_state.py:925: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T12'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T12 the planning action rejects non-positive slot counts failed:
+E           1) test T12 the planning action rejects non-positive slot counts (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:437
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:438: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+__________ test_t13_a_clean_rollout_returns_the_documented_result_map __________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t13_a_clean_rollout_returns_the_documented_result_map(suite_results):
+        """T13 — a clean rollout returns the documented result map."""
+>       _check(suite_results, "T13")
+
+/tests/test_final_state.py:930: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T13'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T13 a clean rollout returns the documented result map failed:
+E           1) test T13 a clean rollout returns the documented result map (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:447
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:448: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+_______________ test_t14_the_rollout_summary_is_rendered_exactly _______________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t14_the_rollout_summary_is_rendered_exactly(suite_results):
+        """T14 — the rollout summary is rendered exactly."""
+>       _check(suite_results, "T14")
+
+/tests/test_final_state.py:935: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T14'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T14 the rollout summary is rendered exactly failed:
+E           1) test T14 the rollout summary is rendered exactly (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:468
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:469: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+_____ test_t15_a_clean_rollout_leaves_every_target_node_live_and_reserved ______
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t15_a_clean_rollout_leaves_every_target_node_live_and_reserved(suite_results):
+        """T15 — a clean rollout leaves every target node live and reserved."""
+>       _check(suite_results, "T15")
+
+/tests/test_final_state.py:940: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T15'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T15 a clean rollout leaves every target node live and reserved failed:
+E           1) test T15 a clean rollout leaves every target node live and reserved (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:476
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:477: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+________ test_t16_a_clean_rollout_deploys_every_placement_exactly_once _________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t16_a_clean_rollout_deploys_every_placement_exactly_once(suite_results):
+        """T16 — a clean rollout deploys every placement exactly once."""
+>       _check(suite_results, "T16")
+
+/tests/test_final_state.py:945: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T16'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T16 a clean rollout deploys every placement exactly once failed:
+E           1) test T16 a clean rollout deploys every placement exactly once (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:488
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:489: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+_________________ test_t17_a_clean_rollout_is_marked_succeeded _________________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t17_a_clean_rollout_is_marked_succeeded(suite_results):
+        """T17 — a clean rollout is marked succeeded."""
+>       _check(suite_results, "T17")
+
+/tests/test_final_state.py:950: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T17'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T17 a clean rollout is marked succeeded failed:
+E           1) test T17 a clean rollout is marked succeeded (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:503
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:504: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+__ test_t18_a_clean_rollout_releases_its_lease_and_keeps_the_approval_granted __
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t18_a_clean_rollout_releases_its_lease_and_keeps_the_approval_granted(suite_results):
+        """T18 — a clean rollout releases its lease and keeps the approval granted."""
+>       _check(suite_results, "T18")
+
+/tests/test_final_state.py:955: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T18'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T18 a clean rollout releases its lease and keeps the approval granted failed:
+E           1) test T18 a clean rollout releases its lease and keeps the approval granted (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:511
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:512: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+_____ test_t19_the_middleware_records_the_reactor_lifecycle_of_a_clean_run _____
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t19_the_middleware_records_the_reactor_lifecycle_of_a_clean_run(suite_results):
+        """T19 — the middleware records the reactor lifecycle of a clean run."""
+>       _check(suite_results, "T19")
+
+/tests/test_final_state.py:960: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T19'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T19 the middleware records the reactor lifecycle of a clean run failed:
+E           1) test T19 the middleware records the reactor lifecycle of a clean run (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:523
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:524: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+_______________ test_t20_a_large_rollout_requires_board_approval _______________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t20_a_large_rollout_requires_board_approval(suite_results):
+        """T20 — a large rollout requires board approval."""
+>       _check(suite_results, "T20")
+
+/tests/test_final_state.py:965: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T20'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T20 a large rollout requires board approval failed:
+E           1) test T20 a large rollout requires board approval (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:536
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:537: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+___ test_t21_the_approval_reactor_runs_standalone_and_switches_on_the_total ____
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t21_the_approval_reactor_runs_standalone_and_switches_on_the_total(suite_results):
+        """T21 — the approval reactor runs standalone and switches on the total."""
+>       _check(suite_results, "T21")
+
+/tests/test_final_state.py:970: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T21'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T21 the approval reactor runs standalone and switches on the total failed:
+E           1) test T21 the approval reactor runs standalone and switches on the total (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:548
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:549: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+_______ test_t22_a_transiently_failing_node_is_retried_until_it_deploys ________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t22_a_transiently_failing_node_is_retried_until_it_deploys(suite_results):
+        """T22 — a transiently failing node is retried until it deploys."""
+>       _check(suite_results, "T22")
+
+/tests/test_final_state.py:975: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T22'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T22 a transiently failing node is retried until it deploys failed:
+E           1) test T22 a transiently failing node is retried until it deploys (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:562
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:563: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+_____ test_t23_retry_and_compensation_counters_are_recorded_per_placement ______
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t23_retry_and_compensation_counters_are_recorded_per_placement(suite_results):
+        """T23 — retry and compensation counters are recorded per placement."""
+>       _check(suite_results, "T23")
+
+/tests/test_final_state.py:980: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T23'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T23 retry and compensation counters are recorded per placement failed:
+E           1) test T23 retry and compensation counters are recorded per placement (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:570
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:571: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+____ test_t24_each_failed_attempt_is_compensated_before_the_next_one_starts ____
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t24_each_failed_attempt_is_compensated_before_the_next_one_starts(suite_results):
+        """T24 — each failed attempt is compensated before the next one starts."""
+>       _check(suite_results, "T24")
+
+/tests/test_final_state.py:985: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T24'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T24 each failed attempt is compensated before the next one starts failed:
+E           1) test T24 each failed attempt is compensated before the next one starts (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:587
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:588: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+____________ test_t25_exhausting_the_retry_budget_fails_the_rollout ____________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t25_exhausting_the_retry_budget_fails_the_rollout(suite_results):
+        """T25 — exhausting the retry budget fails the rollout."""
+>       _check(suite_results, "T25")
+
+/tests/test_final_state.py:990: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T25'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T25 exhausting the retry budget fails the rollout failed:
+E           1) test T25 exhausting the retry budget fails the rollout (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:614
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:615: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+____ test_t26_a_failed_rollout_returns_every_node_to_its_original_capacity _____
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t26_a_failed_rollout_returns_every_node_to_its_original_capacity(suite_results):
+        """T26 — a failed rollout returns every node to its original capacity."""
+>       _check(suite_results, "T26")
+
+/tests/test_final_state.py:995: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T26'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T26 a failed rollout returns every node to its original capacity failed:
+E           1) test T26 a failed rollout returns every node to its original capacity (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:619
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:620: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+____ test_t27_a_failed_rollout_undoes_only_the_placements_that_had_deployed ____
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t27_a_failed_rollout_undoes_only_the_placements_that_had_deployed(suite_results):
+        """T27 — a failed rollout undoes only the placements that had deployed."""
+>       _check(suite_results, "T27")
+
+/tests/test_final_state.py:1000: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T27'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T27 a failed rollout undoes only the placements that had deployed failed:
+E           1) test T27 a failed rollout undoes only the placements that had deployed (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:632
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:633: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+_____ test_t28_a_failed_rollout_rolls_back_the_rollout_lease_and_approval ______
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t28_a_failed_rollout_rolls_back_the_rollout_lease_and_approval(suite_results):
+        """T28 — a failed rollout rolls back the rollout, lease and approval."""
+>       _check(suite_results, "T28")
+
+/tests/test_final_state.py:1005: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T28'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T28 a failed rollout rolls back the rollout, lease and approval failed:
+E           1) test T28 a failed rollout rolls back the rollout, lease and approval (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:654
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:655: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+________ test_t29_the_trace_records_one_undo_per_unit_of_completed_work ________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t29_the_trace_records_one_undo_per_unit_of_completed_work(suite_results):
+        """T29 — the trace records one undo per unit of completed work."""
+>       _check(suite_results, "T29")
+
+/tests/test_final_state.py:1010: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T29'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T29 the trace records one undo per unit of completed work failed:
+E           1) test T29 the trace records one undo per unit of completed work (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:668
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:669: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+____ test_t30_rollback_only_begins_once_the_failing_step_is_out_of_attempts ____
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t30_rollback_only_begins_once_the_failing_step_is_out_of_attempts(suite_results):
+        """T30 — rollback only begins once the failing step is out of attempts."""
+>       _check(suite_results, "T30")
+
+/tests/test_final_state.py:1015: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T30'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T30 rollback only begins once the failing step is out of attempts failed:
+E           1) test T30 rollback only begins once the failing step is out of attempts (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:682
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:683: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+____________________ test_t31_deployments_run_two_at_a_time ____________________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t31_deployments_run_two_at_a_time(suite_results):
+        """T31 — deployments run two at a time."""
+>       _check(suite_results, "T31")
+
+/tests/test_final_state.py:1020: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T31'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T31 deployments run two at a time failed:
+E           1) test T31 deployments run two at a time (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:707
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:708: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+____ test_t32_an_impossible_reservation_aborts_before_any_deployment_starts ____
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t32_an_impossible_reservation_aborts_before_any_deployment_starts(suite_results):
+        """T32 — an impossible reservation aborts before any deployment starts."""
+>       _check(suite_results, "T32")
+
+/tests/test_final_state.py:1025: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T32'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T32 an impossible reservation aborts before any deployment starts failed:
+E           1) test T32 an impossible reservation aborts before any deployment starts (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:716
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:717: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+________ test_t33_an_unknown_target_node_aborts_and_releases_everything ________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t33_an_unknown_target_node_aborts_and_releases_everything(suite_results):
+        """T33 — an unknown target node aborts and releases everything."""
+>       _check(suite_results, "T33")
+
+/tests/test_final_state.py:1030: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T33'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T33 an unknown target node aborts and releases everything failed:
+E           1) test T33 an unknown target node aborts and releases everything (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:741
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:742: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+__________ test_t34_a_later_rollout_still_succeeds_after_a_failed_one __________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t34_a_later_rollout_still_succeeds_after_a_failed_one(suite_results):
+        """T34 — a later rollout still succeeds after a failed one."""
+>       _check(suite_results, "T34")
+
+/tests/test_final_state.py:1035: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T34'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T34 a later rollout still succeeds after a failed one failed:
+E           1) test T34 a later rollout still succeeds after a failed one (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:757
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:758: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+_______________________ test_t35_the_trace_can_be_reset ________________________
+
+suite_results = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+
+    def test_t35_the_trace_can_be_reset(suite_results):
+        """T35 — the trace can be reset."""
+>       _check(suite_results, "T35")
+
+/tests/test_final_state.py:1040: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'yCiAgICAgICAgIChleF91bml0IDEuMTguNCkgbGliL2V4X3VuaXQvcnVubmVyLmV4OjMzNjogYW5vbnltb3VzIGZuLzQgaW4gRXhVbml0L..._suite.exs:350: (test)\n', 'test T04 the rollout reactor installs a bespoke middleware module'), ...}, 'returncode': 0}
+test_id = 'T35'
+
+    def _check(suite, test_id):
+        results = suite["results"]
+        if test_id not in results:
+            pytest.fail(
+                f"scenario {test_id} produced no result. The ExUnit suite most likely failed to "
+                f"compile or run against the solution.\n"
+                f"`mix run` exited with {suite['returncode']}.\n"
+                f"--- output tail ---\n{suite['output']}"
+            )
+        status, detail, name = results[test_id]
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T35 the trace can be reset failed:
+E           1) test T35 the trace can be reset (HarborSuite)
+E              /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:774
+E              suite setup failed:
+E              ** (UndefinedFunctionError) function Orchestra.Fleet.list_nodes!/0 is undefined (module Orchestra.Fleet is not available)
+E                  Orchestra.Fleet.list_nodes!()
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:72: HarborSuite.build_state/0
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:60: HarborSuite.__ex_unit_setup_all_0/1
+E                  /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:49: HarborSuite.__ex_unit__/2
+E                  (ex_unit 1.18.4) lib/ex_unit/runner.ex:336: anonymous fn/4 in ExUnit.Runner.run_setup_all/4
+E         
+E              code: ok!(ctx)
+E              stacktrace:
+E                /root/harbor-reactor-97p_v4uc/harbor_reactor_suite.exs:775: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:865: AssertionError
+=========================== short test summary info ============================
+FAILED ../tests/test_final_state.py::test_t01_the_fleet_domain_exposes_the_five_rollout_resources
+FAILED ../tests/test_final_state.py::test_t02_resource_attributes_have_the_required_types_and_defaults
+FAILED ../tests/test_final_state.py::test_t03_the_rollout_reactor_declares_the_four_documented_inputs
+FAILED ../tests/test_final_state.py::test_t04_the_rollout_reactor_installs_a_bespoke_middleware_module
+FAILED ../tests/test_final_state.py::test_t05_resource_work_is_performed_through_ash_reactor_action_steps
+FAILED ../tests/test_final_state.py::test_t06_the_reactor_maps_over_targets_and_composes_the_approval_reactor
+FAILED ../tests/test_final_state.py::test_t07_the_deployment_step_implements_the_reactor_step_callbacks
+FAILED ../tests/test_final_state.py::test_t08_the_approval_reactor_branches_with_a_switch_step
+FAILED ../tests/test_final_state.py::test_t09_the_planning_action_summarises_the_targets
+FAILED ../tests/test_final_state.py::test_t10_the_planning_action_rejects_an_empty_target_list
+FAILED ../tests/test_final_state.py::test_t11_the_planning_action_rejects_duplicate_node_names
+FAILED ../tests/test_final_state.py::test_t12_the_planning_action_rejects_non_positive_slot_counts
+FAILED ../tests/test_final_state.py::test_t13_a_clean_rollout_returns_the_documented_result_map
+FAILED ../tests/test_final_state.py::test_t14_the_rollout_summary_is_rendered_exactly
+FAILED ../tests/test_final_state.py::test_t15_a_clean_rollout_leaves_every_target_node_live_and_reserved
+FAILED ../tests/test_final_state.py::test_t16_a_clean_rollout_deploys_every_placement_exactly_once
+FAILED ../tests/test_final_state.py::test_t17_a_clean_rollout_is_marked_succeeded
+FAILED ../tests/test_final_state.py::test_t18_a_clean_rollout_releases_its_lease_and_keeps_the_approval_granted
+FAILED ../tests/test_final_state.py::test_t19_the_middleware_records_the_reactor_lifecycle_of_a_clean_run
+FAILED ../tests/test_final_state.py::test_t20_a_large_rollout_requires_board_approval
+FAILED ../tests/test_final_state.py::test_t21_the_approval_reactor_runs_standalone_and_switches_on_the_total
+FAILED ../tests/test_final_state.py::test_t22_a_transiently_failing_node_is_retried_until_it_deploys
+FAILED ../tests/test_final_state.py::test_t23_retry_and_compensation_counters_are_recorded_per_placement
+FAILED ../tests/test_final_state.py::test_t24_each_failed_attempt_is_compensated_before_the_next_one_starts
+FAILED ../tests/test_final_state.py::test_t25_exhausting_the_retry_budget_fails_the_rollout
+FAILED ../tests/test_final_state.py::test_t26_a_failed_rollout_returns_every_node_to_its_original_capacity
+FAILED ../tests/test_final_state.py::test_t27_a_failed_rollout_undoes_only_the_placements_that_had_deployed
+FAILED ../tests/test_final_state.py::test_t28_a_failed_rollout_rolls_back_the_rollout_lease_and_approval
+FAILED ../tests/test_final_state.py::test_t29_the_trace_records_one_undo_per_unit_of_completed_work
+FAILED ../tests/test_final_state.py::test_t30_rollback_only_begins_once_the_failing_step_is_out_of_attempts
+FAILED ../tests/test_final_state.py::test_t31_deployments_run_two_at_a_time
+FAILED ../tests/test_final_state.py::test_t32_an_impossible_reservation_aborts_before_any_deployment_starts
+FAILED ../tests/test_final_state.py::test_t33_an_unknown_target_node_aborts_and_releases_everything
+FAILED ../tests/test_final_state.py::test_t34_a_later_rollout_still_succeeds_after_a_failed_one
+FAILED ../tests/test_final_state.py::test_t35_the_trace_can_be_reset - Assert...
+============================= 35 failed in 19.80s ==============================

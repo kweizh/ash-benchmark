@@ -1,0 +1,132 @@
+# Bulk ingestion and reconciliation pipeline (Ash Framework v3)
+
+## Background
+
+`/home/user/ingest` is an offline Elixir project built on **Ash Framework 3.31.0** with the
+`Ash.DataLayer.Ets` data layer. It already ships the `Ingest.Pipeline` domain and a single resource,
+`Ingest.Pipeline.Meter`, which is the meter registry: a `:code` string primary key, a `:scale_bp`
+integer (calibration factor in basis points, `10_000` meaning 1.0) and an `:active` boolean.
+
+Meter readings arrive from field collectors in large, unreliable batches: they contain malformed
+rows, rows repeated inside the same delivery, and rows that were already delivered days ago. Your
+job is to build the ingestion and reconciliation subsystem that turns those deliveries into clean,
+accepted readings and per-meter rollups.
+
+## Requirements
+
+### Resource: `Ingest.Pipeline.Reading`
+
+Backed by `Ash.DataLayer.Ets`, registered in the `Ingest.Pipeline` domain, with these public
+attributes (exact names and types):
+
+| attribute | type | notes |
+| --- | --- | --- |
+| `:external_id` | `:string` | required, globally unique across all readings |
+| `:meter_code` | `:string` | required |
+| `:raw_kwh` | `:integer` | required, never negative |
+| `:net_kwh` | `:integer` | `nil` until the reading has been normalised |
+| `:recorded_on` | `:date` | required |
+| `:batch_ref` | `:string` | required, the delivery the reading arrived in |
+| `:status` | `:atom` | one of `:pending`, `:normalized`, `:accepted`, `:rejected`; new readings start at `:pending` |
+
+Actions:
+
+* `:ingest` — a create action accepting `external_id`, `meter_code`, `raw_kwh`, `recorded_on` and
+  `batch_ref`. Creating one reading with a negative `raw_kwh` must fail with an `Ash.Error.Invalid`
+  reporting the field `:raw_kwh`; creating one whose `external_id` is already stored must fail with
+  an `Ash.Error.Invalid` reporting the field `:external_id`.
+* `:normalize` — an update action that resolves the reading's meter in the registry. If the meter
+  exists and is active, it sets `net_kwh` to `raw_kwh × scale_bp ÷ 10_000` rounded **half up** to a
+  whole number and moves the reading to `:normalized`. Otherwise it moves the reading to `:rejected`
+  and leaves `net_kwh` as it was. This action must **not** be atomically executable: Ash must report
+  it as not requiring atomic execution, and an attempt to run it as a bulk update forced onto the
+  atomic strategy must come back as a failed bulk result with nothing written.
+* `:accept` — an update action that moves a `:normalized` reading to `:accepted`. It must be a
+  **fully atomic** update action (Ash must report it as requiring atomic execution) and it must
+  work as a single atomic bulk update over a query. Running it against a reading whose stored status
+  is not `:normalized` must fail with an error whose field is `:status` and must leave that reading
+  unchanged.
+* a destroy action, and a primary read action that can be paged through with keyset streaming.
+
+### Resource: `Ingest.Pipeline.MeterRollup`
+
+Backed by `Ash.DataLayer.Ets`, registered in the domain, holding at most one row per meter:
+`:meter_code` (`:string`) is its **primary key**, plus `:total_net_kwh` (`:integer`),
+`:reading_count` (`:integer`), `:revision` (`:integer`) and `:last_batch_ref` (`:string`).
+
+### `Ingest.Pipeline.Store.reset!/0`
+
+Removes every persisted record of every resource in the domain (meters included) and returns `:ok`.
+
+### `Ingest.Pipeline.Ingestion`
+
+A module exposing the delivery pipeline. `rows` is always a list of maps with the atom keys
+`:external_id` (binary), `:meter_code` (binary), `:raw_kwh` (integer) and `:recorded_on` (`Date`);
+a key may be absent or carry `nil`. `batch_ref` is a binary that must be stamped on every reading
+created by the call.
+
+**`ingest(rows, batch_ref, opts \\ [])`** — eager. `opts` may carry `:batch_size` (positive integer,
+default `100`). Returns a map with exactly the keys `:batch_ref`, `:status`, `:inserted`,
+`:skipped`, `:failed` and `:inserted_external_ids`, where:
+
+* a row is **failed** when it is malformed. Every failed row is reported as
+  `%{index: zero_based_input_index, external_id: value_or_nil, reason: reason}` and `:failed` is
+  ordered by ascending `:index`. The reasons, applied in this precedence order, are
+  `:missing_field` (one of the four keys is absent or `nil`), `:negative_raw_kwh` (`raw_kwh` is
+  below zero) and `:duplicate_in_batch` (an earlier row of the same call carries the same non-nil
+  `external_id`; the earliest row carrying an `external_id` claims it even if that row itself
+  failed).
+* a row is **skipped** when it is not failed but a reading with that `external_id` was already
+  stored before the call. Skipped rows create nothing and must leave the stored reading exactly as
+  it was, whatever the new row says.
+* every other row is **inserted**. `:inserted` is their count, `:skipped` the count of skipped rows,
+  and `:inserted_external_ids` lists the external ids of the created readings **in input order**,
+  which must hold no matter how many batches the write was split into.
+* `:status` is `:success` when nothing failed, `:error` when something failed and nothing was
+  inserted, and `:partial_success` otherwise.
+* malformed rows must never prevent the sound rows of the same call from being written.
+
+**`ingest_stream(rows, batch_ref, opts \\ [])`** — lazy, and performs no duplicate suppression at
+all. `opts` may carry `:batch_size` (positive integer, default `100`). It returns an enumerable
+that writes nothing until it is consumed and that only writes the whole batches needed to produce
+the elements that are actually demanded — with `batch_size: 10` over 100 rows, taking 5 elements
+must leave exactly 10 readings stored. Its elements come in input order and are `{:ok, reading}`
+for each created record and `{:error, zero_based_input_index}` for each row the resource refused.
+
+**`pending_stream(opts \\ [])`** — returns a lazy enumerable of the `Reading` records whose status
+is `:pending`. `opts` may carry `:batch_size` (positive integer, default `500`). It must fetch
+records from the data layer in pages of at most `:batch_size` records, one data-layer read per page:
+a full pass over 2400 pending readings with `batch_size: 300` must issue between 8 and 10 reads of
+the reading resource, while demanding only the first 3 records must issue at most 2 and must not
+drag the rest of the table into memory.
+
+**`reconcile(batch_ref)`** — one reconciliation pass over the readings of that delivery, and only
+that delivery. Every `:pending` reading of the batch is normalised (see `:normalize`), then every
+`:normalized` reading of the batch is accepted, then the rollups are brought up to date: for every
+meter that gained accepted readings in this pass there must be exactly one `MeterRollup` row whose
+`total_net_kwh` grew by the sum of the `net_kwh` of the readings accepted **in this pass**, whose
+`reading_count` grew by their number, whose `last_batch_ref` is `batch_ref` and whose `revision`
+grew by exactly one. It returns a map with exactly the keys `:batch_ref`, `:normalized`, `:rejected`
+and `:accepted`, counting the readings that reached each of those states **in this pass**. Running
+it again for the same delivery must report zeros and must leave every reading and every rollup row
+byte-for-byte as they were.
+
+**`purge_rejected(batch_ref)`** — destroys every `:rejected` reading of that delivery, touching
+nothing else, and returns how many were destroyed as an integer.
+
+## Implementation Hints
+
+* Project path: `/home/user/ingest`. The project must keep compiling with `mix compile` from that
+  directory.
+* The environment is fully offline and the dependency set is frozen: `mix.exs` and `mix.lock` must
+  not gain new dependencies, and Ash must stay at `3.31.0`.
+* Both new resources must use `Ash.DataLayer.Ets` and must be reachable from the `Ingest.Pipeline`
+  domain.
+* `Ingest.Pipeline.Meter` is already provided; do not change its attribute names or its behaviour.
+* Public entry points are exactly `Ingest.Pipeline.Store.reset!/0`,
+  `Ingest.Pipeline.Ingestion.ingest/2,3`, `Ingest.Pipeline.Ingestion.ingest_stream/2,3`,
+  `Ingest.Pipeline.Ingestion.pending_stream/0,1`, `Ingest.Pipeline.Ingestion.reconcile/1` and
+  `Ingest.Pipeline.Ingestion.purge_rejected/1`. They are called directly as plain Elixir functions.
+* Report maps must carry exactly the keys listed above — no more, no fewer — and counts are plain
+  integers.
+

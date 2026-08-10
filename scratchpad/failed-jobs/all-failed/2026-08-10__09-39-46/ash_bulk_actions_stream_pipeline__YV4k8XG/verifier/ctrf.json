@@ -1,0 +1,398 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-10T02:31:18.936425+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 40,
+            "passed": 37,
+            "failed": 3,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786329053607,
+            "stop": 1786329078936
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_t01_reading_and_meterrollup_are_ets_backed_resources_of_the",
+                "status": "passed",
+                "duration": 25224,
+                "start": 1786329053618,
+                "stop": 1786329078842,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_reading_attributes_have_the_required_names_and_types",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078843,
+                "stop": 1786329078843,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_meterrollup_is_keyed_by_meter_code_and_has_the",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078844,
+                "stop": 1786329078844,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_store_reset_0_removes_every_persisted_record",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078845,
+                "stop": 1786329078845,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_a_clean_batch_is_fully_inserted_and_reported",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078846,
+                "stop": 1786329078846,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_a_negative_reading_fails_with_its_input_index_while",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078847,
+                "stop": 1786329078847,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_rows_with_a_missing_or_nil_required_value_are",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078848,
+                "stop": 1786329078848,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_repeated_external_ids_inside_one_call_keep_the_first",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078849,
+                "stop": 1786329078849,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_failure_reasons_follow_the_stated_precedence",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078850,
+                "stop": 1786329078850,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_re_ingesting_an_identical_batch_inserts_nothing_and_skips",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078851,
+                "stop": 1786329078851,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_a_known_external_id_is_never_overwritten_by_a",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786329078851,
+                "stop": 1786329078852,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_new_known_and_invalid_rows_are_counted_separately_in",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786329078852,
+                "stop": 1786329078853,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_a_batch_in_which_every_row_fails_reports_error",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786329078853,
+                "stop": 1786329078854,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_an_empty_input_list_is_a_successful_no_op",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786329078854,
+                "stop": 1786329078855,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_inserted_ids_keep_input_order_across_several_batches",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786329078855,
+                "stop": 1786329078856,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_the_ingest_action_itself_rejects_a_negative_reading",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786329078856,
+                "stop": 1786329078857,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_the_ingest_action_itself_rejects_a_duplicate_external_id",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786329078857,
+                "stop": 1786329078858,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_ingest_stream_3_writes_nothing_until_it_is_consumed",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078858,
+                "stop": 1786329078858,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_ingest_stream_3_emits_results_and_input_indices_in",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078859,
+                "stop": 1786329078859,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_pending_stream_1_pages_through_the_data_layer",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 24,
+                "start": 1786329078860,
+                "stop": 1786329078884,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...nto the atomic strategy@@passed@@\\n@@HARBOR@@test T40 the stream strategy applies each meter's own factor@@passed@@\\n\"}\n\n    def test_t20_pending_stream_1_pages_through_the_data_layer(suite_run):\n>       _scenario(suite_run, \"T20\")\n\n/tests/test_final_state.py:1080: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...nto the atomic strategy@@passed@@\\n@@HARBOR@@test T40 the stream strategy applies each meter's own factor@@passed@@\\n\"}\nscenario_id = 'T20'\n\n    def _scenario(suite_run, scenario_id):\n        results = suite_run[\"results\"]\n        prefix = f\"test {scenario_id} \"\n        matches = [name for name in results if name.startswith(prefix)]\n        assert matches, (\n            f\"Scenario {scenario_id} did not run.\\n\"\n            f\"STDOUT tail:\\n{_tail(suite_run['stdout'])}\\n\"\n            f\"STDERR tail:\\n{_tail(suite_run['stderr'])}\"\n        )\n        status, detail = results[matches[0]]\n>       assert status == \"passed\", f\"Scenario {scenario_id} failed:\\n{detail}\"\nE       AssertionError: Scenario T20 failed:\nE           1) test T20 pending_stream/1 pages through the data layer (HarborTest)\nE              /tmp/harbor_bulk_pipeline_suite.exs:503\nE              Assertion with == failed\nE              code:  assert length(records) == 2400\nE              left:  251\nE              right: 2400\nE              stacktrace:\nE                /tmp/harbor_bulk_pipeline_suite.exs:513: (test)\nE         \nE       assert 'failed' == 'passed'\nE         - passed\nE         + failed\n\n/tests/test_final_state.py:1000: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t21_pending_stream_1_is_lazy",
+                "status": "passed",
+                "duration": 36,
+                "start": 1786329078884,
+                "stop": 1786329078920,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_pending_stream_1_only_yields_pending_readings",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786329078920,
+                "stop": 1786329078921,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_reconcile_1_normalizes_accepts_and_reports_the_pass",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078921,
+                "stop": 1786329078921,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_normalisation_rounds_halves_up",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786329078921,
+                "stop": 1786329078922,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_readings_for_unknown_or_inactive_meters_are_rejected",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078922,
+                "stop": 1786329078922,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_reconcile_1_builds_one_rollup_row_per_meter",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078922,
+                "stop": 1786329078922,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t27_a_second_batch_accumulates_into_the_existing_rollup",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786329078922,
+                "stop": 1786329078923,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t28_re_running_reconcile_1_for_the_same_batch_changes",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078923,
+                "stop": 1786329078923,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t29_reconcile_1_leaves_other_batches_untouched",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078923,
+                "stop": 1786329078923,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t30_a_rejected_batch_produces_no_rollup_at_all",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078924,
+                "stop": 1786329078924,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t31_purge_rejected_1_destroys_only_the_rejected_rows_of",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078924,
+                "stop": 1786329078924,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t32_purge_rejected_1_returns_zero_when_there_is_nothing",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786329078924,
+                "stop": 1786329078925,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t33_the_accept_action_is_declared_fully_atomic",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078925,
+                "stop": 1786329078925,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t34_an_atomic_bulk_accept_over_a_clean_query_succeeds",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078925,
+                "stop": 1786329078925,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t35_an_atomic_bulk_accept_is_all_or_nothing_when",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786329078925,
+                "stop": 1786329078926,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t36_the_stream_strategy_accepts_every_valid_row_of_the",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 4,
+                "start": 1786329078926,
+                "stop": 1786329078930,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...nto the atomic strategy@@passed@@\\n@@HARBOR@@test T40 the stream strategy applies each meter's own factor@@passed@@\\n\"}\n\n    def test_t36_the_stream_strategy_accepts_every_valid_row_of_the(suite_run):\n>       _scenario(suite_run, \"T36\")\n\n/tests/test_final_state.py:1144: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...nto the atomic strategy@@passed@@\\n@@HARBOR@@test T40 the stream strategy applies each meter's own factor@@passed@@\\n\"}\nscenario_id = 'T36'\n\n    def _scenario(suite_run, scenario_id):\n        results = suite_run[\"results\"]\n        prefix = f\"test {scenario_id} \"\n        matches = [name for name in results if name.startswith(prefix)]\n        assert matches, (\n            f\"Scenario {scenario_id} did not run.\\n\"\n            f\"STDOUT tail:\\n{_tail(suite_run['stdout'])}\\n\"\n            f\"STDERR tail:\\n{_tail(suite_run['stderr'])}\"\n        )\n        status, detail = results[matches[0]]\n>       assert status == \"passed\", f\"Scenario {scenario_id} failed:\\n{detail}\"\nE       AssertionError: Scenario T36 failed:\nE           1) test T36 the stream strategy accepts every valid row of the same query (HarborTest)\nE              /tmp/harbor_bulk_pipeline_suite.exs:803\nE              Assertion with == failed\nE              code:  assert result.status == :partial_success\nE              left:  :error\nE              right: :partial_success\nE              stacktrace:\nE                /tmp/harbor_bulk_pipeline_suite.exs:817: (test)\nE         \nE       assert 'failed' == 'passed'\nE         - passed\nE         + failed\n\n/tests/test_final_state.py:1000: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t37_atomic_batches_only_lose_the_batch_that_contains_a",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078930,
+                "stop": 1786329078930,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t38_accepting_a_reading_that_is_not_normalized_fails_on",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 4,
+                "start": 1786329078931,
+                "stop": 1786329078935,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...nto the atomic strategy@@passed@@\\n@@HARBOR@@test T40 the stream strategy applies each meter's own factor@@passed@@\\n\"}\n\n    def test_t38_accepting_a_reading_that_is_not_normalized_fails_on(suite_run):\n>       _scenario(suite_run, \"T38\")\n\n/tests/test_final_state.py:1152: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('passed', ''), 'test T02 Read...nto the atomic strategy@@passed@@\\n@@HARBOR@@test T40 the stream strategy applies each meter's own factor@@passed@@\\n\"}\nscenario_id = 'T38'\n\n    def _scenario(suite_run, scenario_id):\n        results = suite_run[\"results\"]\n        prefix = f\"test {scenario_id} \"\n        matches = [name for name in results if name.startswith(prefix)]\n        assert matches, (\n            f\"Scenario {scenario_id} did not run.\\n\"\n            f\"STDOUT tail:\\n{_tail(suite_run['stdout'])}\\n\"\n            f\"STDERR tail:\\n{_tail(suite_run['stderr'])}\"\n        )\n        status, detail = results[matches[0]]\n>       assert status == \"passed\", f\"Scenario {scenario_id} failed:\\n{detail}\"\nE       AssertionError: Scenario T38 failed:\nE           1) test T38 accepting a reading that is not normalized fails on :status (HarborTest)\nE              /tmp/harbor_bulk_pipeline_suite.exs:858\nE              Assertion with in failed\nE              code:  assert :status in H.error_fields(error)\nE              left:  :status\nE              right: []\nE              stacktrace:\nE                /tmp/harbor_bulk_pipeline_suite.exs:869: (test)\nE         \nE       assert 'failed' == 'passed'\nE         - passed\nE         + failed\n\n/tests/test_final_state.py:1000: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t39_the_normalize_action_cannot_be_forced_onto_the_atomic",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786329078935,
+                "stop": 1786329078935,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t40_the_stream_strategy_applies_each_meter_s_own_factor",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786329078935,
+                "stop": 1786329078936,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

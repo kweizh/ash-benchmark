@@ -1,0 +1,222 @@
+Traceback (most recent call last):
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/single_step.py", line 77, in _run_agent
+    await self._run_agent_phase(
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py", line 450, in _run_agent_phase
+    await asyncio.wait_for(
+  File "/opt/miniconda3/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py", line 168, in wrapper
+    return await fn(self, instruction, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kw/code/zealt/pochi-harbor/agents/pochi.py", line 230, in run
+    await self.exec_as_agent(
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py", line 592, in exec_as_agent
+    return await self._exec(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/kw/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/agents/installed/base.py", line 559, in _exec
+    raise self._classify_exec_error(command, result)
+harbor.agents.installed.base.NonZeroAgentExitCodeError: Command failed (exit 1): cat > /tmp/pochi_cmd.sh << 'CMD_EOF'
+set -o pipefail
+pochi --model zai/glm-5.2 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl --experimental-stream-trajectory-strip-duplicates > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Derive and hand-extend a GraphQL API from Ash resources
+
+## Background
+
+`/home/user/tracker` is an offline Elixir/Mix project (`:tracker`) that already contains a
+working, ETS-backed Ash domain for a small project tracker. The Ash side is finished: the
+domain `Tracker.Delivery` and the resources `Tracker.Delivery.User`,
+`Tracker.Delivery.Project`, `Tracker.Delivery.Ticket`, `Tracker.Delivery.Label` and
+`Tracker.Delivery.TicketLabel` already declare every attribute, relationship, action,
+validation, calculation, aggregate and policy that is needed. `Tracker.Delivery.Seed.seed!/0`
+loads a deterministic fixture set.
+
+What is missing is the entire GraphQL surface. Your job is to build it with the
+`ash_graphql` and `absinthe` dependencies that are already vendored into the project.
+
+The repository is pinned to `ash 3.31.0`, `ash_graphql 1.10.0` and `absinthe 1.11.0`. Every
+dependency is already vendored in `deps/` and compiled into `_build/`, and the result is
+compiled and graded with the network disabled: do not add, remove or upgrade dependencies, do
+not edit `mix.lock`, and do not rely on fetching anything.
+
+## Requirements
+
+Expose the existing domain as a single Absinthe schema and hand-extend it. The verifier never
+speaks HTTP: it executes GraphQL documents **in-process** with
+`Absinthe.run(document, Tracker.GraphqlSchema, opts)` and asserts on the returned
+`%{data: ..., errors: [...]}` map, so the schema module must be usable stand-alone.
+
+- A GraphQL API derived from the Ash resources, covering queries by primary key, single-record
+  reads, list reads, a Relay connection, create/update/destroy mutations and a generic-action
+  mutation.
+- Relay object identification, including a root `node` field.
+- Derived filter and sort inputs, a calculation exposed as a field that takes arguments, an
+  aggregate exposed as a field, attribute renaming, attribute hiding and a nested input object
+  for a managed relationship.
+- Ash errors mapped onto the GraphQL response with exact codes and shapes, including one
+  project-specific exception that must surface with its own code.
+- Two hand-written root query fields that live alongside the derived ones.
+
+## Implementation Hints
+
+- Project path: `/home/user/tracker`. Everything runs offline; `mix compile` must succeed with
+  no network access.
+- The schema module must be `Tracker.GraphqlSchema`, defined in
+  `lib/tracker/graphql_schema.ex`.
+- You may edit the existing modules under `lib/tracker/`, but the fixture data produced by
+  `Tracker.Delivery.Seed.seed!/0`, the existing Ash action names and their behaviour, and the
+  existing attribute/relationship/calculation/aggregate/policy definitions must keep working
+  exactly as they do now.
+
+### Root fields
+
+The root query type must expose **exactly** these fields and no others:
+`apiInfo`, `auditSprint`, `labels`, `node`, `project`, `projects`, `ticket`,
+`ticketByReference`, `ticketOrFail`, `tickets`, `topTicket`, `users`.
+
+The root mutation type must expose **exactly** these fields and no others:
+`archiveProject`, `createProject`, `createTicket`, `destroyTicket`, `freezeSprint`,
+`updateTicket`.
+
+Behaviour of each root field:
+
+- `ticket(id: ID!): Ticket` — fetch one ticket by primary key, `null` when absent.
+- `ticketOrFail(id: ID!): Ticket!` — same lookup, but a missing record must produce a
+  top-level GraphQL error with `code` `"not_found"` and `data` `null`.
+- `topTicket: Ticket` — resolves the single ticket produced by the existing `:top_severity`
+  read action.
+- `tickets(...): TicketConnection` — a Relay connection over the primary read action.
+- `project(id: ID!): Project` — fetch one project by primary key.
+- `projects: [Project!]!`, `labels: [Label!]!`, `users: [User!]!` — plain non-paginated lists
+  (they must **not** return a page/connection object).
+- `node(id: ID!): Node!` — Relay object identification.
+- `auditSprint(slug: String!): String` — runs the existing `:audit_sprint` generic action.
+  That action raises; the raised message must be visible in the top-level GraphQL error
+  message (`data` is `null`).
+- `apiInfo: ApiInfo!` and `ticketByReference(reference: String!): Ticket` — hand written, see
+  below.
+
+### Object types
+
+GraphQL type names: `Ticket`, `Project`, `User`, `Label`. `Tracker.Delivery.TicketLabel` must
+not appear in the schema.
+
+- `Ticket` fields, exactly: `id`, `title`, `status`, `severity`, `points`, `sequence`,
+  `projectId`, `assigneeId`, `project`, `assignee`, `labels`, `riskScore`.
+  - The `estimate_points` attribute must be exposed under the name `points`; the name
+    `estimatePoints` must not exist anywhere in the schema.
+  - The `internal_reference` attribute must not be exposed at all.
+  - `status` is `TicketStatus!`, where `TicketStatus` is a GraphQL enum whose values are
+    exactly `OPEN`, `IN_PROGRESS`, `BLOCKED`, `DONE`.
+  - `riskScore(weight: Int!): Int` — the existing `:risk_score` calculation, argument included.
+  - `Ticket` must implement the `Node` interface.
+- `Project` fields, exactly: `id`, `name`, `slug`, `archived`, `tickets`, `openTicketCount`.
+  `openTicketCount` is `Int!` and comes from the existing aggregate. `Project` must implement
+  the `Node` interface.
+- `User` fields, exactly: `id`, `email`, `displayName`, `role`, `assignedTickets`. The
+  `internal_notes` attribute must not be exposed. `role` must be typed `String!` — it must not
+  become a GraphQL enum. `User` must **not** implement `Node`.
+- `Label` fields, exactly: `id`, `name`, `colour`, `tickets`.
+- Every to-many relationship field (`Ticket.labels`, `Project.tickets`, `User.assignedTickets`,
+  `Label.tickets`) must accept `sort`, `filter`, `limit` and `offset` arguments and return a
+  non-null list of non-null items.
+
+### Relay
+
+- Every `id` returned for a `Ticket` or a `Project` must be a Relay global ID, and the same
+  value must be accepted wherever that record's id is an input: `ticket`, `ticketOrFail`,
+  `node`, `updateTicket`, `destroyTicket`, `archiveProject`, and the `projectId` / `assigneeId`
+  inputs of `createTicket` and `updateTicket` (which take `Project` and `User` global IDs).
+- Passing a bare primary-key UUID where a global ID is expected must fail with a GraphQL error
+  whose `code` is `"invalid_primary_key"`.
+- `tickets` returns `TicketConnection` with exactly the fields `count`, `edges` and `pageInfo`.
+  `count` is the total number of records matching the query's filter across all pages.
+  `edges` is a list of `TicketEdge`, which has exactly the fields `cursor: String!` and
+  `node: Ticket!`. `pageInfo` exposes `hasNextPage`, `hasPreviousPage`, `startCursor` and
+  `endCursor`. Forward pagination uses `first:` and `after:`, and any edge `cursor` must be
+  usable as `after:`.
+
+### Filtering and sorting
+
+- `tickets` accepts derived `filter:` and `sort:` arguments. The filter input must support
+  `and`, `or` and `not` combinators, per-field operator objects (`eq`, `notEq`, `in`,
+  `greaterThan`, `greaterThanOrEqual`, ...), and filtering through the `project`, `assignee`
+  and `labels` relationships. The renamed `points` field must be filterable and sortable under
+  its GraphQL name.
+- `TicketSortField` must contain exactly `ID`, `TITLE`, `STATUS`, `SEVERITY`, `POINTS`,
+  `SEQUENCE`, `PROJECT_ID`, `ASSIGNEE_ID`, `RISK_SCORE`, and sorting by `RISK_SCORE` must be
+  possible while supplying the calculation's argument.
+- `Label` must be restricted: `LabelSortField` must contain exactly `NAME`, and
+  `LabelFilterInput` must have exactly the input fields `and`, `or`, `not`, `name`.
+
+### Mutations
+
+All six mutations return an object with a `result` field and an `errors: [MutationError!]!`
+field. Action errors must appear in that per-mutation `errors` list — they must never be
+promoted to the response's top-level `errors` key.
+
+- `createTicket(input: CreateTicketInput!)`. `CreateTicketInput` must have exactly the input
+  fields `title`, `status`, `severity`, `points`, `sequence`, `projectId`, `assigneeId`,
+  `newLabels`. `newLabels` is a list of `TicketLabelInput`, a derived input object for the
+  existing `:labels` managed-relationship argument, with exactly the input fields `name` and
+  `colour`; supplying it must create the labels and link them to the new ticket.
+- `updateTicket(id: ID!, input: UpdateTicketInput)`. `UpdateTicketInput` must have exactly the
+  input fields `title`, `status`, `severity`, `points`, `assigneeId`.
+- `destroyTicket(id: ID!)` returns the destroyed record in `result`.
+- `createProject(input: CreateProjectInput!)` and `archiveProject(id: ID!)` wrap the existing
+  `:create` and `:archive` actions. `archiveProject` is policy-protected; when the caller is
+  not authorised the mutation must return `result: null` and a single error with `code`,
+  `message` and `shortMessage` all equal to `"forbidden"` and `fields` equal to `[]`.
+- `freezeSprint(input: FreezeSprintInput!)` wraps the existing `:freeze_sprint` generic action.
+  `FreezeSprintInput` must have exactly the input fields `slug` and `reason` (both
+  `String!`), and the mutation payload must expose `result: String` plus the same `errors`
+  list, i.e. the action's errors must be reported inside the payload rather than at the top
+  level.
+
+### Error shapes
+
+`MutationError` entries must expose `message`, `shortMessage`, `code`, `fields`, `vars` and
+`path`. Concretely:
+
+- A failing attribute validation must produce `code` `"invalid_attribute"`, `fields` holding
+  the offending attribute name, a `message` and `shortMessage` with `%{...}` placeholders
+  already substituted from `vars`, and a `path` of the form `["input", "<graphqlFieldName>"]`.
+- A mutation whose target record does not exist must produce `code` `"not_found"` with
+  `fields` `["id"]`.
+- `Tracker.Delivery.Errors.SprintFrozen` (raised by `:freeze_sprint` for an already archived
+  project) must surface as exactly one error with `code` `"sprint_frozen"`, `shortMessage`
+  `"sprint frozen"`, `message` `"sprint <slug> is already frozen"`, `fields` `["reason"]` and
+  `vars` `%{project_slug: "<slug>"}`.
+
+### Hand-written root fields
+
+- `apiInfo: ApiInfo!` where `ApiInfo` is an object with exactly `name: String!` and
+  `ticketCount: Int!`. `name` is the constant `"tracker"`; `ticketCount` is the current number
+  of `Tracker.Delivery.Ticket` records.
+- `ticketByReference(reference: String!): Ticket` resolves the single ticket whose
+  `internal_reference` attribute equals the argument. It must support the full `Ticket`
+  selection set — nested relationships, the aggregate reachable through `project`, and
+  `riskScore` with its argument must all resolve correctly. When no ticket matches it must
+  resolve to `null` **without** producing any GraphQL error.
+
+### Authorization
+
+The verifier supplies the actor as `Absinthe.run(document, Tracker.GraphqlSchema, context: %{actor: user_struct})`,
+where `user_struct` is a `Tracker.Delivery.User` record. Authorization must stay enabled for
+the domain so the existing policies are enforced.
+
+
+EOF
+CMD_EOF
+setsid --wait bash /tmp/pochi_cmd.sh &
+SETSID_PID=$!
+echo $SETSID_PID > /tmp/setsid_bash_pochi_cmd.pid
+wait $SETSID_PID 2>/dev/null
+stdout: None
+stderr: [37m2026-08-10 01:40:31.265[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	pochi v0.6.20
+[37m2026-08-10 01:40:31.270[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37 ... [196 chars truncated] ... m	BuiltInBundle[39m[22m[0m[0m	Materializing 16 built-in files to /tmp/pochi-builtin-ef402bc2bbe8f440
+[37m2026-08-10 01:40:31.734[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:532913[39m[0m[0m[1m[37m	loadAgents[39m[22m[0m[0m	Loaded 6 custom agents (6 valid, 0 invalid)
+[37m2026-08-10 01:40:31.832[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:532914[39m[0m[0m[1m[37m	loadSkills[39m[22m[0m[0m	Loaded 3 skills (3 valid, 0 invalid)
+A prompt or attachment is required. Please provide one using the -p and/or -a option or by piping input.
+[37m2026-08-10 01:40:31.839[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Process exiting with code 1
+

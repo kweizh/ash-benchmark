@@ -1,0 +1,675 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 52 items
+
+../../../tests/test_final_state.py .......................F....FFFF.F..F [ 71%]
+FFFFF..F.......                                                          [100%]
+
+=================================== FAILURES ===================================
+_________ test_t24_an_editor_can_create_an_article_and_it_is_persisted _________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+
+    def test_t24_an_editor_can_create_an_article_and_it_is_persisted(suite):
+>       _check(suite, "T24")
+
+/tests/test_final_state.py:1056: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+scenario_id = 'T24'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T24 an editor can create an article and it is persisted did not pass (failed):
+E           1) test T24 an editor can create an article and it is persisted (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:392
+E              %{raw: "{\"errors\":[{\"code\":\"something_went_wrong\",\"id\":\"80bdaae1-0809-40c0-ad74-a7ad3b320b66\",\"status\":\"500\",\"title\":\"SomethingWentWrong\",\"detail\":\"Something went wrong. Error id: 80bdaae1-0809-40c0-ad74-a7ad3b320b66\"}],\"jsonapi\":{\"version\":\"1.0\"}}", status: 500, body: %{"errors" => [%{"code" => "something_went_wrong", "detail" => "Something went wrong. Error id: 80bdaae1-0809-40c0-ad74-a7ad3b320b66", "id" => "80bdaae1-0809-40c0-ad74-a7ad3b320b66", "status" => "500", "title" => "SomethingWentWrong"}], "jsonapi" => %{"version" => "1.0"}}, content_type: "application/vnd.api+json"}
+E              code: assert res.status == 201, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:410: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t29_creating_an_article_is_forbidden_for_readers_and_anonymous_callers __
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+
+    def test_t29_creating_an_article_is_forbidden_for_readers_and_anonymous_callers(suite):
+>       _check(suite, "T29")
+
+/tests/test_final_state.py:1071: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+scenario_id = 'T29'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T29 creating an article is forbidden for readers and anonymous callers did not pass (failed):
+E           1) test T29 creating an article is forbidden for readers and anonymous callers (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:498
+E              %{raw: "{\"errors\":[{\"code\":\"something_went_wrong\",\"id\":\"123170fa-aa17-4e48-b64c-09f94ef3eb45\",\"status\":\"500\",\"title\":\"SomethingWentWrong\",\"detail\":\"Something went wrong. Error id: 123170fa-aa17-4e48-b64c-09f94ef3eb45\"}],\"jsonapi\":{\"version\":\"1.0\"}}", status: 500, body: %{"errors" => [%{"code" => "something_went_wrong", "detail" => "Something went wrong. Error id: 123170fa-aa17-4e48-b64c-09f94ef3eb45", "id" => "123170fa-aa17-4e48-b64c-09f94ef3eb45", "status" => "500", "title" => "SomethingWentWrong"}], "jsonapi" => %{"version" => "1.0"}}, content_type: "application/vnd.api+json"}
+E              code: assert reader.status == 403, inspect(reader)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:507: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_____________ test_t30_patching_an_article_updates_its_attributes ______________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+
+    def test_t30_patching_an_article_updates_its_attributes(suite):
+>       _check(suite, "T30")
+
+/tests/test_final_state.py:1074: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+scenario_id = 'T30'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T30 patching an article updates its attributes did not pass (failed):
+E           1) test T30 patching an article updates its attributes (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:518
+E              %{raw: "{\"errors\":[{\"code\":\"something_went_wrong\",\"id\":\"08d065d5-be4b-4358-b075-bf78ba348c1e\",\"status\":\"500\",\"title\":\"SomethingWentWrong\",\"detail\":\"Something went wrong. Error id: 08d065d5-be4b-4358-b075-bf78ba348c1e\"}],\"jsonapi\":{\"version\":\"1.0\"}}", status: 500, body: %{"errors" => [%{"code" => "something_went_wrong", "detail" => "Something went wrong. Error id: 08d065d5-be4b-4358-b075-bf78ba348c1e", "id" => "08d065d5-be4b-4358-b075-bf78ba348c1e", "status" => "500", "title" => "SomethingWentWrong"}], "jsonapi" => %{"version" => "1.0"}}, content_type: "application/vnd.api+json"}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:533: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t31_patching_an_article_can_replace_its_tags_through_data_relationships _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+
+    def test_t31_patching_an_article_can_replace_its_tags_through_data_relationships(suite):
+>       _check(suite, "T31")
+
+/tests/test_final_state.py:1077: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+scenario_id = 'T31'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T31 patching an article can replace its tags through data.relationships did not pass (failed):
+E           1) test T31 patching an article can replace its tags through data.relationships (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:541
+E              %{raw: "{\"errors\":[{\"code\":\"something_went_wrong\",\"id\":\"8477aa04-9626-4029-b8fe-d7b3e69e7c08\",\"status\":\"500\",\"title\":\"SomethingWentWrong\",\"detail\":\"Something went wrong. Error id: 8477aa04-9626-4029-b8fe-d7b3e69e7c08\"}],\"jsonapi\":{\"version\":\"1.0\"}}", status: 500, body: %{"errors" => [%{"code" => "something_went_wrong", "detail" => "Something went wrong. Error id: 8477aa04-9626-4029-b8fe-d7b3e69e7c08", "id" => "8477aa04-9626-4029-b8fe-d7b3e69e7c08", "status" => "500", "title" => "SomethingWentWrong"}], "jsonapi" => %{"version" => "1.0"}}, content_type: "application/vnd.api+json"}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:559: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_____________ test_t32_the_publish_route_promotes_a_draft_article ______________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+
+    def test_t32_the_publish_route_promotes_a_draft_article(suite):
+>       _check(suite, "T32")
+
+/tests/test_final_state.py:1080: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+scenario_id = 'T32'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T32 the publish route promotes a draft article did not pass (failed):
+E           1) test T32 the publish route promotes a draft article (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:566
+E              %{raw: "{\"errors\":[{\"code\":\"something_went_wrong\",\"id\":\"fd686991-bd1d-45d9-bd96-fa07eb342a05\",\"status\":\"500\",\"title\":\"SomethingWentWrong\",\"detail\":\"Something went wrong. Error id: fd686991-bd1d-45d9-bd96-fa07eb342a05\"}],\"jsonapi\":{\"version\":\"1.0\"}}", status: 500, body: %{"errors" => [%{"code" => "something_went_wrong", "detail" => "Something went wrong. Error id: fd686991-bd1d-45d9-bd96-fa07eb342a05", "id" => "fd686991-bd1d-45d9-bd96-fa07eb342a05", "status" => "500", "title" => "SomethingWentWrong"}], "jsonapi" => %{"version" => "1.0"}}, content_type: "application/vnd.api+json"}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:575: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t34_delete_removes_an_article_for_editors_and_is_forbidden_for_readers __
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+
+    def test_t34_delete_removes_an_article_for_editors_and_is_forbidden_for_readers(suite):
+>       _check(suite, "T34")
+
+/tests/test_final_state.py:1086: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+scenario_id = 'T34'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T34 delete removes an article for editors and is forbidden for readers did not pass (failed):
+E           1) test T34 delete removes an article for editors and is forbidden for readers (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:601
+E              %{raw: "{\"errors\":[{\"code\":\"something_went_wrong\",\"id\":\"4357b7e8-1058-4de1-914d-60f9027b78a9\",\"status\":\"500\",\"title\":\"SomethingWentWrong\",\"detail\":\"Something went wrong. Error id: 4357b7e8-1058-4de1-914d-60f9027b78a9\"}],\"jsonapi\":{\"version\":\"1.0\"}}", status: 500, body: %{"errors" => [%{"code" => "something_went_wrong", "detail" => "Something went wrong. Error id: 4357b7e8-1058-4de1-914d-60f9027b78a9", "id" => "4357b7e8-1058-4de1-914d-60f9027b78a9", "status" => "500", "title" => "SomethingWentWrong"}], "jsonapi" => %{"version" => "1.0"}}, content_type: "application/vnd.api+json"}
+E              code: assert denied.status == 403, inspect(denied)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:605: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+__________ test_t37_posting_to_the_tags_relationship_appends_linkage ___________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+
+    def test_t37_posting_to_the_tags_relationship_appends_linkage(suite):
+>       _check(suite, "T37")
+
+/tests/test_final_state.py:1095: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+scenario_id = 'T37'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T37 posting to the tags relationship appends linkage did not pass (failed):
+E           1) test T37 posting to the tags relationship appends linkage (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:637
+E              %{raw: "{\"errors\":[{\"code\":\"something_went_wrong\",\"id\":\"bf2f55fe-0f16-4cf2-9bf8-36aed53d7b7e\",\"status\":\"500\",\"title\":\"SomethingWentWrong\",\"detail\":\"Something went wrong. Error id: bf2f55fe-0f16-4cf2-9bf8-36aed53d7b7e\"}],\"jsonapi\":{\"version\":\"1.0\"}}", status: 500, body: %{"errors" => [%{"code" => "something_went_wrong", "detail" => "Something went wrong. Error id: bf2f55fe-0f16-4cf2-9bf8-36aed53d7b7e", "id" => "bf2f55fe-0f16-4cf2-9bf8-36aed53d7b7e", "status" => "500", "title" => "SomethingWentWrong"}], "jsonapi" => %{"version" => "1.0"}}, content_type: "application/vnd.api+json"}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:646: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+___________ test_t38_patching_the_tags_relationship_replaces_linkage ___________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+
+    def test_t38_patching_the_tags_relationship_replaces_linkage(suite):
+>       _check(suite, "T38")
+
+/tests/test_final_state.py:1098: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+scenario_id = 'T38'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T38 patching the tags relationship replaces linkage did not pass (failed):
+E           1) test T38 patching the tags relationship replaces linkage (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:653
+E              %{raw: "{\"errors\":[{\"code\":\"something_went_wrong\",\"id\":\"4101e969-78c9-48e2-a6f8-dfdf4de05780\",\"status\":\"500\",\"title\":\"SomethingWentWrong\",\"detail\":\"Something went wrong. Error id: 4101e969-78c9-48e2-a6f8-dfdf4de05780\"}],\"jsonapi\":{\"version\":\"1.0\"}}", status: 500, body: %{"errors" => [%{"code" => "something_went_wrong", "detail" => "Something went wrong. Error id: 4101e969-78c9-48e2-a6f8-dfdf4de05780", "id" => "4101e969-78c9-48e2-a6f8-dfdf4de05780", "status" => "500", "title" => "SomethingWentWrong"}], "jsonapi" => %{"version" => "1.0"}}, content_type: "application/vnd.api+json"}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:662: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t39_deleting_from_the_tags_relationship_removes_only_the_supplied_members _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+
+    def test_t39_deleting_from_the_tags_relationship_removes_only_the_supplied_members(suite):
+>       _check(suite, "T39")
+
+/tests/test_final_state.py:1101: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+scenario_id = 'T39'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T39 deleting from the tags relationship removes only the supplied members did not pass (failed):
+E           1) test T39 deleting from the tags relationship removes only the supplied members (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:669
+E              %{raw: "** (KeyError) key :errors not found in: {:error,\n %Ash.Error.Framework{\n   errors: [\n     %Ash.Error.Framework.MustBeAtomic{\n       resource: Kbapi.Knowledge.Article,\n       action: :update,\n       reason: \"cannot atomically manage relationships\",\n       splode: Ash.Error,\n       bread_crumbs: [],\n       vars: [],\n       path: [],\n       stacktrace: #Splode.Stacktrace<>,\n       class: :framework\n     }\n   ]\n }}\n\nIf you are using the dot syntax, such as map.field, make sure the left-hand side of the dot is a map", status: :raised, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:678: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t40_relationship_mutations_reject_malformed_payloads_unknown_ids_and_readers _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+
+    def test_t40_relationship_mutations_reject_malformed_payloads_unknown_ids_and_readers(suite):
+>       _check(suite, "T40")
+
+/tests/test_final_state.py:1104: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+scenario_id = 'T40'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T40 relationship mutations reject malformed payloads, unknown ids and readers did not pass (failed):
+E           1) test T40 relationship mutations reject malformed payloads, unknown ids and readers (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:685
+E              %{raw: "{\"errors\":[{\"code\":\"something_went_wrong\",\"id\":\"4e7510a5-fb07-4fb6-828b-77898a6f0f54\",\"status\":\"500\",\"title\":\"SomethingWentWrong\",\"detail\":\"Something went wrong. Error id: 4e7510a5-fb07-4fb6-828b-77898a6f0f54\"}],\"jsonapi\":{\"version\":\"1.0\"}}", status: 500, body: %{"errors" => [%{"code" => "something_went_wrong", "detail" => "Something went wrong. Error id: 4e7510a5-fb07-4fb6-828b-77898a6f0f54", "id" => "4e7510a5-fb07-4fb6-828b-77898a6f0f54", "status" => "500", "title" => "SomethingWentWrong"}], "jsonapi" => %{"version" => "1.0"}}, content_type: "application/vnd.api+json"}
+E              code: assert unknown.status == 404, inspect(unknown)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:704: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+__ test_t41_the_reindex_generic_action_route_returns_the_exact_tally_document __
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+
+    def test_t41_the_reindex_generic_action_route_returns_the_exact_tally_document(suite):
+>       _check(suite, "T41")
+
+/tests/test_final_state.py:1107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+scenario_id = 'T41'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T41 the reindex generic action route returns the exact tally document did not pass (failed):
+E           1) test T41 the reindex generic action route returns the exact tally document (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:716
+E              %{raw: "{\"errors\":[{\"code\":\"something_went_wrong\",\"id\":\"6469a8b1-9039-4e63-b768-23a5a7d4b4bb\",\"status\":\"500\",\"title\":\"SomethingWentWrong\",\"detail\":\"Something went wrong. Error id: 6469a8b1-9039-4e63-b768-23a5a7d4b4bb\"}],\"jsonapi\":{\"version\":\"1.0\"}}", status: 500, body: %{"errors" => [%{"code" => "something_went_wrong", "detail" => "Something went wrong. Error id: 6469a8b1-9039-4e63-b768-23a5a7d4b4bb", "id" => "6469a8b1-9039-4e63-b768-23a5a7d4b4bb", "status" => "500", "title" => "SomethingWentWrong"}], "jsonapi" => %{"version" => "1.0"}}, content_type: "application/vnd.api+json"}
+E              code: assert res.status == 201, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:719: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+___________ test_t42_the_reindex_route_is_restricted_to_admin_actors ___________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+
+    def test_t42_the_reindex_route_is_restricted_to_admin_actors(suite):
+>       _check(suite, "T42")
+
+/tests/test_final_state.py:1110: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+scenario_id = 'T42'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T42 the reindex route is restricted to admin actors did not pass (failed):
+E           1) test T42 the reindex route is restricted to admin actors (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:723
+E              %{raw: "{\"errors\":[{\"code\":\"something_went_wrong\",\"id\":\"c55f935a-426c-4ea5-ab60-e46be16800a4\",\"status\":\"500\",\"title\":\"SomethingWentWrong\",\"detail\":\"Something went wrong. Error id: c55f935a-426c-4ea5-ab60-e46be16800a4\"}],\"jsonapi\":{\"version\":\"1.0\"}}", status: 500, body: %{"errors" => [%{"code" => "something_went_wrong", "detail" => "Something went wrong. Error id: c55f935a-426c-4ea5-ab60-e46be16800a4", "id" => "c55f935a-426c-4ea5-ab60-e46be16800a4", "status" => "500", "title" => "SomethingWentWrong"}], "jsonapi" => %{"version" => "1.0"}}, content_type: "application/vnd.api+json"}
+E              code: assert editor.status == 403, inspect(editor)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:725: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+__ test_t45_the_moderation_approve_route_approves_a_comment_and_is_restricted __
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+
+    def test_t45_the_moderation_approve_route_approves_a_comment_and_is_restricted(suite):
+>       _check(suite, "T45")
+
+/tests/test_final_state.py:1119: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\ned for error:\n\n** (Ash.Error.Unknown.UnknownError) Bread C...lds', ''), 'T04': ('passed', 'test T04 author linkage is always rendered even without an include parameter', ''), ...}}
+scenario_id = 'T45'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T45 the moderation approve route approves a comment and is restricted did not pass (failed):
+E           1) test T45 the moderation approve route approves a comment and is restricted (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:757
+E              %{raw: "{\"errors\":[{\"code\":\"something_went_wrong\",\"id\":\"85365c1e-24af-49da-ba30-0c0bb92bc801\",\"status\":\"500\",\"title\":\"SomethingWentWrong\",\"detail\":\"Something went wrong. Error id: 85365c1e-24af-49da-ba30-0c0bb92bc801\"}],\"jsonapi\":{\"version\":\"1.0\"}}", status: 500, body: %{"errors" => [%{"code" => "something_went_wrong", "detail" => "Something went wrong. Error id: 85365c1e-24af-49da-ba30-0c0bb92bc801", "id" => "85365c1e-24af-49da-ba30-0c0bb92bc801", "status" => "500", "title" => "SomethingWentWrong"}], "jsonapi" => %{"version" => "1.0"}}, content_type: "application/vnd.api+json"}
+E              code: assert denied.status == 403, inspect(denied)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:766: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+==================================== PASSES ====================================
+_ test_t01_index_route_returns_every_fixture_article_as_a_json_api_resource_object _
+---------------------------- Captured stdout setup -----------------------------
+exit code: 0
+stdout (last 8000 chars):
+ed for error:
+
+** (Ash.Error.Unknown.UnknownError) Bread Crumbs:
+  > Returned from bulk update: Kbapi.Knowledge.Article.update
+
+
+Invalid reference actor.role
+    (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+    (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+    (ash 3.31.0) lib/ash/can.ex:328: Ash.Can.can/4
+    (ash 3.31.0) lib/ash.ex:1869: Ash.can/3
+
+
+02:22:50.992 [warning] `fd686991-bd1d-45d9-bd96-fa07eb342a05`: AshJsonApi.Error not implemented for error:
+
+** (Ash.Error.Unknown.UnknownError) Bread Crumbs:
+  > Returned from bulk update: Kbapi.Knowledge.Article.publish
+
+
+Invalid reference actor.role
+    (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+    (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+    (ash 3.31.0) lib/ash/can.ex:328: Ash.Can.can/4
+    (ash 3.31.0) lib/ash.ex:1869: Ash.can/3
+
+
+02:22:51.112 [warning] `4357b7e8-1058-4de1-914d-60f9027b78a9`: AshJsonApi.Error not implemented for error:
+
+** (Ash.Error.Unknown.UnknownError) Bread Crumbs:
+  > Returned from bulk query destroy: Kbapi.Knowledge.Article.destroy
+
+
+Invalid reference actor.role
+    (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+    (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+    (ash 3.31.0) lib/ash/can.ex:328: Ash.Can.can/4
+    (ash 3.31.0) lib/ash.ex:1869: Ash.can/3
+
+
+02:22:51.494 [warning] `bf2f55fe-0f16-4cf2-9bf8-36aed53d7b7e`: AshJsonApi.Error not implemented for error:
+
+** (Ash.Error.Framework.MustBeAtomic) Kbapi.Knowledge.Article.update must be performed atomically, but it could not be
+
+Reason: cannot atomically manage relationships
+
+See https://hexdocs.pm/ash/update-actions.html#fully-atomic-updates for more on atomics.
+
+    (ash 3.31.0) lib/ash/actions/update/update.ex:241: Ash.Actions.Update.run/4
+    (ash 3.31.0) lib/ash.ex:3904: Ash.update/3
+    (ash_json_api 1.7.1) lib/ash_json_api/controllers/helpers.ex:470: anonymous fn/3 in AshJsonApi.Controllers.Helpers.add_to_relationship/2
+    (ash_json_api 1.7.1) lib/ash_json_api/controllers/post_to_relationship.ex:50: AshJsonApi.Controllers.PostToRelationship.call/2
+    (kbapi 0.1.0) deps/plug/lib/plug/router.ex:263: anonymous fn/4 in Kbapi.Api.Router.dispatch/2
+    (telemetry 1.4.2) /home/user/kbapi/deps/telemetry/src/telemetry.erl:359: :telemetry.span/3
+    (kbapi 0.1.0) deps/plug/lib/plug/router.ex:259: Kbapi.Api.Router.dispatch/2
+    (kbapi 0.1.0) lib/kbapi/api/router.ex:1: Kbapi.Api.Router.plug_builder_call/2
+    (kbapi 0.1.0) lib/kbapi/api/endpoint.ex:1: Kbapi.Api.Endpoint.plug_builder_call/2
+    /tmp/harbor_jsonapi_test.exs:75: H.request/3
+    /tmp/harbor_jsonapi_test.exs:641: KbapiJsonApiTest."test T37 posting to the tags relationship appends linkage"/1
+    (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+    (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+    (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+
+
+02:22:51.505 [warning] `4101e969-78c9-48e2-a6f8-dfdf4de05780`: AshJsonApi.Error not implemented for error:
+
+** (Ash.Error.Framework.MustBeAtomic) Kbapi.Knowledge.Article.update must be performed atomically, but it could not be
+
+Reason: cannot atomically manage relationships
+
+See https://hexdocs.pm/ash/update-actions.html#fully-atomic-updates for more on atomics.
+
+    (ash 3.31.0) lib/ash/actions/update/update.ex:241: Ash.Actions.Update.run/4
+    (ash 3.31.0) lib/ash.ex:3904: Ash.update/3
+    (ash_json_api 1.7.1) lib/ash_json_api/controllers/helpers.ex:501: anonymous fn/3 in AshJsonApi.Controllers.Helpers.replace_relationship/2
+    (ash_json_api 1.7.1) lib/ash_json_api/controllers/patch_relationship.ex:50: AshJsonApi.Controllers.PatchRelationship.call/2
+    (kbapi 0.1.0) deps/plug/lib/plug/router.ex:263: anonymous fn/4 in Kbapi.Api.Router.dispatch/2
+    (telemetry 1.4.2) /home/user/kbapi/deps/telemetry/src/telemetry.erl:359: :telemetry.span/3
+    (kbapi 0.1.0) deps/plug/lib/plug/router.ex:259: Kbapi.Api.Router.dispatch/2
+    (kbapi 0.1.0) lib/kbapi/api/router.ex:1: Kbapi.Api.Router.plug_builder_call/2
+    (kbapi 0.1.0) lib/kbapi/api/endpoint.ex:1: Kbapi.Api.Endpoint.plug_builder_call/2
+    /tmp/harbor_jsonapi_test.exs:75: H.request/3
+    /tmp/harbor_jsonapi_test.exs:657: KbapiJsonApiTest."test T38 patching the tags relationship replaces linkage"/1
+    (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+    (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+    (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+
+
+02:22:51.912 [warning] `4e7510a5-fb07-4fb6-828b-77898a6f0f54`: AshJsonApi.Error not implemented for error:
+
+** (Ash.Error.Framework.MustBeAtomic) Kbapi.Knowledge.Article.update must be performed atomically, but it could not be
+
+Reason: cannot atomically manage relationships
+
+See https://hexdocs.pm/ash/update-actions.html#fully-atomic-updates for more on atomics.
+
+    (ash 3.31.0) lib/ash/actions/update/update.ex:241: Ash.Actions.Update.run/4
+    (ash 3.31.0) lib/ash.ex:3904: Ash.update/3
+    (ash_json_api 1.7.1) lib/ash_json_api/controllers/helpers.ex:470: anonymous fn/3 in AshJsonApi.Controllers.Helpers.add_to_relationship/2
+    (ash_json_api 1.7.1) lib/ash_json_api/controllers/post_to_relationship.ex:50: AshJsonApi.Controllers.PostToRelationship.call/2
+    (kbapi 0.1.0) deps/plug/lib/plug/router.ex:263: anonymous fn/4 in Kbapi.Api.Router.dispatch/2
+    (telemetry 1.4.2) /home/user/kbapi/deps/telemetry/src/telemetry.erl:359: :telemetry.span/3
+    (kbapi 0.1.0) deps/plug/lib/plug/router.ex:259: Kbapi.Api.Router.dispatch/2
+    (kbapi 0.1.0) lib/kbapi/api/router.ex:1: Kbapi.Api.Router.plug_builder_call/2
+    (kbapi 0.1.0) lib/kbapi/api/endpoint.ex:1: Kbapi.Api.Endpoint.plug_builder_call/2
+    /tmp/harbor_jsonapi_test.exs:75: H.request/3
+    /tmp/harbor_jsonapi_test.exs:699: KbapiJsonApiTest."test T40 relationship mutations reject malformed payloads, unknown ids and readers"/1
+    (ex_unit 1.18.4) lib/ex_unit/runner.ex:511: ExUnit.Runner.exec_test/2
+    (stdlib 6.2.2) timer.erl:595: :timer.tc/2
+    (ex_unit 1.18.4) lib/ex_unit/runner.ex:433: anonymous fn/6 in ExUnit.Runner.spawn_test_monitor/4
+
+
+02:22:52.192 [warning] `6469a8b1-9039-4e63-b768-23a5a7d4b4bb`: AshJsonApi.Error not implemented for error:
+
+** (Ash.Error.Unknown.UnknownError) Bread Crumbs:
+  > Error returned from: Kbapi.Knowledge.Article.reindex
+
+
+Invalid reference actor.role
+    (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+    (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+    (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+    (ash 3.31.0) lib/ash/action_input.ex:1915: Ash.ActionInput.run_around_transaction_hooks/2
+
+
+02:22:52.199 [warning] `c55f935a-426c-4ea5-ab60-e46be16800a4`: AshJsonApi.Error not implemented for error:
+
+** (Ash.Error.Unknown.UnknownError) Bread Crumbs:
+  > Error returned from: Kbapi.Knowledge.Article.reindex
+
+
+Invalid reference actor.role
+    (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+    (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+    (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+    (ash 3.31.0) lib/ash/action_input.ex:1915: Ash.ActionInput.run_around_transaction_hooks/2
+
+
+02:22:52.498 [warning] `85365c1e-24af-49da-ba30-0c0bb92bc801`: AshJsonApi.Error not implemented for error:
+
+** (Ash.Error.Unknown.UnknownError) Bread Crumbs:
+  > Returned from bulk query update: Kbapi.Knowledge.Comment.approve
+
+
+Invalid reference actor.role
+    (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+    (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+    (ash 3.31.0) lib/ash/can.ex:328: Ash.Can.can/4
+    (ash 3.31.0) lib/ash.ex:1869: Ash.can/3
+
+stderr (last 8000 chars):
+
+=========================== short test summary info ============================
+PASSED ../../../tests/test_final_state.py::test_t01_index_route_returns_every_fixture_article_as_a_json_api_resource_object
+PASSED ../../../tests/test_final_state.py::test_t02_responses_are_served_as_application_vnd_api_json_with_a_jsonapi_version_member
+PASSED ../../../tests/test_final_state.py::test_t03_article_attributes_contain_exactly_the_public_non_aggregate_fields
+PASSED ../../../tests/test_final_state.py::test_t04_author_linkage_is_always_rendered_even_without_an_include_parameter
+PASSED ../../../tests/test_final_state.py::test_t05_primary_related_and_relationship_routes_generate_links_on_the_resource_object
+PASSED ../../../tests/test_final_state.py::test_t06_sparse_fieldsets_restrict_attributes_and_can_select_the_comment_count_aggregate
+PASSED ../../../tests/test_final_state.py::test_t07_sort_supports_descending_order_with_a_leading_dash
+PASSED ../../../tests/test_final_state.py::test_t08_an_unknown_sort_field_is_rejected_with_invalid_sort
+PASSED ../../../tests/test_final_state.py::test_t09_filtering_by_a_scalar_attribute_narrows_the_collection
+PASSED ../../../tests/test_final_state.py::test_t10_filtering_across_a_relationship_path_works
+PASSED ../../../tests/test_final_state.py::test_t11_filtering_with_a_comparison_operator_works
+PASSED ../../../tests/test_final_state.py::test_t12_filtering_on_an_unknown_field_is_rejected_with_a_400
+PASSED ../../../tests/test_final_state.py::test_t13_include_tags_renders_the_tag_resources_in_the_included_member
+PASSED ../../../tests/test_final_state.py::test_t14_a_multi_hop_include_path_is_accepted_and_renders_both_hops
+PASSED ../../../tests/test_final_state.py::test_t15_an_undeclared_include_path_is_rejected_with_invalid_includes
+PASSED ../../../tests/test_final_state.py::test_t16_the_article_index_paginates_by_offset_and_advertises_a_next_link
+PASSED ../../../tests/test_final_state.py::test_t17_following_the_offset_next_link_returns_the_remaining_articles
+PASSED ../../../tests/test_final_state.py::test_t18_the_feed_route_is_keyset_paginated_and_defaults_to_two_rank_descending_articles
+PASSED ../../../tests/test_final_state.py::test_t19_following_the_feed_cursor_returns_the_last_page_and_stops
+PASSED ../../../tests/test_final_state.py::test_t20_a_corrupt_keyset_cursor_is_rejected_with_invalid_keyset
+PASSED ../../../tests/test_final_state.py::test_t21_the_feed_route_respects_an_explicit_page_limit
+PASSED ../../../tests/test_final_state.py::test_t22_fetching_an_unknown_article_id_returns_a_404_not_found_document
+PASSED ../../../tests/test_final_state.py::test_t23_the_tag_collection_ignores_filter_and_sort_query_parameters
+PASSED ../../../tests/test_final_state.py::test_t25_a_missing_required_attribute_produces_a_required_error_with_a_source_pointer
+PASSED ../../../tests/test_final_state.py::test_t26_a_constraint_violation_produces_invalid_attribute_with_the_offending_pointer
+PASSED ../../../tests/test_final_state.py::test_t27_an_attribute_that_is_not_accepted_produces_invalid_body
+PASSED ../../../tests/test_final_state.py::test_t28_a_create_body_without_data_type_is_rejected_with_missing_type
+PASSED ../../../tests/test_final_state.py::test_t33_the_publish_route_refuses_an_archived_article_with_the_documented_message
+PASSED ../../../tests/test_final_state.py::test_t35_the_related_comments_route_returns_full_comment_resources
+PASSED ../../../tests/test_final_state.py::test_t36_the_relationship_route_returns_bare_resource_identifier_objects
+PASSED ../../../tests/test_final_state.py::test_t43_the_tally_route_wraps_its_result_and_validates_its_arguments
+PASSED ../../../tests/test_final_state.py::test_t44_the_moderation_base_route_lists_pending_comments
+PASSED ../../../tests/test_final_state.py::test_t46_the_author_related_articles_route_returns_that_author_s_articles
+PASSED ../../../tests/test_final_state.py::test_t47_anyone_may_create_a_comment_through_the_comment_collection
+PASSED ../../../tests/test_final_state.py::test_t48_an_unknown_actor_handle_is_rejected_with_a_401_error_document
+PASSED ../../../tests/test_final_state.py::test_t49_content_negotiation_rejects_unusable_accept_and_content_type_headers
+PASSED ../../../tests/test_final_state.py::test_t50_unmatched_paths_inside_and_outside_the_api_prefix_return_distinct_404_documents
+PASSED ../../../tests/test_final_state.py::test_t51_the_open_api_document_is_served_and_describes_every_route
+PASSED ../../../tests/test_final_state.py::test_t52_the_json_schema_document_is_served
+FAILED ../../../tests/test_final_state.py::test_t24_an_editor_can_create_an_article_and_it_is_persisted
+FAILED ../../../tests/test_final_state.py::test_t29_creating_an_article_is_forbidden_for_readers_and_anonymous_callers
+FAILED ../../../tests/test_final_state.py::test_t30_patching_an_article_updates_its_attributes
+FAILED ../../../tests/test_final_state.py::test_t31_patching_an_article_can_replace_its_tags_through_data_relationships
+FAILED ../../../tests/test_final_state.py::test_t32_the_publish_route_promotes_a_draft_article
+FAILED ../../../tests/test_final_state.py::test_t34_delete_removes_an_article_for_editors_and_is_forbidden_for_readers
+FAILED ../../../tests/test_final_state.py::test_t37_posting_to_the_tags_relationship_appends_linkage
+FAILED ../../../tests/test_final_state.py::test_t38_patching_the_tags_relationship_replaces_linkage
+FAILED ../../../tests/test_final_state.py::test_t39_deleting_from_the_tags_relationship_removes_only_the_supplied_members
+FAILED ../../../tests/test_final_state.py::test_t40_relationship_mutations_reject_malformed_payloads_unknown_ids_and_readers
+FAILED ../../../tests/test_final_state.py::test_t41_the_reindex_generic_action_route_returns_the_exact_tally_document
+FAILED ../../../tests/test_final_state.py::test_t42_the_reindex_route_is_restricted_to_admin_actors
+FAILED ../../../tests/test_final_state.py::test_t45_the_moderation_approve_route_approves_a_comment_and_is_restricted
+======================== 13 failed, 39 passed in 31.16s ========================

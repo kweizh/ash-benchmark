@@ -1,0 +1,23 @@
+{
+    "task": {
+        "path": "/home/kw/code/zealt/ash-benchmark/scratchpad/pending-tasks/ash_keyset_pagination_feed_api",
+        "source": "pending-tasks"
+    },
+    "trial_name": "ash_keyset_pagination_feed_api__cA7LXs7",
+    "trials_dir": "jobs/2026-08-10__09-39-44",
+    "agent": {
+        "name": "agents.pochi:Pochi",
+        "model_name": "zai/glm-5.2",
+        "env": {
+            "POCHI_API_KEY": "${POCHI_API_KEY}"
+        }
+    },
+    "environment": {
+        "type": "daytona",
+        "override_memory_mb": 4096
+    },
+    "artifacts": [
+        "/home/user"
+    ],
+    "job_id": "ffa0d4cc-2970-49cc-9536-9038f17fcc42"
+}

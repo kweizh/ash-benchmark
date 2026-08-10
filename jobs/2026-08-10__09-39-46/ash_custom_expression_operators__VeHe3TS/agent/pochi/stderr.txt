@@ -1,0 +1,572 @@
+[37m2026-08-10 01:41:41.446[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	pochi v0.6.20
+[37m2026-08-10 01:41:41.451[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	PochiConfigManager[39m[22m[0m[0m	add workspace config: /root/.pochi/config.jsonc
+[37m2026-08-10 01:41:41.680[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	BuiltInBundle[39m[22m[0m[0m	Materializing 16 built-in files to /tmp/pochi-builtin-ef402bc2bbe8f440
+[37m2026-08-10 01:41:41.859[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:532913[39m[0m[0m[1m[37m	loadAgents[39m[22m[0m[0m	Loaded 6 custom agents (6 valid, 0 invalid)
+[37m2026-08-10 01:41:41.961[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:532914[39m[0m[0m[1m[37m	loadSkills[39m[22m[0m[0m	Loaded 3 skills (3 valid, 0 invalid)
+[37m2026-08-10 01:41:42.064[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:443306[39m[0m[0m[1m[37m	PochiVendor[39m[22m[0m[0m	JWT is expiring or missing, fetching a new one
+[37m2026-08-10 01:41:43.268[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:419194[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	MCP servers configuration changed via signal:
+[37m2026-08-10 01:41:43.268[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:419306[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	Build MCPHub Status
+[37m2026-08-10 01:41:43.394[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Starting task runner...
+[37m2026-08-10 01:41:43.556[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: null, new: # Extend the Ash expression language for SLA analytics
+[37m2026-08-10 01:41:52.609[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/sla_lab and recursive [33mtrue[39m
+[37m2026-08-10 01:41:55.658[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: # Extend the Ash expression language for SLA analytics, new: Extend the Ash expression language for SLA analytics
+[37m2026-08-10 01:41:57.820[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/lib/sla_lab/ops.ex" resolvedPath="/home/user/sla_lab/lib/sla_lab/ops.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:57.820[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:57.820[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/lib/sla_lab/ops/shipment.ex" resolvedPath="/home/user/sla_lab/lib/sla_lab/ops/shipment.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:57.820[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:57.820[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/lib/sla_lab/ops/carrier.ex" resolvedPath="/home/user/sla_lab/lib/sla_lab/ops/carrier.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:57.820[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:57.821[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/lib/sla_lab/ops/seed.ex" resolvedPath="/home/user/sla_lab/lib/sla_lab/ops/seed.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:57.821[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:57.821[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/mix.exs" resolvedPath="/home/user/sla_lab/mix.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:57.821[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:57.821[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/config/config.exs" resolvedPath="/home/user/sla_lab/config/config.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:57.821[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:57.822[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/lib/sla_lab/ops.ex" mtime=1786284248180 contentLen=151
+[37m2026-08-10 01:41:57.823[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/lib/sla_lab/ops/shipment.ex" mtime=1786284248904 contentLen=896
+[37m2026-08-10 01:41:57.824[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/lib/sla_lab/ops/carrier.ex" mtime=1786284248525 contentLen=587
+[37m2026-08-10 01:41:57.825[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/lib/sla_lab/ops/seed.ex" mtime=1786284249161 contentLen=1971
+[37m2026-08-10 01:41:57.826[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/mix.exs" mtime=1786284246957 contentLen=369
+[37m2026-08-10 01:41:57.835[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/config/config.exs" mtime=1786284247806 contentLen=91
+[37m2026-08-10 01:42:05.837[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: null, new: I need to understand how Ash Framework 3.31.0 handles custom expressions, custom expression modules, and query functions. Please explore the following areas in `/home/user/sla_lab/deps/ash/lib/ash/`:
+[37m2026-08-10 01:42:31.011[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/custom_expression.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/custom_expression.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:31.019[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:31.019[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/query/function.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/query/function.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:31.020[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:31.020[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/sla_lab/deps/ash/lib/ash/expr and recursive [90mundefined[39m
+[37m2026-08-10 01:42:31.021[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib custom_expression|CustomExpression|register_expression [90mundefined[39m
+[37m2026-08-10 01:42:31.022[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'custom_expression|CustomExpression|register_expression'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:42:31.026[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/ash.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/ash.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:31.026[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:31.031[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/custom_expression.ex" mtime=1786284250000 contentLen=3672
+[37m2026-08-10 01:42:33.413[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: I need to understand how Ash Framework 3.31.0 handles custom expressions, custom expression modules, and query functions. Please explore the following areas in `/home/user/sla_lab/deps/ash/lib/ash/`:, new: Explore Ash Framework 3.31.0 custom expression and query function internals
+[37m2026-08-10 01:42:39.026[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/expr/expr.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/expr/expr.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:39.026[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:39.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/expr/sat.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/expr/sat.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:39.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:39.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/info/manifest/generator/capabilities_builder.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/info/manifest/generator/capabilities_builder.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:39.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:39.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/info/manifest/custom_expression.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/info/manifest/custom_expression.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:39.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:39.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/info/manifest/applicable_custom_expression.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/info/manifest/applicable_custom_expression.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:39.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:39.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=60 endLine=75
+[37m2026-08-10 01:42:39.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:39.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=3890 endLine=4160
+[37m2026-08-10 01:42:39.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:39.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1590 endLine=1690
+[37m2026-08-10 01:42:39.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:39.030[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/expr/expr.ex" mtime=1786284250000 contentLen=30000
+[37m2026-08-10 01:42:39.032[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/expr/sat.ex" mtime=1786284250000 contentLen=14908
+[37m2026-08-10 01:42:39.034[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/info/manifest/generator/capabilities_builder.ex" mtime=1786284250000 contentLen=6963
+[37m2026-08-10 01:42:39.036[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/info/manifest/custom_expression.ex" mtime=1786284250000 contentLen=849
+[37m2026-08-10 01:42:39.038[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/info/manifest/applicable_custom_expression.ex" mtime=1786284250000 contentLen=593
+[37m2026-08-10 01:42:39.040[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=8488
+[37m2026-08-10 01:42:39.042[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=325
+[37m2026-08-10 01:42:39.044[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=2970
+[37m2026-08-10 01:42:47.639[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=80
+[37m2026-08-10 01:42:47.640[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1590, endLine=1690, timestamp=1786284250000}
+[37m2026-08-10 01:42:47.640[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/runtime.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/runtime.ex" isVirtual=false cacheExists=true shouldCache=true startLine=440 endLine=500
+[37m2026-08-10 01:42:47.640[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:47.640[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=2790 endLine=2810
+[37m2026-08-10 01:42:47.640[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1590, endLine=1690, timestamp=1786284250000}
+[37m2026-08-10 01:42:47.641[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=3070 endLine=3100
+[37m2026-08-10 01:42:47.641[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1590, endLine=1690, timestamp=1786284250000}
+[37m2026-08-10 01:42:47.641[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/query/operator/operator.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/query/operator/operator.ex" isVirtual=false cacheExists=true shouldCache=true startLine=200 endLine=250
+[37m2026-08-10 01:42:47.641[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:47.641[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/type/type.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/type/type.ex" isVirtual=false cacheExists=true shouldCache=true startLine=330 endLine=355
+[37m2026-08-10 01:42:47.641[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:47.644[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=1454
+[37m2026-08-10 01:42:47.646[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/runtime.ex" mtime=1786284250000 contentLen=1486
+[37m2026-08-10 01:42:47.647[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=770
+[37m2026-08-10 01:42:47.648[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=812
+[37m2026-08-10 01:42:47.650[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/query/operator/operator.ex" mtime=1786284250000 contentLen=1494
+[37m2026-08-10 01:42:47.651[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/type/type.ex" mtime=1786284250000 contentLen=985
+[37m2026-08-10 01:42:54.463[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/mix/tasks/gen/ash.gen.custom_expression.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/mix/tasks/gen/ash.gen.custom_expression.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:54.463[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:54.463[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/policy/authorizer/authorizer.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/policy/authorizer/authorizer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1055 endLine=1085
+[37m2026-08-10 01:42:54.464[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:54.464[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/info/manifest/filter_capabilities.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/info/manifest/filter_capabilities.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:54.464[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:54.464[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/info/manifest/generator/operator_resolver.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/info/manifest/generator/operator_resolver.ex" isVirtual=false cacheExists=true shouldCache=true startLine=120 endLine=145
+[37m2026-08-10 01:42:54.464[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:54.464[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/info/manifest.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/info/manifest.ex" isVirtual=false cacheExists=true shouldCache=true startLine=230 endLine=300
+[37m2026-08-10 01:42:54.464[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:54.469[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/mix/tasks/gen/ash.gen.custom_expression.ex" mtime=1786284250000 contentLen=2497
+[37m2026-08-10 01:42:54.473[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/policy/authorizer/authorizer.ex" mtime=1786284250000 contentLen=1357
+[37m2026-08-10 01:42:54.477[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/info/manifest/filter_capabilities.ex" mtime=1786284250000 contentLen=1255
+[37m2026-08-10 01:42:54.480[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/info/manifest/generator/operator_resolver.ex" mtime=1786284250000 contentLen=933
+[37m2026-08-10 01:42:54.483[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/info/manifest.ex" mtime=1786284250000 contentLen=2732
+[37m2026-08-10 01:43:01.468[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/sla_lab/deps/ash/lib/ash/query and pattern **/function*
+[37m2026-08-10 01:43:01.469[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/expr/expr.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/expr/expr.ex" isVirtual=false cacheExists=true shouldCache=true startLine=680 endLine=780
+[37m2026-08-10 01:43:01.469[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786284250000}
+[37m2026-08-10 01:43:01.474[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/expr/expr.ex" mtime=1786284250000 contentLen=2606
+[37m2026-08-10 01:43:01.486[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 2 files matching pattern **/function*
+[37m2026-08-10 01:43:07.571[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/query/function/function.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/query/function/function.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:43:07.571[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:43:07.575[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/query/function/function.ex" mtime=1786284250000 contentLen=8859
+[37m2026-08-10 01:43:44.772[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/custom_expression.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/custom_expression.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:43:44.772[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:43:44.773[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/query/function.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/query/function.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:43:44.773[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:43:44.778[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/custom_expression.ex" mtime=1786284250000 contentLen=3672
+[37m2026-08-10 01:43:48.731[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/sla_lab/deps/ash/lib/ash/query and pattern **/*.ex
+[37m2026-08-10 01:43:48.732[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/sla_lab/deps/ash/lib/ash/expr and pattern **/*.ex
+[37m2026-08-10 01:43:48.734[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 2 files matching pattern **/*.ex
+[37m2026-08-10 01:43:48.739[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 62 files matching pattern **/*.ex
+[37m2026-08-10 01:43:52.078[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/query/function/function.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/query/function/function.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:43:52.078[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:43:52.078[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/expr/expr.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/expr/expr.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:43:52.078[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:43:52.081[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/query/function/function.ex" mtime=1786284250000 contentLen=8859
+[37m2026-08-10 01:43:52.084[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/expr/expr.ex" mtime=1786284250000 contentLen=30000
+[37m2026-08-10 01:43:57.140[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib custom_expression *.ex
+[37m2026-08-10 01:43:57.141[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'custom_expression'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:44:02.063[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=4140 endLine=4170
+[37m2026-08-10 01:44:02.063[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:44:02.063[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=3895 endLine=3950
+[37m2026-08-10 01:44:02.063[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:44:02.063[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=60 endLine=80
+[37m2026-08-10 01:44:02.063[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:44:02.067[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=742
+[37m2026-08-10 01:44:02.070[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=1755
+[37m2026-08-10 01:44:02.073[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=397
+[37m2026-08-10 01:44:10.879[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/query/function/round.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/query/function/round.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:44:10.879[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:44:10.879[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/query/function/if.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/query/function/if.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:44:10.879[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:44:10.882[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/query/function/round.ex" mtime=1786284250000 contentLen=1053
+[37m2026-08-10 01:44:10.885[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/query/function/if.ex" mtime=1786284250000 contentLen=5123
+[37m2026-08-10 01:44:16.180[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib def new\( *.ex
+[37m2026-08-10 01:44:16.181[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'def new\\('[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:44:22.282[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=3800 endLine=3910
+[37m2026-08-10 01:44:22.283[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=60, endLine=80, timestamp=1786284250000}
+[37m2026-08-10 01:44:22.287[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=3242
+[37m2026-08-10 01:44:28.129[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=3960 endLine=4010
+[37m2026-08-10 01:44:28.129[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=3800, endLine=3910, timestamp=1786284250000}
+[37m2026-08-10 01:44:28.134[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=2061
+[37m2026-08-10 01:44:31.949[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib/ash/filter defp get_function *.ex
+[37m2026-08-10 01:44:31.950[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'defp get_function'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib/ash/filter'[39m
+]
+[37m2026-08-10 01:44:37.223[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib defp get_function *.ex
+[37m2026-08-10 01:44:37.223[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'defp get_function'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:44:41.661[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib get_function *.ex
+[37m2026-08-10 01:44:41.661[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'get_function'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:44:45.218[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=5130 endLine=5185
+[37m2026-08-10 01:44:45.218[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=3960, endLine=4010, timestamp=1786284250000}
+[37m2026-08-10 01:44:45.224[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=1262
+[37m2026-08-10 01:44:50.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib/ash/filter @builtin_functions *.ex
+[37m2026-08-10 01:44:50.027[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'@builtin_functions'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib/ash/filter'[39m
+]
+[37m2026-08-10 01:44:53.715[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=68 endLine=230
+[37m2026-08-10 01:44:53.716[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=5130, endLine=5185, timestamp=1786284250000}
+[37m2026-08-10 01:44:53.722[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=4936
+[37m2026-08-10 01:45:00.054[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib CustomExpression *.ex
+[37m2026-08-10 01:45:00.063[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'CustomExpression'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:45:04.804[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/runtime.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/runtime.ex" isVirtual=false cacheExists=true shouldCache=true startLine=445 endLine=485
+[37m2026-08-10 01:45:04.805[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:45:04.808[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/runtime.ex" mtime=1786284250000 contentLen=1075
+[37m2026-08-10 01:45:09.989[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=3850 endLine=4015
+[37m2026-08-10 01:45:09.990[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=68, endLine=230, timestamp=1786284250000}
+[37m2026-08-10 01:45:09.996[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=5645
+[37m2026-08-10 01:45:14.986[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib defmodule.*Validation *.ex
+[37m2026-08-10 01:45:14.986[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'defmodule.*Validation'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:45:18.197[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/resource/validation.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/resource/validation.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:45:18.197[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:45:18.204[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/resource/validation.ex" mtime=1786284250000 contentLen=11957
+[37m2026-08-10 01:45:22.907[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/resource/validation/compare.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/resource/validation/compare.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:45:22.907[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:45:22.913[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/resource/validation/compare.ex" mtime=1786284250000 contentLen=13240
+[37m2026-08-10 01:45:29.866[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=70
+[37m2026-08-10 01:45:29.866[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=3850, endLine=4015, timestamp=1786284250000}
+[37m2026-08-10 01:45:29.870[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/filter/filter.ex" mtime=1786284250000 contentLen=1317
+[37m2026-08-10 01:45:35.290[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib/ash/policy defmodule.*Policy *.ex
+[37m2026-08-10 01:45:35.290[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'defmodule.*Policy'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib/ash/policy'[39m
+]
+[37m2026-08-10 01:45:38.595[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/policy/check/expression.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/policy/check/expression.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:45:38.595[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:45:38.602[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/policy/check/expression.ex" mtime=1786284250000 contentLen=466
+[37m2026-08-10 01:45:46.085[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/policy/authorizer/authorizer.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/policy/authorizer/authorizer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=50
+[37m2026-08-10 01:45:46.085[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:45:46.092[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/policy/authorizer/authorizer.ex" mtime=1786284250000 contentLen=1201
+[37m2026-08-10 01:47:08.332[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib data_layer_functions *.ex
+[37m2026-08-10 01:47:08.332[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'data_layer_functions'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:47:14.914[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/data_layer/data_layer.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/data_layer/data_layer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=425 endLine=450
+[37m2026-08-10 01:47:14.915[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:47:14.924[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/data_layer/data_layer.ex" mtime=1786284250000 contentLen=924
+[37m2026-08-10 01:47:21.055[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib def functions\( *.ex
+[37m2026-08-10 01:47:21.055[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'def functions\\('[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:47:25.120[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/data_layer/data_layer.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/data_layer/data_layer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1700 endLine=1730
+[37m2026-08-10 01:47:25.121[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=425, endLine=450, timestamp=1786284250000}
+[37m2026-08-10 01:47:25.128[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/data_layer/data_layer.ex" mtime=1786284250000 contentLen=835
+[37m2026-08-10 01:47:30.779[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib def functions\( *.ex
+[37m2026-08-10 01:47:30.780[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'def functions\\('[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:47:35.455[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib def functions\(_resource *.ex
+[37m2026-08-10 01:47:35.455[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'def functions\\(_resource'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:47:40.166[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib/ash/data_layer functions *.ex
+[37m2026-08-10 01:47:40.166[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'functions'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib/ash/data_layer'[39m
+]
+[37m2026-08-10 01:47:43.448[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/sla_lab/deps/ash/lib and pattern **/data_layer/ets.ex
+[37m2026-08-10 01:47:43.488[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 0 files matching pattern **/data_layer/ets.ex
+[37m2026-08-10 01:47:46.374[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/sla_lab/deps/ash/lib and pattern **/ets/**/*.ex
+[37m2026-08-10 01:47:46.395[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 2 files matching pattern **/ets/**/*.ex
+[37m2026-08-10 01:47:50.251[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib/ash/data_layer/ets functions *.ex
+[37m2026-08-10 01:47:50.251[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'functions'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib/ash/data_layer/ets'[39m
+]
+[37m2026-08-10 01:47:59.461[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib extra_functions|additional_functions|register_function *.ex
+[37m2026-08-10 01:47:59.461[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'extra_functions|additional_functions|register_function'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:48:04.400[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib :functions *.ex
+[37m2026-08-10 01:48:04.401[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m':functions'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:48:09.533[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/info/manifest/generator/capabilities_builder.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/info/manifest/generator/capabilities_builder.ex" isVirtual=false cacheExists=true shouldCache=true startLine=70 endLine=110
+[37m2026-08-10 01:48:09.533[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:48:09.544[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/info/manifest/generator/capabilities_builder.ex" mtime=1786284250000 contentLen=1384
+[37m2026-08-10 01:48:16.936[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib :functions *.ex
+[37m2026-08-10 01:48:16.936[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m':functions'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:48:20.721[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/data_layer/ets/ets.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/data_layer/ets/ets.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:48:20.721[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:48:20.728[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/data_layer/ets/ets.ex" mtime=1786284250000 contentLen=30000
+[37m2026-08-10 01:49:20.516[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/query/aggregate.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/query/aggregate.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=50
+[37m2026-08-10 01:49:20.516[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:49:20.525[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/query/aggregate.ex" mtime=1786284250000 contentLen=1092
+[37m2026-08-10 01:49:24.580[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib defmodule.*Aggregates\.Count *.ex
+[37m2026-08-10 01:49:24.580[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'defmodule.*Aggregates\\.Count'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:49:28.128[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib module.*Aggregates *.ex
+[37m2026-08-10 01:49:28.128[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'module.*Aggregates'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:49:45.030[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib Ash\.Resource\.Dsl\.Aggregates *.ex
+[37m2026-08-10 01:49:45.030[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'Ash\\.Resource\\.Dsl\\.Aggregates'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:49:48.248[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib aggregates do *.ex
+[37m2026-08-10 01:49:48.248[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'aggregates do'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:49:51.511[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/resource/dsl.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/resource/dsl.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1550 endLine=1700
+[37m2026-08-10 01:49:51.511[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:49:51.525[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/resource/dsl.ex" mtime=1786284250000 contentLen=4133
+[37m2026-08-10 01:49:57.003[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib @count.*%Spark *.ex
+[37m2026-08-10 01:49:57.003[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'@count.*%Spark'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 01:50:00.190[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/resource/dsl.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/resource/dsl.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1266 endLine=1330
+[37m2026-08-10 01:50:00.190[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1550, endLine=1700, timestamp=1786284250000}
+[37m2026-08-10 01:50:00.199[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/resource/dsl.ex" mtime=1786284250000 contentLen=1882
+[37m2026-08-10 01:50:03.820[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/resource/aggregate.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/resource/aggregate.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=80
+[37m2026-08-10 01:50:03.820[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:50:06.868[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/sla_lab/deps/ash/lib and pattern **/resource/aggregate*
+[37m2026-08-10 01:50:06.931[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 1 files matching pattern **/resource/aggregate*
+[37m2026-08-10 01:50:15.550[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/sla_lab/deps/ash/lib/ash/resource/aggregate and recursive [90mundefined[39m
+[37m2026-08-10 01:50:19.025[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/resource/aggregate/aggregate.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/resource/aggregate/aggregate.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=80
+[37m2026-08-10 01:50:19.025[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:50:19.034[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/resource/aggregate/aggregate.ex" mtime=1786284250000 contentLen=2132
+[37m2026-08-10 01:52:46.444[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/config/config.exs" resolvedPath="/home/user/sla_lab/config/config.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:52:46.445[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786284247806}
+[37m2026-08-10 01:52:46.455[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: range match, currentMtime=1786284247806 cachedMtime=1786284247806 match=true
+[37m2026-08-10 01:52:46.455[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: DEDUPLICATED for "/home/user/sla_lab/config/config.exs"
+[37m2026-08-10 01:52:49.432[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/config/config.exs" resolvedPath="/home/user/sla_lab/config/config.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:52:49.432[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786284247806}
+[37m2026-08-10 01:52:49.442[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: range match, currentMtime=1786284247806 cachedMtime=1786284247806 match=true
+[37m2026-08-10 01:52:49.442[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: DEDUPLICATED for "/home/user/sla_lab/config/config.exs"
+[37m2026-08-10 02:05:46.143[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/lib/sla_lab/ops/shipment.ex" resolvedPath="/home/user/sla_lab/lib/sla_lab/ops/shipment.ex" isVirtual=false cacheExists=true shouldCache=true startLine=38 endLine=55
+[37m2026-08-10 02:05:46.144[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786326408206}
+[37m2026-08-10 02:05:46.160[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/lib/sla_lab/ops/shipment.ex" mtime=1786326408206 contentLen=501
+[37m2026-08-10 02:07:36.463[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib set_attribute.*arg *.ex
+[37m2026-08-10 02:07:36.464[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'set_attribute.*arg'[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 02:24:33.625[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/resource/change/builtins.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/resource/change/builtins.ex" isVirtual=false cacheExists=true shouldCache=true startLine=130 endLine=170
+[37m2026-08-10 02:24:33.626[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:24:33.627[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/resource/change/builtins.ex" mtime=1786284250000 contentLen=1222
+[37m2026-08-10 02:30:28.402[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib def try_cast\( *.ex
+[37m2026-08-10 02:30:28.403[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'def try_cast\\('[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib'[39m
+]
+[37m2026-08-10 02:30:33.201[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/query/type.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/query/type.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=80
+[37m2026-08-10 02:30:33.202[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:30:33.229[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/query/type.ex" mtime=1786284250000 contentLen=1767
+[37m2026-08-10 02:30:39.667[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/sla_lab/deps/ash/lib/ash/type def coerce\( string.ex
+[37m2026-08-10 02:30:39.667[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'string.ex'[39m,
+  [32m'def coerce\\('[39m,
+  [32m'/home/user/sla_lab/deps/ash/lib/ash/type'[39m
+]
+[37m2026-08-10 02:30:43.127[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/deps/ash/lib/ash/type/string.ex" resolvedPath="/home/user/sla_lab/deps/ash/lib/ash/type/string.ex" isVirtual=false cacheExists=true shouldCache=true startLine=295 endLine=310
+[37m2026-08-10 02:30:43.127[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:30:43.155[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/deps/ash/lib/ash/type/string.ex" mtime=1786284250000 contentLen=334
+[37m2026-08-10 02:32:55.387[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/lib/sla_lab/expressions/route_key.ex" resolvedPath="/home/user/sla_lab/lib/sla_lab/expressions/route_key.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:32:55.387[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786326365567}
+[37m2026-08-10 02:32:55.387[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/lib/sla_lab/expressions/ratio_bps.ex" resolvedPath="/home/user/sla_lab/lib/sla_lab/expressions/ratio_bps.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:32:55.387[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786326374516}
+[37m2026-08-10 02:32:55.387[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/lib/sla_lab/expressions/penalty_points.ex" resolvedPath="/home/user/sla_lab/lib/sla_lab/expressions/penalty_points.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:32:55.388[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786329022440}
+[37m2026-08-10 02:32:55.388[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/lib/sla_lab/ops/validations/ratio_within.ex" resolvedPath="/home/user/sla_lab/lib/sla_lab/ops/validations/ratio_within.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:32:55.388[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786326638779}
+[37m2026-08-10 02:32:55.388[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/lib/sla_lab/ops/shipment.ex" resolvedPath="/home/user/sla_lab/lib/sla_lab/ops/shipment.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:32:55.388[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786328768067}
+[37m2026-08-10 02:32:55.388[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/lib/sla_lab/ops/carrier.ex" resolvedPath="/home/user/sla_lab/lib/sla_lab/ops/carrier.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:32:55.388[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786326629946}
+[37m2026-08-10 02:32:55.388[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/lib/sla_lab/ops.ex" resolvedPath="/home/user/sla_lab/lib/sla_lab/ops.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:32:55.388[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786326423878}
+[37m2026-08-10 02:32:55.388[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/sla_lab/config/config.exs" resolvedPath="/home/user/sla_lab/config/config.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:32:55.388[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786326775384}
+[37m2026-08-10 02:32:55.413[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/lib/sla_lab/expressions/route_key.ex" mtime=1786326365567 contentLen=698
+[37m2026-08-10 02:32:55.440[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/lib/sla_lab/expressions/ratio_bps.ex" mtime=1786326374516 contentLen=975
+[37m2026-08-10 02:32:55.452[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/lib/sla_lab/expressions/penalty_points.ex" mtime=1786329022440 contentLen=1572
+[37m2026-08-10 02:32:55.462[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/lib/sla_lab/ops/validations/ratio_within.ex" mtime=1786326638779 contentLen=894
+[37m2026-08-10 02:32:55.474[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/lib/sla_lab/ops/shipment.ex" mtime=1786328768067 contentLen=1951
+[37m2026-08-10 02:32:55.485[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/lib/sla_lab/ops/carrier.ex" mtime=1786326629946 contentLen=934
+[37m2026-08-10 02:32:55.496[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/lib/sla_lab/ops.ex" mtime=1786326423878 contentLen=313
+[37m2026-08-10 02:32:55.506[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/sla_lab/config/config.exs" mtime=1786326775384 contentLen=191
+[37m2026-08-10 02:34:22.409[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/sla_lab/lib and recursive [33mtrue[39m
+[37m2026-08-10 02:34:37.706[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Task runner finished successfully.
+[37m2026-08-10 02:34:37.706[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Shutting down...
+[37m2026-08-10 02:34:37.890[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Shutdown completed. Process will exit.
+[37m2026-08-10 02:34:37.890[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Process exiting with code 0

@@ -1,0 +1,3092 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 44 items
+
+../tests/test_final_state.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF [ 97%]
+F                                                                        [100%]
+
+=================================== FAILURES ===================================
+______________ test_t01_tenancy_helper_maps_slugs_to_schema_names ______________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t01_tenancy_helper_maps_slugs_to_schema_names(suite):
+>       _check(suite, "T01")
+
+/tests/test_final_state.py:1137: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T01'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T01] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+______________ test_t02_tenant_resources_use_context_multitenancy ______________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t02_tenant_resources_use_context_multitenancy(suite):
+>       _check(suite, "T02")
+
+/tests/test_final_state.py:1140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T02'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T02] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+________ test_t03_resources_are_wired_to_ash_postgres_and_their_tables _________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t03_resources_are_wired_to_ash_postgres_and_their_tables(suite):
+>       _check(suite, "T03")
+
+/tests/test_final_state.py:1143: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T03'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T03] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+_____________ test_t04_repo_declares_required_postgres_extensions ______________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t04_repo_declares_required_postgres_extensions(suite):
+>       _check(suite, "T04")
+
+/tests/test_final_state.py:1146: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T04'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T04] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+___________ test_t05_tenant_tables_are_absent_from_the_public_schema ___________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t05_tenant_tables_are_absent_from_the_public_schema(suite):
+>       _check(suite, "T05")
+
+/tests/test_final_state.py:1149: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T05'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T05] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+______ test_t06_tenant_migrations_recreate_every_table_in_a_fresh_schema _______
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t06_tenant_migrations_recreate_every_table_in_a_fresh_schema(suite):
+>       _check(suite, "T06")
+
+/tests/test_final_state.py:1152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T06'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T06] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+____________ test_t07_all_tenants_lists_one_schema_per_organisation ____________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t07_all_tenants_lists_one_schema_per_organisation(suite):
+>       _check(suite, "T07")
+
+/tests/test_final_state.py:1155: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T07'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T07] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+__________ test_t08_registering_an_organisation_provisions_its_schema __________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t08_registering_an_organisation_provisions_its_schema(suite):
+>       _check(suite, "T08")
+
+/tests/test_final_state.py:1158: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T08'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T08] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+___________ test_t09_same_subscription_code_may_exist_in_two_tenants ___________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t09_same_subscription_code_may_exist_in_two_tenants(suite):
+>       _check(suite, "T09")
+
+/tests/test_final_state.py:1161: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T09'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T09] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+______ test_t10_duplicate_subscription_code_inside_one_tenant_is_rejected ______
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t10_duplicate_subscription_code_inside_one_tenant_is_rejected(suite):
+>       _check(suite, "T10")
+
+/tests/test_final_state.py:1164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T10'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T10] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+___________ test_t11_reading_without_a_tenant_raises_tenant_required ___________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t11_reading_without_a_tenant_raises_tenant_required(suite):
+>       _check(suite, "T11")
+
+/tests/test_final_state.py:1167: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T11'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T11] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+___________ test_t12_global_resources_are_readable_without_a_tenant ____________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t12_global_resources_are_readable_without_a_tenant(suite):
+>       _check(suite, "T12")
+
+/tests/test_final_state.py:1170: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T12'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T12] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+________________ test_t13_reads_are_scoped_to_the_tenant_schema ________________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t13_reads_are_scoped_to_the_tenant_schema(suite):
+>       _check(suite, "T13")
+
+/tests/test_final_state.py:1173: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T13'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T13] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+__________ test_t14_records_of_one_tenant_are_invisible_from_another ___________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t14_records_of_one_tenant_are_invisible_from_another(suite):
+>       _check(suite, "T14")
+
+/tests/test_final_state.py:1176: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T14'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T14] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+_________ test_t15_aggregates_and_relationship_loads_are_tenant_scoped _________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t15_aggregates_and_relationship_loads_are_tenant_scoped(suite):
+>       _check(suite, "T15")
+
+/tests/test_final_state.py:1179: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T15'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T15] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+________ test_t16_tenant_rows_are_physically_stored_in_their_own_schema ________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t16_tenant_rows_are_physically_stored_in_their_own_schema(suite):
+>       _check(suite, "T16")
+
+/tests/test_final_state.py:1182: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T16'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T16] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+_________ test_t17_tenant_tables_carry_no_tenant_discriminator_column __________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t17_tenant_tables_carry_no_tenant_discriminator_column(suite):
+>       _check(suite, "T17")
+
+/tests/test_final_state.py:1185: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T17'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T17] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+____________ test_t18_emitted_sql_is_schema_qualified_to_one_tenant ____________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t18_emitted_sql_is_schema_qualified_to_one_tenant(suite):
+>       _check(suite, "T18")
+
+/tests/test_final_state.py:1188: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T18'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T18] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+__________ test_t19_an_organisation_struct_can_be_used_as_the_tenant ___________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t19_an_organisation_struct_can_be_used_as_the_tenant(suite):
+>       _check(suite, "T19")
+
+/tests/test_final_state.py:1191: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T19'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T19] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+________ test_t20_usage_record_calculations_return_the_expected_values _________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t20_usage_record_calculations_return_the_expected_values(suite):
+>       _check(suite, "T20")
+
+/tests/test_final_state.py:1194: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T20'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T20] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+_________ test_t21_usage_record_calculations_run_in_one_postgres_query _________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t21_usage_record_calculations_run_in_one_postgres_query(suite):
+>       _check(suite, "T21")
+
+/tests/test_final_state.py:1197: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T21'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T21] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+___________ test_t22_calculation_filter_and_sort_happen_in_postgres ____________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t22_calculation_filter_and_sort_happen_in_postgres(suite):
+>       _check(suite, "T22")
+
+/tests/test_final_state.py:1200: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T22'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T22] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+______________ test_t23_search_action_matches_case_insensitively _______________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t23_search_action_matches_case_insensitively(suite):
+>       _check(suite, "T23")
+
+/tests/test_final_state.py:1203: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T23'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T23] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+______________ test_t24_numbered_action_matches_case_sensitively _______________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t24_numbered_action_matches_case_sensitively(suite):
+>       _check(suite, "T24")
+
+/tests/test_final_state.py:1206: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T24'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T24] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+____________ test_t25_fuzzy_action_uses_postgres_trigram_similarity ____________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t25_fuzzy_action_uses_postgres_trigram_similarity(suite):
+>       _check(suite, "T25")
+
+/tests/test_final_state.py:1209: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T25'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T25] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+____________ test_t26_subscription_aggregates_report_exact_figures _____________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t26_subscription_aggregates_report_exact_figures(suite):
+>       _check(suite, "T26")
+
+/tests/test_final_state.py:1212: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T26'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T26] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+____________ test_t27_empty_relationships_use_the_declared_defaults ____________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t27_empty_relationships_use_the_declared_defaults(suite):
+>       _check(suite, "T27")
+
+/tests/test_final_state.py:1215: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T27'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T27] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+____________ test_t28_average_issued_cents_composes_two_aggregates _____________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t28_average_issued_cents_composes_two_aggregates(suite):
+>       _check(suite, "T28")
+
+/tests/test_final_state.py:1218: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T28'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T28] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+_____________ test_t29_overage_cents_calls_the_custom_sql_function _____________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t29_overage_cents_calls_the_custom_sql_function(suite):
+>       _check(suite, "T29")
+
+/tests/test_final_state.py:1221: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T29'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T29] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+_____________ test_t30_type_cast_renders_an_integer_as_text_in_sql _____________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t30_type_cast_renders_an_integer_as_text_in_sql(suite):
+>       _check(suite, "T30")
+
+/tests/test_final_state.py:1224: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T30'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T30] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+__________ test_t31_all_aggregates_and_calculations_load_in_one_query __________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t31_all_aggregates_and_calculations_load_in_one_query(suite):
+>       _check(suite, "T31")
+
+/tests/test_final_state.py:1227: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T31'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T31] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+_______________ test_t32_aggregates_are_usable_as_query_filters ________________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t32_aggregates_are_usable_as_query_filters(suite):
+>       _check(suite, "T32")
+
+/tests/test_final_state.py:1230: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T32'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T32] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+__________ test_t33_aggregate_over_belongs_to_joins_the_public_schema __________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t33_aggregate_over_belongs_to_joins_the_public_schema(suite):
+>       _check(suite, "T33")
+
+/tests/test_final_state.py:1233: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T33'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T33] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+_____________ test_t34_invoice_aggregates_and_derived_calculation ______________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t34_invoice_aggregates_and_derived_calculation(suite):
+>       _check(suite, "T34")
+
+/tests/test_final_state.py:1236: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T34'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T34] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+_____________ test_t35_aggregates_over_a_many_to_many_relationship _____________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t35_aggregates_over_a_many_to_many_relationship(suite):
+>       _check(suite, "T35")
+
+/tests/test_final_state.py:1239: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T35'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T35] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+_________ test_t36_close_period_bills_pending_usage_in_one_transaction _________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t36_close_period_bills_pending_usage_in_one_transaction(suite):
+>       _check(suite, "T36")
+
+/tests/test_final_state.py:1242: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T36'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T36] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+________ test_t37_close_period_rolls_back_every_write_on_a_late_failure ________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t37_close_period_rolls_back_every_write_on_a_late_failure(suite):
+>       _check(suite, "T37")
+
+/tests/test_final_state.py:1245: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T37'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T37] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+_______________ test_t38_close_period_is_declared_transactional ________________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t38_close_period_is_declared_transactional(suite):
+>       _check(suite, "T38")
+
+/tests/test_final_state.py:1248: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T38'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T38] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+________________ test_t39_successful_issue_runs_hooks_in_order _________________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t39_successful_issue_runs_hooks_in_order(suite):
+>       _check(suite, "T39")
+
+/tests/test_final_state.py:1251: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T39'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T39] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+______ test_t40_failed_issue_rolls_back_and_still_runs_after_transaction _______
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t40_failed_issue_rolls_back_and_still_runs_after_transaction(suite):
+>       _check(suite, "T40")
+
+/tests/test_final_state.py:1254: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T40'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T40] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+___________ test_t41_concurrent_spends_are_serialised_by_a_row_lock ____________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t41_concurrent_spends_are_serialised_by_a_row_lock(suite):
+>       _check(suite, "T41")
+
+/tests/test_final_state.py:1257: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T41'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T41] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+_____________ test_t42_spending_more_than_the_balance_is_rejected ______________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t42_spending_more_than_the_balance_is_rejected(suite):
+>       _check(suite, "T42")
+
+/tests/test_final_state.py:1260: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T42'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T42] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+___________________ test_t43_spend_locks_the_row_for_update ____________________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t43_spend_locks_the_row_for_update(suite):
+>       _check(suite, "T43")
+
+/tests/test_final_state.py:1263: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T43'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T43] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+____________ test_t44_spending_in_one_tenant_never_touches_another _____________
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+
+    def test_t44_spending_in_one_tenant_never_touches_another(suite):
+>       _check(suite, "T44")
+
+/tests/test_final_state.py:1266: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = ({}, '`mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.\nSTDO...ions to be found, please\nmake sure your repository has been properly configured\nand the configured path exists.\n\n')
+scenario = 'T44'
+
+    def _check(suite, scenario):
+        results, failure = suite
+        if not results:
+>           pytest.fail(f"[{scenario}] the verification suite could not run. {failure}")
+E           Failed: [T44] the verification suite could not run. `mix ash_postgres.migrate` failed; the committed migrations under priv/repo/migrations must apply cleanly.
+E           STDOUT 
+E           STDERR warning: AshPostgres: You have not installed the `ash-functions` extension.
+E           
+E           The following features will not be available:
+E           
+E           - atomics (using the `raise_ash_error` function)
+E           - `string_trim` (using the `ash_trim_whitespace` function)
+E           - the `||` and `&&` operators (using the `ash_elixir_and` and `ash_elixir_or` functions)
+E           
+E           To address this warning, do one of two things:
+E           
+E           1. add the `"ash-functions"` extension to your `installed_extensions/0` function, and then generate migrations.
+E           
+E               def installed_extensions do
+E                 ["ash-functions"]
+E               end
+E           
+E           If you are *not* using the migration generator, but would like to leverage these features, follow the above instructions,
+E           and then visit the source for `ash_postgres` and copy the latest version of those functions into your own migrations:
+E           
+E           2. disable this warning, by adding the following to your `use` statement:
+E           
+E               use AshPostgres.Repo,
+E                 ..
+E                 warn_on_missing_ash_functions?: false
+E           
+E           Keep in mind that if you disable this warning, you will not be able to use the features mentioned above.
+E           If you are in an environment where you cannot define functions, you will have to use the second option.
+E           
+E           
+E           https://github.com/ash-project/ash_postgres/blob/main/lib/migration_generator/ash_functions.ex
+E           
+E             (elixir 1.18.4) src/elixir_module.erl:490: anonymous fn/6 in :elixir_module.expand_callback/6
+E             (elixir 1.18.4) src/elixir_module.erl:489: :elixir_module.expand_callback/6
+E             (stdlib 6.2.2) lists.erl:2146: :lists.foldl/3
+E             (elixir 1.18.4) src/elixir_module.erl:225: :elixir_module.compile/7
+E             (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E             (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E           
+E           ** (Mix) Could not find migrations directory "priv/repo/migrations"
+E           for repo Billing.Repo.
+E           
+E           This may be because you are in a new project and the
+E           migration directory has not been created yet. Creating an
+E           empty directory at the path above will fix this error.
+E           
+E           If you expected existing migrations to be found, please
+E           make sure your repository has been properly configured
+E           and the configured path exists.
+
+/tests/test_final_state.py:1128: Failed
+=========================== short test summary info ============================
+FAILED ../tests/test_final_state.py::test_t01_tenancy_helper_maps_slugs_to_schema_names
+FAILED ../tests/test_final_state.py::test_t02_tenant_resources_use_context_multitenancy
+FAILED ../tests/test_final_state.py::test_t03_resources_are_wired_to_ash_postgres_and_their_tables
+FAILED ../tests/test_final_state.py::test_t04_repo_declares_required_postgres_extensions
+FAILED ../tests/test_final_state.py::test_t05_tenant_tables_are_absent_from_the_public_schema
+FAILED ../tests/test_final_state.py::test_t06_tenant_migrations_recreate_every_table_in_a_fresh_schema
+FAILED ../tests/test_final_state.py::test_t07_all_tenants_lists_one_schema_per_organisation
+FAILED ../tests/test_final_state.py::test_t08_registering_an_organisation_provisions_its_schema
+FAILED ../tests/test_final_state.py::test_t09_same_subscription_code_may_exist_in_two_tenants
+FAILED ../tests/test_final_state.py::test_t10_duplicate_subscription_code_inside_one_tenant_is_rejected
+FAILED ../tests/test_final_state.py::test_t11_reading_without_a_tenant_raises_tenant_required
+FAILED ../tests/test_final_state.py::test_t12_global_resources_are_readable_without_a_tenant
+FAILED ../tests/test_final_state.py::test_t13_reads_are_scoped_to_the_tenant_schema
+FAILED ../tests/test_final_state.py::test_t14_records_of_one_tenant_are_invisible_from_another
+FAILED ../tests/test_final_state.py::test_t15_aggregates_and_relationship_loads_are_tenant_scoped
+FAILED ../tests/test_final_state.py::test_t16_tenant_rows_are_physically_stored_in_their_own_schema
+FAILED ../tests/test_final_state.py::test_t17_tenant_tables_carry_no_tenant_discriminator_column
+FAILED ../tests/test_final_state.py::test_t18_emitted_sql_is_schema_qualified_to_one_tenant
+FAILED ../tests/test_final_state.py::test_t19_an_organisation_struct_can_be_used_as_the_tenant
+FAILED ../tests/test_final_state.py::test_t20_usage_record_calculations_return_the_expected_values
+FAILED ../tests/test_final_state.py::test_t21_usage_record_calculations_run_in_one_postgres_query
+FAILED ../tests/test_final_state.py::test_t22_calculation_filter_and_sort_happen_in_postgres
+FAILED ../tests/test_final_state.py::test_t23_search_action_matches_case_insensitively
+FAILED ../tests/test_final_state.py::test_t24_numbered_action_matches_case_sensitively
+FAILED ../tests/test_final_state.py::test_t25_fuzzy_action_uses_postgres_trigram_similarity
+FAILED ../tests/test_final_state.py::test_t26_subscription_aggregates_report_exact_figures
+FAILED ../tests/test_final_state.py::test_t27_empty_relationships_use_the_declared_defaults
+FAILED ../tests/test_final_state.py::test_t28_average_issued_cents_composes_two_aggregates
+FAILED ../tests/test_final_state.py::test_t29_overage_cents_calls_the_custom_sql_function
+FAILED ../tests/test_final_state.py::test_t30_type_cast_renders_an_integer_as_text_in_sql
+FAILED ../tests/test_final_state.py::test_t31_all_aggregates_and_calculations_load_in_one_query
+FAILED ../tests/test_final_state.py::test_t32_aggregates_are_usable_as_query_filters
+FAILED ../tests/test_final_state.py::test_t33_aggregate_over_belongs_to_joins_the_public_schema
+FAILED ../tests/test_final_state.py::test_t34_invoice_aggregates_and_derived_calculation
+FAILED ../tests/test_final_state.py::test_t35_aggregates_over_a_many_to_many_relationship
+FAILED ../tests/test_final_state.py::test_t36_close_period_bills_pending_usage_in_one_transaction
+FAILED ../tests/test_final_state.py::test_t37_close_period_rolls_back_every_write_on_a_late_failure
+FAILED ../tests/test_final_state.py::test_t38_close_period_is_declared_transactional
+FAILED ../tests/test_final_state.py::test_t39_successful_issue_runs_hooks_in_order
+FAILED ../tests/test_final_state.py::test_t40_failed_issue_rolls_back_and_still_runs_after_transaction
+FAILED ../tests/test_final_state.py::test_t41_concurrent_spends_are_serialised_by_a_row_lock
+FAILED ../tests/test_final_state.py::test_t42_spending_more_than_the_balance_is_rejected
+FAILED ../tests/test_final_state.py::test_t43_spend_locks_the_row_for_update
+FAILED ../tests/test_final_state.py::test_t44_spending_in_one_tenant_never_touches_another
+============================= 44 failed in 48.98s ==============================

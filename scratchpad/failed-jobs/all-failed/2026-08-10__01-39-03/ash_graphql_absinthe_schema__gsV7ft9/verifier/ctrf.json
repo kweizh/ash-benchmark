@@ -1,0 +1,428 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-09T18:05:49.549009+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 44,
+            "passed": 43,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786298730106,
+            "stop": 1786298749548
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_t01_root_query_exposes_exactly_the_required_fields",
+                "status": "passed",
+                "duration": 19375,
+                "start": 1786298730117,
+                "stop": 1786298749492,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_root_mutation_exposes_exactly_the_required_fields",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749493,
+                "stop": 1786298749494,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_ticket_object_exposes_renamed_and_hidden_fields_correctly",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749494,
+                "stop": 1786298749495,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_ticket_status_is_a_non_null_ticketstatus_enum",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749495,
+                "stop": 1786298749496,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_ticket_and_project_implement_node_user_does_not",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749496,
+                "stop": 1786298749497,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_user_object_hides_internal_notes_and_exposes_role_as_a_string",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749497,
+                "stop": 1786298749498,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_project_exposes_the_aggregate_as_a_non_null_int",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298749499,
+                "stop": 1786298749499,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_riskscore_is_a_nullable_int_field_taking_a_weight_argument",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749500,
+                "stop": 1786298749501,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_tickets_is_a_relay_connection_with_the_standard_shape",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749501,
+                "stop": 1786298749502,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_projects_labels_and_users_are_plain_non_paginated_lists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749502,
+                "stop": 1786298749503,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_create_input_objects_are_derived_with_the_required_names",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749503,
+                "stop": 1786298749504,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_label_filtering_and_sorting_is_restricted_to_name",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749504,
+                "stop": 1786298749505,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_ticketorfail_is_non_null_while_ticket_is_nullable",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749505,
+                "stop": 1786298749506,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_the_generic_action_mutation_returns_a_string_result_plus_errors",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749506,
+                "stop": 1786298749507,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_the_hand_written_apiinfo_query_works",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298749508,
+                "stop": 1786298749508,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_ticket_is_fetched_by_its_relay_global_id",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298749509,
+                "stop": 1786298749509,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_a_raw_uuid_is_rejected_by_the_relay_aware_get_query",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298749510,
+                "stop": 1786298749510,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_node_resolves_ticket_and_project_global_ids",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749511,
+                "stop": 1786298749512,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_topticket_read_one_returns_the_single_highest_severity_ticket",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749512,
+                "stop": 1786298749513,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_projects_exposes_the_filtered_count_aggregate",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749513,
+                "stop": 1786298749514,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t21_labels_can_be_sorted_by_name",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749514,
+                "stop": 1786298749515,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_hidden_attributes_are_not_part_of_the_schema",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749515,
+                "stop": 1786298749516,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_relationships_and_calculations_resolve_through_a_get_query",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749516,
+                "stop": 1786298749517,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_the_first_connection_page_reports_the_total_count_and_page_info",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749517,
+                "stop": 1786298749518,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_forward_pagination_walks_the_whole_connection_without_gaps",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749518,
+                "stop": 1786298749519,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_an_edge_cursor_can_be_used_as_the_after_argument",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749519,
+                "stop": 1786298749520,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t27_a_ticket_created_through_the_api_shows_up_at_the_end_of_the_connection",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749520,
+                "stop": 1786298749521,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t28_the_connection_honours_a_filter_and_reports_the_filtered_count",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749521,
+                "stop": 1786298749522,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t29_boolean_filter_combinators_are_derived_from_the_resource",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749522,
+                "stop": 1786298749523,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t30_an_or_filter_is_supported",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749523,
+                "stop": 1786298749524,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t31_the_renamed_attribute_is_filterable_and_sortable_under_its_graphql_name",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298749524,
+                "stop": 1786298749524,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t32_filtering_across_a_relationship_works",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749524,
+                "stop": 1786298749525,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t33_the_calculation_can_be_used_as_a_sort_key_with_its_argument",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749525,
+                "stop": 1786298749526,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t34_createticket_returns_the_created_record_and_an_empty_error_list",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298749526,
+                "stop": 1786298749526,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t35_the_managed_relationship_input_creates_and_links_labels",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298749527,
+                "stop": 1786298749527,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t36_a_validation_failure_is_reported_inside_the_mutation_result",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749527,
+                "stop": 1786298749528,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t37_updateticket_applies_changes_and_reports_validation_failures",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298749528,
+                "stop": 1786298749528,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t38_updating_a_missing_record_yields_a_not_found_error_in_the_result",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298749529,
+                "stop": 1786298749529,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t39_destroying_a_ticket_removes_it_and_ticketorfail_then_errors_at_the_top_level",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749529,
+                "stop": 1786298749530,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t40_archiveproject_is_forbidden_without_an_admin_actor",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298749530,
+                "stop": 1786298749530,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t41_the_generic_action_mutation_returns_its_string_result",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298749531,
+                "stop": 1786298749531,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t42_the_custom_exception_surfaces_through_the_ashgraphql_error_protocol",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298749531,
+                "stop": 1786298749532,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t43_raised_errors_are_shown_because_the_domain_enables_them",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 16,
+                "start": 1786298749532,
+                "stop": 1786298749548,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}\n\n    def test_t43_raised_errors_are_shown_because_the_domain_enables_them(suite_results):\n>       _assert_scenario(suite_results, \"T43\", 'raised errors are shown because the domain enables them')\n\n/tests/test_final_state.py:1218: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsuite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}\nscenario_id = 'T43'\ndescription = 'raised errors are shown because the domain enables them'\n\n    def _assert_scenario(suite_results, scenario_id, description):\n        entry = suite_results.get(scenario_id)\n        assert entry is not None, (\n            \"Scenario {} ({}) did not run at all. Collected scenarios: {}\".format(\n                scenario_id, description, sorted(suite_results)\n            )\n        )\n        status, detail = entry\n        if status == \"pass\":\n            return\n    \n        import base64\n    \n        try:\n            rendered = base64.b64decode(detail).decode(\"utf-8\", \"replace\")\n        except Exception:\n            rendered = detail\n    \n>       raise AssertionError(\n            \"Scenario {} ({}) failed:\\n{}\".format(scenario_id, description, rendered)\n        )\nE       AssertionError: Scenario T43 (raised errors are shown because the domain enables them) failed:\nE         1) test T43 raised errors are shown because the domain enables them (TrackerGraphqlTest)\nE            /tmp/harbor_ash_graphql_final.exs:924\nE            Assertion with == failed\nE            code:  assert result.data == nil\nE            left:  %{\"auditSprint\" => nil}\nE            right: nil\nE            stacktrace:\nE              /tmp/harbor_ash_graphql_final.exs:927: (test)\n\n/tests/test_final_state.py:1044: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t44_the_hand_written_ticketbyreference_query_loads_requested_fields",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298749548,
+                "stop": 1786298749548,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

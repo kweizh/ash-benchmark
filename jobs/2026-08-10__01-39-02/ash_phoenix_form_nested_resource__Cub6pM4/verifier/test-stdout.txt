@@ -1,0 +1,1692 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 45 items
+
+../../../tests/test_final_state.py ....F.F........F.............F.F..... [ 82%]
+..F..F..                                                                 [100%]
+
+=================================== FAILURES ===================================
+______ test_t05_serialize_of_a_fresh_form_has_the_exact_documented_shape _______
+
+suite_results = ({'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, '@@HARBOR@@test T01 new_or...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    │\n    └─ /tmp/harbor_final_suite.exs:46: HarborFinalTest (module)\n\n')
+
+    def test_t05_serialize_of_a_fresh_form_has_the_exact_documented_shape(suite_results):
+>       _assert_scenario(suite_results, "T05", "serialize of a fresh form has the exact documented shape")
+
+/tests/test_final_state.py:909: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = ({'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, '@@HARBOR@@test T01 new_or...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    │\n    └─ /tmp/harbor_final_suite.exs:46: HarborFinalTest (module)\n\n')
+scenario_id = 'T05'
+description = 'serialize of a fresh form has the exact documented shape'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results, output = suite_results
+        if scenario_id not in results:
+            pytest.fail(
+                f"Scenario {scenario_id} ({description}) did not run. Suite output tail:\n"
+                + "\n".join(output.splitlines()[-80:])
+            )
+    
+        status, detail = results[scenario_id]
+        if status != "pass":
+            import base64
+    
+            try:
+                decoded = base64.b64decode(detail).decode("utf-8", "replace")
+            except Exception:  # pragma: no cover - defensive
+                decoded = detail
+>           pytest.fail(f"Scenario {scenario_id} ({description}) failed:\n{decoded}")
+E           Failed: Scenario T05 (serialize of a fresh form has the exact documented shape) failed:
+E             1) test T05 serialize of a fresh form has the exact documented shape (HarborFinalTest)
+E                /tmp/harbor_final_suite.exs:148
+E                Assertion with == failed
+E                code:  assert ser(new()) == %{
+E                         "name" => "order",
+E                         "id" => "order",
+E                         "type" => "create",
+E                         "resource" => "Catering.Orders.Order",
+E                         "valid" => false,
+E                         "hidden" => %{"_form_type" => "create"},
+E                         "values" => %{"reference" => nil, "note" => nil},
+E                         "errors" => [],
+E                         "nested" => %{}
+E                       }
+E                left:  %{
+E                         "errors" => [["reference", "is required"]],
+E                         "hidden" => %{"_form_type" => "create"},
+E                         "id" => "order",
+E                         "name" => "order",
+E                         "nested" => %{
+E                           "customer" => nil,
+E                           "delivery_windows" => [],
+E                           "fulfillment" => nil,
+E                           "line_items" => []
+E                         },
+E                         "resource" => "Catering.Orders.Order",
+E                         "type" => "create",
+E                         "valid" => false,
+E                         "values" => %{"note" => nil, "reference" => nil}
+E                       }
+E                right: %{
+E                         "errors" => [],
+E                         "hidden" => %{"_form_type" => "create"},
+E                         "id" => "order",
+E                         "name" => "order",
+E                         "nested" => %{},
+E                         "resource" => "Catering.Orders.Order",
+E                         "type" => "create",
+E                         "valid" => false,
+E                         "values" => %{"note" => nil, "reference" => nil}
+E                       }
+E                stacktrace:
+E                  /tmp/harbor_final_suite.exs:149: (test)
+
+/tests/test_final_state.py:893: Failed
+________ test_t07_add_nested_appends_list_forms_and_names_them_by_index ________
+
+suite_results = ({'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, '@@HARBOR@@test T01 new_or...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    │\n    └─ /tmp/harbor_final_suite.exs:46: HarborFinalTest (module)\n\n')
+
+    def test_t07_add_nested_appends_list_forms_and_names_them_by_index(suite_results):
+>       _assert_scenario(suite_results, "T07", "add_nested appends list forms and names them by index")
+
+/tests/test_final_state.py:915: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = ({'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, '@@HARBOR@@test T01 new_or...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    │\n    └─ /tmp/harbor_final_suite.exs:46: HarborFinalTest (module)\n\n')
+scenario_id = 'T07'
+description = 'add_nested appends list forms and names them by index'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results, output = suite_results
+        if scenario_id not in results:
+            pytest.fail(
+                f"Scenario {scenario_id} ({description}) did not run. Suite output tail:\n"
+                + "\n".join(output.splitlines()[-80:])
+            )
+    
+        status, detail = results[scenario_id]
+        if status != "pass":
+            import base64
+    
+            try:
+                decoded = base64.b64decode(detail).decode("utf-8", "replace")
+            except Exception:  # pragma: no cover - defensive
+                decoded = detail
+>           pytest.fail(f"Scenario {scenario_id} ({description}) failed:\n{decoded}")
+E           Failed: Scenario T07 (add_nested appends list forms and names them by index) failed:
+E             1) test T07 add_nested appends list forms and names them by index (HarborFinalTest)
+E                /tmp/harbor_final_suite.exs:184
+E                Assertion with == failed
+E                code:  assert Map.keys(ser(form)["nested"]) == ["line_items"]
+E                left:  ["customer", "delivery_windows", "fulfillment", "line_items"]
+E                right: ["line_items"]
+E                stacktrace:
+E                  /tmp/harbor_final_suite.exs:207: (test)
+
+/tests/test_final_state.py:893: Failed
+_ test_t16_validating_with_errors_disabled_hides_them_but_keeps_the_form_invalid _
+
+suite_results = ({'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, '@@HARBOR@@test T01 new_or...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    │\n    └─ /tmp/harbor_final_suite.exs:46: HarborFinalTest (module)\n\n')
+
+    def test_t16_validating_with_errors_disabled_hides_them_but_keeps_the_form_invalid(suite_results):
+>       _assert_scenario(suite_results, "T16", "validating with errors disabled hides them but keeps the form invalid")
+
+/tests/test_final_state.py:942: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = ({'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, '@@HARBOR@@test T01 new_or...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    │\n    └─ /tmp/harbor_final_suite.exs:46: HarborFinalTest (module)\n\n')
+scenario_id = 'T16'
+description = 'validating with errors disabled hides them but keeps the form invalid'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results, output = suite_results
+        if scenario_id not in results:
+            pytest.fail(
+                f"Scenario {scenario_id} ({description}) did not run. Suite output tail:\n"
+                + "\n".join(output.splitlines()[-80:])
+            )
+    
+        status, detail = results[scenario_id]
+        if status != "pass":
+            import base64
+    
+            try:
+                decoded = base64.b64decode(detail).decode("utf-8", "replace")
+            except Exception:  # pragma: no cover - defensive
+                decoded = detail
+>           pytest.fail(f"Scenario {scenario_id} ({description}) failed:\n{decoded}")
+E           Failed: Scenario T16 (validating with errors disabled hides them but keeps the form invalid) failed:
+E             1) test T16 validating with errors disabled hides them but keeps the form invalid (HarborFinalTest)
+E                /tmp/harbor_final_suite.exs:367
+E                Assertion with == failed
+E                code:  assert emap(form) == %{}
+E                left:  %{"order" => [["reference", "is required"]]}
+E                right: %{}
+E                stacktrace:
+E                  /tmp/harbor_final_suite.exs:369: (test)
+
+/tests/test_final_state.py:893: Failed
+______ test_t30_reorder_rearranges_a_list_nested_inside_another_list_form ______
+
+suite_results = ({'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, '@@HARBOR@@test T01 new_or...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    │\n    └─ /tmp/harbor_final_suite.exs:46: HarborFinalTest (module)\n\n')
+
+    def test_t30_reorder_rearranges_a_list_nested_inside_another_list_form(suite_results):
+>       _assert_scenario(suite_results, "T30", "reorder rearranges a list nested inside another list form")
+
+/tests/test_final_state.py:984: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = ({'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, '@@HARBOR@@test T01 new_or...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    │\n    └─ /tmp/harbor_final_suite.exs:46: HarborFinalTest (module)\n\n')
+scenario_id = 'T30'
+description = 'reorder rearranges a list nested inside another list form'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results, output = suite_results
+        if scenario_id not in results:
+            pytest.fail(
+                f"Scenario {scenario_id} ({description}) did not run. Suite output tail:\n"
+                + "\n".join(output.splitlines()[-80:])
+            )
+    
+        status, detail = results[scenario_id]
+        if status != "pass":
+            import base64
+    
+            try:
+                decoded = base64.b64decode(detail).decode("utf-8", "replace")
+            except Exception:  # pragma: no cover - defensive
+                decoded = detail
+>           pytest.fail(f"Scenario {scenario_id} ({description}) failed:\n{decoded}")
+E           Failed: Scenario T30 (reorder rearranges a list nested inside another list form) failed:
+E             1) test T30 reorder rearranges a list nested inside another list form (HarborFinalTest)
+E                /tmp/harbor_final_suite.exs:563
+E                ** (KeyError) key :forms not found in: [
+E                  #AshPhoenix.Form<
+E                    resource: Catering.Orders.LineItem,
+E                    action: :add,
+E                    type: :create,
+E                    params: %{
+E                      "_form_type" => "create",
+E                      "_touched" => "dish,quantity",
+E                      "dish" => "Soup",
+E                      "modifiers" => %{
+E                        "0" => %{
+E                          "_form_type" => "create",
+E                          "_touched" => "label,surcharge_cents",
+E                          "label" => "extra",
+E                          "surcharge_cents" => "50"
+E                        },
+E                        "1" => %{
+E                          "_form_type" => "create",
+E                          "_touched" => "label,surcharge_cents",
+E                          "label" => "hot",
+E                          "surcharge_cents" => "0"
+E                        }
+E                      },
+E                      "quantity" => "2"
+E                    },
+E                    source: #Ash.Changeset<
+E                      domain: Catering.Orders,
+E                      action_type: :create,
+E                      action: :add,
+E                      attributes: %{position: 0, dish: "Soup", quantity: 2},
+E                      relationships: %{
+E                        modifiers: [
+E                          {[
+E                             %{
+E                               :position => 0,
+E                               "_form_type" => "create",
+E                               "_touched" => "label,surcharge_cents",
+E                               "label" => "extra",
+E                               "surcharge_cents" => "50"
+E                             },
+E                             %{
+E                               :position => 1,
+E                               "_form_type" => "create",
+E                               "_touched" => "label,surcharge_cents",
+E                               "label" => "hot",
+E                               "surcharge_cents" => "0"
+E                             }
+E                           ],
+E                           [
+E                             bulk?: false,
+E                             debug?: false,
+E                             ignore?: false,
+E                             on_missing: :destroy,
+E                             on_match: :update,
+E                             on_lookup: :ignore,
+E                             on_no_match: :create,
+E                             eager_validate?: false,
+E                             eager_validate_with: false,
+E                             authorize?: true,
+E                             meta: [id: :modifiers],
+E                             type: :direct_control,
+E                             order_is_key: :position
+E                           ]}
+E                        ]
+E                      },
+E                      arguments: %{
+E                        modifiers: [
+E                          %{
+E                            "_form_type" => "create",
+E                            "_touched" => "label,surcharge_cents",
+E                            "label" => "extra",
+E                            "surcharge_cents" => "50"
+E                          },
+E                          %{
+E                            "_form_type" => "create",
+E                            "_touched" => "label,surcharge_cents",
+E                            "label" => "hot",
+E                            "surcharge_cents" => "0"
+E                          }
+E                        ]
+E                      },
+E                      errors: [],
+E                      data: %Catering.Orders.LineItem{
+E                        id: nil,
+E                        dish: nil,
+E                        quantity: 1,
+E                        position: 0,
+E                        order_id: nil,
+E                        order: #Ash.NotLoaded<:relationship, field: :order>,
+E                        modifiers: #Ash.NotLoaded<:relationship, field: :modifiers>,
+E                        __meta__: #Ecto.Schema.Metadata<:built, "">
+E                      },
+E                      context: %{
+E                        accessing_from: %{
+E                          name: :line_items,
+E                          source: Catering.Orders.Order,
+E                          manage_relationship_opts: [
+E                            on_lookup: :ignore,
+E                            on_no_match: {:create, :add},
+E                            on_match: {:update, :revise},
+E                            on_missing: {:destroy, :destroy},
+E                            type: :direct_control,
+E                            order_is_key: :position
+E                          ]
+E                        }
+E                      },
+E                      valid?: true
+E                    >,
+E                    name: "order[line_items][0]",
+E                    data: nil,
+E                    form_keys: [
+E                      modifiers: [
+E                        data: #Function<25.46933255/1 in AshPhoenix.Form.Auto.relationship_fetcher/3>,
+E                        destroy_action: :destroy,
+E                        destroy_resource: Catering.Orders.Modifier,
+E                        update_action: :revise,
+E                        update_resource: Catering.Orders.Modifier,
+E                        create_action: :add,
+E                        create_resource: Catering.Orders.Modifier,
+E                        type: :list,
+E                        forms: [],
+E                        sparse?: false,
+E                        managed_relationship: {Catering.Orders.LineItem, :modifiers,
+E                         [
+E                           on_lookup: :ignore,
+E                           on_no_match: {:create, :add},
+E                           on_match: {:update, :revise},
+E                           on_missing: {:destroy, :destroy},
+E                           type: :direct_control,
+E                           order_is_key: :position
+E                         ]},
+E                        must_load?: true
+E                      ]
+E                    ],
+E                    forms: %{
+E                      modifiers: [
+E                        #AshPhoenix.Form<
+E                          resource: Catering.Orders.Modifier,
+E                          action: :add,
+E                          type: :create,
+E                          params: %{
+E                            "_form_type" => "create",
+E                            "_touched" => "label,surcharge_cents",
+E                            "label" => "extra",
+E                            "surcharge_cents" => "50"
+E                          },
+E                          source: #Ash.Changeset<
+E                            domain: Catering.Orders,
+E                            action_type: :create,
+E                            action: :add,
+E                            attributes: %{label: "extra", position: 0, surcharge_cents: 50},
+E                            relationships: %{},
+E                            errors: [],
+E                            data: %Catering.Orders.Modifier{
+E                              id: nil,
+E                              label: nil,
+E                              surcharge_cents: 0,
+E                              position: 0,
+E                              line_item_id: nil,
+E                              line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                              __meta__: #Ecto.Schema.Metadata<:built, "">
+E                            },
+E                            context: %{
+E                              accessing_from: %{
+E                                name: :modifiers,
+E                                source: Catering.Orders.LineItem,
+E                                manage_relationship_opts: [
+E                                  on_lookup: :ignore,
+E                                  on_no_match: {:create, :add},
+E                                  on_match: {:update, :revise},
+E                                  on_missing: {:destroy, :destroy},
+E                                  type: :direct_control,
+E                                  order_is_key: :position
+E                                ]
+E                              }
+E                            },
+E                            valid?: true
+E                          >,
+E                          name: "order[line_items][0][modifiers][0]",
+E                          data: nil,
+E                          form_keys: [],
+E                          forms: %{},
+E                          domain: Catering.Orders,
+E                          method: "post",
+E                          submit_errors: nil,
+E                          id: "order_line_items_0_modifiers_0",
+E                          transform_errors: nil,
+E                          post_process_errors: nil,
+E                          original_data: nil,
+E                          transform_params: nil,
+E                          prepare_params: nil,
+E                          prepare_source: nil,
+E                          raw_params: %{
+E                            "_form_type" => "create",
+E                            "_touched" => "label,surcharge_cents",
+E                            "label" => "extra",
+E                            "surcharge_cents" => "50"
+E                          },
+E                          warn_on_unhandled_errors?: true,
+E                          any_removed?: false,
+E                          added?: true,
+E                          changed?: true,
+E                          touched_forms: MapSet.new(["_form_type", "_touched", "label",
+E                           "surcharge_cents"]),
+E                          valid?: true,
+E                          errors: true,
+E                          submitted_once?: false,
+E                          just_submitted?: false,
+E                          ...
+E                        >,
+E                        #AshPhoenix.Form<
+E                          resource: Catering.Orders.Modifier,
+E                          action: :add,
+E                          type: :create,
+E                          params: %{
+E                            "_form_type" => "create",
+E                            "_touched" => "label,surcharge_cents",
+E                            "label" => "hot",
+E                            "surcharge_cents" => "0"
+E                          },
+E                          source: #Ash.Changeset<
+E                            domain: Catering.Orders,
+E                            action_type: :create,
+E                            action: :add,
+E                            attributes: %{label: "hot", position: 0, surcharge_cents: 0},
+E                            relationships: %{},
+E                            errors: [],
+E                            data: %Catering.Orders.Modifier{
+E                              id: nil,
+E                              label: nil,
+E                              surcharge_cents: 0,
+E                              position: 0,
+E                              line_item_id: nil,
+E                              line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                              __meta__: #Ecto.Schema.Metadata<:built, "">
+E                            },
+E                            context: %{
+E                              accessing_from: %{
+E                                name: :modifiers,
+E                                source: Catering.Orders.LineItem,
+E                                manage_relationship_opts: [
+E                                  on_lookup: :ignore,
+E                                  on_no_match: {:create, :add},
+E                                  on_match: {:update, :revise},
+E                                  on_missing: {:destroy, :destroy},
+E                                  type: :direct_control,
+E                                  order_is_key: :position
+E                                ]
+E                              }
+E                            },
+E                            valid?: true
+E                          >,
+E                          name: "order[line_items][0][modifiers][1]",
+E                          data: nil,
+E                          form_keys: [],
+E                          forms: %{},
+E                          domain: Catering.Orders,
+E                          method: "post",
+E                          submit_errors: nil,
+E                          id: "order_line_items_0_modifiers_1",
+E                          transform_errors: nil,
+E                          post_process_errors: nil,
+E                          original_data: nil,
+E                          transform_params: nil,
+E                          prepare_params: nil,
+E                          prepare_source: nil,
+E                          raw_params: %{
+E                            "_form_type" => "create",
+E                            "_touched" => "label,surcharge_cents",
+E                            "label" => "hot",
+E                            "surcharge_cents" => "0"
+E                          },
+E                          warn_on_unhandled_errors?: true,
+E                          any_removed?: false,
+E                          added?: true,
+E                          changed?: true,
+E                          touched_forms: MapSet.new(["_form_type", "_touched", "label",
+E                           "surcharge_cents"]),
+E                          valid?: true,
+E                          errors: true,
+E                          submitted_once?: false,
+E                          just_submitted?: false,
+E                          ...
+E                        >
+E                      ]
+E                    },
+E                    domain: Catering.Orders,
+E                    method: "post",
+E                    submit_errors: nil,
+E                    id: "order_line_items_0",
+E                    transform_errors: nil,
+E                    post_process_errors: nil,
+E                    original_data: nil,
+E                    transform_params: nil,
+E                    prepare_params: nil,
+E                    prepare_source: nil,
+E                    raw_params: %{
+E                      "_form_type" => "create",
+E                      "_touched" => "dish,quantity",
+E                      "dish" => "Soup",
+E                      "modifiers" => [
+E                        %{
+E                          "_form_type" => "create",
+E                          "_touched" => "label,surcharge_cents",
+E                          "label" => "extra",
+E                          "surcharge_cents" => "50"
+E                        },
+E                        %{
+E                          "_form_type" => "create",
+E                          "_touched" => "label,surcharge_cents",
+E                          "label" => "hot",
+E                          "surcharge_cents" => "0"
+E                        }
+E                      ],
+E                      "quantity" => "2"
+E                    },
+E                    warn_on_unhandled_errors?: true,
+E                    any_removed?: false,
+E                    added?: true,
+E                    changed?: true,
+E                    touched_forms: MapSet.new(["_form_type", "_touched", "dish", "modifiers",
+E                     "quantity"]),
+E                    valid?: true,
+E                    errors: true,
+E                    submitted_once?: false,
+E                    just_submitted?: false,
+E                    ...
+E                  >,
+E                  #AshPhoenix.Form<
+E                    resource: Catering.Orders.LineItem,
+E                    action: :add,
+E                    type: :create,
+E                    params: %{
+E                      "_form_type" => "create",
+E                      "_touched" => "dish,quantity",
+E                      "dish" => "Salad",
+E                      "quantity" => "1"
+E                    },
+E                    source: #Ash.Changeset<
+E                      domain: Catering.Orders,
+E                      action_type: :create,
+E                      action: :add,
+E                      attributes: %{position: 0, dish: "Salad", quantity: 1},
+E                      relationships: %{},
+E                      arguments: %{},
+E                      errors: [],
+E                      data: %Catering.Orders.LineItem{
+E                        id: nil,
+E                        dish: nil,
+E                        quantity: 1,
+E                        position: 0,
+E                        order_id: nil,
+E                        order: #Ash.NotLoaded<:relationship, field: :order>,
+E                        modifiers: #Ash.NotLoaded<:relationship, field: :modifiers>,
+E                        __meta__: #Ecto.Schema.Metadata<:built, "">
+E                      },
+E                      context: %{
+E                        accessing_from: %{
+E                          name: :line_items,
+E                          source: Catering.Orders.Order,
+E                          manage_relationship_opts: [
+E                            on_lookup: :ignore,
+E                            on_no_match: {:create, :add},
+E                            on_match: {:update, :revise},
+E                            on_missing: {:destroy, :destroy},
+E                            type: :direct_control,
+E                            order_is_key: :position
+E                          ]
+E                        }
+E                      },
+E                      valid?: true
+E                    >,
+E                    name: "order[line_items][1]",
+E                    data: nil,
+E                    form_keys: [
+E                      modifiers: [
+E                        data: #Function<25.46933255/1 in AshPhoenix.Form.Auto.relationship_fetcher/3>,
+E                        destroy_action: :destroy,
+E                        destroy_resource: Catering.Orders.Modifier,
+E                        update_action: :revise,
+E                        update_resource: Catering.Orders.Modifier,
+E                        create_action: :add,
+E                        create_resource: Catering.Orders.Modifier,
+E                        type: :list,
+E                        forms: [],
+E                        sparse?: false,
+E                        managed_relationship: {Catering.Orders.LineItem, :modifiers,
+E                         [
+E                           on_lookup: :ignore,
+E                           on_no_match: {:create, :add},
+E                           on_match: {:update, :revise},
+E                           on_missing: {:destroy, :destroy},
+E                           type: :direct_control,
+E                           order_is_key: :position
+E                         ]},
+E                        must_load?: true
+E                      ]
+E                    ],
+E                    forms: %{},
+E                    domain: Catering.Orders,
+E                    method: "post",
+E                    submit_errors: nil,
+E                    id: "order_line_items_1",
+E                    transform_errors: nil,
+E                    post_process_errors: nil,
+E                    original_data: nil,
+E                    transform_params: nil,
+E                    prepare_params: nil,
+E                    prepare_source: nil,
+E                    raw_params: %{
+E                      "_form_type" => "create",
+E                      "_touched" => "dish,quantity",
+E                      "dish" => "Salad",
+E                      "quantity" => "1"
+E                    },
+E                    warn_on_unhandled_errors?: true,
+E                    any_removed?: false,
+E                    added?: true,
+E                    changed?: true,
+E                    touched_forms: MapSet.new(["_form_type", "_touched", "dish", "quantity"]),
+E                    valid?: true,
+E                    errors: true,
+E                    submitted_once?: false,
+E                    just_submitted?: false,
+E                    ...
+E                  >
+E                ]
+E           
+E                If you are using the dot syntax, such as map.field, make sure the left-hand side of the dot is a map
+E                code: |> reorder("order[line_items][0][modifiers]", [1, 0])
+E                stacktrace:
+E                  (ash_phoenix 2.3.24) lib/ash_phoenix/form/form.ex:2615: AshPhoenix.Form.do_sort_forms/5
+E                  (ash_phoenix 2.3.24) lib/ash_phoenix/form/form.ex:2619: anonymous fn/6 in AshPhoenix.Form.do_sort_forms/5
+E                  (elixir 1.18.4) lib/map.ex:257: Map.do_map/2
+E                  (elixir 1.18.4) lib/map.ex:251: Map.new_from_map/2
+E                  (ash_phoenix 2.3.24) lib/ash_phoenix/form/form.ex:2616: AshPhoenix.Form.do_sort_forms/5
+E                  /tmp/harbor_final_suite.exs:568: (test)
+
+/tests/test_final_state.py:893: Failed
+______ test_t32_move_is_a_no_op_at_the_boundaries_and_works_on_deep_paths ______
+
+suite_results = ({'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, '@@HARBOR@@test T01 new_or...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    │\n    └─ /tmp/harbor_final_suite.exs:46: HarborFinalTest (module)\n\n')
+
+    def test_t32_move_is_a_no_op_at_the_boundaries_and_works_on_deep_paths(suite_results):
+>       _assert_scenario(suite_results, "T32", "move is a no-op at the boundaries and works on deep paths")
+
+/tests/test_final_state.py:990: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = ({'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, '@@HARBOR@@test T01 new_or...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    │\n    └─ /tmp/harbor_final_suite.exs:46: HarborFinalTest (module)\n\n')
+scenario_id = 'T32'
+description = 'move is a no-op at the boundaries and works on deep paths'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results, output = suite_results
+        if scenario_id not in results:
+            pytest.fail(
+                f"Scenario {scenario_id} ({description}) did not run. Suite output tail:\n"
+                + "\n".join(output.splitlines()[-80:])
+            )
+    
+        status, detail = results[scenario_id]
+        if status != "pass":
+            import base64
+    
+            try:
+                decoded = base64.b64decode(detail).decode("utf-8", "replace")
+            except Exception:  # pragma: no cover - defensive
+                decoded = detail
+>           pytest.fail(f"Scenario {scenario_id} ({description}) failed:\n{decoded}")
+E           Failed: Scenario T32 (move is a no-op at the boundaries and works on deep paths) failed:
+E             1) test T32 move is a no-op at the boundaries and works on deep paths (HarborFinalTest)
+E                /tmp/harbor_final_suite.exs:591
+E                ** (KeyError) key :forms not found in: [
+E                  #AshPhoenix.Form<
+E                    resource: Catering.Orders.LineItem,
+E                    action: :add,
+E                    type: :create,
+E                    params: %{
+E                      "_form_type" => "create",
+E                      "_touched" => "dish,quantity",
+E                      "dish" => "Soup",
+E                      "modifiers" => %{
+E                        "0" => %{
+E                          "_form_type" => "create",
+E                          "_touched" => "label,surcharge_cents",
+E                          "label" => "extra",
+E                          "surcharge_cents" => "50"
+E                        },
+E                        "1" => %{
+E                          "_form_type" => "create",
+E                          "_touched" => "label,surcharge_cents",
+E                          "label" => "hot",
+E                          "surcharge_cents" => "0"
+E                        }
+E                      },
+E                      "quantity" => "2"
+E                    },
+E                    source: #Ash.Changeset<
+E                      domain: Catering.Orders,
+E                      action_type: :create,
+E                      action: :add,
+E                      attributes: %{position: 0, dish: "Soup", quantity: 2},
+E                      relationships: %{
+E                        modifiers: [
+E                          {[
+E                             %{
+E                               :position => 0,
+E                               "_form_type" => "create",
+E                               "_touched" => "label,surcharge_cents",
+E                               "label" => "extra",
+E                               "surcharge_cents" => "50"
+E                             },
+E                             %{
+E                               :position => 1,
+E                               "_form_type" => "create",
+E                               "_touched" => "label,surcharge_cents",
+E                               "label" => "hot",
+E                               "surcharge_cents" => "0"
+E                             }
+E                           ],
+E                           [
+E                             bulk?: false,
+E                             debug?: false,
+E                             ignore?: false,
+E                             on_missing: :destroy,
+E                             on_match: :update,
+E                             on_lookup: :ignore,
+E                             on_no_match: :create,
+E                             eager_validate?: false,
+E                             eager_validate_with: false,
+E                             authorize?: true,
+E                             meta: [id: :modifiers],
+E                             type: :direct_control,
+E                             order_is_key: :position
+E                           ]}
+E                        ]
+E                      },
+E                      arguments: %{
+E                        modifiers: [
+E                          %{
+E                            "_form_type" => "create",
+E                            "_touched" => "label,surcharge_cents",
+E                            "label" => "extra",
+E                            "surcharge_cents" => "50"
+E                          },
+E                          %{
+E                            "_form_type" => "create",
+E                            "_touched" => "label,surcharge_cents",
+E                            "label" => "hot",
+E                            "surcharge_cents" => "0"
+E                          }
+E                        ]
+E                      },
+E                      errors: [],
+E                      data: %Catering.Orders.LineItem{
+E                        id: nil,
+E                        dish: nil,
+E                        quantity: 1,
+E                        position: 0,
+E                        order_id: nil,
+E                        order: #Ash.NotLoaded<:relationship, field: :order>,
+E                        modifiers: #Ash.NotLoaded<:relationship, field: :modifiers>,
+E                        __meta__: #Ecto.Schema.Metadata<:built, "">
+E                      },
+E                      context: %{
+E                        accessing_from: %{
+E                          name: :line_items,
+E                          source: Catering.Orders.Order,
+E                          manage_relationship_opts: [
+E                            on_lookup: :ignore,
+E                            on_no_match: {:create, :add},
+E                            on_match: {:update, :revise},
+E                            on_missing: {:destroy, :destroy},
+E                            type: :direct_control,
+E                            order_is_key: :position
+E                          ]
+E                        }
+E                      },
+E                      valid?: true
+E                    >,
+E                    name: "order[line_items][0]",
+E                    data: nil,
+E                    form_keys: [
+E                      modifiers: [
+E                        data: #Function<25.46933255/1 in AshPhoenix.Form.Auto.relationship_fetcher/3>,
+E                        destroy_action: :destroy,
+E                        destroy_resource: Catering.Orders.Modifier,
+E                        update_action: :revise,
+E                        update_resource: Catering.Orders.Modifier,
+E                        create_action: :add,
+E                        create_resource: Catering.Orders.Modifier,
+E                        type: :list,
+E                        forms: [],
+E                        sparse?: false,
+E                        managed_relationship: {Catering.Orders.LineItem, :modifiers,
+E                         [
+E                           on_lookup: :ignore,
+E                           on_no_match: {:create, :add},
+E                           on_match: {:update, :revise},
+E                           on_missing: {:destroy, :destroy},
+E                           type: :direct_control,
+E                           order_is_key: :position
+E                         ]},
+E                        must_load?: true
+E                      ]
+E                    ],
+E                    forms: %{
+E                      modifiers: [
+E                        #AshPhoenix.Form<
+E                          resource: Catering.Orders.Modifier,
+E                          action: :add,
+E                          type: :create,
+E                          params: %{
+E                            "_form_type" => "create",
+E                            "_touched" => "label,surcharge_cents",
+E                            "label" => "extra",
+E                            "surcharge_cents" => "50"
+E                          },
+E                          source: #Ash.Changeset<
+E                            domain: Catering.Orders,
+E                            action_type: :create,
+E                            action: :add,
+E                            attributes: %{label: "extra", position: 0, surcharge_cents: 50},
+E                            relationships: %{},
+E                            errors: [],
+E                            data: %Catering.Orders.Modifier{
+E                              id: nil,
+E                              label: nil,
+E                              surcharge_cents: 0,
+E                              position: 0,
+E                              line_item_id: nil,
+E                              line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                              __meta__: #Ecto.Schema.Metadata<:built, "">
+E                            },
+E                            context: %{
+E                              accessing_from: %{
+E                                name: :modifiers,
+E                                source: Catering.Orders.LineItem,
+E                                manage_relationship_opts: [
+E                                  on_lookup: :ignore,
+E                                  on_no_match: {:create, :add},
+E                                  on_match: {:update, :revise},
+E                                  on_missing: {:destroy, :destroy},
+E                                  type: :direct_control,
+E                                  order_is_key: :position
+E                                ]
+E                              }
+E                            },
+E                            valid?: true
+E                          >,
+E                          name: "order[line_items][0][modifiers][0]",
+E                          data: nil,
+E                          form_keys: [],
+E                          forms: %{},
+E                          domain: Catering.Orders,
+E                          method: "post",
+E                          submit_errors: nil,
+E                          id: "order_line_items_0_modifiers_0",
+E                          transform_errors: nil,
+E                          post_process_errors: nil,
+E                          original_data: nil,
+E                          transform_params: nil,
+E                          prepare_params: nil,
+E                          prepare_source: nil,
+E                          raw_params: %{
+E                            "_form_type" => "create",
+E                            "_touched" => "label,surcharge_cents",
+E                            "label" => "extra",
+E                            "surcharge_cents" => "50"
+E                          },
+E                          warn_on_unhandled_errors?: true,
+E                          any_removed?: false,
+E                          added?: true,
+E                          changed?: true,
+E                          touched_forms: MapSet.new(["_form_type", "_touched", "label",
+E                           "surcharge_cents"]),
+E                          valid?: true,
+E                          errors: true,
+E                          submitted_once?: false,
+E                          just_submitted?: false,
+E                          ...
+E                        >,
+E                        #AshPhoenix.Form<
+E                          resource: Catering.Orders.Modifier,
+E                          action: :add,
+E                          type: :create,
+E                          params: %{
+E                            "_form_type" => "create",
+E                            "_touched" => "label,surcharge_cents",
+E                            "label" => "hot",
+E                            "surcharge_cents" => "0"
+E                          },
+E                          source: #Ash.Changeset<
+E                            domain: Catering.Orders,
+E                            action_type: :create,
+E                            action: :add,
+E                            attributes: %{label: "hot", position: 0, surcharge_cents: 0},
+E                            relationships: %{},
+E                            errors: [],
+E                            data: %Catering.Orders.Modifier{
+E                              id: nil,
+E                              label: nil,
+E                              surcharge_cents: 0,
+E                              position: 0,
+E                              line_item_id: nil,
+E                              line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                              __meta__: #Ecto.Schema.Metadata<:built, "">
+E                            },
+E                            context: %{
+E                              accessing_from: %{
+E                                name: :modifiers,
+E                                source: Catering.Orders.LineItem,
+E                                manage_relationship_opts: [
+E                                  on_lookup: :ignore,
+E                                  on_no_match: {:create, :add},
+E                                  on_match: {:update, :revise},
+E                                  on_missing: {:destroy, :destroy},
+E                                  type: :direct_control,
+E                                  order_is_key: :position
+E                                ]
+E                              }
+E                            },
+E                            valid?: true
+E                          >,
+E                          name: "order[line_items][0][modifiers][1]",
+E                          data: nil,
+E                          form_keys: [],
+E                          forms: %{},
+E                          domain: Catering.Orders,
+E                          method: "post",
+E                          submit_errors: nil,
+E                          id: "order_line_items_0_modifiers_1",
+E                          transform_errors: nil,
+E                          post_process_errors: nil,
+E                          original_data: nil,
+E                          transform_params: nil,
+E                          prepare_params: nil,
+E                          prepare_source: nil,
+E                          raw_params: %{
+E                            "_form_type" => "create",
+E                            "_touched" => "label,surcharge_cents",
+E                            "label" => "hot",
+E                            "surcharge_cents" => "0"
+E                          },
+E                          warn_on_unhandled_errors?: true,
+E                          any_removed?: false,
+E                          added?: true,
+E                          changed?: true,
+E                          touched_forms: MapSet.new(["_form_type", "_touched", "label",
+E                           "surcharge_cents"]),
+E                          valid?: true,
+E                          errors: true,
+E                          submitted_once?: false,
+E                          just_submitted?: false,
+E                          ...
+E                        >
+E                      ]
+E                    },
+E                    domain: Catering.Orders,
+E                    method: "post",
+E                    submit_errors: nil,
+E                    id: "order_line_items_0",
+E                    transform_errors: nil,
+E                    post_process_errors: nil,
+E                    original_data: nil,
+E                    transform_params: nil,
+E                    prepare_params: nil,
+E                    prepare_source: nil,
+E                    raw_params: %{
+E                      "_form_type" => "create",
+E                      "_touched" => "dish,quantity",
+E                      "dish" => "Soup",
+E                      "modifiers" => [
+E                        %{
+E                          "_form_type" => "create",
+E                          "_touched" => "label,surcharge_cents",
+E                          "label" => "extra",
+E                          "surcharge_cents" => "50"
+E                        },
+E                        %{
+E                          "_form_type" => "create",
+E                          "_touched" => "label,surcharge_cents",
+E                          "label" => "hot",
+E                          "surcharge_cents" => "0"
+E                        }
+E                      ],
+E                      "quantity" => "2"
+E                    },
+E                    warn_on_unhandled_errors?: true,
+E                    any_removed?: false,
+E                    added?: true,
+E                    changed?: true,
+E                    touched_forms: MapSet.new(["_form_type", "_touched", "dish", "modifiers",
+E                     "quantity"]),
+E                    valid?: true,
+E                    errors: true,
+E                    submitted_once?: false,
+E                    just_submitted?: false,
+E                    ...
+E                  >,
+E                  #AshPhoenix.Form<
+E                    resource: Catering.Orders.LineItem,
+E                    action: :add,
+E                    type: :create,
+E                    params: %{
+E                      "_form_type" => "create",
+E                      "_touched" => "dish,quantity",
+E                      "dish" => "Salad",
+E                      "quantity" => "1"
+E                    },
+E                    source: #Ash.Changeset<
+E                      domain: Catering.Orders,
+E                      action_type: :create,
+E                      action: :add,
+E                      attributes: %{position: 0, dish: "Salad", quantity: 1},
+E                      relationships: %{},
+E                      arguments: %{},
+E                      errors: [],
+E                      data: %Catering.Orders.LineItem{
+E                        id: nil,
+E                        dish: nil,
+E                        quantity: 1,
+E                        position: 0,
+E                        order_id: nil,
+E                        order: #Ash.NotLoaded<:relationship, field: :order>,
+E                        modifiers: #Ash.NotLoaded<:relationship, field: :modifiers>,
+E                        __meta__: #Ecto.Schema.Metadata<:built, "">
+E                      },
+E                      context: %{
+E                        accessing_from: %{
+E                          name: :line_items,
+E                          source: Catering.Orders.Order,
+E                          manage_relationship_opts: [
+E                            on_lookup: :ignore,
+E                            on_no_match: {:create, :add},
+E                            on_match: {:update, :revise},
+E                            on_missing: {:destroy, :destroy},
+E                            type: :direct_control,
+E                            order_is_key: :position
+E                          ]
+E                        }
+E                      },
+E                      valid?: true
+E                    >,
+E                    name: "order[line_items][1]",
+E                    data: nil,
+E                    form_keys: [
+E                      modifiers: [
+E                        data: #Function<25.46933255/1 in AshPhoenix.Form.Auto.relationship_fetcher/3>,
+E                        destroy_action: :destroy,
+E                        destroy_resource: Catering.Orders.Modifier,
+E                        update_action: :revise,
+E                        update_resource: Catering.Orders.Modifier,
+E                        create_action: :add,
+E                        create_resource: Catering.Orders.Modifier,
+E                        type: :list,
+E                        forms: [],
+E                        sparse?: false,
+E                        managed_relationship: {Catering.Orders.LineItem, :modifiers,
+E                         [
+E                           on_lookup: :ignore,
+E                           on_no_match: {:create, :add},
+E                           on_match: {:update, :revise},
+E                           on_missing: {:destroy, :destroy},
+E                           type: :direct_control,
+E                           order_is_key: :position
+E                         ]},
+E                        must_load?: true
+E                      ]
+E                    ],
+E                    forms: %{},
+E                    domain: Catering.Orders,
+E                    method: "post",
+E                    submit_errors: nil,
+E                    id: "order_line_items_1",
+E                    transform_errors: nil,
+E                    post_process_errors: nil,
+E                    original_data: nil,
+E                    transform_params: nil,
+E                    prepare_params: nil,
+E                    prepare_source: nil,
+E                    raw_params: %{
+E                      "_form_type" => "create",
+E                      "_touched" => "dish,quantity",
+E                      "dish" => "Salad",
+E                      "quantity" => "1"
+E                    },
+E                    warn_on_unhandled_errors?: true,
+E                    any_removed?: false,
+E                    added?: true,
+E                    changed?: true,
+E                    touched_forms: MapSet.new(["_form_type", "_touched", "dish", "quantity"]),
+E                    valid?: true,
+E                    errors: true,
+E                    submitted_once?: false,
+E                    just_submitted?: false,
+E                    ...
+E                  >
+E                ]
+E           
+E                If you are using the dot syntax, such as map.field, make sure the left-hand side of the dot is a map
+E                code: assert mod_labels(move(form, "order[line_items][0][modifiers][1]", :up), 0) == ["hot", "extra"]
+E                stacktrace:
+E                  (ash_phoenix 2.3.24) lib/ash_phoenix/form/form.ex:2615: AshPhoenix.Form.do_sort_forms/5
+E                  (ash_phoenix 2.3.24) lib/ash_phoenix/form/form.ex:2619: anonymous fn/6 in AshPhoenix.Form.do_sort_forms/5
+E                  (elixir 1.18.4) lib/map.ex:257: Map.do_map/2
+E                  (elixir 1.18.4) lib/map.ex:251: Map.new_from_map/2
+E                  (ash_phoenix 2.3.24) lib/ash_phoenix/form/form.ex:2616: AshPhoenix.Form.do_sort_forms/5
+E                  /tmp/harbor_final_suite.exs:599: (test)
+
+/tests/test_final_state.py:893: Failed
+_ test_t40_edit_order_form_orders_nested_forms_by_stored_position_not_by_storage_ _
+
+suite_results = ({'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, '@@HARBOR@@test T01 new_or...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    │\n    └─ /tmp/harbor_final_suite.exs:46: HarborFinalTest (module)\n\n')
+
+    def test_t40_edit_order_form_orders_nested_forms_by_stored_position_not_by_storage_(suite_results):
+>       _assert_scenario(suite_results, "T40", "edit_order_form orders nested forms by stored position, not by storage order")
+
+/tests/test_final_state.py:1014: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = ({'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, '@@HARBOR@@test T01 new_or...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    │\n    └─ /tmp/harbor_final_suite.exs:46: HarborFinalTest (module)\n\n')
+scenario_id = 'T40'
+description = 'edit_order_form orders nested forms by stored position, not by storage order'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results, output = suite_results
+        if scenario_id not in results:
+            pytest.fail(
+                f"Scenario {scenario_id} ({description}) did not run. Suite output tail:\n"
+                + "\n".join(output.splitlines()[-80:])
+            )
+    
+        status, detail = results[scenario_id]
+        if status != "pass":
+            import base64
+    
+            try:
+                decoded = base64.b64decode(detail).decode("utf-8", "replace")
+            except Exception:  # pragma: no cover - defensive
+                decoded = detail
+>           pytest.fail(f"Scenario {scenario_id} ({description}) failed:\n{decoded}")
+E           Failed: Scenario T40 (edit_order_form orders nested forms by stored position, not by storage order) failed:
+E             1) test T40 edit_order_form orders nested forms by stored position, not by storage order (HarborFinalTest)
+E                /tmp/harbor_final_suite.exs:717
+E                Assertion with == failed
+E                code:  assert Enum.map(saved.line_items, &{&1.dish, &1.position}) == [
+E                         {"E", 0},
+E                         {"D", 1},
+E                         {"C", 2},
+E                         {"B", 3},
+E                         {"A", 4}
+E                       ]
+E                left:  [{"A", 0}, {"B", 1}, {"C", 2}, {"D", 3}, {"E", 4}]
+E                right: [{"E", 0}, {"D", 1}, {"C", 2}, {"B", 3}, {"A", 4}]
+E                stacktrace:
+E                  /tmp/harbor_final_suite.exs:734: (test)
+
+/tests/test_final_state.py:893: Failed
+_ test_t43_reordering_a_deep_nested_list_on_an_edit_form_renumbers_its_positions _
+
+suite_results = ({'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, '@@HARBOR@@test T01 new_or...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    │\n    └─ /tmp/harbor_final_suite.exs:46: HarborFinalTest (module)\n\n')
+
+    def test_t43_reordering_a_deep_nested_list_on_an_edit_form_renumbers_its_positions(suite_results):
+>       _assert_scenario(suite_results, "T43", "reordering a deep nested list on an edit form renumbers its positions")
+
+/tests/test_final_state.py:1023: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = ({'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}, '@@HARBOR@@test T01 new_or...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    │\n    └─ /tmp/harbor_final_suite.exs:46: HarborFinalTest (module)\n\n')
+scenario_id = 'T43'
+description = 'reordering a deep nested list on an edit form renumbers its positions'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        results, output = suite_results
+        if scenario_id not in results:
+            pytest.fail(
+                f"Scenario {scenario_id} ({description}) did not run. Suite output tail:\n"
+                + "\n".join(output.splitlines()[-80:])
+            )
+    
+        status, detail = results[scenario_id]
+        if status != "pass":
+            import base64
+    
+            try:
+                decoded = base64.b64decode(detail).decode("utf-8", "replace")
+            except Exception:  # pragma: no cover - defensive
+                decoded = detail
+>           pytest.fail(f"Scenario {scenario_id} ({description}) failed:\n{decoded}")
+E           Failed: Scenario T43 (reordering a deep nested list on an edit form renumbers its positions) failed:
+E             1) test T43 reordering a deep nested list on an edit form renumbers its positions (HarborFinalTest)
+E                /tmp/harbor_final_suite.exs:773
+E                ** (KeyError) key :forms not found in: [
+E                  #AshPhoenix.Form<
+E                    resource: Catering.Orders.LineItem,
+E                    action: :revise,
+E                    type: :update,
+E                    params: %{},
+E                    source: #Ash.Changeset<
+E                      domain: Catering.Orders,
+E                      action_type: :update,
+E                      action: :revise,
+E                      attributes: %{},
+E                      relationships: %{},
+E                      arguments: %{},
+E                      errors: [],
+E                      data: %Catering.Orders.LineItem{
+E                        id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                        dish: "Soup",
+E                        quantity: 2,
+E                        position: 0,
+E                        order_id: "f95d0071-60c0-43d6-be5c-b3cf72d0825b",
+E                        order: #Ash.NotLoaded<:relationship, field: :order>,
+E                        modifiers: [
+E                          %Catering.Orders.Modifier{
+E                            id: "200c2cc5-9d3b-4034-b0c3-13c33c616464",
+E                            label: "extra",
+E                            surcharge_cents: 50,
+E                            position: 0,
+E                            line_item_id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                            line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                            __meta__: #Ecto.Schema.Metadata<:loaded>
+E                          },
+E                          %Catering.Orders.Modifier{
+E                            id: "a618f808-b440-40a0-8ffc-f2f905d73dee",
+E                            label: "hot",
+E                            surcharge_cents: 10,
+E                            position: 1,
+E                            line_item_id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                            line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                            __meta__: #Ecto.Schema.Metadata<:loaded>
+E                          }
+E                        ],
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      context: %{
+E                        accessing_from: %{
+E                          name: :line_items,
+E                          source: Catering.Orders.Order,
+E                          manage_relationship_opts: [
+E                            on_lookup: :ignore,
+E                            on_no_match: {:create, :add},
+E                            on_match: {:update, :revise},
+E                            on_missing: {:destroy, :destroy},
+E                            type: :direct_control,
+E                            order_is_key: :position
+E                          ]
+E                        }
+E                      },
+E                      valid?: true
+E                    >,
+E                    name: "order[line_items][0]",
+E                    data: %Catering.Orders.LineItem{
+E                      id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                      dish: "Soup",
+E                      quantity: 2,
+E                      position: 0,
+E                      order_id: "f95d0071-60c0-43d6-be5c-b3cf72d0825b",
+E                      order: #Ash.NotLoaded<:relationship, field: :order>,
+E                      modifiers: [
+E                        %Catering.Orders.Modifier{
+E                          id: "200c2cc5-9d3b-4034-b0c3-13c33c616464",
+E                          label: "extra",
+E                          surcharge_cents: 50,
+E                          position: 0,
+E                          line_item_id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                          line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                          __meta__: #Ecto.Schema.Metadata<:loaded>
+E                        },
+E                        %Catering.Orders.Modifier{
+E                          id: "a618f808-b440-40a0-8ffc-f2f905d73dee",
+E                          label: "hot",
+E                          surcharge_cents: 10,
+E                          position: 1,
+E                          line_item_id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                          line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                          __meta__: #Ecto.Schema.Metadata<:loaded>
+E                        }
+E                      ],
+E                      __meta__: #Ecto.Schema.Metadata<:loaded>
+E                    },
+E                    form_keys: [
+E                      modifiers: [
+E                        data: #Function<25.46933255/1 in AshPhoenix.Form.Auto.relationship_fetcher/3>,
+E                        destroy_action: :destroy,
+E                        destroy_resource: Catering.Orders.Modifier,
+E                        update_action: :revise,
+E                        update_resource: Catering.Orders.Modifier,
+E                        create_action: :add,
+E                        create_resource: Catering.Orders.Modifier,
+E                        type: :list,
+E                        forms: [],
+E                        sparse?: false,
+E                        managed_relationship: {Catering.Orders.LineItem, :modifiers,
+E                         [
+E                           on_lookup: :ignore,
+E                           on_no_match: {:create, :add},
+E                           on_match: {:update, :revise},
+E                           on_missing: {:destroy, :destroy},
+E                           type: :direct_control,
+E                           order_is_key: :position
+E                         ]},
+E                        must_load?: true
+E                      ]
+E                    ],
+E                    forms: %{
+E                      modifiers: [
+E                        #AshPhoenix.Form<
+E                          resource: Catering.Orders.Modifier,
+E                          action: :revise,
+E                          type: :update,
+E                          params: %{},
+E                          source: #Ash.Changeset<
+E                            domain: Catering.Orders,
+E                            action_type: :update,
+E                            action: :revise,
+E                            attributes: %{},
+E                            relationships: %{},
+E                            errors: [],
+E                            data: %Catering.Orders.Modifier{
+E                              id: "200c2cc5-9d3b-4034-b0c3-13c33c616464",
+E                              label: "extra",
+E                              surcharge_cents: 50,
+E                              position: 0,
+E                              line_item_id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                              line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                              __meta__: #Ecto.Schema.Metadata<:loaded>
+E                            },
+E                            context: %{
+E                              accessing_from: %{
+E                                name: :modifiers,
+E                                source: Catering.Orders.LineItem,
+E                                manage_relationship_opts: [
+E                                  on_lookup: :ignore,
+E                                  on_no_match: {:create, :add},
+E                                  on_match: {:update, :revise},
+E                                  on_missing: {:destroy, :destroy},
+E                                  type: :direct_control,
+E                                  order_is_key: :position
+E                                ]
+E                              }
+E                            },
+E                            valid?: true
+E                          >,
+E                          name: "order[line_items][0][modifiers][0]",
+E                          data: %Catering.Orders.Modifier{
+E                            id: "200c2cc5-9d3b-4034-b0c3-13c33c616464",
+E                            label: "extra",
+E                            surcharge_cents: 50,
+E                            position: 0,
+E                            line_item_id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                            line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                            __meta__: #Ecto.Schema.Metadata<:loaded>
+E                          },
+E                          form_keys: [],
+E                          forms: %{},
+E                          domain: Catering.Orders,
+E                          method: "put",
+E                          submit_errors: nil,
+E                          id: "order_line_items_0_modifiers_0",
+E                          transform_errors: nil,
+E                          post_process_errors: nil,
+E                          original_data: %Catering.Orders.Modifier{
+E                            id: "200c2cc5-9d3b-4034-b0c3-13c33c616464",
+E                            label: "extra",
+E                            surcharge_cents: 50,
+E                            position: 0,
+E                            line_item_id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                            line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                            __meta__: #Ecto.Schema.Metadata<:loaded>
+E                          },
+E                          transform_params: nil,
+E                          prepare_params: nil,
+E                          prepare_source: nil,
+E                          raw_params: %{},
+E                          warn_on_unhandled_errors?: true,
+E                          any_removed?: false,
+E                          added?: false,
+E                          changed?: false,
+E                          touched_forms: MapSet.new([]),
+E                          valid?: true,
+E                          errors: false,
+E                          submitted_once?: false,
+E                          just_submitted?: false,
+E                          ...
+E                        >,
+E                        #AshPhoenix.Form<
+E                          resource: Catering.Orders.Modifier,
+E                          action: :revise,
+E                          type: :update,
+E                          params: %{},
+E                          source: #Ash.Changeset<
+E                            domain: Catering.Orders,
+E                            action_type: :update,
+E                            action: :revise,
+E                            attributes: %{},
+E                            relationships: %{},
+E                            errors: [],
+E                            data: %Catering.Orders.Modifier{
+E                              id: "a618f808-b440-40a0-8ffc-f2f905d73dee",
+E                              label: "hot",
+E                              surcharge_cents: 10,
+E                              position: 1,
+E                              line_item_id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                              line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                              __meta__: #Ecto.Schema.Metadata<:loaded>
+E                            },
+E                            context: %{
+E                              accessing_from: %{
+E                                name: :modifiers,
+E                                source: Catering.Orders.LineItem,
+E                                manage_relationship_opts: [
+E                                  on_lookup: :ignore,
+E                                  on_no_match: {:create, :add},
+E                                  on_match: {:update, :revise},
+E                                  on_missing: {:destroy, :destroy},
+E                                  type: :direct_control,
+E                                  order_is_key: :position
+E                                ]
+E                              }
+E                            },
+E                            valid?: true
+E                          >,
+E                          name: "order[line_items][0][modifiers][1]",
+E                          data: %Catering.Orders.Modifier{
+E                            id: "a618f808-b440-40a0-8ffc-f2f905d73dee",
+E                            label: "hot",
+E                            surcharge_cents: 10,
+E                            position: 1,
+E                            line_item_id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                            line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                            __meta__: #Ecto.Schema.Metadata<:loaded>
+E                          },
+E                          form_keys: [],
+E                          forms: %{},
+E                          domain: Catering.Orders,
+E                          method: "put",
+E                          submit_errors: nil,
+E                          id: "order_line_items_0_modifiers_1",
+E                          transform_errors: nil,
+E                          post_process_errors: nil,
+E                          original_data: %Catering.Orders.Modifier{
+E                            id: "a618f808-b440-40a0-8ffc-f2f905d73dee",
+E                            label: "hot",
+E                            surcharge_cents: 10,
+E                            position: 1,
+E                            line_item_id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                            line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                            __meta__: #Ecto.Schema.Metadata<:loaded>
+E                          },
+E                          transform_params: nil,
+E                          prepare_params: nil,
+E                          prepare_source: nil,
+E                          raw_params: %{},
+E                          warn_on_unhandled_errors?: true,
+E                          any_removed?: false,
+E                          added?: false,
+E                          changed?: false,
+E                          touched_forms: MapSet.new([]),
+E                          valid?: true,
+E                          errors: false,
+E                          submitted_once?: false,
+E                          just_submitted?: false,
+E                          ...
+E                        >
+E                      ]
+E                    },
+E                    domain: Catering.Orders,
+E                    method: "put",
+E                    submit_errors: nil,
+E                    id: "order_line_items_0",
+E                    transform_errors: nil,
+E                    post_process_errors: nil,
+E                    original_data: %Catering.Orders.LineItem{
+E                      id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                      dish: "Soup",
+E                      quantity: 2,
+E                      position: 0,
+E                      order_id: "f95d0071-60c0-43d6-be5c-b3cf72d0825b",
+E                      order: #Ash.NotLoaded<:relationship, field: :order>,
+E                      modifiers: [
+E                        %Catering.Orders.Modifier{
+E                          id: "200c2cc5-9d3b-4034-b0c3-13c33c616464",
+E                          label: "extra",
+E                          surcharge_cents: 50,
+E                          position: 0,
+E                          line_item_id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                          line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                          __meta__: #Ecto.Schema.Metadata<:loaded>
+E                        },
+E                        %Catering.Orders.Modifier{
+E                          id: "a618f808-b440-40a0-8ffc-f2f905d73dee",
+E                          label: "hot",
+E                          surcharge_cents: 10,
+E                          position: 1,
+E                          line_item_id: "aeb7740a-5421-44e0-9134-b17f41034f33",
+E                          line_item: #Ash.NotLoaded<:relationship, field: :line_item>,
+E                          __meta__: #Ecto.Schema.Metadata<:loaded>
+E                        }
+E                      ],
+E                      __meta__: #Ecto.Schema.Metadata<:loaded>
+E                    },
+E                    transform_params: nil,
+E                    prepare_params: nil,
+E                    prepare_source: nil,
+E                    raw_params: %{},
+E                    warn_on_unhandled_errors?: true,
+E                    any_removed?: false,
+E                    added?: false,
+E                    changed?: false,
+E                    touched_forms: MapSet.new([]),
+E                    valid?: true,
+E                    errors: false,
+E                    submitted_once?: false,
+E                    just_submitted?: false,
+E                    ...
+E                  >,
+E                  #AshPhoenix.Form<
+E                    resource: Catering.Orders.LineItem,
+E                    action: :revise,
+E                    type: :update,
+E                    params: %{},
+E                    source: #Ash.Changeset<
+E                      domain: Catering.Orders,
+E                      action_type: :update,
+E                      action: :revise,
+E                      attributes: %{},
+E                      relationships: %{},
+E                      arguments: %{},
+E                      errors: [],
+E                      data: %Catering.Orders.LineItem{
+E                        id: "fd225b22-6566-4b85-a84a-e2d32729058a",
+E                        dish: "Salad",
+E                        quantity: 1,
+E                        position: 1,
+E                        order_id: "f95d0071-60c0-43d6-be5c-b3cf72d0825b",
+E                        order: #Ash.NotLoaded<:relationship, field: :order>,
+E                        modifiers: [],
+E                        __meta__: #Ecto.Schema.Metadata<:loaded>
+E                      },
+E                      context: %{
+E                        accessing_from: %{
+E                          name: :line_items,
+E                          source: Catering.Orders.Order,
+E                          manage_relationship_opts: [
+E                            on_lookup: :ignore,
+E                            on_no_match: {:create, :add},
+E                            on_match: {:update, :revise},
+E                            on_missing: {:destroy, :destroy},
+E                            type: :direct_control,
+E                            order_is_key: :position
+E                          ]
+E                        }
+E                      },
+E                      valid?: true
+E                    >,
+E                    name: "order[line_items][1]",
+E                    data: %Catering.Orders.LineItem{
+E                      id: "fd225b22-6566-4b85-a84a-e2d32729058a",
+E                      dish: "Salad",
+E                      quantity: 1,
+E                      position: 1,
+E                      order_id: "f95d0071-60c0-43d6-be5c-b3cf72d0825b",
+E                      order: #Ash.NotLoaded<:relationship, field: :order>,
+E                      modifiers: [],
+E                      __meta__: #Ecto.Schema.Metadata<:loaded>
+E                    },
+E                    form_keys: [
+E                      modifiers: [
+E                        data: #Function<25.46933255/1 in AshPhoenix.Form.Auto.relationship_fetcher/3>,
+E                        destroy_action: :destroy,
+E                        destroy_resource: Catering.Orders.Modifier,
+E                        update_action: :revise,
+E                        update_resource: Catering.Orders.Modifier,
+E                        create_action: :add,
+E                        create_resource: Catering.Orders.Modifier,
+E                        type: :list,
+E                        forms: [],
+E                        sparse?: false,
+E                        managed_relationship: {Catering.Orders.LineItem, :modifiers,
+E                         [
+E                           on_lookup: :ignore,
+E                           on_no_match: {:create, :add},
+E                           on_match: {:update, :revise},
+E                           on_missing: {:destroy, :destroy},
+E                           type: :direct_control,
+E                           order_is_key: :position
+E                         ]},
+E                        must_load?: true
+E                      ]
+E                    ],
+E                    forms: %{modifiers: []},
+E                    domain: Catering.Orders,
+E                    method: "put",
+E                    submit_errors: nil,
+E                    id: "order_line_items_1",
+E                    transform_errors: nil,
+E                    post_process_errors: nil,
+E                    original_data: %Catering.Orders.LineItem{
+E                      id: "fd225b22-6566-4b85-a84a-e2d32729058a",
+E                      dish: "Salad",
+E                      quantity: 1,
+E                      position: 1,
+E                      order_id: "f95d0071-60c0-43d6-be5c-b3cf72d0825b",
+E                      order: #Ash.NotLoaded<:relationship, field: :order>,
+E                      modifiers: [],
+E                      __meta__: #Ecto.Schema.Metadata<:loaded>
+E                    },
+E                    transform_params: nil,
+E                    prepare_params: nil,
+E                    prepare_source: nil,
+E                    raw_params: %{},
+E                    warn_on_unhandled_errors?: true,
+E                    any_removed?: false,
+E                    added?: false,
+E                    changed?: false,
+E                    touched_forms: MapSet.new([]),
+E                    valid?: true,
+E                    errors: false,
+E                    submitted_once?: false,
+E                    just_submitted?: false,
+E                    ...
+E                  >
+E                ]
+E           
+E                If you are using the dot syntax, such as map.field, make sure the left-hand side of the dot is a map
+E                code: |> reorder("order[line_items][0][modifiers]", [1, 0])
+E                stacktrace:
+E                  (ash_phoenix 2.3.24) lib/ash_phoenix/form/form.ex:2615: AshPhoenix.Form.do_sort_forms/5
+E                  (ash_phoenix 2.3.24) lib/ash_phoenix/form/form.ex:2619: anonymous fn/6 in AshPhoenix.Form.do_sort_forms/5
+E                  (elixir 1.18.4) lib/map.ex:257: Map.do_map/2
+E                  (elixir 1.18.4) lib/map.ex:257: Map.do_map/2
+E                  (elixir 1.18.4) lib/map.ex:251: Map.new_from_map/2
+E                  (ash_phoenix 2.3.24) lib/ash_phoenix/form/form.ex:2616: AshPhoenix.Form.do_sort_forms/5
+E                  /tmp/harbor_final_suite.exs:778: (test)
+
+/tests/test_final_state.py:893: Failed
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../../../tests/test_final_state.py::test_t01_new_order_form_builds_a_create_form_for_order_place_named_order
+PASSED ../../../tests/test_final_state.py::test_t02_nested_form_keys_are_derived_automatically_from_the_action
+PASSED ../../../tests/test_final_state.py::test_t03_to_phoenix_form_returns_a_phoenix_html_form_wrapping_the_ashphoenix_fo
+PASSED ../../../tests/test_final_state.py::test_t04_a_fresh_form_submits_only_the_form_type_marker
+PASSED ../../../tests/test_final_state.py::test_t06_hidden_inputs_reports_the_form_type_and_the_touched_field_list
+PASSED ../../../tests/test_final_state.py::test_t08_add_nested_works_at_a_two_level_deep_path
+PASSED ../../../tests/test_final_state.py::test_t09_add_nested_honours_the_prepend_option
+PASSED ../../../tests/test_final_state.py::test_t10_remove_nested_drops_a_single_deep_form_and_reindexes_its_siblings
+PASSED ../../../tests/test_final_state.py::test_t11_remove_nested_drops_the_whole_subtree_of_the_removed_form
+PASSED ../../../tests/test_final_state.py::test_t12_embedded_delivery_windows_are_editable_as_nested_list_forms
+PASSED ../../../tests/test_final_state.py::test_t13_union_members_are_added_by_name_and_expose_the_union_type_as_a_hidden_
+PASSED ../../../tests/test_final_state.py::test_t14_replacing_the_union_member_swaps_the_nested_form_resource
+PASSED ../../../tests/test_final_state.py::test_t15_error_map_keys_every_failing_form_by_its_html_name
+PASSED ../../../tests/test_final_state.py::test_t17_revalidating_with_errors_enabled_reveals_them_again
+PASSED ../../../tests/test_final_state.py::test_t18_only_touched_restricts_the_submitted_params_to_touched_fields
+PASSED ../../../tests/test_final_state.py::test_t19_raw_error_list_exposes_untranslated_messages_and_substitution_vars
+PASSED ../../../tests/test_final_state.py::test_t20_errors_nested_two_levels_deep_keep_their_own_path
+PASSED ../../../tests/test_final_state.py::test_t21_embedded_window_validation_failures_are_reported_on_the_window_form
+PASSED ../../../tests/test_final_state.py::test_t22_union_member_validation_failures_are_reported_on_the_union_form
+PASSED ../../../tests/test_final_state.py::test_t23_the_submitted_params_rebuild_an_identical_form_tree
+PASSED ../../../tests/test_final_state.py::test_t24_the_add_checkbox_param_appends_an_empty_nested_form
+PASSED ../../../tests/test_final_state.py::test_t25_the_drop_checkbox_param_removes_the_nested_form_at_that_index
+PASSED ../../../tests/test_final_state.py::test_t26_the_sort_checkbox_param_reorders_the_nested_forms
+PASSED ../../../tests/test_final_state.py::test_t27_a_read_typed_customer_form_survives_a_params_round_trip
+PASSED ../../../tests/test_final_state.py::test_t28_add_nested_with_type_read_produces_a_read_typed_nested_form
+PASSED ../../../tests/test_final_state.py::test_t29_reorder_rearranges_a_top_level_nested_list_and_marks_it_for_submission
+PASSED ../../../tests/test_final_state.py::test_t31_move_shifts_a_single_nested_form_up_or_down
+PASSED ../../../tests/test_final_state.py::test_t33_save_persists_the_whole_graph_in_one_call
+PASSED ../../../tests/test_final_state.py::test_t34_save_stores_the_embedded_delivery_windows_and_the_union_member
+PASSED ../../../tests/test_final_state.py::test_t35_an_inline_customer_form_creates_exactly_one_customer_and_links_it
+PASSED ../../../tests/test_final_state.py::test_t36_a_read_typed_customer_form_relates_the_existing_customer_without_creat
+PASSED ../../../tests/test_final_state.py::test_t37_a_failed_save_returns_the_form_writes_nothing_and_stays_reusable
+PASSED ../../../tests/test_final_state.py::test_t38_save_accepts_params_and_validates_them_before_submitting
+PASSED ../../../tests/test_final_state.py::test_t39_edit_order_form_builds_update_forms_in_stored_order_with_hidden_ids
+PASSED ../../../tests/test_final_state.py::test_t41_removing_a_nested_form_from_an_edit_form_destroys_that_record_on_save
+PASSED ../../../tests/test_final_state.py::test_t42_removing_a_deep_nested_form_destroys_only_that_record
+PASSED ../../../tests/test_final_state.py::test_t44_adding_a_nested_form_to_an_existing_record_on_an_edit_form_creates_it
+PASSED ../../../tests/test_final_state.py::test_t45_an_edit_form_round_trips_its_own_submitted_params
+FAILED ../../../tests/test_final_state.py::test_t05_serialize_of_a_fresh_form_has_the_exact_documented_shape
+FAILED ../../../tests/test_final_state.py::test_t07_add_nested_appends_list_forms_and_names_them_by_index
+FAILED ../../../tests/test_final_state.py::test_t16_validating_with_errors_disabled_hides_them_but_keeps_the_form_invalid
+FAILED ../../../tests/test_final_state.py::test_t30_reorder_rearranges_a_list_nested_inside_another_list_form
+FAILED ../../../tests/test_final_state.py::test_t32_move_is_a_no_op_at_the_boundaries_and_works_on_deep_paths
+FAILED ../../../tests/test_final_state.py::test_t40_edit_order_form_orders_nested_forms_by_stored_position_not_by_storage_
+FAILED ../../../tests/test_final_state.py::test_t43_reordering_a_deep_nested_list_on_an_edit_form_renumbers_its_positions
+======================== 7 failed, 38 passed in 20.56s =========================

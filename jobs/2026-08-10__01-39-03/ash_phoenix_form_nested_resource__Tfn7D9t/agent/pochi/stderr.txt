@@ -1,0 +1,292 @@
+[37m2026-08-09 17:40:16.522[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	pochi v0.6.20
+[37m2026-08-09 17:40:16.783[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	BuiltInBundle[39m[22m[0m[0m	Materializing 16 built-in files to /tmp/pochi-builtin-ef402bc2bbe8f440
+[37m2026-08-09 17:40:16.988[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:532913[39m[0m[0m[1m[37m	loadAgents[39m[22m[0m[0m	Loaded 6 custom agents (6 valid, 0 invalid)
+[37m2026-08-09 17:40:17.077[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:532914[39m[0m[0m[1m[37m	loadSkills[39m[22m[0m[0m	Loaded 3 skills (3 valid, 0 invalid)
+[37m2026-08-09 17:40:17.112[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:443306[39m[0m[0m[1m[37m	PochiVendor[39m[22m[0m[0m	JWT is expiring or missing, fetching a new one
+[37m2026-08-09 17:40:18.294[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:419194[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	MCP servers configuration changed via signal:
+[37m2026-08-09 17:40:18.295[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:419306[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	Build MCPHub Status
+[37m2026-08-09 17:40:18.473[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Starting task runner...
+[37m2026-08-09 17:40:18.602[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: null, new: # Server-driven nested order forms with Ash Framework v3
+[37m2026-08-09 17:40:27.725[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/catering and recursive [33mtrue[39m
+[37m2026-08-09 17:40:30.504[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: # Server-driven nested order forms with Ash Framework v3, new: Build Catering.Forms facade for Ash order forms
+[37m2026-08-09 17:40:33.730[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/lib/catering/orders/order.ex" resolvedPath="/home/user/catering/lib/catering/orders/order.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:33.730[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:33.730[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/lib/catering/orders/line_item.ex" resolvedPath="/home/user/catering/lib/catering/orders/line_item.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:33.731[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:33.731[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/lib/catering/orders/modifier.ex" resolvedPath="/home/user/catering/lib/catering/orders/modifier.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:33.731[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:33.731[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/lib/catering/orders/customer.ex" resolvedPath="/home/user/catering/lib/catering/orders/customer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:33.731[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:33.731[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/lib/catering/orders/delivery_window.ex" resolvedPath="/home/user/catering/lib/catering/orders/delivery_window.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:33.731[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:33.731[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/lib/catering/orders/fulfillment.ex" resolvedPath="/home/user/catering/lib/catering/orders/fulfillment.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:33.731[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:33.731[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/lib/catering/orders.ex" resolvedPath="/home/user/catering/lib/catering/orders.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:33.731[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:33.731[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/lib/catering/forms.ex" resolvedPath="/home/user/catering/lib/catering/forms.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:33.732[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:33.733[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/lib/catering/orders/order.ex" mtime=1786284247147 contentLen=1585
+[37m2026-08-09 17:40:33.735[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/lib/catering/orders/line_item.ex" mtime=1786284247493 contentLen=1352
+[37m2026-08-09 17:40:33.737[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/lib/catering/orders/modifier.ex" mtime=1786284247895 contentLen=1041
+[37m2026-08-09 17:40:33.738[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/lib/catering/orders/customer.ex" mtime=1786284246770 contentLen=605
+[37m2026-08-09 17:40:33.740[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/lib/catering/orders/delivery_window.ex" mtime=1786284248372 contentLen=585
+[37m2026-08-09 17:40:33.742[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/lib/catering/orders/fulfillment.ex" mtime=1786284248823 contentLen=1056
+[37m2026-08-09 17:40:33.743[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/lib/catering/orders.ex" mtime=1786284246372 contentLen=241
+[37m2026-08-09 17:40:33.745[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/lib/catering/forms.ex" mtime=1786284249169 contentLen=984
+[37m2026-08-09 17:40:54.432[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form and recursive [90mundefined[39m
+[37m2026-08-09 17:40:54.432[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/usage-rules/nested_forms.md" resolvedPath="/home/user/catering/deps/ash_phoenix/usage-rules/nested_forms.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:54.433[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:54.433[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/usage-rules/union_forms.md" resolvedPath="/home/user/catering/deps/ash_phoenix/usage-rules/union_forms.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:54.433[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:54.433[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/usage-rules/form_integration.md" resolvedPath="/home/user/catering/deps/ash_phoenix/usage-rules/form_integration.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:54.433[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:54.439[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/usage-rules/nested_forms.md" mtime=1786284251000 contentLen=1530
+[37m2026-08-09 17:40:54.443[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/usage-rules/union_forms.md" mtime=1786284251000 contentLen=979
+[37m2026-08-09 17:40:54.447[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/usage-rules/form_integration.md" mtime=1786284251000 contentLen=2699
+[37m2026-08-09 17:40:58.445[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:40:58.445[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:40:58.448[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=30000
+[37m2026-08-09 17:41:02.107[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=560 endLine=1000
+[37m2026-08-09 17:41:02.107[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786284251000}
+[37m2026-08-09 17:41:02.108[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=12678
+[37m2026-08-09 17:41:06.217[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1000 endLine=1500
+[37m2026-08-09 17:41:06.217[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=560, endLine=1000, timestamp=1786284251000}
+[37m2026-08-09 17:41:06.218[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=15244
+[37m2026-08-09 17:41:09.920[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1500 endLine=2100
+[37m2026-08-09 17:41:09.920[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1000, endLine=1500, timestamp=1786284251000}
+[37m2026-08-09 17:41:09.922[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=23820
+[37m2026-08-09 17:41:13.437[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=2100 endLine=2700
+[37m2026-08-09 17:41:13.437[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1500, endLine=2100, timestamp=1786284251000}
+[37m2026-08-09 17:41:13.439[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=17729
+[37m2026-08-09 17:41:19.014[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex def add_form|def remove_form|def errors\(|def errors_for|def params\(|def value\(|def hidden|@doc.*hidden|def parse_path|defp parse_path [90mundefined[39m
+[37m2026-08-09 17:41:19.014[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def add_form|def remove_form|def errors\\(|def errors_for|def params\\(|def value\\(|def hidden|@doc.*hidden|def parse_path|defp parse_path'[39m,
+  [32m'/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex'[39m
+]
+[37m2026-08-09 17:41:22.442[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=2900 endLine=3500
+[37m2026-08-09 17:41:22.442[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=2100, endLine=2700, timestamp=1786284251000}
+[37m2026-08-09 17:41:22.446[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=15884
+[37m2026-08-09 17:41:26.360[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=3650 endLine=4100
+[37m2026-08-09 17:41:26.360[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=2900, endLine=3500, timestamp=1786284251000}
+[37m2026-08-09 17:41:26.362[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=12513
+[37m2026-08-09 17:41:34.519[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=4820 endLine=5050
+[37m2026-08-09 17:41:34.519[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=3650, endLine=4100, timestamp=1786284251000}
+[37m2026-08-09 17:41:34.524[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=5833
+[37m2026-08-09 17:41:40.565[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex def get_form|def has_form\?|defp has_form\?|def to_form\(|def to_form!|defmodule [90mundefined[39m
+[37m2026-08-09 17:41:40.565[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def get_form|def has_form\\?|defp has_form\\?|def to_form\\(|def to_form!|defmodule'[39m,
+  [32m'/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex'[39m
+]
+[37m2026-08-09 17:41:44.013[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=2800 endLine=2900
+[37m2026-08-09 17:41:44.013[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=4820, endLine=5050, timestamp=1786284251000}
+[37m2026-08-09 17:41:44.017[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=2362
+[37m2026-08-09 17:41:50.085[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/auto.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/auto.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:41:50.085[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:41:50.089[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/auto.ex" mtime=1786284251000 contentLen=28095
+[37m2026-08-09 17:41:56.277[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash_phoenix/lib/ash_phoenix def add_auto|defp add_auto|def handle_forms|defmodule AshPhoenix.FormData.Helpers [90mundefined[39m
+[37m2026-08-09 17:41:56.277[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def add_auto|defp add_auto|def handle_forms|defmodule AshPhoenix.FormData.Helpers'[39m,
+  [32m'/home/user/catering/deps/ash_phoenix/lib/ash_phoenix'[39m
+]
+[37m2026-08-09 17:42:00.666[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=4720 endLine=4770
+[37m2026-08-09 17:42:00.666[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=2800, endLine=2900, timestamp=1786284251000}
+[37m2026-08-09 17:42:00.670[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=1452
+[37m2026-08-09 17:42:19.857[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash direct_control [90mundefined[39m
+[37m2026-08-09 17:42:19.857[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'direct_control'[39m,
+  [32m'/home/user/catering/deps/ash'[39m
+]
+[37m2026-08-09 17:42:25.730[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash/lib/ash/changeset/changeset.ex" resolvedPath="/home/user/catering/deps/ash/lib/ash/changeset/changeset.ex" isVirtual=false cacheExists=true shouldCache=true startLine=5555 endLine=5605
+[37m2026-08-09 17:42:25.730[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:42:25.735[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash/lib/ash/changeset/changeset.ex" mtime=1786284251000 contentLen=1135
+[37m2026-08-09 17:42:40.806[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash/lib/ash.ex def get\(|def get!\(|def load\(|def load!\( [90mundefined[39m
+[37m2026-08-09 17:42:40.807[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def get\\(|def get!\\(|def load\\(|def load!\\('[39m,
+  [32m'/home/user/catering/deps/ash/lib/ash.ex'[39m
+]
+[37m2026-08-09 17:42:44.221[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash/lib/ash.ex" resolvedPath="/home/user/catering/deps/ash/lib/ash.ex" isVirtual=false cacheExists=true shouldCache=true startLine=2150 endLine=2235
+[37m2026-08-09 17:42:44.221[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:42:44.228[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash/lib/ash.ex" mtime=1786284251000 contentLen=2778
+[37m2026-08-09 17:42:52.935[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash load: \[.*: .*Query [90mundefined[39m
+[37m2026-08-09 17:42:52.935[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'load: \\[.*: .*Query'[39m,
+  [32m'/home/user/catering/deps/ash'[39m
+]
+[37m2026-08-09 17:43:00.243[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash/usage-rules/querying_data.md" resolvedPath="/home/user/catering/deps/ash/usage-rules/querying_data.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:43:00.243[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:43:00.249[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash/usage-rules/querying_data.md" mtime=1786284251000 contentLen=308
+[37m2026-08-09 17:43:05.376[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash/lib/ash/query/query.ex def load\(|@doc \"\"\"|def sort\( [90mundefined[39m
+[37m2026-08-09 17:43:05.376[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def load\\(|@doc \\"\\"\\"|def sort\\('[39m,
+  [32m'/home/user/catering/deps/ash/lib/ash/query/query.ex'[39m
+]
+[37m2026-08-09 17:43:09.786[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash/lib/ash/query/query.ex" resolvedPath="/home/user/catering/deps/ash/lib/ash/query/query.ex" isVirtual=false cacheExists=true shouldCache=true startLine=2140 endLine=2215
+[37m2026-08-09 17:43:09.786[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:43:09.792[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash/lib/ash/query/query.ex" mtime=1786284251000 contentLen=2867
+[37m2026-08-09 17:43:14.164[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash/lib/ash.ex @get_opts_schema|@read_opts_schema \=|load: [90mundefined[39m
+[37m2026-08-09 17:43:14.165[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'@get_opts_schema|@read_opts_schema \\=|load:'[39m,
+  [32m'/home/user/catering/deps/ash/lib/ash.ex'[39m
+]
+[37m2026-08-09 17:43:20.558[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=4100 endLine=4400
+[37m2026-08-09 17:43:20.558[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=4720, endLine=4770, timestamp=1786284251000}
+[37m2026-08-09 17:43:20.566[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=8273
+[37m2026-08-09 17:43:34.752[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex defp do_add_form [90mundefined[39m
+[37m2026-08-09 17:43:34.753[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defp do_add_form'[39m,
+  [32m'/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex'[39m
+]
+[37m2026-08-09 17:43:42.605[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=4400 endLine=4630
+[37m2026-08-09 17:43:42.606[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=4100, endLine=4400, timestamp=1786284251000}
+[37m2026-08-09 17:43:42.615[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=6937
+[37m2026-08-09 17:44:22.471[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex def do_sort_forms|defp reindex_sorted_forms [90mundefined[39m
+[37m2026-08-09 17:44:22.471[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def do_sort_forms|defp reindex_sorted_forms'[39m,
+  [32m'/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex'[39m
+]
+[37m2026-08-09 17:44:31.112[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex def update_form\(|def get_form\(|def has_form\? [90mundefined[39m
+[37m2026-08-09 17:44:31.112[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def update_form\\(|def get_form\\(|def has_form\\?'[39m,
+  [32m'/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex'[39m
+]
+[37m2026-08-09 17:44:35.364[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=2735 endLine=2830
+[37m2026-08-09 17:44:35.365[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=4400, endLine=4630, timestamp=1786284251000}
+[37m2026-08-09 17:44:35.371[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=2335
+[37m2026-08-09 17:45:16.969[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=3500 endLine=3660
+[37m2026-08-09 17:45:16.969[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=2735, endLine=2830, timestamp=1786284251000}
+[37m2026-08-09 17:45:16.977[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=4899
+[37m2026-08-09 17:47:14.816[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex def to_form|defimpl Phoenix.HTML.FormData [90mundefined[39m
+[37m2026-08-09 17:47:14.816[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def to_form|defimpl Phoenix.HTML.FormData'[39m,
+  [32m'/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex'[39m
+]
+[37m2026-08-09 17:47:20.378[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/phoenix_live_view/lib/phoenix_component.ex def to_form [90mundefined[39m
+[37m2026-08-09 17:47:20.378[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def to_form'[39m,
+  [32m'/home/user/catering/deps/phoenix_live_view/lib/phoenix_component.ex'[39m
+]
+[37m2026-08-09 17:47:24.931[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/phoenix_live_view/lib/phoenix_component.ex" resolvedPath="/home/user/catering/deps/phoenix_live_view/lib/phoenix_component.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1600 endLine=1670
+[37m2026-08-09 17:47:24.932[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:47:24.979[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/phoenix_live_view/lib/phoenix_component.ex" mtime=1786284251000 contentLen=2775
+[37m2026-08-09 17:50:03.583[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/phoenix_html/lib/phoenix_html/form_data.ex" resolvedPath="/home/user/catering/deps/phoenix_html/lib/phoenix_html/form_data.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:50:03.583[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:50:03.591[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/phoenix_html/lib/phoenix_html/form_data.ex" mtime=1786284251000 contentLen=6012
+[37m2026-08-09 17:50:09.791[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" resolvedPath="/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" isVirtual=false cacheExists=true shouldCache=true startLine=6280 endLine=6340
+[37m2026-08-09 17:50:09.792[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=3500, endLine=3660, timestamp=1786284251000}
+[37m2026-08-09 17:50:09.800[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form/form.ex" mtime=1786284251000 contentLen=1474
+[37m2026-08-09 17:53:08.482[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form_data/helpers.ex def get_params|defp get_params [90mundefined[39m
+[37m2026-08-09 17:53:08.482[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def get_params|defp get_params'[39m,
+  [32m'/home/user/catering/deps/ash_phoenix/lib/ash_phoenix/form_data/helpers.ex'[39m
+]
+[37m2026-08-09 17:53:15.025[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash_phoenix/lib defp get_params|def get_params [90mundefined[39m
+[37m2026-08-09 17:53:15.025[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defp get_params|def get_params'[39m,
+  [32m'/home/user/catering/deps/ash_phoenix/lib'[39m
+]
+[37m2026-08-09 17:53:49.751[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash/lib/ash/resource defmodule Ash.Resource.Change.ManageRelationship [90mundefined[39m
+[37m2026-08-09 17:53:49.751[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmodule Ash.Resource.Change.ManageRelationship'[39m,
+  [32m'/home/user/catering/deps/ash/lib/ash/resource'[39m
+]
+[37m2026-08-09 17:53:53.346[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/deps/ash/lib/ash/resource/change/manage_relationship.ex" resolvedPath="/home/user/catering/deps/ash/lib/ash/resource/change/manage_relationship.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:53:53.346[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-09 17:53:53.358[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/deps/ash/lib/ash/resource/change/manage_relationship.ex" mtime=1786284251000 contentLen=1850
+[37m2026-08-09 17:57:16.709[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/catering and recursive [90mundefined[39m
+[37m2026-08-09 17:58:05.443[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/catering/lib/catering/forms.ex" resolvedPath="/home/user/catering/lib/catering/forms.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-09 17:58:05.443[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786298055371}
+[37m2026-08-09 17:58:05.456[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/catering/lib/catering/forms.ex" mtime=1786298055371 contentLen=8689
+[37m2026-08-09 17:58:38.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/catering/deps/ash/lib/ash def on_lookup_read_action [90mundefined[39m
+[37m2026-08-09 17:58:38.516[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def on_lookup_read_action'[39m,
+  [32m'/home/user/catering/deps/ash/lib/ash'[39m
+]
+[37m2026-08-09 18:00:05.020[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Task runner finished successfully.
+[37m2026-08-09 18:00:05.020[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Shutting down...
+[37m2026-08-09 18:00:05.124[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Shutdown completed. Process will exit.
+[37m2026-08-09 18:00:05.125[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Process exiting with code 0

@@ -1,0 +1,2299 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 44 items
+
+../tests/test_final_state.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF [ 97%]
+F                                                                        [100%]
+
+=================================== FAILURES ===================================
+___________ test_t01_root_query_exposes_exactly_the_required_fields ____________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t01_root_query_exposes_exactly_the_required_fields(suite_results):
+>       _assert_scenario(suite_results, "T01", 'root query exposes exactly the required fields')
+
+/tests/test_final_state.py:1050: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T01'
+description = 'root query exposes exactly the required fields'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T01 (root query exposes exactly the required fields) failed:
+E         1) test T01 root query exposes exactly the required fields (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:129
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("{ __schema { queryType { fields { name } } } }")
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:131: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+__________ test_t02_root_mutation_exposes_exactly_the_required_fields __________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t02_root_mutation_exposes_exactly_the_required_fields(suite_results):
+>       _assert_scenario(suite_results, "T02", 'root mutation exposes exactly the required fields')
+
+/tests/test_final_state.py:1054: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T02'
+description = 'root mutation exposes exactly the required fields'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T02 (root mutation exposes exactly the required fields) failed:
+E         1) test T02 root mutation exposes exactly the required fields (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:152
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("{ __schema { mutationType { fields { name } } } }")
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:154: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+______ test_t03_ticket_object_exposes_renamed_and_hidden_fields_correctly ______
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t03_ticket_object_exposes_renamed_and_hidden_fields_correctly(suite_results):
+>       _assert_scenario(suite_results, "T03", 'Ticket object exposes renamed and hidden fields correctly')
+
+/tests/test_final_state.py:1058: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T03'
+description = 'Ticket object exposes renamed and hidden fields correctly'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T03 (Ticket object exposes renamed and hidden fields correctly) failed:
+E         1) test T03 Ticket object exposes renamed and hidden fields correctly (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:169
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert field_names("Ticket") == [
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:76: GqlHelper.field_names/1
+E              /tmp/harbor_ash_graphql_final.exs:170: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+____________ test_t04_ticket_status_is_a_non_null_ticketstatus_enum ____________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t04_ticket_status_is_a_non_null_ticketstatus_enum(suite_results):
+>       _assert_scenario(suite_results, "T04", 'Ticket.status is a non null TicketStatus enum')
+
+/tests/test_final_state.py:1062: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T04'
+description = 'Ticket.status is a non null TicketStatus enum'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T04 (Ticket.status is a non null TicketStatus enum) failed:
+E         1) test T04 Ticket.status is a non null TicketStatus enum (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:186
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert field_type("Ticket", "status") == %{
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:97: GqlHelper.field_type/2
+E              /tmp/harbor_ash_graphql_final.exs:187: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+___________ test_t05_ticket_and_project_implement_node_user_does_not ___________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t05_ticket_and_project_implement_node_user_does_not(suite_results):
+>       _assert_scenario(suite_results, "T05", 'Ticket and Project implement Node, User does not')
+
+/tests/test_final_state.py:1066: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T05'
+description = 'Ticket and Project implement Node, User does not'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T05 (Ticket and Project implement Node, User does not) failed:
+E         1) test T05 Ticket and Project implement Node, User does not (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:196
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert interfaces.("Ticket") == ["Node"]
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:198: anonymous fn/1 in TrackerGraphqlTest."test T05 Ticket and Project implement Node, User does not"/1
+E              /tmp/harbor_ash_graphql_final.exs:203: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+____ test_t06_user_object_hides_internal_notes_and_exposes_role_as_a_string ____
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t06_user_object_hides_internal_notes_and_exposes_role_as_a_string(suite_results):
+>       _assert_scenario(suite_results, "T06", 'User object hides internal notes and exposes role as a String')
+
+/tests/test_final_state.py:1070: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T06'
+description = 'User object hides internal notes and exposes role as a String'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T06 (User object hides internal notes and exposes role as a String) failed:
+E         1) test T06 User object hides internal notes and exposes role as a String (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:208
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert field_names("User") == ["assignedTickets", "displayName", "email", "id", "role"]
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:76: GqlHelper.field_names/1
+E              /tmp/harbor_ash_graphql_final.exs:209: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+___________ test_t07_project_exposes_the_aggregate_as_a_non_null_int ___________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t07_project_exposes_the_aggregate_as_a_non_null_int(suite_results):
+>       _assert_scenario(suite_results, "T07", 'Project exposes the aggregate as a non null Int')
+
+/tests/test_final_state.py:1074: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T07'
+description = 'Project exposes the aggregate as a non null Int'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T07 (Project exposes the aggregate as a non null Int) failed:
+E         1) test T07 Project exposes the aggregate as a non null Int (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:218
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert field_names("Project") == [
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:76: GqlHelper.field_names/1
+E              /tmp/harbor_ash_graphql_final.exs:219: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_____ test_t08_riskscore_is_a_nullable_int_field_taking_a_weight_argument ______
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t08_riskscore_is_a_nullable_int_field_taking_a_weight_argument(suite_results):
+>       _assert_scenario(suite_results, "T08", 'riskScore is a nullable Int field taking a weight argument')
+
+/tests/test_final_state.py:1078: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T08'
+description = 'riskScore is a nullable Int field taking a weight argument'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T08 (riskScore is a nullable Int field taking a weight argument) failed:
+E         1) test T08 riskScore is a nullable Int field taking a weight argument (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:235
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:237: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+________ test_t09_tickets_is_a_relay_connection_with_the_standard_shape ________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t09_tickets_is_a_relay_connection_with_the_standard_shape(suite_results):
+>       _assert_scenario(suite_results, "T09", 'tickets is a relay connection with the standard shape')
+
+/tests/test_final_state.py:1082: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T09'
+description = 'tickets is a relay connection with the standard shape'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T09 (tickets is a relay connection with the standard shape) failed:
+E         1) test T09 tickets is a relay connection with the standard shape (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:251
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("{ __schema { queryType { fields { name type { kind name } } } } }")
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:253: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_______ test_t10_projects_labels_and_users_are_plain_non_paginated_lists _______
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t10_projects_labels_and_users_are_plain_non_paginated_lists(suite_results):
+>       _assert_scenario(suite_results, "T10", 'projects, labels and users are plain non paginated lists')
+
+/tests/test_final_state.py:1086: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T10'
+description = 'projects, labels and users are plain non paginated lists'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T10 (projects, labels and users are plain non paginated lists) failed:
+E         1) test T10 projects, labels and users are plain non paginated lists (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:275
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data(
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:277: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+______ test_t11_create_input_objects_are_derived_with_the_required_names _______
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t11_create_input_objects_are_derived_with_the_required_names(suite_results):
+>       _assert_scenario(suite_results, "T11", 'create input objects are derived with the required names')
+
+/tests/test_final_state.py:1090: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T11'
+description = 'create input objects are derived with the required names'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T11 (create input objects are derived with the required names) failed:
+E         1) test T11 create input objects are derived with the required names (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:298
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert input_field_names("CreateTicketInput") == [
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:83: GqlHelper.input_field_names/1
+E              /tmp/harbor_ash_graphql_final.exs:299: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+__________ test_t12_label_filtering_and_sorting_is_restricted_to_name __________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t12_label_filtering_and_sorting_is_restricted_to_name(suite_results):
+>       _assert_scenario(suite_results, "T12", 'Label filtering and sorting is restricted to name')
+
+/tests/test_final_state.py:1094: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T12'
+description = 'Label filtering and sorting is restricted to name'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T12 (Label filtering and sorting is restricted to name) failed:
+E         1) test T12 Label filtering and sorting is restricted to name (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:321
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert enum_values("LabelSortField") == ["NAME"]
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:90: GqlHelper.enum_values/1
+E              /tmp/harbor_ash_graphql_final.exs:322: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+__________ test_t13_ticketorfail_is_non_null_while_ticket_is_nullable __________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t13_ticketorfail_is_non_null_while_ticket_is_nullable(suite_results):
+>       _assert_scenario(suite_results, "T13", 'ticketOrFail is non null while ticket is nullable')
+
+/tests/test_final_state.py:1098: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T13'
+description = 'ticketOrFail is non null while ticket is nullable'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T13 (ticketOrFail is non null while ticket is nullable) failed:
+E         1) test T13 ticketOrFail is non null while ticket is nullable (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:338
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("{ __schema { queryType { fields { name type { kind name ofType { name } } } } } }")
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:340: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+___ test_t14_the_generic_action_mutation_returns_a_string_result_plus_errors ___
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t14_the_generic_action_mutation_returns_a_string_result_plus_errors(suite_results):
+>       _assert_scenario(suite_results, "T14", 'the generic action mutation returns a String result plus errors')
+
+/tests/test_final_state.py:1102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T14'
+description = 'the generic action mutation returns a String result plus errors'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T14 (the generic action mutation returns a String result plus errors) failed:
+E         1) test T14 the generic action mutation returns a String result plus errors (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:356
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert field_names("FreezeSprintResult") == ["errors", "result"]
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:76: GqlHelper.field_names/1
+E              /tmp/harbor_ash_graphql_final.exs:357: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+________________ test_t15_the_hand_written_apiinfo_query_works _________________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t15_the_hand_written_apiinfo_query_works(suite_results):
+>       _assert_scenario(suite_results, "T15", 'the hand written apiInfo query works')
+
+/tests/test_final_state.py:1106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T15', description = 'the hand written apiInfo query works'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T15 (the hand written apiInfo query works) failed:
+E         1) test T15 the hand written apiInfo query works (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:370
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert data("{ apiInfo { name ticketCount } }") == %{
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:371: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+______________ test_t16_ticket_is_fetched_by_its_relay_global_id _______________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t16_ticket_is_fetched_by_its_relay_global_id(suite_results):
+>       _assert_scenario(suite_results, "T16", 'ticket is fetched by its relay global id')
+
+/tests/test_final_state.py:1110: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T16', description = 'ticket is fetched by its relay global id'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T16 (ticket is fetched by its relay global id) failed:
+E         1) test T16 ticket is fetched by its relay global id (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:376
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert data("{ ticket(id: \"#{id}\") { id title status points } }") == %{
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:379: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_________ test_t17_a_raw_uuid_is_rejected_by_the_relay_aware_get_query _________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t17_a_raw_uuid_is_rejected_by_the_relay_aware_get_query(suite_results):
+>       _assert_scenario(suite_results, "T17", 'a raw uuid is rejected by the relay aware get query')
+
+/tests/test_final_state.py:1114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T17'
+description = 'a raw uuid is rejected by the relay aware get query'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T17 (a raw uuid is rejected by the relay aware get query) failed:
+E         1) test T17 a raw uuid is rejected by the relay aware get query (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:389
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: result = run("{ ticket(id: \"#{Seed.ticket_id(1)}\") { id } }")
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:390: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_____________ test_t18_node_resolves_ticket_and_project_global_ids _____________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t18_node_resolves_ticket_and_project_global_ids(suite_results):
+>       _assert_scenario(suite_results, "T18", 'node resolves Ticket and Project global ids')
+
+/tests/test_final_state.py:1118: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T18', description = 'node resolves Ticket and Project global ids'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T18 (node resolves Ticket and Project global ids) failed:
+E         1) test T18 node resolves Ticket and Project global ids (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:397
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert data("{ node(id: \"#{ticket_id}\") { id ... on Ticket { title severity } } }") == %{
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:400: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+____ test_t19_topticket_read_one_returns_the_single_highest_severity_ticket ____
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t19_topticket_read_one_returns_the_single_highest_severity_ticket(suite_results):
+>       _assert_scenario(suite_results, "T19", 'topTicket read_one returns the single highest severity ticket')
+
+/tests/test_final_state.py:1122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T19'
+description = 'topTicket read_one returns the single highest severity ticket'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T19 (topTicket read_one returns the single highest severity ticket) failed:
+E         1) test T19 topTicket read_one returns the single highest severity ticket (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:412
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert data("{ topTicket { title severity } }") == %{
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:413: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+____________ test_t20_projects_exposes_the_filtered_count_aggregate ____________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t20_projects_exposes_the_filtered_count_aggregate(suite_results):
+>       _assert_scenario(suite_results, "T20", 'projects exposes the filtered count aggregate')
+
+/tests/test_final_state.py:1126: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T20'
+description = 'projects exposes the filtered count aggregate'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T20 (projects exposes the filtered count aggregate) failed:
+E         1) test T20 projects exposes the filtered count aggregate (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:418
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert data("{ projects { name slug archived openTicketCount } }") == %{
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:419: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+____________________ test_t21_labels_can_be_sorted_by_name _____________________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t21_labels_can_be_sorted_by_name(suite_results):
+>       _assert_scenario(suite_results, "T21", 'labels can be sorted by name')
+
+/tests/test_final_state.py:1130: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T21', description = 'labels can be sorted by name'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T21 (labels can be sorted by name) failed:
+E         1) test T21 labels can be sorted by name (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:437
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert data("{ labels(sort: [{field: NAME, order: ASC}]) { name colour } }") == %{
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:438: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+____________ test_t22_hidden_attributes_are_not_part_of_the_schema _____________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t22_hidden_attributes_are_not_part_of_the_schema(suite_results):
+>       _assert_scenario(suite_results, "T22", 'hidden attributes are not part of the schema')
+
+/tests/test_final_state.py:1134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T22'
+description = 'hidden attributes are not part of the schema'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T22 (hidden attributes are not part of the schema) failed:
+E         1) test T22 hidden attributes are not part of the schema (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:447
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: ticket_result = run("{ tickets(first: 1) { edges { node { internalReference } } } }")
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:448: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_____ test_t23_relationships_and_calculations_resolve_through_a_get_query ______
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t23_relationships_and_calculations_resolve_through_a_get_query(suite_results):
+>       _assert_scenario(suite_results, "T23", 'relationships and calculations resolve through a get query')
+
+/tests/test_final_state.py:1138: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T23'
+description = 'relationships and calculations resolve through a get query'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T23 (relationships and calculations resolve through a get query) failed:
+E         1) test T23 relationships and calculations resolve through a get query (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:457
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:460: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+___ test_t24_the_first_connection_page_reports_the_total_count_and_page_info ___
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t24_the_first_connection_page_reports_the_total_count_and_page_info(suite_results):
+>       _assert_scenario(suite_results, "T24", 'the first connection page reports the total count and page info')
+
+/tests/test_final_state.py:1142: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T24'
+description = 'the first connection page reports the total count and page info'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T24 (the first connection page reports the total count and page info) failed:
+E         1) test T24 the first connection page reports the total count and page info (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:481
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:483: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_____ test_t25_forward_pagination_walks_the_whole_connection_without_gaps ______
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t25_forward_pagination_walks_the_whole_connection_without_gaps(suite_results):
+>       _assert_scenario(suite_results, "T25", 'forward pagination walks the whole connection without gaps')
+
+/tests/test_final_state.py:1146: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T25'
+description = 'forward pagination walks the whole connection without gaps'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T25 (forward pagination walks the whole connection without gaps) failed:
+E         1) test T25 forward pagination walks the whole connection without gaps (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:499
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert walk.(walk, nil, []) == [
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:504: anonymous fn/3 in TrackerGraphqlTest."test T25 forward pagination walks the whole connection without gaps"/1
+E              /tmp/harbor_ash_graphql_final.exs:520: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+__________ test_t26_an_edge_cursor_can_be_used_as_the_after_argument ___________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t26_an_edge_cursor_can_be_used_as_the_after_argument(suite_results):
+>       _assert_scenario(suite_results, "T26", 'an edge cursor can be used as the after argument')
+
+/tests/test_final_state.py:1150: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T26'
+description = 'an edge cursor can be used as the after argument'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T26 (an edge cursor can be used as the after argument) failed:
+E         1) test T26 an edge cursor can be used as the after argument (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:530
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:532: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_ test_t27_a_ticket_created_through_the_api_shows_up_at_the_end_of_the_connection _
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t27_a_ticket_created_through_the_api_shows_up_at_the_end_of_the_connection(suite_results):
+>       _assert_scenario(suite_results, "T27", 'a ticket created through the api shows up at the end of the connection')
+
+/tests/test_final_state.py:1154: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T27'
+description = 'a ticket created through the api shows up at the end of the connection'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T27 (a ticket created through the api shows up at the end of the connection) failed:
+E         1) test T27 a ticket created through the api shows up at the end of the connection (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:551
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:553: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+___ test_t28_the_connection_honours_a_filter_and_reports_the_filtered_count ____
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t28_the_connection_honours_a_filter_and_reports_the_filtered_count(suite_results):
+>       _assert_scenario(suite_results, "T28", 'the connection honours a filter and reports the filtered count')
+
+/tests/test_final_state.py:1158: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T28'
+description = 'the connection honours a filter and reports the filtered count'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T28 (the connection honours a filter and reports the filtered count) failed:
+E         1) test T28 the connection honours a filter and reports the filtered count (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:571
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:573: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+______ test_t29_boolean_filter_combinators_are_derived_from_the_resource _______
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t29_boolean_filter_combinators_are_derived_from_the_resource(suite_results):
+>       _assert_scenario(suite_results, "T29", 'boolean filter combinators are derived from the resource')
+
+/tests/test_final_state.py:1162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T29'
+description = 'boolean filter combinators are derived from the resource'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T29 (boolean filter combinators are derived from the resource) failed:
+E         1) test T29 boolean filter combinators are derived from the resource (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:586
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:588: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+______________________ test_t30_an_or_filter_is_supported ______________________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t30_an_or_filter_is_supported(suite_results):
+>       _assert_scenario(suite_results, "T30", 'an or filter is supported')
+
+/tests/test_final_state.py:1166: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T30', description = 'an or filter is supported'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T30 (an or filter is supported) failed:
+E         1) test T30 an or filter is supported (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:608
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:610: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_ test_t31_the_renamed_attribute_is_filterable_and_sortable_under_its_graphql_name _
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t31_the_renamed_attribute_is_filterable_and_sortable_under_its_graphql_name(suite_results):
+>       _assert_scenario(suite_results, "T31", 'the renamed attribute is filterable and sortable under its graphql name')
+
+/tests/test_final_state.py:1170: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T31'
+description = 'the renamed attribute is filterable and sortable under its graphql name'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T31 (the renamed attribute is filterable and sortable under its graphql name) failed:
+E         1) test T31 the renamed attribute is filterable and sortable under its graphql name (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:620
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:622: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+________________ test_t32_filtering_across_a_relationship_works ________________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t32_filtering_across_a_relationship_works(suite_results):
+>       _assert_scenario(suite_results, "T32", 'filtering across a relationship works')
+
+/tests/test_final_state.py:1174: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T32', description = 'filtering across a relationship works'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T32 (filtering across a relationship works) failed:
+E         1) test T32 filtering across a relationship works (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:634
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:636: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_____ test_t33_the_calculation_can_be_used_as_a_sort_key_with_its_argument _____
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t33_the_calculation_can_be_used_as_a_sort_key_with_its_argument(suite_results):
+>       _assert_scenario(suite_results, "T33", 'the calculation can be used as a sort key with its argument')
+
+/tests/test_final_state.py:1178: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T33'
+description = 'the calculation can be used as a sort key with its argument'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T33 (the calculation can be used as a sort key with its argument) failed:
+E         1) test T33 the calculation can be used as a sort key with its argument (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:647
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:649: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+___ test_t34_createticket_returns_the_created_record_and_an_empty_error_list ___
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t34_createticket_returns_the_created_record_and_an_empty_error_list(suite_results):
+>       _assert_scenario(suite_results, "T34", 'createTicket returns the created record and an empty error list')
+
+/tests/test_final_state.py:1182: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T34'
+description = 'createTicket returns the created record and an empty error list'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T34 (createTicket returns the created record and an empty error list) failed:
+E         1) test T34 createTicket returns the created record and an empty error list (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:664
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:666: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_______ test_t35_the_managed_relationship_input_creates_and_links_labels _______
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t35_the_managed_relationship_input_creates_and_links_labels(suite_results):
+>       _assert_scenario(suite_results, "T35", 'the managed relationship input creates and links labels')
+
+/tests/test_final_state.py:1186: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T35'
+description = 'the managed relationship input creates and links labels'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T35 (the managed relationship input creates and links labels) failed:
+E         1) test T35 the managed relationship input creates and links labels (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:694
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:696: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_____ test_t36_a_validation_failure_is_reported_inside_the_mutation_result _____
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t36_a_validation_failure_is_reported_inside_the_mutation_result(suite_results):
+>       _assert_scenario(suite_results, "T36", 'a validation failure is reported inside the mutation result')
+
+/tests/test_final_state.py:1190: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T36'
+description = 'a validation failure is reported inside the mutation result'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T36 (a validation failure is reported inside the mutation result) failed:
+E         1) test T36 a validation failure is reported inside the mutation result (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:726
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: run("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:728: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+____ test_t37_updateticket_applies_changes_and_reports_validation_failures _____
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t37_updateticket_applies_changes_and_reports_validation_failures(suite_results):
+>       _assert_scenario(suite_results, "T37", 'updateTicket applies changes and reports validation failures')
+
+/tests/test_final_state.py:1194: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T37'
+description = 'updateTicket applies changes and reports validation failures'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T37 (updateTicket applies changes and reports validation failures) failed:
+E         1) test T37 updateTicket applies changes and reports validation failures (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:754
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:758: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+__ test_t38_updating_a_missing_record_yields_a_not_found_error_in_the_result ___
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t38_updating_a_missing_record_yields_a_not_found_error_in_the_result(suite_results):
+>       _assert_scenario(suite_results, "T38", 'updating a missing record yields a not_found error in the result')
+
+/tests/test_final_state.py:1198: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T38'
+description = 'updating a missing record yields a not_found error in the result'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T38 (updating a missing record yields a not_found error in the result) failed:
+E         1) test T38 updating a missing record yields a not_found error in the result (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:793
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:797: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_ test_t39_destroying_a_ticket_removes_it_and_ticketorfail_then_errors_at_the_top_level _
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t39_destroying_a_ticket_removes_it_and_ticketorfail_then_errors_at_the_top_level(suite_results):
+>       _assert_scenario(suite_results, "T39", 'destroying a ticket removes it and ticketOrFail then errors at the top level')
+
+/tests/test_final_state.py:1202: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T39'
+description = 'destroying a ticket removes it and ticketOrFail then errors at the top level'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T39 (destroying a ticket removes it and ticketOrFail then errors at the top level) failed:
+E         1) test T39 destroying a ticket removes it and ticketOrFail then errors at the top level (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:811
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:813: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_________ test_t40_archiveproject_is_forbidden_without_an_admin_actor __________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t40_archiveproject_is_forbidden_without_an_admin_actor(suite_results):
+>       _assert_scenario(suite_results, "T40", 'archiveProject is forbidden without an admin actor')
+
+/tests/test_final_state.py:1206: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T40'
+description = 'archiveProject is forbidden without an admin actor'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T40 (archiveProject is forbidden without an admin actor) failed:
+E         1) test T40 archiveProject is forbidden without an admin actor (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:836
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: anonymous = data(doc)["archiveProject"]
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:849: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+________ test_t41_the_generic_action_mutation_returns_its_string_result ________
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t41_the_generic_action_mutation_returns_its_string_result(suite_results):
+>       _assert_scenario(suite_results, "T41", 'the generic action mutation returns its string result')
+
+/tests/test_final_state.py:1210: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T41'
+description = 'the generic action mutation returns its string result'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T41 (the generic action mutation returns its string result) failed:
+E         1) test T41 the generic action mutation returns its string result (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:870
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:872: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_ test_t42_the_custom_exception_surfaces_through_the_ashgraphql_error_protocol _
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t42_the_custom_exception_surfaces_through_the_ashgraphql_error_protocol(suite_results):
+>       _assert_scenario(suite_results, "T42", 'the custom exception surfaces through the AshGraphql.Error protocol')
+
+/tests/test_final_state.py:1214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T42'
+description = 'the custom exception surfaces through the AshGraphql.Error protocol'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T42 (the custom exception surfaces through the AshGraphql.Error protocol) failed:
+E         1) test T42 the custom exception surfaces through the AshGraphql.Error protocol (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:894
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: data(
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{actor: %Tracker.Delivery.User{id: "11111111-1111-1111-1111-111111111111", email: "alice@example.com", display_name: "Alice", role: :admin, internal_notes: "founder", assigned_tickets: #Ash.NotLoaded<:relationship, field: :assigned_tickets>, __meta__: #Ecto.Schema.Metadata<:loaded>}})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:896: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_______ test_t43_raised_errors_are_shown_because_the_domain_enables_them _______
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t43_raised_errors_are_shown_because_the_domain_enables_them(suite_results):
+>       _assert_scenario(suite_results, "T43", 'raised errors are shown because the domain enables them')
+
+/tests/test_final_state.py:1218: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T43'
+description = 'raised errors are shown because the domain enables them'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T43 (raised errors are shown because the domain enables them) failed:
+E         1) test T43 raised errors are shown because the domain enables them (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:924
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: result = run("{ auditSprint(slug: \"apollo\") }")
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:925: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+___ test_t44_the_hand_written_ticketbyreference_query_loads_requested_fields ___
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+
+    def test_t44_the_hand_written_ticketbyreference_query_loads_requested_fields(suite_results):
+>       _assert_scenario(suite_results, "T44", 'the hand written ticketByReference query loads requested fields')
+
+/tests/test_final_state.py:1222: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('fail', 'ICAxKSB0ZXN0IFQwMSByb290IHF1ZXJ5IGV4cG9zZXMgZXhhY3RseSB0aGUgcmVxdWlyZWQgZmllbGRzIChUcmFja2VyR3JhcGhx...zo5NzogR3FsSGVscGVyLmZpZWxkX3R5cGUvMgogICAgICAgL3RtcC9oYXJib3JfYXNoX2dyYXBocWxfZmluYWwuZXhzOjE4NzogKHRlc3QpCg=='), ...}
+scenario_id = 'T44'
+description = 'the hand written ticketByReference query loads requested fields'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T44 (the hand written ticketByReference query loads requested fields) failed:
+E         1) test T44 the hand written ticketByReference query loads requested fields (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:934
+E            ** (UndefinedFunctionError) function Tracker.GraphqlSchema.context/1 is undefined (module Tracker.GraphqlSchema is not available)
+E            code: assert data("""
+E            stacktrace:
+E              Tracker.GraphqlSchema.context(%{})
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:51: Absinthe.Phase.Schema.update_context/2
+E              (absinthe 1.11.0) lib/absinthe/phase/schema.ex:29: Absinthe.Phase.Schema.run/2
+E              (absinthe 1.11.0) lib/absinthe/pipeline.ex:411: Absinthe.Pipeline.run_phase/3
+E              (absinthe 1.11.0) lib/absinthe.ex:116: Absinthe.run/3
+E              /tmp/harbor_ash_graphql_final.exs:57: GqlHelper.run/2
+E              /tmp/harbor_ash_graphql_final.exs:64: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:935: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+=========================== short test summary info ============================
+FAILED ../tests/test_final_state.py::test_t01_root_query_exposes_exactly_the_required_fields
+FAILED ../tests/test_final_state.py::test_t02_root_mutation_exposes_exactly_the_required_fields
+FAILED ../tests/test_final_state.py::test_t03_ticket_object_exposes_renamed_and_hidden_fields_correctly
+FAILED ../tests/test_final_state.py::test_t04_ticket_status_is_a_non_null_ticketstatus_enum
+FAILED ../tests/test_final_state.py::test_t05_ticket_and_project_implement_node_user_does_not
+FAILED ../tests/test_final_state.py::test_t06_user_object_hides_internal_notes_and_exposes_role_as_a_string
+FAILED ../tests/test_final_state.py::test_t07_project_exposes_the_aggregate_as_a_non_null_int
+FAILED ../tests/test_final_state.py::test_t08_riskscore_is_a_nullable_int_field_taking_a_weight_argument
+FAILED ../tests/test_final_state.py::test_t09_tickets_is_a_relay_connection_with_the_standard_shape
+FAILED ../tests/test_final_state.py::test_t10_projects_labels_and_users_are_plain_non_paginated_lists
+FAILED ../tests/test_final_state.py::test_t11_create_input_objects_are_derived_with_the_required_names
+FAILED ../tests/test_final_state.py::test_t12_label_filtering_and_sorting_is_restricted_to_name
+FAILED ../tests/test_final_state.py::test_t13_ticketorfail_is_non_null_while_ticket_is_nullable
+FAILED ../tests/test_final_state.py::test_t14_the_generic_action_mutation_returns_a_string_result_plus_errors
+FAILED ../tests/test_final_state.py::test_t15_the_hand_written_apiinfo_query_works
+FAILED ../tests/test_final_state.py::test_t16_ticket_is_fetched_by_its_relay_global_id
+FAILED ../tests/test_final_state.py::test_t17_a_raw_uuid_is_rejected_by_the_relay_aware_get_query
+FAILED ../tests/test_final_state.py::test_t18_node_resolves_ticket_and_project_global_ids
+FAILED ../tests/test_final_state.py::test_t19_topticket_read_one_returns_the_single_highest_severity_ticket
+FAILED ../tests/test_final_state.py::test_t20_projects_exposes_the_filtered_count_aggregate
+FAILED ../tests/test_final_state.py::test_t21_labels_can_be_sorted_by_name - ...
+FAILED ../tests/test_final_state.py::test_t22_hidden_attributes_are_not_part_of_the_schema
+FAILED ../tests/test_final_state.py::test_t23_relationships_and_calculations_resolve_through_a_get_query
+FAILED ../tests/test_final_state.py::test_t24_the_first_connection_page_reports_the_total_count_and_page_info
+FAILED ../tests/test_final_state.py::test_t25_forward_pagination_walks_the_whole_connection_without_gaps
+FAILED ../tests/test_final_state.py::test_t26_an_edge_cursor_can_be_used_as_the_after_argument
+FAILED ../tests/test_final_state.py::test_t27_a_ticket_created_through_the_api_shows_up_at_the_end_of_the_connection
+FAILED ../tests/test_final_state.py::test_t28_the_connection_honours_a_filter_and_reports_the_filtered_count
+FAILED ../tests/test_final_state.py::test_t29_boolean_filter_combinators_are_derived_from_the_resource
+FAILED ../tests/test_final_state.py::test_t30_an_or_filter_is_supported - Ass...
+FAILED ../tests/test_final_state.py::test_t31_the_renamed_attribute_is_filterable_and_sortable_under_its_graphql_name
+FAILED ../tests/test_final_state.py::test_t32_filtering_across_a_relationship_works
+FAILED ../tests/test_final_state.py::test_t33_the_calculation_can_be_used_as_a_sort_key_with_its_argument
+FAILED ../tests/test_final_state.py::test_t34_createticket_returns_the_created_record_and_an_empty_error_list
+FAILED ../tests/test_final_state.py::test_t35_the_managed_relationship_input_creates_and_links_labels
+FAILED ../tests/test_final_state.py::test_t36_a_validation_failure_is_reported_inside_the_mutation_result
+FAILED ../tests/test_final_state.py::test_t37_updateticket_applies_changes_and_reports_validation_failures
+FAILED ../tests/test_final_state.py::test_t38_updating_a_missing_record_yields_a_not_found_error_in_the_result
+FAILED ../tests/test_final_state.py::test_t39_destroying_a_ticket_removes_it_and_ticketorfail_then_errors_at_the_top_level
+FAILED ../tests/test_final_state.py::test_t40_archiveproject_is_forbidden_without_an_admin_actor
+FAILED ../tests/test_final_state.py::test_t41_the_generic_action_mutation_returns_its_string_result
+FAILED ../tests/test_final_state.py::test_t42_the_custom_exception_surfaces_through_the_ashgraphql_error_protocol
+FAILED ../tests/test_final_state.py::test_t43_raised_errors_are_shown_because_the_domain_enables_them
+FAILED ../tests/test_final_state.py::test_t44_the_hand_written_ticketbyreference_query_loads_requested_fields
+============================= 44 failed in 20.60s ==============================

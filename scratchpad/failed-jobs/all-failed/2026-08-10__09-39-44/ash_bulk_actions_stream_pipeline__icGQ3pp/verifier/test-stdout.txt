@@ -1,0 +1,1611 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 40 items
+
+../tests/test_final_state.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF    [100%]
+
+=================================== FAILURES ===================================
+_______ test_t01_reading_and_meterrollup_are_ets_backed_resources_of_the _______
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t01_reading_and_meterrollup_are_ets_backed_resources_of_the(suite_run):
+>       _scenario(suite_run, "T01")
+
+/tests/test_final_state.py:1004: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T01'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T01 failed:
+E           1) test T01 Reading and MeterRollup are ETS-backed resources of the domain (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:166
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+________ test_t02_reading_attributes_have_the_required_names_and_types _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t02_reading_attributes_have_the_required_names_and_types(suite_run):
+>       _scenario(suite_run, "T02")
+
+/tests/test_final_state.py:1008: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T02'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T02 failed:
+E           1) test T02 Reading attributes have the required names and types (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:174
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+___________ test_t03_meterrollup_is_keyed_by_meter_code_and_has_the ____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t03_meterrollup_is_keyed_by_meter_code_and_has_the(suite_run):
+>       _scenario(suite_run, "T03")
+
+/tests/test_final_state.py:1012: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T03'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T03 failed:
+E           1) test T03 MeterRollup is keyed by meter_code and has the rollup counters (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:200
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+____________ test_t04_store_reset_0_removes_every_persisted_record _____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t04_store_reset_0_removes_every_persisted_record(suite_run):
+>       _scenario(suite_run, "T04")
+
+/tests/test_final_state.py:1016: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T04'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T04 failed:
+E           1) test T04 Store.reset!/0 removes every persisted record (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:212
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+____________ test_t05_a_clean_batch_is_fully_inserted_and_reported _____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t05_a_clean_batch_is_fully_inserted_and_reported(suite_run):
+>       _scenario(suite_run, "T05")
+
+/tests/test_final_state.py:1020: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T05'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T05 failed:
+E           1) test T05 a clean batch is fully inserted and reported (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:223
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t06_a_negative_reading_fails_with_its_input_index_while _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t06_a_negative_reading_fails_with_its_input_index_while(suite_run):
+>       _scenario(suite_run, "T06")
+
+/tests/test_final_state.py:1024: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T06'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T06 failed:
+E           1) test T06 a negative reading fails with its input index while the rest are written (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:256
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+____________ test_t07_rows_with_a_missing_or_nil_required_value_are ____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t07_rows_with_a_missing_or_nil_required_value_are(suite_run):
+>       _scenario(suite_run, "T07")
+
+/tests/test_final_state.py:1028: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T07'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T07 failed:
+E           1) test T07 rows with a missing or nil required value are reported as :missing_field (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:274
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+________ test_t08_repeated_external_ids_inside_one_call_keep_the_first _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t08_repeated_external_ids_inside_one_call_keep_the_first(suite_run):
+>       _scenario(suite_run, "T08")
+
+/tests/test_final_state.py:1032: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T08'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T08 failed:
+E           1) test T08 repeated external ids inside one call keep the first row only (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:297
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+____________ test_t09_failure_reasons_follow_the_stated_precedence _____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t09_failure_reasons_follow_the_stated_precedence(suite_run):
+>       _scenario(suite_run, "T09")
+
+/tests/test_final_state.py:1036: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T09'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T09 failed:
+E           1) test T09 failure reasons follow the stated precedence (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:320
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+______ test_t10_re_ingesting_an_identical_batch_inserts_nothing_and_skips ______
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t10_re_ingesting_an_identical_batch_inserts_nothing_and_skips(suite_run):
+>       _scenario(suite_run, "T10")
+
+/tests/test_final_state.py:1040: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T10'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T10 failed:
+E           1) test T10 re-ingesting an identical batch inserts nothing and skips everything (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:338
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+____________ test_t11_a_known_external_id_is_never_overwritten_by_a ____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t11_a_known_external_id_is_never_overwritten_by_a(suite_run):
+>       _scenario(suite_run, "T11")
+
+/tests/test_final_state.py:1044: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T11'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T11 failed:
+E           1) test T11 a known external id is never overwritten by a later batch (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:357
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+________ test_t12_new_known_and_invalid_rows_are_counted_separately_in _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t12_new_known_and_invalid_rows_are_counted_separately_in(suite_run):
+>       _scenario(suite_run, "T12")
+
+/tests/test_final_state.py:1048: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T12'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T12 failed:
+E           1) test T12 new, known and invalid rows are counted separately in one call (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:371
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+___________ test_t13_a_batch_in_which_every_row_fails_reports_error ____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t13_a_batch_in_which_every_row_fails_reports_error(suite_run):
+>       _scenario(suite_run, "T13")
+
+/tests/test_final_state.py:1052: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T13'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T13 failed:
+E           1) test T13 a batch in which every row fails reports :error (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:392
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+______________ test_t14_an_empty_input_list_is_a_successful_no_op ______________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t14_an_empty_input_list_is_a_successful_no_op(suite_run):
+>       _scenario(suite_run, "T14")
+
+/tests/test_final_state.py:1056: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T14'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T14 failed:
+E           1) test T14 an empty input list is a successful no-op (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:407
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+________ test_t15_inserted_ids_keep_input_order_across_several_batches _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t15_inserted_ids_keep_input_order_across_several_batches(suite_run):
+>       _scenario(suite_run, "T15")
+
+/tests/test_final_state.py:1060: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T15'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T15 failed:
+E           1) test T15 inserted ids keep input order across several batches (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:418
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t16_the_ingest_action_itself_rejects_a_negative_reading _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t16_the_ingest_action_itself_rejects_a_negative_reading(suite_run):
+>       _scenario(suite_run, "T16")
+
+/tests/test_final_state.py:1064: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T16'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T16 failed:
+E           1) test T16 the ingest action itself rejects a negative reading (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:427
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+______ test_t17_the_ingest_action_itself_rejects_a_duplicate_external_id _______
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t17_the_ingest_action_itself_rejects_a_duplicate_external_id(suite_run):
+>       _scenario(suite_run, "T17")
+
+/tests/test_final_state.py:1068: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T17'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T17 failed:
+E           1) test T17 the ingest action itself rejects a duplicate external id (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:446
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t18_ingest_stream_3_writes_nothing_until_it_is_consumed _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t18_ingest_stream_3_writes_nothing_until_it_is_consumed(suite_run):
+>       _scenario(suite_run, "T18")
+
+/tests/test_final_state.py:1072: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T18'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T18 failed:
+E           1) test T18 ingest_stream/3 writes nothing until it is consumed (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:464
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t19_ingest_stream_3_emits_results_and_input_indices_in __________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t19_ingest_stream_3_emits_results_and_input_indices_in(suite_run):
+>       _scenario(suite_run, "T19")
+
+/tests/test_final_state.py:1076: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T19'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T19 failed:
+E           1) test T19 ingest_stream/3 emits results and input indices in input order (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:476
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+____________ test_t20_pending_stream_1_pages_through_the_data_layer ____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t20_pending_stream_1_pages_through_the_data_layer(suite_run):
+>       _scenario(suite_run, "T20")
+
+/tests/test_final_state.py:1080: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T20'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T20 failed:
+E           1) test T20 pending_stream/1 pages through the data layer (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:503
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+______________________ test_t21_pending_stream_1_is_lazy _______________________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t21_pending_stream_1_is_lazy(suite_run):
+>       _scenario(suite_run, "T21")
+
+/tests/test_final_state.py:1084: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T21'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T21 failed:
+E           1) test T21 pending_stream/1 is lazy (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:519
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+____________ test_t22_pending_stream_1_only_yields_pending_readings ____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t22_pending_stream_1_only_yields_pending_readings(suite_run):
+>       _scenario(suite_run, "T22")
+
+/tests/test_final_state.py:1088: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T22'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T22 failed:
+E           1) test T22 pending_stream/1 only yields pending readings (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:533
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t23_reconcile_1_normalizes_accepts_and_reports_the_pass _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t23_reconcile_1_normalizes_accepts_and_reports_the_pass(suite_run):
+>       _scenario(suite_run, "T23")
+
+/tests/test_final_state.py:1092: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T23'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T23 failed:
+E           1) test T23 reconcile/1 normalizes, accepts and reports the pass (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:550
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+___________________ test_t24_normalisation_rounds_halves_up ____________________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t24_normalisation_rounds_halves_up(suite_run):
+>       _scenario(suite_run, "T24")
+
+/tests/test_final_state.py:1096: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T24'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T24 failed:
+E           1) test T24 normalisation rounds halves up (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:573
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+________ test_t25_readings_for_unknown_or_inactive_meters_are_rejected _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t25_readings_for_unknown_or_inactive_meters_are_rejected(suite_run):
+>       _scenario(suite_run, "T25")
+
+/tests/test_final_state.py:1100: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T25'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T25 failed:
+E           1) test T25 readings for unknown or inactive meters are rejected (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:590
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_____________ test_t26_reconcile_1_builds_one_rollup_row_per_meter _____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t26_reconcile_1_builds_one_rollup_row_per_meter(suite_run):
+>       _scenario(suite_run, "T26")
+
+/tests/test_final_state.py:1104: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T26'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T26 failed:
+E           1) test T26 reconcile/1 builds one rollup row per meter (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:611
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t27_a_second_batch_accumulates_into_the_existing_rollup _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t27_a_second_batch_accumulates_into_the_existing_rollup(suite_run):
+>       _scenario(suite_run, "T27")
+
+/tests/test_final_state.py:1108: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T27'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T27 failed:
+E           1) test T27 a second batch accumulates into the existing rollup (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:631
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+__________ test_t28_re_running_reconcile_1_for_the_same_batch_changes __________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t28_re_running_reconcile_1_for_the_same_batch_changes(suite_run):
+>       _scenario(suite_run, "T28")
+
+/tests/test_final_state.py:1112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T28'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T28 failed:
+E           1) test T28 re-running reconcile/1 for the same batch changes nothing (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:655
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_____________ test_t29_reconcile_1_leaves_other_batches_untouched ______________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t29_reconcile_1_leaves_other_batches_untouched(suite_run):
+>       _scenario(suite_run, "T29")
+
+/tests/test_final_state.py:1116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T29'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T29 failed:
+E           1) test T29 reconcile/1 leaves other batches untouched (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:677
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_____________ test_t30_a_rejected_batch_produces_no_rollup_at_all ______________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t30_a_rejected_batch_produces_no_rollup_at_all(suite_run):
+>       _scenario(suite_run, "T30")
+
+/tests/test_final_state.py:1120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T30'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T30 failed:
+E           1) test T30 a rejected batch produces no rollup at all (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:692
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t31_purge_rejected_1_destroys_only_the_rejected_rows_of _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t31_purge_rejected_1_destroys_only_the_rejected_rows_of(suite_run):
+>       _scenario(suite_run, "T31")
+
+/tests/test_final_state.py:1124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T31'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T31 failed:
+E           1) test T31 purge_rejected/1 destroys only the rejected rows of its batch (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:704
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t32_purge_rejected_1_returns_zero_when_there_is_nothing _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t32_purge_rejected_1_returns_zero_when_there_is_nothing(suite_run):
+>       _scenario(suite_run, "T32")
+
+/tests/test_final_state.py:1128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T32'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T32 failed:
+E           1) test T32 purge_rejected/1 returns zero when there is nothing to purge (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:718
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_____________ test_t33_the_accept_action_is_declared_fully_atomic ______________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t33_the_accept_action_is_declared_fully_atomic(suite_run):
+>       _scenario(suite_run, "T33")
+
+/tests/test_final_state.py:1132: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T33'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T33 failed:
+E           1) test T33 the accept action is declared fully atomic (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:745
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+__________ test_t34_an_atomic_bulk_accept_over_a_clean_query_succeeds __________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t34_an_atomic_bulk_accept_over_a_clean_query_succeeds(suite_run):
+>       _scenario(suite_run, "T34")
+
+/tests/test_final_state.py:1136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T34'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T34 failed:
+E           1) test T34 an atomic bulk accept over a clean query succeeds (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:750
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+____________ test_t35_an_atomic_bulk_accept_is_all_or_nothing_when _____________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t35_an_atomic_bulk_accept_is_all_or_nothing_when(suite_run):
+>       _scenario(suite_run, "T35")
+
+/tests/test_final_state.py:1140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T35'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T35 failed:
+E           1) test T35 an atomic bulk accept is all-or-nothing when one row is not normalized (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:776
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t36_the_stream_strategy_accepts_every_valid_row_of_the __________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t36_the_stream_strategy_accepts_every_valid_row_of_the(suite_run):
+>       _scenario(suite_run, "T36")
+
+/tests/test_final_state.py:1144: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T36'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T36 failed:
+E           1) test T36 the stream strategy accepts every valid row of the same query (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:803
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t37_atomic_batches_only_lose_the_batch_that_contains_a __________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t37_atomic_batches_only_lose_the_batch_that_contains_a(suite_run):
+>       _scenario(suite_run, "T37")
+
+/tests/test_final_state.py:1148: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T37'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T37 failed:
+E           1) test T37 atomic batches only lose the batch that contains a bad row (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:831
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t38_accepting_a_reading_that_is_not_normalized_fails_on _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t38_accepting_a_reading_that_is_not_normalized_fails_on(suite_run):
+>       _scenario(suite_run, "T38")
+
+/tests/test_final_state.py:1152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T38'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T38 failed:
+E           1) test T38 accepting a reading that is not normalized fails on :status (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:858
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+________ test_t39_the_normalize_action_cannot_be_forced_onto_the_atomic ________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t39_the_normalize_action_cannot_be_forced_onto_the_atomic(suite_run):
+>       _scenario(suite_run, "T39")
+
+/tests/test_final_state.py:1156: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T39'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T39 failed:
+E           1) test T39 the normalize action cannot be forced onto the atomic strategy (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:873
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+_________ test_t40_the_stream_strategy_applies_each_meter_s_own_factor _________
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+
+    def test_t40_the_stream_strategy_applies_each_meter_s_own_factor(suite_run):
+>       _scenario(suite_run, "T40")
+
+/tests/test_final_state.py:1160: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_run = {'results': {'test T01 Reading and MeterRollup are ETS-backed resources of the domain': ('failed', '  1) test T01 Read...F9zZXR1cF8wLzEKICAgICAgIC90bXAvaGFyYm9yX2J1bGtfcGlwZWxpbmVfc3VpdGUuZXhzOjE1MTogSGFyYm9yVGVzdC5fX2V4X3VuaXRfXy8yCg==\n'}
+scenario_id = 'T40'
+
+    def _scenario(suite_run, scenario_id):
+        results = suite_run["results"]
+        prefix = f"test {scenario_id} "
+        matches = [name for name in results if name.startswith(prefix)]
+        assert matches, (
+            f"Scenario {scenario_id} did not run.\n"
+            f"STDOUT tail:\n{_tail(suite_run['stdout'])}\n"
+            f"STDERR tail:\n{_tail(suite_run['stderr'])}"
+        )
+        status, detail = results[matches[0]]
+>       assert status == "passed", f"Scenario {scenario_id} failed:\n{detail}"
+E       AssertionError: Scenario T40 failed:
+E           1) test T40 the stream strategy applies each meter's own factor (HarborTest)
+E              /tmp/harbor_bulk_pipeline_suite.exs:885
+E              ** (UndefinedFunctionError) function Ingest.Pipeline.Store.reset!/0 is undefined (module Ingest.Pipeline.Store is not available)
+E              stacktrace:
+E                Ingest.Pipeline.Store.reset!()
+E                /tmp/harbor_bulk_pipeline_suite.exs:67: H.setup!/0
+E                /tmp/harbor_bulk_pipeline_suite.exs:160: HarborTest.__ex_unit_setup_0/1
+E                /tmp/harbor_bulk_pipeline_suite.exs:151: HarborTest.__ex_unit__/2
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:1000: AssertionError
+=========================== short test summary info ============================
+FAILED ../tests/test_final_state.py::test_t01_reading_and_meterrollup_are_ets_backed_resources_of_the
+FAILED ../tests/test_final_state.py::test_t02_reading_attributes_have_the_required_names_and_types
+FAILED ../tests/test_final_state.py::test_t03_meterrollup_is_keyed_by_meter_code_and_has_the
+FAILED ../tests/test_final_state.py::test_t04_store_reset_0_removes_every_persisted_record
+FAILED ../tests/test_final_state.py::test_t05_a_clean_batch_is_fully_inserted_and_reported
+FAILED ../tests/test_final_state.py::test_t06_a_negative_reading_fails_with_its_input_index_while
+FAILED ../tests/test_final_state.py::test_t07_rows_with_a_missing_or_nil_required_value_are
+FAILED ../tests/test_final_state.py::test_t08_repeated_external_ids_inside_one_call_keep_the_first
+FAILED ../tests/test_final_state.py::test_t09_failure_reasons_follow_the_stated_precedence
+FAILED ../tests/test_final_state.py::test_t10_re_ingesting_an_identical_batch_inserts_nothing_and_skips
+FAILED ../tests/test_final_state.py::test_t11_a_known_external_id_is_never_overwritten_by_a
+FAILED ../tests/test_final_state.py::test_t12_new_known_and_invalid_rows_are_counted_separately_in
+FAILED ../tests/test_final_state.py::test_t13_a_batch_in_which_every_row_fails_reports_error
+FAILED ../tests/test_final_state.py::test_t14_an_empty_input_list_is_a_successful_no_op
+FAILED ../tests/test_final_state.py::test_t15_inserted_ids_keep_input_order_across_several_batches
+FAILED ../tests/test_final_state.py::test_t16_the_ingest_action_itself_rejects_a_negative_reading
+FAILED ../tests/test_final_state.py::test_t17_the_ingest_action_itself_rejects_a_duplicate_external_id
+FAILED ../tests/test_final_state.py::test_t18_ingest_stream_3_writes_nothing_until_it_is_consumed
+FAILED ../tests/test_final_state.py::test_t19_ingest_stream_3_emits_results_and_input_indices_in
+FAILED ../tests/test_final_state.py::test_t20_pending_stream_1_pages_through_the_data_layer
+FAILED ../tests/test_final_state.py::test_t21_pending_stream_1_is_lazy - Asse...
+FAILED ../tests/test_final_state.py::test_t22_pending_stream_1_only_yields_pending_readings
+FAILED ../tests/test_final_state.py::test_t23_reconcile_1_normalizes_accepts_and_reports_the_pass
+FAILED ../tests/test_final_state.py::test_t24_normalisation_rounds_halves_up
+FAILED ../tests/test_final_state.py::test_t25_readings_for_unknown_or_inactive_meters_are_rejected
+FAILED ../tests/test_final_state.py::test_t26_reconcile_1_builds_one_rollup_row_per_meter
+FAILED ../tests/test_final_state.py::test_t27_a_second_batch_accumulates_into_the_existing_rollup
+FAILED ../tests/test_final_state.py::test_t28_re_running_reconcile_1_for_the_same_batch_changes
+FAILED ../tests/test_final_state.py::test_t29_reconcile_1_leaves_other_batches_untouched
+FAILED ../tests/test_final_state.py::test_t30_a_rejected_batch_produces_no_rollup_at_all
+FAILED ../tests/test_final_state.py::test_t31_purge_rejected_1_destroys_only_the_rejected_rows_of
+FAILED ../tests/test_final_state.py::test_t32_purge_rejected_1_returns_zero_when_there_is_nothing
+FAILED ../tests/test_final_state.py::test_t33_the_accept_action_is_declared_fully_atomic
+FAILED ../tests/test_final_state.py::test_t34_an_atomic_bulk_accept_over_a_clean_query_succeeds
+FAILED ../tests/test_final_state.py::test_t35_an_atomic_bulk_accept_is_all_or_nothing_when
+FAILED ../tests/test_final_state.py::test_t36_the_stream_strategy_accepts_every_valid_row_of_the
+FAILED ../tests/test_final_state.py::test_t37_atomic_batches_only_lose_the_batch_that_contains_a
+FAILED ../tests/test_final_state.py::test_t38_accepting_a_reading_that_is_not_normalized_fails_on
+FAILED ../tests/test_final_state.py::test_t39_the_normalize_action_cannot_be_forced_onto_the_atomic
+FAILED ../tests/test_final_state.py::test_t40_the_stream_strategy_applies_each_meter_s_own_factor
+============================= 40 failed in 17.69s ==============================

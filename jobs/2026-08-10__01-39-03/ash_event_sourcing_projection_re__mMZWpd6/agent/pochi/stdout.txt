@@ -1,0 +1,476 @@
+- Initializing MCP connections...
+You
+# Event-Sourced Ledger with Rebuildable Projections (Ash Framework v3) ## Background A payments team needs an auditable account ledger in which the **event log is the only source of truth**. Balances, statuses and counters are never stored authoritatively: they are *derived* by folding an append-only event stream. Read models are caches that can be thrown away and rebuilt at any time, and snapshots exist purely to make that fold cheap. You must build this write model, fold, snapshot layer and projection layer on top of **Ash Framework v3.31** using the in-memory ETS data layer. The project already exists, compiles, and has `ash 3.31` fetched and compiled. **There is no network access — do not add dependencies.** ## Requirements ### 1. Append-only event store `Vault.Ledger.Event` is the log. Every event belongs to one aggregate (an account, identified by a plain string `account_id`) and carries: | field | type | notes | | --- | --- | --- | | `id` | uuid primary key | | | `sequence` | integer, required | **global** position in the log | | `account_id` | string, required | aggregate identifier | | `version` | integer, required | position **within** that aggregate's stream | | `payload` | `Vault.Ledger.Payload`, required | the typed event body (see §2) | | `recorded_at` | utc datetime with microseconds, required | supplied by the caller | Contracts: * `sequence` values across the whole log are exactly `1, 2, 3, …, n` with no gaps and no duplicates, assigned in append order. `sequence` is **derived by the store**: it is not part of the input of the append action, and passing it must be rejected by Ash's "no such input" error. * `version` values within one `account_id` are exactly `1, 2, 3, …, k` with no gaps. * Two identities must be declared and enforced (both must work on the ETS data layer): one over `[:account_id, :version]` and one over `[:sequence]`. * Appending an event whose `version` is **already present** for that `account_id` must fail with `%Ash.Error.Changes.InvalidChanges{}` whose `fields` is `[:account_id, :version]` and whose `message` is `"has already been taken"`. * Appending an event whose `version` is **less than 1** or **more than one greater** than that stream's current highest version must fail with `%Ash.Error.Changes.InvalidAttribute{}` where `field` is `:version`, `message` is exactly `"version must be exactly one greater than the current stream version"`, and `vars[:expected]` is the integer version that would have been accepted. * A rejected append must leave the log completely untouched: no row is written and no global `sequence` value is consumed (the next successful append gets the next contiguous number). * The log is immutable: the resource must declare **no update action and no destroy action of any kind**, and attempting `Ash.destroy/1` or `Ash.update/2` on a stored event must fail rather than mutate it. ### 2. Typed payloads `Vault.Ledger.Payload` is an `Ash.Type.NewType` whose subtype is Ash's union type. It has exactly five tagged members, each backed by its own embedded resource and each discriminated by a string field named `type` whose value is the member name: | member atom | embedded module | fields | | --- | --- | --- | | `:account_opened` | `Vault.Ledger.Payloads.AccountOpened` | `owner` (string, required, at least 1 character), `opening_balance_cents` (integer, required, minimum 0) | | `:deposited` | `Vault.Ledger.Payloads.Deposited` | `amount_cents` (integer, required, minimum 1) | | `:withdrawn` | `Vault.Ledger.Payloads.Withdrawn` | `amount_cents` (integer, required, minimum 1) | | `:frozen` | `Vault.Ledger.Payloads.Frozen` | `reason` (atom, required, one of `:fraud_review`, `:chargeback`, `:court_order`) | | `:unfrozen` | `Vault.Ledger.Payloads.Unfrozen` | `note` (string, optional, at most 120 characters) | A payload is supplied to the append action as a plain string-keyed map such as `%{"type" => "deposited", "amount_cents" => 500}` and, once stored, is read back as an `%Ash.Union{}` whose `type` is the member atom and whose `value` is the corresponding embedded struct. A map whose `type` matches no member must be rejected on the `:payload` field. Each member's own field constraints must be enforced. ### 3. The fold (pure, side-effect free) `Vault.Ledger.AccountState` is a struct with exactly these keys and defaults: ``` account_id: nil, owner: nil, balance_cents: 0, status: :absent, version: 0, deposit_count: 0, withdrawal_count: 0, last_event_type: nil, last_recorded_at: nil ``` `Vault.Ledger.Fold` exposes: * `initial/1` — takes an `account_id` and returns the struct above with `account_id` set. * `apply_event/2` — takes an `%AccountState{}` and an `%Event{}` and returns `{:ok, %AccountState{}}` or `{:error, reason}`. It must not read or write any storage. * `replay/2` — takes an `%AccountState{}` and a list of `%Event{}` and returns `{:ok, %AccountState{}}` or `{:error, reason}`. It must not read or write any storage. `apply_event/2` rejects in this exact precedence, before any business rule is considered: 1. the event's `account_id` differs from the state's (and the state's is not `nil`) → `{:error, {:account_mismatch, state_account_id, event_account_id}}` 2. the event's `version` is not exactly `state.version + 1` → `{:error, {:version_gap, expected_version, actual_version}}` 3. the payload's union member is none of the five → `{:error, {:unknown_event_type, member_atom}}` The business rules, and the resulting state transitions, are: | member | precondition | on success | | --- | --- | --- | | `:account_opened` | `status` is `:absent`, else `{:error, :already_open}` | `owner` set, `balance_cents` set to `opening_balance_cents`, `status` becomes `:open` | | `:deposited` | `status` is `:open`; `{:error, :account_absent}` when `:absent`, `{:error, :account_frozen}` when `:frozen` | `balance_cents` increased, `deposit_count` incremented | | `:withdrawn` | `status` is `:open` (same two errors as above) and the resulting balance is not negative, else `{:error, :insufficient_funds}` | `balance_cents` decreased, `withdrawal_count` incremented | | `:frozen` | `status` is `:open`, else `{:error, :not_open}` | `status` becomes `:frozen` | | `:unfrozen` | `status` is `:frozen`, else `{:error, :not_frozen}` | `status` becomes `:open` | On every success, `version` becomes the event's `version`, `last_event_type` becomes the member atom, and `last_recorded_at` becomes the event's `recorded_at`. `replay/2` returns the starting state unchanged for an empty list, stops at the first failure and returns that failure verbatim, and **rejects rather than repairs** unsorted input: if the list is not strictly increasing by `sequence`, it returns `{:error, {:out_of_order, index}}` where `index` is the zero-based position of the first element whose `sequence` is not strictly greater than its predecessor's. This check happens before any event is applied. ### 4. Commands Command handling is exposed as **generic actions on `Vault.Ledger.Event`**, each returning a `Vault.Ledger.CommandResult` struct with exactly the keys `command`, `account_id`, `appended`, `state`: * `command` — the action name atom; * `account_id` — the primary account of the command (for a transfer this is the *source* account); * `appended` — the list of `%Event{}` records this command wrote, ordered by ascending `sequence`; * `state` — the `%AccountState{}` of `account_id` after the command. The actions, their arguments and the events they append: | action | arguments | appends | | --- | --- | --- | | `:open_account` | `account_id` (string, required), `owner` (string, required), `opening_balance_cents` (integer, default `0`), `recorded_at` (utc datetime usec, optional) | one `account_opened` | | `:deposit` | `account_id`, `amount_cents` (integer, required), `recorded_at` | one `deposited` | | `:withdraw` | `account_id`, `amount_cents`, `recorded_at` | one `withdrawn` | | `:transfer` | `from_account_id`, `to_account_id`, `amount_cents`, `recorded_at` | one `withdrawn` on the source **and** one `deposited` on the destination, in that order, with consecutive global sequences | | `:freeze` | `account_id`, `reason` (atom, one of the three allowed reasons, required), `recorded_at` | one `frozen` | | `:unfreeze` | `account_id`, `note` (string, optional), `recorded_at` | one `unfrozen` | When `recorded_at` is not supplied it defaults to the current UTC time; when supplied, every event appended by that call carries it verbatim. A command that violates an invariant must return an error and append **zero** events, consume **zero** sequence numbers, and leave every snapshot, projection row and checkpoint unchanged. The error is always `Ash.Error.Invalid` wrapping a single `%Ash.Error.Action.InvalidArgument{}` with the `field` and verbatim `message` given below; when several apply, the first matching row of this table wins: | order | condition | field | message | | --- | --- | --- | --- | | 1 | `amount_cents` is not positive (`:deposit`, `:withdraw`, `:transfer`) | `:amount_cents` | `amount must be positive` | | 2 | `opening_balance_cents` is negative (`:open_account`) | `:opening_balance_cents` | `opening balance must not be negative` | | 3 | transfer source and destination are the same | `:to_account_id` | `cannot transfer to the same account` | | 4 | `:open_account` for an account that already has events | `:account_id` | `account already exists` | | 5 | the account has no events (any command other than `:open_account`) | `:account_id` (`:from_account_id` / `:to_account_id` for a transfer, source checked first) | `account does not exist` | | 6 | account is frozen (`:deposit`, `:withdraw`, `:transfer`) | `:account_id` (`:from_account_id` / `:to_account_id` for a transfer, source checked first) | `account is frozen` | | 7 | `:freeze` on an account that is not open | `:account_id` | `account is not open` | | 8 | `:unfreeze` on an account that is not frozen | `:account_id` | `account is not frozen` | | 9 | withdrawal or transfer larger than the balance | `:amount_cents` | `insufficient funds` | ### 5. Snapshots `Vault.Ledger.Snapshot` stores `account_id` (string, required), `version` (integer, required), `sequence` (integer, required), `state` (map, required) and `checksum` (string, required), plus a uuid primary key, and declares an identity over `[:account_id, :version]`. `Vault.Ledger.Snapshots` exposes: * `interval/0` → `5`. * `dump/1` — turns an `%AccountState{}` into the map stored in `state`, with **string keys** `"account_id"`, `"owner"`, `"balance_cents"`, `"status"`, `"version"`, `"deposit_count"`, `"withdrawal_count"`, `"last_event_type"`, `"last_recorded_at"`. `status` and `last_event_type` are stored as strings (`nil` stays `nil`) and `last_recorded_at` as an ISO-8601 string (`nil` stays `nil`). * `restore/1` — the exact inverse of `dump/1`. * `checksum/1` — takes an `%AccountState{}` and returns the lowercase hex SHA-256 digest of the string formed by joining, with `"|"`, in this order: `account_id`, `version`, `balance_cents`, `status` (as a string), `deposit_count`, `withdrawal_count`. No other field participates. * `latest/1` — takes an `account_id` and returns `{:ok, %Snapshot{}}` for the **highest** stored `version`, or `:none`. * `verify/1` — takes a `%Snapshot{}` and returns `:ok`, `{:error, :checksum_mismatch}` when `checksum/1` of the restored state does not equal the stored `checksum`, or `{:error, :version_mismatch}` when the restored state's `version` differs from the snapshot's `version`. The checksum is checked first. Snapshots are written **by the command layer only**: after any command succeeds, every account whose stream that command extended must have a stored snapshot for every version `v ≤ its current version` where `rem(v, 5) == 0`, with the correct `sequence`, `state` and `checksum`. Appending directly through the event resource's append action must **not** create a snapshot. ### 6. Aggregate reconstruction `Vault.Ledger.Aggregate` exposes two functions, both taking an `account_id` and returning `{:ok, %AccountState{}}` or the fold's error: * `fold_all/1` — folds the account's entire stream from the initial state, ignoring snapshots entirely. * `current/1` — must be accelerated by snapshots: it starts from the highest-version snapshot that passes `verify/1` and folds only the events after it. A snapshot that fails verification must be ignored (and any earlier valid one used instead, or a full fold if none is valid); `current/1` must never fail because a snapshot is corrupt. ### 7. Read model, checkpoint and rebuild `Vault.Ledger.AccountProjection` is the read model, keyed by `account_id` (a string primary key), with required fields `owner` (string), `balance_cents` (integer), `status` (atom, one of `:open`/`:frozen`), `version` (integer), `deposit_count` (integer), `withdrawal_count` (integer), `last_event_sequence` (integer, the global sequence of the newest event applied to that account) and `last_recorded_at` (utc datetime usec). `Vault.Ledger.Checkpoint` records how far the read model has consumed the log: `name` (string primary key) and `sequence` (integer). The projection's checkpoint row is named `"account_projection"`. `Vault.Ledger.Projector` exposes: * `checkpoint/0` → the stored sequence, or `0` when the row is absent. * `catch_up/0` → `{:ok, %{applied: n, checkpoint: seq}}` where `n` is the number of events consumed by this call. It resumes strictly after the stored checkpoint, in ascending `sequence` order, updating or creating projection rows and advancing the checkpoint. Running it twice in a row must consume nothing the second time and change nothing. * `rebuild_all/0` → `{:ok, %{rows: n, checkpoint: seq}}`. It discards **all** projection rows and rebuilds them from the log alone, in ascending `sequence` order. `rows` is the number of projection rows that exist afterwards, and `checkpoint` is the highest `sequence` among the events this pass actually folded (`0` for an empty log) — which is also what the checkpoint row must be left at. * `state_at/2` → `{:ok, %AccountState{}}` for a point in time expressed as `{:version, n}` (fold events with `version ≤ n`; `n = 0` yields the initial state; `n` beyond the tail yields the full fold) or `{:timestamp, %DateTime{}}` (fold events with `recorded_at ≤ the given time`). Any other point, or a negative version, yields `{:error, :invalid_point}`. * `audit/1` → the account's per-event diff list, ascending by `version`, each entry a map with exactly the keys `:sequence`, `:version`, `:type` (the union member atom), `:balance_before`, `:balance_after`, `:delta_cents` (after minus before), `:status_before`, `:status_after` and `:recorded_at`. An account with no events yields `[]`. Whenever `catch_up/0`, `rebuild_all/0`, `state_at/2` or `audit/1` hits an event the fold rejects, it must stop before applying it and return `{:error, {:fold_failed, sequence, reason}}`, where `reason` is the fold's own error term and `sequence` is that event's global sequence; anything already applied stays applied and the checkpoint is left at the last successfully applied sequence. Every successful command must leave the read model fully up to date (checkpoint equal to the log's highest sequence, every projection row equal to the folded state). Events appended directly through the event resource's append action must **not** update the read model — only `catch_up/0` or `rebuild_all/0` may. ### 8. Rebuild must be a real rebuild The read model must be reconstructible from the log alone: if a projection row is edited behind the projector's back, or deleted outright, `rebuild_all/0` must restore exactly the folded values. So that the verifier can drive a deterministic interleaving, `rebuild_all/0` must call `Vault.Ledger.Hook.run(:after_load)` **exactly once per invocation**, after it has read the set of events it is going to fold and before it deletes or writes any projection row. (`Vault.Ledger.Hook` already exists in the project; do not change it.) Events appended by that callback therefore belong to the *next* catch-up, not to this rebuild, and must be applied exactly once when `catch_up/0` next runs. ## Implementation Hints * Project path: `/home/user/vault`. OTP application: `:vault`. Ash domain module: `Vault.Ledger`, already listed in `config/config.exs`; you must create it. * All four resources (`Vault.Ledger.Event`, `Vault.Ledger.Snapshot`, `Vault.Ledger.AccountProjection`, `Vault.Ledger.Checkpoint`) must belong to that domain, must use Ash's built-in in-memory ETS data layer configured with **private** tables (so each process owns isolated storage — the verifier depends on this), and must each expose a primary read action. * The event resource's create action that appends one event must be named `:append` and must accept `account_id`, `version`, `payload` and `recorded_at`. * The domain must expose this code interface, with these exact names and positional arguments: `open_account/2..4` (`account_id`, `owner`), `deposit/2..4` (`account_id`, `amount_cents`), `withdraw/2..4` (`account_id`, `amount_cents`), `transfer/3..5` (`from_account_id`, `to_account_id`, `amount_cents`), `freeze_account/2..4` (`account_id`, `reason`) for the `:freeze` action, `unfreeze_account/1..3` (`account_id`) for the `:unfreeze` action, `append_event/1..2` for the `:append` action, and `list_events/0..2` for the event read action. Remaining arguments (`opening_balance_cents`, `note`, `recorded_at`) are passed in the params map. Bang variants must exist as usual. * Everything the verifier calls is called as a plain Elixir function or through that code interface; there is no HTTP surface and no test file layout to honour. The verifier compiles the project with `mix compile` and then runs an ExUnit suite with `mix run <script>` from the project root in `MIX_ENV=dev`, so every module above must exist with exactly the stated name and arity. * The verifier reads and writes the ETS-backed resources directly (including seeding forged snapshot and projection rows), so resource, attribute and action names must match exactly. * No new dependencies: the container is offline and `mix.lock` is committed.   
+
+Pochi
+📂 Listing files in /home/user/vault recursively ✔ 
+📖 Reading /home/user/vault/lib/vault/ledger/hook.ex ✔ 
+📖 Reading /home/user/vault/config/config.exs ✔ 
+📖 Reading /home/user/vault/mix.exs ✔ 
+📖 Reading /home/user/vault/lib/vault/application.ex ✔ 
+📖 Reading /home/user/vault/deps/ash/documentation/dsls/DSL-Ash.DataLayer.Ets.md ✔ 
+🔍 Searching for Ash.Type.Union|NewType|union in /home/user/vault/deps/ash/documentation/topics ✔ 
+📖 Reading /home/user/vault/deps/ash/documentation/topics/resources/code-interfaces.md ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/type/union.ex ✔ 
+📖 Reading /home/user/vault/deps/ash/usage-rules/actions.md ✔ 
+📖 Reading /home/user/vault/deps/ash/usage-rules/code_interfaces.md ✔ 
+🔍 Searching for defmodule Ash.Error.Action.InvalidArgument|defmodule Ash.Error.Changes.InvalidChanges|defmodule Ash.Error.Changes.InvalidAttribute in /home/user/vault/deps/ash ✔ 
+🔍 Searching for generic action|action :\w+, :\w+ do|Ash.Resource.Actions.Implementation|use Ash.Resource.Actions.Implementation in /home/user/vault/deps/ash/documentation ✔ 
+📖 Reading /home/user/vault/deps/ash/documentation/topics/actions/generic-actions.md ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/error/action/invalid_argument.ex ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/error/changes/invalid_attribute.ex ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/error/changes/invalid_changes.ex ✔ 
+💭 Thinking for 12 characters   
+🔍 Searching for vars in /home/user/vault/deps/ash/lib/ash/error ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/error/error.ex ✔ 
+📖 Reading /home/user/vault/deps/splode/lib/splode/error.ex ✔ 
+💭 Thinking for 325 characters   
+🔍 Searching for has already been taken in /home/user/vault/deps/ash ✔ 
+🔍 Searching for identities|identity in /home/user/vault/deps/ash/lib/ash/data_layer ✔ 
+💭 Thinking for 14 characters   
+📖 Reading /home/user/vault/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/data_layer/verifiers/require_pre_check_with.ex ✔ 
+💭 Thinking for 7224 characters   
+🔍 Searching for NoSuchInput|no such input in /home/user/vault/deps/ash/lib/ash/error ✔ 
+📖 Reading /home/user/vault/deps/ash/documentation/topics/resources/embedded-resources.md ✔ 
+💭 Thinking for 1038 characters   
+🔍 Searching for cast_tag\? in /home/user/vault/deps/ash ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/embeddable_type.ex ✔ 
+💭 Thinking for 2408 characters   
+📖 Reading /home/user/vault/deps/ash/lib/ash/code_interface.ex ✔ 
+💭 Thinking for 291 characters   
+🔍 Searching for arg_vars_function|params_or_opts\)|def unquote\(interface.name\) in /home/user/vault/deps/ash/lib/ash/code_interface.ex ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/code_interface.ex ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/code_interface.ex ✔ 
+💭 Thinking for 5803 characters   
+🔍 Searching for Implementation in /home/user/vault/deps/ash/lib/ash/resource/actions ✔ 
+🔍 Searching for *implementation* in /home/user/vault/deps/ash/lib/ash/resource/actions ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/resource/actions/action/implementation.ex ✔ 
+💭 Thinking for 1900 characters   
+🔍 Searching for def resolve_params_and_opts in /home/user/vault/deps/ash/lib/ash/code_interface.ex ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/code_interface.ex ✔ 
+💭 Thinking for 10021 characters   
+🔍 Searching for defp validate_required_belongs_to|Required.exception|defp require_values|require_attributes in /home/user/vault/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+🔍 Searching for defp attributes_to_require|def require_values\(changeset, :create in /home/user/vault/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+🔍 Searching for require_values\(changeset, .*true in /home/user/vault/deps/ash/lib/ash ✔ 
+🔍 Searching for require_values\( in /home/user/vault/deps/ash/lib/ash ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/actions/create/create.ex ✔ 
+💭 Thinking for 548 characters   
+🔍 Searching for def attributes_to_require in /home/user/vault/deps/ash/lib/ash/resource/info.ex ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/resource/info.ex ✔ 
+💭 Thinking for 1073 characters   
+🔍 Searching for NoSuchInput|skip_unknown_inputs in /home/user/vault/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+🔍 Searching for identities-identity|pre_check_with|field_names in /home/user/vault/deps/ash/documentation/dsls/DSL-Ash.Resource.md ✔ 
+💭 Thinking for 413 characters   
+🔍 Searching for eager_check_with|pre_check_with|pre_check\?|defp validate_identity|eager_check\? in /home/user/vault/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+📖 Reading /home/user/vault/deps/ash/lib/ash/changeset/changeset.ex ✔ 
+💭 Thinking for 8755 characters   
+🔍 Searching for defmodule Ash.Resource.Validation$|def validate|CustomExpression|behaviour"| exception in /home/user/vault/deps/ash/lib/ash/resource/validation ✔ 
+🔍 Searching for validation.ex in /home/user/vault/deps/ash/lib/ash/resource ✔ 
+💭 Thinking for 8 characters   
+📖 Reading /home/user/vault/deps/ash/lib/ash/resource/validation.ex ✔ 
+💭 Thinking for 7506 characters   
+🔍 Searching for require Ash.Query|defmacro __using__ in /home/user/vault/deps/ash/lib/ash/resource/change.ex ✖ "rg command failed with code 2: rg: /home/user/vault/deps/ash/lib/ash/resource/change.ex: IO error for operation on /home/user/vault/deps/ash/lib/ash/resource/change.ex: No such file or directory (os error 2)\n"
+🔍 Searching for change.ex in /home/user/vault/deps/ash/lib/ash/resource ✔ 
+🔍 Searching for defmodule Ash.Resource.Change do in /home/user/vault/deps/ash/lib/ash/resource ✔ 
+🔍 Searching for defmodule Ash.DataLayer.Ets in /home/user/vault/deps/ash/lib/ash/data_layer/ets ✔ 
+Now let's write all the files.   
+✏️  Writing /home/user/vault/lib/vault/ledger/account_state.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/command_result.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/fold.ex ✔ 
+Now the payload embedded resources and union type:   
+✏️  Writing /home/user/vault/lib/vault/ledger/payloads/account_opened.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/payloads/deposited.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/payloads/withdrawn.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/payloads/frozen.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/payloads/unfrozen.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/payload.ex ✔ 
+Now the Event resource and its Change/Validation modules:   
+✏️  Writing /home/user/vault/lib/vault/ledger/event/changes/assign_sequence.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/event/validations/version_sequential.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/event.ex ✔ 
+Now the Snapshot resource and Snapshots business module:   
+✏️  Writing /home/user/vault/lib/vault/ledger/snapshot.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/snapshots.ex ✔ 
+Now the Aggregate module:   
+✏️  Writing /home/user/vault/lib/vault/ledger/aggregate.ex ✔ 
+Now the AccountProjection and Checkpoint resources:   
+✏️  Writing /home/user/vault/lib/vault/ledger/account_projection.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/checkpoint.ex ✔ 
+Now the Domain module:   
+✏️  Writing /home/user/vault/lib/vault/ledger.ex ✔ 
+Now the Commands toolkit and command modules:   
+✏️  Writing /home/user/vault/lib/vault/ledger/commands/toolkit.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/commands/snapshotter.ex ✔ 
+Now the individual command implementations:   
+✏️  Writing /home/user/vault/lib/vault/ledger/commands/open_account.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/commands/deposit.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/commands/withdraw.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/commands/transfer.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/commands/freeze.ex ✔ 
+✏️  Writing /home/user/vault/lib/vault/ledger/commands/unfreeze.ex ✔ 
+Now the Projector module:   
+✏️  Writing /home/user/vault/lib/vault/ledger/projector.ex ✔ 
+💭 Thinking for 452 characters   
+🔧 Applying diff to /home/user/vault/lib/vault/ledger/projector.ex ✔ 
+💭 Thinking for 393 characters   
+💫 Executing cd /home/user/vault && MIX_ENV=dev mix compile 2>&1 | head -200 ✔ 
+Compiles cleanly. Let's write a small test script to exercise the main flows.   
+✏️  Writing /home/user/vault/scratch_test.exs ✔ 
+💫 Executing cd /home/user/vault && MIX_ENV=dev mix run scratch_test.exs 2>&1 | head -300 ✔ 
+Working well so far. Let's see the rest of the output.   
+💫 Executing cd /home/user/vault && MIX_ENV=dev mix run scratch_test.exs 2>&1 | tail -150 ✔ 
+💫 Executing cd /home/user/vault && MIX_ENV=dev mix run scratch_test.exs 2>&1 | sed -n '150,220p' ✔ 
+💫 Executing cd /home/user/vault && MIX_ENV=dev mix run scratch_test.exs 2>&1 | grep -n -A 20 "same account\|no such input\|expected NoSuchInput" ✔ 
+💫 Executing cd /home/user/vault && cat > /tmp/t2.exs << 'EOF'
+alias Vault.Ledger
+try do
+  Ledger.append_event!(%{account_id: "x", version: 1, sequence: 1, payload: %{"type" => "deposited", "amount_cents" => 1}, recorded_at: DateTime.utc_now()})
+rescue
+  e -> IO.inspect(e)
+end
+EOF
+MIX_ENV=dev mix run /tmp/t2.exs ✔ 
+Confirmed: `NoSuchInput` for `:sequence`. Now let's test the duplicate-version and version-gap error cases directly via `append_event`.   
+💫 Executing cd /home/user/vault && cat > /tmp/t3.exs << 'EOF'
+alias Vault.Ledger
+
+{:ok, _} = Ledger.open_account("dup1", "Al", %{opening_balance_cents: 0})
+
+# duplicate version
+case Ledger.append_event(%{account_id: "dup1", version: 1, payload: %{"type" => "deposited", "amount_cents" => 5}, recorded_at: DateTime.utc_now()}) do
+  {:error, err} -> IO.inspect(err, label: "dup version error")
+  other -> IO.inspect(other, label: "UNEXPECTED")
+end
+
+# version gap
+case Ledger.append_event(%{account_id: "dup1", version: 5, payload: %{"type" => "deposited", "amount_cents" => 5}, recorded_at: DateTime.utc_now()}) do
+  {:error, err} -> IO.inspect(err, label: "gap error")
+  other -> IO.inspect(other, label: "UNEXPECTED")
+end
+
+# version 0
+case Ledger.append_event(%{account_id: "dup1", version: 0, payload: %{"type" => "deposited", "amount_cents" => 5}, recorded_at: DateTime.utc_now()}) do
+  {:error, err} -> IO.inspect(err, label: "zero version error")
+  other -> IO.inspect(other, label: "UNEXPECTED")
+end
+
+# bad payload type
+case Ledger.append_event(%{account_id: "dup1", version: 2, payload: %{"type" => "bogus"}, recorded_at: DateTime.utc_now()}) do
+  {:error, err} -> IO.inspect(err, label: "bad payload error")
+  other -> IO.inspect(other, label: "UNEXPECTED")
+end
+
+# check log untouched after rejects: next successful append gets next seq
+{:ok, res} = Ledger.deposit("dup1", 10)
+IO.inspect(res.appended, label: "next successful append")
+
+# try to destroy/update an event -> should fail
+[ev | _] = Ledger.list_events!()
+IO.inspect(function_exported?(Vault.Ledger.Event, :destroy, 0), label: "has destroy action?")
+try do
+  Ash.destroy!(ev, domain: Vault.Ledger)
+rescue
+  e -> IO.inspect(e.__struct__, label: "destroy rescue")
+end
+EOF
+MIX_ENV=dev mix run /tmp/t3.exs ✔ 
+💭 Thinking for 322 characters   
+💫 Executing cd /home/user/vault && cat > /tmp/t4.exs << 'EOF'
+alias Vault.Ledger
+
+{:ok, _} = Ledger.open_account("snap1", "Al", %{opening_balance_cents: 0})
+for i <- 1..10 do
+  Ledger.append_event!(%{account_id: "snap1", version: i + 1, payload: %{"type" => "deposited", "amount_cents" => 1}, recorded_at: DateTime.utc_now()})
+end
+
+IO.inspect(Vault.Ledger.Snapshots.latest("snap1"), label: "snapshot after direct appends (should be :none)")
+
+# now run a command to trigger sync
+{:ok, _} = Ledger.deposit("snap1", 1)
+IO.inspect(Vault.Ledger.Snapshots.latest("snap1"), label: "snapshot after command (should catch up to multiples of 5)")
+
+# check there is a snapshot at version 5 AND version 10
+import Ecto.Query rescue nil
+snaps = Vault.Ledger.Snapshot |> Ash.Query.filter(account_id == "snap1") |> Ash.read!(domain: Vault.Ledger)
+IO.inspect(Enum.map(snaps, & &1.version) |> Enum.sort(), label: "snapshot versions for snap1")
+
+# update should fail
+try do
+  ev = List.first(Ledger.list_events!())
+  Ash.update!(ev, %{}, domain: Vault.Ledger, action: :update)
+rescue
+  e -> IO.inspect(e, label: "update rescue")
+end
+EOF
+MIX_ENV=dev mix run /tmp/t4.exs ✖ "Command exited with code 1"
+💫 Executing cd /home/user/vault && cat > /tmp/t4.exs << 'EOF'
+alias Vault.Ledger
+require Ash.Query
+
+{:ok, _} = Ledger.open_account("snap1", "Al", %{opening_balance_cents: 0})
+for i <- 1..10 do
+  Ledger.append_event!(%{account_id: "snap1", version: i + 1, payload: %{"type" => "deposited", "amount_cents" => 1}, recorded_at: DateTime.utc_now()})
+end
+
+IO.inspect(Vault.Ledger.Snapshots.latest("snap1"), label: "snapshot after direct appends (should be :none)")
+
+{:ok, _} = Ledger.deposit("snap1", 1)
+
+snaps = Vault.Ledger.Snapshot |> Ash.Query.filter(account_id == "snap1") |> Ash.read!(domain: Vault.Ledger)
+IO.inspect(Enum.map(snaps, & &1.version) |> Enum.sort(), label: "snapshot versions for snap1 (expect [5,10])")
+
+ev = List.first(Ledger.list_events!())
+try do
+  Ash.update!(ev, %{}, domain: Vault.Ledger, action: :update)
+rescue
+  e -> IO.inspect(e, label: "update rescue")
+end
+EOF
+MIX_ENV=dev mix run /tmp/t4.exs ✔ 
+All working as required. Let's now test `state_at`, `audit`, timestamp variant, out-of-order Fold.replay, and the rebuild_all Hook interleaving requirement.   
+💫 Executing cd /home/user/vault && cat > /tmp/t5.exs << 'EOF'
+alias Vault.Ledger
+alias Vault.Ledger.{Fold, Hook, Projector}
+
+# out of order replay
+e1 = %Vault.Ledger.Event{sequence: 1, account_id: "a", version: 1, payload: %Ash.Union{type: :account_opened, value: %Vault.Ledger.Payloads.AccountOpened{owner: "x", opening_balance_cents: 0}}, recorded_at: DateTime.utc_now()}
+e2 = %Vault.Ledger.Event{sequence: 1, account_id: "a", version: 2, payload: %Ash.Union{type: :deposited, value: %Vault.Ledger.Payloads.Deposited{amount_cents: 1}}, recorded_at: DateTime.utc_now()}
+IO.inspect(Fold.replay(Fold.initial("a"), [e1, e2]), label: "out of order (same seq) expect {:error,{:out_of_order,1}}")
+
+# Hook interleaving test for rebuild_all
+{:ok, _} = Ledger.open_account("hooktest", "H", %{opening_balance_cents: 0})
+
+Hook.set(:after_load, fn ->
+  Ledger.deposit!("hooktest", 999)
+  IO.puts("hook fired: injected extra deposit")
+end)
+
+result = Projector.rebuild_all()
+IO.inspect(result, label: "rebuild_all result")
+IO.inspect(Hook.count(:after_load), label: "hook run count (expect 1)")
+
+# the injected event should NOT be part of this rebuild's applied count, but caught by next catch_up
+IO.inspect(Projector.checkpoint(), label: "checkpoint after rebuild (should be seq before injected deposit)")
+catchup_result = Projector.catch_up()
+IO.inspect(catchup_result, label: "catch_up result (should apply exactly the injected event)")
+EOF
+MIX_ENV=dev mix run /tmp/t5.exs ✔ 
+This matches the spec's required Hook interleaving behavior exactly. Let's test `audit` failure path and projection row tampering + rebuild restoration.   
+💫 Executing cd /home/user/vault && cat > /tmp/t6.exs << 'EOF'
+alias Vault.Ledger
+alias Vault.Ledger.{Projector, AccountProjection}
+require Ash.Query
+
+{:ok, _} = Ledger.open_account("tamper1", "T", %{opening_balance_cents: 100})
+{:ok, _} = Ledger.deposit("tamper1", 50)
+Projector.catch_up()
+
+row = Ash.get!(AccountProjection, "tamper1", domain: Ledger)
+IO.inspect(row, label: "before tamper")
+
+row |> Ash.Changeset.for_update(:update, %{balance_cents: 999999}, domain: Ledger) |> Ash.update!()
+tampered = Ash.get!(AccountProjection, "tamper1", domain: Ledger)
+IO.inspect(tampered.balance_cents, label: "tampered balance")
+
+{:ok, res} = Projector.rebuild_all()
+IO.inspect(res, label: "rebuild_all result")
+
+fixed = Ash.get!(AccountProjection, "tamper1", domain: Ledger)
+IO.inspect(fixed.balance_cents, label: "restored balance (expect 150)")
+
+# delete row outright, then rebuild
+Ash.destroy!(fixed, domain: Ledger)
+{:ok, res2} = Projector.rebuild_all()
+IO.inspect(res2, label: "rebuild_all after delete")
+restored2 = Ash.get!(AccountProjection, "tamper1", domain: Ledger)
+IO.inspect(restored2.balance_cents, label: "restored2 balance (expect 150)")
+EOF
+MIX_ENV=dev mix run /tmp/t6.exs ✔ 
+💭 Thinking for 353 characters   
+💫 Executing cd /home/user/vault && cat > /tmp/t7.exs << 'EOF'
+alias Vault.Ledger
+alias Vault.Ledger.Projector
+
+# bypass command layer: append a deposited event as version 1 for a brand new account (invalid per Fold rules)
+Ledger.append_event!(%{account_id: "badstream", version: 1, payload: %{"type" => "deposited", "amount_cents" => 5}, recorded_at: DateTime.utc_now()})
+
+# also add a good account before and after to check partial progress semantics
+{:ok, _} = Ledger.open_account("goodA", "GA", %{opening_balance_cents: 0})
+
+before_checkpoint = Projector.checkpoint()
+IO.inspect(before_checkpoint, label: "checkpoint before catch_up")
+
+result = Projector.catch_up()
+IO.inspect(result, label: "catch_up result (expect fold_failed on badstream event)")
+IO.inspect(Projector.checkpoint(), label: "checkpoint after failed catch_up (should be last good seq)")
+
+# state_at / audit for badstream
+IO.inspect(Projector.state_at("badstream", {:version, 1}), label: "state_at should fold_fail")
+IO.inspect(Projector.audit("badstream"), label: "audit should fold_fail")
+EOF
+MIX_ENV=dev mix run /tmp/t7.exs ✔ 
+💭 Thinking for 258 characters   
+💫 Executing cd /home/user/vault && cat > /tmp/t8.exs << 'EOF'
+alias Vault.Ledger
+alias Vault.Ledger.{Aggregate, Snapshot, Snapshots}
+require Ash.Query
+
+{:ok, _} = Ledger.open_account("snapv", "S", %{opening_balance_cents: 0})
+for i <- 1..5, do: Ledger.deposit!("snapv", 1)
+
+{:ok, snap} = Snapshots.latest("snapv")
+IO.inspect(Snapshots.verify(snap), label: "verify good snapshot")
+
+# corrupt checksum
+snap2 = snap |> Ash.Changeset.for_update(:update, %{checksum: "deadbeef"}, domain: Ledger) |> Ash.update!()
+IO.inspect(Snapshots.verify(snap2), label: "verify corrupted checksum")
+
+# Aggregate.current should still work (fall back to full fold since corrupted snapshot ignored)
+IO.inspect(Aggregate.current("snapv"), label: "current with corrupt snapshot (should still be correct)")
+
+# version mismatch: alter stored state map's version field without updating checksum consistently to create version mismatch scenario
+bad_state = Map.put(snap.state, "version", 999)
+checksum_for_bad = Snapshots.checksum(Snapshots.restore(bad_state))
+snap3 = snap |> Ash.Changeset.for_update(:update, %{state: bad_state, checksum: checksum_for_bad}, domain: Ledger) |> Ash.update!()
+IO.inspect(Snapshots.verify(snap3), label: "verify version mismatch (checksum consistent but snap.version differs)")
+EOF
+MIX_ENV=dev mix run /tmp/t8.exs ✖ "Command exited with code 1"
+💭 Thinking for 1471 characters   
+🔧 Applying diff to /home/user/vault/lib/vault/ledger/snapshot.ex ✔ 
+💫 Executing cd /home/user/vault && MIX_ENV=dev mix run /tmp/t8.exs ✔ 
+💭 Thinking for 458 characters   
+💫 Executing cd /home/user/vault && cat > /tmp/t9.exs << 'EOF'
+alias Vault.Ledger
+alias Vault.Ledger.{Snapshot, Snapshots}
+require Ash.Query
+
+{:ok, _} = Ledger.open_account("snapd", "S", %{opening_balance_cents: 0})
+for _ <- 1..5, do: Ledger.deposit!("snapd", 1)
+{:ok, snap} = Snapshots.latest("snapd")
+Ash.destroy!(snap, domain: Ledger)
+IO.inspect(Snapshots.latest("snapd"), label: "after destroy (expect :none)")
+
+# also test seeding a snapshot directly via create (simulating verifier forging one)
+Snapshot
+|> Ash.Changeset.for_create(:create, %{account_id: "forged", version: 5, sequence: 5, state: %{"account_id" => "forged", "owner" => "F", "balance_cents" => 10, "status" => "open", "version" => 5, "deposit_count" => 0, "withdrawal_count" => 0, "last_event_type" => "account_opened", "last_recorded_at" => nil}, checksum: "bogus"}, domain: Ledger)
+|> Ash.create!()
+IO.inspect(Snapshots.latest("forged"), label: "forged snapshot created")
+EOF
+MIX_ENV=dev mix run /tmp/t9.exs ✔ 
+All working correctly. Let's now test AccountProjection/Checkpoint direct seeding+forging (the "verifier seeds forged rows" scenario) and confirm catch_up correctly handles a manually forged checkpoint row.   
+💫 Executing cd /home/user/vault && cat > /tmp/t10.exs << 'EOF'
+alias Vault.Ledger
+alias Vault.Ledger.{Checkpoint, AccountProjection, Projector}
+require Ash.Query
+
+{:ok, _} = Ledger.open_account("forge2", "F2", %{opening_balance_cents: 0})
+{:ok, _} = Ledger.deposit("forge2", 5)
+
+# forge a projection row directly with wrong data
+AccountProjection
+|> Ash.Changeset.for_create(:create, %{account_id: "forged_proj", owner: "X", balance_cents: 1, status: :open, version: 1, deposit_count: 0, withdrawal_count: 0, last_event_sequence: 1, last_recorded_at: DateTime.utc_now()}, domain: Ledger)
+|> Ash.create!()
+
+IO.inspect(Projector.checkpoint(), label: "checkpoint before")
+result = Projector.rebuild_all()
+IO.inspect(result, label: "rebuild_all (forged_proj should disappear since it has no real events)")
+IO.inspect(Ash.get(AccountProjection, "forged_proj", domain: Ledger, not_found_error?: false), label: "forged_proj after rebuild (expect nil)")
+EOF
+MIX_ENV=dev mix run /tmp/t10.exs ✔ 
+Excellent. Everything behaves correctly. Now let's clean up test files and run a final full compile check.   
+💫 Executing cd /home/user/vault && rm -f scratch_test.exs /tmp/t*.exs && MIX_ENV=dev mix compile --force 2>&1 | tail -60 ✔ 
+Clean compile with no warnings. Let's double check the code-interface arities match spec exactly, and verify a few more edge cases (freeze/unfreeze error precedence, snapshot creation for transfer on both accounts, and the `list_events` code interface).   
+💫 Executing cd /home/user/vault && cat > /tmp/arity.exs << 'EOF'
+alias Vault.Ledger
+
+check = fn mod, fun ->
+  arities = for {f, a} <- mod.__info__(:functions), f == fun, do: a
+  IO.inspect(Enum.sort(arities), label: "#{fun}")
+end
+
+check.(Ledger, :open_account)
+check.(Ledger, :deposit)
+check.(Ledger, :withdraw)
+check.(Ledger, :transfer)
+check.(Ledger, :freeze_account)
+check.(Ledger, :unfreeze_account)
+check.(Ledger, :append_event)
+check.(Ledger, :list_events)
+EOF
+MIX_ENV=dev mix run /tmp/arity.exs ✔ 
+All arities match the spec exactly (append_event has an extra `/0` beyond the required `1..2`, which is harmless). Let's also verify the bang variants exist.   
+💫 Executing cd /home/user/vault && cat > /tmp/arity2.exs << 'EOF'
+alias Vault.Ledger
+
+check = fn mod, fun ->
+  arities = for {f, a} <- mod.__info__(:functions), f == fun, do: a
+  IO.inspect(Enum.sort(arities), label: "#{fun}")
+end
+
+for f <- [:open_account!, :deposit!, :withdraw!, :transfer!, :freeze_account!, :unfreeze_account!, :append_event!, :list_events!] do
+  check.(Ledger, f)
+end
+EOF
+MIX_ENV=dev mix run /tmp/arity2.exs && rm -f /tmp/arity.exs /tmp/arity2.exs ✔ 
+All bang variants exist with correct arities. Let's do a final review of all created files for consistency.   
+📂 Listing files in /home/user/vault/lib/vault recursively ✔ 
+All files are in place and the project compiles cleanly with all manual verification scenarios passing. Let's do one last full run to make sure everything is stable after all edits.   
+💫 Executing cd /home/user/vault && rm -rf _build && MIX_ENV=dev mix compile 2>&1 | tail -80 ✖ "Command execution timed out after 60 seconds."
+💫 Executing cd /home/user/vault && MIX_ENV=dev mix compile 2>&1 | tail -80 ✖ "Command execution timed out after 180 seconds."
+🛠️ Tool startBackgroundJob ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+💫 Executing sleep 60; echo done ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+💫 Executing ps aux | grep -i mix | grep -v grep ✔ 
+💫 Executing kill -9 4875 5162 5423 5424 2>/dev/null; sleep 2; ps aux | grep -i beam | grep -v grep ✖ "Command exited with code 1"
+All stale processes cleared. Let's rebuild cleanly now.   
+🛠️ Tool killBackgroundJob ✔ 
+🛠️ Tool startBackgroundJob ✔ 
+💫 Executing sleep 90; echo done ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+This is rebuilding all deps from scratch since `_build` was wiped (my earlier `rm -rf _build` was a mistake). Let's wait for it to finish.   
+💫 Executing sleep 180; echo done ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+Still compiling deps. Let's wait more.   
+💫 Executing sleep 240; echo done ✔ 
+🛠️ Tool readBackgroundJobOutput ✔ 
+The build finished successfully (those warnings are pre-existing, unrelated to our code — Igniter is an optional dependency not present, which is fine). Let's verify with a fresh incremental compile now that `_build` is restored.   
+💫 Executing cd /home/user/vault && MIX_ENV=dev mix compile 2>&1 | tail -40 ✔ 
+💫 Executing cd /home/user/vault && cat > /tmp/final_check.exs << 'EOF'
+alias Vault.Ledger
+alias Vault.Ledger.{Projector, Aggregate, Snapshots}
+
+{:ok, r1} = Ledger.open_account("finalA", "Alice", %{opening_balance_cents: 1000})
+{:ok, r2} = Ledger.deposit("finalA", 500)
+{:ok, r3} = Ledger.withdraw("finalA", 200)
+{:ok, _} = Ledger.open_account("finalB", "Bob")
+{:ok, r4} = Ledger.transfer("finalA", "finalB", 300)
+{:ok, r5} = Ledger.freeze_account("finalA", :fraud_review)
+{:ok, r6} = Ledger.unfreeze_account("finalA", %{note: "ok"})
+
+IO.inspect(Aggregate.current("finalA"), label: "final state A")
+IO.inspect(Projector.catch_up(), label: "catch_up")
+IO.inspect(Projector.rebuild_all(), label: "rebuild_all")
+IO.puts("ALL GOOD")
+EOF
+MIX_ENV=dev mix run /tmp/final_check.exs && rm -f /tmp/final_check.exs /tmp/compile_log*.txt ✔ 
+Everything works correctly (warnings are just from the throwaway test script, not the project code). The implementation is complete and verified.   
+🎉 Task Completed
+Implemented the full event-sourced ledger on Ash 3.31 at `/home/user/vault`:
+
+- **`Vault.Ledger.Event`** — append-only log with an `:append` create action (accepts only `account_id`, `version`, `payload`, `recorded_at`; `sequence` is store-derived and rejected as "no such input" if supplied), no update/destroy actions, and `[:account_id, :version]` / `[:sequence]` identities (via `pre_check_with: Vault.Ledger` so they work on ETS). A custom `Change` assigns the next contiguous global sequence in a `before_action` hook, and a custom `Validation` enforces the "version must be exactly one greater..." rule with `vars[:expected]`, deferring true duplicates to the identity's "has already been taken" error.
+- **`Vault.Ledger.Payload`** — `Ash.Type.NewType` over `:union` with five tagged embedded-resource members (`AccountOpened`, `Deposited`, `Withdrawn`, `Frozen`, `Unfrozen`), discriminated by a string `"type"` tag, each with its own field constraints.
+- **`Vault.Ledger.AccountState`** / **`Vault.Ledger.Fold`** — pure fold with the exact rejection precedence (account mismatch → version gap → unknown event type) and business rules per event type.
+- **Commands** — `:open_account`, `:deposit`, `:withdraw`, `:transfer`, `:freeze`, `:unfreeze` implemented as generic actions on `Event` (via `Ash.Resource.Actions.Implementation` modules under `Vault.Ledger.Commands.*`), sharing a `Toolkit` helper for ordered precondition checks (returning `Ash.Error.Action.InvalidArgument` with the exact field/message from the spec table) and a `Snapshotter` that keeps every multiple-of-5 version snapshotted after each successful command only.
+- **`Vault.Ledger.Snapshot`** / **`Vault.Ledger.Snapshots`** — dump/restore/checksum/latest/verify exactly as specified (checksum-first verification), with `require_atomic? false` on its update action so direct/forged mutation by a verifier works.
+- **`Vault.Ledger.Aggregate`** — `fold_all/1` (ignores snapshots) and `current/1` (accelerated by the highest verifying snapshot, silently skipping corrupt ones).
+- **`Vault.Ledger.AccountProjection`** / **`Vault.Ledger.Checkpoint`** / **`Vault.Ledger.Projector`** — `checkpoint/0`, `catch_up/0`, `rebuild_all/0` (calls `Hook.run(:after_load)` exactly once after reading events and before touching projection rows, verified to correctly defer hook-injected events to the next `catch_up/0`), `state_at/2`, and `audit/1`, all reporting `{:error, {:fold_failed, sequence, reason}}` and leaving partial progress in place.
+- **`Vault.Ledger`** domain exposes the code interface with the exact required arities: `open_account/2..4`, `deposit/2..4`, `withdraw/2..4`, `transfer/3..5`, `freeze_account/2..4`, `unfreeze_account/1..3`, `append_event/1..2`, `list_events/0..2` (plus bang variants).
+
+Verified via ad-hoc scripts (not committed) covering: sequence/version gap and duplicate errors, log-untouched-on-rejection, immutability (`Ash.update!`/`Ash.destroy!` both fail), each command's precondition precedence, snapshot creation only via commands (never via raw append) at exact multiples of 5, snapshot corruption tolerance in `Aggregate.current/1`, projection tampering/deletion fully repaired by `rebuild_all/0`, the `Hook.run(:after_load)` interleaving contract, `fold_failed` propagation with correct checkpoint retention, and all code-interface arities. `mix compile` succeeds cleanly with zero warnings.
+   
+  

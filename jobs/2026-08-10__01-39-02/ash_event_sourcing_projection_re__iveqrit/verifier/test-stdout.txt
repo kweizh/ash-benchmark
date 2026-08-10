@@ -1,0 +1,56 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 44 items
+
+../tests/test_final_state.py ........................................... [ 97%]
+.                                                                        [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_scenario[T01-T01 event resource declares the append only log schema]
+PASSED ../tests/test_final_state.py::test_scenario[T02-T02 the log is immutable]
+PASSED ../tests/test_final_state.py::test_scenario[T03-T03 the global sequence cannot be supplied by the caller]
+PASSED ../tests/test_final_state.py::test_scenario[T04-T04 sequences are globally contiguous and versions are per stream]
+PASSED ../tests/test_final_state.py::test_scenario[T05-T05 a duplicate stream position is rejected by the identity]
+PASSED ../tests/test_final_state.py::test_scenario[T06-T06 a version gap is rejected and consumes no sequence number]
+PASSED ../tests/test_final_state.py::test_scenario[T07-T07 every payload member round trips through the store]
+PASSED ../tests/test_final_state.py::test_scenario[T08-T08 each payload member enforces its own constraints]
+PASSED ../tests/test_final_state.py::test_scenario[T09-T09 an unrecognised payload tag is rejected]
+PASSED ../tests/test_final_state.py::test_scenario[T10-T10 the payload type is a union new type with the five documented members]
+PASSED ../tests/test_final_state.py::test_scenario[T11-T11 the initial state is the documented zero value]
+PASSED ../tests/test_final_state.py::test_scenario[T12-T12 applying each event type produces the documented state]
+PASSED ../tests/test_final_state.py::test_scenario[T13-T13 structural checks take precedence over business rules]
+PASSED ../tests/test_final_state.py::test_scenario[T14-T14 business rules reject impossible transitions]
+PASSED ../tests/test_final_state.py::test_scenario[T15-T15 an unknown event type is reported by name]
+PASSED ../tests/test_final_state.py::test_scenario[T16-T16 replay folds a tail and surfaces the first failure]
+PASSED ../tests/test_final_state.py::test_scenario[T17-T17 replay rejects out of order input instead of sorting it]
+PASSED ../tests/test_final_state.py::test_scenario[T18-T18 the fold performs no storage access]
+PASSED ../tests/test_final_state.py::test_scenario[T19-T19 opening an account returns the documented command result]
+PASSED ../tests/test_final_state.py::test_scenario[T20-T20 deposits and withdrawals advance the stream]
+PASSED ../tests/test_final_state.py::test_scenario[T21-T21 a transfer appends two events with consecutive sequences]
+PASSED ../tests/test_final_state.py::test_scenario[T22-T22 a rejected transfer leaves no trace]
+PASSED ../tests/test_final_state.py::test_scenario[T23-T23 every invariant violation reports the documented field and message]
+PASSED ../tests/test_final_state.py::test_scenario[T24-T24 freezing blocks money movement until the account is unfrozen]
+PASSED ../tests/test_final_state.py::test_scenario[T25-T25 an omitted recorded_at falls back to the current time]
+PASSED ../tests/test_final_state.py::test_scenario[T26-T26 commands are generic actions returning the command result struct]
+PASSED ../tests/test_final_state.py::test_scenario[T27-T27 snapshot serialisation is exact and round trips]
+PASSED ../tests/test_final_state.py::test_scenario[T28-T28 the checksum covers exactly the documented fields]
+PASSED ../tests/test_final_state.py::test_scenario[T29-T29 commands snapshot every fifth version]
+PASSED ../tests/test_final_state.py::test_scenario[T30-T30 direct appends never create a snapshot]
+PASSED ../tests/test_final_state.py::test_scenario[T31-T31 snapshot verification detects tampering]
+PASSED ../tests/test_final_state.py::test_scenario[T32-T32 the current state is reconstructed from the newest valid snapshot]
+PASSED ../tests/test_final_state.py::test_scenario[T33-T33 a newer snapshot supersedes an older one]
+PASSED ../tests/test_final_state.py::test_scenario[T34-T34 a corrupt snapshot is ignored rather than trusted]
+PASSED ../tests/test_final_state.py::test_scenario[T35-T35 commands keep the read model up to date]
+PASSED ../tests/test_final_state.py::test_scenario[T36-T36 direct appends only reach the read model through catch up]
+PASSED ../tests/test_final_state.py::test_scenario[T37-T37 catch up is idempotent]
+PASSED ../tests/test_final_state.py::test_scenario[T38-T38 a full rebuild reproduces the incrementally maintained rows]
+PASSED ../tests/test_final_state.py::test_scenario[T39-T39 a rebuild repairs a projection row edited behind its back]
+PASSED ../tests/test_final_state.py::test_scenario[T40-T40 a rebuild recreates a deleted projection row]
+PASSED ../tests/test_final_state.py::test_scenario[T41-T41 rebuilding an empty log clears the read model]
+PASSED ../tests/test_final_state.py::test_scenario[T42-T42 events appended during a rebuild belong to the next catch up]
+PASSED ../tests/test_final_state.py::test_scenario[T43-T43 an unfoldable event halts the projection at the last good sequence]
+PASSED ../tests/test_final_state.py::test_scenario[T44-T44 time travel and the audit trail]
+============================= 44 passed in 38.29s ==============================

@@ -1,0 +1,362 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-09T18:22:32.550869+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 37,
+            "passed": 37,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786299740320,
+            "stop": 1786299752550
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_t01_custom_expressions_are_registered_with_ash",
+                "status": "passed",
+                "duration": 12207,
+                "start": 1786299740330,
+                "stop": 1786299752537,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_custom_expression_modules_report_name_0_and_arguments_0",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752537,
+                "stop": 1786299752537,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_expression_2_dispatches_per_data_layer",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752538,
+                "stop": 1786299752538,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_both_data_layer_clauses_produce_the_same_values",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752538,
+                "stop": 1786299752538,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_route_key_normalises_and_orders_its_arguments",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299752538,
+                "stop": 1786299752539,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_ratio_bps_computes_integral_basis_points",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752539,
+                "stop": 1786299752539,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_ratio_bps_rounds_halves_upwards",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752539,
+                "stop": 1786299752539,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_ratio_bps_clamps_to_the_closed_range_0_20000",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752540,
+                "stop": 1786299752540,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_ratio_bps_returns_nil_for_nil_arguments_and_a_zero_denominator",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752540,
+                "stop": 1786299752540,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_custom_expressions_compose_with_each_other",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299752540,
+                "stop": 1786299752541,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_custom_expressions_short_circuit_inside_if_cond",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752541,
+                "stop": 1786299752541,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_custom_expression_results_can_be_cast_with_type_2",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752541,
+                "stop": 1786299752541,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_arguments_outside_the_declared_types_are_rejected",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299752541,
+                "stop": 1786299752542,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_route_key_is_available_as_an_expression_calculation",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752542,
+                "stop": 1786299752542,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_sla_ratio_bps_is_available_as_an_expression_calculation",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752542,
+                "stop": 1786299752542,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_status_label_composes_the_custom_expression_with_conditionals",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299752542,
+                "stop": 1786299752543,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_the_on_route_read_action_filters_on_the_custom_expression",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752543,
+                "stop": 1786299752543,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_custom_expressions_can_be_used_directly_in_a_query_filter",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752543,
+                "stop": 1786299752543,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_calculations_built_on_custom_expressions_are_filterable",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299752543,
+                "stop": 1786299752544,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_calculations_built_on_custom_expressions_are_sortable",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752544,
+                "stop": 1786299752544,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t21_custom_expressions_can_be_sorted_on_inline",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752544,
+                "stop": 1786299752544,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_aggregate_filters_accept_custom_expressions",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299752544,
+                "stop": 1786299752545,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_custom_expressions_can_be_applied_to_aggregates",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752545,
+                "stop": 1786299752545,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_custom_expressions_over_aggregates_are_filterable",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752545,
+                "stop": 1786299752545,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_custom_expressions_work_inside_exists_1",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752546,
+                "stop": 1786299752546,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_record_delivery_accepts_a_delivery_within_the_allowed_ratio",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752546,
+                "stop": 1786299752546,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t27_record_delivery_rejects_a_delivery_beyond_the_allowed_ratio",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752546,
+                "stop": 1786299752546,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t28_the_delivery_validation_is_enforced_atomically",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752547,
+                "stop": 1786299752547,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t29_the_read_policy_authorises_on_the_custom_expression",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752547,
+                "stop": 1786299752547,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t30_admins_bypass_the_route_policy_and_anonymous_readers_are_forbidden",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299752547,
+                "stop": 1786299752548,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t31_the_penalty_points_function_module_reports_its_contract",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752548,
+                "stop": 1786299752548,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t32_penalty_points_evaluates_eagerly_for_literal_arguments",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752548,
+                "stop": 1786299752548,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t33_penalty_points_is_never_evaluated_with_nil_arguments",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299752548,
+                "stop": 1786299752549,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t34_penalty_points_reports_unknown_and_invalid_inputs",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752549,
+                "stop": 1786299752549,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t35_penalty_points_can_be_used_inside_a_query_filter",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752549,
+                "stop": 1786299752549,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t36_penalty_points_evaluates_against_a_record",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299752549,
+                "stop": 1786299752550,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t37_programmatically_parsed_filters_behave_identically",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299752550,
+                "stop": 1786299752550,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

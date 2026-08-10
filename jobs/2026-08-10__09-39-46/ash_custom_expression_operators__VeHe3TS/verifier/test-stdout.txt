@@ -1,0 +1,225 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 37 items
+
+../tests/test_final_state.py .................................FFF.       [100%]
+
+=================================== FAILURES ===================================
+__________ test_t34_penalty_points_reports_unknown_and_invalid_inputs __________
+
+suite = {'output': 'built on custom expressions are sortable@@pass@@\n@@HARBOR@@test T21 custom expressions can be sorted on i... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}
+
+    def test_t34_penalty_points_reports_unknown_and_invalid_inputs(suite):
+        """T34 penalty_points reports unknown and invalid inputs"""
+>       check(suite, "T34")
+
+/tests/test_final_state.py:818: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'built on custom expressions are sortable@@pass@@\n@@HARBOR@@test T21 custom expressions can be sorted on i... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}
+scenario = 'T34'
+
+    def check(suite, scenario):
+        results = suite["results"]
+        if not results:
+            pytest.fail(
+                "The ExUnit verification suite produced no results (the project most "
+                "likely does not compile).\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"output:\n{suite['output']}"
+            )
+    
+        prefix = "test " + scenario + " "
+        matching = [name for name in results if name.startswith(prefix)]
+        assert matching, (
+            f"Scenario {scenario} did not run. Known scenarios: {sorted(results)}\n"
+            f"output:\n{suite['output']}"
+        )
+    
+        name = matching[0]
+        status, detail = results[name]
+>       assert status == "pass", f"Scenario {name} failed:\n{detail}"
+E       AssertionError: Scenario test T34 penalty_points reports unknown and invalid inputs failed:
+E           1) test T34 penalty_points reports unknown and invalid inputs (SlaLabSuite)
+E              /tmp/harbor_expr_suite.exs:502
+E              ** (ArithmeticError) bad argument in arithmetic expression: "10" - 24
+E              code: assert @penalty.evaluate(struct(@penalty, arguments: ["10", 2])) == :unknown
+E              stacktrace:
+E                :erlang.-("10", 24)
+E                (sla_lab 0.1.0) lib/sla_lab/expressions/penalty_points.ex:74: SlaLab.Expressions.PenaltyPoints.evaluate/1
+E                /tmp/harbor_expr_suite.exs:507: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:648: AssertionError
+__________ test_t35_penalty_points_can_be_used_inside_a_query_filter ___________
+
+suite = {'output': 'built on custom expressions are sortable@@pass@@\n@@HARBOR@@test T21 custom expressions can be sorted on i... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}
+
+    def test_t35_penalty_points_can_be_used_inside_a_query_filter(suite):
+        """T35 penalty_points can be used inside a query filter"""
+>       check(suite, "T35")
+
+/tests/test_final_state.py:823: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'built on custom expressions are sortable@@pass@@\n@@HARBOR@@test T21 custom expressions can be sorted on i... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}
+scenario = 'T35'
+
+    def check(suite, scenario):
+        results = suite["results"]
+        if not results:
+            pytest.fail(
+                "The ExUnit verification suite produced no results (the project most "
+                "likely does not compile).\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"output:\n{suite['output']}"
+            )
+    
+        prefix = "test " + scenario + " "
+        matching = [name for name in results if name.startswith(prefix)]
+        assert matching, (
+            f"Scenario {scenario} did not run. Known scenarios: {sorted(results)}\n"
+            f"output:\n{suite['output']}"
+        )
+    
+        name = matching[0]
+        status, detail = results[name]
+>       assert status == "pass", f"Scenario {name} failed:\n{detail}"
+E       AssertionError: Scenario test T35 penalty_points can be used inside a query filter failed:
+E           1) test T35 penalty_points can be used inside a query filter (SlaLabSuite)
+E              /tmp/harbor_expr_suite.exs:514
+E              ** (Ash.Error.Unknown) 
+E              Bread Crumbs:
+E                > Exception raised in: SlaLab.Ops.Shipment.read
+E         
+E              Unknown Error
+E         
+E              * ** (UndefinedFunctionError) function SlaLab.Expressions.PenaltyPoints.has_partial_evaluate?/0 is undefined or private
+E                (sla_lab 0.1.0) SlaLab.Expressions.PenaltyPoints.has_partial_evaluate?()
+E                (ash 3.31.0) lib/ash/actions/read/read.ex:805: anonymous fn/9 in Ash.Actions.Read.do_read/5
+E              stacktrace:
+E                (sla_lab 0.1.0) SlaLab.Expressions.PenaltyPoints.has_partial_evaluate?()
+E                (ash 3.31.0) lib/ash/filter/runtime.ex:1402: Ash.Filter.Runtime.partial_evaluate/5
+E                (ash 3.31.0) lib/ash/filter/runtime.ex:689: Ash.Filter.Runtime.resolve_expr/5
+E                (ash 3.31.0) lib/ash/filter/runtime.ex:349: anonymous fn/6 in Ash.Filter.Runtime.resolve_exprs/5
+E                (elixir 1.18.4) lib/enum.ex:4968: Enumerable.List.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:2600: Enum.reduce_while/3
+E                (ash 3.31.0) lib/ash/filter/runtime.ex:348: Ash.Filter.Runtime.resolve_exprs/5
+E                (ash 3.31.0) lib/ash/filter/runtime.ex:645: Ash.Filter.Runtime.resolve_expr/5
+E                (ash 3.31.0) lib/ash/filter/runtime.ex:308: Ash.Filter.Runtime.do_match/6
+E                (ash 3.31.0) lib/ash/filter/runtime.ex:130: anonymous fn/4 in Ash.Filter.Runtime.matches/3
+E                (elixir 1.18.4) lib/enum.ex:4968: Enumerable.List.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:2600: Enum.reduce_while/3
+E                (ash 3.31.0) lib/ash/filter/runtime.ex:28: anonymous fn/5 in Ash.Filter.Runtime.filter_matches/4
+E                (elixir 1.18.4) lib/enum.ex:4968: Enumerable.List.reduce/3
+E                (elixir 1.18.4) lib/enum.ex:2600: Enum.reduce_while/3
+E                (ash 3.31.0) lib/ash/filter/runtime.ex:27: Ash.Filter.Runtime.filter_matches/4
+E                (ash 3.31.0) lib/ash/data_layer/ets/ets.ex:417: Ash.DataLayer.Ets.run_query/3
+E                (ash 3.31.0) lib/ash/behaviour_helpers.ex:62: Ash.BehaviourHelpers.call_and_validate_return/5
+E                (ash 3.31.0) lib/ash/actions/read/read.ex:4295: Ash.Actions.Read.run_query/4
+E                (ash 3.31.0) lib/ash/actions/read/read.ex:805: anonymous fn/9 in Ash.Actions.Read.do_read/5
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:648: AssertionError
+______________ test_t36_penalty_points_evaluates_against_a_record ______________
+
+suite = {'output': 'built on custom expressions are sortable@@pass@@\n@@HARBOR@@test T21 custom expressions can be sorted on i... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}
+
+    def test_t36_penalty_points_evaluates_against_a_record(suite):
+        """T36 penalty_points evaluates against a record"""
+>       check(suite, "T36")
+
+/tests/test_final_state.py:828: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'built on custom expressions are sortable@@pass@@\n@@HARBOR@@test T21 custom expressions can be sorted on i... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}
+scenario = 'T36'
+
+    def check(suite, scenario):
+        results = suite["results"]
+        if not results:
+            pytest.fail(
+                "The ExUnit verification suite produced no results (the project most "
+                "likely does not compile).\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"output:\n{suite['output']}"
+            )
+    
+        prefix = "test " + scenario + " "
+        matching = [name for name in results if name.startswith(prefix)]
+        assert matching, (
+            f"Scenario {scenario} did not run. Known scenarios: {sorted(results)}\n"
+            f"output:\n{suite['output']}"
+        )
+    
+        name = matching[0]
+        status, detail = results[name]
+>       assert status == "pass", f"Scenario {name} failed:\n{detail}"
+E       AssertionError: Scenario test T36 penalty_points evaluates against a record failed:
+E           1) test T36 penalty_points evaluates against a record (SlaLabSuite)
+E              /tmp/harbor_expr_suite.exs:533
+E              ** (UndefinedFunctionError) function SlaLab.Expressions.PenaltyPoints.has_partial_evaluate?/0 is undefined or private. Did you mean:
+E         
+E                    * partial_evaluate/1
+E         
+E              code: assert Ash.Expr.eval(function, record: shipments["S05"], resource: @shipment) == {:ok, 12}
+E              stacktrace:
+E                (sla_lab 0.1.0) SlaLab.Expressions.PenaltyPoints.has_partial_evaluate?()
+E                (ash 3.31.0) lib/ash/filter/runtime.ex:1402: Ash.Filter.Runtime.partial_evaluate/5
+E                (ash 3.31.0) lib/ash/filter/runtime.ex:689: Ash.Filter.Runtime.resolve_expr/5
+E                (ash 3.31.0) lib/ash/filter/runtime.ex:308: Ash.Filter.Runtime.do_match/6
+E                /tmp/harbor_expr_suite.exs:537: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:648: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_t01_custom_expressions_are_registered_with_ash
+PASSED ../tests/test_final_state.py::test_t02_custom_expression_modules_report_name_0_and_arguments_0
+PASSED ../tests/test_final_state.py::test_t03_expression_2_dispatches_per_data_layer
+PASSED ../tests/test_final_state.py::test_t04_both_data_layer_clauses_produce_the_same_values
+PASSED ../tests/test_final_state.py::test_t05_route_key_normalises_and_orders_its_arguments
+PASSED ../tests/test_final_state.py::test_t06_ratio_bps_computes_integral_basis_points
+PASSED ../tests/test_final_state.py::test_t07_ratio_bps_rounds_halves_upwards
+PASSED ../tests/test_final_state.py::test_t08_ratio_bps_clamps_to_the_closed_range_0_20000
+PASSED ../tests/test_final_state.py::test_t09_ratio_bps_returns_nil_for_nil_arguments_and_a_zero_denominator
+PASSED ../tests/test_final_state.py::test_t10_custom_expressions_compose_with_each_other
+PASSED ../tests/test_final_state.py::test_t11_custom_expressions_short_circuit_inside_if_cond
+PASSED ../tests/test_final_state.py::test_t12_custom_expression_results_can_be_cast_with_type_2
+PASSED ../tests/test_final_state.py::test_t13_arguments_outside_the_declared_types_are_rejected
+PASSED ../tests/test_final_state.py::test_t14_route_key_is_available_as_an_expression_calculation
+PASSED ../tests/test_final_state.py::test_t15_sla_ratio_bps_is_available_as_an_expression_calculation
+PASSED ../tests/test_final_state.py::test_t16_status_label_composes_the_custom_expression_with_conditionals
+PASSED ../tests/test_final_state.py::test_t17_the_on_route_read_action_filters_on_the_custom_expression
+PASSED ../tests/test_final_state.py::test_t18_custom_expressions_can_be_used_directly_in_a_query_filter
+PASSED ../tests/test_final_state.py::test_t19_calculations_built_on_custom_expressions_are_filterable
+PASSED ../tests/test_final_state.py::test_t20_calculations_built_on_custom_expressions_are_sortable
+PASSED ../tests/test_final_state.py::test_t21_custom_expressions_can_be_sorted_on_inline
+PASSED ../tests/test_final_state.py::test_t22_aggregate_filters_accept_custom_expressions
+PASSED ../tests/test_final_state.py::test_t23_custom_expressions_can_be_applied_to_aggregates
+PASSED ../tests/test_final_state.py::test_t24_custom_expressions_over_aggregates_are_filterable
+PASSED ../tests/test_final_state.py::test_t25_custom_expressions_work_inside_exists_1
+PASSED ../tests/test_final_state.py::test_t26_record_delivery_accepts_a_delivery_within_the_allowed_ratio
+PASSED ../tests/test_final_state.py::test_t27_record_delivery_rejects_a_delivery_beyond_the_allowed_ratio
+PASSED ../tests/test_final_state.py::test_t28_the_delivery_validation_is_enforced_atomically
+PASSED ../tests/test_final_state.py::test_t29_the_read_policy_authorises_on_the_custom_expression
+PASSED ../tests/test_final_state.py::test_t30_admins_bypass_the_route_policy_and_anonymous_readers_are_forbidden
+PASSED ../tests/test_final_state.py::test_t31_the_penalty_points_function_module_reports_its_contract
+PASSED ../tests/test_final_state.py::test_t32_penalty_points_evaluates_eagerly_for_literal_arguments
+PASSED ../tests/test_final_state.py::test_t33_penalty_points_is_never_evaluated_with_nil_arguments
+PASSED ../tests/test_final_state.py::test_t37_programmatically_parsed_filters_behave_identically
+FAILED ../tests/test_final_state.py::test_t34_penalty_points_reports_unknown_and_invalid_inputs
+FAILED ../tests/test_final_state.py::test_t35_penalty_points_can_be_used_inside_a_query_filter
+FAILED ../tests/test_final_state.py::test_t36_penalty_points_evaluates_against_a_record
+======================== 3 failed, 34 passed in 23.95s =========================

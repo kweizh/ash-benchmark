@@ -1,0 +1,272 @@
+Selected strategy: _DaytonaDirect
+Building environment from /home/kw/code/zealt/ash-benchmark/scratchpad/pending-tasks/ash_spark_dsl_extension_transformers/environment/Dockerfile
+Running command: set -euo pipefail; mkdir -p /logs/agent/pochi && pochi --version
+Command outputs captured
+Running command: mkdir -p ~/.pochi && mkdir -p /logs/agent/pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/MINIMAX_API_KEY/${MINIMAX_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    },
+    "minimax": {
+      "kind": "minimax",
+      "apiKey": "MINIMAX_API_KEY",
+      "models": {
+        "MiniMax-M3": {
+          "maxTokens": 10000,
+          "contextWindow": 1000000
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: if [ -f /bootstrap/test_initial_state.py ]; then pytest -s --log-cli-level=DEBUG /bootstrap/test_initial_state.py > >(tee /logs/agent/pochi/initial-test-stdout.txt) 2> >(tee /logs/agent/pochi/initial-test-stderr.txt >&2); fi
+Command outputs captured
+Running command: cat > /tmp/pochi_cmd.sh << 'CMD_EOF'
+set -o pipefail
+pochi --model zai/glm-5.2 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl --experimental-stream-trajectory-strip-duplicates > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# A reusable archival DSL extension for Ash resources
+
+## Background
+
+`/home/user/lifecycle` is an offline Elixir/Mix project (OTP app `:lifecycle`) that already depends on
+**Ash 3.31.0** and **Spark 2.7.2** (both vendored and pre-compiled; the container has no network).
+It currently contains one Ash domain, `Lifecycle.Records`, one resource, `Lifecycle.Records.ArchivalEvent`,
+and one stand-alone change module, `Lifecycle.Records.StampNote`.
+
+Your job is to build **`Lifecycle.Archival`**, a reusable DSL extension that any Ash resource can switch on
+with `use Ash.Resource, extensions: [Lifecycle.Archival]`. Activating it must give the host resource a
+complete archival feature — new attributes, new actions, new code interfaces and (optionally) an audit
+trail — all produced **at compile time from the host resource's own configuration**, with no hand-written
+boilerplate in the host resource beyond the configuration block itself.
+
+## Requirements
+
+### 1. The DSL surface
+
+The extension must expose a top-level DSL section named `archival`. Every name below is significant and
+must be spelled exactly as shown.
+
+`archival` accepts three options:
+
+| option | type | default |
+| --- | --- | --- |
+| `timestamp_attribute` | atom | `:archived_at` |
+| `action_name` | atom | `:archive` |
+| `reason_required?` | boolean | `false` |
+
+`archival` contains one nested section named `audit`, which accepts three options:
+
+| option | type | default |
+| --- | --- | --- |
+| `enabled?` | boolean | `false` |
+| `event_resource` | module | `nil` |
+| `relationship_name` | atom | `:archival_events` |
+
+`archival` contains two kinds of nested constructors:
+
+* `reason` — repeatable. Takes the reason name as its single positional argument, and is uniquely
+  identified by that name. Its remaining options are `code` (string, required), `retention_days`
+  (`:pos_integer`, default `30`) and `terminal?` (boolean, default `false`). It builds a
+  `%Lifecycle.Archival.Reason{}` struct. Both the keyword form (`reason :maintenance, code: "MNT"`) and
+  the block form (`reason :legal_hold do code "LGL" end`) must work.
+* `default_reason` — takes a reason name as its single positional argument and builds a
+  `%Lifecycle.Archival.DefaultReason{}` struct. It may appear **at most once** inside `archival`, and
+  that limit must be enforced by the DSL itself rather than by your own verifier: declaring it twice must
+  produce a `Spark.Error.DslError` whose message is exactly
+  `Expected at most one default_reason in [:archival], got 2`.
+
+The `archival` section must be patchable so that other extensions can contribute entities to it.
+
+### 2. What activating the extension must generate
+
+For a resource `R` configured with timestamp attribute `T`, action name `A` and reasons `r1..rn`,
+compiling `R` must produce all of the following **without the host resource declaring any of them**:
+
+* An attribute named `T`, of type `Ash.Type.UtcDatetimeUsec`, `allow_nil?: true`, `public?: true`,
+  `writable?: false`.
+* An attribute named `archival_reason` (this name is fixed, it is not configurable), of type
+  `Ash.Type.Atom`, `allow_nil?: true`, `public?: true`, `writable?: false`, whose `:one_of` constraint is
+  exactly the declared reason names in declaration order.
+* An `update` action named `A` with `accept` `[]` and `require_atomic?` `false`, carrying exactly one
+  argument, `:reason`, of type `Ash.Type.Atom`, whose `:one_of` constraint is again the declared reason
+  names in declaration order and whose `allow_nil?` is the negation of `reason_required?`.
+* Two `read` actions named `archived` and `active`, filtering respectively on `T` being set and `T` being
+  `nil`.
+* Two code interfaces on the resource module itself: one named `A` for the generated update action, taking
+  the reason as a single **optional positional** argument; and one named `archived_records` for the
+  generated `archived` read action.
+* A value stored under the persisted key `:archival_reason_codes`, retrievable with
+  `Spark.Dsl.Extension.get_persisted/2`, holding a map of `reason name => code` for every declared reason.
+* Only when `audit.enabled?` is `true`: a `has_many` relationship named after `audit.relationship_name`,
+  pointing at `audit.event_resource`, whose destination attribute is `:subject_id` and whose `source`
+  is `R` itself; plus a `count` aggregate named `archival_event_count` over that relationship. When
+  `audit.enabled?` is `false` neither of these may exist.
+
+Running the generated update action must:
+
+* set `T` to the current UTC timestamp and `archival_reason` to the reason that was used;
+* use the argument value when one is supplied, and otherwise fall back to the declared `default_reason`
+  (or leave `archival_reason` `nil` when no `default_reason` is declared);
+* accept no attribute input at all — passing any attribute name as a parameter must be rejected;
+* when `audit.enabled?` is `true`, create exactly one record in `audit.event_resource` per successful run,
+  through that resource's `:record` action, with `subject_id` set to the archived record's `id`,
+  `subject_type` set to `inspect(R)`, `reason_code` set to the `code` of the reason that was used, and
+  `occurred_at` set to the same timestamp written to `T`.
+
+The generated `archived` read action must return exactly the records whose `T` is set, and `active`
+exactly those whose `T` is `nil`.
+
+The following module names are part of the contract and are asserted by the tests:
+`Lifecycle.Archival.transformers/0` must include `Lifecycle.Archival.Transformers.AddArchivalFields`
+(responsible for the generated attributes and the persisted reason codes),
+`Lifecycle.Archival.Transformers.AddArchivalActions` (responsible for the generated actions and code
+interfaces) and `Lifecycle.Archival.Transformers.AddAuditRelationship` (responsible for the generated
+relationship and aggregate). `Lifecycle.Archival.verifiers/0` must include
+`Lifecycle.Archival.Verifiers.VerifyArchival`.
+
+### 3. Compile-time validation
+
+`Lifecycle.Archival.Verifiers.VerifyArchival` must reject the following configurations. Each rejection is a
+`Spark.Error.DslError` whose `module` is the offending resource, and whose `path` and `message` are exactly:
+
+| condition | `path` | `message` |
+| --- | --- | --- |
+| no `reason` declared | `[:archival, :reason]` | `at least one reason must be declared` |
+| two reasons share a `code` | `[:archival, :reason]` | `reason code "<code>" is declared more than once` |
+| `default_reason` names an undeclared reason | `[:archival, :default_reason]` | `default_reason :<name> is not a declared reason` |
+| `default_reason` names a reason with `terminal? true` | `[:archival, :default_reason]` | `default_reason :<name> is terminal` |
+| `audit.enabled?` is true and `audit.event_resource` is `nil` | `[:archival, :audit, :event_resource]` | `event_resource is required when audit is enabled` |
+
+`<code>` is the duplicated code rendered with `inspect/1` (i.e. including the surrounding double quotes),
+and `<name>` is the offending reason name rendered with `inspect/1` (i.e. including the leading colon).
+A configuration that violates none of these rules must produce no `Spark.Error.DslError` at all.
+
+### 4. Introspection
+
+`Lifecycle.Archival.Info` must be generated with `Spark.InfoGenerator` over the `archival` section, so that
+the usual generated getters exist for every option above (both the plain, the bang and the predicate
+forms, plus the per-section options maps). In addition it must define three hand-written functions, each
+accepting either a resource module or a DSL state:
+
+* `archival_reasons/1` — the declared `%Lifecycle.Archival.Reason{}` structs, in declaration order;
+* `archival_default_reason/1` — the `%Lifecycle.Archival.DefaultReason{}` struct, or `nil`;
+* `archival_hooks/1` — the declared `%Lifecycle.Archival.Hook{}` structs (see below), in declaration order.
+
+### 5. Composition with a second extension
+
+A second extension, `Lifecycle.Archival.Hooks`, must add a repeatable `hook` constructor **into the
+`archival` section** without `Lifecycle.Archival` knowing about it. `hook` takes a name as its single
+positional argument, is uniquely identified by that name, requires a `module` option, and builds a
+`%Lifecycle.Archival.Hook{}` struct. `Lifecycle.Archival.Hooks.dsl_patches/0` must expose that entity
+against section path `[:archival]`, and `Lifecycle.Archival.Hooks.add_extensions/0` must return
+`[Lifecycle.Archival]`.
+
+Listing `Lifecycle.Archival.Hooks` alone in a resource's `extensions:` must be enough to also activate
+`Lifecycle.Archival` — the host resource must not have to name both. Every declared `hook`'s module must
+be appended, in declaration order, to the change list of the generated update action, immediately after
+the extension's own archiving change. Using `hook` on a resource that only lists `Lifecycle.Archival`
+must be a compile error.
+
+### 6. The two host resources
+
+Add these two resources and register them in the `Lifecycle.Records` domain alongside the existing
+`Lifecycle.Records.ArchivalEvent`.
+
+`Lifecycle.Records.Document` — `use Ash.Resource, otp_app: :lifecycle, domain: Lifecycle.Records,
+data_layer: Ash.DataLayer.Ets, extensions: [Lifecycle.Archival]`, with `ets do private? true end`,
+a `uuid_primary_key :id`, an attribute `title` (`:string`, `allow_nil?: false`, `public?: true`),
+actions `defaults [:read, :destroy]` plus `create :open do accept [:title] end`, and this configuration:
+
+```elixir
+archival do
+  reason :maintenance, code: "MNT"
+
+  reason :legal_hold do
+    code "LGL"
+    retention_days 3650
+    terminal? true
+  end
+
+  default_reason :maintenance
+end
+```
+
+`Lifecycle.Records.Contract` — `use Ash.Resource, otp_app: :lifecycle, domain: Lifecycle.Records,
+data_layer: Ash.DataLayer.Ets, extensions: [Lifecycle.Archival.Hooks]`, with `ets do private? true end`,
+a `uuid_primary_key :id`, attributes `reference` (`:string`, `allow_nil?: false`, `public?: true`) and
+`note` (`:string`, `allow_nil?: true`, `public?: true`), actions `defaults [:read, :destroy]` plus
+`create :sign do accept [:reference] end`, and this configuration:
+
+```elixir
+archival do
+  timestamp_attribute :retired_at
+  action_name :retire
+  reason_required? true
+
+  reason :breach, code: "BRC"
+  reason :expiry, code: "EXP", retention_days: 365
+
+  audit do
+    enabled? true
+    event_resource Lifecycle.Records.ArchivalEvent
+  end
+
+  hook :stamp_note, module: Lifecycle.Records.StampNote
+end
+```
+
+## Implementation Hints
+
+- Project path: `/home/user/lifecycle`
+- `cd /home/user/lifecycle && mix compile` must finish successfully, with no compilation errors.
+- The container is offline and `HEX_OFFLINE=1` is set. Do not add, remove or upgrade dependencies, and do
+  not edit `mix.exs` or `mix.lock`; everything you need is already vendored.
+- Do not modify `lib/lifecycle/records/archival_event.ex` or `lib/lifecycle/records/stamp_note.ex`.
+- The extension must work for *any* host resource, not only the two above: the verification compiles
+  additional resources at runtime with other timestamp attribute names, action names and reason sets.
+- `Lifecycle.Archival.Info` must be usable from inside compile-time code as well as at runtime, i.e. its
+  functions must accept a DSL state map as well as a resource module.
+
+
+EOF
+CMD_EOF
+setsid --wait bash /tmp/pochi_cmd.sh &
+SETSID_PID=$!
+echo $SETSID_PID > /tmp/setsid_bash_pochi_cmd.pid
+wait $SETSID_PID 2>/dev/null
+Command failed
+Running command: if [ -f /tmp/setsid_bash_pochi_cmd.pid ]; then
+SETSID_PID=$(cat /tmp/setsid_bash_pochi_cmd.pid)
+kill -TERM -- -$SETSID_PID 2>/dev/null || true
+sleep 2
+kill -9 -- -$SETSID_PID 2>/dev/null || true
+fi
+rm -f ~/.pochi/config.jsonc /tmp/pochi_cmd.sh /tmp/setsid_bash_pochi_cmd.pid
+Command outputs captured
+Collecting main service artifacts

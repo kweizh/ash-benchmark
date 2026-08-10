@@ -1,0 +1,320 @@
+- Initializing MCP connections...
+You
+# Paginated Activity-Feed Query Layer with Ash Framework v3 ## Background `/home/user/feedapi` is an offline Elixir project (OTP app `:feedapi`) that already models a social activity feed with **Ash Framework 3.31.0** on the `Ash.DataLayer.Ets` data layer. The resources `Feed.Timeline.Author`, `Feed.Timeline.Activity` and `Feed.Timeline.Reaction`, the `Feed.Timeline` domain, and the write actions used to seed data are all in place and working. What is missing is the entire **read/pagination layer**: the feed read actions, the derived fields they sort on, an opaque cursor codec, and the API-facing page walker that a mobile client's infinite-scroll would drive. Your job is to build it so that paging is correct under a live, mutating dataset. ## Requirements Implement the following, keeping every existing module, attribute, relationship and write action working. ### 1. Derived fields on `Feed.Timeline.Activity` * A public aggregate `:reaction_count` returning the number of related `Feed.Timeline.Reaction` records (`0` when there are none). * A public calculation `:heat` of type `:integer` whose value is `score * 10 + reaction_count`. Both must be loadable by name, usable in sorts, and must not require any argument. ### 2. Feed read actions on `Feed.Timeline.Activity` Add exactly these read actions. Every one of them applies its own ordering, so callers never pass a sort. Unless stated otherwise the ordering is **`published_at` descending, then `id` ascending**. | action | pagination contract | extra | | ----------------- | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | | `:feed` | keyset yes, offset no, pagination required, default limit 5, max page size 25, countable | – | | `:feed_offset` | offset yes, keyset no, pagination required, default limit 5, max page size 25, counted by default | – | | `:public_feed` | keyset yes, offset no, pagination required, default limit 4, max page size 25, countable | only activities whose `visibility` is `:public` | | `:hot_feed` | keyset yes, offset no, pagination required, default limit 3, max page size 25, countable | ordered by `score` descending, then `reaction_count` descending, then `id` ascending | | `:heat_feed` | keyset yes, offset no, pagination required, default limit 3, max page size 25, countable | ordered by `heat` descending, then `id` ascending | | `:strict_feed` | keyset yes, offset no, pagination required, **no** default limit, countable | – | | `:uncounted_feed` | keyset yes, offset no, pagination required, default limit 5, **not** countable | – | | `:flexible_feed` | keyset yes **and** offset yes, pagination **not** required, default limit 5, countable | – | | `:author_feed` | keyset yes, offset no, pagination required, default limit 5, max page size 10, countable | takes a required `:author_id` argument of type `:string` and returns only that author's activities | Each of these actions must be exposed on the `Feed.Timeline` domain as a code interface function of the same name (`Feed.Timeline.feed/1`, `Feed.Timeline.feed_offset/1`, …). `:author_feed` takes the author id as its first positional argument (`Feed.Timeline.author_feed/2`). Bang variants must exist as well. ### 3. `Feed.Cursor` — an opaque, tamper-evident cursor codec (`lib/feed/cursor.ex`) * `Feed.Cursor.encode/1` takes a map with exactly the keys `:feed` (an atom), `:direction` (`:next` or `:prev`) and `:keyset` (a UTF-8 binary) and returns a `String.t()` made only of characters in the URL-safe Base64 alphabet — it must match `~r/\A[A-Za-z0-9_-]+\z/`. Encoding the same map twice must produce the same string. * `Feed.Cursor.decode/1` takes any binary and returns `{:ok, payload}` with exactly the three keys above for a string produced by `encode/1`, and `{:error, :invalid_cursor}` for anything else. It must never raise, and it must detect corruption: removing a character from, or changing a single character of, a valid cursor must yield `{:error, :invalid_cursor}`. A payload hand-assembled by someone who knows the payload shape but did not go through `encode/1` must also be rejected. ### 4. `Feed.Api` — the paging API layer (`lib/feed/api.ex`) `Feed.Api.fetch(feed_name, opts \\ [])` where `feed_name` is one of `:feed`, `:public_feed`, `:hot_feed`, `:heat_feed`, `:author_feed` and `opts` is a keyword list understanding `:limit`, `:cursor` and `:author_id`. On success it returns `{:ok, map}` where the map has **exactly** the keys `:items`, `:next_cursor`, `:prev_cursor`, `:total`, `:has_next`, `:has_prev`: * `:items` — a list of `%Feed.Timeline.Activity{}` structs in that feed's order, each with its `author` relationship loaded to a `%Feed.Timeline.Author{}` struct and with `reaction_count` and `heat` loaded as integers. * `:has_next` — `true` iff at least one record of that feed sorts strictly after the last item; `false` when `:items` is empty. * `:has_prev` — `true` iff at least one record of that feed sorts strictly before the first item; `false` when `:items` is empty. * `:next_cursor` / `:prev_cursor` — a cursor string when the corresponding boolean is `true`, otherwise `nil`. * `:total` — the number of records the feed matches once its own filtering (including `:author_id`) is applied, independent of the current window. Behaviour: * With no `:cursor`, the first window is returned. With `:limit` absent, that feed action's own configured default limit is used. * Feeding a `:next_cursor` back in returns the window immediately after it; feeding a `:prev_cursor` back in returns the window immediately before it, still in feed order. * A `:limit` greater than that feed action's configured maximum page size returns `{:error, {:limit_too_large, max}}` where `max` is that configured maximum. A `:limit` that is not a positive integer returns `{:error, :invalid_limit}`. * A cursor issued for one feed and presented to another returns `{:error, :cursor_feed_mismatch}`. * A cursor that the codec cannot decode returns `{:error, :invalid_cursor}`. * A cursor that decodes cleanly but carries a keyset value Ash refuses returns Ash's own error unchanged: `{:error, %Ash.Error.Invalid{}}` whose `errors` list holds an `%Ash.Error.Page.InvalidKeyset{}`. * `:author_feed` without an `:author_id` returns `{:error, :author_id_required}`. * Any other `feed_name` returns `{:error, {:unknown_feed, feed_name}}`. `Feed.Api.walk(feed_name, opts \\ [])` drives infinite scroll forwards: it starts at the first window and keeps following `:next_cursor` until there is none, and returns `{:ok, %{pages: pages, total: total}}` where `pages` is the list of windows in visit order, each window being the list of activity ids it contained (feed order), and `total` is the `:total` reported by the first window. An empty feed yields `%{pages: [[]], total: 0}`. Errors surface exactly as `fetch/2` produced them. `Feed.Api.walk_back(feed_name, opts \\ [])` drives it backwards: it visits the **last** window first and keeps following `:prev_cursor` until there is none, returning the same `{:ok, %{pages: pages, total: total}}` shape with `pages` in visit order. For the same feed and options, `walk_back/2`'s `pages` must equal `Enum.reverse/1` of `walk/2`'s `pages`, and `total` must agree. ## Implementation Hints * Project path: `/home/user/feedapi`. Ash is pinned at `3.31.0`. * The machine has **no network access**. Every dependency is already fetched and compiled; do not add, remove or change dependencies, and do not change the Elixir/OTP versions. * The verifier compiles the project with `mix compile` and then drives it from an Elixir script executed inside the project root with `MIX_ENV=dev`, calling `Feed.Timeline`, `Feed.Cursor` and `Feed.Api` directly and also reading `Ash.Resource.Info` metadata for the read actions above. `mix compile` must finish without errors. * New modules go in `lib/feed/cursor.ex` and `lib/feed/api.ex`; the resources and the domain stay at their current paths. * The verifier seeds data through the existing write code interfaces, then calls your read layer; it also mutates the dataset (inserting, deleting and re-scoring activities) *between* page fetches and asserts the resulting windows exactly, so continuation must be anchored to the data rather than to a position. * `Feed.Api` must return errors as `{:error, reason}` tuples rather than raising, for every failure mode listed above. * Pages produced directly through the domain code interface are also asserted, including the struct type returned, its `results`, `count`, `more?`, `limit`, `offset`, `before` and `after` fields, the per-record keyset metadata, and the exact Ash error structs raised when a caller violates an action's pagination contract. * Keep `config/config.exs` listing the domain, and keep the ETS data layer settings as they are.   
+
+Pochi
+💭 Thinking for 95 characters   
+I'll start by exploring the existing project structure to understand what's already in place.   
+📂 Listing files in /home/user/feedapi recursively ✔ 
+💭 Thinking for 86 characters   
+Let me read the key existing files to understand the current structure.   
+📖 Reading /home/user/feedapi/mix.exs ✔ 
+📖 Reading /home/user/feedapi/config/config.exs ✔ 
+📖 Reading /home/user/feedapi/lib/feed/timeline.ex ✔ 
+📖 Reading /home/user/feedapi/lib/feed/timeline/activity.ex ✔ 
+📖 Reading /home/user/feedapi/lib/feed/timeline/author.ex ✔ 
+📖 Reading /home/user/feedapi/lib/feed/timeline/reaction.ex ✔ 
+💭 Thinking for 422 characters   
+Now let me explore the Ash framework documentation and source to understand the exact DSL syntax for version 3.31.0.   
+📖 Reading /home/user/feedapi/deps/ash/usage-rules/calculations.md ✔ 
+📖 Reading /home/user/feedapi/deps/ash/usage-rules/aggregates.md ✔ 
+📖 Reading /home/user/feedapi/deps/ash/usage-rules/actions.md ✔ 
+📖 Reading /home/user/feedapi/deps/ash/usage-rules/code_interfaces.md ✔ 
+💭 Thinking for 211 characters   
+Let me look at the Ash DSL documentation and source code for read actions, pagination, and the page structures.   
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/page ✖ "EISDIR: illegal operation on a directory, read"
+📂 Listing files in /home/user/feedapi/deps/ash/lib/ash/page ✔ 
+📂 Listing files in /home/user/feedapi/deps/ash/lib/ash/actions ✔ 
+💭 Thinking for 118 characters   
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/page/keyset.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/page/offset.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/page/page.ex ✔ 
+💭 Thinking for 107 characters   
+Now let me look at the read action DSL, pagination options, and code interface definitions in the Ash source.   
+📂 Listing files in /home/user/feedapi/deps/ash/lib/ash/resource ✔ 
+🔍 Searching for defmodule.*Read.*Pagination|pagination do|keyset\?|offset\? in /home/user/feedapi/deps/ash/lib/ash/resource ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/resource/actions/read.ex ✔ 
+💭 Thinking for 173 characters   
+Now let me look at the DSL definitions for read actions and code interfaces in the dsl.ex file.   
+🔍 Searching for read do|pagination do|defmodule.*Read|count :|calculate :|aggregate|code_interface|define  in /home/user/feedapi/deps/ash/lib/ash/resource/dsl.ex ✔ 
+💭 Thinking for 93 characters   
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/resource/dsl.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/resource/dsl.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/resource/dsl.ex ✔ 
+💭 Thinking for 127 characters   
+Let me look at the read action DSL entity and the domain code interface definition.   
+🔍 Searching for @read |@read_action |name: :read,|entities: \[$|@actions |prepare build in /home/user/feedapi/deps/ash/lib/ash/resource/dsl.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/resource/dsl.ex ✔ 
+💭 Thinking for 106 characters   
+Let me look at the pagination entity, filter entity, and the domain DSL for code interfaces.   
+🔍 Searching for @pagination |@filter |@action_argument |@prepare  in /home/user/feedapi/deps/ash/lib/ash/resource/dsl.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/resource/dsl.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/resource/dsl.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/resource/dsl.ex ✔ 
+💭 Thinking for 139 characters   
+Now let me look at the domain DSL for code interfaces and how `define` works on domains.   
+🔍 Searching for defmodule.*Interface|define |define :|schema\(\)|args: in /home/user/feedapi/deps/ash/lib/ash/domain ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/resource/interface.ex ✔ 
+💭 Thinking for 232 characters   
+Let me look at how the code interface generates functions for read actions with pagination, and the `Ash.read` opts.   
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/code_interface.ex ✔ 
+🔍 Searching for def define_interface|defp define_read|:read,|page|pagination in /home/user/feedapi/deps/ash/lib/ash/code_interface.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/code_interface.ex ✔ 
+💭 Thinking for 141 characters   
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/code_interface.ex ✔ 
+💭 Thinking for 303 characters   
+Let me look at how `Ash.read` handles pagination and the read_opts.   
+🔍 Searching for def read_opts|def read!\(|page: \[ in /home/user/feedapi/deps/ash/lib/ash ✔ 
+🔍 Searching for def read_opts do|^  def read_opts|page_opts =|page: \[ in /home/user/feedapi/deps/ash/lib/ash ✔ 
+💭 Thinking for 149 characters   
+🔍 Searching for def read_opts|read_opts\(\) do|@read_opts in /home/user/feedapi/deps/ash/lib/ash ✔ 
+🔍 Searching for def read_opts|read_opts\b in /home/user/feedapi/deps/ash/lib/ash ✔ 
+💭 Thinking for 45 characters   
+💫 Executing grep -rn "def read_opts" /home/user/feedapi/deps/ash/lib/ash/ | head -20 ✔ 
+💫 Executing grep -rn "read_opts" /home/user/feedapi/deps/ash/lib/ash.ex | head -20 ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash.ex ✔ 
+💭 Thinking for 245 characters   
+Let me look at the read action implementation to understand how pagination enforcement works, and the InvalidKeyset error.   
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+💭 Thinking for 199 characters   
+Let me look at the InvalidKeyset error and the page_opts function for countable behavior.   
+🔍 Searching for defmodule.*InvalidKeyset|defmodule.*PaginationRequired|defmodule.*LimitRequired|defmodule.*NonCountableAction in /home/user/feedapi/deps/ash/lib/ash/error ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/error/page/invalid_keyset.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+💭 Thinking for 113 characters   
+🔍 Searching for def page_opts\(|defp page_opts\( in /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+💭 Thinking for 161 characters   
+Let me look at how `countable` and `count` are handled in the read action.   
+🔍 Searching for countable|:count|count_query|do_count in /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+💭 Thinking for 49703 characters   
+Let me look at the calculation schema and how aggregates/calculations work with sorting.   
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/resource/calculation ✖ "EISDIR: illegal operation on a directory, read"
+📂 Listing files in /home/user/feedapi/deps/ash/lib/ash/resource/calculation ✔ 
+🔍 Searching for def schema|load:|public\?|allow_nil\?| :load, in /home/user/feedapi/deps/ash/lib/ash/resource/calculation/calculation.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/resource/calculation/calculation.ex ✔ 
+💭 Thinking for 389 characters   
+Let me look at how expression calculations handle dependencies and how aggregates are loaded for calculations.   
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/resource/calculation/expression.ex ✔ 
+💭 Thinking for 755 characters   
+Let me check the aggregate schema for the `public?` option.   
+🔍 Searching for def schema|public\?| :public, in /home/user/feedapi/deps/ash/lib/ash/resource/aggregate ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/resource/aggregate/aggregate.ex ✔ 
+💭 Thinking for 485 characters   
+Let me check how the ETS data layer handles sorting on aggregates/calculations and keyset pagination.   
+🔍 Searching for defp sort|def can_sort|defp do_sort|keyset|runtime_sort|def filter in /home/user/feedapi/deps/ash/lib/ash/data_layer/ets.ex ✖ "rg command failed with code 2: rg: /home/user/feedapi/deps/ash/lib/ash/data_layer/ets.ex: IO error for operation on /home/user/feedapi/deps/ash/lib/ash/data_layer/ets.ex: No such file or directory (os error 2)\n"
+🔍 Searching for **/*ets* in /home/user/feedapi/deps/ash/lib/ash/data_layer ✔ 
+🔍 Searching for defp sort|def can_|defp do_sort|runtime_sort|def run_query|def filter in /home/user/feedapi/deps/ash/lib/ash/data_layer/ets/ets.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/data_layer/ets/ets.ex ✔ 
+💭 Thinking for 1464 characters   
+Let me look at how Ash handles sorting by calculations/aggregates, especially in the read action.   
+🔍 Searching for load_and_select_sort|sort_calculations|aggregate.*sort|calc.*sort|runtime_sort in /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+💭 Thinking for 1438 characters   
+Let me look at how sort is processed for calculations and aggregates in the read action.   
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+💭 Thinking for 413 characters   
+Let me look at how `Sort.runtime_sort` handles calculations and aggregates.   
+🔍 Searching for def runtime_sort|defp sort_values|defp compare|aggregate|calculation|__ash_runtime_sort__ in /home/user/feedapi/deps/ash/lib/ash/actions/sort.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/actions/sort.ex ✔ 
+💭 Thinking for 5283 characters   
+Let me look at how the Sort.process function handles aggregate and calculation names.   
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/actions/sort.ex ✔ 
+💭 Thinking for 340 characters   
+Let me check how keyset pagination works with the ETS data layer.   
+🔍 Searching for use_data_layer_keyset\?|defp keyset_pagination|defp limit_offset_pagination in /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+💭 Thinking for 1414 characters   
+Let me check if the ETS data layer supports keyset.   
+🔍 Searching for def can\?|:keyset|:sort|:filter in /home/user/feedapi/deps/ash/lib/ash/data_layer/ets/ets.ex ✔ 
+💭 Thinking for 68378 characters   
+Let me look at how the code interface generates function heads for read actions with args.   
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/code_interface.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/code_interface.ex ✔ 
+💭 Thinking for 3183 characters   
+Let me look at the `resolve_params_and_opts` function to understand how args are handled.   
+🔍 Searching for def resolve_params_and_opts|defp resolve_params_and_opts|arg_params in /home/user/feedapi/deps/ash/lib/ash/code_interface.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/code_interface.ex ✔ 
+💭 Thinking for 33869 characters   
+Let me check the Filter module used in read action filters and look at some test examples.   
+🔍 Searching for defmodule.*Filter|alias.*Filter in /home/user/feedapi/deps/ash/lib/ash/resource/actions ✔ 
+💫 Executing grep -rn "alias.*Filter" /home/user/feedapi/deps/ash/lib/ash/resource/dsl.ex | head -5 ✔ 
+💫 Executing grep -rn "Filter" /home/user/feedapi/deps/ash/lib/ash/resource/dsl.ex | head -10 ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/resource/dsl.ex ✔ 
+💭 Thinking for 347 characters   
+Let me search for test examples of read actions with pagination and filters in the Ash test suite.   
+💫 Executing grep -rn "pagination keyset" /home/user/feedapi/deps/ash/test/ 2>/dev/null | head -10; grep -rn "filter expr" /home/user/feedapi/deps/ash/test/ 2>/dev/null | head -10 ✔ 
+💫 Executing find /home/user/feedapi/deps/ash/test -name "*.exs" | head -5; ls /home/user/feedapi/deps/ash/test/ 2>/dev/null || echo "no test dir" ✔ 
+💭 Thinking for 89 characters   
+Let me look at the Ash documentation for read actions and pagination examples.   
+🔍 Searching for pagination do|keyset\?:|offset\?:|read :.*do in /home/user/feedapi/deps/ash/documentation ✔ 
+📖 Reading /home/user/feedapi/deps/ash/documentation/topics/advanced/pagination.livemd ✔ 
+💭 Thinking for 318 characters   
+📖 Reading /home/user/feedapi/deps/ash/documentation/topics/actions/read-actions.md ✔ 
+💭 Thinking for 6551 characters   
+Let me check how `Ash.Query.page/2` handles nil and how the paginate function handles it.   
+🔍 Searching for def page\(|def set_page in /home/user/feedapi/deps/ash/lib/ash/query/query.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/query/query.ex ✔ 
+💭 Thinking for 11596 characters   
+Let me check how the `paginate` function is called and whether nil page_opts is handled.   
+🔍 Searching for def paginate\(|paginate\( in /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+📖 Reading /home/user/feedapi/deps/ash/lib/ash/actions/read/read.ex ✔ 
+💭 Thinking for 37493 characters   
+Now I have a thorough understanding of the Ash framework. Let me implement the solution. I'll start with the Activity resource, adding the aggregate, calculation, and read actions.   
+🔧 Applying diff to /home/user/feedapi/lib/feed/timeline/activity.ex ✔ 
+Now let me update the domain to add the code interfaces for the read actions.   
+🔧 Applying diff to /home/user/feedapi/lib/feed/timeline.ex ✔ 
+Now let me create the `Feed.Cursor` module:   
+✏️  Writing /home/user/feedapi/lib/feed/cursor.ex ✔ 
+💭 Thinking for 519 characters   
+Now let me create the `Feed.Api` module:   
+✏️  Writing /home/user/feedapi/lib/feed/api.ex ✔ 
+Now let me compile the project to check for errors:   
+💫 Executing cd /home/user/feedapi && mix compile 2>&1 ✖ "Command exited with code 1"
+💭 Thinking for 109 characters   
+I need to import `Bitwise` for the `bxor` function. Let me fix the cursor module.   
+🔧 Applying diff to /home/user/feedapi/lib/feed/cursor.ex ✔ 
+💫 Executing cd /home/user/feedapi && mix compile 2>&1 ✔ 
+💭 Thinking for 1052 characters   
+The compilation succeeded. Let me clean up the warning about the unused fallback. Let me also verify the code works correctly by running a test.   
+🔧 Applying diff to /home/user/feedapi/lib/feed/cursor.ex ✔ 
+💫 Executing cd /home/user/feedapi && mix compile 2>&1 ✔ 
+💭 Thinking for 364 characters   
+The project compiles cleanly. Now let me write a comprehensive test script to verify the implementation works correctly.   
+✏️  Writing /home/user/feedapi/test_script.exs ✔ 
+💫 Executing cd /home/user/feedapi && MIX_ENV=dev mix run test_script.exs 2>&1 ✖ "Command exited with code 1"
+💭 Thinking for 3949 characters   
+I see the issue — `Base.url_decode64/2` already returns `{:ok, binary}` or `:error`, so I was double-wrapping it. Let me fix the `safe_url_decode64` function.   
+🔧 Applying diff to /home/user/feedapi/lib/feed/cursor.ex ✔ 
+💫 Executing cd /home/user/feedapi && MIX_ENV=dev mix run test_script.exs 2>&1 ✔ 
+💭 Thinking for 2296 characters   
+The tests are passing. The tampering test in the script had a bug with `String.slice` in Elixir 1.18. Let me fix the test to properly verify tampering detection.   
+🔧 Applying diff to /home/user/feedapi/test_script.exs ✔ 
+💫 Executing cd /home/user/feedapi && MIX_ENV=dev mix run test_script.exs 2>&1 | head -30 ✔ 
+💭 Thinking for 335 characters   
+All cursor tests pass. Let me see the full output:   
+💫 Executing cd /home/user/feedapi && MIX_ENV=dev mix run test_script.exs 2>&1 | grep -v "^warning:" | grep -v "^$" | grep -v "elixir_compiler" | grep -v "elixir_lexical" | grep -v "String.slice" | grep -v "src/" ✔ 
+💭 Thinking for 8147 characters   
+All tests pass. Let me now test additional edge cases: mutation between fetches, the other feed actions, and Ash keyset errors.   
+✏️  Writing /home/user/feedapi/test_edge.exs ✔ 
+💫 Executing cd /home/user/feedapi && MIX_ENV=dev mix run test_edge.exs 2>&1 ✖ "Command exited with code 1"
+💭 Thinking for 148 characters   
+Let me fix the test script to use proper Ash.Query syntax.   
+🔧 Applying diff to /home/user/feedapi/test_edge.exs ✔ 
+💫 Executing cd /home/user/feedapi && MIX_ENV=dev mix run test_edge.exs 2>&1 ✔ 
+💭 Thinking for 7373 characters   
+All edge case tests pass. Let me clean up the test scripts and do a final compilation check.   
+💫 Executing cd /home/user/feedapi && rm -f test_script.exs test_edge.exs && mix compile 2>&1 ✔ 
+💭 Thinking for 241 characters   
+Let me verify the Ash.Resource.Info metadata that the verifier will check, and also test the mutation scenario more thoroughly.   
+✏️  Writing /home/user/feedapi/test_meta.exs ✔ 
+💫 Executing cd /home/user/feedapi && MIX_ENV=dev mix run test_meta.exs 2>&1 ✖ "Command exited with code 1"
+💭 Thinking for 93 characters   
+🔧 Applying diff to /home/user/feedapi/test_meta.exs ✔ 
+💫 Executing cd /home/user/feedapi && MIX_ENV=dev mix run test_meta.exs 2>&1 ✔ 
+💭 Thinking for 14213 characters   
+All metadata and mutation tests pass. Let me clean up the test files and do a final compilation check.   
+💫 Executing cd /home/user/feedapi && rm -f test_meta.exs && mix compile 2>&1 ✔ 
+💭 Thinking for 9931 characters   
+The compilation is clean. Let me do a final review of all the files to ensure correctness.   
+📖 Reading /home/user/feedapi/lib/feed/timeline/activity.ex ✔ 
+📖 Reading /home/user/feedapi/lib/feed/timeline.ex ✔ 
+📖 Reading /home/user/feedapi/lib/feed/cursor.ex ✔ 
+📖 Reading /home/user/feedapi/lib/feed/api.ex ✔ 
+💭 Thinking for 20668 characters   
+Let me verify there are no leftover test files and do a final clean compile.   
+💫 Executing cd /home/user/feedapi && ls lib/feed/ && ls *.exs 2>/dev/null || echo "No test scripts found" && mix compile 2>&1 ✔ 
+💭 Thinking for 8727 characters   
+Let me write one final comprehensive test to verify walk/walk_back with hot_feed and heat_feed, and the mutation scenario.   
+✏️  Writing /home/user/feedapi/test_final.exs ✔ 
+💫 Executing cd /home/user/feedapi && MIX_ENV=dev mix run test_final.exs 2>&1 ✖ "Command exited with code 1"
+💭 Thinking for 634 characters   
+The test script has a bug — calling the domain interface directly without `load:` doesn't load the aggregates. This is expected behavior. Let me fix the test.   
+🔧 Applying diff to /home/user/feedapi/test_final.exs ✔ 
+💫 Executing cd /home/user/feedapi && MIX_ENV=dev mix run test_final.exs 2>&1 ✔ 
+💭 Thinking for 3481 characters   
+All tests pass. Let me clean up the test file and do a final compilation check.   
+💫 Executing cd /home/user/feedapi && rm -f test_final.exs && mix compile 2>&1 ✔ 
+💭 Thinking for 9434 characters   
+The compilation is clean. Let me verify the `mix.lock` hasn't been modified and do a final check.   
+💫 Executing cd /home/user/feedapi && git diff --stat 2>/dev/null || echo "Not a git repo" && ls -la lib/feed/cursor.ex lib/feed/api.ex lib/feed/timeline.ex lib/feed/timeline/activity.ex ✔ 
+💭 Thinking for 619 characters   
+Let me verify the config file is unchanged and do a final clean compile.   
+📖 Reading /home/user/feedapi/config/config.exs ✔ 
+💭 Thinking for 4755 characters   
+Let me verify the mix.exs is unchanged and do a final clean compile from scratch.   
+💫 Executing cd /home/user/feedapi && cat mix.exs && echo "---" && mix compile --force 2>&1 ✔ 
+💭 Thinking for 2439 characters   
+The project compiles cleanly from scratch with no errors or warnings. Let me verify no temporary files are left behind.   
+💫 Executing cd /home/user/feedapi && find . -name "*.exs" -not -path "./deps/*" 2>/dev/null && echo "---" && find lib -name "*.ex" | sort ✔ 
+💭 Thinking for 855 characters   
+Everything is clean. Let me do one final smoke test to verify the complete implementation works end-to-end.   
+💫 Executing cd /home/user/feedapi && MIX_ENV=dev mix run -e '
+Application.ensure_all_started(:ash)
+Feed.Timeline.create_author!(%{id: "a1", handle: "alice"})
+base = DateTime.utc_now()
+for {id, pub} <- [{"1", base |> DateTime.add(-3, :second)}, {"2", base |> DateTime.add(-2, :second)}, {"3", base |> DateTime.add(-1, :second)}] do
+  Feed.Timeline.publish_activity!(%{id: id, body: "b", kind: :post, visibility: :public, score: 1, published_at: pub, author_id: "a1"})
+end
+
+# Test fetch
+{:ok, r} = Feed.Api.fetch(:feed, limit: 2)
+IO.puts("fetch items: #{inspect(Enum.map(r.items, & &1.id))}, has_next: #{r.has_next}, has_prev: #{r.has_prev}, total: #{r.total}")
+
+# Test walk
+{:ok, w} = Feed.Api.walk(:feed, limit: 2)
+IO.puts("walk pages: #{inspect(w.pages)}, total: #{w.total}")
+
+# Test walk_back
+{:ok, wb} = Feed.Api.walk_back(:feed, limit: 2)
+IO.puts("walk_back pages: #{inspect(wb.pages)}, reverse_match: #{wb.pages == Enum.reverse(w.pages)}")
+
+# Test cursor
+c = Feed.Cursor.encode(%{feed: :feed, direction: :next, keyset: "test"})
+{:ok, d} = Feed.Cursor.decode(c)
+IO.puts("cursor roundtrip: #{d.feed == :feed and d.direction == :next and d.keyset == "test"}")
+
+# Test errors
+IO.puts("unknown: #{inspect(Feed.Api.fetch(:unknown))}")
+IO.puts("no author: #{inspect(Feed.Api.fetch(:author_feed))}")
+IO.puts("bad limit: #{inspect(Feed.Api.fetch(:feed, limit: 0))}")
+IO.puts("bad cursor: #{inspect(Feed.Api.fetch(:feed, cursor: "x"))}")
+
+# Test empty feed walk
+Feed.Timeline.create_author!(%{id: "a_empty", handle: "empty"})
+{:ok, ew} = Feed.Api.walk(:author_feed, author_id: "a_empty")
+IO.puts("empty walk: #{inspect(ew)}")
+IO.puts("ALL GOOD")
+' 2>&1 ✔ 
+💭 Thinking for 627 characters   
+All tests pass. The implementation is complete. Let me do one final clean compilation to confirm everything is ready.   
+💫 Executing cd /home/user/feedapi && mix compile 2>&1 && echo "BUILD SUCCESS" ✔ 
+🎉 Task Completed
+The paginated activity-feed query layer is fully implemented and compiles cleanly. Here's a summary of what was built:
+
+## 1. Derived fields on `Feed.Timeline.Activity` (`lib/feed/timeline/activity.ex`)
+- **`reaction_count`** — a public `count` aggregate over the `:reactions` relationship, returning `0` when there are no reactions.
+- **`heat`** — a public `:integer` calculation using `expr(score * 10 + reaction_count)`. The expression calculation automatically loads `reaction_count` as a dependency.
+- Both are loadable by name, usable in sorts, and require no arguments.
+
+## 2. Feed read actions (9 total) on `Feed.Timeline.Activity`
+All 9 read actions were added with their exact pagination contracts (keyset/offset, required?, default_limit, max_page_size, countable), each applying its own sort via `prepare build(sort: ...)`:
+- `:feed`, `:feed_offset`, `:public_feed` (filters `visibility == :public`), `:hot_feed` (sorts by score→reaction_count→id), `:heat_feed` (sorts by heat→id), `:strict_feed` (no default limit), `:uncounted_feed` (not countable), `:flexible_feed` (both keyset+offset, not required), `:author_feed` (takes required `:author_id` argument, filters by author, max page size 10).
+
+Each is exposed on the `Feed.Timeline` domain as a code interface function of the same name with bang variants. `:author_feed` takes `author_id` as its first positional argument (`Feed.Timeline.author_feed/2`).
+
+## 3. `Feed.Cursor` (`lib/feed/cursor.ex`)
+An opaque, tamper-evident cursor codec using HMAC-SHA256:
+- `encode/1` serializes `%{feed, direction, keyset}` into a deterministic binary, computes a HMAC, and returns URL-safe Base64 (no padding) matching `~r/\A[A-Za-z0-9_-]+\z/`.
+- `decode/1` verifies the HMAC and deserializes, returning `{:ok, payload}` or `{:error, :invalid_cursor}`. Never raises. Detects single-character changes, truncation, and rejects hand-assembled payloads.
+
+## 4. `Feed.Api` (`lib/feed/api.ex`)
+- **`fetch/2`** — returns `{:ok, %{items, next_cursor, prev_cursor, total, has_next, has_prev}}` with items loaded (author, reaction_count, heat). `has_next`/`has_prev` are computed via Ash's `more?` plus targeted keyset queries, correctly anchored to data under mutation. All error modes handled: unknown feed, missing author_id, invalid/too-large limit, invalid cursor, feed mismatch, and Ash keyset errors passed through unchanged.
+- **`walk/2`** — walks forward from the first window following `next_cursor`.
+- **`walk_back/2`** — walks backward from the last window following `prev_cursor`. `walk_back`'s pages equal `Enum.reverse` of `walk`'s pages. Empty feeds yield `%{pages: [[]], total: 0}`.
+
+All existing modules, attributes, relationships, and write actions remain unchanged. `config/config.exs`, `mix.exs`, and dependencies are untouched.   
+  

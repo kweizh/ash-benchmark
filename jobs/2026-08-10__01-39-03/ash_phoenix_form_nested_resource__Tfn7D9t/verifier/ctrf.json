@@ -1,0 +1,434 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-09T18:01:03.010607+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 45,
+            "passed": 45,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786298430450,
+            "stop": 1786298463010
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_t01_new_order_form_builds_a_create_form_for_order_place_named_order",
+                "status": "passed",
+                "duration": 32530,
+                "start": 1786298430461,
+                "stop": 1786298462991,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_nested_form_keys_are_derived_automatically_from_the_action",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298462991,
+                "stop": 1786298462992,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_to_phoenix_form_returns_a_phoenix_html_form_wrapping_the_ashphoenix_fo",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298462992,
+                "stop": 1786298462992,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_a_fresh_form_submits_only_the_form_type_marker",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298462992,
+                "stop": 1786298462993,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_serialize_of_a_fresh_form_has_the_exact_documented_shape",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298462993,
+                "stop": 1786298462993,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_hidden_inputs_reports_the_form_type_and_the_touched_field_list",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298462993,
+                "stop": 1786298462993,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_add_nested_appends_list_forms_and_names_them_by_index",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298462994,
+                "stop": 1786298462994,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_add_nested_works_at_a_two_level_deep_path",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298462994,
+                "stop": 1786298462994,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_add_nested_honours_the_prepend_option",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298462994,
+                "stop": 1786298462995,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_remove_nested_drops_a_single_deep_form_and_reindexes_its_siblings",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298462995,
+                "stop": 1786298462995,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_remove_nested_drops_the_whole_subtree_of_the_removed_form",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298462995,
+                "stop": 1786298462996,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_embedded_delivery_windows_are_editable_as_nested_list_forms",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298462996,
+                "stop": 1786298462996,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_union_members_are_added_by_name_and_expose_the_union_type_as_a_hidden_",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298462996,
+                "stop": 1786298462996,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_replacing_the_union_member_swaps_the_nested_form_resource",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298462997,
+                "stop": 1786298462997,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_error_map_keys_every_failing_form_by_its_html_name",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298462997,
+                "stop": 1786298462997,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_validating_with_errors_disabled_hides_them_but_keeps_the_form_invalid",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298462997,
+                "stop": 1786298462998,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_revalidating_with_errors_enabled_reveals_them_again",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298462998,
+                "stop": 1786298462998,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_only_touched_restricts_the_submitted_params_to_touched_fields",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298462998,
+                "stop": 1786298462999,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_raw_error_list_exposes_untranslated_messages_and_substitution_vars",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298462999,
+                "stop": 1786298462999,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_errors_nested_two_levels_deep_keep_their_own_path",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298462999,
+                "stop": 1786298462999,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t21_embedded_window_validation_failures_are_reported_on_the_window_form",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298462999,
+                "stop": 1786298463000,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_union_member_validation_failures_are_reported_on_the_union_form",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463000,
+                "stop": 1786298463000,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_the_submitted_params_rebuild_an_identical_form_tree",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298463000,
+                "stop": 1786298463001,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_the_add_checkbox_param_appends_an_empty_nested_form",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463001,
+                "stop": 1786298463001,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_the_drop_checkbox_param_removes_the_nested_form_at_that_index",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463001,
+                "stop": 1786298463001,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_the_sort_checkbox_param_reorders_the_nested_forms",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463002,
+                "stop": 1786298463002,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t27_a_read_typed_customer_form_survives_a_params_round_trip",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463002,
+                "stop": 1786298463002,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t28_add_nested_with_type_read_produces_a_read_typed_nested_form",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298463002,
+                "stop": 1786298463003,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t29_reorder_rearranges_a_top_level_nested_list_and_marks_it_for_submission",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463003,
+                "stop": 1786298463003,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t30_reorder_rearranges_a_list_nested_inside_another_list_form",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298463003,
+                "stop": 1786298463004,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t31_move_shifts_a_single_nested_form_up_or_down",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463004,
+                "stop": 1786298463004,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t32_move_is_a_no_op_at_the_boundaries_and_works_on_deep_paths",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463004,
+                "stop": 1786298463004,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t33_save_persists_the_whole_graph_in_one_call",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298463004,
+                "stop": 1786298463005,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t34_save_stores_the_embedded_delivery_windows_and_the_union_member",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463005,
+                "stop": 1786298463005,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t35_an_inline_customer_form_creates_exactly_one_customer_and_links_it",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298463005,
+                "stop": 1786298463006,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t36_a_read_typed_customer_form_relates_the_existing_customer_without_creat",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463006,
+                "stop": 1786298463006,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t37_a_failed_save_returns_the_form_writes_nothing_and_stays_reusable",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463006,
+                "stop": 1786298463006,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t38_save_accepts_params_and_validates_them_before_submitting",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463007,
+                "stop": 1786298463007,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t39_edit_order_form_builds_update_forms_in_stored_order_with_hidden_ids",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463007,
+                "stop": 1786298463007,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t40_edit_order_form_orders_nested_forms_by_stored_position_not_by_storage_",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298463007,
+                "stop": 1786298463008,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t41_removing_a_nested_form_from_an_edit_form_destroys_that_record_on_save",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463008,
+                "stop": 1786298463008,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t42_removing_a_deep_nested_form_destroys_only_that_record",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463008,
+                "stop": 1786298463008,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t43_reordering_a_deep_nested_list_on_an_edit_form_renumbers_its_positions",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463009,
+                "stop": 1786298463009,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t44_adding_a_nested_form_to_an_existing_record_on_an_edit_form_creates_it",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298463009,
+                "stop": 1786298463009,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t45_an_edit_form_round_trips_its_own_submitted_params",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298463009,
+                "stop": 1786298463010,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

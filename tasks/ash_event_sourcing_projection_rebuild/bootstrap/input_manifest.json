@@ -1,0 +1,6 @@
+{
+  "library_name": "Ash Framework v3 (Elixir)",
+  "task_name": "ash_event_sourcing_projection_rebuild",
+  "research_plan_path": "/Users/kw/code/work/tools/ash-benchmark/plan.md",
+  "output_dir": "/Users/kw/code/work/tools/ash-benchmark/scratchpad/pending-tasks"
+}

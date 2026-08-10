@@ -1,0 +1,407 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-09T17:59:46.385565+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 42,
+            "passed": 42,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786298332523,
+            "stop": 1786298386385
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_project_compiles",
+                "status": "passed",
+                "duration": 53806,
+                "start": 1786298332536,
+                "stop": 1786298386342,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_contract_suite_ran_completely",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386343,
+                "stop": 1786298386344,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t01_feed_action_declares_keyset_pagination_contract",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386344,
+                "stop": 1786298386345,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_other_feed_actions_declare_their_pagination_contracts",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298386346,
+                "stop": 1786298386346,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_first_keyset_page_struct_and_metadata",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386347,
+                "stop": 1786298386348,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_keyset_page_carries_full_count",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386348,
+                "stop": 1786298386349,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_default_limit_applies_when_omitted",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386349,
+                "stop": 1786298386350,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_forward_keyset_chaining_walks_disjoint_windows",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386350,
+                "stop": 1786298386351,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_backward_keyset_chaining_reproduces_previous_windows",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386351,
+                "stop": 1786298386352,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_ash_page_continues_rewinds_replays_restarts",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298386353,
+                "stop": 1786298386353,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_continuing_past_end_yields_empty_page",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386354,
+                "stop": 1786298386355,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_offset_feed_reports_offset_limit_more_and_default_count",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386355,
+                "stop": 1786298386356,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_ash_page_seeks_offset_page_by_last_and_number",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386356,
+                "stop": 1786298386357,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_max_page_size_caps_over_large_limit",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386357,
+                "stop": 1786298386358,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_author_feed_filters_and_caps_at_own_max_page_size",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386358,
+                "stop": 1786298386359,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_disabling_pagination_on_required_action_is_refused",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386360,
+                "stop": 1786298386361,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_action_without_default_limit_demands_one",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386361,
+                "stop": 1786298386362,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_non_countable_action_refuses_count",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386362,
+                "stop": 1786298386363,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_dual_mode_action_is_optional_and_switches_page_type",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386364,
+                "stop": 1786298386365,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_malformed_keyset_is_rejected",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386365,
+                "stop": 1786298386366,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_public_feed_filters_and_counts_public_only",
+                "status": "passed",
+                "duration": 2,
+                "start": 1786298386366,
+                "stop": 1786298386368,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_hot_feed_orders_by_score_then_reactions_then_id",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386368,
+                "stop": 1786298386369,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t21_hot_feed_keyset_walk_visits_every_activity_once",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386369,
+                "stop": 1786298386370,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_heat_feed_keyset_walk_visits_every_activity_once",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386370,
+                "stop": 1786298386371,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_aggregate_calculation_and_relationship_load_on_page",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386371,
+                "stop": 1786298386372,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_api_fetch_returns_documented_envelope",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386372,
+                "stop": 1786298386373,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_cursor_codec_round_trips_and_is_opaque",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386374,
+                "stop": 1786298386375,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_cursor_codec_rejects_corrupt_and_forged_cursors",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298386375,
+                "stop": 1786298386375,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t27_api_forward_cursor_paging_matches_raw_keyset_chain",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298386376,
+                "stop": 1786298386376,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t28_api_backward_cursor_paging_returns_reversed_windows",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386376,
+                "stop": 1786298386377,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t29_cursor_from_one_feed_is_refused_by_another",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298386377,
+                "stop": 1786298386377,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t30_cursor_failures_surface_as_codec_or_ash_errors",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298386378,
+                "stop": 1786298386378,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t31_api_enforces_max_page_size_and_rejects_bad_limits",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386378,
+                "stop": 1786298386379,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t32_api_validates_feed_name_and_author_argument",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298386379,
+                "stop": 1786298386379,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t33_forward_walk_terminates_with_exact_totals",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298386380,
+                "stop": 1786298386380,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t34_walk_of_filtered_feed_and_of_empty_feed",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386380,
+                "stop": 1786298386381,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t35_walk_back_visits_exactly_the_reversed_windows",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298386381,
+                "stop": 1786298386381,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t36_insertion_between_pages_neither_duplicates_nor_skips",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386381,
+                "stop": 1786298386382,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t37_offset_paging_over_same_insertion_repeats_rows",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386382,
+                "stop": 1786298386383,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t38_deletion_between_pages_does_not_skip_survivors",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786298386383,
+                "stop": 1786298386383,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t39_rescoring_between_pages_keeps_window_anchored",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386383,
+                "stop": 1786298386384,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t40_reported_total_stays_filtered_while_paging",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786298386384,
+                "stop": 1786298386385,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

@@ -1,0 +1,423 @@
+[37m2026-08-10 01:40:26.543[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	pochi v0.6.20
+[37m2026-08-10 01:40:26.548[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	PochiConfigManager[39m[22m[0m[0m	add workspace config: /root/.pochi/config.jsonc
+[37m2026-08-10 01:40:26.701[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	BuiltInBundle[39m[22m[0m[0m	Materializing 16 built-in files to /tmp/pochi-builtin-ef402bc2bbe8f440
+[37m2026-08-10 01:40:26.954[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:532913[39m[0m[0m[1m[37m	loadAgents[39m[22m[0m[0m	Loaded 6 custom agents (6 valid, 0 invalid)
+[37m2026-08-10 01:40:27.055[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:532914[39m[0m[0m[1m[37m	loadSkills[39m[22m[0m[0m	Loaded 3 skills (3 valid, 0 invalid)
+[37m2026-08-10 01:40:27.158[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:443306[39m[0m[0m[1m[37m	PochiVendor[39m[22m[0m[0m	JWT is expiring or missing, fetching a new one
+[37m2026-08-10 01:40:28.460[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:419194[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	MCP servers configuration changed via signal:
+[37m2026-08-10 01:40:28.460[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:419306[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	Build MCPHub Status
+[37m2026-08-10 01:40:28.657[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Starting task runner...
+[37m2026-08-10 01:40:28.854[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: null, new: # Fleet Rollout Orchestration with Ash.Reactor
+[37m2026-08-10 01:40:40.425[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/orchestra and recursive [33mtrue[39m
+[37m2026-08-10 01:40:44.627[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/mix.exs" resolvedPath="/home/user/orchestra/mix.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:44.628[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:44.629[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/config/config.exs" resolvedPath="/home/user/orchestra/config/config.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:44.629[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:44.629[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/lib/orchestra/application.ex" resolvedPath="/home/user/orchestra/lib/orchestra/application.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:44.629[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:44.631[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/mix.exs" mtime=1786284247521 contentLen=458
+[37m2026-08-10 01:40:44.634[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/config/config.exs" mtime=1786284247834 contentLen=98
+[37m2026-08-10 01:40:44.635[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/lib/orchestra/application.ex" mtime=1786284248102 contentLen=233
+[37m2026-08-10 01:40:47.143[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: # Fleet Rollout Orchestration with Ash.Reactor, new: Build Ash domain and Reactor workflow for fleet rollout orchestration with rollback semantics
+[37m2026-08-10 01:40:48.282[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" resolvedPath="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:48.282[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:48.282[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/reactor/documentation/dsls/DSL-Reactor.md" resolvedPath="/home/user/orchestra/deps/reactor/documentation/dsls/DSL-Reactor.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:48.282[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:48.285[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/reactor/documentation/dsls/DSL-Reactor.md" mtime=1786284250000 contentLen=30000
+[37m2026-08-10 01:40:48.288[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" mtime=1786284250000 contentLen=30000
+[37m2026-08-10 01:40:58.907[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/reactor/lib/reactor/step.ex" resolvedPath="/home/user/orchestra/deps/reactor/lib/reactor/step.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:58.908[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:58.908[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/reactor/lib/reactor/middleware.ex" resolvedPath="/home/user/orchestra/deps/reactor/lib/reactor/middleware.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:58.908[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:58.911[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/reactor/lib/reactor/step.ex" mtime=1786284250000 contentLen=13097
+[37m2026-08-10 01:40:58.913[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/reactor/lib/reactor/middleware.ex" mtime=1786284250000 contentLen=4632
+[37m2026-08-10 01:41:04.091[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/reactor/documentation/dsls ### reactor\.(map|switch|step)\n```elixir [90mundefined[39m
+[37m2026-08-10 01:41:04.092[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'### reactor\\.(map|switch|step)\\n```elixir'[39m,
+  [32m'/home/user/orchestra/deps/reactor/documentation/dsls'[39m
+]
+[37m2026-08-10 01:41:04.095[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md ### reactor\.(create|update|destroy|read)\n```elixir [90mundefined[39m
+[37m2026-08-10 01:41:04.095[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'### reactor\\.(create|update|destroy|read)\\n```elixir'[39m,
+  [32m'/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md'[39m
+]
+[37m2026-08-10 01:41:04.103[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37mevents:98[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	rg command stderr:  rg: the literal "\n" is not allowed in a regex
+
+Consider enabling multiline mode with the --multiline flag (or -U for short).
+When multiline mode is enabled, new line characters can be matched.
+
+[37m2026-08-10 01:41:04.105[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37mevents:98[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	rg command stderr:  rg: the literal "\n" is not allowed in a regex
+
+Consider enabling multiline mode with the --multiline flag (or -U for short).
+When multiline mode is enabled, new line characters can be matched.
+
+[37m2026-08-10 01:41:07.724[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/reactor/documentation/dsls ### reactor\.(map|switch|step) [90mundefined[39m
+[37m2026-08-10 01:41:07.724[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'### reactor\\.(map|switch|step)'[39m,
+  [32m'/home/user/orchestra/deps/reactor/documentation/dsls'[39m
+]
+[37m2026-08-10 01:41:07.726[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md ### reactor\.(create|update|destroy|read) [90mundefined[39m
+[37m2026-08-10 01:41:07.727[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'### reactor\\.(create|update|destroy|read)'[39m,
+  [32m'/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md'[39m
+]
+[37m2026-08-10 01:41:11.159[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/reactor/documentation/dsls/DSL-Reactor.md" resolvedPath="/home/user/orchestra/deps/reactor/documentation/dsls/DSL-Reactor.md" isVirtual=false cacheExists=true shouldCache=true startLine=1697 endLine=2300
+[37m2026-08-10 01:41:11.159[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786284250000}
+[37m2026-08-10 01:41:11.163[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/reactor/documentation/dsls/DSL-Reactor.md" mtime=1786284250000 contentLen=15014
+[37m2026-08-10 01:41:18.560[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/reactor/documentation/dsls/DSL-Reactor.md" resolvedPath="/home/user/orchestra/deps/reactor/documentation/dsls/DSL-Reactor.md" isVirtual=false cacheExists=true shouldCache=true startLine=2300 endLine=2700
+[37m2026-08-10 01:41:18.560[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1697, endLine=2300, timestamp=1786284250000}
+[37m2026-08-10 01:41:18.565[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/reactor/documentation/dsls/DSL-Reactor.md" mtime=1786284250000 contentLen=11118
+[37m2026-08-10 01:41:28.856[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" resolvedPath="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" isVirtual=false cacheExists=true shouldCache=true startLine=1910 endLine=1976
+[37m2026-08-10 01:41:28.856[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786284250000}
+[37m2026-08-10 01:41:28.861[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" mtime=1786284250000 contentLen=3107
+[37m2026-08-10 01:41:36.192[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" resolvedPath="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" isVirtual=false cacheExists=true shouldCache=true startLine=2943 endLine=3060
+[37m2026-08-10 01:41:36.193[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1910, endLine=1976, timestamp=1786284250000}
+[37m2026-08-10 01:41:36.199[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" mtime=1786284250000 contentLen=3896
+[37m2026-08-10 01:41:39.713[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" resolvedPath="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" isVirtual=false cacheExists=true shouldCache=true startLine=3304 endLine=3360
+[37m2026-08-10 01:41:39.713[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=2943, endLine=3060, timestamp=1786284250000}
+[37m2026-08-10 01:41:39.716[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" mtime=1786284250000 contentLen=1843
+[37m2026-08-10 01:41:44.580[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" resolvedPath="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" isVirtual=false cacheExists=true shouldCache=true startLine=3843 endLine=3910
+[37m2026-08-10 01:41:44.580[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=3304, endLine=3360, timestamp=1786284250000}
+[37m2026-08-10 01:41:44.585[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Reactor.md" mtime=1786284250000 contentLen=2798
+[37m2026-08-10 01:41:51.655[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/reactor/lib/reactor/info.ex" resolvedPath="/home/user/orchestra/deps/reactor/lib/reactor/info.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:51.655[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:51.656[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/lib/ash defmodule Ash.Error.Action.InvalidArgument [90mundefined[39m
+[37m2026-08-10 01:41:51.656[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmodule Ash.Error.Action.InvalidArgument'[39m,
+  [32m'/home/user/orchestra/deps/ash/lib/ash'[39m
+]
+[37m2026-08-10 01:41:51.661[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/reactor/lib/reactor/info.ex" mtime=1786284250000 contentLen=2191
+[37m2026-08-10 01:41:55.444[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/error/action/invalid_argument.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/error/action/invalid_argument.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:55.445[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:55.451[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/error/action/invalid_argument.ex" mtime=1786284250000 contentLen=713
+[37m2026-08-10 01:42:02.282[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Domain.md code_interface|define :|define_field|define? :|action! :|args : [90mundefined[39m
+[37m2026-08-10 01:42:02.282[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'code_interface|define :|define_field|define? :|action! :|args :'[39m,
+  [32m'/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Domain.md'[39m
+]
+[37m2026-08-10 01:42:06.195[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Domain.md" resolvedPath="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Domain.md" isVirtual=false cacheExists=true shouldCache=true startLine=60 endLine=200
+[37m2026-08-10 01:42:06.195[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:06.202[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Domain.md" mtime=1786284250000 contentLen=8227
+[37m2026-08-10 01:42:10.666[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/usage-rules/actions.md" resolvedPath="/home/user/orchestra/deps/ash/usage-rules/actions.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:10.666[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:10.666[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/usage-rules/code_interfaces.md" resolvedPath="/home/user/orchestra/deps/ash/usage-rules/code_interfaces.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:10.666[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:10.672[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/usage-rules/actions.md" mtime=1786284250000 contentLen=14482
+[37m2026-08-10 01:42:10.677[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/usage-rules/code_interfaces.md" mtime=1786284250000 contentLen=5563
+[37m2026-08-10 01:42:18.393[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Resource.md ### actions\.action\b|### actions\.create\b|### actions\.read\b|### actions\.update\b [90mundefined[39m
+[37m2026-08-10 01:42:18.394[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'### actions\\.action\\b|### actions\\.create\\b|### actions\\.read\\b|### actions\\.update\\b'[39m,
+  [32m'/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Resource.md'[39m
+]
+[37m2026-08-10 01:42:24.465[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Resource.md" resolvedPath="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Resource.md" isVirtual=false cacheExists=true shouldCache=true startLine=938 endLine=1174
+[37m2026-08-10 01:42:24.465[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:24.473[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Resource.md" mtime=1786284250000 contentLen=9678
+[37m2026-08-10 01:43:44.643[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/orchestra/deps/ash/lib/ash/reactor and recursive [33mtrue[39m
+[37m2026-08-10 01:43:47.674[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/reactor/steps/update_step.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/reactor/steps/update_step.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:43:47.674[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:43:47.675[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/reactor/steps/create_step.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/reactor/steps/create_step.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:43:47.675[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:43:47.687[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/reactor/steps/update_step.ex" mtime=1786284250000 contentLen=3179
+[37m2026-08-10 01:43:47.692[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/reactor/steps/create_step.ex" mtime=1786284250000 contentLen=4157
+[37m2026-08-10 01:44:16.002[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/reactor/steps/action_step.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/reactor/steps/action_step.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:44:16.002[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:44:16.003[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/reactor/lib/reactor/executor def complete|def error|middleware|context\[|put_in.*context|Map.put.*context [90mundefined[39m
+[37m2026-08-10 01:44:16.003[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def complete|def error|middleware|context\\[|put_in.*context|Map.put.*context'[39m,
+  [32m'/home/user/orchestra/deps/reactor/lib/reactor/executor'[39m
+]
+[37m2026-08-10 01:44:16.059[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/reactor/steps/action_step.ex" mtime=1786284250000 contentLen=3089
+[37m2026-08-10 01:44:19.577[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/reactor/lib/reactor/executor/hooks.ex" resolvedPath="/home/user/orchestra/deps/reactor/lib/reactor/executor/hooks.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:44:19.577[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:44:19.595[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/reactor/lib/reactor/executor/hooks.ex" mtime=1786284250000 contentLen=4010
+[37m2026-08-10 01:44:24.004[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/reactor/lib/reactor/executor.ex context|intermediate_results|put_in|Map.put|completed [90mundefined[39m
+[37m2026-08-10 01:44:24.004[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'context|intermediate_results|put_in|Map.put|completed'[39m,
+  [32m'/home/user/orchestra/deps/reactor/lib/reactor/executor.ex'[39m
+]
+[37m2026-08-10 01:44:27.009[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/reactor/lib/reactor/executor.ex" resolvedPath="/home/user/orchestra/deps/reactor/lib/reactor/executor.ex" isVirtual=false cacheExists=true shouldCache=true startLine=100 endLine=300
+[37m2026-08-10 01:44:27.009[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:44:27.028[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/reactor/lib/reactor/executor.ex" mtime=1786284250000 contentLen=7556
+[37m2026-08-10 01:44:31.729[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/reactor/lib/reactor/executor def run|context|intermediate_results|put_context|Map.put|:ok, value [90mundefined[39m
+[37m2026-08-10 01:44:31.729[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def run|context|intermediate_results|put_context|Map.put|:ok, value'[39m,
+  [32m'/home/user/orchestra/deps/reactor/lib/reactor/executor'[39m
+]
+[37m2026-08-10 01:45:32.739[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/test undo_action [90mundefined[39m
+[37m2026-08-10 01:45:32.739[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'undo_action'[39m,
+  [32m'/home/user/orchestra/deps/ash/test'[39m
+]
+[37m2026-08-10 01:45:32.741[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/lib/ash/changeset defp set_unknown_inputs|unknown_input|skip_unknown_inputs|UnknownInput [90mundefined[39m
+[37m2026-08-10 01:45:32.741[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defp set_unknown_inputs|unknown_input|skip_unknown_inputs|UnknownInput'[39m,
+  [32m'/home/user/orchestra/deps/ash/lib/ash/changeset'[39m
+]
+[37m2026-08-10 01:45:32.772[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37mevents:98[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	rg command stderr:  rg: /home/user/orchestra/deps/ash/test: IO error for operation on /home/user/orchestra/deps/ash/test: No such file or directory (os error 2)
+
+[37m2026-08-10 01:45:37.137[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/changeset/changeset.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/changeset/changeset.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1760 endLine=1860
+[37m2026-08-10 01:45:37.137[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:45:37.160[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/changeset/changeset.ex" mtime=1786284250000 contentLen=3281
+[37m2026-08-10 01:45:46.100[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/reactor/builders/create.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/reactor/builders/create.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:45:46.100[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:45:46.127[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/reactor/builders/create.ex" mtime=1786284250000 contentLen=3643
+[37m2026-08-10 01:46:35.874[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/reactor/lib/reactor/executor/step_runner.ex" resolvedPath="/home/user/orchestra/deps/reactor/lib/reactor/executor/step_runner.ex" isVirtual=false cacheExists=true shouldCache=true startLine=239 endLine=340
+[37m2026-08-10 01:46:35.874[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:46:35.909[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/reactor/lib/reactor/executor/step_runner.ex" mtime=1786284250000 contentLen=3466
+[37m2026-08-10 01:46:39.608[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/reactor/lib/reactor/executor/sync.ex" resolvedPath="/home/user/orchestra/deps/reactor/lib/reactor/executor/sync.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:46:39.608[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:46:39.635[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/reactor/lib/reactor/executor/sync.ex" mtime=1786284250000 contentLen=4399
+[37m2026-08-10 01:46:57.082[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/orchestra/deps/reactor/lib/reactor/step and recursive [90mundefined[39m
+[37m2026-08-10 01:46:59.976[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/reactor/lib/reactor/step/map.ex" resolvedPath="/home/user/orchestra/deps/reactor/lib/reactor/step/map.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:46:59.976[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:47:00.009[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/reactor/lib/reactor/step/map.ex" mtime=1786284250000 contentLen=11152
+[37m2026-08-10 01:47:27.055[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/reactor/builders/update.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/reactor/builders/update.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:47:27.055[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:47:27.083[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/reactor/builders/update.ex" mtime=1786284250000 contentLen=3023
+[37m2026-08-10 01:48:00.046[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/lib/ash/type defmodule Ash.Type.Map|def cast\(|:map|allow_structs|struct [90mundefined[39m
+[37m2026-08-10 01:48:00.046[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmodule Ash.Type.Map|def cast\\(|:map|allow_structs|struct'[39m,
+  [32m'/home/user/orchestra/deps/ash/lib/ash/type'[39m
+]
+[37m2026-08-10 01:48:04.139[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/type/map.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/type/map.ex" isVirtual=false cacheExists=true shouldCache=true startLine=84 endLine=130
+[37m2026-08-10 01:48:04.140[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:48:04.189[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/type/map.ex" mtime=1786284250000 contentLen=1271
+[37m2026-08-10 01:48:07.655[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/lib/ash/type/map.ex def cast|is_struct|is_map [90mundefined[39m
+[37m2026-08-10 01:48:07.655[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def cast|is_struct|is_map'[39m,
+  [32m'/home/user/orchestra/deps/ash/lib/ash/type/map.ex'[39m
+]
+[37m2026-08-10 01:53:04.618[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.DataLayer.Ets.md" resolvedPath="/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.DataLayer.Ets.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:53:04.619[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:53:04.674[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.DataLayer.Ets.md" mtime=1786284250000 contentLen=1048
+[37m2026-08-10 01:53:09.755[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/lib/ash/data_layer/ets.ex def create_table|new_table|:public|:named_table|private|GenServer|owner [90mundefined[39m
+[37m2026-08-10 01:53:09.756[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def create_table|new_table|:public|:named_table|private|GenServer|owner'[39m,
+  [32m'/home/user/orchestra/deps/ash/lib/ash/data_layer/ets.ex'[39m
+]
+[37m2026-08-10 01:53:09.869[39m[0m[0m	[33m[1mWARN[22m[39m[0m[0m	[37mevents:98[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	rg command stderr:  rg: /home/user/orchestra/deps/ash/lib/ash/data_layer/ets.ex: IO error for operation on /home/user/orchestra/deps/ash/lib/ash/data_layer/ets.ex: No such file or directory (os error 2)
+
+[37m2026-08-10 01:53:13.069[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:530993[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	handling globFiles with searchPath: /home/user/orchestra/deps/ash/lib/ash/data_layer and pattern **/ets*
+[37m2026-08-10 01:53:13.149[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	globFiles[39m[22m[0m[0m	Found 2 files matching pattern **/ets*
+[37m2026-08-10 01:53:16.555[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex def create_table|new_table|:public|:named_table|private|GenServer|owner|def table [90mundefined[39m
+[37m2026-08-10 01:53:16.555[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def create_table|new_table|:public|:named_table|private|GenServer|owner|def table'[39m,
+  [32m'/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex'[39m
+]
+[37m2026-08-10 01:53:19.835[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" isVirtual=false cacheExists=true shouldCache=true startLine=75 endLine=160
+[37m2026-08-10 01:53:19.835[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:53:19.945[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" mtime=1786284250000 contentLen=2254
+[37m2026-08-10 01:53:44.150[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/reactor/lib/reactor/step/compose.ex" resolvedPath="/home/user/orchestra/deps/reactor/lib/reactor/step/compose.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:53:44.150[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:53:44.211[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/reactor/lib/reactor/step/compose.ex" mtime=1786284250000 contentLen=2989
+[37m2026-08-10 01:54:16.091[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/reactor/reactor.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/reactor/reactor.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:54:16.091[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:54:16.165[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/reactor/reactor.ex" mtime=1786284250000 contentLen=2128
+[37m2026-08-10 01:55:59.403[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/reactor/documentation/dsls/DSL-Reactor.md ### reactor\.input [90mundefined[39m
+[37m2026-08-10 01:55:59.403[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'### reactor\\.input'[39m,
+  [32m'/home/user/orchestra/deps/reactor/documentation/dsls/DSL-Reactor.md'[39m
+]
+[37m2026-08-10 01:56:10.678[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/reactor/documentation/dsls/DSL-Reactor.md" resolvedPath="/home/user/orchestra/deps/reactor/documentation/dsls/DSL-Reactor.md" isVirtual=false cacheExists=true shouldCache=true startLine=1645 endLine=1697
+[37m2026-08-10 01:56:10.678[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=2300, endLine=2700, timestamp=1786284250000}
+[37m2026-08-10 01:56:10.766[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/reactor/documentation/dsls/DSL-Reactor.md" mtime=1786284250000 contentLen=1131
+[37m2026-08-10 01:57:52.156[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/lib/ash/actions def run_action|to_error_class|def run\b|action.*run|InvalidArgument [90mundefined[39m
+[37m2026-08-10 01:57:52.156[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def run_action|to_error_class|def run\\b|action.*run|InvalidArgument'[39m,
+  [32m'/home/user/orchestra/deps/ash/lib/ash/actions'[39m
+]
+[37m2026-08-10 01:57:56.441[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/actions/action.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/actions/action.ex" isVirtual=false cacheExists=true shouldCache=true startLine=14 endLine=110
+[37m2026-08-10 01:57:56.441[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:57:56.533[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/actions/action.ex" mtime=1786284250000 contentLen=3125
+[37m2026-08-10 01:58:02.610[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/actions/action.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/actions/action.ex" isVirtual=false cacheExists=true shouldCache=true startLine=180 endLine=320
+[37m2026-08-10 01:58:02.610[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=14, endLine=110, timestamp=1786284250000}
+[37m2026-08-10 01:58:02.721[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/actions/action.ex" mtime=1786284250000 contentLen=4430
+[37m2026-08-10 01:58:46.324[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Resource.md uuid_primary_key|attributes\.attribute\b|primary_key\? [90mundefined[39m
+[37m2026-08-10 01:58:46.325[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'uuid_primary_key|attributes\\.attribute\\b|primary_key\\?'[39m,
+  [32m'/home/user/orchestra/deps/ash/documentation/dsls/DSL-Ash.Resource.md'[39m
+]
+[37m2026-08-10 02:00:33.068[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/lib/ash/resource/actions defmodule Ash.Resource.Actions.Implementation|@callback run|def run\( [90mundefined[39m
+[37m2026-08-10 02:00:33.068[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmodule Ash.Resource.Actions.Implementation|@callback run|def run\\('[39m,
+  [32m'/home/user/orchestra/deps/ash/lib/ash/resource/actions'[39m
+]
+[37m2026-08-10 02:00:39.320[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/resource/actions/action/implementation.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/resource/actions/action/implementation.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:00:39.320[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:00:39.453[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/resource/actions/action/implementation.ex" mtime=1786284250000 contentLen=1776
+[37m2026-08-10 02:00:43.677[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/lib/ash/resource/change defmodule Ash.Resource.Change\b|@callback change|@callback atomic [90mundefined[39m
+[37m2026-08-10 02:00:43.677[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmodule Ash.Resource.Change\\b|@callback change|@callback atomic'[39m,
+  [32m'/home/user/orchestra/deps/ash/lib/ash/resource/change'[39m
+]
+[37m2026-08-10 02:00:59.154[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/resource/change/change.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/resource/change/change.ex" isVirtual=false cacheExists=true shouldCache=true startLine=300 endLine=320
+[37m2026-08-10 02:00:59.155[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:00:59.292[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/resource/change/change.ex" mtime=1786284250000 contentLen=766
+[37m2026-08-10 02:02:14.725[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/reactor/lib/reactor/executor/step_runner.ex" resolvedPath="/home/user/orchestra/deps/reactor/lib/reactor/executor/step_runner.ex" isVirtual=false cacheExists=true shouldCache=true startLine=165 endLine=235
+[37m2026-08-10 02:02:14.726[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=239, endLine=340, timestamp=1786284250000}
+[37m2026-08-10 02:02:18.271[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/reactor/lib/reactor/executor/step_runner.ex" mtime=1786284250000 contentLen=2168
+[37m2026-08-10 02:05:03.988[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash default_domain *.ex
+[37m2026-08-10 02:05:03.988[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'default_domain'[39m,
+  [32m'/home/user/orchestra/deps/ash'[39m
+]
+[37m2026-08-10 02:05:14.234[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/reactor/dsl/action_transformer.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/reactor/dsl/action_transformer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:05:14.235[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:05:14.411[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/reactor/dsl/action_transformer.ex" mtime=1786284250000 contentLen=13840
+[37m2026-08-10 02:07:00.198[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/lib/ash/query/query.ex defmacro filter|def filter|defmacro do_filter [90mundefined[39m
+[37m2026-08-10 02:07:00.198[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmacro filter|def filter|defmacro do_filter'[39m,
+  [32m'/home/user/orchestra/deps/ash/lib/ash/query/query.ex'[39m
+]
+[37m2026-08-10 02:07:07.094[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/query/query.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/query/query.ex" isVirtual=false cacheExists=true shouldCache=true startLine=662 endLine=700
+[37m2026-08-10 02:07:07.095[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:07:07.380[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/query/query.ex" mtime=1786284250000 contentLen=1054
+[37m2026-08-10 02:11:46.216[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex def create_table|TableManager.start|def create\b|defp create|def run_query|defp run_query [90mundefined[39m
+[37m2026-08-10 02:11:46.216[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def create_table|TableManager.start|def create\\b|defp create|def run_query|defp run_query'[39m,
+  [32m'/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex'[39m
+]
+[37m2026-08-10 02:11:57.196[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" isVirtual=false cacheExists=true shouldCache=true startLine=2160 endLine=2200
+[37m2026-08-10 02:11:57.196[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=75, endLine=160, timestamp=1786284250000}
+[37m2026-08-10 02:11:57.413[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" mtime=1786284250000 contentLen=1203
+[37m2026-08-10 02:12:03.380[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1696 endLine=1730
+[37m2026-08-10 02:12:03.380[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=2160, endLine=2200, timestamp=1786284250000}
+[37m2026-08-10 02:12:04.060[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" mtime=1786284250000 contentLen=1362
+[37m2026-08-10 02:12:40.383[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" isVirtual=false cacheExists=true shouldCache=true startLine=391 endLine=410
+[37m2026-08-10 02:12:40.384[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1696, endLine=1730, timestamp=1786284250000}
+[37m2026-08-10 02:12:46.770[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" mtime=1786284250000 contentLen=586
+[37m2026-08-10 02:13:12.189[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex defp get_records|wrap_or_create_table [90mundefined[39m
+[37m2026-08-10 02:13:12.190[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defp get_records|wrap_or_create_table'[39m,
+  [32m'/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex'[39m
+]
+[37m2026-08-10 02:18:24.127[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" resolvedPath="/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" isVirtual=false cacheExists=true shouldCache=true startLine=150 endLine=180
+[37m2026-08-10 02:18:24.138[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=391, endLine=410, timestamp=1786284250000}
+[37m2026-08-10 02:18:38.698[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/orchestra/deps/ash/lib/ash/data_layer/ets/ets.ex" mtime=1786284250000 contentLen=643

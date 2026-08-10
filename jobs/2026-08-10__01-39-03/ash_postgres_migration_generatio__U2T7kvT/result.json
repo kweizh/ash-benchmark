@@ -1,0 +1,118 @@
+{
+    "id": "bcdc0575-03e1-44e6-ba9c-8a7c9f2fcb3d",
+    "task_name": "ash_postgres_migration_generation",
+    "trial_name": "ash_postgres_migration_generatio__U2T7kvT",
+    "trial_uri": "file:///home/kw/code/zealt/pochi-harbor/jobs/2026-08-10__01-39-03/ash_postgres_migration_generatio__U2T7kvT",
+    "task_id": {
+        "path": "/home/kw/code/zealt/ash-benchmark/scratchpad/pending-tasks/ash_postgres_migration_generation"
+    },
+    "source": "pending-tasks",
+    "task_checksum": "f3910631bbdf0c43a6ff233daccb633435e2c3b7dae2b81831ed38da723c605f",
+    "config": {
+        "task": {
+            "path": "/home/kw/code/zealt/ash-benchmark/scratchpad/pending-tasks/ash_postgres_migration_generation",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "pending-tasks"
+        },
+        "trial_name": "ash_postgres_migration_generatio__U2T7kvT",
+        "trials_dir": "jobs/2026-08-10__01-39-03",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "agents.pochi:Pochi",
+            "import_path": null,
+            "model_name": "anthropic/claude-5-sonnet",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "env": {
+                "POCHI_API_KEY": "${POCHI_API_KEY}"
+            },
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "daytona",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": 4096,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [
+            "/home/user"
+        ],
+        "extra_instruction_paths": [],
+        "job_id": "17a02420-07fc-4275-9761-41863b2b866a"
+    },
+    "agent_info": {
+        "name": "pochi",
+        "version": "0.6.20",
+        "model_info": {
+            "name": "claude-5-sonnet",
+            "provider": "anthropic"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 0,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 23694402,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-08-09T17:39:06.802994Z",
+    "finished_at": "2026-08-09T18:00:19.530784Z",
+    "environment_setup": {
+        "started_at": "2026-08-09T17:39:06.901261Z",
+        "finished_at": "2026-08-09T17:39:11.823203Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-09T17:39:11.823260Z",
+        "finished_at": "2026-08-09T17:39:17.705295Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-09T17:39:17.705436Z",
+        "finished_at": "2026-08-09T17:58:18.316405Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-09T17:58:33.957789Z",
+        "finished_at": "2026-08-09T18:00:19.229441Z"
+    },
+    "step_results": null
+}

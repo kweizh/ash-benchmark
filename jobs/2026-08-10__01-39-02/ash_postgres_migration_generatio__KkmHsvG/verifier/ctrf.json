@@ -1,0 +1,473 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-09T18:15:52.185499+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 49,
+            "passed": 48,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786299254423,
+            "stop": 1786299352185
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_project_compiles",
+                "status": "passed",
+                "duration": 97680,
+                "start": 1786299254438,
+                "stop": 1786299352118,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_codegen_reports_no_pending_changes",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352118,
+                "stop": 1786299352119,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_ash_reset_rebuilds_the_database",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352120,
+                "stop": 1786299352120,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_probe_suite_executed",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352121,
+                "stop": 1786299352122,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t01_public_schema_contains_exactly_the_five_tables",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352122,
+                "stop": 1786299352123,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_citext_uuid_ossp_and_ash_functions_installed",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352123,
+                "stop": 1786299352124,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_carriers_columns",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352124,
+                "stop": 1786299352125,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_warehouses_columns",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352125,
+                "stop": 1786299352126,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_shipments_columns",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352126,
+                "stop": 1786299352127,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_scheduled_for_is_timestamptz",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 29,
+                "start": 1786299352127,
+                "stop": 1786299352156,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "harness = {'codegen': CompletedProcess(args=['mix', 'ash.codegen', '--check'], returncode=0, stdout='Getting extensions in curre...parcels_non_negative on table warehouses\\n\\n18:15:17.173 [info] == Migrated 20260809175810 in 0.0s\\n', stderr=''), ...}\n\n    def test_t06_scheduled_for_is_timestamptz(harness):\n>       _scenario(harness, \"T06\")\n\n/tests/test_final_state.py:1182: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nharness = {'codegen': CompletedProcess(args=['mix', 'ash.codegen', '--check'], returncode=0, stdout='Getting extensions in curre...parcels_non_negative on table warehouses\\n\\n18:15:17.173 [info] == Migrated 20260809175810 in 0.0s\\n', stderr=''), ...}\nscenario_id = 'T06'\n\n    def _scenario(harness, scenario_id):\n        prefix = f\"test {scenario_id} \"\n        matches = [name for name in harness[\"results\"] if name.startswith(prefix)]\n        assert matches, (\n            f\"Scenario {scenario_id} produced no result. The ExUnit suite did not run \"\n            f\"or crashed before reaching it.\\n\\n{_diagnostics(harness)}\"\n        )\n        name = matches[0]\n        status, detail = harness[\"results\"][name]\n>       assert status == \"pass\", f\"Scenario {scenario_id} failed: {name}\\n{detail}\"\nE       AssertionError: Scenario T06 failed: test T06 shipments.scheduled_for is stored as timestamp with time zone\nE           1) test T06 shipments.scheduled_for is stored as timestamp with time zone (Harbor.Suite)\nE              /tmp/harbor_pgmigrate_final.exs:237\nE              Assertion with == failed\nE              code:  assert {\"timestamp with time zone\", false, nil} == H.columns(\"shipments\")[\"scheduled_for\"]\nE              left:  {\"timestamp with time zone\", false, nil}\nE              right: {\"timestamp(0) without time zone\", false, nil}\nE              stacktrace:\nE                /tmp/harbor_pgmigrate_final.exs:238: (test)\nE         \nE       assert 'fail' == 'pass'\nE         - pass\nE         + fail\n\n/tests/test_final_state.py:1115: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_t07_booked_at_defaults_to_now",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352156,
+                "stop": 1786299352157,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_parcels_and_shipment_legs_columns",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352158,
+                "stop": 1786299352159,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_primary_keys",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352159,
+                "stop": 1786299352160,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_shipments_foreign_keys",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352160,
+                "stop": 1786299352161,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_parcels_and_leg_foreign_keys",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352161,
+                "stop": 1786299352161,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_exactly_five_foreign_keys",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352161,
+                "stop": 1786299352162,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_foreign_key_backing_indexes",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352162,
+                "stop": 1786299352163,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_carriers_partial_unique_index",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352163,
+                "stop": 1786299352163,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_warehouses_partial_unique_index",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352164,
+                "stop": 1786299352164,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_single_fragile_parcel_partial_index",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352164,
+                "stop": 1786299352165,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_remaining_unique_indexes",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352165,
+                "stop": 1786299352165,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_no_unexpected_indexes",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352166,
+                "stop": 1786299352166,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_check_constraints",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352166,
+                "stop": 1786299352167,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_generated_migrations_and_snapshots",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352167,
+                "stop": 1786299352167,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t21_repo_contract",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352168,
+                "stop": 1786299352168,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_resources_wired_to_postgres",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352168,
+                "stop": 1786299352169,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_carrier_code_unique_case_insensitively",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352169,
+                "stop": 1786299352170,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_carrier_code_reads_case_insensitively",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352170,
+                "stop": 1786299352170,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_retired_carriers_are_hidden_and_free_their_code",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352170,
+                "stop": 1786299352171,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_warehouse_codes_unique_among_active",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352171,
+                "stop": 1786299352172,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t27_warehouse_capacity_check_constraint",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352172,
+                "stop": 1786299352172,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t28_shipment_declared_value_check_constraint",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352172,
+                "stop": 1786299352173,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t29_parcel_weight_check_constraint",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352173,
+                "stop": 1786299352174,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t30_leg_sequence_check_constraint",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352174,
+                "stop": 1786299352174,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t31_shipment_reference_unique",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352174,
+                "stop": 1786299352175,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t32_parcel_tracking_code_unique",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352175,
+                "stop": 1786299352176,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t33_single_fragile_parcel_per_shipment",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352176,
+                "stop": 1786299352176,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t34_leg_sequence_unique_per_shipment",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352177,
+                "stop": 1786299352177,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t35_carrier_destroy_restricted",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352177,
+                "stop": 1786299352178,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t36_warehouse_destroy_restricted",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352178,
+                "stop": 1786299352178,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t37_shipment_destroy_cascades",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352179,
+                "stop": 1786299352180,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t38_origin_warehouse_destroy_nilifies",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352180,
+                "stop": 1786299352181,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t39_intake_rolls_back_on_rejected_parcel",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352181,
+                "stop": 1786299352181,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t40_intake_commits_shipment_with_parcels",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352182,
+                "stop": 1786299352182,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t41_aggregates_are_filterable",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352182,
+                "stop": 1786299352183,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t42_heavy_calculation_is_filterable",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352183,
+                "stop": 1786299352183,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t43_aggregate_read_hits_the_database_once",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352184,
+                "stop": 1786299352184,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t44_booked_at_default_and_scheduled_for_roundtrip",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299352184,
+                "stop": 1786299352184,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t45_repo_transaction_rollback_writes_nothing",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299352184,
+                "stop": 1786299352185,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

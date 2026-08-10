@@ -1,0 +1,597 @@
+[37m2026-08-10 01:40:13.836[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	pochi v0.6.20
+[37m2026-08-10 01:40:14.127[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	BuiltInBundle[39m[22m[0m[0m	Materializing 16 built-in files to /tmp/pochi-builtin-ef402bc2bbe8f440
+[37m2026-08-10 01:40:14.312[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:532913[39m[0m[0m[1m[37m	loadAgents[39m[22m[0m[0m	Loaded 6 custom agents (6 valid, 0 invalid)
+[37m2026-08-10 01:40:14.497[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:532914[39m[0m[0m[1m[37m	loadSkills[39m[22m[0m[0m	Loaded 3 skills (3 valid, 0 invalid)
+[37m2026-08-10 01:40:14.713[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:443306[39m[0m[0m[1m[37m	PochiVendor[39m[22m[0m[0m	JWT is expiring or missing, fetching a new one
+[37m2026-08-10 01:40:16.609[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:419194[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	MCP servers configuration changed via signal:
+[37m2026-08-10 01:40:16.609[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:419306[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	Build MCPHub Status
+[37m2026-08-10 01:40:16.825[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:7[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	Starting task runner...
+[37m2026-08-10 01:40:17.052[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: null, new: # Expose an Ash knowledge base over a strict JSON:API HTTP interface
+[37m2026-08-10 01:40:28.043[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/kbapi and recursive [33mtrue[39m
+[37m2026-08-10 01:40:32.461[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:490790[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: # Expose an Ash knowledge base over a strict JSON:API HTTP interface, new: Build a strict JSON:API HTTP interface for an Ash knowledge base
+[37m2026-08-10 01:40:35.274[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/mix.exs" resolvedPath="/home/user/kbapi/mix.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:35.274[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:35.275[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/config/config.exs" resolvedPath="/home/user/kbapi/config/config.exs" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:35.275[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:35.275[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/lib/application.ex" resolvedPath="/home/user/kbapi/lib/application.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:35.276[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:35.276[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/lib/kbapi/knowledge.ex" resolvedPath="/home/user/kbapi/lib/kbapi/knowledge.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:35.276[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:35.278[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/mix.exs" mtime=1786284241395 contentLen=508
+[37m2026-08-10 01:40:35.282[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/config/config.exs" mtime=1786284241817 contentLen=93
+[37m2026-08-10 01:40:35.292[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/lib/application.ex" mtime=1786284242026 contentLen=199
+[37m2026-08-10 01:40:35.295[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/lib/kbapi/knowledge.ex" mtime=1786284242228 contentLen=272
+[37m2026-08-10 01:40:44.236[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/lib/kbapi/knowledge/author.ex" resolvedPath="/home/user/kbapi/lib/kbapi/knowledge/author.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:44.237[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:44.237[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/lib/kbapi/knowledge/article.ex" resolvedPath="/home/user/kbapi/lib/kbapi/knowledge/article.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:44.237[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:44.237[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/lib/kbapi/knowledge/tag.ex" resolvedPath="/home/user/kbapi/lib/kbapi/knowledge/tag.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:44.237[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:44.237[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/lib/kbapi/knowledge/comment.ex" resolvedPath="/home/user/kbapi/lib/kbapi/knowledge/comment.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:44.238[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:44.238[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/lib/kbapi/knowledge/article_tag.ex" resolvedPath="/home/user/kbapi/lib/kbapi/knowledge/article_tag.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:44.238[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:44.238[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/lib/kbapi/knowledge/fixtures.ex" resolvedPath="/home/user/kbapi/lib/kbapi/knowledge/fixtures.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:44.238[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:44.240[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/lib/kbapi/knowledge/author.ex" mtime=1786284242521 contentLen=876
+[37m2026-08-10 01:40:44.244[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/lib/kbapi/knowledge/article.ex" mtime=1786284242785 contentLen=1541
+[37m2026-08-10 01:40:44.247[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/lib/kbapi/knowledge/tag.ex" mtime=1786284243089 contentLen=834
+[37m2026-08-10 01:40:44.249[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/lib/kbapi/knowledge/comment.ex" mtime=1786284243643 contentLen=702
+[37m2026-08-10 01:40:44.292[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/lib/kbapi/knowledge/article_tag.ex" mtime=1786284243346 contentLen=637
+[37m2026-08-10 01:40:44.296[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/lib/kbapi/knowledge/fixtures.ex" mtime=1786284243923 contentLen=4092
+[37m2026-08-10 01:40:48.281[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:48.281[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:48.281[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/router.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/router.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:48.281[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:48.281[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md" resolvedPath="/home/user/kbapi/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:40:48.281[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:40:48.287[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api.ex" mtime=1786284246000 contentLen=1085
+[37m2026-08-10 01:40:48.293[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/router.ex" mtime=1786284246000 contentLen=4457
+[37m2026-08-10 01:40:48.299[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/documentation/dsls/DSL-AshJsonApi.Domain.md" mtime=1786284246000 contentLen=30000
+[37m2026-08-10 01:40:57.862[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531016[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/kbapi/deps/ash_json_api/lib/ash_json_api and recursive [33mtrue[39m
+[37m2026-08-10 01:41:00.633[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/router.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/router.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:00.633[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:00.633[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/request.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/request.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:00.633[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:00.636[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/router.ex" mtime=1786284246000 contentLen=5879
+[37m2026-08-10 01:41:00.640[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/request.ex" mtime=1786284246000 contentLen=30000
+[37m2026-08-10 01:41:04.179[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/domain.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/domain.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:04.180[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:04.180[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/info.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/info.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:04.180[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:04.184[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/domain.ex" mtime=1786284246000 contentLen=9866
+[37m2026-08-10 01:41:04.189[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/info.ex" mtime=1786284246000 contentLen=1642
+[37m2026-08-10 01:41:07.346[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/resource.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/resource.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:07.346[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:07.348[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/resource.ex" mtime=1786284246000 contentLen=25696
+[37m2026-08-10 01:41:19.518[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/get.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/get.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:19.518[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:19.518[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/index.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/index.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:19.519[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:19.519[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/generic_action_route.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/generic_action_route.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:19.519[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:19.524[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/get.ex" mtime=1786284246000 contentLen=931
+[37m2026-08-10 01:41:19.529[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/index.ex" mtime=1786284246000 contentLen=1531
+[37m2026-08-10 01:41:19.534[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/generic_action_route.ex" mtime=1786284246000 contentLen=1028
+[37m2026-08-10 01:41:28.580[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/post.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/post.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:28.580[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:28.580[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/patch.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/patch.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:28.580[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:28.581[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/delete.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/delete.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:28.581[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:28.583[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/post.ex" mtime=1786284246000 contentLen=923
+[37m2026-08-10 01:41:28.585[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/patch.ex" mtime=1786284246000 contentLen=924
+[37m2026-08-10 01:41:28.587[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/delete.ex" mtime=1786284246000 contentLen=926
+[37m2026-08-10 01:41:31.125[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/helpers.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/helpers.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:31.126[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:31.131[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/helpers.ex" mtime=1786284246000 contentLen=30000
+[37m2026-08-10 01:41:38.927[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/helpers.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/helpers.ex" isVirtual=false cacheExists=true shouldCache=true startLine=700 endLine=undefined
+[37m2026-08-10 01:41:38.927[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786284246000}
+[37m2026-08-10 01:41:38.928[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/post_to_relationship.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/post_to_relationship.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:38.928[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:38.928[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/no_route_found.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/no_route_found.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:38.928[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:38.934[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/helpers.ex" mtime=1786284246000 contentLen=14248
+[37m2026-08-10 01:41:38.941[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/post_to_relationship.ex" mtime=1786284246000 contentLen=1815
+[37m2026-08-10 01:41:38.947[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/no_route_found.ex" mtime=1786284246000 contentLen=770
+[37m2026-08-10 01:41:42.450[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/response.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/response.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:42.450[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:42.450[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/error.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/error.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:42.450[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:42.457[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/response.ex" mtime=1786284246000 contentLen=4143
+[37m2026-08-10 01:41:42.463[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/error.ex" mtime=1786284246000 contentLen=12051
+[37m2026-08-10 01:41:46.788[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/documentation/tutorials/getting-started-with-ash-json-api.md" resolvedPath="/home/user/kbapi/deps/ash_json_api/documentation/tutorials/getting-started-with-ash-json-api.md" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:46.788[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:46.788[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/includes/parser.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/includes/parser.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:46.788[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:46.791[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/documentation/tutorials/getting-started-with-ash-json-api.md" mtime=1786284246000 contentLen=6308
+[37m2026-08-10 01:41:46.794[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/includes/parser.ex" mtime=1786284246000 contentLen=2484
+[37m2026-08-10 01:41:49.978[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/serializer.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/serializer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:49.979[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:49.985[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/serializer.ex" mtime=1786284246000 contentLen=30000
+[37m2026-08-10 01:41:55.710[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/serializer.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/serializer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=740 endLine=undefined
+[37m2026-08-10 01:41:55.710[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786284246000}
+[37m2026-08-10 01:41:55.711[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/info.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/info.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:41:55.711[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:41:55.720[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/serializer.ex" mtime=1786284246000 contentLen=17849
+[37m2026-08-10 01:41:55.727[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/info.ex" mtime=1786284246000 contentLen=9944
+[37m2026-08-10 01:42:01.769[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/test/test.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/test/test.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:01.769[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:01.769[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/plug_helpers.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/plug_helpers.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:01.770[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:01.776[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/test/test.ex" mtime=1786284246000 contentLen=15949
+[37m2026-08-10 01:42:01.783[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/plug_helpers.ex" mtime=1786284246000 contentLen=9118
+[37m2026-08-10 01:42:09.347[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/get_relationship.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/get_relationship.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:09.347[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:09.347[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/patch_relationship.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/patch_relationship.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:09.347[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:09.347[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/delete_from_relationship.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/delete_from_relationship.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:09.347[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:09.347[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/get_related.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/get_related.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:09.347[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:09.352[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/get_relationship.ex" mtime=1786284246000 contentLen=1185
+[37m2026-08-10 01:42:09.357[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/patch_relationship.ex" mtime=1786284246000 contentLen=1810
+[37m2026-08-10 01:42:09.361[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/delete_from_relationship.ex" mtime=1786284246000 contentLen=1819
+[37m2026-08-10 01:42:09.364[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/get_related.ex" mtime=1786284246000 contentLen=1439
+[37m2026-08-10 01:42:18.173[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_body.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_body.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:18.173[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:18.173[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/missing_type_on_create.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/missing_type_on_create.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:18.173[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:18.174[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_includes.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_includes.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:18.174[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:18.174[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_sort.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_sort.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:18.174[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:18.174[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_filter.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_filter.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:18.174[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:18.194[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_body.ex" mtime=1786284246000 contentLen=1095
+[37m2026-08-10 01:42:18.200[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/missing_type_on_create.ex" mtime=1786284246000 contentLen=916
+[37m2026-08-10 01:42:18.203[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_includes.ex" mtime=1786284246000 contentLen=861
+[37m2026-08-10 01:42:18.209[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_sort.ex" mtime=1786284246000 contentLen=1168
+[37m2026-08-10 01:42:18.212[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_filter.ex" mtime=1786284246000 contentLen=1101
+[37m2026-08-10 01:42:26.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/unacceptable_media_type.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/unacceptable_media_type.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:26.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:26.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/unsupported_media_type.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/unsupported_media_type.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:26.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:26.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_query.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_query.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:26.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:26.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/conflicting_params.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/conflicting_params.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:26.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:26.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/not_found.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/not_found.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:26.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:26.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/route.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/route.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:26.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:26.521[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/unacceptable_media_type.ex" mtime=1786284246000 contentLen=739
+[37m2026-08-10 01:42:26.525[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/invalid_query.ex" mtime=1786284246000 contentLen=1090
+[37m2026-08-10 01:42:26.528[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/unsupported_media_type.ex" mtime=1786284246000 contentLen=745
+[37m2026-08-10 01:42:26.532[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/conflicting_params.ex" mtime=1786284246000 contentLen=894
+[37m2026-08-10 01:42:26.535[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/error/not_found.ex" mtime=1786284246000 contentLen=1574
+[37m2026-08-10 01:42:26.593[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/route.ex" mtime=1786284246000 contentLen=767
+[37m2026-08-10 01:42:31.816[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/open_api.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/open_api.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:31.816[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:31.816[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/schema.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/schema.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:31.816[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:31.817[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/persisters/define_router.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/persisters/define_router.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:42:31.817[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:42:31.826[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/open_api.ex" mtime=1786284246000 contentLen=1252
+[37m2026-08-10 01:42:31.833[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/controllers/schema.ex" mtime=1786284246000 contentLen=650
+[37m2026-08-10 01:42:31.839[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/persisters/define_router.ex" mtime=1786284246000 contentLen=2763
+[37m2026-08-10 01:42:36.264[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/request.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/request.ex" isVirtual=false cacheExists=true shouldCache=true startLine=740 endLine=undefined
+[37m2026-08-10 01:42:36.265[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786284246000}
+[37m2026-08-10 01:42:36.278[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/request.ex" mtime=1786284246000 contentLen=21950
+[37m2026-08-10 01:44:02.237[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/plug/lib/plug/router.ex" resolvedPath="/home/user/kbapi/deps/plug/lib/plug/router.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:44:02.238[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:44:02.270[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/plug/lib/plug/router.ex" mtime=1786284246000 contentLen=21178
+[37m2026-08-10 01:46:23.854[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/error defmodule Ash\.Error\.Action\.InvalidArgument [90mundefined[39m
+[37m2026-08-10 01:46:23.855[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmodule Ash\\.Error\\.Action\\.InvalidArgument'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/error'[39m
+]
+[37m2026-08-10 01:46:27.468[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/error/action/invalid_argument.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/error/action/invalid_argument.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:46:27.468[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:46:27.490[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/error/action/invalid_argument.ex" mtime=1786284246000 contentLen=713
+[37m2026-08-10 01:46:31.479[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/error/changes/invalid_attribute.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/error/changes/invalid_attribute.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:46:31.479[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:46:31.480[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/error/changes/required.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/error/changes/required.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:46:31.480[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:46:31.500[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/error/changes/invalid_attribute.ex" mtime=1786284246000 contentLen=1025
+[37m2026-08-10 01:46:31.515[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/error/changes/required.ex" mtime=1786284246000 contentLen=400
+[37m2026-08-10 01:46:47.612[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/transformers/prepend_route_prefix.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/transformers/prepend_route_prefix.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:46:47.612[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:46:47.613[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/transformers/set_base_routes.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/transformers/set_base_routes.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:46:47.613[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:46:47.634[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/transformers/prepend_route_prefix.ex" mtime=1786284246000 contentLen=1167
+[37m2026-08-10 01:46:47.642[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/transformers/set_base_routes.ex" mtime=1786284246000 contentLen=2049
+[37m2026-08-10 01:47:49.207[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/query def for_read [90mundefined[39m
+[37m2026-08-10 01:47:49.208[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def for_read'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/query'[39m
+]
+[37m2026-08-10 01:47:52.681[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/query/query.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/query/query.ex" isVirtual=false cacheExists=true shouldCache=true startLine=863 endLine=940
+[37m2026-08-10 01:47:52.681[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:47:52.717[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/query/query.ex" mtime=1786284246000 contentLen=2422
+[37m2026-08-10 01:47:56.362[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/query defp cast_params [90mundefined[39m
+[37m2026-08-10 01:47:56.362[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defp cast_params'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/query'[39m
+]
+[37m2026-08-10 01:48:07.126[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/query/query.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/query/query.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1049 endLine=1110
+[37m2026-08-10 01:48:07.127[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=863, endLine=940, timestamp=1786284246000}
+[37m2026-08-10 01:48:07.150[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/query/query.ex" mtime=1786284246000 contentLen=1914
+[37m2026-08-10 01:48:37.762[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash skip_unknown_inputs *.ex
+[37m2026-08-10 01:48:37.763[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'skip_unknown_inputs'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash'[39m
+]
+[37m2026-08-10 01:48:41.612[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/resource/actions/read.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/resource/actions/read.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=60
+[37m2026-08-10 01:48:41.612[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:48:41.638[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/resource/actions/read.ex" mtime=1786284246000 contentLen=1907
+[37m2026-08-10 01:49:57.101[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/resource/actions/read.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/resource/actions/read.ex" isVirtual=false cacheExists=true shouldCache=true startLine=60 endLine=undefined
+[37m2026-08-10 01:49:57.101[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=60, timestamp=1786284246000}
+[37m2026-08-10 01:49:57.138[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/resource/actions/read.ex" mtime=1786284246000 contentLen=6684
+[37m2026-08-10 01:50:02.272[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/resource/actions defmodule Ash\.Resource\.Actions\.SharedOptions *.ex
+[37m2026-08-10 01:50:02.272[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'defmodule Ash\\.Resource\\.Actions\\.SharedOptions'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/resource/actions'[39m
+]
+[37m2026-08-10 01:50:12.828[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/resource/actions/shared_options.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/resource/actions/shared_options.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 01:50:12.828[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:50:12.861[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/resource/actions/shared_options.ex" mtime=1786284246000 contentLen=3724
+[37m2026-08-10 01:50:16.561[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/resource defmodule Ash\.Resource\.Actions *.ex
+[37m2026-08-10 01:50:16.561[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'defmodule Ash\\.Resource\\.Actions'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/resource'[39m
+]
+[37m2026-08-10 01:50:20.841[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/resource/actions/actions.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/resource/actions/actions.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=200
+[37m2026-08-10 01:50:20.841[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:50:20.878[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/resource/actions/actions.ex" mtime=1786284246000 contentLen=434
+[37m2026-08-10 01:50:26.379[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/resource @read .*Spark.Dsl.Entity *.ex
+[37m2026-08-10 01:50:26.380[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'@read .*Spark.Dsl.Entity'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/resource'[39m
+]
+[37m2026-08-10 01:50:31.311[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex" isVirtual=false cacheExists=true shouldCache=true startLine=657 endLine=780
+[37m2026-08-10 01:50:31.312[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:50:31.348[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex" mtime=1786284246000 contentLen=2996
+[37m2026-08-10 01:50:34.514[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex @pagination [90mundefined[39m
+[37m2026-08-10 01:50:34.514[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'@pagination'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex'[39m
+]
+[37m2026-08-10 01:50:37.774[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex" isVirtual=false cacheExists=true shouldCache=true startLine=647 endLine=657
+[37m2026-08-10 01:50:37.774[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=657, endLine=780, timestamp=1786284246000}
+[37m2026-08-10 01:50:37.830[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex" mtime=1786284246000 contentLen=335
+[37m2026-08-10 01:50:45.469[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex sorting [90mundefined[39m
+[37m2026-08-10 01:50:45.470[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'sorting'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex'[39m
+]
+[37m2026-08-10 01:51:56.824[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/actions defp page_request [90mundefined[39m
+[37m2026-08-10 01:51:56.824[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defp page_request'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/actions'[39m
+]
+[37m2026-08-10 01:52:00.908[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash paginate_by_default *.ex
+[37m2026-08-10 01:52:00.908[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'paginate_by_default'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash'[39m
+]
+[37m2026-08-10 01:52:07.033[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/actions/read/read.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/actions/read/read.ex" isVirtual=false cacheExists=true shouldCache=true startLine=3930 endLine=3980
+[37m2026-08-10 01:52:07.033[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:52:07.082[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/actions/read/read.ex" mtime=1786284246000 contentLen=1262
+[37m2026-08-10 01:53:37.500[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash_json_api/lib/ash_json_api/json_schema def route_schema [90mundefined[39m
+[37m2026-08-10 01:53:37.500[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def route_schema'[39m,
+  [32m'/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/json_schema'[39m
+]
+[37m2026-08-10 01:53:45.825[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/json_schema/json_schema.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/json_schema/json_schema.ex" isVirtual=false cacheExists=true shouldCache=true startLine=69 endLine=200
+[37m2026-08-10 01:53:45.825[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:53:45.908[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/json_schema/json_schema.ex" mtime=1786284246000 contentLen=4382
+[37m2026-08-10 01:53:53.254[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash_json_api/lib/ash_json_api/json_schema/json_schema.ex defp route_in_schema [90mundefined[39m
+[37m2026-08-10 01:53:53.254[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defp route_in_schema'[39m,
+  [32m'/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/json_schema/json_schema.ex'[39m
+]
+[37m2026-08-10 01:53:56.697[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/json_schema/json_schema.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/json_schema/json_schema.ex" isVirtual=false cacheExists=true shouldCache=true startLine=836 endLine=960
+[37m2026-08-10 01:53:56.697[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=69, endLine=200, timestamp=1786284246000}
+[37m2026-08-10 01:53:56.761[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/json_schema/json_schema.ex" mtime=1786284246000 contentLen=4115
+[37m2026-08-10 01:56:37.900[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/plug/lib/plug/builder.ex" resolvedPath="/home/user/kbapi/deps/plug/lib/plug/builder.ex" isVirtual=false cacheExists=true shouldCache=true startLine=260 endLine=undefined
+[37m2026-08-10 01:56:37.901[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:56:38.036[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/plug/lib/plug/builder.ex" mtime=1786284246000 contentLen=5768
+[37m2026-08-10 01:58:03.093[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/actions/read/read.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/actions/read/read.ex" isVirtual=false cacheExists=true shouldCache=true startLine=3975 endLine=4060
+[37m2026-08-10 01:58:03.093[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=3930, endLine=3980, timestamp=1786284246000}
+[37m2026-08-10 01:58:04.066[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/actions/read/read.ex" mtime=1786284246000 contentLen=2159
+[37m2026-08-10 01:58:43.130[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/resource.ex authorizers|extensions [90mundefined[39m
+[37m2026-08-10 01:58:43.131[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'authorizers|extensions'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/resource.ex'[39m
+]
+[37m2026-08-10 01:58:47.296[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/resource.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/resource.ex" isVirtual=false cacheExists=true shouldCache=true startLine=15 endLine=35
+[37m2026-08-10 01:58:47.296[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 01:58:47.425[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/resource.ex" mtime=1786284246000 contentLen=590
+[37m2026-08-10 02:00:31.657[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash.ex def read_one [90mundefined[39m
+[37m2026-08-10 02:00:31.657[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def read_one'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash.ex'[39m
+]
+[37m2026-08-10 02:00:39.519[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash.ex" isVirtual=false cacheExists=true shouldCache=true startLine=3073 endLine=3120
+[37m2026-08-10 02:00:39.519[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:00:39.711[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash.ex" mtime=1786284246000 contentLen=1762
+[37m2026-08-10 02:00:50.713[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash simple_sat|SimpleSat|sat_solver *.ex
+[37m2026-08-10 02:00:50.713[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'simple_sat|SimpleSat|sat_solver'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash'[39m
+]
+[37m2026-08-10 02:00:55.489[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash defp sat_solver *.ex
+[37m2026-08-10 02:00:55.490[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'defp sat_solver'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash'[39m
+]
+[37m2026-08-10 02:00:59.707[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash Code.ensure_loaded.*SimpleSat|Ash.SatSolver *.ex
+[37m2026-08-10 02:00:59.708[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'Code.ensure_loaded.*SimpleSat|Ash.SatSolver'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash'[39m
+]
+[37m2026-08-10 02:01:16.677[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/sat_solver.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/sat_solver.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=55
+[37m2026-08-10 02:01:16.677[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:01:16.867[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/sat_solver.ex" mtime=1786284246000 contentLen=1563
+[37m2026-08-10 02:01:26.479[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/simple_sat/lib/simple_sat.ex" resolvedPath="/home/user/kbapi/deps/simple_sat/lib/simple_sat.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:01:26.480[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:01:26.787[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/simple_sat/lib/simple_sat.ex" mtime=1786284246000 contentLen=4285
+[37m2026-08-10 02:01:33.822[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/policy defp sat_solver|solver\(\)|SimpleSat *.ex
+[37m2026-08-10 02:01:33.822[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'defp sat_solver|solver\\(\\)|SimpleSat'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/policy'[39m
+]
+[37m2026-08-10 02:01:41.535[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash defp solver|def solver *.ex
+[37m2026-08-10 02:01:41.535[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'defp solver|def solver'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash'[39m
+]
+[37m2026-08-10 02:01:45.799[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash Crux.solve|sat_solver *.ex
+[37m2026-08-10 02:01:45.799[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'Crux.solve|sat_solver'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash'[39m
+]
+[37m2026-08-10 02:01:50.025[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/crux/lib SimpleSat|simple_sat [90mundefined[39m
+[37m2026-08-10 02:01:50.025[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'SimpleSat|simple_sat'[39m,
+  [32m'/home/user/kbapi/deps/crux/lib'[39m
+]
+[37m2026-08-10 02:02:36.595[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/policy defmodule Ash\.Policy *.ex
+[37m2026-08-10 02:02:36.596[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'defmodule Ash\\.Policy'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/policy'[39m
+]
+[37m2026-08-10 02:02:46.083[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/policy/check/built_in_checks.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/policy/check/built_in_checks.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:02:46.083[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:02:46.457[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/policy/check/built_in_checks.ex" mtime=1786284246000 contentLen=11047
+[37m2026-08-10 02:02:50.713[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/policy/authorizer/authorizer.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/policy/authorizer/authorizer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=1 endLine=100
+[37m2026-08-10 02:02:50.714[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:02:51.478[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/policy/authorizer/authorizer.ex" mtime=1786284246000 contentLen=2690
+[37m2026-08-10 02:02:55.216[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/policy/authorizer/authorizer.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/policy/authorizer/authorizer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=200 endLine=300
+[37m2026-08-10 02:02:55.217[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=1, endLine=100, timestamp=1786284246000}
+[37m2026-08-10 02:02:55.580[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/policy/authorizer/authorizer.ex" mtime=1786284246000 contentLen=2694
+[37m2026-08-10 02:03:00.003[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/policy/authorizer/authorizer.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/policy/authorizer/authorizer.ex" isVirtual=false cacheExists=true shouldCache=true startLine=300 endLine=380
+[37m2026-08-10 02:03:00.003[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=200, endLine=300, timestamp=1786284246000}
+[37m2026-08-10 02:03:00.472[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/policy/authorizer/authorizer.ex" mtime=1786284246000 contentLen=2691
+[37m2026-08-10 02:03:55.234[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex @prepare [90mundefined[39m
+[37m2026-08-10 02:03:55.235[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'@prepare'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex'[39m
+]
+[37m2026-08-10 02:04:14.345[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex" isVirtual=false cacheExists=true shouldCache=true startLine=585 endLine=650
+[37m2026-08-10 02:04:14.346[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=647, endLine=657, timestamp=1786284246000}
+[37m2026-08-10 02:04:14.556[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/resource/dsl.ex" mtime=1786284246000 contentLen=1746
+[37m2026-08-10 02:04:27.906[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/resource/preparation.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/resource/preparation.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:04:27.906[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:04:38.396[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/resource defmodule Ash.Resource.Preparation [90mundefined[39m
+[37m2026-08-10 02:04:38.396[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'defmodule Ash.Resource.Preparation'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/resource'[39m
+]
+[37m2026-08-10 02:04:43.297[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash/lib/ash/resource/preparation/preparation.ex" resolvedPath="/home/user/kbapi/deps/ash/lib/ash/resource/preparation/preparation.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:04:43.298[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:04:43.539[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash/lib/ash/resource/preparation/preparation.ex" mtime=1786284246000 contentLen=4785
+[37m2026-08-10 02:05:05.278[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/query def sort\(|defmacro sort\( [90mundefined[39m
+[37m2026-08-10 02:05:05.292[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def sort\\(|defmacro sort\\('[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/query'[39m
+]
+[37m2026-08-10 02:05:13.104[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/query def filter\(|defmacro filter\( [90mundefined[39m
+[37m2026-08-10 02:05:13.104[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'def filter\\(|defmacro filter\\('[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/query'[39m
+]
+[37m2026-08-10 02:08:45.668[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/domain.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/domain.ex" isVirtual=false cacheExists=true shouldCache=true startLine=22 endLine=70
+[37m2026-08-10 02:08:45.669[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786284246000}
+[37m2026-08-10 02:09:01.703[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/domain/domain.ex" mtime=1786284246000 contentLen=2006
+[37m2026-08-10 02:11:01.869[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/resource.ex" resolvedPath="/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/resource.ex" isVirtual=false cacheExists=true shouldCache=true startLine=8 endLine=20
+[37m2026-08-10 02:11:01.869[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786284246000}
+[37m2026-08-10 02:11:02.572[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/ash_json_api/lib/ash_json_api/resource/resource.ex" mtime=1786284246000 contentLen=354
+[37m2026-08-10 02:11:19.119[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="/home/user/kbapi/deps/spark/lib/spark/dsl/extension/entity_option.ex" resolvedPath="/home/user/kbapi/deps/spark/lib/spark/dsl/extension/entity_option.ex" isVirtual=false cacheExists=true shouldCache=true startLine=30 endLine=60
+[37m2026-08-10 02:11:19.119[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState=undefined
+[37m2026-08-10 02:11:23.354[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/deps/spark/lib/spark/dsl/extension/entity_option.ex" mtime=1786284246000 contentLen=1014
+[37m2026-08-10 02:14:26.919[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: path="lib/kbapi/knowledge.ex" resolvedPath="/home/user/kbapi/lib/kbapi/knowledge.ex" isVirtual=false cacheExists=true shouldCache=true startLine=undefined endLine=undefined
+[37m2026-08-10 02:14:26.919[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: existingState={startLine=undefined, endLine=undefined, timestamp=1786327604586}
+[37m2026-08-10 02:14:27.247[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531688[39m[0m[0m[1m[37m	FileStateCache[39m[22m[0m[0m	withReadFileCache: populating cache for "/home/user/kbapi/lib/kbapi/knowledge.ex" mtime=1786327759340 contentLen=1687
+[37m2026-08-10 02:18:21.259[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash defmacro actor\( *.ex
+[37m2026-08-10 02:18:21.259[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'--glob'[39m,
+  [32m'*.ex'[39m,
+  [32m'defmacro actor\\('[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash'[39m
+]
+[37m2026-08-10 02:18:50.026[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	searchFiles /home/user/kbapi/deps/ash/lib/ash/expr actor [90mundefined[39m
+[37m2026-08-10 02:18:50.026[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m/$bunfs/root/pochi:531736[39m[0m[0m[1m[37m	RipgrepUtils[39m[22m[0m[0m	command /usr/bin/rg [
+  [32m'--json'[39m,
+  [32m'--case-sensitive'[39m,
+  [32m'--binary'[39m,
+  [32m'--sortr'[39m,
+  [32m'modified'[39m,
+  [32m'actor'[39m,
+  [32m'/home/user/kbapi/deps/ash/lib/ash/expr'[39m
+]

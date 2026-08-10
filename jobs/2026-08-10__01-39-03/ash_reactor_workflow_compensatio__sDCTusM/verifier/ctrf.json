@@ -1,0 +1,344 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-09T18:20:21.390949+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 35,
+            "passed": 35,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786299590769,
+            "stop": 1786299621390
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_t01_the_fleet_domain_exposes_the_five_rollout_resources",
+                "status": "passed",
+                "duration": 30592,
+                "start": 1786299590780,
+                "stop": 1786299621372,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_resource_attributes_have_the_required_types_and_defaults",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299621373,
+                "stop": 1786299621374,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_the_rollout_reactor_declares_the_four_documented_inputs",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299621374,
+                "stop": 1786299621375,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_the_rollout_reactor_installs_a_bespoke_middleware_module",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621375,
+                "stop": 1786299621375,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_resource_work_is_performed_through_ash_reactor_action_steps",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621376,
+                "stop": 1786299621376,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_the_reactor_maps_over_targets_and_composes_the_approval_reactor",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299621376,
+                "stop": 1786299621377,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_the_deployment_step_implements_the_reactor_step_callbacks",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621377,
+                "stop": 1786299621377,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_the_approval_reactor_branches_with_a_switch_step",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621378,
+                "stop": 1786299621378,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_the_planning_action_summarises_the_targets",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299621378,
+                "stop": 1786299621379,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_the_planning_action_rejects_an_empty_target_list",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621379,
+                "stop": 1786299621379,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_the_planning_action_rejects_duplicate_node_names",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299621380,
+                "stop": 1786299621381,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_the_planning_action_rejects_non_positive_slot_counts",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621381,
+                "stop": 1786299621381,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_a_clean_rollout_returns_the_documented_result_map",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299621381,
+                "stop": 1786299621382,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_the_rollout_summary_is_rendered_exactly",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621382,
+                "stop": 1786299621382,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_a_clean_rollout_leaves_every_target_node_live_and_reserved",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299621382,
+                "stop": 1786299621383,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_a_clean_rollout_deploys_every_placement_exactly_once",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621383,
+                "stop": 1786299621383,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_a_clean_rollout_is_marked_succeeded",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621383,
+                "stop": 1786299621383,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_a_clean_rollout_releases_its_lease_and_keeps_the_approval_granted",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299621383,
+                "stop": 1786299621384,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_the_middleware_records_the_reactor_lifecycle_of_a_clean_run",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621384,
+                "stop": 1786299621384,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_a_large_rollout_requires_board_approval",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621384,
+                "stop": 1786299621384,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t21_the_approval_reactor_runs_standalone_and_switches_on_the_total",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621385,
+                "stop": 1786299621385,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_a_transiently_failing_node_is_retried_until_it_deploys",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621385,
+                "stop": 1786299621385,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_retry_and_compensation_counters_are_recorded_per_placement",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299621385,
+                "stop": 1786299621386,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_each_failed_attempt_is_compensated_before_the_next_one_starts",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621386,
+                "stop": 1786299621386,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_exhausting_the_retry_budget_fails_the_rollout",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621386,
+                "stop": 1786299621386,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_a_failed_rollout_returns_every_node_to_its_original_capacity",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299621386,
+                "stop": 1786299621387,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t27_a_failed_rollout_undoes_only_the_placements_that_had_deployed",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621387,
+                "stop": 1786299621387,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t28_a_failed_rollout_rolls_back_the_rollout_lease_and_approval",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621387,
+                "stop": 1786299621387,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t29_the_trace_records_one_undo_per_unit_of_completed_work",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621388,
+                "stop": 1786299621388,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t30_rollback_only_begins_once_the_failing_step_is_out_of_attempts",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621388,
+                "stop": 1786299621388,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t31_deployments_run_two_at_a_time",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299621388,
+                "stop": 1786299621389,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t32_an_impossible_reservation_aborts_before_any_deployment_starts",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621389,
+                "stop": 1786299621389,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t33_an_unknown_target_node_aborts_and_releases_everything",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621389,
+                "stop": 1786299621389,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t34_a_later_rollout_still_succeeds_after_a_failed_one",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786299621389,
+                "stop": 1786299621390,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t35_the_trace_can_be_reset",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786299621390,
+                "stop": 1786299621390,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

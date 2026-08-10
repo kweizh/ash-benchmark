@@ -1,0 +1,470 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-10T02:20:34.324892+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 49,
+            "passed": 49,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786328374512,
+            "stop": 1786328434324
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_project_compiles",
+                "status": "passed",
+                "duration": 59703,
+                "start": 1786328374528,
+                "stop": 1786328434231,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_codegen_reports_no_pending_changes",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434231,
+                "stop": 1786328434232,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_ash_reset_rebuilds_the_database",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434232,
+                "stop": 1786328434232,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_probe_suite_executed",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434233,
+                "stop": 1786328434233,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t01_public_schema_contains_exactly_the_five_tables",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434233,
+                "stop": 1786328434234,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t02_citext_uuid_ossp_and_ash_functions_installed",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434234,
+                "stop": 1786328434235,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t03_carriers_columns",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434235,
+                "stop": 1786328434236,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t04_warehouses_columns",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434236,
+                "stop": 1786328434237,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t05_shipments_columns",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434237,
+                "stop": 1786328434238,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t06_scheduled_for_is_timestamptz",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434238,
+                "stop": 1786328434239,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t07_booked_at_defaults_to_now",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434239,
+                "stop": 1786328434240,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t08_parcels_and_shipment_legs_columns",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434240,
+                "stop": 1786328434241,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t09_primary_keys",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434241,
+                "stop": 1786328434242,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t10_shipments_foreign_keys",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434242,
+                "stop": 1786328434243,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t11_parcels_and_leg_foreign_keys",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434243,
+                "stop": 1786328434244,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t12_exactly_five_foreign_keys",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434245,
+                "stop": 1786328434245,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t13_foreign_key_backing_indexes",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434246,
+                "stop": 1786328434246,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t14_carriers_partial_unique_index",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434247,
+                "stop": 1786328434247,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t15_warehouses_partial_unique_index",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434247,
+                "stop": 1786328434248,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t16_single_fragile_parcel_partial_index",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434248,
+                "stop": 1786328434249,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t17_remaining_unique_indexes",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434249,
+                "stop": 1786328434249,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t18_no_unexpected_indexes",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434249,
+                "stop": 1786328434250,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t19_check_constraints",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434250,
+                "stop": 1786328434251,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t20_generated_migrations_and_snapshots",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434251,
+                "stop": 1786328434251,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t21_repo_contract",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434252,
+                "stop": 1786328434252,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t22_resources_wired_to_postgres",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434253,
+                "stop": 1786328434253,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t23_carrier_code_unique_case_insensitively",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434253,
+                "stop": 1786328434254,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t24_carrier_code_reads_case_insensitively",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434254,
+                "stop": 1786328434255,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t25_retired_carriers_are_hidden_and_free_their_code",
+                "status": "passed",
+                "duration": 52,
+                "start": 1786328434255,
+                "stop": 1786328434307,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t26_warehouse_codes_unique_among_active",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434307,
+                "stop": 1786328434308,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t27_warehouse_capacity_check_constraint",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434308,
+                "stop": 1786328434309,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t28_shipment_declared_value_check_constraint",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434309,
+                "stop": 1786328434310,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t29_parcel_weight_check_constraint",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434311,
+                "stop": 1786328434311,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t30_leg_sequence_check_constraint",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434312,
+                "stop": 1786328434312,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t31_shipment_reference_unique",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434313,
+                "stop": 1786328434313,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t32_parcel_tracking_code_unique",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434314,
+                "stop": 1786328434315,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t33_single_fragile_parcel_per_shipment",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434315,
+                "stop": 1786328434315,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t34_leg_sequence_unique_per_shipment",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434315,
+                "stop": 1786328434316,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t35_carrier_destroy_restricted",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434316,
+                "stop": 1786328434317,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t36_warehouse_destroy_restricted",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434317,
+                "stop": 1786328434317,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t37_shipment_destroy_cascades",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434318,
+                "stop": 1786328434318,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t38_origin_warehouse_destroy_nilifies",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434318,
+                "stop": 1786328434319,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t39_intake_rolls_back_on_rejected_parcel",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434319,
+                "stop": 1786328434320,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t40_intake_commits_shipment_with_parcels",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434320,
+                "stop": 1786328434320,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t41_aggregates_are_filterable",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434320,
+                "stop": 1786328434321,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t42_heavy_calculation_is_filterable",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434321,
+                "stop": 1786328434322,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t43_aggregate_read_hits_the_database_once",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434322,
+                "stop": 1786328434322,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t44_booked_at_default_and_scheduled_for_roundtrip",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786328434323,
+                "stop": 1786328434323,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_t45_repo_transaction_rollback_writes_nothing",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786328434323,
+                "stop": 1786328434324,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

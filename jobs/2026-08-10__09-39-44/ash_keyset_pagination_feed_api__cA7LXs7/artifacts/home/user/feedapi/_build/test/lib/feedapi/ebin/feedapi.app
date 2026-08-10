@@ -1,0 +1,13 @@
+{application,feedapi,
+             [{modules,['Elixir.Feed.Timeline',
+                        'Elixir.Feed.Timeline.Activity',
+                        'Elixir.Feed.Timeline.Author',
+                        'Elixir.Feed.Timeline.Reaction',
+                        'Elixir.Inspect.Feed.Timeline.Activity',
+                        'Elixir.Inspect.Feed.Timeline.Author',
+                        'Elixir.Inspect.Feed.Timeline.Reaction']},
+              {optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger,ash,jason]},
+              {description,"feedapi"},
+              {registered,[]},
+              {vsn,"0.1.0"}]}.

@@ -1,0 +1,30 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.3
+collected 22 items
+
+../bootstrap/test_initial_state.py::test_elixir_toolchain_available PASSED
+../bootstrap/test_initial_state.py::test_elixir_runs PASSED
+../bootstrap/test_initial_state.py::test_postgres_client_tools_available PASSED
+../bootstrap/test_initial_state.py::test_postgres_data_directory_initialised PASSED
+../bootstrap/test_initial_state.py::test_postgres_server_accepts_connections PASSED
+../bootstrap/test_initial_state.py::test_postgres_superuser_login_works PASSED
+../bootstrap/test_initial_state.py::test_citext_and_uuid_ossp_extensions_are_installable_offline PASSED
+../bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+../bootstrap/test_initial_state.py::test_project_scaffold_files_exist PASSED
+../bootstrap/test_initial_state.py::test_mix_project_declares_ash_and_ash_postgres PASSED
+../bootstrap/test_initial_state.py::test_mix_lock_pins_ash_postgres PASSED
+../bootstrap/test_initial_state.py::test_config_declares_repo_domain_and_connection PASSED
+../bootstrap/test_initial_state.py::test_application_module_supervises_the_repo PASSED
+../bootstrap/test_initial_state.py::test_dependencies_are_prefetched_and_precompiled PASSED
+../bootstrap/test_initial_state.py::test_hex_is_configured_for_offline_use PASSED
+../bootstrap/test_initial_state.py::test_repo_module_not_yet_written PASSED
+../bootstrap/test_initial_state.py::test_domain_module_not_yet_written PASSED
+../bootstrap/test_initial_state.py::test_no_resource_modules_present PASSED
+../bootstrap/test_initial_state.py::test_no_migrations_present PASSED
+../bootstrap/test_initial_state.py::test_no_resource_snapshots_present PASSED
+../bootstrap/test_initial_state.py::test_target_database_does_not_exist_yet PASSED
+../bootstrap/test_initial_state.py::test_mix_can_run_offline PASSED
+
+============================= 22 passed in 13.45s ==============================

@@ -1,0 +1,1904 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 52 items
+
+../../../tests/test_final_state.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF [ 71%]
+FFFFFFFFFFFFFFF                                                          [100%]
+
+=================================== FAILURES ===================================
+_ test_t01_index_route_returns_every_fixture_article_as_a_json_api_resource_object _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t01_index_route_returns_every_fixture_article_as_a_json_api_resource_object(suite):
+>       _check(suite, "T01")
+
+/tests/test_final_state.py:987: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T01'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T01 index route returns every fixture article as a json:api resource object did not pass (failed):
+E           1) test T01 index route returns every fixture article as a json:api resource object (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:141
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:144: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+exit code: 0
+stdout (last 8000 chars):
+
+stderr (last 8000 chars):
+    warning: Kbapi.Api.Endpoint.call/2 is undefined (module Kbapi.Api.Endpoint is not available or is yet to be defined)
+    │
+ 75 │         result = @endpoint.call(conn, @endpoint.init([]))
+    │                            ~
+    │
+    └─ /tmp/harbor_jsonapi_test.exs:75:28: H.request/3
+
+    warning: Kbapi.Api.Endpoint.init/1 is undefined (module Kbapi.Api.Endpoint is not available or is yet to be defined)
+    │
+ 75 │         result = @endpoint.call(conn, @endpoint.init([]))
+    │                                                 ~
+    │
+    └─ /tmp/harbor_jsonapi_test.exs:75:49: H.request/3
+
+
+_ test_t02_responses_are_served_as_application_vnd_api_json_with_a_jsonapi_version_member _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t02_responses_are_served_as_application_vnd_api_json_with_a_jsonapi_version_member(suite):
+>       _check(suite, "T02")
+
+/tests/test_final_state.py:990: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T02'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T02 responses are served as application/vnd.api+json with a jsonapi version member did not pass (failed):
+E           1) test T02 responses are served as application/vnd.api+json with a jsonapi version member (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:158
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:161: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t03_article_attributes_contain_exactly_the_public_non_aggregate_fields __
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t03_article_attributes_contain_exactly_the_public_non_aggregate_fields(suite):
+>       _check(suite, "T03")
+
+/tests/test_final_state.py:993: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T03'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T03 article attributes contain exactly the public non-aggregate fields did not pass (failed):
+E           1) test T03 article attributes contain exactly the public non-aggregate fields (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:167
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:170: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t04_author_linkage_is_always_rendered_even_without_an_include_parameter _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t04_author_linkage_is_always_rendered_even_without_an_include_parameter(suite):
+>       _check(suite, "T04")
+
+/tests/test_final_state.py:996: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T04'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T04 author linkage is always rendered even without an include parameter did not pass (failed):
+E           1) test T04 author linkage is always rendered even without an include parameter (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:180
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:183: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t05_primary_related_and_relationship_routes_generate_links_on_the_resource_object _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t05_primary_related_and_relationship_routes_generate_links_on_the_resource_object(suite):
+>       _check(suite, "T05")
+
+/tests/test_final_state.py:999: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T05'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T05 primary related and relationship routes generate links on the resource object did not pass (failed):
+E           1) test T05 primary related and relationship routes generate links on the resource object (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:194
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:198: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t06_sparse_fieldsets_restrict_attributes_and_can_select_the_comment_count_aggregate _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t06_sparse_fieldsets_restrict_attributes_and_can_select_the_comment_count_aggregate(suite):
+>       _check(suite, "T06")
+
+/tests/test_final_state.py:1002: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T06'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T06 sparse fieldsets restrict attributes and can select the comment_count aggregate did not pass (failed):
+E           1) test T06 sparse fieldsets restrict attributes and can select the comment_count aggregate (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:209
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:213: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_________ test_t07_sort_supports_descending_order_with_a_leading_dash __________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t07_sort_supports_descending_order_with_a_leading_dash(suite):
+>       _check(suite, "T07")
+
+/tests/test_final_state.py:1005: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T07'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T07 sort supports descending order with a leading dash did not pass (failed):
+E           1) test T07 sort supports descending order with a leading dash (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:221
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:224: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_________ test_t08_an_unknown_sort_field_is_rejected_with_invalid_sort _________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t08_an_unknown_sort_field_is_rejected_with_invalid_sort(suite):
+>       _check(suite, "T08")
+
+/tests/test_final_state.py:1008: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T08'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T08 an unknown sort field is rejected with invalid_sort did not pass (failed):
+E           1) test T08 an unknown sort field is rejected with invalid_sort (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:237
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 400, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:240: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_______ test_t09_filtering_by_a_scalar_attribute_narrows_the_collection ________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t09_filtering_by_a_scalar_attribute_narrows_the_collection(suite):
+>       _check(suite, "T09")
+
+/tests/test_final_state.py:1011: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T09'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T09 filtering by a scalar attribute narrows the collection did not pass (failed):
+E           1) test T09 filtering by a scalar attribute narrows the collection (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:247
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:250: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_____________ test_t10_filtering_across_a_relationship_path_works ______________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t10_filtering_across_a_relationship_path_works(suite):
+>       _check(suite, "T10")
+
+/tests/test_final_state.py:1014: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T10'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T10 filtering across a relationship path works did not pass (failed):
+E           1) test T10 filtering across a relationship path works (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:254
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:257: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_____________ test_t11_filtering_with_a_comparison_operator_works ______________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t11_filtering_with_a_comparison_operator_works(suite):
+>       _check(suite, "T11")
+
+/tests/test_final_state.py:1017: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T11'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T11 filtering with a comparison operator works did not pass (failed):
+E           1) test T11 filtering with a comparison operator works (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:261
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:264: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+________ test_t12_filtering_on_an_unknown_field_is_rejected_with_a_400 _________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t12_filtering_on_an_unknown_field_is_rejected_with_a_400(suite):
+>       _check(suite, "T12")
+
+/tests/test_final_state.py:1020: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T12'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T12 filtering on an unknown field is rejected with a 400 did not pass (failed):
+E           1) test T12 filtering on an unknown field is rejected with a 400 (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:268
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 400, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:271: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+____ test_t13_include_tags_renders_the_tag_resources_in_the_included_member ____
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t13_include_tags_renders_the_tag_resources_in_the_included_member(suite):
+>       _check(suite, "T13")
+
+/tests/test_final_state.py:1023: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T13'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T13 include=tags renders the tag resources in the included member did not pass (failed):
+E           1) test T13 include=tags renders the tag resources in the included member (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:275
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:278: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_____ test_t14_a_multi_hop_include_path_is_accepted_and_renders_both_hops ______
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t14_a_multi_hop_include_path_is_accepted_and_renders_both_hops(suite):
+>       _check(suite, "T14")
+
+/tests/test_final_state.py:1026: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T14'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T14 a multi hop include path is accepted and renders both hops did not pass (failed):
+E           1) test T14 a multi hop include path is accepted and renders both hops (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:293
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:296: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+____ test_t15_an_undeclared_include_path_is_rejected_with_invalid_includes _____
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t15_an_undeclared_include_path_is_rejected_with_invalid_includes(suite):
+>       _check(suite, "T15")
+
+/tests/test_final_state.py:1029: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T15'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T15 an undeclared include path is rejected with invalid_includes did not pass (failed):
+E           1) test T15 an undeclared include path is rejected with invalid_includes (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:306
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 400, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:309: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+__ test_t16_the_article_index_paginates_by_offset_and_advertises_a_next_link ___
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t16_the_article_index_paginates_by_offset_and_advertises_a_next_link(suite):
+>       _check(suite, "T16")
+
+/tests/test_final_state.py:1032: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T16'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T16 the article index paginates by offset and advertises a next link did not pass (failed):
+E           1) test T16 the article index paginates by offset and advertises a next link (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:315
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:318: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+____ test_t17_following_the_offset_next_link_returns_the_remaining_articles ____
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t17_following_the_offset_next_link_returns_the_remaining_articles(suite):
+>       _check(suite, "T17")
+
+/tests/test_final_state.py:1035: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T17'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T17 following the offset next link returns the remaining articles did not pass (failed):
+E           1) test T17 following the offset next link returns the remaining articles (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:326
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert first.status == 200, inspect(first)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:328: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t18_the_feed_route_is_keyset_paginated_and_defaults_to_two_rank_descending_articles _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t18_the_feed_route_is_keyset_paginated_and_defaults_to_two_rank_descending_articles(suite):
+>       _check(suite, "T18")
+
+/tests/test_final_state.py:1038: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T18'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T18 the feed route is keyset paginated and defaults to two rank-descending articles did not pass (failed):
+E           1) test T18 the feed route is keyset paginated and defaults to two rank-descending articles (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:337
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:340: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+______ test_t19_following_the_feed_cursor_returns_the_last_page_and_stops ______
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t19_following_the_feed_cursor_returns_the_last_page_and_stops(suite):
+>       _check(suite, "T19")
+
+/tests/test_final_state.py:1041: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T19'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T19 following the feed cursor returns the last page and stops did not pass (failed):
+E           1) test T19 following the feed cursor returns the last page and stops (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:347
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert first.status == 200, inspect(first)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:349: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_______ test_t20_a_corrupt_keyset_cursor_is_rejected_with_invalid_keyset _______
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t20_a_corrupt_keyset_cursor_is_rejected_with_invalid_keyset(suite):
+>       _check(suite, "T20")
+
+/tests/test_final_state.py:1044: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T20'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T20 a corrupt keyset cursor is rejected with invalid_keyset did not pass (failed):
+E           1) test T20 a corrupt keyset cursor is rejected with invalid_keyset (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:358
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 400, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:361: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+___________ test_t21_the_feed_route_respects_an_explicit_page_limit ____________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t21_the_feed_route_respects_an_explicit_page_limit(suite):
+>       _check(suite, "T21")
+
+/tests/test_final_state.py:1047: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T21'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T21 the feed route respects an explicit page limit did not pass (failed):
+E           1) test T21 the feed route respects an explicit page limit (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:365
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:368: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+___ test_t22_fetching_an_unknown_article_id_returns_a_404_not_found_document ___
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t22_fetching_an_unknown_article_id_returns_a_404_not_found_document(suite):
+>       _check(suite, "T22")
+
+/tests/test_final_state.py:1050: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T22'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T22 fetching an unknown article id returns a 404 not_found document did not pass (failed):
+E           1) test T22 fetching an unknown article id returns a 404 not_found document (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:373
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 404, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:376: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_____ test_t23_the_tag_collection_ignores_filter_and_sort_query_parameters _____
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t23_the_tag_collection_ignores_filter_and_sort_query_parameters(suite):
+>       _check(suite, "T23")
+
+/tests/test_final_state.py:1053: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T23'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T23 the tag collection ignores filter and sort query parameters did not pass (failed):
+E           1) test T23 the tag collection ignores filter and sort query parameters (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:382
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:385: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_________ test_t24_an_editor_can_create_an_article_and_it_is_persisted _________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t24_an_editor_can_create_an_article_and_it_is_persisted(suite):
+>       _check(suite, "T24")
+
+/tests/test_final_state.py:1056: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T24'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T24 an editor can create an article and it is persisted did not pass (failed):
+E           1) test T24 an editor can create an article and it is persisted (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:392
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 201, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:410: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t25_a_missing_required_attribute_produces_a_required_error_with_a_source_pointer _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t25_a_missing_required_attribute_produces_a_required_error_with_a_source_pointer(suite):
+>       _check(suite, "T25")
+
+/tests/test_final_state.py:1059: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T25'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T25 a missing required attribute produces a Required error with a source pointer did not pass (failed):
+E           1) test T25 a missing required attribute produces a Required error with a source pointer (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:420
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 400, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:432: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t26_a_constraint_violation_produces_invalid_attribute_with_the_offending_pointer _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t26_a_constraint_violation_produces_invalid_attribute_with_the_offending_pointer(suite):
+>       _check(suite, "T26")
+
+/tests/test_final_state.py:1062: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T26'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T26 a constraint violation produces invalid_attribute with the offending pointer did not pass (failed):
+E           1) test T26 a constraint violation produces invalid_attribute with the offending pointer (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:439
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 400, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:451: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_______ test_t27_an_attribute_that_is_not_accepted_produces_invalid_body _______
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t27_an_attribute_that_is_not_accepted_produces_invalid_body(suite):
+>       _check(suite, "T27")
+
+/tests/test_final_state.py:1065: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T27'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T27 an attribute that is not accepted produces invalid_body did not pass (failed):
+E           1) test T27 an attribute that is not accepted produces invalid_body (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:458
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 400, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:475: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+____ test_t28_a_create_body_without_data_type_is_rejected_with_missing_type ____
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t28_a_create_body_without_data_type_is_rejected_with_missing_type(suite):
+>       _check(suite, "T28")
+
+/tests/test_final_state.py:1068: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T28'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T28 a create body without data.type is rejected with missing_type did not pass (failed):
+E           1) test T28 a create body without data.type is rejected with missing_type (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:481
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 400, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:492: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t29_creating_an_article_is_forbidden_for_readers_and_anonymous_callers __
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t29_creating_an_article_is_forbidden_for_readers_and_anonymous_callers(suite):
+>       _check(suite, "T29")
+
+/tests/test_final_state.py:1071: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T29'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T29 creating an article is forbidden for readers and anonymous callers did not pass (failed):
+E           1) test T29 creating an article is forbidden for readers and anonymous callers (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:498
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert reader.status == 403, inspect(reader)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:507: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_____________ test_t30_patching_an_article_updates_its_attributes ______________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t30_patching_an_article_updates_its_attributes(suite):
+>       _check(suite, "T30")
+
+/tests/test_final_state.py:1074: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T30'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T30 patching an article updates its attributes did not pass (failed):
+E           1) test T30 patching an article updates its attributes (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:518
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:533: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t31_patching_an_article_can_replace_its_tags_through_data_relationships _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t31_patching_an_article_can_replace_its_tags_through_data_relationships(suite):
+>       _check(suite, "T31")
+
+/tests/test_final_state.py:1077: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T31'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T31 patching an article can replace its tags through data.relationships did not pass (failed):
+E           1) test T31 patching an article can replace its tags through data.relationships (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:541
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:559: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_____________ test_t32_the_publish_route_promotes_a_draft_article ______________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t32_the_publish_route_promotes_a_draft_article(suite):
+>       _check(suite, "T32")
+
+/tests/test_final_state.py:1080: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T32'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T32 the publish route promotes a draft article did not pass (failed):
+E           1) test T32 the publish route promotes a draft article (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:566
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:575: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t33_the_publish_route_refuses_an_archived_article_with_the_documented_message _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t33_the_publish_route_refuses_an_archived_article_with_the_documented_message(suite):
+>       _check(suite, "T33")
+
+/tests/test_final_state.py:1083: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T33'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T33 the publish route refuses an archived article with the documented message did not pass (failed):
+E           1) test T33 the publish route refuses an archived article with the documented message (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:582
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 400, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:591: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t34_delete_removes_an_article_for_editors_and_is_forbidden_for_readers __
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t34_delete_removes_an_article_for_editors_and_is_forbidden_for_readers(suite):
+>       _check(suite, "T34")
+
+/tests/test_final_state.py:1086: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T34'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T34 delete removes an article for editors and is forbidden for readers did not pass (failed):
+E           1) test T34 delete removes an article for editors and is forbidden for readers (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:601
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert denied.status == 403, inspect(denied)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:605: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+______ test_t35_the_related_comments_route_returns_full_comment_resources ______
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t35_the_related_comments_route_returns_full_comment_resources(suite):
+>       _check(suite, "T35")
+
+/tests/test_final_state.py:1089: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T35'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T35 the related comments route returns full comment resources did not pass (failed):
+E           1) test T35 the related comments route returns full comment resources (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:615
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:618: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+___ test_t36_the_relationship_route_returns_bare_resource_identifier_objects ___
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t36_the_relationship_route_returns_bare_resource_identifier_objects(suite):
+>       _check(suite, "T36")
+
+/tests/test_final_state.py:1092: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T36'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T36 the relationship route returns bare resource identifier objects did not pass (failed):
+E           1) test T36 the relationship route returns bare resource identifier objects (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:627
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:630: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+__________ test_t37_posting_to_the_tags_relationship_appends_linkage ___________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t37_posting_to_the_tags_relationship_appends_linkage(suite):
+>       _check(suite, "T37")
+
+/tests/test_final_state.py:1095: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T37'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T37 posting to the tags relationship appends linkage did not pass (failed):
+E           1) test T37 posting to the tags relationship appends linkage (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:637
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:646: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+___________ test_t38_patching_the_tags_relationship_replaces_linkage ___________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t38_patching_the_tags_relationship_replaces_linkage(suite):
+>       _check(suite, "T38")
+
+/tests/test_final_state.py:1098: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T38'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T38 patching the tags relationship replaces linkage did not pass (failed):
+E           1) test T38 patching the tags relationship replaces linkage (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:653
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:662: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t39_deleting_from_the_tags_relationship_removes_only_the_supplied_members _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t39_deleting_from_the_tags_relationship_removes_only_the_supplied_members(suite):
+>       _check(suite, "T39")
+
+/tests/test_final_state.py:1101: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T39'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T39 deleting from the tags relationship removes only the supplied members did not pass (failed):
+E           1) test T39 deleting from the tags relationship removes only the supplied members (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:669
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:678: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t40_relationship_mutations_reject_malformed_payloads_unknown_ids_and_readers _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t40_relationship_mutations_reject_malformed_payloads_unknown_ids_and_readers(suite):
+>       _check(suite, "T40")
+
+/tests/test_final_state.py:1104: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T40'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T40 relationship mutations reject malformed payloads, unknown ids and readers did not pass (failed):
+E           1) test T40 relationship mutations reject malformed payloads, unknown ids and readers (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:685
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert malformed.status == 400, inspect(malformed)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:694: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+__ test_t41_the_reindex_generic_action_route_returns_the_exact_tally_document __
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t41_the_reindex_generic_action_route_returns_the_exact_tally_document(suite):
+>       _check(suite, "T41")
+
+/tests/test_final_state.py:1107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T41'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T41 the reindex generic action route returns the exact tally document did not pass (failed):
+E           1) test T41 the reindex generic action route returns the exact tally document (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:716
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 201, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:719: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+___________ test_t42_the_reindex_route_is_restricted_to_admin_actors ___________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t42_the_reindex_route_is_restricted_to_admin_actors(suite):
+>       _check(suite, "T42")
+
+/tests/test_final_state.py:1110: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T42'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T42 the reindex route is restricted to admin actors did not pass (failed):
+E           1) test T42 the reindex route is restricted to admin actors (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:723
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert editor.status == 403, inspect(editor)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:725: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+____ test_t43_the_tally_route_wraps_its_result_and_validates_its_arguments _____
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t43_the_tally_route_wraps_its_result_and_validates_its_arguments(suite):
+>       _check(suite, "T43")
+
+/tests/test_final_state.py:1113: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T43'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T43 the tally route wraps its result and validates its arguments did not pass (failed):
+E           1) test T43 the tally route wraps its result and validates its arguments (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:732
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert ok.status == 200, inspect(ok)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:734: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+__________ test_t44_the_moderation_base_route_lists_pending_comments ___________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t44_the_moderation_base_route_lists_pending_comments(suite):
+>       _check(suite, "T44")
+
+/tests/test_final_state.py:1116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T44'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T44 the moderation base route lists pending comments did not pass (failed):
+E           1) test T44 the moderation base route lists pending comments (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:750
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:753: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+__ test_t45_the_moderation_approve_route_approves_a_comment_and_is_restricted __
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t45_the_moderation_approve_route_approves_a_comment_and_is_restricted(suite):
+>       _check(suite, "T45")
+
+/tests/test_final_state.py:1119: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T45'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T45 the moderation approve route approves a comment and is restricted did not pass (failed):
+E           1) test T45 the moderation approve route approves a comment and is restricted (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:757
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert denied.status == 403, inspect(denied)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:766: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+__ test_t46_the_author_related_articles_route_returns_that_author_s_articles ___
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t46_the_author_related_articles_route_returns_that_author_s_articles(suite):
+>       _check(suite, "T46")
+
+/tests/test_final_state.py:1122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T46'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T46 the author related-articles route returns that author's articles did not pass (failed):
+E           1) test T46 the author related-articles route returns that author's articles (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:781
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:784: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_____ test_t47_anyone_may_create_a_comment_through_the_comment_collection ______
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t47_anyone_may_create_a_comment_through_the_comment_collection(suite):
+>       _check(suite, "T47")
+
+/tests/test_final_state.py:1125: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T47'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T47 anyone may create a comment through the comment collection did not pass (failed):
+E           1) test T47 anyone may create a comment through the comment collection (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:789
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 201, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:800: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+____ test_t48_an_unknown_actor_handle_is_rejected_with_a_401_error_document ____
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t48_an_unknown_actor_handle_is_rejected_with_a_401_error_document(suite):
+>       _check(suite, "T48")
+
+/tests/test_final_state.py:1128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T48'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T48 an unknown actor handle is rejected with a 401 error document did not pass (failed):
+E           1) test T48 an unknown actor handle is rejected with a 401 error document (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:807
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 401, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:810: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t49_content_negotiation_rejects_unusable_accept_and_content_type_headers _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t49_content_negotiation_rejects_unusable_accept_and_content_type_headers(suite):
+>       _check(suite, "T49")
+
+/tests/test_final_state.py:1131: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T49'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T49 content negotiation rejects unusable accept and content-type headers did not pass (failed):
+E           1) test T49 content negotiation rejects unusable accept and content-type headers (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:824
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert unacceptable.status == 406, inspect(unacceptable)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:828: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_ test_t50_unmatched_paths_inside_and_outside_the_api_prefix_return_distinct_404_documents _
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t50_unmatched_paths_inside_and_outside_the_api_prefix_return_distinct_404_documents(suite):
+>       _check(suite, "T50")
+
+/tests/test_final_state.py:1134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T50'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T50 unmatched paths inside and outside the api prefix return distinct 404 documents did not pass (failed):
+E           1) test T50 unmatched paths inside and outside the api prefix return distinct 404 documents (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:847
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert inside.status == 404, inspect(inside)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:849: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+______ test_t51_the_open_api_document_is_served_and_describes_every_route ______
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t51_the_open_api_document_is_served_and_describes_every_route(suite):
+>       _check(suite, "T51")
+
+/tests/test_final_state.py:1137: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T51'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T51 the open api document is served and describes every route did not pass (failed):
+E           1) test T51 the open api document is served and describes every route (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:867
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:870: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+_________________ test_t52_the_json_schema_document_is_served __________________
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+
+    def test_t52_the_json_schema_document_is_served(suite):
+>       _check(suite, "T52")
+
+/tests/test_final_state.py:1140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'diagnostics': 'exit code: 0\nstdout (last 8000 chars):\n\nstderr (last 8000 chars):\n    warning: Kbapi.Api.Endpoint...e: assert res.status == 200, inspect(res)\n     stacktrace:\n       /tmp/harbor_jsonapi_test.exs:183: (test)\n'), ...}}
+scenario_id = 'T52'
+
+    def _check(suite, scenario_id):
+        results = suite["results"]
+        if scenario_id not in results:
+            raise AssertionError(
+                f"Scenario {scenario_id} produced no result. The ExUnit driver did not run it "
+                f"(most likely the project failed to compile).\n{suite['diagnostics']}"
+            )
+        status, name, detail = results[scenario_id]
+>       assert status == "passed", f"{name} did not pass ({status}):\n{detail}"
+E       AssertionError: test T52 the json schema document is served did not pass (failed):
+E           1) test T52 the json schema document is served (KbapiJsonApiTest)
+E              /tmp/harbor_jsonapi_test.exs:892
+E              %{raw: "Kbapi.Api.Endpoint is not defined", status: :missing_endpoint, body: nil, content_type: nil}
+E              code: assert res.status == 200, inspect(res)
+E              stacktrace:
+E                /tmp/harbor_jsonapi_test.exs:895: (test)
+E         
+E       assert 'failed' == 'passed'
+E         - passed
+E         + failed
+
+/tests/test_final_state.py:983: AssertionError
+=========================== short test summary info ============================
+FAILED ../../../tests/test_final_state.py::test_t01_index_route_returns_every_fixture_article_as_a_json_api_resource_object
+FAILED ../../../tests/test_final_state.py::test_t02_responses_are_served_as_application_vnd_api_json_with_a_jsonapi_version_member
+FAILED ../../../tests/test_final_state.py::test_t03_article_attributes_contain_exactly_the_public_non_aggregate_fields
+FAILED ../../../tests/test_final_state.py::test_t04_author_linkage_is_always_rendered_even_without_an_include_parameter
+FAILED ../../../tests/test_final_state.py::test_t05_primary_related_and_relationship_routes_generate_links_on_the_resource_object
+FAILED ../../../tests/test_final_state.py::test_t06_sparse_fieldsets_restrict_attributes_and_can_select_the_comment_count_aggregate
+FAILED ../../../tests/test_final_state.py::test_t07_sort_supports_descending_order_with_a_leading_dash
+FAILED ../../../tests/test_final_state.py::test_t08_an_unknown_sort_field_is_rejected_with_invalid_sort
+FAILED ../../../tests/test_final_state.py::test_t09_filtering_by_a_scalar_attribute_narrows_the_collection
+FAILED ../../../tests/test_final_state.py::test_t10_filtering_across_a_relationship_path_works
+FAILED ../../../tests/test_final_state.py::test_t11_filtering_with_a_comparison_operator_works
+FAILED ../../../tests/test_final_state.py::test_t12_filtering_on_an_unknown_field_is_rejected_with_a_400
+FAILED ../../../tests/test_final_state.py::test_t13_include_tags_renders_the_tag_resources_in_the_included_member
+FAILED ../../../tests/test_final_state.py::test_t14_a_multi_hop_include_path_is_accepted_and_renders_both_hops
+FAILED ../../../tests/test_final_state.py::test_t15_an_undeclared_include_path_is_rejected_with_invalid_includes
+FAILED ../../../tests/test_final_state.py::test_t16_the_article_index_paginates_by_offset_and_advertises_a_next_link
+FAILED ../../../tests/test_final_state.py::test_t17_following_the_offset_next_link_returns_the_remaining_articles
+FAILED ../../../tests/test_final_state.py::test_t18_the_feed_route_is_keyset_paginated_and_defaults_to_two_rank_descending_articles
+FAILED ../../../tests/test_final_state.py::test_t19_following_the_feed_cursor_returns_the_last_page_and_stops
+FAILED ../../../tests/test_final_state.py::test_t20_a_corrupt_keyset_cursor_is_rejected_with_invalid_keyset
+FAILED ../../../tests/test_final_state.py::test_t21_the_feed_route_respects_an_explicit_page_limit
+FAILED ../../../tests/test_final_state.py::test_t22_fetching_an_unknown_article_id_returns_a_404_not_found_document
+FAILED ../../../tests/test_final_state.py::test_t23_the_tag_collection_ignores_filter_and_sort_query_parameters
+FAILED ../../../tests/test_final_state.py::test_t24_an_editor_can_create_an_article_and_it_is_persisted
+FAILED ../../../tests/test_final_state.py::test_t25_a_missing_required_attribute_produces_a_required_error_with_a_source_pointer
+FAILED ../../../tests/test_final_state.py::test_t26_a_constraint_violation_produces_invalid_attribute_with_the_offending_pointer
+FAILED ../../../tests/test_final_state.py::test_t27_an_attribute_that_is_not_accepted_produces_invalid_body
+FAILED ../../../tests/test_final_state.py::test_t28_a_create_body_without_data_type_is_rejected_with_missing_type
+FAILED ../../../tests/test_final_state.py::test_t29_creating_an_article_is_forbidden_for_readers_and_anonymous_callers
+FAILED ../../../tests/test_final_state.py::test_t30_patching_an_article_updates_its_attributes
+FAILED ../../../tests/test_final_state.py::test_t31_patching_an_article_can_replace_its_tags_through_data_relationships
+FAILED ../../../tests/test_final_state.py::test_t32_the_publish_route_promotes_a_draft_article
+FAILED ../../../tests/test_final_state.py::test_t33_the_publish_route_refuses_an_archived_article_with_the_documented_message
+FAILED ../../../tests/test_final_state.py::test_t34_delete_removes_an_article_for_editors_and_is_forbidden_for_readers
+FAILED ../../../tests/test_final_state.py::test_t35_the_related_comments_route_returns_full_comment_resources
+FAILED ../../../tests/test_final_state.py::test_t36_the_relationship_route_returns_bare_resource_identifier_objects
+FAILED ../../../tests/test_final_state.py::test_t37_posting_to_the_tags_relationship_appends_linkage
+FAILED ../../../tests/test_final_state.py::test_t38_patching_the_tags_relationship_replaces_linkage
+FAILED ../../../tests/test_final_state.py::test_t39_deleting_from_the_tags_relationship_removes_only_the_supplied_members
+FAILED ../../../tests/test_final_state.py::test_t40_relationship_mutations_reject_malformed_payloads_unknown_ids_and_readers
+FAILED ../../../tests/test_final_state.py::test_t41_the_reindex_generic_action_route_returns_the_exact_tally_document
+FAILED ../../../tests/test_final_state.py::test_t42_the_reindex_route_is_restricted_to_admin_actors
+FAILED ../../../tests/test_final_state.py::test_t43_the_tally_route_wraps_its_result_and_validates_its_arguments
+FAILED ../../../tests/test_final_state.py::test_t44_the_moderation_base_route_lists_pending_comments
+FAILED ../../../tests/test_final_state.py::test_t45_the_moderation_approve_route_approves_a_comment_and_is_restricted
+FAILED ../../../tests/test_final_state.py::test_t46_the_author_related_articles_route_returns_that_author_s_articles
+FAILED ../../../tests/test_final_state.py::test_t47_anyone_may_create_a_comment_through_the_comment_collection
+FAILED ../../../tests/test_final_state.py::test_t48_an_unknown_actor_handle_is_rejected_with_a_401_error_document
+FAILED ../../../tests/test_final_state.py::test_t49_content_negotiation_rejects_unusable_accept_and_content_type_headers
+FAILED ../../../tests/test_final_state.py::test_t50_unmatched_paths_inside_and_outside_the_api_prefix_return_distinct_404_documents
+FAILED ../../../tests/test_final_state.py::test_t51_the_open_api_document_is_served_and_describes_every_route
+FAILED ../../../tests/test_final_state.py::test_t52_the_json_schema_document_is_served
+============================= 52 failed in 11.86s ==============================

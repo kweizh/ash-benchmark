@@ -1,0 +1,2315 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 45 items
+
+../tests/test_final_state.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF [ 95%]
+FF                                                                       [100%]
+
+=================================== FAILURES ===================================
+_____ test_t01_archival_section_is_patchable_singleton_limited_and_nested ______
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t01_archival_section_is_patchable_singleton_limited_and_nested(suite):
+>       _scenario(suite, "T01")
+
+/tests/test_final_state.py:872: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T01'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T01 the archival section is patchable, singleton-limited and correctly nested failed:
+E           1) test T01 the archival section is patchable, singleton-limited and correctly nested (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:165
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.sections/0 is undefined (module Lifecycle.Archival is not available)
+E              code: sec = section()
+E              stacktrace:
+E                Lifecycle.Archival.sections()
+E                /tmp/harbor_final_state.exs:69: HarborFinalTest.section/0
+E                /tmp/harbor_final_state.exs:166: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+____________ test_t02_archival_section_schema_options_and_defaults _____________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t02_archival_section_schema_options_and_defaults(suite):
+>       _scenario(suite, "T02")
+
+/tests/test_final_state.py:876: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T02'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T02 the archival section schema declares the three options with their defaults failed:
+E           1) test T02 the archival section schema declares the three options with their defaults (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:180
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.sections/0 is undefined (module Lifecycle.Archival is not available)
+E              code: schema = section().schema
+E              stacktrace:
+E                Lifecycle.Archival.sections()
+E                /tmp/harbor_final_state.exs:69: HarborFinalTest.section/0
+E                /tmp/harbor_final_state.exs:181: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+______________ test_t03_audit_section_schema_options_and_defaults ______________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t03_audit_section_schema_options_and_defaults(suite):
+>       _scenario(suite, "T03")
+
+/tests/test_final_state.py:880: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T03'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T03 the nested audit section schema declares its three options with their defaults failed:
+E           1) test T03 the nested audit section schema declares its three options with their defaults (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:191
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.sections/0 is undefined (module Lifecycle.Archival is not available)
+E              code: schema = audit_section().schema
+E              stacktrace:
+E                Lifecycle.Archival.sections()
+E                /tmp/harbor_final_state.exs:69: HarborFinalTest.section/0
+E                /tmp/harbor_final_state.exs:80: HarborFinalTest.audit_section/0
+E                /tmp/harbor_final_state.exs:192: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+___________ test_t04_reason_entity_target_args_identifier_and_schema ___________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t04_reason_entity_target_args_identifier_and_schema(suite):
+>       _scenario(suite, "T04")
+
+/tests/test_final_state.py:884: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T04'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T04 the reason entity declares target, args, identifier and schema defaults failed:
+E           1) test T04 the reason entity declares target, args, identifier and schema defaults (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:202
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.sections/0 is undefined (module Lifecycle.Archival is not available)
+E              code: reason = entity(:reason)
+E              stacktrace:
+E                Lifecycle.Archival.sections()
+E                /tmp/harbor_final_state.exs:69: HarborFinalTest.section/0
+E                /tmp/harbor_final_state.exs:75: HarborFinalTest.entity/1
+E                /tmp/harbor_final_state.exs:203: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+________________ test_t05_default_reason_entity_target_and_args ________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t05_default_reason_entity_target_and_args(suite):
+>       _scenario(suite, "T05")
+
+/tests/test_final_state.py:888: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T05'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T05 the default_reason entity declares target and args failed:
+E           1) test T05 the default_reason entity declares target and args (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:222
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.sections/0 is undefined (module Lifecycle.Archival is not available)
+E              code: default_reason = entity(:default_reason)
+E              stacktrace:
+E                Lifecycle.Archival.sections()
+E                /tmp/harbor_final_state.exs:69: HarborFinalTest.section/0
+E                /tmp/harbor_final_state.exs:75: HarborFinalTest.entity/1
+E                /tmp/harbor_final_state.exs:223: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+______________ test_t06_extension_declares_the_three_transformers ______________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t06_extension_declares_the_three_transformers(suite):
+>       _scenario(suite, "T06")
+
+/tests/test_final_state.py:892: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T06'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T06 the extension declares the three required transformers failed:
+E           1) test T06 the extension declares the three required transformers (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:231
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.transformers/0 is undefined (module Lifecycle.Archival is not available)
+E              code: transformers = @archival.transformers()
+E              stacktrace:
+E                Lifecycle.Archival.transformers()
+E                /tmp/harbor_final_state.exs:232: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+______________ test_t07_extension_declares_the_archival_verifier _______________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t07_extension_declares_the_archival_verifier(suite):
+>       _scenario(suite, "T07")
+
+/tests/test_final_state.py:896: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T07'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T07 the extension declares the archival verifier failed:
+E           1) test T07 the extension declares the archival verifier (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:249
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.verifiers/0 is undefined (module Lifecycle.Archival is not available)
+E              code: verifiers = @archival.verifiers()
+E              stacktrace:
+E                Lifecycle.Archival.verifiers()
+E                /tmp/harbor_final_state.exs:250: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+________ test_t08_hooks_extension_patches_hook_entity_and_adds_archival ________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t08_hooks_extension_patches_hook_entity_and_adds_archival(suite):
+>       _scenario(suite, "T08")
+
+/tests/test_final_state.py:900: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T08'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T08 the hooks extension patches a hook entity into the archival section failed:
+E           1) test T08 the hooks extension patches a hook entity into the archival section (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:260
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.Hooks.dsl_patches/0 is undefined (module Lifecycle.Archival.Hooks is not available)
+E              code: patches = @hooks.dsl_patches()
+E              stacktrace:
+E                Lifecycle.Archival.Hooks.dsl_patches()
+E                /tmp/harbor_final_state.exs:261: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+__________________ test_t09_info_timestamp_attribute_getters ___________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t09_info_timestamp_attribute_getters(suite):
+>       _scenario(suite, "T09")
+
+/tests/test_final_state.py:904: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T09'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T09 the generated timestamp_attribute getters return the configured value failed:
+E           1) test T09 the generated timestamp_attribute getters return the configured value (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:283
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.Info.archival_timestamp_attribute!/1 is undefined (module Lifecycle.Archival.Info is not available)
+E              code: assert @info.archival_timestamp_attribute!(@document) == :archived_at
+E              stacktrace:
+E                Lifecycle.Archival.Info.archival_timestamp_attribute!(Lifecycle.Records.Document)
+E                /tmp/harbor_final_state.exs:284: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+____________ test_t10_info_action_name_and_reason_required_getters _____________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t10_info_action_name_and_reason_required_getters(suite):
+>       _scenario(suite, "T10")
+
+/tests/test_final_state.py:908: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T10'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T10 the generated action_name and reason_required? getters return the configured values failed:
+E           1) test T10 the generated action_name and reason_required? getters return the configured values (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:289
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.Info.archival_action_name!/1 is undefined (module Lifecycle.Archival.Info is not available)
+E              code: assert @info.archival_action_name!(@document) == :archive
+E              stacktrace:
+E                Lifecycle.Archival.Info.archival_action_name!(Lifecycle.Records.Document)
+E                /tmp/harbor_final_state.exs:290: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_________________________ test_t11_info_audit_getters __________________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t11_info_audit_getters(suite):
+>       _scenario(suite, "T11")
+
+/tests/test_final_state.py:912: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T11'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T11 the generated audit getters return the configured values failed:
+E           1) test T11 the generated audit getters return the configured values (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:296
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.Info.archival_audit_enabled?/1 is undefined (module Lifecycle.Archival.Info is not available)
+E              code: assert @info.archival_audit_enabled?(@document) == false
+E              stacktrace:
+E                Lifecycle.Archival.Info.archival_audit_enabled?(Lifecycle.Records.Document)
+E                /tmp/harbor_final_state.exs:297: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+__________________ test_t12_info_options_maps_expose_defaults __________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t12_info_options_maps_expose_defaults(suite):
+>       _scenario(suite, "T12")
+
+/tests/test_final_state.py:916: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T12'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T12 the generated options maps expose defaults for an unconfigured resource failed:
+E           1) test T12 the generated options maps expose defaults for an unconfigured resource (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:305
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.Info.archival_options/1 is undefined (module Lifecycle.Archival.Info is not available)
+E              code: assert @info.archival_options(@document) == %{
+E              stacktrace:
+E                Lifecycle.Archival.Info.archival_options(Lifecycle.Records.Document)
+E                /tmp/harbor_final_state.exs:306: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_____________ test_t13_info_archival_reasons_in_declaration_order ______________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t13_info_archival_reasons_in_declaration_order(suite):
+>       _scenario(suite, "T13")
+
+/tests/test_final_state.py:920: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T13'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T13 archival_reasons/1 returns the declared reasons in declaration order failed:
+E           1) test T13 archival_reasons/1 returns the declared reasons in declaration order (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:318
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.Info.archival_reasons/1 is undefined (module Lifecycle.Archival.Info is not available)
+E              code: doc = @info.archival_reasons(@document)
+E              stacktrace:
+E                Lifecycle.Archival.Info.archival_reasons(Lifecycle.Records.Document)
+E                /tmp/harbor_final_state.exs:319: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+____________________ test_t14_info_archival_default_reason _____________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t14_info_archival_default_reason(suite):
+>       _scenario(suite, "T14")
+
+/tests/test_final_state.py:924: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T14'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T14 archival_default_reason/1 returns the declared default or nil failed:
+E           1) test T14 archival_default_reason/1 returns the declared default or nil (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:334
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.Info.archival_default_reason/1 is undefined (module Lifecycle.Archival.Info is not available)
+E              code: default = @info.archival_default_reason(@document)
+E              stacktrace:
+E                Lifecycle.Archival.Info.archival_default_reason(Lifecycle.Records.Document)
+E                /tmp/harbor_final_state.exs:335: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_________________________ test_t15_info_archival_hooks _________________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t15_info_archival_hooks(suite):
+>       _scenario(suite, "T15")
+
+/tests/test_final_state.py:928: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T15'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T15 archival_hooks/1 returns the declared hooks failed:
+E           1) test T15 archival_hooks/1 returns the declared hooks (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:344
+E              ** (UndefinedFunctionError) function Lifecycle.Archival.Info.archival_hooks/1 is undefined (module Lifecycle.Archival.Info is not available)
+E              code: hooks = @info.archival_hooks(@contract)
+E              stacktrace:
+E                Lifecycle.Archival.Info.archival_hooks(Lifecycle.Records.Contract)
+E                /tmp/harbor_final_state.exs:345: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_________________ test_t16_generated_timestamp_attribute_shape _________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t16_generated_timestamp_attribute_shape(suite):
+>       _scenario(suite, "T16")
+
+/tests/test_final_state.py:932: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T16'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T16 the timestamp attribute is generated with the configured name and shape failed:
+E           1) test T16 the timestamp attribute is generated with the configured name and shape (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:356
+E              ** (ArgumentError) `Lifecycle.Records.Document` is not a Spark DSL module.
+E         
+E              code: archived_at = Ash.Resource.Info.attribute(@document, :archived_at)
+E              stacktrace:
+E                Lifecycle.Records.Document.persisted(:attributes_by_name)
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:158: Spark.Dsl.Extension.persisted!/3
+E                (ash 3.31.0) lib/ash/resource/info.ex:860: Ash.Resource.Info.attribute/2
+E                /tmp/harbor_final_state.exs:357: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+___________ test_t17_generated_archival_reason_attribute_constraints ___________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t17_generated_archival_reason_attribute_constraints(suite):
+>       _scenario(suite, "T17")
+
+/tests/test_final_state.py:936: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T17'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T17 the archival_reason attribute is generated with the declared reason names failed:
+E           1) test T17 the archival_reason attribute is generated with the declared reason names (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:375
+E              ** (ArgumentError) `Lifecycle.Records.Document` is not a Spark DSL module.
+E         
+E              code: doc = Ash.Resource.Info.attribute(@document, :archival_reason)
+E              stacktrace:
+E                Lifecycle.Records.Document.persisted(:attributes_by_name)
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:158: Spark.Dsl.Extension.persisted!/3
+E                (ash 3.31.0) lib/ash/resource/info.ex:860: Ash.Resource.Info.attribute/2
+E                /tmp/harbor_final_state.exs:376: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+____________________ test_t18_generated_update_action_shape ____________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t18_generated_update_action_shape(suite):
+>       _scenario(suite, "T18")
+
+/tests/test_final_state.py:940: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T18'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T18 the update action is generated with the configured name, empty accept and non-atomic failed:
+E           1) test T18 the update action is generated with the configured name, empty accept and non-atomic (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:389
+E              ** (ArgumentError) `Lifecycle.Records.Document` is not a Spark DSL module.
+E         
+E              code: archive = Ash.Resource.Info.action(@document, :archive)
+E              stacktrace:
+E                Lifecycle.Records.Document.entities([:actions])
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:2190: Spark.Dsl.Extension.get_config_entry_with_fallback/6
+E                (ash 3.31.0) lib/ash/resource/info.ex:738: Ash.Resource.Info.action/3
+E                /tmp/harbor_final_state.exs:390: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_______________ test_t19_generated_update_action_reason_argument _______________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t19_generated_update_action_reason_argument(suite):
+>       _scenario(suite, "T19")
+
+/tests/test_final_state.py:944: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T19'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T19 the generated update action carries exactly one constrained :reason argument failed:
+E           1) test T19 the generated update action carries exactly one constrained :reason argument (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:403
+E              ** (ArgumentError) `Lifecycle.Records.Document` is not a Spark DSL module.
+E         
+E              code: archive = Ash.Resource.Info.action(@document, :archive)
+E              stacktrace:
+E                Lifecycle.Records.Document.entities([:actions])
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:2190: Spark.Dsl.Extension.get_config_entry_with_fallback/6
+E                (ash 3.31.0) lib/ash/resource/info.ex:738: Ash.Resource.Info.action/3
+E                /tmp/harbor_final_state.exs:404: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_____________ test_t20_generated_archived_and_active_read_actions ______________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t20_generated_archived_and_active_read_actions(suite):
+>       _scenario(suite, "T20")
+
+/tests/test_final_state.py:948: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T20'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T20 the archived and active read actions are generated on both resources failed:
+E           1) test T20 the archived and active read actions are generated on both resources (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:418
+E              ** (ArgumentError) `Lifecycle.Records.Document` is not a Spark DSL module.
+E         
+E              code: for resource <- [@document, @contract], name <- [:archived, :active] do
+E              stacktrace:
+E                Lifecycle.Records.Document.entities([:actions])
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:2190: Spark.Dsl.Extension.get_config_entry_with_fallback/6
+E                (ash 3.31.0) lib/ash/resource/info.ex:738: Ash.Resource.Info.action/3
+E                /tmp/harbor_final_state.exs:420: anonymous fn/3 in HarborFinalTest."test T20 the archived and active read actions are generated on both resources"/1
+E                (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E                /tmp/harbor_final_state.exs:419: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+______________ test_t21_declared_hooks_appended_to_action_changes ______________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t21_declared_hooks_appended_to_action_changes(suite):
+>       _scenario(suite, "T21")
+
+/tests/test_final_state.py:952: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T21'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T21 declared hooks are appended to the generated action's changes failed:
+E           1) test T21 declared hooks are appended to the generated action's changes (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:426
+E              ** (ArgumentError) `Lifecycle.Records.Document` is not a Spark DSL module.
+E         
+E              code: doc_changes = change_modules(Ash.Resource.Info.action(@document, :archive))
+E              stacktrace:
+E                Lifecycle.Records.Document.entities([:actions])
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:2190: Spark.Dsl.Extension.get_config_entry_with_fallback/6
+E                (ash 3.31.0) lib/ash/resource/info.ex:738: Ash.Resource.Info.action/3
+E                /tmp/harbor_final_state.exs:427: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_________ test_t22_audit_relationship_and_aggregate_only_when_enabled __________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t22_audit_relationship_and_aggregate_only_when_enabled(suite):
+>       _scenario(suite, "T22")
+
+/tests/test_final_state.py:956: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T22'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T22 the audit relationship and aggregate are generated only when audit is enabled failed:
+E           1) test T22 the audit relationship and aggregate are generated only when audit is enabled (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:444
+E              ** (ArgumentError) `Lifecycle.Records.Contract` is not a Spark DSL module.
+E         
+E              code: relationship = Ash.Resource.Info.relationship(@contract, :archival_events)
+E              stacktrace:
+E                Lifecycle.Records.Contract.persisted(:relationships_by_name)
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:158: Spark.Dsl.Extension.persisted!/3
+E                (ash 3.31.0) lib/ash/resource/info.ex:422: Ash.Resource.Info.relationship/2
+E                /tmp/harbor_final_state.exs:445: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_____________________ test_t23_reason_codes_are_persisted ______________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t23_reason_codes_are_persisted(suite):
+>       _scenario(suite, "T23")
+
+/tests/test_final_state.py:960: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T23'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T23 the reason codes are persisted onto each host resource failed:
+E           1) test T23 the reason codes are persisted onto each host resource (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:464
+E              ** (ArgumentError) `Lifecycle.Records.Document` is not a Spark DSL module.
+E         
+E              code: assert Spark.Dsl.Extension.get_persisted(@document, :archival_reason_codes) == %{
+E              stacktrace:
+E                Lifecycle.Records.Document.persisted(:archival_reason_codes)
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:158: Spark.Dsl.Extension.persisted!/3
+E                /tmp/harbor_final_state.exs:465: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+________________ test_t24_generated_code_interfaces_are_defined ________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t24_generated_code_interfaces_are_defined(suite):
+>       _scenario(suite, "T24")
+
+/tests/test_final_state.py:964: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T24'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T24 the generated code interfaces are defined on the host resource modules failed:
+E           1) test T24 the generated code interfaces are defined on the host resource modules (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:476
+E              expected Lifecycle.Records.Document.archive!/1 to be generated
+E              code: assert function_exported?(@document, :archive!, 1),
+E              stacktrace:
+E                /tmp/harbor_final_state.exs:477: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+____________ test_t25_hooks_extension_activates_archival_extension _____________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t25_hooks_extension_activates_archival_extension(suite):
+>       _scenario(suite, "T25")
+
+/tests/test_final_state.py:968: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T25'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T25 listing only the hooks extension also activates the archival extension failed:
+E           1) test T25 listing only the hooks extension also activates the archival extension (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:493
+E              ** (ArgumentError) `Lifecycle.Records.Contract` is not a Spark DSL module.
+E         
+E              code: extensions = Spark.Dsl.Extension.get_persisted(@contract, :extensions)
+E              stacktrace:
+E                Lifecycle.Records.Contract.persisted(:extensions)
+E                (spark 2.7.2) lib/spark/dsl/extension.ex:158: Spark.Dsl.Extension.persisted!/3
+E                /tmp/harbor_final_state.exs:494: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+____________ test_t26_archiving_without_reason_uses_default_reason _____________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t26_archiving_without_reason_uses_default_reason(suite):
+>       _scenario(suite, "T26")
+
+/tests/test_final_state.py:972: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T26'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T26 archiving without a reason falls back to the declared default_reason failed:
+E           1) test T26 archiving without a reason falls back to the declared default_reason (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:505
+E              ** (ArgumentError) Expected an `Ash.Resource` in `Ash.create/3`, got: Lifecycle.Records.Document
+E              code: document = Ash.create!(@document, %{title: "d1"}, action: :open)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash.ex:3317: Ash.create/3
+E                (ash 3.31.0) lib/ash.ex:3228: Ash.create!/3
+E                /tmp/harbor_final_state.exs:506: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+___________________ test_t27_archiving_with_explicit_reason ____________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t27_archiving_with_explicit_reason(suite):
+>       _scenario(suite, "T27")
+
+/tests/test_final_state.py:976: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T27'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T27 archiving with an explicit reason records that reason failed:
+E           1) test T27 archiving with an explicit reason records that reason (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:513
+E              ** (ArgumentError) Expected an `Ash.Resource` in `Ash.create/3`, got: Lifecycle.Records.Document
+E              code: document = Ash.create!(@document, %{title: "d2"}, action: :open)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash.ex:3317: Ash.create/3
+E                (ash 3.31.0) lib/ash.ex:3228: Ash.create!/3
+E                /tmp/harbor_final_state.exs:514: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+____________________ test_t28_undeclared_reason_is_rejected ____________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t28_undeclared_reason_is_rejected(suite):
+>       _scenario(suite, "T28")
+
+/tests/test_final_state.py:980: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T28'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T28 an undeclared reason is rejected by the generated argument constraints failed:
+E           1) test T28 an undeclared reason is rejected by the generated argument constraints (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:520
+E              ** (ArgumentError) Expected an `Ash.Resource` in `Ash.create/3`, got: Lifecycle.Records.Document
+E              code: document = Ash.create!(@document, %{title: "d3"}, action: :open)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash.ex:3317: Ash.create/3
+E                (ash 3.31.0) lib/ash.ex:3228: Ash.create!/3
+E                /tmp/harbor_final_state.exs:521: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+______________ test_t29_archive_action_accepts_no_attribute_input ______________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t29_archive_action_accepts_no_attribute_input(suite):
+>       _scenario(suite, "T29")
+
+/tests/test_final_state.py:984: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T29'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T29 the generated update action accepts no attribute input failed:
+E           1) test T29 the generated update action accepts no attribute input (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:532
+E              ** (ArgumentError) Expected an `Ash.Resource` in `Ash.create/3`, got: Lifecycle.Records.Document
+E              code: document = Ash.create!(@document, %{title: "d4"}, action: :open)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash.ex:3317: Ash.create/3
+E                (ash 3.31.0) lib/ash.ex:3228: Ash.create!/3
+E                /tmp/harbor_final_state.exs:533: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_________ test_t30_archived_and_active_read_actions_partition_records __________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t30_archived_and_active_read_actions_partition_records(suite):
+>       _scenario(suite, "T30")
+
+/tests/test_final_state.py:988: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T30'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T30 the generated archived and active read actions partition the records failed:
+E           1) test T30 the generated archived and active read actions partition the records (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:548
+E              ** (ArgumentError) Expected an `Ash.Resource` in `Ash.create/3`, got: Lifecycle.Records.Document
+E              code: kept = Ash.create!(@document, %{title: "kept"}, action: :open)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash.ex:3317: Ash.create/3
+E                (ash 3.31.0) lib/ash.ex:3228: Ash.create!/3
+E                /tmp/harbor_final_state.exs:549: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_____________________ test_t31_required_reason_is_enforced _____________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t31_required_reason_is_enforced(suite):
+>       _scenario(suite, "T31")
+
+/tests/test_final_state.py:992: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T31'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T31 a required reason is enforced by the generated argument failed:
+E           1) test T31 a required reason is enforced by the generated argument (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:559
+E              ** (ArgumentError) Expected an `Ash.Resource` in `Ash.create/3`, got: Lifecycle.Records.Contract
+E              code: contract = Ash.create!(@contract, %{reference: "c1"}, action: :sign)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash.ex:3317: Ash.create/3
+E                (ash 3.31.0) lib/ash.ex:3228: Ash.create!/3
+E                /tmp/harbor_final_state.exs:560: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+______________ test_t32_retiring_a_contract_runs_the_hook_change _______________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t32_retiring_a_contract_runs_the_hook_change(suite):
+>       _scenario(suite, "T32")
+
+/tests/test_final_state.py:996: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T32'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T32 retiring a contract stamps the timestamp, the reason and runs the hook change failed:
+E           1) test T32 retiring a contract stamps the timestamp, the reason and runs the hook change (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:572
+E              ** (ArgumentError) Expected an `Ash.Resource` in `Ash.create/3`, got: Lifecycle.Records.Contract
+E              code: contract = Ash.create!(@contract, %{reference: "c1"}, action: :sign)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash.ex:3317: Ash.create/3
+E                (ash 3.31.0) lib/ash.ex:3228: Ash.create!/3
+E                /tmp/harbor_final_state.exs:573: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+______________ test_t33_audit_event_written_on_successful_archive ______________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t33_audit_event_written_on_successful_archive(suite):
+>       _scenario(suite, "T33")
+
+/tests/test_final_state.py:1000: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T33'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T33 an audit event is written for every successful archive when audit is enabled failed:
+E           1) test T33 an audit event is written for every successful archive when audit is enabled (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:581
+E              ** (ArgumentError) Expected an `Ash.Resource` in `Ash.create/3`, got: Lifecycle.Records.Contract
+E              code: contract = Ash.create!(@contract, %{reference: "c1"}, action: :sign)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash.ex:3317: Ash.create/3
+E                (ash 3.31.0) lib/ash.ex:3228: Ash.create!/3
+E                /tmp/harbor_final_state.exs:582: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_________________ test_t34_no_audit_events_when_audit_disabled _________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t34_no_audit_events_when_audit_disabled(suite):
+>       _scenario(suite, "T34")
+
+/tests/test_final_state.py:1004: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T34'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T34 no audit events are written when audit is disabled failed:
+E           1) test T34 no audit events are written when audit is disabled (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:597
+E              ** (ArgumentError) Expected an `Ash.Resource` in `Ash.create/3`, got: Lifecycle.Records.Document
+E              code: document = Ash.create!(@document, %{title: "quiet"}, action: :open)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash.ex:3317: Ash.create/3
+E                (ash 3.31.0) lib/ash.ex:3228: Ash.create!/3
+E                /tmp/harbor_final_state.exs:598: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_______________ test_t35_code_interface_takes_positional_reason ________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t35_code_interface_takes_positional_reason(suite):
+>       _scenario(suite, "T35")
+
+/tests/test_final_state.py:1008: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T35'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T35 the generated code interface takes the reason as a positional argument failed:
+E           1) test T35 the generated code interface takes the reason as a positional argument (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:603
+E              ** (ArgumentError) Expected an `Ash.Resource` in `Ash.create/3`, got: Lifecycle.Records.Contract
+E              code: contract = Ash.create!(@contract, %{reference: "c2"}, action: :sign)
+E              stacktrace:
+E                (ash 3.31.0) lib/ash.ex:3317: Ash.create/3
+E                (ash 3.31.0) lib/ash.ex:3228: Ash.create!/3
+E                /tmp/harbor_final_state.exs:604: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_________________ test_t36_resource_without_reason_is_rejected _________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t36_resource_without_reason_is_rejected(suite):
+>       _scenario(suite, "T36")
+
+/tests/test_final_state.py:1012: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T36'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T36 a resource that declares no reason is rejected failed:
+E           1) test T36 a resource that declares no reason is rejected (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:612
+E              ** (CompileError) nofile: cannot compile module HarborNoReasons (errors have been logged)
+E              code: assert_dsl_error(
+E              stacktrace:
+E                (elixir 1.18.4) src/elixir_expand.erl:625: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:13: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:634: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:45: :elixir_compiler.compile/4
+E                (elixir 1.18.4) src/elixir_module.erl:456: :elixir_module.eval_form/7
+E                (elixir 1.18.4) src/elixir_module.erl:156: :elixir_module.compile/7
+E                (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E                (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E                (elixir 1.18.4) lib/module/parallel_checker.ex:120: Module.ParallelChecker.verify/1
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:286: ExUnit.CaptureIO.do_with_io/3
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:156: ExUnit.CaptureIO.capture_io/2
+E                (elixir 1.18.4) lib/code.ex:621: Code.with_diagnostics/2
+E                /tmp/harbor_final_state.exs:118: HarborFinalTest.dsl_error_messages/1
+E                /tmp/harbor_final_state.exs:128: HarborFinalTest.assert_dsl_error/4
+E                /tmp/harbor_final_state.exs:613: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+__________________ test_t37_duplicate_reason_code_is_rejected __________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t37_duplicate_reason_code_is_rejected(suite):
+>       _scenario(suite, "T37")
+
+/tests/test_final_state.py:1016: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T37'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T37 two reasons sharing a code are rejected failed:
+E           1) test T37 two reasons sharing a code are rejected (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:621
+E              ** (CompileError) nofile: cannot compile module HarborDupCode (errors have been logged)
+E              code: assert_dsl_error(
+E              stacktrace:
+E                (elixir 1.18.4) src/elixir_expand.erl:625: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:13: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:634: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:45: :elixir_compiler.compile/4
+E                (elixir 1.18.4) src/elixir_module.erl:456: :elixir_module.eval_form/7
+E                (elixir 1.18.4) src/elixir_module.erl:156: :elixir_module.compile/7
+E                (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E                (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E                (elixir 1.18.4) lib/module/parallel_checker.ex:120: Module.ParallelChecker.verify/1
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:286: ExUnit.CaptureIO.do_with_io/3
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:156: ExUnit.CaptureIO.capture_io/2
+E                (elixir 1.18.4) lib/code.ex:621: Code.with_diagnostics/2
+E                /tmp/harbor_final_state.exs:118: HarborFinalTest.dsl_error_messages/1
+E                /tmp/harbor_final_state.exs:128: HarborFinalTest.assert_dsl_error/4
+E                /tmp/harbor_final_state.exs:622: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_________________ test_t38_unknown_default_reason_is_rejected __________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t38_unknown_default_reason_is_rejected(suite):
+>       _scenario(suite, "T38")
+
+/tests/test_final_state.py:1020: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T38'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T38 a default_reason naming an undeclared reason is rejected failed:
+E           1) test T38 a default_reason naming an undeclared reason is rejected (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:630
+E              ** (CompileError) nofile: cannot compile module HarborGhostDefault (errors have been logged)
+E              code: assert_dsl_error(
+E              stacktrace:
+E                (elixir 1.18.4) src/elixir_expand.erl:625: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:13: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:634: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:45: :elixir_compiler.compile/4
+E                (elixir 1.18.4) src/elixir_module.erl:456: :elixir_module.eval_form/7
+E                (elixir 1.18.4) src/elixir_module.erl:156: :elixir_module.compile/7
+E                (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E                (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E                (elixir 1.18.4) lib/module/parallel_checker.ex:120: Module.ParallelChecker.verify/1
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:286: ExUnit.CaptureIO.do_with_io/3
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:156: ExUnit.CaptureIO.capture_io/2
+E                (elixir 1.18.4) lib/code.ex:621: Code.with_diagnostics/2
+E                /tmp/harbor_final_state.exs:118: HarborFinalTest.dsl_error_messages/1
+E                /tmp/harbor_final_state.exs:128: HarborFinalTest.assert_dsl_error/4
+E                /tmp/harbor_final_state.exs:631: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_________________ test_t39_terminal_default_reason_is_rejected _________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t39_terminal_default_reason_is_rejected(suite):
+>       _scenario(suite, "T39")
+
+/tests/test_final_state.py:1024: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T39'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T39 a default_reason naming a terminal reason is rejected failed:
+E           1) test T39 a default_reason naming a terminal reason is rejected (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:642
+E              ** (CompileError) nofile: cannot compile module HarborTerminalDefault (errors have been logged)
+E              code: assert_dsl_error(
+E              stacktrace:
+E                (elixir 1.18.4) src/elixir_expand.erl:625: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:13: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:634: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:45: :elixir_compiler.compile/4
+E                (elixir 1.18.4) src/elixir_module.erl:456: :elixir_module.eval_form/7
+E                (elixir 1.18.4) src/elixir_module.erl:156: :elixir_module.compile/7
+E                (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E                (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E                (elixir 1.18.4) lib/module/parallel_checker.ex:120: Module.ParallelChecker.verify/1
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:286: ExUnit.CaptureIO.do_with_io/3
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:156: ExUnit.CaptureIO.capture_io/2
+E                (elixir 1.18.4) lib/code.ex:621: Code.with_diagnostics/2
+E                /tmp/harbor_final_state.exs:118: HarborFinalTest.dsl_error_messages/1
+E                /tmp/harbor_final_state.exs:128: HarborFinalTest.assert_dsl_error/4
+E                /tmp/harbor_final_state.exs:643: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+______________ test_t40_audit_without_event_resource_is_rejected _______________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t40_audit_without_event_resource_is_rejected(suite):
+>       _scenario(suite, "T40")
+
+/tests/test_final_state.py:1028: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T40'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T40 enabling audit without an event_resource is rejected failed:
+E           1) test T40 enabling audit without an event_resource is rejected (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:654
+E              ** (CompileError) nofile: cannot compile module HarborAuditNoResource (errors have been logged)
+E              code: assert_dsl_error(
+E              stacktrace:
+E                (elixir 1.18.4) src/elixir_expand.erl:625: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:13: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:634: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:45: :elixir_compiler.compile/4
+E                (elixir 1.18.4) src/elixir_module.erl:456: :elixir_module.eval_form/7
+E                (elixir 1.18.4) src/elixir_module.erl:156: :elixir_module.compile/7
+E                (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E                (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E                (elixir 1.18.4) lib/module/parallel_checker.ex:120: Module.ParallelChecker.verify/1
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:286: ExUnit.CaptureIO.do_with_io/3
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:156: ExUnit.CaptureIO.capture_io/2
+E                (elixir 1.18.4) lib/code.ex:621: Code.with_diagnostics/2
+E                /tmp/harbor_final_state.exs:118: HarborFinalTest.dsl_error_messages/1
+E                /tmp/harbor_final_state.exs:128: HarborFinalTest.assert_dsl_error/4
+E                /tmp/harbor_final_state.exs:655: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+___________ test_t41_duplicate_default_reason_is_rejected_by_the_dsl ___________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t41_duplicate_default_reason_is_rejected_by_the_dsl(suite):
+>       _scenario(suite, "T41")
+
+/tests/test_final_state.py:1032: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T41'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T41 declaring default_reason twice is rejected by the DSL itself failed:
+E           1) test T41 declaring default_reason twice is rejected by the DSL itself (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:666
+E              ** (CompileError) nofile: cannot compile module HarborTwoDefaults (errors have been logged)
+E              code: dsl_error_messages(
+E              stacktrace:
+E                (elixir 1.18.4) src/elixir_expand.erl:625: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:13: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:634: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:45: :elixir_compiler.compile/4
+E                (elixir 1.18.4) src/elixir_module.erl:456: :elixir_module.eval_form/7
+E                (elixir 1.18.4) src/elixir_module.erl:156: :elixir_module.compile/7
+E                (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E                (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E                (elixir 1.18.4) lib/module/parallel_checker.ex:120: Module.ParallelChecker.verify/1
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:286: ExUnit.CaptureIO.do_with_io/3
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:156: ExUnit.CaptureIO.capture_io/2
+E                (elixir 1.18.4) lib/code.ex:621: Code.with_diagnostics/2
+E                /tmp/harbor_final_state.exs:118: HarborFinalTest.dsl_error_messages/1
+E                /tmp/harbor_final_state.exs:668: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+________________ test_t42_reason_without_code_fails_to_compile _________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t42_reason_without_code_fails_to_compile(suite):
+>       _scenario(suite, "T42")
+
+/tests/test_final_state.py:1036: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T42'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T42 a reason without a code fails to compile failed:
+E           1) test T42 a reason without a code fails to compile (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:682
+E              match (=) failed
+E              code:  assert {Spark.Error.DslError, message} = result
+E              left:  {Spark.Error.DslError, message}
+E              right: {CompileError, "nofile: cannot compile module HarborMissingCode (errors have been logged)"}
+E              stacktrace:
+E                /tmp/harbor_final_state.exs:694: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+______________ test_t43_hook_entity_requires_the_hooks_extension _______________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t43_hook_entity_requires_the_hooks_extension(suite):
+>       _scenario(suite, "T43")
+
+/tests/test_final_state.py:1040: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T43'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T43 the hook entity is unavailable without the hooks extension failed:
+E           1) test T43 the hook entity is unavailable without the hooks extension (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:699
+E              ** (CompileError) nofile: cannot compile module HarborHookControl (errors have been logged)
+E              code: compile_ok!(resource_source("HarborHookControl", "    reason :a, code: \"A\""))
+E              stacktrace:
+E                (elixir 1.18.4) src/elixir_expand.erl:625: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:13: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:634: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:45: :elixir_compiler.compile/4
+E                (elixir 1.18.4) src/elixir_module.erl:456: :elixir_module.eval_form/7
+E                (elixir 1.18.4) src/elixir_module.erl:156: :elixir_module.compile/7
+E                (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E                (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E                (elixir 1.18.4) lib/module/parallel_checker.ex:120: Module.ParallelChecker.verify/1
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:286: ExUnit.CaptureIO.do_with_io/3
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:156: ExUnit.CaptureIO.capture_io/2
+E                (elixir 1.18.4) lib/code.ex:621: Code.with_diagnostics/2
+E                /tmp/harbor_final_state.exs:118: HarborFinalTest.dsl_error_messages/1
+E                /tmp/harbor_final_state.exs:146: HarborFinalTest.compile_ok!/1
+E                /tmp/harbor_final_state.exs:700: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+_________ test_t44_runtime_compiled_resource_with_other_configuration __________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t44_runtime_compiled_resource_with_other_configuration(suite):
+>       _scenario(suite, "T44")
+
+/tests/test_final_state.py:1044: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T44'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T44 a differently configured resource compiled at runtime works end to end failed:
+E           1) test T44 a differently configured resource compiled at runtime works end to end (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:725
+E              ** (CompileError) nofile: cannot compile module HarborRuntimeDoc (errors have been logged)
+E              code: compile_ok!(source)
+E              stacktrace:
+E                (elixir 1.18.4) src/elixir_expand.erl:625: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:13: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:634: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:45: :elixir_compiler.compile/4
+E                (elixir 1.18.4) src/elixir_module.erl:456: :elixir_module.eval_form/7
+E                (elixir 1.18.4) src/elixir_module.erl:156: :elixir_module.compile/7
+E                (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E                (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E                (elixir 1.18.4) lib/module/parallel_checker.ex:120: Module.ParallelChecker.verify/1
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:286: ExUnit.CaptureIO.do_with_io/3
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:156: ExUnit.CaptureIO.capture_io/2
+E                (elixir 1.18.4) lib/code.ex:621: Code.with_diagnostics/2
+E                /tmp/harbor_final_state.exs:118: HarborFinalTest.dsl_error_messages/1
+E                /tmp/harbor_final_state.exs:146: HarborFinalTest.compile_ok!/1
+E                /tmp/harbor_final_state.exs:732: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+________________ test_t45_runtime_compiled_hooks_only_resource _________________
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+
+    def test_t45_runtime_compiled_hooks_only_resource(suite):
+>       _scenario(suite, "T45")
+
+/tests/test_final_state.py:1048: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'compile_output': '', 'compile_returncode': 0, 'results': {'T01': ('fail', 'test T01 the archival section is patchabl...state.exs:75: HarborFinalTest.entity/1\n       /tmp/harbor_final_state.exs:203: (test)\n'), ...}, 'returncode': 0, ...}
+scenario_id = 'T45'
+
+    def _scenario(suite, scenario_id):
+        entry = suite["results"].get(scenario_id)
+        if entry is None:
+            pytest.fail(
+                f"Scenario {scenario_id} did not run. The verification suite is executed with "
+                f"`mix run {SCRIPT_PATH}` from {PROJECT_DIR}.\n"
+                f"mix compile exit code: {suite['compile_returncode']}\n"
+                f"mix compile output (tail):\n{suite['compile_output']}\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"stdout (tail):\n{suite['stdout_tail']}\n"
+                f"stderr (tail):\n{suite['stderr_tail']}"
+            )
+    
+        status, name, detail = entry
+        assert suite["compile_returncode"] == 0, (
+            "`mix compile` must succeed in /home/user/lifecycle.\n"
+            f"{suite['compile_output']}"
+        )
+>       assert status == "pass", f"{name} failed:\n{detail}"
+E       AssertionError: test T45 a runtime-compiled resource listing only the hooks extension gets everything failed:
+E           1) test T45 a runtime-compiled resource listing only the hooks extension gets everything (HarborFinalTest)
+E              /tmp/harbor_final_state.exs:759
+E              ** (CompileError) nofile: cannot compile module HarborRuntimeHooked (errors have been logged)
+E              code: compile_ok!(source)
+E              stacktrace:
+E                (elixir 1.18.4) src/elixir_expand.erl:625: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:13: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_expand.erl:634: :elixir_expand.expand_block/5
+E                (elixir 1.18.4) src/elixir_expand.erl:48: :elixir_expand.expand/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:45: :elixir_compiler.compile/4
+E                (elixir 1.18.4) src/elixir_module.erl:456: :elixir_module.eval_form/7
+E                (elixir 1.18.4) src/elixir_module.erl:156: :elixir_module.compile/7
+E                (elixir 1.18.4) src/elixir_compiler.erl:38: :elixir_compiler.maybe_fast_compile/2
+E                (elixir 1.18.4) src/elixir_lexical.erl:13: :elixir_lexical.run/3
+E                (elixir 1.18.4) src/elixir_compiler.erl:17: :elixir_compiler.quoted/3
+E                (elixir 1.18.4) lib/module/parallel_checker.ex:120: Module.ParallelChecker.verify/1
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:286: ExUnit.CaptureIO.do_with_io/3
+E                (ex_unit 1.18.4) lib/ex_unit/capture_io.ex:156: ExUnit.CaptureIO.capture_io/2
+E                (elixir 1.18.4) lib/code.ex:621: Code.with_diagnostics/2
+E                /tmp/harbor_final_state.exs:118: HarborFinalTest.dsl_error_messages/1
+E                /tmp/harbor_final_state.exs:146: HarborFinalTest.compile_ok!/1
+E                /tmp/harbor_final_state.exs:768: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:868: AssertionError
+=========================== short test summary info ============================
+FAILED ../tests/test_final_state.py::test_t01_archival_section_is_patchable_singleton_limited_and_nested
+FAILED ../tests/test_final_state.py::test_t02_archival_section_schema_options_and_defaults
+FAILED ../tests/test_final_state.py::test_t03_audit_section_schema_options_and_defaults
+FAILED ../tests/test_final_state.py::test_t04_reason_entity_target_args_identifier_and_schema
+FAILED ../tests/test_final_state.py::test_t05_default_reason_entity_target_and_args
+FAILED ../tests/test_final_state.py::test_t06_extension_declares_the_three_transformers
+FAILED ../tests/test_final_state.py::test_t07_extension_declares_the_archival_verifier
+FAILED ../tests/test_final_state.py::test_t08_hooks_extension_patches_hook_entity_and_adds_archival
+FAILED ../tests/test_final_state.py::test_t09_info_timestamp_attribute_getters
+FAILED ../tests/test_final_state.py::test_t10_info_action_name_and_reason_required_getters
+FAILED ../tests/test_final_state.py::test_t11_info_audit_getters - AssertionE...
+FAILED ../tests/test_final_state.py::test_t12_info_options_maps_expose_defaults
+FAILED ../tests/test_final_state.py::test_t13_info_archival_reasons_in_declaration_order
+FAILED ../tests/test_final_state.py::test_t14_info_archival_default_reason - ...
+FAILED ../tests/test_final_state.py::test_t15_info_archival_hooks - Assertion...
+FAILED ../tests/test_final_state.py::test_t16_generated_timestamp_attribute_shape
+FAILED ../tests/test_final_state.py::test_t17_generated_archival_reason_attribute_constraints
+FAILED ../tests/test_final_state.py::test_t18_generated_update_action_shape
+FAILED ../tests/test_final_state.py::test_t19_generated_update_action_reason_argument
+FAILED ../tests/test_final_state.py::test_t20_generated_archived_and_active_read_actions
+FAILED ../tests/test_final_state.py::test_t21_declared_hooks_appended_to_action_changes
+FAILED ../tests/test_final_state.py::test_t22_audit_relationship_and_aggregate_only_when_enabled
+FAILED ../tests/test_final_state.py::test_t23_reason_codes_are_persisted - As...
+FAILED ../tests/test_final_state.py::test_t24_generated_code_interfaces_are_defined
+FAILED ../tests/test_final_state.py::test_t25_hooks_extension_activates_archival_extension
+FAILED ../tests/test_final_state.py::test_t26_archiving_without_reason_uses_default_reason
+FAILED ../tests/test_final_state.py::test_t27_archiving_with_explicit_reason
+FAILED ../tests/test_final_state.py::test_t28_undeclared_reason_is_rejected
+FAILED ../tests/test_final_state.py::test_t29_archive_action_accepts_no_attribute_input
+FAILED ../tests/test_final_state.py::test_t30_archived_and_active_read_actions_partition_records
+FAILED ../tests/test_final_state.py::test_t31_required_reason_is_enforced - A...
+FAILED ../tests/test_final_state.py::test_t32_retiring_a_contract_runs_the_hook_change
+FAILED ../tests/test_final_state.py::test_t33_audit_event_written_on_successful_archive
+FAILED ../tests/test_final_state.py::test_t34_no_audit_events_when_audit_disabled
+FAILED ../tests/test_final_state.py::test_t35_code_interface_takes_positional_reason
+FAILED ../tests/test_final_state.py::test_t36_resource_without_reason_is_rejected
+FAILED ../tests/test_final_state.py::test_t37_duplicate_reason_code_is_rejected
+FAILED ../tests/test_final_state.py::test_t38_unknown_default_reason_is_rejected
+FAILED ../tests/test_final_state.py::test_t39_terminal_default_reason_is_rejected
+FAILED ../tests/test_final_state.py::test_t40_audit_without_event_resource_is_rejected
+FAILED ../tests/test_final_state.py::test_t41_duplicate_default_reason_is_rejected_by_the_dsl
+FAILED ../tests/test_final_state.py::test_t42_reason_without_code_fails_to_compile
+FAILED ../tests/test_final_state.py::test_t43_hook_entity_requires_the_hooks_extension
+FAILED ../tests/test_final_state.py::test_t44_runtime_compiled_resource_with_other_configuration
+FAILED ../tests/test_final_state.py::test_t45_runtime_compiled_hooks_only_resource
+============================= 45 failed in 36.71s ==============================

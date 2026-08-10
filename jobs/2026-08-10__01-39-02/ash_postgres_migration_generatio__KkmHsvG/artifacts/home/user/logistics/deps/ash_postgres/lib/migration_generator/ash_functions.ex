@@ -1,0 +1,322 @@
+# SPDX-FileCopyrightText: 2019 ash_postgres contributors <https://github.com/ash-project/ash_postgres/graphs/contributors>
+#
+# SPDX-License-Identifier: MIT
+
+defmodule AshPostgres.MigrationGenerator.AshFunctions do
+  @latest_version 6
+
+  def latest_version, do: @latest_version
+
+  @moduledoc false
+  def install(version, opts \\ [])
+
+  def install(nil, opts) do
+    """
+    execute(\"\"\"
+    CREATE OR REPLACE FUNCTION ash_elixir_or(left BOOLEAN, in right ANYCOMPATIBLE, out f1 ANYCOMPATIBLE)
+    AS $$ SELECT COALESCE(NULLIF($1, FALSE), $2) $$
+    LANGUAGE SQL
+    SET search_path = ''
+    IMMUTABLE;
+    \"\"\")
+
+    execute(\"\"\"
+    CREATE OR REPLACE FUNCTION ash_elixir_or(left ANYCOMPATIBLE, in right ANYCOMPATIBLE, out f1 ANYCOMPATIBLE)
+    AS $$ SELECT COALESCE($1, $2) $$
+    LANGUAGE SQL
+    SET search_path = ''
+    IMMUTABLE;
+    \"\"\")
+
+    execute(\"\"\"
+    CREATE OR REPLACE FUNCTION ash_elixir_and(left BOOLEAN, in right ANYCOMPATIBLE, out f1 ANYCOMPATIBLE) AS $$
+      SELECT CASE
+        WHEN $1 IS TRUE THEN $2
+        ELSE $1
+      END $$
+    LANGUAGE SQL
+    SET search_path = ''
+    IMMUTABLE;
+    \"\"\")
+
+    execute(\"\"\"
+    CREATE OR REPLACE FUNCTION ash_elixir_and(left ANYCOMPATIBLE, in right ANYCOMPATIBLE, out f1 ANYCOMPATIBLE) AS $$
+      SELECT CASE
+        WHEN $1 IS NOT NULL THEN $2
+        ELSE $1
+      END $$
+    LANGUAGE SQL
+    SET search_path = ''
+    IMMUTABLE;
+    \"\"\")
+
+    execute(\"\"\"
+    CREATE OR REPLACE FUNCTION ash_trim_whitespace(arr text[])
+    RETURNS text[] AS $$
+    DECLARE
+        start_index INT = 1;
+        end_index INT = array_length(arr, 1);
+    BEGIN
+        WHILE start_index <= end_index AND arr[start_index] = '' LOOP
+            start_index := start_index + 1;
+        END LOOP;
+
+        WHILE end_index >= start_index AND arr[end_index] = '' LOOP
+            end_index := end_index - 1;
+        END LOOP;
+
+        IF start_index > end_index THEN
+            RETURN ARRAY[]::text[];
+        ELSE
+            RETURN arr[start_index : end_index];
+        END IF;
+    END; $$
+    LANGUAGE plpgsql
+    SET search_path = ''
+    IMMUTABLE;
+    \"\"\")
+
+    #{ash_raise_error()}
+
+    #{ash_required()}
+
+    #{uuid_generate_v7(opts)}
+    """
+  end
+
+  def install(0, opts) do
+    """
+    execute(\"\"\"
+    ALTER FUNCTION ash_elixir_or(left BOOLEAN, in right ANYCOMPATIBLE, out f1 ANYCOMPATIBLE) IMMUTABLE
+    \"\"\")
+
+    execute(\"\"\"
+    ALTER FUNCTION ash_elixir_or(left ANYCOMPATIBLE, in right ANYCOMPATIBLE, out f1 ANYCOMPATIBLE) IMMUTABLE
+    \"\"\")
+
+    execute(\"\"\"
+    ALTER FUNCTION ash_elixir_and(left BOOLEAN, in right ANYCOMPATIBLE, out f1 ANYCOMPATIBLE) IMMUTABLE
+    \"\"\")
+
+    execute(\"\"\"
+    ALTER FUNCTION ash_elixir_and(left ANYCOMPATIBLE, in right ANYCOMPATIBLE, out f1 ANYCOMPATIBLE) IMMUTABLE
+    \"\"\")
+
+    #{ash_raise_error()}
+
+    #{ash_required()}
+
+    #{uuid_generate_v7(opts)}
+
+    execute(\"\"\"
+    CREATE OR REPLACE FUNCTION ash_trim_whitespace(arr text[])
+    RETURNS text[] AS $$
+    DECLARE
+        start_index INT = 1;
+        end_index INT = array_length(arr, 1);
+    BEGIN
+        WHILE start_index <= end_index AND arr[start_index] = '' LOOP
+            start_index := start_index + 1;
+        END LOOP;
+
+        WHILE end_index >= start_index AND arr[end_index] = '' LOOP
+            end_index := end_index - 1;
+        END LOOP;
+
+        IF start_index > end_index THEN
+            RETURN ARRAY[]::text[];
+        ELSE
+            RETURN arr[start_index : end_index];
+        END IF;
+    END; $$
+    LANGUAGE plpgsql
+    SET search_path = ''
+    IMMUTABLE;
+    \"\"\")
+    """
+  end
+
+  def install(1, opts) do
+    """
+    #{ash_raise_error()}
+
+    #{ash_required()}
+
+    #{uuid_generate_v7(opts)}
+    """
+  end
+
+  def install(2, opts) do
+    """
+    #{ash_raise_error()}
+
+    #{ash_required()}
+
+    #{uuid_generate_v7(opts)}
+    """
+  end
+
+  def install(3, opts) do
+    """
+    execute("ALTER FUNCTION ash_raise_error(jsonb) STABLE;")
+    execute("ALTER FUNCTION ash_raise_error(jsonb, ANYCOMPATIBLE) STABLE")
+
+    #{ash_required()}
+
+    #{uuid_generate_v7(opts)}
+    """
+  end
+
+  def install(4, opts) do
+    """
+    execute("ALTER FUNCTION ash_raise_error(jsonb) STABLE;")
+    execute("ALTER FUNCTION ash_raise_error(jsonb, ANYCOMPATIBLE) STABLE")
+
+    #{ash_required()}
+
+    #{uuid_generate_v7(opts)}
+    """
+  end
+
+  def install(5, _opts) do
+    """
+    #{ash_required()}
+    """
+  end
+
+  def drop(version, opts \\ [])
+
+  def drop(4, _opts) do
+    """
+    execute("ALTER FUNCTION ash_raise_error(jsonb) VOLATILE;")
+    execute("ALTER FUNCTION ash_raise_error(jsonb, ANYCOMPATIBLE) VOLATILE")
+
+    execute("DROP FUNCTION IF EXISTS ash_required(ANYCOMPATIBLE, jsonb)")
+    """
+  end
+
+  def drop(5, _opts) do
+    "execute(\"DROP FUNCTION IF EXISTS ash_required(ANYCOMPATIBLE, jsonb)\")"
+  end
+
+  def drop(3, opts) do
+    "execute(\"DROP FUNCTION IF EXISTS #{uuid_v7_drop(opts)}ash_required(ANYCOMPATIBLE, jsonb)\")"
+  end
+
+  def drop(2, opts) do
+    """
+    #{ash_raise_error()}
+
+    "execute(\"DROP FUNCTION IF EXISTS #{uuid_v7_drop(opts)}ash_required(ANYCOMPATIBLE, jsonb)\")"
+    """
+  end
+
+  def drop(1, opts) do
+    "execute(\"DROP FUNCTION IF EXISTS #{uuid_v7_drop(opts)}ash_raise_error(jsonb), ash_raise_error(jsonb, ANYCOMPATIBLE), ash_required(ANYCOMPATIBLE, jsonb)\")"
+  end
+
+  def drop(0, opts) do
+    "execute(\"DROP FUNCTION IF EXISTS #{uuid_v7_drop(opts)}ash_raise_error(jsonb), ash_raise_error(jsonb, ANYCOMPATIBLE), ash_trim_whitespace(text[]), ash_required(ANYCOMPATIBLE, jsonb)\")"
+  end
+
+  def drop(nil, opts) do
+    "execute(\"DROP FUNCTION IF EXISTS #{uuid_v7_drop(opts)}ash_raise_error(jsonb), ash_raise_error(jsonb, ANYCOMPATIBLE), ash_elixir_and(BOOLEAN, ANYCOMPATIBLE), ash_elixir_and(ANYCOMPATIBLE, ANYCOMPATIBLE), ash_elixir_or(ANYCOMPATIBLE, ANYCOMPATIBLE), ash_elixir_or(BOOLEAN, ANYCOMPATIBLE), ash_trim_whitespace(text[]), ash_required(ANYCOMPATIBLE, jsonb)\")"
+  end
+
+  defp ash_required do
+    """
+    execute(\"\"\"
+    CREATE OR REPLACE FUNCTION ash_required(value ANYCOMPATIBLE, payload jsonb)
+    RETURNS ANYCOMPATIBLE AS $$
+    BEGIN
+      IF value IS NULL THEN
+        RETURN ash_raise_error(payload, value);
+      END IF;
+
+      RETURN value;
+    END;
+    $$ LANGUAGE plpgsql
+    STABLE
+    SET search_path = '';
+    \"\"\")
+    """
+  end
+
+  defp ash_raise_error do
+    prefix = "ash_error: "
+
+    """
+    execute(\"\"\"
+    CREATE OR REPLACE FUNCTION ash_raise_error(json_data jsonb)
+    RETURNS BOOLEAN AS $$
+    BEGIN
+        -- Raise an error with the provided JSON data.
+        -- The JSON object is converted to text for inclusion in the error message.
+        RAISE EXCEPTION '#{prefix}%', json_data::text;
+        RETURN NULL;
+    END;
+    $$ LANGUAGE plpgsql
+    STABLE
+    SET search_path = '';
+    \"\"\")
+
+    execute(\"\"\"
+    CREATE OR REPLACE FUNCTION ash_raise_error(json_data jsonb, type_signal ANYCOMPATIBLE)
+    RETURNS ANYCOMPATIBLE AS $$
+    BEGIN
+        -- Raise an error with the provided JSON data.
+        -- The JSON object is converted to text for inclusion in the error message.
+        RAISE EXCEPTION '#{prefix}%', json_data::text;
+        RETURN NULL;
+    END;
+    $$ LANGUAGE plpgsql
+    STABLE
+    SET search_path = '';
+    \"\"\")
+    """
+  end
+
+  defp uuid_generate_v7(opts) do
+    if Keyword.get(opts, :use_builtin_uuidv7_function?, false) do
+      ""
+    else
+      """
+      execute(\"\"\"
+      CREATE OR REPLACE FUNCTION uuid_generate_v7()
+      RETURNS UUID
+      AS $$
+      DECLARE
+        timestamp    TIMESTAMPTZ;
+        microseconds INT;
+      BEGIN
+        timestamp    = clock_timestamp();
+        microseconds = (cast(extract(microseconds FROM timestamp)::INT - (floor(extract(milliseconds FROM timestamp))::INT * 1000) AS DOUBLE PRECISION) * 4.096)::INT;
+
+        RETURN encode(
+          set_byte(
+            set_byte(
+              overlay(uuid_send(gen_random_uuid()) placing substring(int8send(floor(extract(epoch FROM timestamp) * 1000)::BIGINT) FROM 3) FROM 1 FOR 6
+            ),
+            6, (b'0111' || (microseconds >> 8)::bit(4))::bit(8)::int
+          ),
+          7, microseconds::bit(8)::int
+        ),
+        'hex')::UUID;
+      END
+      $$
+      LANGUAGE PLPGSQL
+      SET search_path = ''
+      VOLATILE;
+      \"\"\")
+      """
+    end
+  end
+
+  defp uuid_v7_drop(opts) do
+    if Keyword.get(opts, :use_builtin_uuidv7_function?, false) do
+      ""
+    else
+      "uuid_generate_v7(), "
+    end
+  end
+end

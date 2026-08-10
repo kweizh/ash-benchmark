@@ -1,0 +1,46 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 35 items
+
+../tests/test_final_state.py ...................................         [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_t01_the_fleet_domain_exposes_the_five_rollout_resources
+PASSED ../tests/test_final_state.py::test_t02_resource_attributes_have_the_required_types_and_defaults
+PASSED ../tests/test_final_state.py::test_t03_the_rollout_reactor_declares_the_four_documented_inputs
+PASSED ../tests/test_final_state.py::test_t04_the_rollout_reactor_installs_a_bespoke_middleware_module
+PASSED ../tests/test_final_state.py::test_t05_resource_work_is_performed_through_ash_reactor_action_steps
+PASSED ../tests/test_final_state.py::test_t06_the_reactor_maps_over_targets_and_composes_the_approval_reactor
+PASSED ../tests/test_final_state.py::test_t07_the_deployment_step_implements_the_reactor_step_callbacks
+PASSED ../tests/test_final_state.py::test_t08_the_approval_reactor_branches_with_a_switch_step
+PASSED ../tests/test_final_state.py::test_t09_the_planning_action_summarises_the_targets
+PASSED ../tests/test_final_state.py::test_t10_the_planning_action_rejects_an_empty_target_list
+PASSED ../tests/test_final_state.py::test_t11_the_planning_action_rejects_duplicate_node_names
+PASSED ../tests/test_final_state.py::test_t12_the_planning_action_rejects_non_positive_slot_counts
+PASSED ../tests/test_final_state.py::test_t13_a_clean_rollout_returns_the_documented_result_map
+PASSED ../tests/test_final_state.py::test_t14_the_rollout_summary_is_rendered_exactly
+PASSED ../tests/test_final_state.py::test_t15_a_clean_rollout_leaves_every_target_node_live_and_reserved
+PASSED ../tests/test_final_state.py::test_t16_a_clean_rollout_deploys_every_placement_exactly_once
+PASSED ../tests/test_final_state.py::test_t17_a_clean_rollout_is_marked_succeeded
+PASSED ../tests/test_final_state.py::test_t18_a_clean_rollout_releases_its_lease_and_keeps_the_approval_granted
+PASSED ../tests/test_final_state.py::test_t19_the_middleware_records_the_reactor_lifecycle_of_a_clean_run
+PASSED ../tests/test_final_state.py::test_t20_a_large_rollout_requires_board_approval
+PASSED ../tests/test_final_state.py::test_t21_the_approval_reactor_runs_standalone_and_switches_on_the_total
+PASSED ../tests/test_final_state.py::test_t22_a_transiently_failing_node_is_retried_until_it_deploys
+PASSED ../tests/test_final_state.py::test_t23_retry_and_compensation_counters_are_recorded_per_placement
+PASSED ../tests/test_final_state.py::test_t24_each_failed_attempt_is_compensated_before_the_next_one_starts
+PASSED ../tests/test_final_state.py::test_t25_exhausting_the_retry_budget_fails_the_rollout
+PASSED ../tests/test_final_state.py::test_t26_a_failed_rollout_returns_every_node_to_its_original_capacity
+PASSED ../tests/test_final_state.py::test_t27_a_failed_rollout_undoes_only_the_placements_that_had_deployed
+PASSED ../tests/test_final_state.py::test_t28_a_failed_rollout_rolls_back_the_rollout_lease_and_approval
+PASSED ../tests/test_final_state.py::test_t29_the_trace_records_one_undo_per_unit_of_completed_work
+PASSED ../tests/test_final_state.py::test_t30_rollback_only_begins_once_the_failing_step_is_out_of_attempts
+PASSED ../tests/test_final_state.py::test_t31_deployments_run_two_at_a_time
+PASSED ../tests/test_final_state.py::test_t32_an_impossible_reservation_aborts_before_any_deployment_starts
+PASSED ../tests/test_final_state.py::test_t33_an_unknown_target_node_aborts_and_releases_everything
+PASSED ../tests/test_final_state.py::test_t34_a_later_rollout_still_succeeds_after_a_failed_one
+PASSED ../tests/test_final_state.py::test_t35_the_trace_can_be_reset
+============================= 35 passed in 30.62s ==============================

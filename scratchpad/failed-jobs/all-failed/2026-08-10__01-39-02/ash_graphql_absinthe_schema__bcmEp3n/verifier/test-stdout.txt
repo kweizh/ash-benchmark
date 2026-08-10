@@ -1,0 +1,297 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 44 items
+
+../tests/test_final_state.py .........F.........FFF............F........ [ 97%]
+.                                                                        [100%]
+
+=================================== FAILURES ===================================
+_______ test_t10_projects_labels_and_users_are_plain_non_paginated_lists _______
+
+suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}
+
+    def test_t10_projects_labels_and_users_are_plain_non_paginated_lists(suite_results):
+>       _assert_scenario(suite_results, "T10", 'projects, labels and users are plain non paginated lists')
+
+/tests/test_final_state.py:1086: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}
+scenario_id = 'T10'
+description = 'projects, labels and users are plain non paginated lists'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T10 (projects, labels and users are plain non paginated lists) failed:
+E         1) test T10 projects, labels and users are plain non paginated lists (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:275
+E            Assertion with == failed
+E            code:  assert field["type"] == %{
+E                     "kind" => "NON_NULL",
+E                     "ofType" => %{
+E                       "kind" => "LIST",
+E                       "ofType" => %{"kind" => "NON_NULL", "ofType" => %{"name" => inner}}
+E                     }
+E                   }
+E            left:  %{"kind" => "OBJECT", "ofType" => nil}
+E            right: %{
+E                     "kind" => "NON_NULL",
+E                     "ofType" => %{
+E                       "kind" => "LIST",
+E                       "ofType" => %{"kind" => "NON_NULL", "ofType" => %{"name" => "Project"}}
+E                     }
+E                   }
+E            stacktrace:
+E              /tmp/harbor_ash_graphql_final.exs:285: anonymous fn/3 in TrackerGraphqlTest."test T10 projects, labels and users are plain non paginated lists"/1
+E              (elixir 1.18.4) lib/enum.ex:2546: Enum."-reduce/3-lists^foldl/2-0-"/3
+E              /tmp/harbor_ash_graphql_final.exs:282: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+____________ test_t20_projects_exposes_the_filtered_count_aggregate ____________
+
+suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}
+
+    def test_t20_projects_exposes_the_filtered_count_aggregate(suite_results):
+>       _assert_scenario(suite_results, "T20", 'projects exposes the filtered count aggregate')
+
+/tests/test_final_state.py:1126: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}
+scenario_id = 'T20'
+description = 'projects exposes the filtered count aggregate'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T20 (projects exposes the filtered count aggregate) failed:
+E         1) test T20 projects exposes the filtered count aggregate (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:418
+E            ** (RuntimeError) unexpected top level errors: [%{message: "Cannot query field \"name\" on type \"KeysetPageOfProject\".", locations: [%{line: 1, column: 14}]}, %{message: "Cannot query field \"slug\" on type \"KeysetPageOfProject\".", locations: [%{line: 1, column: 19}]}, %{message: "Cannot query field \"archived\" on type \"KeysetPageOfProject\".", locations: [%{line: 1, column: 24}]}, %{message: "Cannot query field \"openTicketCount\" on type \"KeysetPageOfProject\".", locations: [%{line: 1, column: 33}]}]
+E            code: assert data("{ projects { name slug archived openTicketCount } }") == %{
+E            stacktrace:
+E              /tmp/harbor_ash_graphql_final.exs:67: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:419: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+____________________ test_t21_labels_can_be_sorted_by_name _____________________
+
+suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}
+
+    def test_t21_labels_can_be_sorted_by_name(suite_results):
+>       _assert_scenario(suite_results, "T21", 'labels can be sorted by name')
+
+/tests/test_final_state.py:1130: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}
+scenario_id = 'T21', description = 'labels can be sorted by name'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T21 (labels can be sorted by name) failed:
+E         1) test T21 labels can be sorted by name (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:437
+E            ** (RuntimeError) unexpected top level errors: [%{message: "Cannot query field \"name\" on type \"KeysetPageOfLabel\".", locations: [%{line: 1, column: 47}]}, %{message: "Cannot query field \"colour\" on type \"KeysetPageOfLabel\". Did you mean \"count\"?", locations: [%{line: 1, column: 52}]}]
+E            code: assert data("{ labels(sort: [{field: NAME, order: ASC}]) { name colour } }") == %{
+E            stacktrace:
+E              /tmp/harbor_ash_graphql_final.exs:67: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:438: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+____________ test_t22_hidden_attributes_are_not_part_of_the_schema _____________
+
+suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}
+
+    def test_t22_hidden_attributes_are_not_part_of_the_schema(suite_results):
+>       _assert_scenario(suite_results, "T22", 'hidden attributes are not part of the schema')
+
+/tests/test_final_state.py:1134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}
+scenario_id = 'T22'
+description = 'hidden attributes are not part of the schema'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T22 (hidden attributes are not part of the schema) failed:
+E         1) test T22 hidden attributes are not part of the schema (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:447
+E            Assertion with =~ failed
+E            code:  assert user_message =~ "Cannot query field \"internalNotes\" on type \"User\"."
+E            left:  "Cannot query field \"internalNotes\" on type \"KeysetPageOfUser\"."
+E            right: "Cannot query field \"internalNotes\" on type \"User\"."
+E            stacktrace:
+E              /tmp/harbor_ash_graphql_final.exs:454: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+_______ test_t35_the_managed_relationship_input_creates_and_links_labels _______
+
+suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}
+
+    def test_t35_the_managed_relationship_input_creates_and_links_labels(suite_results):
+>       _assert_scenario(suite_results, "T35", 'the managed relationship input creates and links labels')
+
+/tests/test_final_state.py:1186: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite_results = {'T01': ('pass', ''), 'T02': ('pass', ''), 'T03': ('pass', ''), 'T04': ('pass', ''), ...}
+scenario_id = 'T35'
+description = 'the managed relationship input creates and links labels'
+
+    def _assert_scenario(suite_results, scenario_id, description):
+        entry = suite_results.get(scenario_id)
+        assert entry is not None, (
+            "Scenario {} ({}) did not run at all. Collected scenarios: {}".format(
+                scenario_id, description, sorted(suite_results)
+            )
+        )
+        status, detail = entry
+        if status == "pass":
+            return
+    
+        import base64
+    
+        try:
+            rendered = base64.b64decode(detail).decode("utf-8", "replace")
+        except Exception:
+            rendered = detail
+    
+>       raise AssertionError(
+            "Scenario {} ({}) failed:\n{}".format(scenario_id, description, rendered)
+        )
+E       AssertionError: Scenario T35 (the managed relationship input creates and links labels) failed:
+E         1) test T35 the managed relationship input creates and links labels (TrackerGraphqlTest)
+E            /tmp/harbor_ash_graphql_final.exs:694
+E            ** (RuntimeError) unexpected top level errors: [%{message: "Cannot query field \"name\" on type \"KeysetPageOfLabel\".", locations: [%{line: 1, column: 47}]}]
+E            code: assert data("{ labels(sort: [{field: NAME, order: ASC}]) { name } }") == %{
+E            stacktrace:
+E              /tmp/harbor_ash_graphql_final.exs:67: GqlHelper.data/2
+E              /tmp/harbor_ash_graphql_final.exs:715: (test)
+
+/tests/test_final_state.py:1044: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_t01_root_query_exposes_exactly_the_required_fields
+PASSED ../tests/test_final_state.py::test_t02_root_mutation_exposes_exactly_the_required_fields
+PASSED ../tests/test_final_state.py::test_t03_ticket_object_exposes_renamed_and_hidden_fields_correctly
+PASSED ../tests/test_final_state.py::test_t04_ticket_status_is_a_non_null_ticketstatus_enum
+PASSED ../tests/test_final_state.py::test_t05_ticket_and_project_implement_node_user_does_not
+PASSED ../tests/test_final_state.py::test_t06_user_object_hides_internal_notes_and_exposes_role_as_a_string
+PASSED ../tests/test_final_state.py::test_t07_project_exposes_the_aggregate_as_a_non_null_int
+PASSED ../tests/test_final_state.py::test_t08_riskscore_is_a_nullable_int_field_taking_a_weight_argument
+PASSED ../tests/test_final_state.py::test_t09_tickets_is_a_relay_connection_with_the_standard_shape
+PASSED ../tests/test_final_state.py::test_t11_create_input_objects_are_derived_with_the_required_names
+PASSED ../tests/test_final_state.py::test_t12_label_filtering_and_sorting_is_restricted_to_name
+PASSED ../tests/test_final_state.py::test_t13_ticketorfail_is_non_null_while_ticket_is_nullable
+PASSED ../tests/test_final_state.py::test_t14_the_generic_action_mutation_returns_a_string_result_plus_errors
+PASSED ../tests/test_final_state.py::test_t15_the_hand_written_apiinfo_query_works
+PASSED ../tests/test_final_state.py::test_t16_ticket_is_fetched_by_its_relay_global_id
+PASSED ../tests/test_final_state.py::test_t17_a_raw_uuid_is_rejected_by_the_relay_aware_get_query
+PASSED ../tests/test_final_state.py::test_t18_node_resolves_ticket_and_project_global_ids
+PASSED ../tests/test_final_state.py::test_t19_topticket_read_one_returns_the_single_highest_severity_ticket
+PASSED ../tests/test_final_state.py::test_t23_relationships_and_calculations_resolve_through_a_get_query
+PASSED ../tests/test_final_state.py::test_t24_the_first_connection_page_reports_the_total_count_and_page_info
+PASSED ../tests/test_final_state.py::test_t25_forward_pagination_walks_the_whole_connection_without_gaps
+PASSED ../tests/test_final_state.py::test_t26_an_edge_cursor_can_be_used_as_the_after_argument
+PASSED ../tests/test_final_state.py::test_t27_a_ticket_created_through_the_api_shows_up_at_the_end_of_the_connection
+PASSED ../tests/test_final_state.py::test_t28_the_connection_honours_a_filter_and_reports_the_filtered_count
+PASSED ../tests/test_final_state.py::test_t29_boolean_filter_combinators_are_derived_from_the_resource
+PASSED ../tests/test_final_state.py::test_t30_an_or_filter_is_supported
+PASSED ../tests/test_final_state.py::test_t31_the_renamed_attribute_is_filterable_and_sortable_under_its_graphql_name
+PASSED ../tests/test_final_state.py::test_t32_filtering_across_a_relationship_works
+PASSED ../tests/test_final_state.py::test_t33_the_calculation_can_be_used_as_a_sort_key_with_its_argument
+PASSED ../tests/test_final_state.py::test_t34_createticket_returns_the_created_record_and_an_empty_error_list
+PASSED ../tests/test_final_state.py::test_t36_a_validation_failure_is_reported_inside_the_mutation_result
+PASSED ../tests/test_final_state.py::test_t37_updateticket_applies_changes_and_reports_validation_failures
+PASSED ../tests/test_final_state.py::test_t38_updating_a_missing_record_yields_a_not_found_error_in_the_result
+PASSED ../tests/test_final_state.py::test_t39_destroying_a_ticket_removes_it_and_ticketorfail_then_errors_at_the_top_level
+PASSED ../tests/test_final_state.py::test_t40_archiveproject_is_forbidden_without_an_admin_actor
+PASSED ../tests/test_final_state.py::test_t41_the_generic_action_mutation_returns_its_string_result
+PASSED ../tests/test_final_state.py::test_t42_the_custom_exception_surfaces_through_the_ashgraphql_error_protocol
+PASSED ../tests/test_final_state.py::test_t43_raised_errors_are_shown_because_the_domain_enables_them
+PASSED ../tests/test_final_state.py::test_t44_the_hand_written_ticketbyreference_query_loads_requested_fields
+FAILED ../tests/test_final_state.py::test_t10_projects_labels_and_users_are_plain_non_paginated_lists
+FAILED ../tests/test_final_state.py::test_t20_projects_exposes_the_filtered_count_aggregate
+FAILED ../tests/test_final_state.py::test_t21_labels_can_be_sorted_by_name - ...
+FAILED ../tests/test_final_state.py::test_t22_hidden_attributes_are_not_part_of_the_schema
+FAILED ../tests/test_final_state.py::test_t35_the_managed_relationship_input_creates_and_links_labels
+======================== 5 failed, 39 passed in 27.91s =========================

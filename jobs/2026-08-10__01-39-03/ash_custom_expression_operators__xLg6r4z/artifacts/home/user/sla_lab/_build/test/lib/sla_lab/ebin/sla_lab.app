@@ -1,0 +1,11 @@
+{application,sla_lab,
+             [{modules,['Elixir.Inspect.SlaLab.Ops.Carrier',
+                        'Elixir.Inspect.SlaLab.Ops.Shipment',
+                        'Elixir.SlaLab.Ops','Elixir.SlaLab.Ops.Carrier',
+                        'Elixir.SlaLab.Ops.Seed',
+                        'Elixir.SlaLab.Ops.Shipment']},
+              {optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger,ash,picosat_elixir]},
+              {description,"sla_lab"},
+              {registered,[]},
+              {vsn,"0.1.0"}]}.

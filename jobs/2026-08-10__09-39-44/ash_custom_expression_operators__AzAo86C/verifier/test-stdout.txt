@@ -1,0 +1,268 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.3
+collected 37 items
+
+../tests/test_final_state.py .........................FFFF........       [100%]
+
+=================================== FAILURES ===================================
+_____ test_t26_record_delivery_accepts_a_delivery_within_the_allowed_ratio _____
+
+suite = {'output': 'onditionals@@pass@@\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}
+
+    def test_t26_record_delivery_accepts_a_delivery_within_the_allowed_ratio(suite):
+        """T26 record_delivery accepts a delivery within the allowed ratio"""
+>       check(suite, "T26")
+
+/tests/test_final_state.py:778: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'onditionals@@pass@@\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}
+scenario = 'T26'
+
+    def check(suite, scenario):
+        results = suite["results"]
+        if not results:
+            pytest.fail(
+                "The ExUnit verification suite produced no results (the project most "
+                "likely does not compile).\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"output:\n{suite['output']}"
+            )
+    
+        prefix = "test " + scenario + " "
+        matching = [name for name in results if name.startswith(prefix)]
+        assert matching, (
+            f"Scenario {scenario} did not run. Known scenarios: {sorted(results)}\n"
+            f"output:\n{suite['output']}"
+        )
+    
+        name = matching[0]
+        status, detail = results[name]
+>       assert status == "pass", f"Scenario {name} failed:\n{detail}"
+E       AssertionError: Scenario test T26 record_delivery accepts a delivery within the allowed ratio failed:
+E           1) test T26 record_delivery accepts a delivery within the allowed ratio (SlaLabSuite)
+E              /tmp/harbor_expr_suite.exs:394
+E              ** (MatchError) no match of right hand side value: {:error, %Ash.Error.Invalid{changeset: "#Changeset<>",  errors: [%Ash.Error.Query.NoSuchFunction{function: :atomic_ref, arity: nil, resource: SlaLab.Ops.Shipment, could_be_calculation?: false, splode: Ash.Error, bread_crumbs: [], vars: [], path: [], stacktrace: #Splode.Stacktrace<>, class: :invalid}]}}
+E              code: {:ok, updated} =
+E              stacktrace:
+E                /tmp/harbor_expr_suite.exs:403: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:648: AssertionError
+_____ test_t27_record_delivery_rejects_a_delivery_beyond_the_allowed_ratio _____
+
+suite = {'output': 'onditionals@@pass@@\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}
+
+    def test_t27_record_delivery_rejects_a_delivery_beyond_the_allowed_ratio(suite):
+        """T27 record_delivery rejects a delivery beyond the allowed ratio"""
+>       check(suite, "T27")
+
+/tests/test_final_state.py:783: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'onditionals@@pass@@\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}
+scenario = 'T27'
+
+    def check(suite, scenario):
+        results = suite["results"]
+        if not results:
+            pytest.fail(
+                "The ExUnit verification suite produced no results (the project most "
+                "likely does not compile).\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"output:\n{suite['output']}"
+            )
+    
+        prefix = "test " + scenario + " "
+        matching = [name for name in results if name.startswith(prefix)]
+        assert matching, (
+            f"Scenario {scenario} did not run. Known scenarios: {sorted(results)}\n"
+            f"output:\n{suite['output']}"
+        )
+    
+        name = matching[0]
+        status, detail = results[name]
+>       assert status == "pass", f"Scenario {name} failed:\n{detail}"
+E       AssertionError: Scenario test T27 record_delivery rejects a delivery beyond the allowed ratio failed:
+E           1) test T27 record_delivery rejects a delivery beyond the allowed ratio (SlaLabSuite)
+E              /tmp/harbor_expr_suite.exs:412
+E              match (=) failed
+E              code:  assert %Ash.Error.Changes.InvalidAttribute{} = error
+E              left:  %Ash.Error.Changes.InvalidAttribute{}
+E              right: %Ash.Error.Query.NoSuchFunction{
+E                       function: :atomic_ref,
+E                       arity: nil,
+E                       resource: SlaLab.Ops.Shipment,
+E                       could_be_calculation?: false,
+E                       splode: Ash.Error,
+E                       bread_crumbs: [],
+E                       vars: [],
+E                       path: [],
+E                       stacktrace: #Splode.Stacktrace<>,
+E                       class: :invalid
+E                     }
+E              stacktrace:
+E                /tmp/harbor_expr_suite.exs:421: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:648: AssertionError
+___________ test_t28_the_delivery_validation_is_enforced_atomically ____________
+
+suite = {'output': 'onditionals@@pass@@\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}
+
+    def test_t28_the_delivery_validation_is_enforced_atomically(suite):
+        """T28 the delivery validation is enforced atomically"""
+>       check(suite, "T28")
+
+/tests/test_final_state.py:788: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'onditionals@@pass@@\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}
+scenario = 'T28'
+
+    def check(suite, scenario):
+        results = suite["results"]
+        if not results:
+            pytest.fail(
+                "The ExUnit verification suite produced no results (the project most "
+                "likely does not compile).\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"output:\n{suite['output']}"
+            )
+    
+        prefix = "test " + scenario + " "
+        matching = [name for name in results if name.startswith(prefix)]
+        assert matching, (
+            f"Scenario {scenario} did not run. Known scenarios: {sorted(results)}\n"
+            f"output:\n{suite['output']}"
+        )
+    
+        name = matching[0]
+        status, detail = results[name]
+>       assert status == "pass", f"Scenario {name} failed:\n{detail}"
+E       AssertionError: Scenario test T28 the delivery validation is enforced atomically failed:
+E           1) test T28 the delivery validation is enforced atomically (SlaLabSuite)
+E              /tmp/harbor_expr_suite.exs:429
+E              Assertion with == failed
+E              code:  assert result.status == :success
+E              left:  :error
+E              right: :success
+E              stacktrace:
+E                /tmp/harbor_expr_suite.exs:451: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:648: AssertionError
+_________ test_t29_the_read_policy_authorises_on_the_custom_expression _________
+
+suite = {'output': 'onditionals@@pass@@\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}
+
+    def test_t29_the_read_policy_authorises_on_the_custom_expression(suite):
+        """T29 the read policy authorises on the custom expression"""
+>       check(suite, "T29")
+
+/tests/test_final_state.py:793: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suite = {'output': 'onditionals@@pass@@\n@@HARBOR@@test T17 the on_route read action filters on the custom expression@@pass@@\... layer': ('pass', ''), 'test T04 both data layer clauses produce the same values': ('pass', ''), ...}, 'returncode': 0}
+scenario = 'T29'
+
+    def check(suite, scenario):
+        results = suite["results"]
+        if not results:
+            pytest.fail(
+                "The ExUnit verification suite produced no results (the project most "
+                "likely does not compile).\n"
+                f"mix run exit code: {suite['returncode']}\n"
+                f"output:\n{suite['output']}"
+            )
+    
+        prefix = "test " + scenario + " "
+        matching = [name for name in results if name.startswith(prefix)]
+        assert matching, (
+            f"Scenario {scenario} did not run. Known scenarios: {sorted(results)}\n"
+            f"output:\n{suite['output']}"
+        )
+    
+        name = matching[0]
+        status, detail = results[name]
+>       assert status == "pass", f"Scenario {name} failed:\n{detail}"
+E       AssertionError: Scenario test T29 the read policy authorises on the custom expression failed:
+E           1) test T29 the read policy authorises on the custom expression (SlaLabSuite)
+E              /tmp/harbor_expr_suite.exs:458
+E              ** (Ash.Error.Invalid) 
+E              Bread Crumbs:
+E                > Error returned from: SlaLab.Ops.Shipment.read
+E         
+E              Invalid Error
+E         
+E              * got %Ash.Error.Query.NoSuchFunction{function: :actor, arity: nil, resource: SlaLab.Ops.Shipment, could_be_calculation?: false, splode: Ash.Error, bread_crumbs: [], vars: [], path: [], stacktrace: #Splode.Stacktrace<>, class: :invalid} while retrieving Exception.message/1 for %Ash.Error.Query.NoSuchFunction{function: :actor, arity: nil, resource: SlaLab.Ops.Shipment, could_be_calculation?: false, splode: Ash.Error, bread_crumbs: [], vars: [], path: [], stacktrace: #Splode.Stacktrace<>, class: :invalid} (expected a string)
+E                (ash 3.31.0) lib/ash/policy/policy.ex:406: anonymous fn/2 in Ash.Policy.Policy.expand_constants/3
+E                (crux 0.1.4) lib/crux/expression.ex:821: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:771: Crux.Expression.do_expand/3
+E                (crux 0.1.4) lib/crux/expression.ex:793: Crux.Expression.do_expand/3
+E                (ash 3.31.0) lib/ash/policy/checker.ex:67: Ash.Policy.Checker.strict_check_scenarios/1
+E              code: records = Ash.read!(@shipment, actor: %{home_route: "AMS|LHR", role: :ops})
+E              stacktrace:
+E                (ash 3.31.0) lib/ash/error/error.ex:114: Ash.Error.to_error_class/2
+E                (ash 3.31.0) lib/ash.ex:1878: Ash.can/3
+E                (ash 3.31.0) lib/ash/actions/read/read.ex:88: Ash.Actions.Read.run/3
+E                (ash 3.31.0) lib/ash.ex:2938: Ash.read/2
+E                (ash 3.31.0) lib/ash.ex:2873: Ash.read!/2
+E                /tmp/harbor_expr_suite.exs:459: (test)
+E         
+E       assert 'fail' == 'pass'
+E         - pass
+E         + fail
+
+/tests/test_final_state.py:648: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_final_state.py::test_t01_custom_expressions_are_registered_with_ash
+PASSED ../tests/test_final_state.py::test_t02_custom_expression_modules_report_name_0_and_arguments_0
+PASSED ../tests/test_final_state.py::test_t03_expression_2_dispatches_per_data_layer
+PASSED ../tests/test_final_state.py::test_t04_both_data_layer_clauses_produce_the_same_values
+PASSED ../tests/test_final_state.py::test_t05_route_key_normalises_and_orders_its_arguments
+PASSED ../tests/test_final_state.py::test_t06_ratio_bps_computes_integral_basis_points
+PASSED ../tests/test_final_state.py::test_t07_ratio_bps_rounds_halves_upwards
+PASSED ../tests/test_final_state.py::test_t08_ratio_bps_clamps_to_the_closed_range_0_20000
+PASSED ../tests/test_final_state.py::test_t09_ratio_bps_returns_nil_for_nil_arguments_and_a_zero_denominator
+PASSED ../tests/test_final_state.py::test_t10_custom_expressions_compose_with_each_other
+PASSED ../tests/test_final_state.py::test_t11_custom_expressions_short_circuit_inside_if_cond
+PASSED ../tests/test_final_state.py::test_t12_custom_expression_results_can_be_cast_with_type_2
+PASSED ../tests/test_final_state.py::test_t13_arguments_outside_the_declared_types_are_rejected
+PASSED ../tests/test_final_state.py::test_t14_route_key_is_available_as_an_expression_calculation
+PASSED ../tests/test_final_state.py::test_t15_sla_ratio_bps_is_available_as_an_expression_calculation
+PASSED ../tests/test_final_state.py::test_t16_status_label_composes_the_custom_expression_with_conditionals
+PASSED ../tests/test_final_state.py::test_t17_the_on_route_read_action_filters_on_the_custom_expression
+PASSED ../tests/test_final_state.py::test_t18_custom_expressions_can_be_used_directly_in_a_query_filter
+PASSED ../tests/test_final_state.py::test_t19_calculations_built_on_custom_expressions_are_filterable
+PASSED ../tests/test_final_state.py::test_t20_calculations_built_on_custom_expressions_are_sortable
+PASSED ../tests/test_final_state.py::test_t21_custom_expressions_can_be_sorted_on_inline
+PASSED ../tests/test_final_state.py::test_t22_aggregate_filters_accept_custom_expressions
+PASSED ../tests/test_final_state.py::test_t23_custom_expressions_can_be_applied_to_aggregates
+PASSED ../tests/test_final_state.py::test_t24_custom_expressions_over_aggregates_are_filterable
+PASSED ../tests/test_final_state.py::test_t25_custom_expressions_work_inside_exists_1
+PASSED ../tests/test_final_state.py::test_t30_admins_bypass_the_route_policy_and_anonymous_readers_are_forbidden
+PASSED ../tests/test_final_state.py::test_t31_the_penalty_points_function_module_reports_its_contract
+PASSED ../tests/test_final_state.py::test_t32_penalty_points_evaluates_eagerly_for_literal_arguments
+PASSED ../tests/test_final_state.py::test_t33_penalty_points_is_never_evaluated_with_nil_arguments
+PASSED ../tests/test_final_state.py::test_t34_penalty_points_reports_unknown_and_invalid_inputs
+PASSED ../tests/test_final_state.py::test_t35_penalty_points_can_be_used_inside_a_query_filter
+PASSED ../tests/test_final_state.py::test_t36_penalty_points_evaluates_against_a_record
+PASSED ../tests/test_final_state.py::test_t37_programmatically_parsed_filters_behave_identically
+FAILED ../tests/test_final_state.py::test_t26_record_delivery_accepts_a_delivery_within_the_allowed_ratio
+FAILED ../tests/test_final_state.py::test_t27_record_delivery_rejects_a_delivery_beyond_the_allowed_ratio
+FAILED ../tests/test_final_state.py::test_t28_the_delivery_validation_is_enforced_atomically
+FAILED ../tests/test_final_state.py::test_t29_the_read_policy_authorises_on_the_custom_expression
+======================== 4 failed, 33 passed in 22.95s =========================
